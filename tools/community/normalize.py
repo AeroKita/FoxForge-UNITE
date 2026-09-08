@@ -345,6 +345,29 @@ def append_upgrade_from_advanced(basic: str, advanced: str) -> str:
     return f"{basic}\n\n{upgrade}" if basic else upgrade
 
 
+def apply_archive_move_basic(move: dict, over: dict) -> None:
+    """Replace *move* Basic with the owned archive body when one exists.
+
+    Looks up ``_norm_move_name(name)``. For ``basicAttack``, also tries
+    ``basic attack``, ``standard attack``, and ``attack``.
+    """
+    name = move.get("name") or ""
+    keys = [_norm_move_name(name)]
+    if move.get("slot") == "basicAttack":
+        keys.extend(["basic attack", "standard attack", "attack"])
+    archived = ""
+    for key in keys:
+        if not key:
+            continue
+        candidate = over.get(key, "")
+        if description_body(candidate).strip():
+            archived = candidate
+            break
+    if not archived:
+        return
+    move["description"] = ensure_sentence_end(strip_activation_note(archived))
+
+
 # Pokémon whose on-field Ability is the last UNITE-DB stage (passive3, else
 # passive2), not the pre-evolution ``name``. Mega licenses are a separate path
 # (``mega_license_passive_names``) and must not be listed here. Mew's
@@ -508,16 +531,19 @@ def assemble_passive_ability(
 
 
 def passive_basic_desc(passive: dict | None, over: dict) -> str:
-    """Resolve Basic-tier passive text: UNITE-DB description, then move_descriptions
-    override, then Advanced (rsb.true_desc). Returns empty string when passive is None."""
+    """Resolve Basic-tier passive text: owned archive, then UNITE-DB, then Advanced.
+
+    Returns empty string when passive is None. Archive wins when it has a real
+    body (not upgrade-only). Advanced stays on ``descriptionAdvanced``.
+    """
     if passive is None:
         return ""
+    override = strip_activation_note(over.get(_norm_move_name(passive.get("name", "")), ""))
+    if description_body(override).strip():
+        return ensure_sentence_end(paragraphize_upgrade(override))
     desc = paragraphize_upgrade((passive.get("description") or "").strip())
     if desc.strip():
         return ensure_sentence_end(desc)
-    override = strip_activation_note(over.get(_norm_move_name(passive.get("name", "")), ""))
-    if override.strip():
-        return ensure_sentence_end(paragraphize_upgrade(override))
     return ensure_sentence_end(
         paragraphize_upgrade(((passive.get("rsb") or {}).get("true_desc") or "").strip())
     )
@@ -827,25 +853,12 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
         exclude = p.get("exclude_stats")
         pid = slugify(name)
         over = descs.get(pid, {})
-        # Sylveon's UNITE-DB Basic (description / description1) is unofficial or
-        # outdated. Clear it when the archive has a real body so backfill supplies
-        # in-game text — same idea as clearing staged-Ability description.
-        if pid == "sylveon" and over:
-            for m in moves:
-                if m.get("slot") == "basicAttack":
-                    continue
-                if description_body(over.get(_norm_move_name(m["name"]), "")).strip():
-                    m["description"] = ""
+        # Owned archive Basic wins over UNITE-DB whenever it has a real body.
         if over:
             for m in moves:
-                if not description_body(m.get("description") or "").strip():
-                    archived = over.get(_norm_move_name(m["name"]), "")
-                    if archived.strip():
-                        m["description"] = ensure_sentence_end(
-                            strip_activation_note(archived)
-                        )
+                apply_archive_move_basic(m, over)
         # After archive backfill, copy Advanced's Upgrade paragraph onto Basic when
-        # Basic still lacks an Upgrade marker (covers the roster-wide Basic gap).
+        # Basic still lacks an Upgrade marker.
         for m in moves:
             adv = m.get("descriptionAdvanced") or ""
             if not adv:

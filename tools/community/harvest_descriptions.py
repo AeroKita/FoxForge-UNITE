@@ -1,9 +1,9 @@
 """Harvest Basic move/passive descriptions from the bundle into move_descriptions.json.
 
-Archives every non-blank description the bundle currently ships so normalize.py can
-backfill future upstream deletions. Upgrade-only leftovers (no body before the
-Upgrade line) are treated like blank. The only programmatic writer of owned
-description data.
+Archives missing keys so normalize.py can backfill future upstream deletions.
+Existing archive bodies are never overwritten (add-only). Upgrade-only leftovers
+(no body before the Upgrade line) are treated like blank. New keys store the
+body only. If Basic already has an Upgrade paragraph, normalize keeps it.
 """
 
 from __future__ import annotations
@@ -21,10 +21,11 @@ MOVE_DESCRIPTIONS = REPO / "tools" / "community" / "move_descriptions.json"
 
 
 def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
-    """Merge non-blank bundle descriptions into *archive* (pokemon id → norm name → text).
+    """Merge missing bundle descriptions into *archive* (pokemon id → norm name → text).
 
     Returns the updated descriptions mapping and human-readable change lines.
-    Blank or upgrade-only bundle text never overwrites an existing archived value.
+    Existing archive bodies are never overwritten. Blank or upgrade-only bundle
+    text is skipped. New and upgrade-only-archive keys store ``description_body``.
     """
     result: dict = copy.deepcopy(archive)
     changes: list[str] = []
@@ -55,7 +56,8 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
                 entries.append(("passive", extra_name, extra_desc))
 
         for kind, name, desc in entries:
-            if not description_body(desc):
+            stored = description_body(desc)
+            if not stored:
                 continue
             key = _norm_move_name(name)
             if not key:
@@ -68,10 +70,10 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
             seen_keys[key] = name
             old = bucket.get(key)
             if old is None:
-                bucket[key] = desc
+                bucket[key] = stored
                 changes.append(f"+ {pid}/{name}: archived")
-            elif old != desc:
-                bucket[key] = desc
+            elif not description_body(old) and old != stored:
+                bucket[key] = stored
                 changes.append(f"~ {pid}/{name}: updated")
 
     return result, changes

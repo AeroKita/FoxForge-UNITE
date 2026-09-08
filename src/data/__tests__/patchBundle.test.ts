@@ -144,8 +144,22 @@ describe("community data bundle", () => {
         "Upgrade (Level 13): Throws opposing Pokémon hit for 0.4s",
       );
       expect(fly.description).toContain(
-        "Upgrade (Level 13): Also throws enemies when this move hits",
+        "Upgrade (Level 13): Also throws enemies when this move hits.",
       );
+      expect(fly.description).not.toContain("0.4s");
+    });
+
+    it("Lucario Extreme Speed Basic is in-game Effect text with pre-Game8 Upgrade", () => {
+      const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+      const extreme = lucario.moves.find((m) => m.id === "extreme-speed")!;
+      expect(extreme.description).toContain("breathtaking speed");
+      expect(extreme.description).toContain("Extreme Speed mark");
+      expect(extreme.description).toContain(
+        "Upgrade (Level 11): Increases Attack for a short time when this move is used.",
+      );
+      expect(extreme.description).not.toContain("7.5%");
+      expect(extreme.descriptionAdvanced).toContain("7.5%");
+      expect(extreme.description).not.toContain("point-blank range");
     });
 
     it("Talonflame Gale Wings passive has Advanced text", () => {
@@ -260,7 +274,9 @@ describe("community data bundle", () => {
       }
       const mew = bundle.pokemon.find((p) => p.id === "mew")!;
       expect(mew.passiveAbility.name).toBe("Synchronize");
-      expect(mew.passiveAbility.description).not.toContain("Move Reset");
+      expect(mew.passiveAbility.id).toBe("synchronize");
+      expect(mew.passiveAbility.description).toContain("movement speed");
+      expect(mew.passiveAbility.description).toContain("Move Reset");
     });
 
     it("Sylveon shows Pixilate and in-game Basic move text", () => {
@@ -279,14 +295,18 @@ describe("community data bundle", () => {
       expect(byId.swift.description).toContain("opposing Pokémon");
       expect(byId.swift.description).not.toContain("4 star-shaped");
 
-      expect(byId["hyper-voice"].description).toContain("Applies a slowing effect");
-      expect(byId["hyper-voice"].description).not.toContain("number of sound waves");
+      expect(byId["hyper-voice"].description).toContain("sound waves");
+      expect(byId["hyper-voice"].description).toContain(
+        "Upgrade (Level 10): Applies a slowing effect to opposing Pokémon hit by this move.",
+      );
       expect(byId["hyper-voice"].descriptionAdvanced).toContain("slowed by 30%");
+      expect(byId["hyper-voice"].description).not.toContain("slowed by 30%");
 
       expect(byId["draining-kiss"].description).toContain("Has the user blow a kiss");
       expect(byId["draining-kiss"].description).toContain(
-        "Upgrade (Level 12): Increases the amount of HP",
+        "Upgrade (Level 12): Increases the amount of HP this move restores.",
       );
+      expect(byId["draining-kiss"].description).not.toContain("Increased healing.");
 
       expect(byId["calm-mind"].description).toContain("Has the user quietly focus");
       expect(byId["calm-mind"].description).not.toContain("40%");
@@ -475,7 +495,6 @@ describe("community data bundle", () => {
         "and the decreasing their",
         "damaging opposing over time",
         "once only Fighter Mode",
-        "Pokémon it hit.",
         "an cone",
         "attacks enemies their feet",
         "for aa set",

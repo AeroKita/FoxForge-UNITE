@@ -7,7 +7,9 @@ alwaysApply: true
 
 Basic tooltip copy is owned in `tools/community/move_descriptions.json`. Do not invent it. Do not copy Serebii, Bulbapedia, or similar sites as the live source. The Serebii scraper is retired.
 
-UNITE-DB Basic is often a pre-evolution leftover, unofficial, upgrade-only, or the same as Advanced numbers. Prefer operator-supplied in-game text or tooltip stills. Advanced stays UNITE-DB `rsb.true_desc` (and staged `passive2_description` / `passive3_description`).
+UNITE-DB Basic is often a pre-evolution leftover, unofficial, upgrade-only, or the same as Advanced numbers. The owned archive wins over UNITE-DB Basic when it has a real body. Prefer operator-supplied in-game text or tooltip stills over Game8 when they disagree. Advanced stays UNITE-DB `rsb.true_desc` (and staged `passive2_description` / `passive3_description`). When Basic already has an Upgrade paragraph, keep it — do not replace it with Advanced.
+
+Game8 `Effect` headings were a one-time transcription aid (`tools/community/ingest_game8_effects.py`). Do not add that script to harvest or refresh. Do not copy Game8 How to Use, patch history, or strategy.
 
 There is no official Nintendo/TiMi gamemaster API. `uniteapi.dev` is match analytics, not constants. First-party APK datamining is blocked (rotated Unity XOR keys). Do not reverse `libil2cpp.so`, dump APKs, or write decrypt tools. Agents cannot operate a Switch or a UNITE client from this session.
 
@@ -16,7 +18,7 @@ There is no official Nintendo/TiMi gamemaster API. `uniteapi.dev` is match analy
 1. Put the exact in-game Basic under `move_descriptions.json` → `descriptions.<id>.<normalized name>`.
 2. If the app still shows a pre-evolution Ability, add that Pokémon's UNITE-DB `name` slug to `PLAYABLE_PASSIVE_SLUGS` in `normalize.py`. Never add `mew` (`passive2` is Move Reset). Never add mega-license slugs (those use `mega_license_passive_names` → Pre-Mega + Mega rows).
 3. Drop or retarget `patch_note_overrides.json` entries whose `move` id was the old Ability (unknown ids fail normalize).
-4. `npm run data:refresh -- --mode curate --no-verify`, then `python3 tools/community/fetch_art.py`. Do **not** run a full harvest for a description-only pass.
+4. `npm run data:refresh -- --mode curate --no-verify`, then `python3 tools/community/fetch_art.py`. Do **not** run a full harvest for a description-only pass. Harvest is add-only (it never overwrites an existing archive body).
 5. Assert name + a distinctive Basic phrase in `patchBundle.test.ts`. Do not snapshot the full sentence.
 
 Tooltip stills: `tools/community/_descs/<pokemon-id>/`. Transcribe from those pixels into the archive. Do not hand-edit `src/data/patch-current.json`.

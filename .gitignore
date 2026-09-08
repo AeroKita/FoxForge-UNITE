@@ -27,3 +27,6 @@ tools/community/_clips/*/*.MOV
 # private in-game reference screenshots (move descriptions, etc.) — reference
 # only, never distributed.
 screenshot-references/
+
+# Game8 one-shot Effect ingest cache (HTML). Do not commit.
+tools/community/_game8_cache/

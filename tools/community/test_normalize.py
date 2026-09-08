@@ -9,6 +9,7 @@ from normalize import (
     _norm_move_name,
     advanced_desc,
     append_upgrade_from_advanced,
+    apply_archive_move_basic,
     apply_patch_note_overrides,
     build_emblems,
     build_upgrade_move,
@@ -84,7 +85,7 @@ class TestEnsureSentenceEnd(unittest.TestCase):
 
 
 class TestAppendUpgradeFromAdvanced(unittest.TestCase):
-    """append_upgrade_from_advanced copies only Advanced's Upgrade paragraph onto Basic."""
+    """append_upgrade_from_advanced copies Advanced's Upgrade only when Basic has none."""
 
     def test_basic_already_has_level_upgrade_unchanged(self):
         basic = "Body text.\n\nUpgrade (Level 11): More damage."
@@ -95,6 +96,13 @@ class TestAppendUpgradeFromAdvanced(unittest.TestCase):
         basic = "Body text.\n\nUpgrade: More damage."
         advanced = "Adv body.\n\nUpgrade (Level 11): Different wording."
         self.assertEqual(append_upgrade_from_advanced(basic, advanced), basic)
+
+    def test_no_upgrade_in_advanced_keeps_archive_upgrade(self):
+        basic = "Body text.\n\nUpgrade (Level 11): Archive-only upgrade."
+        self.assertEqual(
+            append_upgrade_from_advanced(basic, "No upgrade here."),
+            basic,
+        )
 
     def test_appends_upgrade_paragraph_only(self):
         basic = "Has the user throw consecutive flames."
@@ -133,10 +141,14 @@ class TestAppendUpgradeFromAdvanced(unittest.TestCase):
 
 
 class TestPassiveBasicDesc(unittest.TestCase):
-    def test_unite_db_description_present(self):
+    def test_archive_body_wins_over_unite_db(self):
         passive = {"name": "Dark Aura", "description": "From UNITE-DB.", "rsb": {"true_desc": "Advanced."}}
         over = {"dark aura": "Override text."}
-        self.assertEqual(passive_basic_desc(passive, over), "From UNITE-DB.")
+        self.assertEqual(passive_basic_desc(passive, over), "Override text.")
+
+    def test_empty_archive_keeps_unite_db(self):
+        passive = {"name": "Dark Aura", "description": "From UNITE-DB.", "rsb": {"true_desc": "Advanced."}}
+        self.assertEqual(passive_basic_desc(passive, {}), "From UNITE-DB.")
 
     def test_blank_description_uses_override(self):
         passive = {"name": "Dark Aura", "description": "", "rsb": {"true_desc": "Advanced."}}
@@ -149,6 +161,85 @@ class TestPassiveBasicDesc(unittest.TestCase):
 
     def test_none_passive_returns_empty(self):
         self.assertEqual(passive_basic_desc(None, {}), "")
+
+    def test_upgrade_only_archive_does_not_replace_unite_db(self):
+        passive = {"name": "Dark Aura", "description": "From UNITE-DB.", "rsb": {"true_desc": "Advanced."}}
+        over = {"dark aura": "Upgrade (Level 11): More damage."}
+        self.assertEqual(passive_basic_desc(passive, over), "From UNITE-DB.")
+
+
+class TestApplyArchiveMoveBasic(unittest.TestCase):
+    """Owned archive Basic replaces UNITE-DB when the archive has a real body."""
+
+    def test_archive_in_game_body_replaces_unite_db(self):
+        move = {
+            "name": "Extreme Speed",
+            "slot": "move1",
+            "description": "UNITE-DB unofficial enemy text.",
+        }
+        apply_archive_move_basic(
+            move,
+            {"extreme speed": "Has the user charge forward with breathtaking speed."},
+        )
+        self.assertEqual(
+            move["description"],
+            "Has the user charge forward with breathtaking speed.",
+        )
+
+    def test_archive_keeps_existing_upgrade_paragraph(self):
+        move = {
+            "name": "Extreme Speed",
+            "slot": "move1",
+            "description": "UNITE-DB unofficial enemy text.",
+        }
+        apply_archive_move_basic(
+            move,
+            {
+                "extreme speed": (
+                    "Has the user charge forward with breathtaking speed.\n\n"
+                    "Upgrade (Level 11): Increases Attack for a short time when this move is used."
+                )
+            },
+        )
+        self.assertIn("breathtaking speed", move["description"])
+        self.assertIn(
+            "Upgrade (Level 11): Increases Attack for a short time when this move is used.",
+            move["description"],
+        )
+        self.assertNotIn("7.5%", move["description"])
+
+    def test_empty_archive_leaves_unite_db(self):
+        move = {
+            "name": "Extreme Speed",
+            "slot": "move1",
+            "description": "UNITE-DB unofficial enemy text.",
+        }
+        apply_archive_move_basic(move, {})
+        self.assertEqual(move["description"], "UNITE-DB unofficial enemy text.")
+
+    def test_basic_attack_uses_archive_when_present(self):
+        move = {
+            "name": "Attack",
+            "slot": "basicAttack",
+            "description": "UNITE-DB auto attack text.",
+        }
+        apply_archive_move_basic(
+            move,
+            {"basic attack": "Becomes a boosted attack with every third attack."},
+        )
+        self.assertEqual(
+            move["description"],
+            "Becomes a boosted attack with every third attack.",
+        )
+
+    def test_basic_attack_unchanged_when_archive_key_missing(self):
+        move = {
+            "name": "Attack",
+            "slot": "basicAttack",
+            "description": "UNITE-DB auto attack text.",
+        }
+        apply_archive_move_basic(move, {"extreme speed": "Has the user dash."})
+        self.assertEqual(move["description"], "UNITE-DB auto attack text.")
 
 
 class TestResolvePlayablePassive(unittest.TestCase):

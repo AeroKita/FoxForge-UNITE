@@ -36,7 +36,7 @@ class TestHarvest(unittest.TestCase):
         self.assertEqual(updated["pikachu"]["thunderbolt"], "Deals damage.")
         self.assertEqual(len(changes), 1)
 
-    def test_changed_text_is_updated(self):
+    def test_existing_archive_body_is_preserved(self):
         bundle = _bundle(
             moves=[
                 {
@@ -49,7 +49,28 @@ class TestHarvest(unittest.TestCase):
         )
         archive = {"pikachu": {"thunderbolt": "Old wording."}}
         updated, changes = harvest(bundle, archive)
-        self.assertEqual(updated["pikachu"]["thunderbolt"], "New wording.")
+        self.assertEqual(updated["pikachu"]["thunderbolt"], "Old wording.")
+        self.assertEqual(changes, [])
+
+    def test_new_entry_stores_body_without_upgrade(self):
+        bundle = _bundle(
+            moves=[
+                {
+                    "id": "thunderbolt",
+                    "name": "Thunderbolt",
+                    "slot": "move1",
+                    "description": (
+                        "Deals damage to opposing Pokémon.\n\n"
+                        "Upgrade (Level 11): Increases damage."
+                    ),
+                }
+            ]
+        )
+        updated, changes = harvest(bundle, {})
+        self.assertEqual(
+            updated["pikachu"]["thunderbolt"],
+            "Deals damage to opposing Pokémon.",
+        )
         self.assertEqual(len(changes), 1)
 
     def test_blank_never_overwrites(self):
@@ -128,8 +149,8 @@ class TestHarvest(unittest.TestCase):
         self.assertEqual(updated["missingmon"]["some move"], "Hand-written.")
         self.assertEqual(changes, [])
 
-    def test_accented_display_name_updates_unaccented_archive_key(self):
-        """Accented bundle names must update the folded key, not create a diacritic duplicate."""
+    def test_accented_display_name_reuses_folded_archive_key(self):
+        """Accented bundle names must reuse the folded key, not create a diacritic duplicate."""
         bundle = _bundle(
             id="yveltal",
             displayName="Yveltal",
@@ -144,9 +165,9 @@ class TestHarvest(unittest.TestCase):
         )
         archive = {"yveltal": {"lumiere of demise": "Old beam text."}}
         updated, changes = harvest(bundle, archive)
-        self.assertEqual(updated["yveltal"]["lumiere of demise"], "Beam text.")
+        self.assertEqual(updated["yveltal"]["lumiere of demise"], "Old beam text.")
         self.assertNotIn("lumière of demise", updated["yveltal"])
-        self.assertEqual(len(changes), 1)
+        self.assertEqual(changes, [])
 
     def test_upgrade_only_never_overwrites_full_archive_body(self):
         """Upgrade-only bundle text must not replace a real archived Basic body."""
@@ -218,7 +239,15 @@ class TestHarvest(unittest.TestCase):
             }
         }
         updated, changes = harvest(bundle, archive)
-        self.assertEqual(updated["sylveon"]["mystical fire"], body)
+        self.assertEqual(
+            updated["sylveon"]["mystical fire"],
+            (
+                "Has the user create four small flames while advancing in the designated direction. "
+                "The flames shoot toward opposing Pokémon one by one, dealing damage and decreasing "
+                "the opposing Pokémon's Sp. Atk for a short time when they hit. Each time a flame "
+                "hits, it reduces the cooldown of this move."
+            ),
+        )
         self.assertEqual(len(changes), 1)
         self.assertTrue(changes[0].startswith("~"))
 
