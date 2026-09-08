@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.3",
-  "lastUpdated": "2026-09-07",
+  "lastUpdated": "2026-09-08",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-07"
+    "fetched": "2026-09-08"
   },
   "pokemon": [
     {
@@ -1129,12 +1129,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "no-guard",
-        "name": "No Guard",
-        "description": "Honedge and Doublade do not gain the stat benefits of Stance Change. However, their boosted attack functions like Aegislash's Sword Stance boosted attack.",
+        "id": "stance-change",
+        "name": "Stance Change",
+        "description": "Allows the Pokémon to switch between Blade Forme and Shield Forme.\n\nUsing a blade move changes the user to Blade Forme, which increases the user's movement speed, Attack, and basic attack speed. Using a shield move changes the user to Shield Forme, and its Defense and Sp. Def are increased.",
         "effects": [],
-        "descriptionAdvanced": "Honedge and Doublade do not gain the stat benefits of Stance Change; their auto attacks act like Aegislash's Sword Forme auto attacks.",
-        "iconAsset": "/assets/skills/Aegislash/No+Guard.png"
+        "descriptionAdvanced": "Aegislash can switch between Sword Stance and Shield Stance. Using a blade move switches stance to Sword Stance; which increases Attack, movement speed by 5%, and Attack Speed by 15%. Using a shield move switches stance to Shield Stance; which increases Defense and Sp. Defense and reduces Attack Speed by 20%. After switching stances, movement speed and basic attack speed are further increased by 15% for 3.5s.",
+        "iconAsset": "/assets/skills/Aegislash/Stance+Change.png"
       },
       "builds": [
         {
@@ -6682,12 +6682,11 @@
         }
       ],
       "passiveAbility": {
-        "id": "flame-body",
-        "name": "Flame Body",
-        "description": "When Charcadet hits an enemy with an auto attack, Charcadet deals damage around themself with flames. This ability goes on a 4s CD after it's triggered.",
+        "id": "weak-armor",
+        "name": "Weak Armor",
+        "description": "When the Pokémon takes Attack-based damage, its movement speed is increased for a short time. This effect can stack up to 2 times.\n\nIf the Pokémon with this Ability deals damage to opposing Pokémon with its basic attack or moves, the Pokémon hit receive a wound. Life energy leaks out of these wounds, causing damage over time. This effect can stack up to 6 times. If the effect stacks 6 times on an opposing Pokémon, that Pokémon takes increased damage from the Pokémon with this Ability.",
         "effects": [],
-        "descriptionAdvanced": "When Charcadet hits an enemy with an auto attack, Charcadet deals damage around themself with flames. This ability goes on a 4s CD after it's triggered.",
-        "iconAsset": "/assets/skills/Ceruledge/Flame+Body.png"
+        "iconAsset": "/assets/skills/Ceruledge/Weak+Armor.png"
       },
       "builds": [
         {
@@ -8668,8 +8667,19 @@
         "description": "When the user uses a move, it deals additional damage but loses 5% of its current HP. This Ability's effect does not trigger when the user is in tall grass. When the user deals damage with a basic attack to opposing Pokémon that have been burned by its moves, the user restores 2% of its missing HP.",
         "effects": [],
         "descriptionAdvanced": "When the user uses a move, it deals additional damage but loses 5% of its current HP. This Ability's effect does not trigger when the user is in tall grass. When the user deals damage with a basic attack to opposing Pokémon that have been burned by its moves, the user restores 2% of its missing HP.",
-        "iconAsset": "/assets/skills/Mega-Charizard-X/Solar+Power.png"
+        "iconAsset": "/assets/skills/Mega-Charizard-X/Solar+Power.png",
+        "phase": "preMega"
       },
+      "extraPassives": [
+        {
+          "id": "tough-claws",
+          "name": "Tough Claws",
+          "description": "Gain a boost counter each time a move hits opposing Pokémon (maximum three counters). When a boost counter is consumed, the Pokémon's next basic attack becomes a boosted attack and is guaranteed to be a critical hit.\n\nWhen the Pokémon deals damage with a basic attack to opposing Pokémon that have been burned by its moves, HP is restored.",
+          "effects": [],
+          "iconAsset": "/assets/skills/Mega-Charizard-X/Tough+Claws.png",
+          "phase": "mega"
+        }
+      ],
       "builds": [
         {
           "name": "Fire Blitz",
@@ -9129,8 +9139,19 @@
         "description": "Increases Attack by 8% for 5 seconds after Charizard gets hit.",
         "effects": [],
         "descriptionAdvanced": "Increases Attack by 8% for 5 seconds after Charizard gets hit.",
-        "iconAsset": "/assets/skills/Mega-Charizard-Y/Blaze.png"
+        "iconAsset": "/assets/skills/Mega-Charizard-Y/Blaze.png",
+        "phase": "preMega"
       },
+      "extraPassives": [
+        {
+          "id": "drought",
+          "name": "Drought",
+          "description": "The sunlight surrounding the Pokémon becomes stronger. While inside the sunny area of effect, the Pokémon deals increased damage.",
+          "effects": [],
+          "iconAsset": "/assets/skills/Mega-Charizard-Y/Drought.png",
+          "phase": "mega"
+        }
+      ],
       "builds": [
         {
           "name": "Flame Blast",
@@ -16450,11 +16471,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "marvel-scale",
-        "name": "Marvel Scale",
-        "description": "Increases Defense by 100 for 1.5s when afflicted by a status condition (Dratini and Dragonair only).",
+        "id": "multiscale",
+        "name": "Multiscale",
+        "description": "Reduces the damage the Pokémon receives for a short time. This Ability goes on cooldown after it's triggered.",
         "effects": [],
-        "iconAsset": "/assets/skills/Dragonite/Marvel+Scale.png"
+        "descriptionAdvanced": "When damaged by an enemy player, gain a buff that reduces damage taken by 30% for 2.5 seconds. This ability has a 15 second cooldown.",
+        "iconAsset": "/assets/skills/Dragonite/Multiscale.png"
       },
       "builds": [
         {
@@ -18937,11 +18959,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "anticipation",
-        "name": "Anticipation",
-        "description": "When Eevee would be affected by a hindrance, the hindrance is negated and Eevee becomes unstoppable for 0.45s (35s CD).",
+        "id": "magic-bounce",
+        "name": "Magic Bounce",
+        "description": "When the Pokémon would be affected by a hindrance, the hindrance is negated, and the Pokémon becomes immune to hindrances for a short time.\n\nAt the same time, this Ability deals damage to the opposing Pokémon that attempted to inflict the hindrance and decreases its movement speed for a short time. This Ability goes on cooldown after it's triggered.",
         "effects": [],
-        "iconAsset": "/assets/skills/Espeon/Anticipation.png"
+        "descriptionAdvanced": "When Espeon would be affected by a hindrance, the hindrance is negated and Espeon becomes unstoppable for 0.45s while retaliating against the enemy that triggered the ability, dealing damage and applying a 30% slow for 1s (35s CD).",
+        "iconAsset": "/assets/skills/Espeon/Magic+Bounce.png"
       },
       "builds": [
         {
@@ -22749,11 +22772,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "run-away",
-        "name": "Run Away",
-        "description": "When Eevee would be affected by a hindrance, the hindrance is negated and becomes invincible for 1s. This Ability goes on cooldown after it’s triggered (70s CD).",
+        "id": "snow-cloak",
+        "name": "Snow Cloak",
+        "description": "When the Pokémon is affected by a hindrance, the hindrance is negated, and the Pokémon enters stealth and becomes invincible for a short time. This Ability goes on cooldown after it's triggered.",
         "effects": [],
-        "iconAsset": "/assets/skills/Glaceon/Run+Away.png"
+        "descriptionAdvanced": "When Glaceon would be affected by a hindrance, the hindrance is negated. Glaceon then starts sneaking and becomes invincible for 0.5s. This Ability goes on cooldown after it’s triggered (70s CD) and is reset after respawning.",
+        "iconAsset": "/assets/skills/Glaceon/Snow+Cloak.png"
       },
       "builds": [
         {
@@ -25140,12 +25164,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "rattled",
-        "name": "Rattled",
-        "description": "When damaged, increases movement speed by 5% for 3s (up to 5 times; maximum 25%).",
+        "id": "moxie",
+        "name": "Moxie",
+        "description": "When the Pokémon knocks out an opposing Pokémon or makes an assist, all of its move cooldowns are reduced.",
         "effects": [],
-        "descriptionAdvanced": "When damaged, increases movement speed by 5% for 3s (up to 5 times; maximum 25%).\n\nIncreases the effort gauge each time Magikarp uses an auto attack or move, hits with an auto attack or move, scores a goal, knocks out a Pokémon from the opposing team or assists in knocking out a Pokémon from the opposing team. Once the effort gauge is full, Magikarp evolves into Gyarados.",
-        "iconAsset": "/assets/skills/Gyarados/Rattled.png"
+        "descriptionAdvanced": "When knocking out a Pokémon from the opposing team or making an assist, reduces current move cooldowns by 30%.",
+        "iconAsset": "/assets/skills/Gyarados/Moxie.png"
       },
       "builds": [
         {
@@ -25930,13 +25954,23 @@
         }
       ],
       "passiveAbility": {
-        "id": "swift-swim",
-        "name": "Swift Swim",
-        "description": "When the Pokémon uses a move, their movement speed increases by 30% for 3s. Each time this Pokémon knocks out an opposing Pokémon, scores a goal, or otherwise makes a contribution in battle, their effort gauge increases. Once the gauge is full, the Pokémon evolves into Gyarados.",
+        "id": "intimidate",
+        "name": "Intimidate",
+        "description": "The Pokémon decreases the Attack of opposing Pokémon it damages.",
         "effects": [],
-        "descriptionAdvanced": "When the Pokémon uses a move, their movement speed increases by 30% for 3s. Each time this Pokémon knocks out an opposing Pokémon, scores a goal, or otherwise makes a contribution in battle, their effort gauge increases. Once the gauge is full, the Pokémon evolves into Gyarados.",
-        "iconAsset": "/assets/skills/Mega-Gyarados/Swift+Swim.png"
+        "iconAsset": "/assets/skills/Mega-Gyarados/Intimidate.png",
+        "phase": "preMega"
       },
+      "extraPassives": [
+        {
+          "id": "mold-breaker",
+          "name": "Mold Breaker",
+          "description": "Damage this Pokémon deals ignores some of the opposing Pokémon's Defense.",
+          "effects": [],
+          "iconAsset": "/assets/skills/Mega-Gyarados/Mold+Breaker.png",
+          "phase": "mega"
+        }
+      ],
       "builds": [
         {
           "name": "Water Breath (Hyper offense)",
@@ -30557,11 +30591,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "run-away",
-        "name": "Run Away",
-        "description": "Eevee has 10% increased movement speed when out of combat. (5s after leaving combat).",
+        "id": "chlorophyll",
+        "name": "Chlorophyll",
+        "description": "When the Pokémon with this Ability is not in tall grass, its Chlorophyll gauge charges. When the Chlorophyll gauge is full, the Pokémon with this Ability has its movement speed increased.",
         "effects": [],
-        "iconAsset": "/assets/skills/Leafeon/Run+Away.png"
+        "descriptionAdvanced": "While Leafeon is not in tall grass, the Chlorophyll gauge charges over 9s. When the gauge is full, Leafeon's movement speed is increased by 15%.",
+        "iconAsset": "/assets/skills/Leafeon/Chlorophyll.png"
       },
       "builds": [
         {
@@ -32004,8 +32039,19 @@
         "description": "When the user is damaged, their attack stat increases by 8% for 4s up to 4 times.",
         "effects": [],
         "descriptionAdvanced": "When the user is damaged, their attack stat increases by 8% for 4s up to 4 times.",
-        "iconAsset": "/assets/skills/Mega-Lucario/Justified.png"
+        "iconAsset": "/assets/skills/Mega-Lucario/Justified.png",
+        "phase": "preMega"
       },
+      "extraPassives": [
+        {
+          "id": "adaptability",
+          "name": "Adaptability",
+          "description": "Attack increases each time a move hits opposing Pokémon. This effect can stack up to 10 times.",
+          "effects": [],
+          "iconAsset": "/assets/skills/Mega-Lucario/Adaptability.png",
+          "phase": "mega"
+        }
+      ],
       "builds": [
         {
           "name": "Items Only",
@@ -44312,12 +44358,11 @@
         }
       ],
       "passiveAbility": {
-        "id": "static",
-        "name": "Static",
-        "description": "Upon receiving damage: paralyzes all nearby opposing Pokémon (30s CD).",
+        "id": "surge-surfer",
+        "name": "Surge Surfer",
+        "description": "The Pokémon can use basic attacks and moves while moving. When the Pokémon uses a move, a boosted basic attack, or a Unite Move, it dashes in the designated direction.",
         "effects": [],
-        "descriptionAdvanced": "Upon receiving damage: paralyzes all nearby opposing Pokémon (30s CD).\n\nParalysis from Static decreases opposing Pokémon movement speed by 30% and reduces auto attack speed by a flat 10% for 2s.",
-        "iconAsset": "/assets/skills/Raichu/Static.png"
+        "iconAsset": "/assets/skills/Raichu/Surge+Surfer.png"
       },
       "builds": [
         {
@@ -54083,12 +54128,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "oblivious",
-        "name": "Oblivious",
-        "description": "When a hindrance is inflicted on Bounsweet or Steenee, decrease the duration of the effect.",
+        "id": "queenly-majesty",
+        "name": "Queenly Majesty",
+        "description": "When a hindrance is inflicted on the Pokémon, decreases the duration of its effects. After using any combination of three boosted basic attacks or moves, the next move used will apply that move's Queenly Majesty buff effect to the Pokémon (not including Unite Moves).",
         "effects": [],
-        "descriptionAdvanced": "Reduces the duration of hindrances inflicted on the user by an increased amount.",
-        "iconAsset": "/assets/skills/Tsareena/Oblivious.png"
+        "descriptionAdvanced": "When a hindrance is inflicted on Tsareena; decrease the duration of the effect. Using a boosted attack or selectable move grants 1 stack of Queenly Majesty to Tsareena. After gaining 3 stacks, the Queenly Majesty buff is applied to Tsareena for 5s, which allows one of Tsareena's moves to be reused (these uses do not share the same cooldown as the base moves), dealing increased damage and applying an additional effect based on the move used. Boosted attacks will refresh the duration of fully stacked Queenly Majesty.",
+        "iconAsset": "/assets/skills/Tsareena/Queenly+Majesty.png"
       },
       "builds": [
         {
@@ -55165,11 +55210,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "guts",
-        "name": "Guts",
-        "description": "When Larvitar receives damage equal to at least 10% of max HP, Attack is increased by 30% for 3s. This Ability goes on cooldown after it’s triggered (40s CD).",
+        "id": "sand-stream",
+        "name": "Sand Stream",
+        "description": "Summons a sandstorm around the Pokémon for a short time after it uses a move or Unite Move, increasing the Pokémon's Defense and Sp. Def. Opposing Pokémon inside the sandstorm take damage over time.",
         "effects": [],
-        "iconAsset": "/assets/skills/Tyranitar/Guts.png"
+        "descriptionAdvanced": "Summons a sandstorm around Tyranitar for 3s after using a move. This sandstorm increases Defense and Sp. Defense by 65% for 3s and deals damage to nearby enemies every .5s.",
+        "iconAsset": "/assets/skills/Tyranitar/Sand+Stream.png"
       },
       "builds": [
         {
@@ -55773,11 +55819,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "anticipation",
-        "name": "Anticipation",
-        "description": "When Eevee would be shoved, thrown or left unable to act, that effect is negated. This effect goes on a 40s cooldown after being triggered and is reset after respawning.",
+        "id": "inner-focus",
+        "name": "Inner Focus",
+        "description": "When the Pokémon would be shoved, thrown, or left unable to act, that effect is negated. For a short time, the Pokémon also becomes immune to hindrances, and its Defense and Sp. Def are increased. This Ability goes on cooldown after it's triggered.",
         "effects": [],
-        "iconAsset": "/assets/skills/Umbreon/Anticipation.png"
+        "descriptionAdvanced": "When Umbreon would be shoved, thrown or left unable to act, that effect is negated. Umbreon becomes unstoppable for 1.2s afterwards and also its Defense and Sp. Def are increased by 30% for 3s. This effect goes on a 40s cooldown after being triggered and is reset after respawning.",
+        "iconAsset": "/assets/skills/Umbreon/Inner+Focus.png"
       },
       "builds": [
         {
@@ -56529,11 +56576,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "inner-focus",
-        "name": "Inner Focus",
-        "description": "Reduces the duration of hindrances inflicted on Kubfu by 15%.",
+        "id": "unseen-fist",
+        "name": "Unseen Fist",
+        "description": "When the Pokémon deals damage to an opposing Pokémon with a shield effect, it pierces part of the shield and deals damage.",
         "effects": [],
-        "iconAsset": "/assets/skills/Urshifu/Inner+Focus.png"
+        "descriptionAdvanced": "When Urshifu deals damage to an opposing Pokémon with an active shield effect, 30% of the damage dealt to the shield is dealt as additional damage to the target's HP.",
+        "iconAsset": "/assets/skills/Urshifu/Unseen+Fist.png"
       },
       "builds": [
         {
@@ -57151,11 +57199,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "run-away",
-        "name": "Run Away",
-        "description": "Restores the Pokémon's HP and nullifies damage from Pokémon from the opposing team. This Ability goes on a 30s cooldown after it's triggered.",
+        "id": "water-absorb",
+        "name": "Water Absorb",
+        "description": "Grants a water shield whenever a set amount of time passes.\n\nIf the Pokémon takes damage while the water shield is active, the shield nullifies the damage and restores the Pokémon's HP instead. This Ability goes on cooldown after it's triggered.\n\nHitting a Pokémon from the opposing team with a move or boosted attack will reduce this Ability's cooldown.",
         "effects": [],
-        "iconAsset": "/assets/skills/Vaporeon/Run+Away.png"
+        "descriptionAdvanced": "Grants a water barrier after 30s. If the Pokémon takes damage from the opposing team while the water barrier is active, the shield nullifies the damage and restores the Pokémon's HP instead (30s CD). Hitting a Pokémon from the opposing team with a move will reduce this Ability's cooldown by 2s, and by 1s with a boosted attack",
+        "iconAsset": "/assets/skills/Vaporeon/Water+Absorb.png"
       },
       "builds": [
         {

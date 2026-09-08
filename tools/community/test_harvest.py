@@ -68,6 +68,24 @@ class TestHarvest(unittest.TestCase):
         self.assertEqual(updated["pikachu"]["thunderbolt"], "Preserved text.")
         self.assertEqual(changes, [])
 
+    def test_extra_passives_are_harvested(self):
+        bundle = _bundle(
+            extraPassives=[
+                {
+                    "id": "drought",
+                    "name": "Drought",
+                    "description": "The sunlight surrounding the Pokémon becomes stronger.",
+                }
+            ]
+        )
+        archive: dict = {}
+        updated, changes = harvest(bundle, archive)
+        self.assertEqual(
+            updated["pikachu"]["drought"],
+            "The sunlight surrounding the Pokémon becomes stronger.",
+        )
+        self.assertTrue(any("Drought" in line for line in changes))
+
     def test_passive_is_harvested(self):
         bundle = _bundle(
             passiveAbility={

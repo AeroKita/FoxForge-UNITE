@@ -67,7 +67,8 @@
       "flame charge": "Has the user cloak itself in flame and charge in the designated direction, dealing damage to opposing Pokémon it hits. The user's basic attack speed is increased for a short time after using this move. A maximum of 2 use(s) can be kept in reserve for this move.\n\nUpgrade (Level 13): Ceruledge's basic attack speed is instead increased for 5s after using this move.",
       "revenant rend": "Has the user ready both of its arm blades before slashing through to the designated location faster than the eye can track. The user leaves opposing Pokémon it hits unable to act before striking them with three slashing blows.",
       "attack - charcadet": "Becomes a boosted attack with every third attack, dealing increased damage.",
-      "flame body": "When Charcadet hits an enemy with an auto attack, Charcadet deals damage around themself with flames. This ability goes on a 4s cd after it's triggered."
+      "flame body": "When Charcadet hits an enemy with an auto attack, Charcadet deals damage around themself with flames. This ability goes on a 4s cd after it's triggered.",
+      "weak armor": "When the Pokémon takes Attack-based damage, its movement speed is increased for a short time. This effect can stack up to 2 times.\n\nIf the Pokémon with this Ability deals damage to opposing Pokémon with its basic attack or moves, the Pokémon hit receive a wound. Life energy leaks out of these wounds, causing damage over time. This effect can stack up to 6 times. If the effect stacks 6 times on an opposing Pokémon, that Pokémon takes increased damage from the Pokémon with this Ability."
     },
     "chandelure": {
       "aeos emporium - 12,000 aeos coins / 575 aeos gems": "Infiltrator",
@@ -160,7 +161,8 @@
       "future sight": "Has the user lock on to an opposing Pokémon, then deal damage a few seconds later to opposing Pokémon in an area of effect centered on the locked-on Pokémon. More damage is dealt the lower the locked-on Pokémon's remaining HP is. When the user is locked onto an opposing Pokémon, its other moves will target that Pokémon whenever possible. Each time one of those moves deals damage, Future Sight's cooldown is reduced. If the locked-on Pokémon is on the opposing team and is knocked out before the area-of-effect damage is dealt, a single powered-up use of Psyshock or Stored Power becomes available for a short time. When Psyshock is powered up, it hurls stronger psychich projectiles at a designated location that also cause an explosion, dealing damage to opposing Pokémon in the area of effect. When Stored Power is powered up, it unleashes an increased number of power blasts and restores the user's HP when the blasts hits.\n\nUpgrade (Level 12): Espeon deals 15% additional damage to locked-on targets.",
       "psychic solare": "Has the user throw opposing Pokémon in the area of effect into the air and suspend them using Psychic power. After a dela, an explosion occurs that deals damage to opposing Pokémon in the area of effect and shoves them.",
       "attack - eevee": "Becomes a boosted attack with every third attack, dealing increased damage.",
-      "anticipation": "When Eevee would be affected by a hindrance, the hindrance is negated and Eevee becomes unstoppable for 0.45s (35s cd)."
+      "anticipation": "When Eevee would be affected by a hindrance, the hindrance is negated and Eevee becomes unstoppable for 0.45s (35s cd).",
+      "magic bounce": "When the Pokémon would be affected by a hindrance, the hindrance is negated, and the Pokémon becomes immune to hindrances for a short time.\n\nAt the same time, this Ability deals damage to the opposing Pokémon that attempted to inflict the hindrance and decreases its movement speed for a short time. This Ability goes on cooldown after it's triggered."
     },
     "falinks": {
       "basic attack": "Becomes a boosted attack with every third attack, or after the user uses Tackle, Megahorn, or Iron Head. Boosted attacks also apply a slowing effect to opposing Pokémon they hit. When a boosted attack hits, the cooldown of Tackle, Megahorn, or Iron Head is reduced.",
@@ -202,7 +204,8 @@
       "waterfall": "Has the user charge three times in a row at awesome speed, dealing damage to opposing Pokémon it hits. The user can change direction between each charge. If the second charge hits an opposing Pokémon, the user is granted a shield. If the third charge hits an opposing Pokémon, the opposing Pokémon is thrown.\n\nUpgrade (Level 12): Reduce this move's cooldown by 1s.",
       "bounce": "Has the user charge power, then bounce to the designated location and attack. The longer power is charged, the farther the user can bounce. If power is charged for a certain amount of time or longer, the user is granted a shield when it bounceds, and the user applies a movement speed decrease to opposing Pokémon it hits when it lands.\n\nUpgrade (Level 12): Strengthens the value of the shield effect.",
       "dragon current": "Has the user dive underwater, where it can't attack or be targeted by opposing Pokémon. When this move is used again, the user leaps up forcefully and attacks. If the user stays underwater for a set amount of time, it creates a whirlpool where it surfaces, applying a continuous slowing effect to opposing Pokémon it hits. If the user stays underwater for an even longer amount of time, it creates a waterspout where it surfaces, throwing opposing Pokémon it hits.",
-      "rattled": "When damaged, increases movement speed by 5% for 3s (up to 5 times; maximum 25%)."
+      "rattled": "When damaged, increases movement speed by 5% for 3s (up to 5 times; maximum 25%).",
+      "moxie": "When the Pokémon knocks out an opposing Pokémon or makes an assist, all of its move cooldowns are reduced."
     },
     "ho-oh": {
       "basic attack": "Becomes a boosted attack with every third attack, shooting out a sweeping flame that deals increased damage and restores the user's HP. When the user hits multiple Pokémon with a boosted attack, the amount of HP restored is increased.",
@@ -273,7 +276,8 @@
       "leaf blade": "Has the user dash and then spin while slashing around itself with sharp leaves, dealing damage to opposing Pokémon it hits. If the outer ring of this move's area of effect hits opposing Pokémon, it deals increased damage, decreases the opposing Pokémon's movement speed, and charges the user's Chlorophyll gauge.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1.2s for each hit dealing damage to more than one enemy on the outer ring.",
       "emerald two-step": "Has the user leap at the designated opposing Pokémon, dealing damage to it and decreasing its movement speed. After that, the user leaps up and lands with force, dealing damage to opposing Pokémon in the area of effect. Those opposing Pokémon take more damage the closer they are to the center of the area of effect.",
       "attack - eevee": "Becomes a boosted attack with every third attack, dealing additional damage.",
-      "run away": "Eevee has 10% increased movement speed when out of combat. (5s after leaving combat)."
+      "run away": "Eevee has 10% increased movement speed when out of combat. (5s after leaving combat).",
+      "chlorophyll": "When the Pokémon with this Ability is not in tall grass, its Chlorophyll gauge charges. When the Chlorophyll gauge is full, the Pokémon with this Ability has its movement speed increased."
     },
     "mega-charizard-x": {
       "basic attack": "Inflicts continuous damage. After evolving, the distance of the basic attack increases. If the opponent is burned the damage inflicted is increased",
@@ -282,7 +286,8 @@
       "seismic slam": "Has the user grab a Pokémon from the opposing team and slam it onto the ground from the air. After using this Unite Move, the user Mega Evolves.",
       "flame burst": "Attack with a bursting flame. When this move hits, it leaves enemies burned and increases the user's movement speed for a short time.",
       "fire spin": "Encircles enemies in the area of effect in a vortex of fire. After this move hits, it deals damage over time and decreases the movement speed of enemies for a short time.",
-      "solar power": "When the user uses a move, it deals additional damage but loses 5% of its current HP. This Ability's effect does not trigger when the user is in tall grass. When the user deals damage with a basic attack to opposing Pokémon that have been burned by its moves, the user restores 2% of its missing HP."
+      "solar power": "When the user uses a move, it deals additional damage but loses 5% of its current HP. This Ability's effect does not trigger when the user is in tall grass. When the user deals damage with a basic attack to opposing Pokémon that have been burned by its moves, the user restores 2% of its missing HP.",
+      "tough claws": "Gain a boost counter each time a move hits opposing Pokémon (maximum three counters). When a boost counter is consumed, the Pokémon's next basic attack becomes a boosted attack and is guaranteed to be a critical hit.\n\nWhen the Pokémon deals damage with a basic attack to opposing Pokémon that have been burned by its moves, HP is restored."
     },
     "mega-charizard-y": {
       "basic attack": "Deals continual damage. Deals additional damage to opposing Pokémon that have been burned by the user's moves. Increases in range when the user evolves",
@@ -291,7 +296,8 @@
       "fire spin": "Encircles opposing Pokémon in the area of effect with a vortex of fire, also decreasing their movement speed for a short time.",
       "fire blast": "Blass intense, all-consuming fire, dealing damage over time to opposing Pokémon while the flames continue to burn on the ground and decreasing the movement speed of opposing Pokémon for a short time.\n\nUpgrade (Level 13): Increases the damage of this move and the damage over time.",
       "seismic slam": "Has the user grab a Pokémon from the opposing team and slam it onto the ground from the air. After using this Unite Move, the user Mega Evolves and, for aa set time, can move freely over obstacles. When the user Mega Evolves, its moves and basic attacks are boosted. When the user is Mega Evolved, its basic attacks deal increased damage, can leave opposing Pokémon burned, and restore the user's HP when they hit an opposing Pokémon.",
-      "blaze": "Increases Attack by 8% for 5 seconds after Charizard gets hit."
+      "blaze": "Increases Attack by 8% for 5 seconds after Charizard gets hit.",
+      "drought": "The sunlight surrounding the Pokémon becomes stronger. While inside the sunny area of effect, the Pokémon deals increased damage."
     },
     "mega-gyarados": {
       "basic attack": "Becomes a boosted attack with every third attack, dealing increased damage. Gyarados",
@@ -300,7 +306,9 @@
       "splash": "Has the user jump to the designated location. A maximum of 3 uses can be kept in reserve for this move.",
       "waterfall": "Has the user charge three times in a row at awesome speed, dealing damage to opposing Pokémon it hits. The user can change direction between each charge. If the second charge hits an opposing Pokémon, the user is granted a shield. If the third charge hits an opposing Pokémon, the opposing Pokémon is thrown.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1s.",
       "dragon current": "Has the user dive underwater, where it can't attack or be targeted by opposing Pokémon. When this move is used again, the user leaps up forcefully and attacks. If the user stays underwater for a set amount of time, it creates a whirlpool where it surfaces, applying a continuous slowing effect to opposing Pokémon it hits. If the user stays underwater for an even longer amount of time, it creates a waterspout where it surfaces, throwing opposing Pokémon it hits. After using this Unite Move, this Pokémon Mega Evolves.",
-      "swift swim": "When the Pokémon uses a move, their movement speed increases by 30% for 3s. Each time this Pokémon knocks out an opposing Pokémon, scores a goal, or otherwise makes a contribution in battle, their effort gauge increases. Once the gauge is full, the Pokémon evolves into Gyarados."
+      "swift swim": "When the Pokémon uses a move, their movement speed increases by 30% for 3s. Each time this Pokémon knocks out an opposing Pokémon, scores a goal, or otherwise makes a contribution in battle, their effort gauge increases. Once the gauge is full, the Pokémon evolves into Gyarados.",
+      "intimidate": "The Pokémon decreases the Attack of opposing Pokémon it damages.",
+      "mold breaker": "Damage this Pokémon deals ignores some of the opposing Pokémon's Defense."
     },
     "mega-lucario": {
       "basic attack": "Becomes a boosted attack with every third attack, performing a combo attack with a bone. Deals damage to opposing Pokémon in the area of effect and throws them",
@@ -309,7 +317,8 @@
       "meteor mash": "Blasts forward with a punch like a comet, dealing damage to opposing Pokémon and shoving them.",
       "close combat": "Unleashes a combo attack, dealing multiple blows to opposing Pokémon. When this move hits, it restores a certain amount of the user's HP. While using this move, the user becomes immune to hindrances. When the user Mega Evolves, it can deal more consecutive blows and change direction when attacking. If this move is used again, or if Power-Up Punch is used, this move can be canceled. This move's cooldown is reduced every time the user's moves hit.\n\nUpgrade (Level 13): Increases the damage of this move.",
       "aura cannon": "Has the user deal damage to opposing Pokmon in the area of effect After using this Unite Move, the user Mega Evolves.",
-      "justified": "When the user is damaged, their attack stat increases by 8% for 4s up to 4 times."
+      "justified": "When the user is damaged, their attack stat increases by 8% for 4s up to 4 times.",
+      "adaptability": "Attack increases each time a move hits opposing Pokémon. This effect can stack up to 10 times."
     },
     "meganium": {
       "basic attack": "Has the user whip its vines or headbutt, dealing damage to opposing Pokémon.",
@@ -476,7 +485,8 @@
       "thunderbolt": "Has the user release a strong electric blast in the designated direction, dealing damage to opposing Pokémon it hits and leaving them paralyzed. If this move hits an electric orb created by Electro Ball, the orb releases its electricity and deals damage to nearby opposing Pokémon.\n\nUpgrade (Level 13): Immobilizes opposing Pokémon hit for 1s instead of paralyzing them.",
       "psychic": "Has the user release a strong telekinetic force in the designated area, dealing damage and applying a slowing effect to opposing Pokémon it hits. If the user hits opposing Pokémon slowed by this effect with a basic attack, it deals additional damage. If this move hits an electric orb created by Electro Ball, the orb is pulled to the center of this move's area of effect.\n\nUpgrade (Level 13): Creates a damage-over-time area of effect, damaging opposing Pokémon inside the area every 0.5s over 2s (up to 5 times).",
       "thunderstorm aerial": "Has the user create a star-shaped zone of electricity in the designated area, dealing damage and applying a slowing effect to the opposing Pokémon it hits. The zone remains on the field for a short time, deals damage over time, and applies a slowing effect. If the user hits opposing Pokémon in the zone with a basic attack, the user's next basic attack becomes a boosted attack.",
-      "static": "Upon receiving damage: paralyzes all nearby opposing Pokémon (30s CD)."
+      "static": "Upon receiving damage: paralyzes all nearby opposing Pokémon (30s CD).",
+      "surge surfer": "The Pokémon can use basic attacks and moves while moving. When the Pokémon uses a move, a boosted basic attack, or a Unite Move, it dashes in the designated direction."
     },
     "rapidash": {
       "basic attack": "Attacks by shooting energy from its horn",
@@ -600,7 +610,8 @@
       "sand tomb": "Has the user move in the designated direction in a single bound, dealing damage to any opposing Pokémon it hit's while leaping and leaving them unable to act for a short time. When the user lands, the shock from landing creates a cloud of dust at the point of impact that deals damage over time and decreases the movement speed of opposing Pokémon within the area of effect. If this move is used again while the user in the cloud of dust, opposing Pokémon in front of the user will be pulled closer to it. Furthermore, while the user is in the cloud of dust, it takes reduced damage and can ignore the Defense and shield effects of opposing Pokémon.\n\nUpgrade (Level 13): Increases the length of time the cloud of dust remains at the point of impact to 8s.",
       "tyrannical rampage": "Has the user explode with anger and go on a rampage, increasing it's movement speed for a short time. If the user is affected by a hindrance, it will return to normal faster than usual. While the user is rampaging, it's basic attack pattern changes and the attacks deal increased damage. If the HP of an opposing Pokémon hit by these basic attacks is below a set percentage, it is immediately knocked out.",
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
-      "guts": "When Larvitar receives damage equal to at least 10% of max HP, Attack is increased by 30% for 3s. This Ability goes on cooldown after it’s triggered (40s cd)."
+      "guts": "When Larvitar receives damage equal to at least 10% of max HP, Attack is increased by 30% for 3s. This Ability goes on cooldown after it’s triggered (40s cd).",
+      "sand stream": "Summons a sandstorm around the Pokémon for a short time after it uses a move or Unite Move, increasing the Pokémon's Defense and Sp. Def. Opposing Pokémon inside the sandstorm take damage over time."
     },
     "umbreon": {
       "aeos emporium - 12,000 aeos coins / 575 aeos gems": "Anticipation",
@@ -612,7 +623,8 @@
       "wish": "Has the user make a wish for an ally Pokémon. For a set amount of time, that ally Pokémon receives reduced damage, then afterward, the wish comes true and restores HP to that Pokémon. If the targeted ally Pokémon is knocked out before the wish comes true, a different ally Pokémon near it takes the wish instead.\n\nUpgrade (Level 12): Increases the damage reduction to 30% and amount of healing when the wish comes true.",
       "snarl": "Has the user yell as if ranting about something, dealing damage to opposing Pokémon in the area around it and decreasing their Attack, Sp. Atk, and movement speed. Also grants the user a shield. The user continues to yell for a set amount of time, then it lets loose a final shout, leaving opposing Pokémon in the area around it unable to act and further decreasing their Attack and Sp. Atk. The Attack and Sp. Atk decreases can stack.\n\nUpgrade (Level 12): Increases the stun duration of the final shout to 1s.",
       "moonlight prance": "Has the user continually recover HP when it is not in combat. Also has the user leap up and absorb the shields of opposing Pokémon in the area around it, taking them for itself. Then, the user lands, dealing damage to opposing Pokémon in the area of effect and leaving them unable to act. For a short time afterward, when an opposing Pokémon in the area of effect is granted a shield, the user absorbs a portion of it and takes it for itself.",
-      "anticipation": "When Eevee would be shoved, thrown or left unabled to act, that effect is negated. This effect goes on a 40s cooldown after being triggered and is reset after respawning."
+      "anticipation": "When Eevee would be shoved, thrown or left unabled to act, that effect is negated. This effect goes on a 40s cooldown after being triggered and is reset after respawning.",
+      "inner focus": "When the Pokémon would be shoved, thrown, or left unable to act, that effect is negated. For a short time, the Pokémon also becomes immune to hindrances, and its Defense and Sp. Def are increased. This Ability goes on cooldown after it's triggered."
     },
     "urshifu": {
       "basic attack": "Becomes a boosted attack with every third attack, dealing increased damage with two consecutive blows and reducing the user's move cooldowns. Urshifu Rapid Strike only",
@@ -625,7 +637,8 @@
       "ebon fist": "Has the user dash at the designated opposing Pokémon. Then, if the user designates a direction, it deals damage to the opposing Pokémon and shoves it in that direction. The shoved Pokémon then also deals damage to and throws other opposing Pokémon it hits. But if the user does not designate a direction, it instead deals damage to the opposing Pokémon and throws it, leaving it unable to act when it lands. Using this move will reset Wicked Blow's cooldown.",
       "flowing fists": "Has the user deal damage to opposing Pokémon in the area of effect and shove them. The user's movement speed is increased for a short time, and all of the user's move cooldowns are reduced. If this move is used again, the user unleashes five consecutive blows upon the designated opposing Pokémon, dealing damage and shoving it. In the time between activating this move and activating the follow-up attack, every three times the user deals damage to opposing Pokémon, the number of consecutive blows the follow-up attack will deal is increased by one, up to 10 times maximum. While dealing the consecutive blows, the user receives reduced damage and becomes immune to hindrances. After the consecutive blows have finished, the user deals damage and shoves opposing Pokémon in an area of effect in front of itself.",
       "attack - kubfu": "Becomes a boosted attack with increased range every third attack, lunging at an opposing Pokémon and dealing increased damage.",
-      "inner focus": "Reduces the duration of hindrances inflicted on Kubfu by 15%."
+      "inner focus": "Reduces the duration of hindrances inflicted on Kubfu by 15%.",
+      "unseen fist": "When the Pokémon deals damage to an opposing Pokémon with a shield effect, it pierces part of the shield and deals damage."
     },
     "vaporeon": {
       "basic attack": "Becomes a boosted attack with every third attack, dealing increased damage. Hitting a Pokémon from the opposing team with a boosted attack will reduce this Pokémon's cooldown. Vaporeon",
@@ -637,7 +650,8 @@
       "flip turn": "Has the user cloak itself in water, reducing damage received and increasing movement speed. The user then charges in the designated dirrection, dealing damage and shoving opposing Pokémon before jumping back in the opposite direction.\n\nUpgrade (Level 12): Increases the damage reduction to 30%.",
       "aquamarine splash": "Has the user jump up high and dive underwater, creating a current that pulls in opposing Pokémon. Afterward, the user leaps out of the water, dealing damage to nearby opposing Pokémon and throwing them when it lands.",
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage.",
-      "run away": "Restores the Pokémon's HP and nullifies damage from Pokémon from the opposing team. This Ability goes on a 30s cooldown after it's triggered."
+      "run away": "Restores the Pokémon's HP and nullifies damage from Pokémon from the opposing team. This Ability goes on a 30s cooldown after it's triggered.",
+      "water absorb": "Grants a water shield whenever a set amount of time passes.\n\nIf the Pokémon takes damage while the water shield is active, the shield nullifies the damage and restores the Pokémon's HP instead. This Ability goes on cooldown after it's triggered.\n\nHitting a Pokémon from the opposing team with a move or boosted attack will reduce this Ability's cooldown."
     },
     "zacian": {
       "aeos emporium - 14,000 aeos coins / 575 aeos gems": "Intrepid Sword",
@@ -688,7 +702,8 @@
       "wide guard": "Focus in place for a short time to create a great shield on Aegislash. When this shield appears, boost count increases by 1, granting a shield to Aegislash and shoves enemies in front. While this shield is active, enemy player attacks increase boost count by 1 for each different enemy player (capping at 4). When this move ends, shove enemies in front of Aegislash once again.\n\nUpgrade (Level 13): Cooldown reduced by 1s.",
       "iron head": "Dash in the designated direction, dealing damage to enemies hit. Also increases boost count by 1, and protects Aegislash with a special shield for a short time afterward. This shield doesn’t protect from hindrances, but it can nullify damage. When the shield blocks an attack, it disappears and boost count is increased by 1.\n\nUpgrade (Level 13): Increase Attack for a short time after blocking an attack.",
       "coup de grace": "Unleash a ground-splitting slash in the designated direction, dealing damage to enemies hit. The lower their remaining HP, the more damage this move deals. If this slash knocks out an enemy, boost count increases by 1.",
-      "no guard": "Honedge and Doublade do not gain the stat benefits of Stance Change. However, their boosted attack functions like Aegislash's Sword Stance boosted attack."
+      "no guard": "Honedge and Doublade do not gain the stat benefits of Stance Change. However, their boosted attack functions like Aegislash's Sword Stance boosted attack.",
+      "stance change": "Allows the Pokémon to switch between Blade Forme and Shield Forme.\n\nUsing a blade move changes the user to Blade Forme, which increases the user's movement speed, Attack, and basic attack speed. Using a shield move changes the user to Shield Forme, and its Defense and Sp. Def are increased."
     },
     "azumarill": {
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage to enemies within a cone area of effect in front of this Pokémon.",
@@ -809,7 +824,8 @@
       "hyper beam": "Fires a beam of energy toward the targeted enemy after a delay, dealing damage to all enemies that it hits, as well as additional damage based on their Max HP. The move changes Stages based on the number of stacks of Dragon Dance that Dragonite has, from 0 to 3. The Max HP damage is 5%/10%/15%/20%, determined by the current Stage.  Dragonite cannot act during the duration of this move.\n\nUpgrade (Level 13): Reduces damage taken by 50% while charging this move.",
       "outrage": "Dragonite begins rampaging for 5s. This move starts with a ground stomp, dealing damage to enemies in an area around Dragonite. While rampaging, all of Dragonite's basic attacks become a melee boosted attack, alternating through the water, electric, and fire boosted attack types. When the rampage ends, Dragonite is left briefly unable to act.\n\nUpgrade (Level 13): Reduce the duration of hindrances inflicted on Dragonite while rampaging by 40% for 5.5s.",
       "draco impact": "Briefly fly up in the air before crashing down with several comets on a designated area, dealing damage and throwing enemies in the area. The farther Dragonite flies, the more the Unite guage is consumed (25% at min disatance and 100% at max). Dragonite is unstoppable while using this move.",
-      "marvel scale": "Increases Defense by 100 for 1.5s when afflicted by a status condition (Dratini and Dragonair only)."
+      "marvel scale": "Increases Defense by 100 for 1.5s when afflicted by a status condition (Dratini and Dragonair only).",
+      "multiscale": "Reduces the damage the Pokémon receives for a short time. This Ability goes on cooldown after it's triggered."
     },
     "duraludon": {
       "attack": "Becomes a boosted attack with every third attack, shooting a long beam that deals a large amount of damage to all enemies hit.",
@@ -875,7 +891,8 @@
       "ice shard": "Increase movement speed for a short time. Afterward, Glaceon's basic attack speed increases for a short time, and basic attacks change into attacks that hurl chunks of ice. These chunks of ice deal damage to enemies hit and decrease their movement speed for a short time. Every time a chunk of ice hits, the user gains 1 ice crystal. The user gains 2 ice crystals if this move is used while launching ice crystals with Icicle Spear, or if it's used after Icy Wind has been used, but before the user has launched all ice crystals with the next basic attack.\n\nUpgrade (Level 12): Also increases basic attack speed for the duration of this move's effect.",
       "freeze dry": "Glaceon shoots out a freezing burst of air in a forward direction, increasing Sp. Atk for a short time. This burst explodes upon hitting an enemy or after traveling a set distance; dealing damage to enemies in the area-of-effect. For each enemy hit by the explosion, Glaceon gains 1 ice crystal. The explosion also leaves behind an ice zone. Enemies that enter this ice zone will have their movement speed decreased. If they remain in the ice zone for a set amount of time, they become frozen for a short time.\n\nUpgrade (Level 12): For each enemy hit by this move's explosions; gain 1 ice crystal.",
       "glacial stage": "Leap up high, creating an ice zone in front of Glaceon that deals damage to enemies in the area-of-effect. While Glaceon is in the ice zone, movement speed is increased and Glaceon gains 1 ice crystal whenever a set amount of time passes. The movement speed of enemies in the ice zone is decreased.",
-      "run away": "When Eevee would be affected by a hindrance, the hindrance is negated and becomes invincible for 1s. This Ability goes on cooldown after it’s triggered (70s cd)."
+      "run away": "When Eevee would be affected by a hindrance, the hindrance is negated and becomes invincible for 1s. This Ability goes on cooldown after it’s triggered (70s cd).",
+      "snow cloak": "When the Pokémon is affected by a hindrance, the hindrance is negated, and the Pokémon enters stealth and becomes invincible for a short time. This Ability goes on cooldown after it's triggered."
     },
     "greedent": {
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage when it hits and causing one berry to drop from Greedent's tail.",
@@ -1048,7 +1065,8 @@
       "trop kick": "Perform a flying kick in the designated direction, dealing damage to enemies hit and decrease their Attack for a short time. Enemies that make contact with the flying kick's wake receive damage and have their movement speed decreased for a short time. Queenly Majesty effect: Grants Tsareena a shield when this move is used.\n\nUpgrade (Level 12): Increased damage.",
       "grassy glide": "Tsareena slides in the designated direction, dealing damage to enemies hit and decreases their movement speed for a short time. This is followed by an attack in the opposite direction, dealing damage and shoving enemies hit. Queenly Majesty effect: Grants Tsareena a shield when this move is used.\n\nUpgrade (Level 12): Increased damage.",
       "queen ascendant": "Tsareena leaps toward an enemy from the opposing team and kicks it high into the air before showering it with a series of kicks while airborne, dealing damage to them. The moment Tsareena lands on the ground, recover HP. While airborne, the enemy that is being kicked and Tsareena are not affected by other moves.",
-      "oblivious": "When a hindrance is inflicted on Bounsweet, Steenee; decrease the duration of the effect."
+      "oblivious": "When a hindrance is inflicted on Bounsweet, Steenee; decrease the duration of the effect.",
+      "queenly majesty": "When a hindrance is inflicted on the Pokémon, decreases the duration of its effects. After using any combination of three boosted basic attacks or moves, the next move used will apply that move's Queenly Majesty buff effect to the Pokémon (not including Unite Moves)."
     },
     "venusaur": {
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also pulls enemies inward between the vines.",

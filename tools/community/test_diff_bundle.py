@@ -147,7 +147,12 @@ class TestDiffBundles(unittest.TestCase):
             pokemon=[_pokemon(passiveAbility={"id": "p1", "name": "Steadfast", "description": "", "effects": []})]
         )
         diff = diff_bundles(old, new)
-        self.assertIn("⚠ passive Basic description BLANKED", diff["changed"][0]["deltas"])
+        self.assertTrue(
+            any(
+                d.startswith("⚠ passive Basic description BLANKED")
+                for d in diff["changed"][0]["deltas"]
+            )
+        )
 
     def test_passive_text_to_text_still_reports_updated(self):
         old = _minimal_bundle(
@@ -159,6 +164,33 @@ class TestDiffBundles(unittest.TestCase):
         diff = diff_bundles(old, new)
         self.assertIn("passive updated", diff["changed"][0]["deltas"])
         self.assertNotIn("⚠ passive Basic description BLANKED", diff["changed"][0]["deltas"])
+
+    def test_extra_passive_basic_description_blanked(self):
+        extra_old = {"id": "drought", "name": "Drought", "description": "Sun.", "effects": []}
+        extra_new = {**extra_old, "description": ""}
+        old = _minimal_bundle(
+            pokemon=[
+                _pokemon(
+                    passiveAbility={"id": "p1", "name": "Blaze", "description": "ok", "effects": []},
+                    extraPassives=[extra_old],
+                )
+            ]
+        )
+        new = _minimal_bundle(
+            pokemon=[
+                _pokemon(
+                    passiveAbility={"id": "p1", "name": "Blaze", "description": "ok", "effects": []},
+                    extraPassives=[extra_new],
+                )
+            ]
+        )
+        diff = diff_bundles(old, new)
+        self.assertTrue(
+            any(
+                d.startswith("⚠ passive Basic description BLANKED") and "Drought" in d
+                for d in diff["changed"][0]["deltas"]
+            )
+        )
 
     def test_moves_added_removed(self):
         move_a = {"id": "m1", "name": "Power-Up Punch", "slot": "move1", "description": "", "cooldownSeconds": 6, "damageInstances": [], "effects": [], "tags": []}

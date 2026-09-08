@@ -4,7 +4,7 @@
 // given the player's choice (with a sensible default), and are shared by the
 // Moves card, the Builds panel, and the store.
 
-import type { Move, Pokemon } from "../types";
+import type { Ability, Move, Pokemon } from "../types";
 
 export type FinalSlot = "move1" | "move2";
 
@@ -22,6 +22,12 @@ export function upgradeOptions(pokemon: Pokemon, slot: FinalSlot): Move[] {
  *  have two, gated on their final-move path — both should be shown. */
 export function uniteMoves(pokemon: Pokemon): Move[] {
   return pokemon.moves.filter((m) => m.slot === "uniteMove");
+}
+
+/** Every Ability shown on the Moves card. Most Pokémon have one; mega-evolution
+ *  licenses append the Mega-form Ability in `extraPassives`. */
+export function playablePassives(pokemon: Pokemon): Ability[] {
+  return [pokemon.passiveAbility, ...(pokemon.extraPassives ?? [])];
 }
 
 /** The move name the top Recommended build picks for a slot, if it maps to an upgrade. */

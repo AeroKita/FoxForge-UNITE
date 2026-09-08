@@ -58,6 +58,9 @@ def move_index(bundle: dict) -> dict:
         pa = p.get("passiveAbility") or {}
         if pa.get("id") and pa.get("iconAsset"):
             idx[(p["id"], pa["id"])] = pa
+        for extra in p.get("extraPassives") or []:
+            if extra.get("id") and extra.get("iconAsset"):
+                idx[(p["id"], extra["id"])] = extra
     return idx
 
 

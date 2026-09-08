@@ -6,6 +6,7 @@ import {
   defaultFinalMoveIds,
   moveIdsFromNames,
   uniteMoves,
+  playablePassives,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
 
@@ -48,6 +49,22 @@ describe("move-selection helpers", () => {
     const ids = moveIdsFromNames(lucario, [ups1[1].name, ups2[1].name]);
     expect(ids.move1Id).toBe(ups1[1].id);
     expect(ids.move2Id).toBe(ups2[1].id);
+  });
+
+  it("returns the primary Ability alone when extraPassives is absent", () => {
+    expect(playablePassives(lucario)).toEqual([lucario.passiveAbility]);
+  });
+
+  it("appends extraPassives after the primary Ability", () => {
+    const extra = {
+      id: "drought",
+      name: "Drought",
+      description: "The sunlight surrounding the Pokémon becomes stronger.",
+      effects: [],
+      phase: "mega" as const,
+    };
+    const stub = { ...lucario, extraPassives: [extra] };
+    expect(playablePassives(stub).map((a) => a.id)).toEqual([lucario.passiveAbility.id, "drought"]);
   });
 
   it("returns every Unite Move, including dual-unite Pokémon", () => {

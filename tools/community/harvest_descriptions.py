@@ -48,6 +48,11 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
         passive_desc = (passive.get("description") or "").strip()
         if passive_name or passive_desc:
             entries.append(("passive", passive_name, passive_desc))
+        for extra in pokemon.get("extraPassives") or []:
+            extra_name = extra.get("name") or ""
+            extra_desc = (extra.get("description") or "").strip()
+            if extra_name or extra_desc:
+                entries.append(("passive", extra_name, extra_desc))
 
         for kind, name, desc in entries:
             if not description_body(desc):

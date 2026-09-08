@@ -75,6 +75,7 @@ const ability = z.object({
   videoAsset: z.string().optional(),
   effects: z.array(moveEffect),
   iconAsset: z.string().optional(),
+  phase: z.enum(["preMega", "mega"]).optional(),
 });
 
 const emblemGrade = z.enum(["bronze", "silver", "gold", "platinum"]);
@@ -114,6 +115,7 @@ const pokemon = z.object({
   baseStatsByLevel: z.array(statBlock).length(15),
   moves: z.array(move),
   passiveAbility: ability,
+  extraPassives: z.array(ability).optional(),
   builds: z.array(pokemonBuild).optional(),
   creativeBuilds: z.array(pokemonBuild).optional(),
   excludeStats: z.array(z.string()).optional(),

@@ -345,16 +345,40 @@ def append_upgrade_from_advanced(basic: str, advanced: str) -> str:
     return f"{basic}\n\n{upgrade}" if basic else upgrade
 
 
+# Pokémon whose on-field Ability is the last UNITE-DB stage (passive3, else
+# passive2), not the pre-evolution ``name``. Mega licenses are a separate path
+# (``mega_license_passive_names``) and must not be listed here. Mew's
+# ``passive2_name`` is Move Reset (a UI control), not the playable Ability.
+PLAYABLE_PASSIVE_SLUGS = frozenset(
+    {
+        "solgaleo",
+        "sylveon",
+        "aegislash",
+        "ceruledge",
+        "dragonite",
+        "espeon",
+        "glaceon",
+        "gyarados",
+        "leafeon",
+        "raichu",
+        "tsareena",
+        "tyranitar",
+        "umbreon",
+        "urshifu",
+        "vaporeon",
+    }
+)
+
+
 def resolve_playable_passive(skill: dict | None, pokemon_name: str = "") -> dict | None:
     """Return the Passive skill the app should display for *pokemon_name*.
 
     UNITE-DB stores pre-evolution Abilities as the Passive skill ``name`` and
-    later forms as ``passive2_name`` / ``passive3_name``. Solgaleo is played as
-    the final evolution for most of a match, so the tooltip must show Full
-    Metal Body rather than Cosmog's Unaware. Sylveon is played as the evolved
-    form, so the tooltip must show Pixilate rather than Eevee's Adaptability.
-    Other Pokémon keep the raw skill (existing Dragonite / Tyranitar display
-    is unchanged).
+    later forms as ``passive2_name`` / ``passive3_name``. Allowlisted Pokémon
+    are played as the final evolution, so the tooltip must show that Ability
+    (Solgaleo Full Metal Body, Sylveon Pixilate, Tyranitar Sand Stream, …).
+    Pokémon not on the list keep the raw skill. Never add ``mew`` (Move Reset
+    is not the playable Ability). Never add mega-license slugs.
 
     When promoting a staged Ability, Basic ``description`` is cleared so
     ``move_descriptions.json`` can supply in-game Basic text. Advanced uses
@@ -363,7 +387,7 @@ def resolve_playable_passive(skill: dict | None, pokemon_name: str = "") -> dict
     """
     if skill is None:
         return None
-    if slugify(pokemon_name) not in ("solgaleo", "sylveon"):
+    if slugify(pokemon_name) not in PLAYABLE_PASSIVE_SLUGS:
         return skill
     final_name = (skill.get("passive3_name") or skill.get("passive2_name") or "").strip()
     if not final_name:
@@ -376,6 +400,110 @@ def resolve_playable_passive(skill: dict | None, pokemon_name: str = "") -> dict
     out["name"] = final_name
     out["description"] = ""
     out["rsb"] = {"true_desc": staged_desc} if staged_desc else {}
+    return out
+
+
+def is_mega_license(pokemon_name: str, display_name: str = "") -> bool:
+    """True for Mega-evolution licenses, not Meganium or evo-line Pokémon."""
+    display = (display_name or "").strip()
+    raw = (pokemon_name or "").strip()
+    return (
+        display.startswith("Mega ")
+        or raw.startswith("Mega-")
+        or raw in ("MewtwoX", "MewtwoY")
+    )
+
+
+def staged_passive_names(skill: dict | None) -> list[str]:
+    """Unique UNITE-DB Passive names in stage order."""
+    if not skill:
+        return []
+    out: list[str] = []
+    for key in ("name", "passive2_name", "passive3_name"):
+        n = (skill.get(key) or "").strip()
+        if n and n not in out:
+            out.append(n)
+    return out
+
+
+def mega_license_passive_names(skill: dict | None) -> list[str]:
+    """Final-stage names only: drop the first name when 3+ stages exist."""
+    names = staged_passive_names(skill)
+    if len(names) >= 3:
+        return names[-2:]
+    return names
+
+
+def iter_playable_passives(pokemon: dict) -> list[dict]:
+    """Primary ``passiveAbility`` plus any ``extraPassives``."""
+    out: list[dict] = []
+    primary = pokemon.get("passiveAbility")
+    if isinstance(primary, dict):
+        out.append(primary)
+    for extra in pokemon.get("extraPassives") or []:
+        if isinstance(extra, dict):
+            out.append(extra)
+    return out
+
+
+def staged_passive_raw_basic(skill: dict, ability_name: str) -> str:
+    """UNITE-DB Basic for *ability_name*. Later stages usually have none."""
+    if (skill.get("name") or "").strip() == ability_name:
+        return (skill.get("description") or "").strip()
+    return ""
+
+
+def staged_passive_advanced(skill: dict, ability_name: str) -> str:
+    """Advanced text for one staged Ability name."""
+    if (skill.get("name") or "").strip() == ability_name:
+        return advanced_desc(skill.get("rsb"))
+    if (skill.get("passive2_name") or "").strip() == ability_name:
+        return (skill.get("passive2_description") or "").strip()
+    if (skill.get("passive3_name") or "").strip() == ability_name:
+        return (skill.get("passive3_description") or "").strip()
+    return ""
+
+
+def assemble_passive_ability(
+    ability_name: str,
+    folder: str,
+    over: dict,
+    raw_basic: str,
+    raw_adv: str,
+    pokemon_clips: dict,
+    pokemon_gifs: dict,
+    phase: str | None = None,
+) -> dict:
+    """Build one bundle Ability dict (id, Basic, optional Advanced, art, phase)."""
+    skill_like = {
+        "name": ability_name,
+        "description": raw_basic,
+        "rsb": {"true_desc": raw_adv} if raw_adv else {},
+    }
+    # Do not let Advanced fill a missing Basic when the archive also has no body.
+    if not description_body(raw_basic) and over.get(_norm_move_name(ability_name), "").strip():
+        skill_like["rsb"] = {}
+    desc = passive_basic_desc(skill_like, over)
+    adv = paragraphize_upgrade(raw_adv) if raw_adv else ""
+    out: dict = {
+        "id": slugify(ability_name),
+        "name": ability_name,
+        "description": desc,
+        "effects": [],
+    }
+    if adv:
+        out["descriptionAdvanced"] = adv
+    if ability_name:
+        out["iconAsset"] = skill_icon(folder, ability_name)
+        clip_path = pokemon_clips.get(out["id"])
+        if clip_path:
+            out["videoAsset"] = clip_path
+        else:
+            gif_path = pokemon_gifs.get(_norm_gif_key(ability_name))
+            if gif_path:
+                out["gifAsset"] = gif_path
+    if phase:
+        out["phase"] = phase
     return out
 
 
@@ -671,10 +799,17 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
             continue
         tags = p.get("tags") or {}
         skills = p.get("skills") or []
-        passive = resolve_playable_passive(
-            next((s for s in skills if s.get("ability") == "Passive"), None),
-            name,
+        raw_passive = next((s for s in skills if s.get("ability") == "Passive"), None)
+        display_name = p.get("display_name", name)
+        mega_names = (
+            mega_license_passive_names(raw_passive)
+            if is_mega_license(name, display_name)
+            else []
         )
+        if len(mega_names) == 2:
+            passive = raw_passive
+        else:
+            passive = resolve_playable_passive(raw_passive, name)
         moves = []
         for s in skills:
             slot = SLOT_MAP.get(s.get("ability", ""))
@@ -718,8 +853,6 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
             m["description"] = ensure_sentence_end(
                 append_upgrade_from_advanced(m.get("description") or "", adv)
             )
-        passive_desc = passive_basic_desc(passive, over)
-        passive_adv = paragraphize_upgrade(advanced_desc((passive or {}).get("rsb"))) if passive else ""
         pokemon_gifs = gifs.get(pid, {})
         pokemon_clips = clips.get(pid, {})
         for m in moves:
@@ -729,34 +862,54 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
             gif_path = pokemon_gifs.get(_norm_gif_key(m["name"]))
             if gif_path and not clip_path:
                 m["gifAsset"] = gif_path
-        passive_ability = {
-            "id": slugify(passive["name"]) if passive else f"{slugify(name)}-passive",
-            "name": passive.get("name", "Passive") if passive else "Passive",
-            "description": passive_desc,
-            "effects": [],
-            **({"descriptionAdvanced": passive_adv} if passive_adv else {}),
-            **({"iconAsset": skill_icon(name, passive["name"])} if passive and passive.get("name") else {}),
-        }
-        if passive and passive.get("name"):
-            clip_path = pokemon_clips.get(passive_ability["id"])
-            if clip_path:
-                passive_ability["videoAsset"] = clip_path
-            else:
-                gif_path = pokemon_gifs.get(_norm_gif_key(passive["name"]))
-                if gif_path:
-                    passive_ability["gifAsset"] = gif_path
+        extra_passives: list[dict] = []
+        if len(mega_names) == 2 and raw_passive:
+            phases = ("preMega", "mega")
+            built = [
+                assemble_passive_ability(
+                    ability_name,
+                    name,
+                    over,
+                    staged_passive_raw_basic(raw_passive, ability_name),
+                    staged_passive_advanced(raw_passive, ability_name),
+                    pokemon_clips,
+                    pokemon_gifs,
+                    phases[i],
+                )
+                for i, ability_name in enumerate(mega_names)
+            ]
+            passive_ability = built[0]
+            extra_passives = built[1:]
+        elif passive and passive.get("name"):
+            passive_ability = assemble_passive_ability(
+                passive["name"],
+                name,
+                over,
+                (passive.get("description") or "").strip(),
+                advanced_desc(passive.get("rsb")),
+                pokemon_clips,
+                pokemon_gifs,
+            )
+        else:
+            passive_ability = {
+                "id": f"{slugify(name)}-passive",
+                "name": "Passive",
+                "description": "",
+                "effects": [],
+            }
         out.append({
             "id": pid,
-            "displayName": p.get("display_name", name),
+            "displayName": display_name,
             "role": ROLE_MAP.get(tags.get("role"), "AllRounder"),
             "attackType": "special" if p.get("damage_type") == "Special" else "physical",
             "difficulty": DIFFICULTY_MAP.get(tags.get("difficulty"), 2),
             "imageAsset": f"{ASSETS}/pokemon/portrait/{name}.png",
             "iconAsset": f"{ASSETS}/pokemon/thumbnail/{name}.png",
-            "evolutions": [{"level": 1, "formName": p.get("display_name", name)}],
+            "evolutions": [{"level": 1, "formName": display_name}],
             "baseStatsByLevel": [stat_block(r) for r in srow["level"][:15]],
             "moves": moves,
             "passiveAbility": passive_ability,
+            **({"extraPassives": extra_passives} if extra_passives else {}),
             **({"builds": builds} if builds else {}),
             **({"excludeStats": exclude} if isinstance(exclude, list) and exclude else {}),
             **({"hasMegaEvolution": True,
@@ -960,9 +1113,7 @@ def _override_find_move(pokemon: dict, move_id: str) -> dict:
     for m in pokemon.get("moves", []):
         if m["id"] == move_id:
             return m
-    passive = pokemon.get("passiveAbility")
-    passives = passive if isinstance(passive, list) else ([passive] if isinstance(passive, dict) else [])
-    for p in passives:
+    for p in iter_playable_passives(pokemon):
         if p.get("id") == move_id:
             return p
     raise ValueError(

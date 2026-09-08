@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { loadBundle } from "../loadBundle";
 import { computeEmblemLoadout } from "../../engine/emblems";
 import { computeEffectiveStats } from "../../engine/formulas";
+import { playablePassives } from "../../engine/moves";
 import type { CalcContext } from "../../types";
 import raw from "../patch-current.json";
 import type { GameDataBundle } from "../../types";
@@ -15,10 +16,11 @@ function collectUserFacingTexts(bundle: GameDataBundle): string[] {
         texts.push(`${p.id}/${m.id} descriptionAdvanced: ${m.descriptionAdvanced}`);
       }
     }
-    const pa = p.passiveAbility;
-    if (pa.description) texts.push(`${p.id}/${pa.id} description: ${pa.description}`);
-    if (pa.descriptionAdvanced) {
-      texts.push(`${p.id}/${pa.id} descriptionAdvanced: ${pa.descriptionAdvanced}`);
+    for (const pa of playablePassives(p)) {
+      if (pa.description) texts.push(`${p.id}/${pa.id} description: ${pa.description}`);
+      if (pa.descriptionAdvanced) {
+        texts.push(`${p.id}/${pa.id} descriptionAdvanced: ${pa.descriptionAdvanced}`);
+      }
     }
   }
   for (const item of [...bundle.heldItems, ...(bundle.battleItems ?? [])]) {
@@ -151,11 +153,114 @@ describe("community data bundle", () => {
       expect(talonflame.passiveAbility.descriptionAdvanced).toContain("85% max HP");
     });
 
-    it("Tyranitar Guts passive omits Advanced and keeps Basic", () => {
+    it("Tyranitar shows Sand Stream and in-game Basic, not Larvitar Guts", () => {
       const tyranitar = bundle.pokemon.find((p) => p.id === "tyranitar")!;
-      expect(tyranitar.passiveAbility.id).toBe("guts");
-      expect(tyranitar.passiveAbility.descriptionAdvanced).toBeUndefined();
-      expect(tyranitar.passiveAbility.description.length).toBeGreaterThan(0);
+      expect(tyranitar.passiveAbility.id).toBe("sand-stream");
+      expect(tyranitar.passiveAbility.name).toBe("Sand Stream");
+      expect(tyranitar.passiveAbility.iconAsset).toContain("Sand+Stream");
+      expect(tyranitar.passiveAbility.description).toContain("sandstorm");
+      expect(tyranitar.passiveAbility.description).toContain("Unite Move");
+      expect(tyranitar.passiveAbility.description).not.toContain("Larvitar");
+      expect(tyranitar.passiveAbility.description).not.toContain("10%");
+    });
+
+    it("playable Abilities use in-game Basic, not pre-evolution leftovers", () => {
+      const cases = [
+        {
+          id: "aegislash",
+          name: "Stance Change",
+          file: "Stance+Change",
+          needle: "Blade Forme",
+          not: "Honedge",
+        },
+        {
+          id: "ceruledge",
+          name: "Weak Armor",
+          file: "Weak+Armor",
+          needle: "receive a wound",
+          not: "Charcadet",
+        },
+        {
+          id: "dragonite",
+          name: "Multiscale",
+          file: "Multiscale",
+          needle: "Reduces the damage the Pokémon receives",
+          not: "Dratini",
+        },
+        {
+          id: "espeon",
+          name: "Magic Bounce",
+          file: "Magic+Bounce",
+          needle: "immune to hindrances",
+          not: "Eevee",
+        },
+        {
+          id: "glaceon",
+          name: "Snow Cloak",
+          file: "Snow+Cloak",
+          needle: "enters stealth",
+          not: "Eevee",
+        },
+        {
+          id: "gyarados",
+          name: "Moxie",
+          file: "Moxie",
+          needle: "all of its move cooldowns are reduced",
+          not: "Rattled",
+        },
+        {
+          id: "leafeon",
+          name: "Chlorophyll",
+          file: "Chlorophyll",
+          needle: "Chlorophyll gauge",
+          not: "Eevee",
+        },
+        {
+          id: "raichu",
+          name: "Surge Surfer",
+          file: "Surge+Surfer",
+          needle: "while moving",
+          not: "paralyzes all nearby",
+        },
+        {
+          id: "tsareena",
+          name: "Queenly Majesty",
+          file: "Queenly+Majesty",
+          needle: "Queenly Majesty buff",
+          not: "Bounsweet",
+        },
+        {
+          id: "umbreon",
+          name: "Inner Focus",
+          file: "Inner+Focus",
+          needle: "shoved, thrown, or left unable to act",
+          not: "Eevee",
+        },
+        {
+          id: "urshifu",
+          name: "Unseen Fist",
+          file: "Unseen+Fist",
+          needle: "pierces part of the shield",
+          not: "Kubfu",
+        },
+        {
+          id: "vaporeon",
+          name: "Water Absorb",
+          file: "Water+Absorb",
+          needle: "water shield",
+          not: "30s cooldown",
+        },
+      ] as const;
+      for (const c of cases) {
+        const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
+        expect(p.passiveAbility.name, c.id).toBe(c.name);
+        expect(p.passiveAbility.iconAsset, c.id).toContain(c.file);
+        expect(p.passiveAbility.description, c.id).toContain(c.needle);
+        expect(p.passiveAbility.description, c.id).not.toContain(c.not);
+      }
+      const mew = bundle.pokemon.find((p) => p.id === "mew")!;
+      expect(mew.passiveAbility.name).toBe("Synchronize");
+      expect(mew.passiveAbility.description).not.toContain("Move Reset");
     });
 
     it("Sylveon shows Pixilate and in-game Basic move text", () => {
@@ -195,6 +300,53 @@ describe("community data bundle", () => {
       expect(byId["mystical-fire"].description).toMatch(/^Has the user create four small flames/);
     });
 
+    it("mega licenses show a Pre-Mega and Mega Ability pair", () => {
+      const cases = [
+        {
+          id: "mega-charizard-x",
+          pre: "Solar Power",
+          mega: "Tough Claws",
+          megaFile: "Tough+Claws",
+        },
+        { id: "mega-charizard-y", pre: "Blaze", mega: "Drought", megaFile: "Drought" },
+        { id: "mega-lucario", pre: "Justified", mega: "Adaptability", megaFile: "Adaptability" },
+        { id: "mega-gyarados", pre: "Intimidate", mega: "Mold Breaker", megaFile: "Mold+Breaker" },
+      ] as const;
+      for (const c of cases) {
+        const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
+        const passives = playablePassives(p);
+        expect(passives).toHaveLength(2);
+        expect(p.extraPassives).toHaveLength(1);
+        expect(passives[0].name).toBe(c.pre);
+        expect(passives[0].phase).toBe("preMega");
+        expect(passives[1].name).toBe(c.mega);
+        expect(passives[1].phase).toBe("mega");
+        expect(passives[1].iconAsset).toContain(c.megaFile);
+        expect(passives.map((a) => a.name)).not.toContain("Swift Swim");
+      }
+      const megaBasics = [
+        {
+          id: "mega-charizard-x",
+          needle: "maximum three counters",
+          also: "becomes a boosted attack",
+        },
+        { id: "mega-charizard-y", needle: "sunny area of effect" },
+        { id: "mega-lucario", needle: "stack up to 10 times" },
+        { id: "mega-gyarados", needle: "ignores some of the opposing Pokémon" },
+      ] as const;
+      for (const c of megaBasics) {
+        const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
+        const mega = playablePassives(p).find((a) => a.phase === "mega")!;
+        expect(mega.description).toContain(c.needle);
+        if ("also" in c) expect(mega.description).toContain(c.also);
+      }
+      for (const id of ["mewtwox", "mewtwoy", "lucario", "sylveon"] as const) {
+        const p = bundle.pokemon.find((mon) => mon.id === id)!;
+        expect(playablePassives(p)).toHaveLength(1);
+        expect(p.extraPassives ?? []).toHaveLength(0);
+      }
+    });
+
     it("no real move or passive ships an upgrade-only description body", () => {
       const upgradeOnly = /^Upgrade(?:\s*\([^)]*\))?:/i;
       const body = (text: string | undefined) =>
@@ -214,14 +366,14 @@ describe("community data bundle", () => {
             ).toBeGreaterThan(0);
           }
         }
-        expect(body(p.passiveAbility.description).length, `${p.id}/passive Basic`).toBeGreaterThan(
-          0,
-        );
-        if (p.passiveAbility.descriptionAdvanced) {
-          expect(
-            body(p.passiveAbility.descriptionAdvanced).length,
-            `${p.id}/passive Advanced`,
-          ).toBeGreaterThan(0);
+        for (const pa of playablePassives(p)) {
+          expect(body(pa.description).length, `${p.id}/${pa.id} Basic`).toBeGreaterThan(0);
+          if (pa.descriptionAdvanced) {
+            expect(
+              body(pa.descriptionAdvanced).length,
+              `${p.id}/${pa.id} Advanced`,
+            ).toBeGreaterThan(0);
+          }
         }
       }
     });
@@ -232,10 +384,9 @@ describe("community data bundle", () => {
           if (m.slot === "basicAttack") continue;
           expect((m.description ?? "").trim().length, `${p.id}/${m.name}`).toBeGreaterThan(0);
         }
-        expect(
-          (p.passiveAbility.description ?? "").trim().length,
-          `${p.id}/passive`,
-        ).toBeGreaterThan(0);
+        for (const pa of playablePassives(p)) {
+          expect((pa.description ?? "").trim().length, `${p.id}/${pa.id}`).toBeGreaterThan(0);
+        }
       }
     });
 
@@ -472,14 +623,15 @@ describe("community data bundle", () => {
             }
           }
         }
-        const pa = p.passiveAbility;
-        for (const text of [pa.description, pa.descriptionAdvanced]) {
-          if (!text) continue;
-          let match: RegExpExecArray | null;
-          while ((match = upgradePattern.exec(text)) !== null) {
-            const idx = match.index;
-            if (idx > 0) {
-              expect(text.slice(idx - 2, idx), `${p.id}/passive`).toBe("\n\n");
+        for (const pa of playablePassives(p)) {
+          for (const text of [pa.description, pa.descriptionAdvanced]) {
+            if (!text) continue;
+            let match: RegExpExecArray | null;
+            while ((match = upgradePattern.exec(text)) !== null) {
+              const idx = match.index;
+              if (idx > 0) {
+                expect(text.slice(idx - 2, idx), `${p.id}/${pa.id}`).toBe("\n\n");
+              }
             }
           }
         }
@@ -495,9 +647,11 @@ describe("community data bundle", () => {
           expect(m.gifAsset, `${p.id}/${m.name}`).toMatch(/^\/assets\/skills\//);
           expect(m.gifAsset, `${p.id}/${m.name}`).toMatch(/\.webp$/);
         }
-        if (p.passiveAbility.gifAsset) {
-          expect(p.passiveAbility.gifAsset, `${p.id}/passive`).toMatch(/^\/assets\/skills\//);
-          expect(p.passiveAbility.gifAsset, `${p.id}/passive`).toMatch(/\.webp$/);
+        for (const pa of playablePassives(p)) {
+          if (pa.gifAsset) {
+            expect(pa.gifAsset, `${p.id}/${pa.id}`).toMatch(/^\/assets\/skills\//);
+            expect(pa.gifAsset, `${p.id}/${pa.id}`).toMatch(/\.webp$/);
+          }
         }
       }
     });
@@ -527,9 +681,11 @@ describe("community data bundle", () => {
           expect(m.videoAsset, `${p.id}/${m.name}`).toMatch(/^\/assets\/skills\//);
           expect(m.videoAsset, `${p.id}/${m.name}`).toMatch(/\.mp4$/);
         }
-        if (p.passiveAbility.videoAsset) {
-          expect(p.passiveAbility.videoAsset, `${p.id}/passive`).toMatch(/^\/assets\/skills\//);
-          expect(p.passiveAbility.videoAsset, `${p.id}/passive`).toMatch(/\.mp4$/);
+        for (const pa of playablePassives(p)) {
+          if (pa.videoAsset) {
+            expect(pa.videoAsset, `${p.id}/${pa.id}`).toMatch(/^\/assets\/skills\//);
+            expect(pa.videoAsset, `${p.id}/${pa.id}`).toMatch(/\.mp4$/);
+          }
         }
       }
     });

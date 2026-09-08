@@ -71,3 +71,13 @@ Separate feature, out of scope for game constants.
 **Recommendation:** Tier 1 + Tier 2 for resilient, low-maintenance updates; keep Tier 3
 documented as the "go fully independent" fallback. All of this is unofficial community
 tooling — credit sources, rate-limit politely, personal/educational use.
+
+## Basic tooltip text (not constants)
+
+UNITE-DB JSON is the live **numbers** path. It is **not** a reliable source of
+Basic-mode move/Ability sentences: many rows are pre-evolution leftovers,
+unofficial, upgrade-only, or identical to Advanced. Owned Basic copy is
+`tools/community/move_descriptions.json`, filled from in-game tooltips (operator
+paste or PNG stills). Agents cannot play UNITE, cannot call an official API, and
+must not resume APK key recovery. Details and the apply recipe:
+[`13-in-game-basic-text.md`](13-in-game-basic-text.md).

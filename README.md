@@ -37,7 +37,7 @@ when you want the displayed version to change, then push.
 
 ## Data & attribution
 
-Game stats are sourced from [UNITE-DB](https://unite-db.com); move descriptions from [Serebii](https://serebii.net). Pokémon UNITE and all related data © Nintendo / The Pokémon Company / TiMi Studio Group. This is a non-commercial fan project.
+Game stats are sourced from [UNITE-DB](https://unite-db.com); Basic move/Ability tooltip text is owned in-game copy in `tools/community/move_descriptions.json` (see [In-game Basic text](docs/13-in-game-basic-text.md)). Pokémon UNITE and all related data © Nintendo / The Pokémon Company / TiMi Studio Group. This is a non-commercial fan project.
 
 Licensed under [AGPL-3.0-only](LICENSE).
 
@@ -54,6 +54,7 @@ Licensed under [AGPL-3.0-only](LICENSE).
 - [Distribution & Updates](docs/07-distribution.md) — Pages web app, PWA install, game-data auto-update
 - [Branding](docs/08-branding.md) — how to rename the app + regenerate icons
 - [Data Sourcing Research](docs/09-data-sourcing-research.md) — upstream source landscape (UNITE-DB vs uniteapi, APK pipeline)
+- [In-game Basic text](docs/13-in-game-basic-text.md) — where Basic tooltip copy comes from, and how to apply in-game sentences
 
 ## Layout
 
@@ -66,7 +67,7 @@ Licensed under [AGPL-3.0-only](LICENSE).
 - [`src/engine/derive.ts`](src/engine/derive.ts) — Loadout → effective stats + attack speed (one path)
 
 **Data (versioned, update-able)**
-- [`src/data/patch-current.json`](src/data/patch-current.json) — full game bundle (95 Pokémon,
+- [`src/data/patch-current.json`](src/data/patch-current.json) — full game bundle (100 Pokémon,
   41 held items, 10 battle items, 258 emblems), community-sourced from UNITE-DB
 - [`src/data/attackSpeedBoosts.json`](src/data/attackSpeedBoosts.json) — AS boost catalog
   (10 global items + 61 per-Pokémon move buffs with level gating)

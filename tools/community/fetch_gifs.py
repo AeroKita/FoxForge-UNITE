@@ -84,6 +84,9 @@ def main() -> None:
         pa = p.get("passiveAbility") or {}
         if pa.get("iconAsset"):
             entries.append((pa, pa["name"]))
+        for extra in p.get("extraPassives") or []:
+            if extra.get("iconAsset"):
+                entries.append((extra, extra["name"]))
         for obj, name in entries:
             gif_title = by_move.get(norm(name))
             if not gif_title:

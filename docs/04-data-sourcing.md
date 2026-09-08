@@ -48,8 +48,11 @@ After `normalize.py`, run `npm run generate:presets` (or `npm run data:post-norm
   
 ## Candidate Data Sources  
   
-- **In-game screens** — the most authoritative source. Item and emblem values  
-  shown in-game override third-party sites, which are frequently out of date.  
+- **In-game screens** — the most authoritative source. Item and emblem values
+  and **Basic** move/Ability tooltip text shown in-game override third-party
+  sites, which are frequently out of date. Basic copy lives in
+  `tools/community/move_descriptions.json`. See
+  [`13-in-game-basic-text.md`](13-in-game-basic-text.md).
 - **Community databases** (Unite-DB, UniteAPI.dev) — useful for structured stat  
   tables and emblem data; cross-check against in-game values.  
 - **Mathcord community** — documented formulas and testing for mechanics that are  

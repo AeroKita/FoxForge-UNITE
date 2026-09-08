@@ -40,6 +40,8 @@ export interface Pokemon {
   baseStatsByLevel: StatBlock[]; // index 0 = level 1 ... index 14 = level 15
   moves: Move[];
   passiveAbility: Ability;
+  /** Additional final-stage Abilities on mega-evolution licenses (Mega form). */
+  extraPassives?: Ability[];
   builds?: PokemonBuild[]; // curated community builds (UNITE-DB) — the "Recommended" tab
   creativeBuilds?: PokemonBuild[]; // optional "Creative" builds (empty until provided by data)
   excludeStats?: string[]; // stats this Pokémon doesn't use (UNITE-DB), e.g. ["attack"]
@@ -149,6 +151,8 @@ export interface Move {
   isUpgrade?: boolean; // true for a chosen upgrade move (vs. the base skill)
 }
 
+export type PassivePhase = "preMega" | "mega";
+
 export interface Ability {
   id: string;
   name: string;
@@ -161,6 +165,8 @@ export interface Ability {
   videoAsset?: string;
   effects: MoveEffect[];
   iconAsset?: string; // skills/<Pokemon>/<Passive>.png
+  /** Set on mega-license Abilities that share the Passive section with a pair. */
+  phase?: PassivePhase;
 }
 
 // ----- Held Items ------------------------------------------------------------

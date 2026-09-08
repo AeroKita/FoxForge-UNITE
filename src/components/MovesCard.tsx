@@ -5,6 +5,7 @@ import {
   upgradeOptions,
   resolveFinalMove,
   uniteMoves,
+  playablePassives,
   type FinalSlot,
 } from "../engine/moves";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -12,7 +13,10 @@ import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
 import { MoveMedia } from "./MoveMedia";
 import { moveTip, pickDescription } from "./tips";
-import type { Move, Pokemon } from "../types";
+import type { Ability, Move, PassivePhase, Pokemon } from "../types";
+
+/** Flip to `false` to hide Pre-Mega / Mega chips without touching the rows. */
+const SHOW_PASSIVE_PHASE_CHIPS = true;
 
 /** A read-only move row (base skill, Unite move) — icon + name + tooltip. */
 function MoveRow({
@@ -100,6 +104,46 @@ function ChoosableMoveSlot({
   );
 }
 
+function PassivePhaseChip({ phase }: { phase: PassivePhase }) {
+  if (!SHOW_PASSIVE_PHASE_CHIPS) return null;
+  const mega = phase === "mega";
+  return (
+    <span
+      className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+        mega ? "bg-accent-weak text-accent-ink" : "bg-raise text-faint"
+      }`}
+    >
+      {mega ? "Mega" : "Pre-Mega"}
+    </span>
+  );
+}
+
+function PassiveRow({ ability, advanced }: { ability: Ability; advanced: boolean }) {
+  const desc = pickDescription(ability, advanced);
+  return (
+    <Tooltip
+      content={
+        <span>
+          <span className="font-semibold">{ability.name}</span>
+          {desc && <span className="mt-0.5 block text-faint">{desc}</span>}
+          <MoveMedia
+            videoAsset={ability.videoAsset}
+            gifAsset={ability.gifAsset}
+            iconAsset={ability.iconAsset}
+            name={ability.name}
+          />
+        </span>
+      }
+    >
+      <span className="flex items-center gap-2">
+        <MoveIcon src={ability.iconAsset} alt={ability.name} size="h-8 w-8" />
+        <span className="min-w-0 truncate text-sm font-medium text-ink">{ability.name}</span>
+        {ability.phase ? <PassivePhaseChip phase={ability.phase} /> : null}
+      </span>
+    </Tooltip>
+  );
+}
+
 /** The selected Pokémon's move kit — Move 1 / Move 2 are choosable; the two
  *  selected upgrades are the "final moves" shown in the Builds card. */
 export function MovesCard() {
@@ -108,8 +152,7 @@ export function MovesCard() {
   if (!pokemon) return null;
 
   const uniteList = uniteMoves(pokemon);
-  const passive = pokemon.passiveAbility;
-  const passiveDesc = pickDescription(passive, expert);
+  const passives = playablePassives(pokemon);
 
   return (
     <CollapsibleCard title="Moves" persistKey="moves" tone="sky" defaultOpen={false}>
@@ -133,26 +176,14 @@ export function MovesCard() {
           </div>
         )}
         <div>
-          <p className="mb-1 text-xs font-medium text-faint">Passive</p>
-          <Tooltip
-            content={
-              <span>
-                <span className="font-semibold">{passive.name}</span>
-                {passiveDesc && <span className="mt-0.5 block text-faint">{passiveDesc}</span>}
-                <MoveMedia
-                  videoAsset={passive.videoAsset}
-                  gifAsset={passive.gifAsset}
-                  iconAsset={passive.iconAsset}
-                  name={passive.name}
-                />
-              </span>
-            }
-          >
-            <span className="flex items-center gap-2">
-              <MoveIcon src={passive.iconAsset} alt={passive.name} size="h-8 w-8" />
-              <span className="truncate text-sm font-medium text-ink">{passive.name}</span>
-            </span>
-          </Tooltip>
+          <p className="mb-1 text-xs font-medium text-faint">
+            {passives.length > 1 ? "Passives" : "Passive"}
+          </p>
+          <div className="flex flex-col gap-1.5">
+            {passives.map((ability) => (
+              <PassiveRow key={ability.id} ability={ability} advanced={expert} />
+            ))}
+          </div>
         </div>
       </div>
     </CollapsibleCard>

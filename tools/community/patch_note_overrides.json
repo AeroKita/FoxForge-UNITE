@@ -1535,17 +1535,6 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
-      ],
-      "find": "Bounsweet, Steenee;",
-      "replace": "Bounsweet or Steenee,",
-      "why": "UNITE-DB Oblivious Basic lists Bounsweet, Steenee without or",
-      "pokemon": "tsareena",
-      "move": "oblivious"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
         "descriptionAdvanced"
       ],
       "find": "and inflicts a burn",

@@ -61,6 +61,9 @@ def collect_asset_paths() -> set[str]:
         passive = p.get("passiveAbility") or {}
         if passive.get("iconAsset"):
             paths.add(passive["iconAsset"])
+        for extra in p.get("extraPassives") or []:
+            if extra.get("iconAsset"):
+                paths.add(extra["iconAsset"])
     for it in b["heldItems"] + b.get("battleItems", []):
         paths.add(it["iconAsset"])
     for e in b["emblems"]:

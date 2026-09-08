@@ -5,6 +5,7 @@ from __future__ import annotations
 import unittest
 
 from normalize import (
+    PLAYABLE_PASSIVE_SLUGS,
     _norm_move_name,
     advanced_desc,
     append_upgrade_from_advanced,
@@ -16,7 +17,10 @@ from normalize import (
     fix_spelling,
     fix_spelling_deep,
     passive_basic_desc,
+    is_mega_license,
+    mega_license_passive_names,
     resolve_playable_passive,
+    staged_passive_names,
     reword_add_label,
     strip_activation_note,
 )
@@ -148,7 +152,7 @@ class TestPassiveBasicDesc(unittest.TestCase):
 
 
 class TestResolvePlayablePassive(unittest.TestCase):
-    """resolve_playable_passive picks Solgaleo Full Metal Body and Sylveon Pixilate."""
+    """resolve_playable_passive picks the last staged Ability for allowlisted Pokémon."""
 
     _SOLGALEO = {
         "ability": "Passive",
@@ -164,17 +168,43 @@ class TestResolvePlayablePassive(unittest.TestCase):
     def test_none_passthrough(self):
         self.assertIsNone(resolve_playable_passive(None, "Solgaleo"))
 
-    def test_other_pokemon_keeps_pre_evo_name(self):
+    def test_mew_keeps_synchronize_not_move_reset(self):
+        skill = {
+            "name": "Synchronize",
+            "description": "Speed buff for allies.",
+            "passive2_name": "Move Reset",
+            "passive2_description": "Reset learned moves.",
+            "rsb": {"true_desc": "Synchronize Advanced."},
+        }
+        out = resolve_playable_passive(skill, "Mew")
+        self.assertIs(out, skill)
+        self.assertEqual(out["name"], "Synchronize")
+        self.assertNotIn("mew", PLAYABLE_PASSIVE_SLUGS)
+
+    def test_allowlist_does_not_include_mega_licenses(self):
+        for slug in (
+            "mega-charizard-x",
+            "mega-charizard-y",
+            "mega-lucario",
+            "mega-gyarados",
+            "charizard",
+        ):
+            self.assertNotIn(slug, PLAYABLE_PASSIVE_SLUGS)
+
+    def test_tyranitar_uses_passive3_sand_stream(self):
         skill = {
             "name": "Guts",
             "description": "Larvitar Attack increase.",
+            "passive2_name": "Shed Skin",
+            "passive2_description": "Pupitar status cleanse.",
             "passive3_name": "Sand Stream",
             "passive3_description": "Summons a sandstorm.",
             "rsb": {"true_desc": "Guts Advanced."},
         }
         out = resolve_playable_passive(skill, "Tyranitar")
-        self.assertIs(out, skill)
-        self.assertEqual(out["name"], "Guts")
+        self.assertEqual(out["name"], "Sand Stream")
+        self.assertEqual(out["description"], "")
+        self.assertEqual((out.get("rsb") or {}).get("true_desc"), "Summons a sandstorm.")
 
     def test_solgaleo_uses_passive3_name(self):
         out = resolve_playable_passive(self._SOLGALEO, "Solgaleo")
@@ -241,10 +271,91 @@ class TestResolvePlayablePassive(unittest.TestCase):
             self._PIXILATE_BASIC,
         )
 
-    def test_sylveon_fixture_does_not_promote_espeon(self):
-        out = resolve_playable_passive(self._SYLVEON, "Espeon")
+    def test_sylveon_fixture_does_not_promote_mew(self):
+        out = resolve_playable_passive(self._SYLVEON, "Mew")
         self.assertIs(out, self._SYLVEON)
         self.assertEqual(out["name"], "Adaptability")
+
+    _ESPEON = {
+        "name": "Anticipation",
+        "description": "When Eevee would be affected by a hindrance.",
+        "passive2_name": "Magic Bounce",
+        "passive2_description": "When Espeon would be affected by a hindrance.",
+        "rsb": {"true_desc": "Eevee Anticipation Advanced."},
+    }
+
+    def test_espeon_uses_passive2_magic_bounce(self):
+        out = resolve_playable_passive(self._ESPEON, "Espeon")
+        self.assertEqual(out["name"], "Magic Bounce")
+        self.assertEqual(out["description"], "")
+        self.assertEqual(
+            (out.get("rsb") or {}).get("true_desc"),
+            self._ESPEON["passive2_description"],
+        )
+
+    def test_playable_passive_allowlist_covers_in_game_basic_pass(self):
+        expected = {
+            "solgaleo",
+            "sylveon",
+            "aegislash",
+            "ceruledge",
+            "dragonite",
+            "espeon",
+            "glaceon",
+            "gyarados",
+            "leafeon",
+            "raichu",
+            "tsareena",
+            "tyranitar",
+            "umbreon",
+            "urshifu",
+            "vaporeon",
+        }
+        self.assertTrue(expected <= PLAYABLE_PASSIVE_SLUGS)
+
+
+class TestMegaLicensePassives(unittest.TestCase):
+    """Mega licenses emit final-stage Ability names; pre-final stages are dropped."""
+
+    _GYARADOS = {
+        "name": "Swift Swim",
+        "passive2_name": "Intimidate",
+        "passive3_name": "Mold Breaker",
+    }
+    _CHARIZARD_X = {
+        "name": "Solar Power",
+        "passive2_name": "Tough Claws",
+    }
+
+    def test_mega_display_prefix(self):
+        self.assertTrue(is_mega_license("Mega-Charizard-Y", "Mega Charizard Y"))
+
+    def test_meganium_is_not_a_mega_license(self):
+        self.assertFalse(is_mega_license("Meganium", "Meganium"))
+
+    def test_sylveon_is_not_a_mega_license(self):
+        self.assertFalse(is_mega_license("Sylveon", "Sylveon"))
+
+    def test_mewtwo_x_raw_name(self):
+        self.assertTrue(is_mega_license("MewtwoX", "Mega Mewtwo X"))
+
+    def test_three_stages_drop_the_first(self):
+        self.assertEqual(
+            mega_license_passive_names(self._GYARADOS),
+            ["Intimidate", "Mold Breaker"],
+        )
+
+    def test_two_stages_keep_both(self):
+        self.assertEqual(
+            mega_license_passive_names(self._CHARIZARD_X),
+            ["Solar Power", "Tough Claws"],
+        )
+
+    def test_staged_names_skip_blanks(self):
+        self.assertEqual(staged_passive_names({"name": "Pressure"}), ["Pressure"])
+
+    def test_empty_skill(self):
+        self.assertEqual(mega_license_passive_names(None), [])
 
 
 class TestDescriptionBody(unittest.TestCase):
