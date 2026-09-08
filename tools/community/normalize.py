@@ -311,6 +311,19 @@ _UPGRADE_START = re.compile(r"^Upgrade(?:\s*\([^)]*\))?:\s*", re.I)
 _UPGRADE_ANY = re.compile(r"Upgrade(?:\s*\([^)]*\))?:", re.I)
 
 
+def description_body(text: str) -> str:
+    """Return *text* with Upgrade / Upgrade (Level N): paragraphs removed.
+
+    Used to tell a real Basic/Advanced body from an upgrade-only leftover.
+    """
+    parts = []
+    for para in (text or "").split("\n\n"):
+        stripped = para.strip()
+        if stripped and not _UPGRADE_START.match(stripped):
+            parts.append(stripped)
+    return "\n\n".join(parts)
+
+
 def extract_upgrade_paragraph(advanced: str) -> str:
     """Return the first paragraph in *advanced* that starts with Upgrade / Upgrade (Level N):."""
     for para in (advanced or "").split("\n\n"):
@@ -338,17 +351,19 @@ def resolve_playable_passive(skill: dict | None, pokemon_name: str = "") -> dict
     UNITE-DB stores pre-evolution Abilities as the Passive skill ``name`` and
     later forms as ``passive2_name`` / ``passive3_name``. Solgaleo is played as
     the final evolution for most of a match, so the tooltip must show Full
-    Metal Body rather than Cosmog's Unaware. Other Pokémon keep the raw skill
-    (existing Dragonite / Tyranitar display is unchanged).
+    Metal Body rather than Cosmog's Unaware. Sylveon is played as the evolved
+    form, so the tooltip must show Pixilate rather than Eevee's Adaptability.
+    Other Pokémon keep the raw skill (existing Dragonite / Tyranitar display
+    is unchanged).
 
-    When promoting Solgaleo's staged Ability, Basic ``description`` is cleared
-    so ``move_descriptions.json`` can supply in-game Basic text. Advanced uses
+    When promoting a staged Ability, Basic ``description`` is cleared so
+    ``move_descriptions.json`` can supply in-game Basic text. Advanced uses
     the staged ``passive3_description`` (or ``passive2_description``) only —
-    Unaware's ``rsb`` is not copied.
+    the pre-evolution ``rsb`` is not copied.
     """
     if skill is None:
         return None
-    if slugify(pokemon_name) != "solgaleo":
+    if slugify(pokemon_name) not in ("solgaleo", "sylveon"):
         return skill
     final_name = (skill.get("passive3_name") or skill.get("passive2_name") or "").strip()
     if not final_name:
@@ -432,10 +447,10 @@ def build_upgrade_move(up: dict, slot: str, folder: str) -> dict:
     if lvl2 and "Upgrade:" in basic:
         basic = basic.replace("Upgrade:", f"Upgrade (Level {lvl2}):")
     d2 = (up.get("description2") or "").strip()
-    if d2:
+    if d2 and description_body(basic).strip():
         lvl = str(up.get("level2") or "").strip()
         prefix = f"Upgrade (Level {lvl}): " if lvl else "Upgrade: "
-        basic = (basic.rstrip() + "\n\n" + prefix + d2) if basic.strip() else (prefix + d2)
+        basic = basic.rstrip() + "\n\n" + prefix + d2
     basic = paragraphize_upgrade(basic)
     move = {
         "id": slugify(name or slot),
@@ -677,14 +692,23 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
         exclude = p.get("exclude_stats")
         pid = slugify(name)
         over = descs.get(pid, {})
+        # Sylveon's UNITE-DB Basic (description / description1) is unofficial or
+        # outdated. Clear it when the archive has a real body so backfill supplies
+        # in-game text — same idea as clearing staged-Ability description.
+        if pid == "sylveon" and over:
+            for m in moves:
+                if m.get("slot") == "basicAttack":
+                    continue
+                if description_body(over.get(_norm_move_name(m["name"]), "")).strip():
+                    m["description"] = ""
         if over:
             for m in moves:
-                if not (m.get("description") or "").strip():
-                    m["description"] = ensure_sentence_end(
-                        strip_activation_note(
-                            over.get(_norm_move_name(m["name"]), m.get("description", ""))
+                if not description_body(m.get("description") or "").strip():
+                    archived = over.get(_norm_move_name(m["name"]), "")
+                    if archived.strip():
+                        m["description"] = ensure_sentence_end(
+                            strip_activation_note(archived)
                         )
-                    )
         # After archive backfill, copy Advanced's Upgrade paragraph onto Basic when
         # Basic still lacks an Upgrade marker (covers the roster-wide Basic gap).
         for m in moves:
@@ -765,8 +789,8 @@ def load_move_clips() -> dict:
 
 
 def load_move_descriptions() -> dict:
-    """Serebii-sourced fallback descriptions, keyed by pokemon id -> normalized
-    move name -> description. Empty if the file is absent (scraper not run)."""
+    """Owned in-game Basic fallback texts, keyed by pokemon id -> normalized
+    move name -> description. Empty if the file is absent."""
     if not MOVE_DESCRIPTIONS.exists():
         print("  (no move_descriptions.json — skipping description backfill)")
         return {}

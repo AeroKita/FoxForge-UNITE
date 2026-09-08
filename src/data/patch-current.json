@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.3",
-  "lastUpdated": "2026-09-05",
+  "lastUpdated": "2026-09-07",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-05"
+    "fetched": "2026-09-07"
   },
   "pokemon": [
     {
@@ -51303,7 +51303,7 @@
           "id": "swift",
           "name": "Swift",
           "slot": "move1",
-          "description": "Shoots star-shaped rays at enemies, dealing damage to them.",
+          "description": "Shoots star-shaped rays at opposing Pokémon, dealing damage to them.",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -51327,7 +51327,7 @@
           "id": "mystical-fire",
           "name": "Mystical Fire",
           "slot": "move1",
-          "description": "Upgrade (Level 10): Increases the number of flames by one.",
+          "description": "Has the user create four small flames while advancing in the designated direction. The flames shoot toward opposing Pokémon one by one, dealing damage and decreasing the opposing Pokémon's Sp. Atk for a short time when they hit. Each time a flame hits, it reduces the cooldown of this move.\n\nUpgrade (Level 10): Increases the number of flames by one.",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -51353,7 +51353,7 @@
           "id": "hyper-voice",
           "name": "Hyper Voice",
           "slot": "move1",
-          "description": "Unleashes an attack of multiple sound waves that deal damage when they hit. The damage dealt increases the farther the target is from Sylveon. Every time a sound wave hits, enemy Sp. Defense is reduced by 50 and the next sound wave's damage increases.\n\nUpgrade (Level 10): Increases the number of sound waves by one.",
+          "description": "Unleashes an attack of multiple sound waves that deal damage when they hit. The damage they deal increases the farther the target is from the user. Every time a sound wave hits, the next sound wave's damage increases.\n\nUpgrade (Level 10): Applies a slowing effect to opposing Pokémon hit by this move.",
           "cooldownSeconds": 5.5,
           "damageInstances": [
             {
@@ -51386,7 +51386,7 @@
           "id": "baby-doll-eyes",
           "name": "Baby-Doll Eyes",
           "slot": "move2",
-          "description": "Stare at an enemy with baby-doll eyes, dealing damage and decreasing their Attack and movement speed for a short time when this move hits.",
+          "description": "Has the user stare at the designated opposing Pokémon with its baby-doll eyes, dealing damage and decreasing their Attack and movement speed for a short time when this move hits.",
           "cooldownSeconds": 5.0,
           "damageInstances": [
             {
@@ -51410,7 +51410,7 @@
           "id": "draining-kiss",
           "name": "Draining Kiss",
           "slot": "move2",
-          "description": "Blow a kiss at an enemy that goes back and forth between Sylveon and the target multiple times. When the kiss touches Sylveon, restore HP. When it hits the enemy, deal damage and decrease their movement speed for a short time. If Sylveon and the enemy move too far away from each other, the kiss will disappear faster than normal.\n\nUpgrade (Level 12): Increases the amount of HP this move restores.",
+          "description": "Has the user blow a kiss at an opposing Pokémon that goes back and forth between the user and the opposing Pokémon multiple times. When the kiss touches the user, it restores its HP. When it hits the opposing Pokémon, it deals damage to it and decreases its movement speed for a short time.\n\nIf the user and the opposing Pokémon move too far away from each other, the kiss will disappear faster than normal.\n\nUpgrade (Level 12): Increases the amount of HP this move restores.",
           "cooldownSeconds": 9.0,
           "damageInstances": [
             {
@@ -51443,7 +51443,7 @@
           "id": "calm-mind",
           "name": "Calm Mind",
           "slot": "move2",
-          "description": "Sylveon quietly focuses their mind and calms their spirit, increasing movement speed, Sp. Attack by 40% and Sp. Defense by 10% for a short time.\n\nUpgrade (Level 12): One time only while using this move, if Sylveon is hit by an Enemy's move, the damage is completely nullified and Sylveon is granted a shield.",
+          "description": "Has the user quietly focus its mind and calm its spirit to increase its Sp. Atk, Sp. Def, and movement speed for a short time.\n\nUpgrade (Level 12): One time only while using this move, if the user is hit by an opposing Pokémon's move, the damage is completely nullified, and the user is granted a shield.",
           "cooldownSeconds": 8.0,
           "damageInstances": [],
           "effects": [],
@@ -51461,7 +51461,7 @@
           "id": "fairy-frolic",
           "name": "Fairy Frolic",
           "slot": "uniteMove",
-          "description": "Jump into the air and become briefly invincible. The moment Sylveon lands, deal damage to enemies in the area of effect and restore Sylveon's HP. For 10s afterward, 50% of damage dealt by Sylveon is converted into HP (basic attacks are excluded).",
+          "description": "Has the user jump into the air and briefly become invincible. The moment the user lands, it deals damage to opposing Pokémon in the area of effect and restores its own HP. For a short time afterward, a set percentage of damage dealt by the user is converted into HP for the user.",
           "cooldownSeconds": 112.0,
           "damageInstances": [
             {
@@ -51484,12 +51484,12 @@
         }
       ],
       "passiveAbility": {
-        "id": "adaptability",
-        "name": "Adaptability",
-        "description": "Every time Eevee deals or receives damage, increase Sp. Attack by 5% for 1.5s, stacking up to 4 times.",
+        "id": "pixilate",
+        "name": "Pixilate",
+        "description": "Every time the Pokémon deals or receives damage, its Sp. Atk and Sp. Def are increased for a short time.",
         "effects": [],
-        "descriptionAdvanced": "Every time Eevee deals or receives damage, increase Sp. Attack by 5% for 1.5s, stacking up to 4 times.",
-        "iconAsset": "/assets/skills/Sylveon/Adaptability.png"
+        "descriptionAdvanced": "Every time Sylveon deals or receives damage, increase Sp. Atk and Sp. Defense by 5% for 1.5s, stacking up to 4 times.",
+        "iconAsset": "/assets/skills/Sylveon/Pixilate.png"
       },
       "builds": [
         {

@@ -11,6 +11,7 @@ from normalize import (
     apply_patch_note_overrides,
     build_emblems,
     build_upgrade_move,
+    description_body,
     ensure_sentence_end,
     fix_spelling,
     fix_spelling_deep,
@@ -147,7 +148,7 @@ class TestPassiveBasicDesc(unittest.TestCase):
 
 
 class TestResolvePlayablePassive(unittest.TestCase):
-    """resolve_playable_passive picks Solgaleo's final-form Ability over Cosmog Unaware."""
+    """resolve_playable_passive picks Solgaleo Full Metal Body and Sylveon Pixilate."""
 
     _SOLGALEO = {
         "ability": "Passive",
@@ -200,6 +201,67 @@ class TestResolvePlayablePassive(unittest.TestCase):
         out = resolve_playable_passive(skill, "Solgaleo")
         self.assertIs(out, skill)
 
+    _SYLVEON = {
+        "ability": "Passive",
+        "name": "Adaptability",
+        "description": (
+            "Every time Eevee deals or receives damage, increase Sp. Attack by 5% "
+            "for 1.5s, stacking up to 4 times."
+        ),
+        "passive2_name": "Pixilate",
+        "passive2_description": (
+            "Every time Sylveon deals or receives damage, increase Sp. Atk and "
+            "Sp. Defense by 5% for 1.5s, stacking up to 4 times."
+        ),
+        "rsb": {
+            "true_desc": (
+                "Every time Eevee deals or receives damage, increase Sp. Attack "
+                "by 5% for 1.5s, stacking up to 4 times."
+            )
+        },
+    }
+    _PIXILATE_BASIC = (
+        "Every time the Pokémon deals or receives damage, its Sp. Atk and Sp. Def "
+        "are increased for a short time."
+    )
+
+    def test_sylveon_uses_passive2_pixilate(self):
+        out = resolve_playable_passive(self._SYLVEON, "Sylveon")
+        self.assertEqual(out["name"], "Pixilate")
+        self.assertEqual(out["description"], "")
+        self.assertEqual(
+            (out.get("rsb") or {}).get("true_desc"),
+            self._SYLVEON["passive2_description"],
+        )
+
+    def test_sylveon_blanks_description_for_archive_backfill(self):
+        out = resolve_playable_passive(self._SYLVEON, "Sylveon")
+        self.assertEqual(
+            passive_basic_desc(out, {"pixilate": self._PIXILATE_BASIC}),
+            self._PIXILATE_BASIC,
+        )
+
+    def test_sylveon_fixture_does_not_promote_espeon(self):
+        out = resolve_playable_passive(self._SYLVEON, "Espeon")
+        self.assertIs(out, self._SYLVEON)
+        self.assertEqual(out["name"], "Adaptability")
+
+
+class TestDescriptionBody(unittest.TestCase):
+    """description_body strips Upgrade paragraphs so leftover upgrade-only text is empty."""
+
+    def test_upgrade_only_is_empty(self):
+        self.assertEqual(
+            description_body("Upgrade (Level 10): Increases the number of flames by one."),
+            "",
+        )
+
+    def test_body_survives_upgrade_paragraph(self):
+        self.assertEqual(
+            description_body("Body.\n\nUpgrade (Level 10): Bonus."),
+            "Body.",
+        )
+
 
 class TestBuildUpgradeMove(unittest.TestCase):
     def test_bare_upgrade_marker_gets_level_from_level2(self):
@@ -207,6 +269,29 @@ class TestBuildUpgradeMove(unittest.TestCase):
         move = build_upgrade_move(up, "move1", "Quaquaval")
         self.assertIn("Upgrade (Level 11):", move["description"])
         self.assertNotIn("Upgrade:", move["description"].replace("Upgrade (Level 11):", ""))
+
+    def test_empty_description1_does_not_compose_upgrade_only_basic(self):
+        """Empty description1 + description2 must leave no Basic body for archive backfill."""
+        up = {
+            "name": "Mystical Fire",
+            "description1": "",
+            "description2": "Increases the number of flames by one.",
+            "level2": "10",
+        }
+        move = build_upgrade_move(up, "move1", "Sylveon")
+        self.assertEqual(description_body(move["description"]), "")
+        self.assertEqual((move["description"] or "").strip(), "")
+
+    def test_existing_body_still_appends_description2(self):
+        up = {
+            "name": "Mystical Fire",
+            "description1": "Leap and throw flames.",
+            "description2": "Increases the number of flames by one.",
+            "level2": "10",
+        }
+        move = build_upgrade_move(up, "move1", "Sylveon")
+        self.assertIn("Leap and throw flames.", move["description"])
+        self.assertIn("Upgrade (Level 10): Increases the number of flames by one.", move["description"])
 
 
 class TestFixSpelling(unittest.TestCase):

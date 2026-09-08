@@ -1,7 +1,9 @@
 """Harvest Basic move/passive descriptions from the bundle into move_descriptions.json.
 
 Archives every non-blank description the bundle currently ships so normalize.py can
-backfill future upstream deletions. The only programmatic writer of owned description data.
+backfill future upstream deletions. Upgrade-only leftovers (no body before the
+Upgrade line) are treated like blank. The only programmatic writer of owned
+description data.
 """
 
 from __future__ import annotations
@@ -11,7 +13,7 @@ import json
 import sys
 from pathlib import Path
 
-from normalize import _norm_move_name
+from normalize import _norm_move_name, description_body
 
 REPO = Path(__file__).resolve().parents[2]
 BUNDLE = REPO / "src" / "data" / "patch-current.json"
@@ -22,7 +24,7 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
     """Merge non-blank bundle descriptions into *archive* (pokemon id → norm name → text).
 
     Returns the updated descriptions mapping and human-readable change lines.
-    Blank bundle text never overwrites an existing archived value.
+    Blank or upgrade-only bundle text never overwrites an existing archived value.
     """
     result: dict = copy.deepcopy(archive)
     changes: list[str] = []
@@ -48,7 +50,7 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
             entries.append(("passive", passive_name, passive_desc))
 
         for kind, name, desc in entries:
-            if not desc:
+            if not description_body(desc):
                 continue
             key = _norm_move_name(name)
             if not key:

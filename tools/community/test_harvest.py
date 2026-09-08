@@ -130,6 +130,80 @@ class TestHarvest(unittest.TestCase):
         self.assertNotIn("lumière of demise", updated["yveltal"])
         self.assertEqual(len(changes), 1)
 
+    def test_upgrade_only_never_overwrites_full_archive_body(self):
+        """Upgrade-only bundle text must not replace a real archived Basic body."""
+        body = (
+            "Has the user create four small flames while advancing in the designated direction. "
+            "The flames shoot toward opposing Pokémon one by one, dealing damage and decreasing "
+            "the opposing Pokémon's Sp. Atk for a short time when they hit. Each time a flame "
+            "hits, it reduces the cooldown of this move."
+        )
+        bundle = _bundle(
+            id="sylveon",
+            displayName="Sylveon",
+            moves=[
+                {
+                    "id": "mystical-fire",
+                    "name": "Mystical Fire",
+                    "slot": "move1",
+                    "description": "Upgrade (Level 10): Increases the number of flames by one.",
+                }
+            ],
+        )
+        archive = {"sylveon": {"mystical fire": body}}
+        updated, changes = harvest(bundle, archive)
+        self.assertEqual(updated["sylveon"]["mystical fire"], body)
+        self.assertFalse(any(line.startswith("~") for line in changes))
+
+    def test_upgrade_only_is_not_archived_as_new_entry(self):
+        """Upgrade-only bundle text is treated like blank and is not seeded."""
+        bundle = _bundle(
+            id="sylveon",
+            displayName="Sylveon",
+            moves=[
+                {
+                    "id": "mystical-fire",
+                    "name": "Mystical Fire",
+                    "slot": "move1",
+                    "description": "Upgrade (Level 10): Increases the number of flames by one.",
+                }
+            ],
+        )
+        updated, changes = harvest(bundle, {})
+        self.assertNotIn("mystical fire", updated.get("sylveon", {}))
+        self.assertEqual(changes, [])
+
+    def test_full_bundle_text_updates_upgrade_only_archive(self):
+        """A real body in the bundle replaces a leftover upgrade-only archive key."""
+        body = (
+            "Has the user create four small flames while advancing in the designated direction. "
+            "The flames shoot toward opposing Pokémon one by one, dealing damage and decreasing "
+            "the opposing Pokémon's Sp. Atk for a short time when they hit. Each time a flame "
+            "hits, it reduces the cooldown of this move.\n\n"
+            "Upgrade (Level 10): Increases the number of flames by one."
+        )
+        bundle = _bundle(
+            id="sylveon",
+            displayName="Sylveon",
+            moves=[
+                {
+                    "id": "mystical-fire",
+                    "name": "Mystical Fire",
+                    "slot": "move1",
+                    "description": body,
+                }
+            ],
+        )
+        archive = {
+            "sylveon": {
+                "mystical fire": "Upgrade (Level 10): Increases the number of flames by one."
+            }
+        }
+        updated, changes = harvest(bundle, archive)
+        self.assertEqual(updated["sylveon"]["mystical fire"], body)
+        self.assertEqual(len(changes), 1)
+        self.assertTrue(changes[0].startswith("~"))
+
 
 if __name__ == "__main__":
     unittest.main()

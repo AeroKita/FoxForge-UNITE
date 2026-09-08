@@ -158,6 +158,74 @@ describe("community data bundle", () => {
       expect(tyranitar.passiveAbility.description.length).toBeGreaterThan(0);
     });
 
+    it("Sylveon shows Pixilate and in-game Basic move text", () => {
+      const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
+      const byId = Object.fromEntries(sylveon.moves.map((m) => [m.id, m]));
+
+      expect(sylveon.passiveAbility.id).toBe("pixilate");
+      expect(sylveon.passiveAbility.name).toBe("Pixilate");
+      expect(sylveon.passiveAbility.iconAsset).toContain("Pixilate");
+      expect(sylveon.passiveAbility.description).toContain("Sp. Atk and Sp. Def");
+      expect(sylveon.passiveAbility.description).not.toContain("Eevee");
+      expect(sylveon.passiveAbility.description).not.toContain("5%");
+      expect(sylveon.passiveAbility.descriptionAdvanced).toContain("5%");
+      expect(sylveon.passiveAbility.descriptionAdvanced).toContain("1.5s");
+
+      expect(byId.swift.description).toContain("opposing Pokémon");
+      expect(byId.swift.description).not.toContain("4 star-shaped");
+
+      expect(byId["hyper-voice"].description).toContain("Applies a slowing effect");
+      expect(byId["hyper-voice"].description).not.toContain("number of sound waves");
+      expect(byId["hyper-voice"].descriptionAdvanced).toContain("slowed by 30%");
+
+      expect(byId["draining-kiss"].description).toContain("Has the user blow a kiss");
+      expect(byId["draining-kiss"].description).toContain(
+        "Upgrade (Level 12): Increases the amount of HP",
+      );
+
+      expect(byId["calm-mind"].description).toContain("Has the user quietly focus");
+      expect(byId["calm-mind"].description).not.toContain("40%");
+
+      expect(byId["baby-doll-eyes"].description).toContain("Has the user stare");
+
+      expect(byId["fairy-frolic"].description).toContain("a set percentage");
+      expect(byId["fairy-frolic"].description).not.toContain("50%");
+      expect(byId["fairy-frolic"].description).not.toContain("10s");
+
+      expect(byId["mystical-fire"].description).toMatch(/^Has the user create four small flames/);
+    });
+
+    it("no real move or passive ships an upgrade-only description body", () => {
+      const upgradeOnly = /^Upgrade(?:\s*\([^)]*\))?:/i;
+      const body = (text: string | undefined) =>
+        (text ?? "")
+          .split("\n\n")
+          .map((para) => para.trim())
+          .filter((para) => para && !upgradeOnly.test(para))
+          .join("\n\n");
+      for (const p of bundle.pokemon) {
+        for (const m of p.moves) {
+          if (m.slot === "basicAttack") continue;
+          expect(body(m.description).length, `${p.id}/${m.name} Basic`).toBeGreaterThan(0);
+          if (m.descriptionAdvanced) {
+            expect(
+              body(m.descriptionAdvanced).length,
+              `${p.id}/${m.name} Advanced`,
+            ).toBeGreaterThan(0);
+          }
+        }
+        expect(body(p.passiveAbility.description).length, `${p.id}/passive Basic`).toBeGreaterThan(
+          0,
+        );
+        if (p.passiveAbility.descriptionAdvanced) {
+          expect(
+            body(p.passiveAbility.descriptionAdvanced).length,
+            `${p.id}/passive Advanced`,
+          ).toBeGreaterThan(0);
+        }
+      }
+    });
+
     it("every real move and passive has a non-blank Basic description", () => {
       for (const p of bundle.pokemon) {
         for (const m of p.moves) {
