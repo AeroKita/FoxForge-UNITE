@@ -17,6 +17,10 @@ from normalize import (
     ensure_sentence_end,
     fix_spelling,
     fix_spelling_deep,
+    paragraphize_archive_entry,
+    paragraphize_basic_body,
+    paragraphize_move_archive,
+    collect_passive_archive_keys,
     passive_basic_desc,
     is_mega_license,
     mega_license_passive_names,
@@ -138,6 +142,180 @@ class TestAppendUpgradeFromAdvanced(unittest.TestCase):
         twice = append_upgrade_from_advanced(once, advanced)
         self.assertEqual(once, twice)
         self.assertEqual(once.count("Upgrade (Level 11):"), 1)
+
+
+class TestParagraphizeBasicBody(unittest.TestCase):
+    """Insert \\n\\n before mechanical beats; keep wording and Upgrade unchanged."""
+
+    def test_lucario_extreme_speed(self):
+        body = (
+            "Has the user charge forward with breathtaking speed. If the user performs a "
+            "basic attack immediately after using this move, that attack's damage is increased. "
+            "After the user learns this move, an Extreme Speed mark will be automatically "
+            "applied to any nearby unmarked opposing Pokémon. This mark cannot stack, and "
+            "there is a delay before the mark can be automatically applied again to the same "
+            "Pokémon. If Extreme Speed hits a marked opposing Pokémon, its cooldown is reset "
+            "and the user recovers HP."
+        )
+        expected = (
+            "Has the user charge forward with breathtaking speed. If the user performs a "
+            "basic attack immediately after using this move, that attack's damage is increased.\n\n"
+            "After the user learns this move, an Extreme Speed mark will be automatically "
+            "applied to any nearby unmarked opposing Pokémon. This mark cannot stack, and "
+            "there is a delay before the mark can be automatically applied again to the same "
+            "Pokémon.\n\n"
+            "If Extreme Speed hits a marked opposing Pokémon, its cooldown is reset "
+            "and the user recovers HP."
+        )
+        self.assertEqual(paragraphize_basic_body(body), expected)
+
+    def test_tsareena_trop_kick(self):
+        body = (
+            "Has the user peform a flying kick in the designated direction, dealing damage to "
+            "opposing Pokémon it hits and decreasing their Attack for a short time. Opposing "
+            "Pokémon that make contact with the flying kick's wake receive damage and have "
+            "their movement speed decreased for a short time. Queenly Majesty Effect: Grants "
+            "the user a shield when this move is used."
+        )
+        expected = (
+            "Has the user peform a flying kick in the designated direction, dealing damage to "
+            "opposing Pokémon it hits and decreasing their Attack for a short time.\n\n"
+            "Opposing Pokémon that make contact with the flying kick's wake receive damage and "
+            "have their movement speed decreased for a short time.\n\n"
+            "Queenly Majesty Effect: Grants the user a shield when this move is used."
+        )
+        self.assertEqual(paragraphize_basic_body(body), expected)
+
+    def test_urshifu_liquidation(self):
+        body = (
+            "Has the user deal damage to and decrease the Defense of opposing Pokémon in the "
+            "area around it. When this move hits, the user is granted a shield whose strength "
+            "is based on the number of opposing Pokémon hit."
+        )
+        expected = (
+            "Has the user deal damage to and decrease the Defense of opposing Pokémon in the "
+            "area around it.\n\n"
+            "When this move hits, the user is granted a shield whose strength is based on the "
+            "number of opposing Pokémon hit."
+        )
+        self.assertEqual(paragraphize_basic_body(body), expected)
+
+    def test_dragonite_dragon_dance(self):
+        body = (
+            "Has the user move to the designated location while performing a mystical dance, "
+            "increasing the user's damage dealt, movement speed, and basic attack speed for a "
+            "short time. During this short time, when one of the user's basic attacks hits an "
+            "opposing Pokémon, it reduces this move's cooldown. Each time this move is used, "
+            "the user's damage dealt increases (up to three times)."
+        )
+        expected = (
+            "Has the user move to the designated location while performing a mystical dance, "
+            "increasing the user's damage dealt, movement speed, and basic attack speed for a "
+            "short time.\n\n"
+            "During this short time, when one of the user's basic attacks hits an opposing "
+            "Pokémon, it reduces this move's cooldown. Each time this move is used, the user's "
+            "damage dealt increases (up to three times)."
+        )
+        self.assertEqual(paragraphize_basic_body(body), expected)
+
+    def test_talonflame_fly_keeps_if_used_again_in_first_paragraph(self):
+        body = (
+            "Has the user fly up into the sky. If used again, has the user dive to the "
+            "designated area and attack, dealing damage to opposing Pokémon in the area of "
+            "effect. When this move hits a Pokémon from the opposing team, its cooldown is "
+            "reduced. Also makes the user's next basic attack a boosted attack."
+        )
+        expected = (
+            "Has the user fly up into the sky. If used again, has the user dive to the "
+            "designated area and attack, dealing damage to opposing Pokémon in the area of "
+            "effect.\n\n"
+            "When this move hits a Pokémon from the opposing team, its cooldown is reduced.\n\n"
+            "Also makes the user's next basic attack a boosted attack."
+        )
+        self.assertEqual(paragraphize_basic_body(body), expected)
+
+    def test_already_paragraphized_unchanged(self):
+        body = (
+            "When the Pokémon takes Attack-based damage, its movement speed is increased "
+            "for a short time. This effect can stack up to 2 times.\n\n"
+            "If the Pokémon with this Ability deals damage to opposing Pokémon with its "
+            "basic attack or moves, the Pokémon hit receive a wound."
+        )
+        self.assertEqual(paragraphize_basic_body(body), body)
+
+    def test_short_one_sentence_unchanged(self):
+        body = "Has the user dash in the designated direction, dealing damage."
+        self.assertEqual(paragraphize_basic_body(body), body)
+
+    def test_archive_entry_keeps_upgrade_isolated(self):
+        raw = (
+            "Has the user fly up into the sky. If used again, has the user dive to the "
+            "designated area and attack, dealing damage to opposing Pokémon in the area of "
+            "effect. When this move hits a Pokémon from the opposing team, its cooldown is "
+            "reduced. Also makes the user's next basic attack a boosted attack.\n\n"
+            "Upgrade (Level 13): Also throws enemies when this move hits."
+        )
+        out = paragraphize_archive_entry(raw)
+        self.assertTrue(
+            out.endswith(
+                "\n\nUpgrade (Level 13): Also throws enemies when this move hits."
+            )
+        )
+        self.assertEqual(out.count("Upgrade (Level 13):"), 1)
+        self.assertIn("\n\nWhen this move hits", out)
+        self.assertEqual(paragraphize_archive_entry(out), out)
+
+    def test_idempotent_on_golden(self):
+        body = (
+            "Has the user charge forward with breathtaking speed. If the user performs a "
+            "basic attack immediately after using this move, that attack's damage is increased. "
+            "After the user learns this move, an Extreme Speed mark will be automatically "
+            "applied to any nearby unmarked opposing Pokémon. This mark cannot stack, and "
+            "there is a delay before the mark can be automatically applied again to the same "
+            "Pokémon. If Extreme Speed hits a marked opposing Pokémon, its cooldown is reset "
+            "and the user recovers HP."
+        )
+        once = paragraphize_basic_body(body)
+        self.assertEqual(paragraphize_basic_body(once), once)
+
+    def test_move_archive_skips_passives_and_basic_attack(self):
+        descriptions = {
+            "lucario": {
+                "extreme speed": (
+                    "Has the user charge forward with breathtaking speed. If the user performs a "
+                    "basic attack immediately after using this move, that attack's damage is increased. "
+                    "After the user learns this move, an Extreme Speed mark will be automatically "
+                    "applied to any nearby unmarked opposing Pokémon. This mark cannot stack, and "
+                    "there is a delay before the mark can be automatically applied again to the same "
+                    "Pokémon. If Extreme Speed hits a marked opposing Pokémon, its cooldown is reset "
+                    "and the user recovers HP."
+                ),
+                "steadfast": (
+                    "While at low HP, gain a shield and increased movement speed. (30s cooldown). "
+                    "When this move hits, nothing happens because this is an Ability wall."
+                ),
+                "basic attack": (
+                    "Becomes a boosted attack with every third attack, dealing increased damage. "
+                    "When this move hits, the user recovers HP."
+                ),
+            }
+        }
+        skip = collect_passive_archive_keys(
+            {
+                "pokemon": [
+                    {
+                        "id": "lucario",
+                        "passiveAbility": {"name": "Steadfast"},
+                        "extraPassives": [],
+                    }
+                ]
+            }
+        )
+        updated, n = paragraphize_move_archive(descriptions, skip)
+        self.assertGreater(n, 0)
+        self.assertIn("\n\nAfter the user learns", updated["lucario"]["extreme speed"])
+        self.assertNotIn("\n\n", updated["lucario"]["steadfast"])
+        self.assertNotIn("\n\nWhen this move hits", updated["lucario"]["basic attack"])
 
 
 class TestPassiveBasicDesc(unittest.TestCase):

@@ -154,6 +154,7 @@ describe("community data bundle", () => {
       const extreme = lucario.moves.find((m) => m.id === "extreme-speed")!;
       expect(extreme.description).toContain("breathtaking speed");
       expect(extreme.description).toContain("Extreme Speed mark");
+      expect(extreme.description).toContain("\n\nAfter the user learns");
       expect(extreme.description).toContain(
         "Upgrade (Level 11): Increases Attack for a short time when this move is used.",
       );
@@ -775,7 +776,7 @@ describe("community data bundle", () => {
       const fist = b.moves.find((m) => m.name === "Spinning Flame Fist")!;
       expect(kick.description).toContain("switches to kick style");
       expect(kick.upgradeLevel).toBe(8);
-      expect(fist.description).toContain("for a short time. After using this move");
+      expect(fist.description).toContain("for a short time.\n\nAfter using this move");
       expect(fist.description).not.toContain("time.After");
     });
   });

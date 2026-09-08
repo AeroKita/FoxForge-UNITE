@@ -15,7 +15,7 @@ There is no official Nintendo/TiMi gamemaster API. `uniteapi.dev` is match analy
 
 ## Apply in-game Basic
 
-1. Put the exact in-game Basic under `move_descriptions.json` → `descriptions.<id>.<normalized name>`.
+1. Put the exact in-game Basic under `move_descriptions.json` → `descriptions.<id>.<normalized name>`. Use `\n\n` between mechanical beats in move bodies. Upgrade stays its own paragraph.
 2. If the app still shows a pre-evolution Ability, add that Pokémon's UNITE-DB `name` slug to `PLAYABLE_PASSIVE_SLUGS` in `normalize.py`. Never add `mew` (`passive2` is Move Reset). Never add mega-license slugs (those use `mega_license_passive_names` → Pre-Mega + Mega rows).
 3. Drop or retarget `patch_note_overrides.json` entries whose `move` id was the old Ability (unknown ids fail normalize).
 4. `npm run data:refresh -- --mode curate --no-verify`, then `python3 tools/community/fetch_art.py`. Do **not** run a full harvest for a description-only pass. Harvest is add-only (it never overwrites an existing archive body).

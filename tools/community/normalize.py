@@ -19,6 +19,7 @@ Usage:  python3 normalize.py
 
 from __future__ import annotations
 
+import copy
 import json
 import os
 import re
@@ -262,6 +263,113 @@ def paragraphize_upgrade(text: str) -> str:
     def repl(m):
         return ("" if m.start() == 0 else "\n\n") + m.group(1)
     return re.sub(r"\s*(Upgrade(?:\s*\([^)]*\))?:)", repl, text)
+
+
+_BEAT_START = re.compile(
+    r"^(?:"
+    r"After the user learns\b|"
+    r"After using this move\b|"
+    r"After the attack\b|"
+    r"When this move hits\b|"
+    r"When this move is used\b|"
+    r"When the user hits\b|"
+    r"Whenever the user\b|"
+    r"During this short time\b|"
+    r"During this time\b|"
+    r"For a short time afterward\b|"
+    r"Opposing Pokémon that\b|"
+    r"A maximum of\b|"
+    r"Also\b|"
+    r"This move can then be used again\b|"
+    r"If this move is used again\b|"
+    r"This effect can stack\b|"
+    r"[A-Z][\w' -]* Effect:|"
+    r"If (?!the user\b|used again\b)[A-Z][\w' -]* hits\b"
+    r")"
+)
+_SENTENCE_END = re.compile(r"[.!?] +")
+
+
+def paragraphize_basic_body(text: str) -> str:
+    """Insert blank lines before new mechanical beats in a one-paragraph Basic body.
+
+    Wording is unchanged. Bodies that already contain a blank line, have fewer
+    than two sentences, or are shorter than 160 characters are returned as-is.
+    """
+    if not text:
+        return text or ""
+    if "\n\n" in text:
+        return text
+    if len(text.strip()) < 160:
+        return text
+    chunks: list[str] = []
+    last = 0
+    for m in _SENTENCE_END.finditer(text):
+        rest = text[m.end() :]
+        if rest and _BEAT_START.match(rest):
+            chunks.append(text[last : m.start() + 1].strip())
+            last = m.end()
+    if last == 0:
+        return text
+    chunks.append(text[last:].strip())
+    return "\n\n".join(chunks)
+
+
+def paragraphize_archive_entry(text: str) -> str:
+    """Paragraphize the Basic body; keep an existing Upgrade paragraph unchanged."""
+    text = text or ""
+    upgrade = extract_upgrade_paragraph(text)
+    body = description_body(text)
+    new_body = paragraphize_basic_body(body)
+    if upgrade:
+        return f"{new_body}\n\n{upgrade}" if new_body else upgrade
+    return new_body
+
+
+def collect_passive_archive_keys(bundle: dict) -> set[tuple[str, str]]:
+    """Return ``(pokemon_id, normalized ability name)`` pairs from a bundle."""
+    keys: set[tuple[str, str]] = set()
+    for pokemon in bundle.get("pokemon") or []:
+        pid = pokemon.get("id") or ""
+        if not pid:
+            continue
+        abilities = [pokemon.get("passiveAbility") or {}]
+        abilities.extend(pokemon.get("extraPassives") or [])
+        for ability in abilities:
+            name = ability.get("name") or ""
+            key = _norm_move_name(name)
+            if key:
+                keys.add((pid, key))
+    return keys
+
+
+def _is_basic_attack_archive_key(key: str) -> bool:
+    k = (key or "").strip().lower()
+    return k in {"basic attack", "standard attack", "attack"} or k.startswith("attack -")
+
+
+def paragraphize_move_archive(
+    descriptions: dict, skip_keys: set[tuple[str, str]]
+) -> tuple[dict, int]:
+    """Paragraphize move bodies in an archive mapping. Skip passives and basic attacks.
+
+    Returns the updated mapping and the number of entries whose text changed.
+    """
+    result = copy.deepcopy(descriptions)
+    changed = 0
+    for pid, bucket in result.items():
+        if not isinstance(bucket, dict):
+            continue
+        for key, value in list(bucket.items()):
+            if not isinstance(value, str) or (key or "").startswith("_"):
+                continue
+            if (pid, key) in skip_keys or _is_basic_attack_archive_key(key):
+                continue
+            new_value = paragraphize_archive_entry(value)
+            if new_value != value:
+                bucket[key] = new_value
+                changed += 1
+    return result, changed
 
 
 def plus(s: str) -> str:
