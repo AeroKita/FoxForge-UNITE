@@ -8,6 +8,7 @@ import {
   loadoutToFileJSON,
   parseLoadoutFile,
   sanitizeLoadout,
+  normalizeLoadout,
   loadoutFileName,
   ownedEmblemsToFileJSON,
   parseOwnedEmblemsFile,
@@ -170,6 +171,30 @@ describe("loadout file export/import", () => {
     expect(messy?.battleItemId).toBeNull();
     expect(messy?.emblems).toHaveLength(10);
     expect(messy?.activeBoostIds).toEqual(["ok"]);
+  });
+
+  it("drops emblem picks whose grade is not bronze/silver/gold/platinum", () => {
+    const raw = {
+      pokemonId: "pikachu",
+      level: 15,
+      heldItemIds: [null, null, null],
+      battleItemId: null,
+      emblems: [
+        { emblemId: "pikachu", grade: "diamond" },
+        { emblemId: "001-bulbasaur", grade: "gold" },
+      ],
+      activeBoostIds: [],
+    };
+    expect(sanitizeLoadout(raw)?.emblems).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
+    expect(normalizeLoadout(raw).emblems).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
+    expect(parseLoadoutFile(JSON.stringify(raw))?.emblems).toEqual([
+      { emblemId: "001-bulbasaur", grade: "gold" },
+    ]);
+    expect(
+      decodeLoadout(
+        encodeLoadout({ ...emptyLoadout("pikachu"), emblems: raw.emblems as Loadout["emblems"] }),
+      )?.emblems,
+    ).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
   });
 
   it("rejects non-loadout JSON and junk", () => {

@@ -134,7 +134,7 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Modes:
   full          (default) doctor → fetch → transcode → normalize →
-                presets → fetch_art → boosts → publish → verify
+                presets → harvest → fetch_art → boosts → publish → verify
   curate        normalize → presets → publish → verify (after curated_builds edits)
   clips         transcode → normalize → publish → verify
 """,

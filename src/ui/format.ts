@@ -42,7 +42,7 @@ function trimHeldDecimals(n: number): string {
   return n.toFixed(HELD_ITEM_DECIMALS).replace(/\.?0+$/, "");
 }
 
-/** Exact held-item / live-stat display (Beginner + Expert): no standard rounding. */
+/** Exact held-item / live-stat display (Basic + Advanced): no standard rounding. */
 export function formatExactStatValue(value: number, kind: StatKind): string {
   if (kind === "percent") return `${trimHeldDecimals(value * 100)}%`;
   return value < 0 ? `-${trimHeldDecimals(Math.abs(value))}` : trimHeldDecimals(value);
@@ -62,7 +62,7 @@ export interface StatLine {
   sign: "pos" | "neg" | "zero";
 }
 
-/** Signed value keeping one decimal when not whole (Expert precision). UNITE
+/** Signed value keeping one decimal when not whole (Advanced precision). UNITE
  *  applies standard rounding in-game (28.6→29), which formatDelta does. */
 function formatPrecise(value: number, kind: StatKind): string {
   const sign = value > 0 ? "+" : "";
@@ -72,7 +72,7 @@ function formatPrecise(value: number, kind: StatKind): string {
 
 /**
  * Non-zero stats of a partial block as signed display lines (emblem/item
- * summaries). `precise` keeps decimals (Expert); otherwise standard rounding.
+ * summaries). `precise` keeps decimals (Advanced); otherwise standard rounding.
  * `exact` never rounds — used for held items (UNITE-DB per-grade values).
  */
 export function statLines(stats: Partial<StatBlock>, precise = false, exact = false): StatLine[] {

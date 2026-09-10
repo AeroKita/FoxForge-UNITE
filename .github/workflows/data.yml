@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install requests openpyxl
+      - run: pip install -r tools/community/requirements.txt
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
@@ -41,6 +41,8 @@ jobs:
           python3 normalize_as_boosts.py
       - name: Regenerate emblem optimizer presets
         run: npm run generate:presets
+      - name: Harvest missing Basic archive keys
+        run: python3 tools/community/harvest_descriptions.py
       - name: Fetch new art
         working-directory: tools/community
         run: python3 fetch_art.py
@@ -50,8 +52,11 @@ jobs:
         run: |
           npm run lint
           npm run format:check
+          npm run typecheck
+          npm run test:tools
           npx tsx src/data/verifyPatch.ts
           npm test
+          npm run validate
           npm run validate:art
       - name: Build change summary
         id: summary

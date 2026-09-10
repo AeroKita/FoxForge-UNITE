@@ -1622,7 +1622,7 @@
           ],
           "moveType": "Buff",
           "iconAsset": "/assets/skills/Alcremie/Helping+Hand.png",
-          "descriptionAdvanced": "Grant a designated ally Pokémon or yourself a shield for 3s, in addition to increasing the recipient's Attack by 40 and Special Attack by 25 for 3s.",
+          "descriptionAdvanced": "Grant a designated ally Pokémon or yourself a shield for 3s, in addition to increasing the recipient's Attack by 40 and Special Attack by 25 for 3s",
           "videoAsset": "/assets/skills/Alcremie/Helping+Hand.mp4"
         },
         {
@@ -5343,7 +5343,7 @@
           "id": "safeguard",
           "name": "Safeguard",
           "slot": "move2",
-          "description": "Removes all status conditions from the user and the designated ally Pokémon and grants both Pokémon a shield. While these shields are active, the shielded Pokeon become immune to hindrances.\n\nUpgrade (Level 10): Shield value increased.",
+          "description": "Removes all status conditions from the user and the designated ally Pokémon and grants both Pokémon a shield. While these shields are active, the shielded Pokémon become immune to hindrances.\n\nUpgrade (Level 10): Shield value increased.",
           "cooldownSeconds": 10.0,
           "damageInstances": [
             {
@@ -27140,7 +27140,7 @@
           "id": "confusion",
           "name": "Confusion",
           "slot": "move2",
-          "description": "Has the user unleash a telekinitic force in the designated direction, dealing damage to the first opposing Pokémon it hits. The telekenitic force clings to that Pokémon and then causes a delayed explosion. The explosion deals damage to opposing Pokémon in the area of effect and decreases their movement speed for a short time.",
+          "description": "Has the user unleash a telekinetic force in the designated direction, dealing damage to the first opposing Pokémon it hits. The telekinetic force clings to that Pokémon and then causes a delayed explosion. The explosion deals damage to opposing Pokémon in the area of effect and decreases their movement speed for a short time.",
           "cooldownSeconds": 9.0,
           "damageInstances": [
             {
@@ -30540,7 +30540,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 6,
-          "descriptionAdvanced": "Dash and spin in a direction, slashing around itself with a ring of sharp leaves, dealing damage three times. Enemies caught by the outside edge of the ring of sharp leaves take increased damage and are slowed by 40% for 2s. Enemies damaged by the outside edge also charge the Chlorophyll gauge by 1.2s per hit.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1.2s for each hit dealing damage to more than one enemy on the outer ring.",
+          "descriptionAdvanced": "Dash and spin in a direction, slashing around itself with a ring of sharp leaves, dealing damage three times. Enemies caught by the outside edge of the ring of sharp leaves take increased damage and are slowed by 40% for 2s. Enemies damaged by the outside edge also charge the Chlorophyll gauge by 1.2s per hit.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1.2s for each hit dealing damage to more than one enemy on the outer ring",
           "videoAsset": "/assets/skills/Leafeon/Leaf+Blade.mp4"
         },
         {
@@ -43091,7 +43091,7 @@
           "id": "disable",
           "name": "Disable",
           "slot": "move2",
-          "description": "Has the user release electricity that limits the designated opposing Pokémon's moves while dealing damage and leaving them unable to act. The electricity spreads to nearby Pokémon 4 times. (The electricity can only spread to the same Pokémon up to 1 times.) Opposing Pokémon hit by the electricity will have the cooldown of their last used move increased. If an opposing Pokémon haas no move on cooldown, the cooldown of the next move it uses will be increased. When an effect to increase a move's cooldown is applied, a slowing effect is also applied. While the mysterious power is active, the number of times the electricity spreads will increase.\n\nUpgrade (Level 13): Strengthens the stun duration to 0.5s.",
+          "description": "Has the user release electricity that limits the designated opposing Pokémon's moves while dealing damage and leaving them unable to act. The electricity spreads to nearby Pokémon 4 times. (The electricity can only spread to the same Pokémon up to 1 time.) Opposing Pokémon hit by the electricity will have the cooldown of their last used move increased. If an opposing Pokémon has no move on cooldown, the cooldown of the next move it uses will be increased. When an effect to increase a move's cooldown is applied, a slowing effect is also applied. While the mysterious power is active, the number of times the electricity spreads will increase.\n\nUpgrade (Level 13): Strengthens the stun duration to 0.5s.",
           "cooldownSeconds": 8.0,
           "damageInstances": [
             {
@@ -43117,7 +43117,7 @@
           "id": "psychic",
           "name": "Psychic",
           "slot": "move2",
-          "description": "Has the user release a strong telekinetic force in the designated area, dealing damage to opposing Pokémon it hits and leaving them unable to act. The user continues to release a telekinetic force at the opposing Pokémon that took damage closest to the center of the area of effect.\n\nIf this move is used again, the user pulls the opposing Pokémon receiving the telekinetic force in the designatedd direction. While the mysterious power is active, the user leaves the opposing Pokémon unable to act after pulling them.\n\nUpgrade (Level 13): Decreases the Sp. Def of opposing Pokémon hit by the area of effect by 25% for 2s.",
+          "description": "Has the user release a strong telekinetic force in the designated area, dealing damage to opposing Pokémon it hits and leaving them unable to act. The user continues to release a telekinetic force at the opposing Pokémon that took damage closest to the center of the area of effect.\n\nIf this move is used again, the user pulls the opposing Pokémon receiving the telekinetic force in the designated direction. While the mysterious power is active, the user leaves the opposing Pokémon unable to act after pulling them.\n\nUpgrade (Level 13): Decreases the Sp. Def of opposing Pokémon hit by the area of effect by 25% for 2s.",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -53455,7 +53455,7 @@
         "name": "Natural Cure",
         "description": "When the Pokémon with this Ability is at low HP, a continuous HP recovery effect is triggered for a short time. This effect also reduces the cooldowns of the Pokémon's moves. When this HP recovery effect ends, there is a delay until it can trigger again. However, this delay is reduced each time one of the Pokémon's moves hits an opposing Pokémon.",
         "effects": [],
-        "descriptionAdvanced": "When Trevenant deals or receives damage while at or below 35% max HP, a continuous HP recovery effect is triggered every 0.5s for 4s. This effect also reduces the cooldowns of Trevenant's moves by 1s every 1s. When this HP recovery effect ends, there is a 100s cooldown. However, this cooldown is reduced by 1s each time one of Trevenant's moves damages an enemy. This cooldown reduction cannot be triggered more than once every 0.5s.",
+        "descriptionAdvanced": "When Trevenant deals or receives damage while at or below 35% max HP, a continuous HP recovery effect is triggered every 0.5s for 4s. This effect also reduces the cooldowns of Trevenant's moves by 1s every 1s. When this HP recovery effect ends, there is a 100s cooldown. However, this cooldown is reduced by 1s each time one of Trevenant's moves damage an enemy. This cooldown reduction cannot be triggered more than once every 0.5s.",
         "iconAsset": "/assets/skills/Trevenant/Natural+Cure.png"
       },
       "builds": [
@@ -59516,7 +59516,7 @@
           "id": "metal-claw",
           "name": "Metal Claw",
           "slot": "move1",
-          "description": "HHas the user release a shock wave in the designated direction, dealing damage to opposing Pokémon it hits and decreasing their movement speed. As the shock wave moves forward, it negates projectile attacks from opposing Pokémon it hits. After releasing the shock wave, the user also charges and deals damage to opposing Pokémon. If this charge hits an opposing Pokémon, the user's basic attack speed is increased for a short time. When this move is boosted with Aeos energy, the shock wave's size and travel distance are increased.\n\nAlso, the movement speed of opposing Pokémon hit by the shock wave is further decreased.\n\nUpgrade (Level 11): Reduces this move's cooldown by 1s.",
+          "description": "Has the user release a shock wave in the designated direction, dealing damage to opposing Pokémon it hits and decreasing their movement speed. As the shock wave moves forward, it negates projectile attacks from opposing Pokémon it hits. After releasing the shock wave, the user also charges and deals damage to opposing Pokémon. If this charge hits an opposing Pokémon, the user's basic attack speed is increased for a short time. When this move is boosted with Aeos energy, the shock wave's size and travel distance are increased.\n\nAlso, the movement speed of opposing Pokémon hit by the shock wave is further decreased.\n\nUpgrade (Level 11): Reduces this move's cooldown by 1s.",
           "cooldownSeconds": 7.5,
           "damageInstances": [
             {

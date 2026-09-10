@@ -27,6 +27,13 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/community/requirements.txt
+      - run: npm run test:tools
+      - run: npm run lint
+      - run: npm run format:check
       - run: npm test
       - run: npm run validate
       - run: npx tsx src/data/verifyPatch.ts

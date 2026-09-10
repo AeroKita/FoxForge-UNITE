@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { activeBonusPercent, computeEmblemLoadout, countColors, sumEmblemFlats } from "../emblems";
+import type { EmblemSlot } from "../../types";
 import { aerodactyl, bundle, diglett, distinctEmblems, gold, makeEmblem } from "./fixtures";
 
 const setBonuses = bundle.setBonuses;
@@ -67,6 +68,13 @@ describe("sumEmblemFlats", () => {
     const flats = sumEmblemFlats([{ emblem: diglett, grade: "platinum" }]);
     expect(flats.hp).toBe(-50);
     expect(flats.moveSpeed).toBe(35);
+  });
+
+  it("unknown grades do not throw and use gold values", () => {
+    const junk = { emblem: diglett, grade: "diamond" } as unknown as EmblemSlot;
+    expect(() => sumEmblemFlats([junk])).not.toThrow();
+    expect(() => computeEmblemLoadout([junk], setBonuses)).not.toThrow();
+    expect(sumEmblemFlats([junk])).toEqual(sumEmblemFlats([{ emblem: diglett, grade: "gold" }]));
   });
 });
 

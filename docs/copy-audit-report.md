@@ -1,5 +1,7 @@
 # FoxForge UNITE end-user copy audit (full roster)
 
+**Historical.** The copy pipeline (`SPELLING_FIXES`, `replaceText` in `patch_note_overrides.json`, banned-fragment CI in `patchBundle.test.ts`) has landed. Do not re-execute this audit. New typos go through `SPELLING_FIXES` / `replaceText` per [`docs/11-adding-content.md`](11-adding-content.md). Keep this file as an inventory of what was found.
+
 **Coverage:** every Pokémon Basic + Advanced move and passive in `src/data/patch-current.json` (100 Pokémon, 1,660 description fields), plus all 41 held-item descriptions (and labels/tiers), and the 10 battle-item descriptions users see in tooltips.
 
 **Method:** extracted every field, then read each Pokémon’s texts (Absol→Zoroark) and every held item. Findings below are verified against the shipped JSON.

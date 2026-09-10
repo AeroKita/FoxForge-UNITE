@@ -27,9 +27,7 @@ Each held item carries:
 - **`statsByGrade`** — flat stat contributions for every grade 1–40 (in-game max is 40;  
   G40 is the build value). `normalize.py` emits the full table from UNITE-DB params  
   (linear scaling through G30, then half-increment steps for G31–G40).  
-- **`effect`** (optional) — the item's conditional effect at item levels 1, 10, and 20:  
-  `{ label, tiers: [string, string, string] }`. Shown in the Held Items detail UI;  
-  not yet wired into the calculation engine.  
+- **`effect`** (optional) — the item's conditional effect at item levels 1, 10, and 20: `{ label, tiers: [string, string, string] }`. Shown in the Held Items detail UI. Float Stone's out-of-combat move-speed % is read from `effect.tiers` in [`src/engine/formulas.ts`](../src/engine/formulas.ts) (`outOfCombatMoveSpeed`).  
 - **`conditionalEffects`** — structured combat toggles consumed by `src/engine/effects.ts`.  
   
 Hand-curated Recommended/Creative builds and title overrides live in  

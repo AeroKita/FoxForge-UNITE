@@ -647,17 +647,6 @@
       "fields": [
         "description"
       ],
-      "find": "as the user release",
-      "replace": "Has the user release",
-      "why": "UNITE-DB Metal Claw Basic truncates Has the user",
-      "pokemon": "zacian",
-      "move": "metal-claw"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
-        "description"
-      ],
       "find": "while the user in the cloud",
       "replace": "while the user is in the cloud",
       "why": "UNITE-DB Sand Tomb Basic drops is",
@@ -890,17 +879,6 @@
     {
       "kind": "replaceText",
       "fields": [
-        "descriptionAdvanced"
-      ],
-      "find": "Special Attack by 25 for 3s",
-      "replace": "Special Attack by 25 for 3s.",
-      "why": "UNITE-DB Helping Hand Advanced has no closing period",
-      "pokemon": "alcremie",
-      "move": "helping-hand"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
         "description",
         "descriptionAdvanced"
       ],
@@ -986,17 +964,6 @@
       "why": "UNITE-DB Soft-Boiled Advanced uses overwrites with a plural subject",
       "pokemon": "blissey",
       "move": "soft-boiled"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
-        "description"
-      ],
-      "find": "all status condition",
-      "replace": "all status conditions",
-      "why": "UNITE-DB Natural Cure Basic uses singular condition after all",
-      "pokemon": "blissey",
-      "move": "natural-cure"
     },
     {
       "kind": "replaceText",
@@ -1293,17 +1260,6 @@
       "fields": [
         "descriptionAdvanced"
       ],
-      "find": "enemy on the outer ring",
-      "replace": "enemy on the outer ring.",
-      "why": "UNITE-DB Leaf Blade Advanced has no closing period",
-      "pokemon": "leafeon",
-      "move": "leaf-blade"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
-        "descriptionAdvanced"
-      ],
       "find": "Each fan, the first leaf",
       "replace": "For each fan, the first leaf",
       "why": "UNITE-DB Razor Leaf Advanced drops For before each fan",
@@ -1508,18 +1464,6 @@
       "why": "UNITE-DB Trevenant Attack Advanced uses heal instead of healing",
       "pokemon": "trevenant",
       "move": "attack"
-    },
-    {
-      "kind": "replaceText",
-      "fields": [
-        "description",
-        "descriptionAdvanced"
-      ],
-      "find": "moves damage",
-      "replace": "moves damages",
-      "why": "UNITE-DB Natural Cure uses damage with a singular moves subject",
-      "pokemon": "trevenant",
-      "move": "natural-cure"
     },
     {
       "kind": "replaceText",

@@ -94,7 +94,7 @@ export default defineConfig({
         name: APP_NAME,
         short_name: APP_SHORT_NAME,
         description: APP_DESCRIPTION,
-        theme_color: "#4f46e5",
+        theme_color: "#4f5bd5",
         background_color: "#eef1f5",
         display: "standalone",
         icons: [

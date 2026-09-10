@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 import unittest
+from pathlib import Path
 
 from normalize import (
     PLAYABLE_PASSIVE_SLUGS,
@@ -735,6 +737,14 @@ class TestFixSpelling(unittest.TestCase):
         self.assertEqual(fix_spelling("Reduces this moves cooldown"), "Reduces this move's cooldown")
         self.assertEqual(fix_spelling("the Trooper's total damage"), "the Troopers' total damage")
         self.assertEqual(fix_spelling("increases Mewtwo attack by"), "increases Mewtwo's Attack by")
+        self.assertEqual(fix_spelling("HHas the user release"), "Has the user release")
+        self.assertEqual(fix_spelling("the shielded Pokeon become"), "the shielded Pokémon become")
+        self.assertEqual(fix_spelling("If an opposing Pokémon haas no move"), "If an opposing Pokémon has no move")
+        self.assertEqual(fix_spelling("up to 1 times"), "up to 1 time")
+        self.assertEqual(fix_spelling("the designatedd direction"), "the designated direction")
+        self.assertEqual(fix_spelling("a telekinitic force"), "a telekinetic force")
+        self.assertEqual(fix_spelling("The telekenitic force clings"), "The telekinetic force clings")
+        self.assertEqual(fix_spelling("all status conditionss"), "all status conditions")
 
     def test_cooldown_abbrev_uppercases_cd(self):
         self.assertEqual(fix_spelling("triggered (4s cd)."), "triggered (4s CD).")
@@ -1052,6 +1062,73 @@ class TestApplyPatchNoteOverrides(unittest.TestCase):
         self.assertEqual(skipped, 0)
         self.assertIn("zone override the", bundle["battleItems"][0]["description"])
         self.assertNotIn("zone overrides the", bundle["battleItems"][0]["description"])
+
+    def test_replace_text_rejects_find_contained_in_replace(self):
+        bundle = _minimal_override_bundle()
+        bundle["pokemon"][0]["moves"][0]["description"] = "Has the user release a shock wave"
+        overrides = [{
+            "kind": "replaceText",
+            "pokemon": "testmon",
+            "move": "test-move",
+            "fields": ["description"],
+            "find": "as the user release",
+            "replace": "Has the user release",
+            "why": "unsafe find-in-replace",
+        }]
+        applied, skipped = apply_patch_note_overrides(bundle, overrides)
+        self.assertEqual(applied, 0)
+        self.assertEqual(skipped, 1)
+        self.assertEqual(
+            bundle["pokemon"][0]["moves"][0]["description"],
+            "Has the user release a shock wave",
+        )
+
+    def test_replace_text_skips_when_find_still_present_after_replace(self):
+        bundle = _minimal_override_bundle()
+        bundle["pokemon"][0]["passiveAbility"]["description"] = "Removes all status conditions."
+        overrides = [{
+            "kind": "replaceText",
+            "pokemon": "testmon",
+            "move": "test-passive",
+            "fields": ["description"],
+            "find": "all status condition",
+            "replace": "all status conditions",
+            "why": "unsafe prefix",
+        }]
+        applied, skipped = apply_patch_note_overrides(bundle, overrides)
+        self.assertEqual(applied, 0)
+        self.assertEqual(skipped, 1)
+        self.assertEqual(
+            bundle["pokemon"][0]["passiveAbility"]["description"],
+            "Removes all status conditions.",
+        )
+        self.assertNotIn("conditionss", bundle["pokemon"][0]["passiveAbility"]["description"])
+
+        # find is not a substring of replace, but a single apply still leaves find.
+        overlapping = _minimal_override_bundle()
+        overlapping["pokemon"][0]["moves"][0]["description"] = "aaa"
+        overlapping_overrides = [{
+            "kind": "replaceText",
+            "pokemon": "testmon",
+            "move": "test-move",
+            "fields": ["description"],
+            "find": "aa",
+            "replace": "a",
+            "why": "overlapping replace",
+        }]
+        applied, skipped = apply_patch_note_overrides(overlapping, overlapping_overrides)
+        self.assertEqual(applied, 0)
+        self.assertEqual(skipped, 1)
+        self.assertEqual(overlapping["pokemon"][0]["moves"][0]["description"], "aaa")
+
+    def test_override_catalog_find_not_in_replace(self):
+        data = json.loads(Path(__file__).with_name("patch_note_overrides.json").read_text())
+        unsafe = [
+            f"{e.get('pokemon') or e.get('item')}/{e.get('move')}: {e['find']!r} in {e['replace']!r}"
+            for e in data["overrides"]
+            if e.get("kind") == "replaceText" and e["find"] in e["replace"]
+        ]
+        self.assertEqual(unsafe, [])
 
 
 if __name__ == "__main__":

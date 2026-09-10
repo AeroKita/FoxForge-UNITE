@@ -207,7 +207,12 @@ export function sanitizeLoadout(x: unknown): Loadout | null {
   const emblems: EmblemPick[] = (o.emblems as unknown[])
     .filter((e): e is EmblemPick => {
       const p = e as Record<string, unknown>;
-      return !!p && typeof p.emblemId === "string" && typeof p.grade === "string";
+      return (
+        !!p &&
+        typeof p.emblemId === "string" &&
+        typeof p.grade === "string" &&
+        isEmblemGrade(p.grade)
+      );
     })
     .slice(0, MAX_EMBLEMS)
     .map((e) => ({ emblemId: remapEmblemId(e.emblemId), grade: e.grade }));
@@ -294,7 +299,11 @@ export function saveOwnedEmblems(owned: Set<string>): void {
   }
 }
 
-const VALID_GRADES: ReadonlySet<string> = new Set(["bronze", "silver", "gold", "platinum"]);
+export const VALID_GRADES: ReadonlySet<string> = new Set(["bronze", "silver", "gold", "platinum"]);
+
+export function isEmblemGrade(grade: string): grade is EmblemGrade {
+  return VALID_GRADES.has(grade);
+}
 
 /**
  * Serialize the owned-emblem set to the canonical backup format: a sorted,
@@ -335,9 +344,9 @@ export function parseOwnedEmblemsFile(
     if (i <= 0) continue; // no colon, or empty emblemId → malformed, skip
     const emblemId = remapped.slice(0, i);
     const grade = remapped.slice(i + 1);
-    if (!VALID_GRADES.has(grade)) continue;
+    if (!isEmblemGrade(grade)) continue;
     if (validEmblemIds && !validEmblemIds.has(emblemId)) continue;
-    next.add(ownedKey(emblemId, grade as EmblemGrade));
+    next.add(ownedKey(emblemId, grade));
   }
   return next;
 }

@@ -77,9 +77,6 @@ Run this when a new patch drops (or when UNITE-DB publishes patch changes).
 - Tests assert AS boosts are numeric and that every non-basic move has a local
   skill icon.
 
-## Re-enabling scheduled refresh (optional)
+## Scheduled refresh
 
-`data.yml` currently runs on-demand only because the remote-data channel (served
-via Pages) is disabled. To resume weekly auto-refresh, uncomment the `schedule`
-block in `.github/workflows/data.yml` once a hosting target for `public/data` is
-configured.
+[`data.yml`](../.github/workflows/data.yml) already runs on a daily cron (`0 9 * * *`, 09:00 UTC) and on `workflow_dispatch`. It opens a review PR; it does not push directly to `main`.

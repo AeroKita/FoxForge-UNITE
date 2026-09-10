@@ -1,25 +1,15 @@
 # Distribution & Updates
 
-The tool ships **one way: a hosted web app (PWA)** on GitHub Pages, with **two
-update channels** — the app code and the game data update independently.
+The tool ships **one way: a hosted installable web app** on GitHub Pages, with **two update channels** — the app code and the game data update independently.
 
 ## Distribution
 
-**Hosted PWA** (zero install): GitHub Pages deploys `dist/` on every push to `main`
-([`.github/workflows/pages.yml`](../.github/workflows/pages.yml)). It's installable from
-the browser ("Add to Home Screen" / "Install") for an offline-capable window, and the
-service worker auto-updates it on reload.
+**Hosted web app** (zero install): GitHub Pages deploys `dist/` on every push to `main` ([`.github/workflows/pages.yml`](../.github/workflows/pages.yml)). It is installable from the browser ("Add to Home Screen" / "Install"). Game data is bundled in the build and also fetched from Pages. The Pages deploy sets Vite PWA `selfDestroying` so a leftover service worker cannot serve a blank stale cache. Local non-Pages builds may still register a service worker.
 
 ## Two update channels
 
-1. **App updates** (UI/engine code) — handled by the PWA service worker: a new deploy
-   is picked up on the next reload. No manual step, no separate release.
-2. **Game-data updates** (stats every patch) — the app fetches `data/manifest.json` from
-   Pages at launch; if `version` (the bundle's `lastUpdated`) changed, it downloads +
-   zod-validates + caches the new bundle, applied next launch
-   ([`dataSource.ts`](../src/data/dataSource.ts)). The bundled JSON is the offline
-   fallback. **A patch update = publish one JSON — no app rebuild.**
-   [`data.yml`](../.github/workflows/data.yml) re-scrapes weekly and publishes automatically.
+1. **App updates** (UI/engine code) — a new Pages deploy is picked up on the next reload. No manual step, no separate release.
+2. **Game-data updates** (stats every patch) — the app fetches `data/manifest.json` from Pages at launch; if `version` (the bundle's `lastUpdated`) changed, it downloads + zod-validates + caches the new bundle, applied next launch ([`dataSource.ts`](../src/data/dataSource.ts)). The bundled JSON is the offline fallback. **A patch update = publish one JSON — no app rebuild.** [`data.yml`](../.github/workflows/data.yml) re-scrapes daily at 09:00 UTC and opens a review PR.
 
 ## One-time setup (in GitHub repo settings)
 

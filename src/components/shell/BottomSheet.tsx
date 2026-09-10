@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import { useModalDismiss } from "../../ui/useModalDismiss";
 import { useSwipeToDismiss } from "../../ui/useSwipeToDismiss";
 
@@ -19,6 +19,7 @@ interface BottomSheetProps {
 export function BottomSheet({ title, onClose, children, footer, fillHeight }: BottomSheetProps) {
   useModalDismiss(onClose);
   const { offsetY, dragging, handleProps } = useSwipeToDismiss(onClose);
+  const titleId = useId();
 
   return (
     <div
@@ -26,6 +27,9 @@ export function BottomSheet({ title, onClose, children, footer, fillHeight }: Bo
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
         onClick={(e) => e.stopPropagation()}
         className={`flex w-full flex-col rounded-t-2xl bg-surface pb-safe shadow-xl sm:max-w-2xl sm:rounded-2xl ${
           fillHeight ? "h-[88vh] sm:h-[80vh]" : "max-h-[88vh] sm:max-h-[80vh]"
@@ -38,7 +42,9 @@ export function BottomSheet({ title, onClose, children, footer, fillHeight }: Bo
         <div {...handleProps} className="shrink-0 cursor-grab touch-none active:cursor-grabbing">
           <div className="mx-auto mt-2 h-1.5 w-9 rounded-full bg-line sm:hidden" />
           <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-3">
-            <h2 className="min-w-0 truncate text-lg font-bold text-ink">{title}</h2>
+            <h2 id={titleId} className="min-w-0 truncate text-lg font-bold text-ink">
+              {title}
+            </h2>
             <button
               type="button"
               onClick={onClose}

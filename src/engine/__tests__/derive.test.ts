@@ -1,6 +1,22 @@
 import { describe, expect, it } from "vitest";
 import { deriveBuild } from "../derive";
-import { emptyLoadout } from "../../state/loadout";
+import { decodeLoadout, emptyLoadout, encodeLoadout } from "../../state/loadout";
+
+describe("deriveBuild — share-hash grades", () => {
+  it("does not crash when a shared loadout includes an unknown emblem grade", () => {
+    const encoded = encodeLoadout({
+      ...emptyLoadout("lucario"),
+      emblems: [
+        { emblemId: "025-pikachu", grade: "diamond" as never },
+        { emblemId: "001-bulbasaur", grade: "gold" },
+      ],
+    });
+    const decoded = decodeLoadout(encoded);
+    expect(decoded).not.toBeNull();
+    expect(() => deriveBuild(decoded!, true, [40, 40, 40])).not.toThrow();
+    expect(decoded!.emblems).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
+  });
+});
 
 describe("deriveBuild — out-of-combat move speed (issue #25)", () => {
   it("Float Stone raises OOC move speed above the in-combat stat (real bundle data)", () => {

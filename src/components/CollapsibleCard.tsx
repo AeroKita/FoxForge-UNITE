@@ -57,42 +57,44 @@ export function CollapsibleCard({
   return (
     <section className={`rounded-2xl border shadow-sm ${t.card}`}>
       <header
-        className={`relative flex cursor-pointer select-none items-center gap-2 px-4 py-3 ${
+        className={`relative flex select-none items-center gap-2 px-4 py-3 ${
           center ? "min-h-[4.25rem] justify-start" : "min-h-11 justify-between"
         }`}
-        onClick={toggle}
       >
-        <div
-          className={`flex min-w-0 items-center gap-2 ${center ? "max-w-[calc(50%-4.5rem)]" : ""}`}
-        >
-          <span
-            aria-hidden
-            className={`shrink-0 text-faint transition-transform ${open ? "" : "-rotate-90"}`}
+        <h3 className={`min-w-0 ${center ? "max-w-[calc(50%-4.5rem)]" : ""}`}>
+          <button
+            type="button"
+            aria-expanded={open}
+            onClick={toggle}
+            className="flex min-h-11 min-w-0 cursor-pointer items-center gap-2 text-left"
           >
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <span
+              aria-hidden
+              className={`shrink-0 text-faint transition-transform ${open ? "" : "-rotate-90"}`}
             >
-              <path d="M5.5 7.5 10 12l4.5-4.5" />
-            </svg>
-          </span>
-          <h3 className={`truncate text-sm font-semibold uppercase tracking-wide ${t.title}`}>
-            {title}
-          </h3>
-        </div>
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5.5 7.5 10 12l4.5-4.5" />
+              </svg>
+            </span>
+            <span className={`truncate text-sm font-semibold uppercase tracking-wide ${t.title}`}>
+              {title}
+            </span>
+          </button>
+        </h3>
         {center && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center px-4 pt-3 pb-3">
-            <div className="pointer-events-auto" onClick={(e) => e.stopPropagation()}>
-              {center}
-            </div>
+            <div className="pointer-events-auto">{center}</div>
           </div>
         )}
-        {right && <div onClick={(e) => e.stopPropagation()}>{right}</div>}
+        {right && <div>{right}</div>}
       </header>
       {open && <div className="px-4 pb-4">{children}</div>}
     </section>

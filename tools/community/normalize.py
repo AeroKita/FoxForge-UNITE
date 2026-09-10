@@ -825,6 +825,14 @@ SPELLING_FIXES = {
     "this moves cooldown": "this move's cooldown",
     "the Trooper's total": "the Troopers' total",
     "Mewtwo attack": "Mewtwo's Attack",
+    "HHas ": "Has ",
+    "Pokeon": "Pokémon",
+    "haas ": "has ",
+    "up to 1 times": "up to 1 time",
+    "designatedd": "designated",
+    "telekinitic": "telekinetic",
+    "telekenitic": "telekinetic",
+    "conditionss": "conditions",
 }
 
 
@@ -1263,7 +1271,8 @@ def apply_patch_note_overrides(bundle: dict, overrides: list[dict]) -> tuple[int
     "scaleDamage" (each listed damageInstances index must have ratio == expectRatios[k];
     multiplies ratio, slider, and base by `factor`, exact floats, no rounding),
     "replaceText" (replaces `find` with `replace` in each named description field;
-    expires when `find` is absent from all of them).
+    expires when `find` is absent from all of them; skipped as unsafe when `find`
+    is a substring of `replace`, or when `find` is still present after the replace).
     """
     applied = 0
     skipped = 0
@@ -1311,17 +1320,35 @@ def apply_patch_note_overrides(bundle: dict, overrides: list[dict]) -> tuple[int
             applied += 1
 
         elif kind == "replaceText":
+            find = entry["find"]
+            replace = entry["replace"]
+            if find in replace:
+                print(f"  ! patch-note override unsafe (find is substring of replace): {why}")
+                skipped += 1
+                continue
+            updates: list[tuple[str, str]] = []
             found_any = False
+            unsafe = False
             for field in entry["fields"]:
                 text = target.get(field)
-                if not isinstance(text, str) or entry["find"] not in text:
+                if not isinstance(text, str) or find not in text:
                     continue
                 found_any = True
-                target[field] = text.replace(entry["find"], entry["replace"])
+                new_text = text.replace(find, replace)
+                if find in new_text:
+                    unsafe = True
+                    break
+                updates.append((field, new_text))
+            if unsafe:
+                print(f"  ! patch-note override unsafe (find still present after replace): {why}")
+                skipped += 1
+                continue
             if not found_any:
                 print(f"  ! patch-note override expired: {why}")
                 skipped += 1
                 continue
+            for field, new_text in updates:
+                target[field] = new_text
             applied += 1
 
         else:

@@ -1,4 +1,6 @@
-# Theme System — Plan (not yet executed)
+# Theme System — Plan
+
+**Shipped.** Semantic tokens and light/dark theming are live; see AGENTS.md Semantic Theming. The sections below are the original plan, kept as history.
 
 ## Why this is its own deliberate pass
 The app currently styles with **literal Tailwind color classes** (`bg-white`,

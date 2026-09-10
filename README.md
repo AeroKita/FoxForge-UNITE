@@ -13,8 +13,7 @@ Two ways to use the tool — pick whichever suits you.
 
 Open the hosted web app: **<https://aerokita.github.io/FoxForge-UNITE/>**
 
-It's a PWA, so you can "Install" it from the browser for an app-like, offline-capable
-window. It updates automatically on reload.
+It's an installable web app ("Add to Home Screen" / "Install"). Game data is bundled with the build and also fetched from Pages at launch. The hosted Pages deploy disables the service worker on purpose (`selfDestroying` in `vite.config.ts`) so an old cache cannot blank the app. Local `npm run dev` / `npm run build` can still register a service worker.
 
 ### 2. Run from source
 
@@ -76,7 +75,7 @@ Licensed under [AGPL-3.0-only](LICENSE).
 
 **App (React)**
 - [`src/state/`](src/state) — `loadout.ts` (model + localStorage, 20-loadout cap), `heldItemGrades.ts` (global per-item grades), `store.tsx` (reducer/context)
-- [`src/components/`](src/components) — PokemonPicker, LoadoutEditor, StatPanel, LoadoutBar, CompareView, HeldItemsInventory, PickerModal
+- [`src/components/`](src/components) — `BuildScreen`, `LoadoutBoard`, `EmblemOptimizer`, `StatPanel`, `CompareView`, `HeldItemsInventory`, `PickerModal`, `CollapsibleCard`
 
 **Tooling**
 - `tools/community/` — UNITE-DB scraper + normalizers (`fetch.py`, `normalize.py`, `fetch_art.py`,
@@ -122,56 +121,10 @@ and recompute pick it up automatically.
 
 ## Status
 
-- [x] Milestone 1 — calculation engine + tests (all validation targets pass)
-- [x] Milestone 2 — game data + art (community-sourced from UNITE-DB; APK datamining
-  blocked by rotated encryption, pipeline preserved in `tools/extract/`)
-- [x] Milestone 3 — core UI: Pokémon picker, loadout editor (3 held + trainer item + 10
-  emblems), live StatPanel, attack-speed calculator, active/inactive effect toggles
-  (incl. X-Attack +20% Atk/SpAtk & +25% AS), loadout saver (20, localStorage), two-build comparison
-- [x] Milestone 4 — level-scaling graph ([`LevelGraph.tsx`](src/components/LevelGraph.tsx),
-  Recharts, any stat or attacks/sec across Lv 1–15 with current-level marker)
-- [x] Milestone 5 — Builds panel ([`recommend.ts`](src/engine/recommend.ts) +
-  [`RecommendPanel.tsx`](src/components/RecommendPanel.tsx)): three tabs — **Recommended**
-  (each Pokémon's curated UNITE-DB builds: held/trainer items, the **exact 10-emblem set** with
-  grades + resulting set bonuses, and the build's two final moves), **Creative** (data-driven,
-  empty until creative builds are supplied), and **Your Emblems** (the best 10-emblem set solved
-  from your owned inventory — [respects per-stat floors + attack-type "unneeded" stats](src/engine/recommend.ts));
-  each with one-click Apply
-- [x] **Interactive Moves card** ([`MovesCard.tsx`](src/components/MovesCard.tsx)): choose one
-  upgrade per move (Move 1 / Move 2), with icons + hover tooltips for every move and the passive;
-  the picks save with the build, and applying a Recommended build sets them
-- [x] **Beginner / Expert modes** ([App.tsx](src/App.tsx)): Beginner shows the recommended build +
-  clean rounded stats; Expert adds attack-speed detail, analytics, active-effect toggles, the level
-  graph, Compare, and decimal precision. Every section is a **collapsible card**
-  ([`CollapsibleCard.tsx`](src/components/CollapsibleCard.tsx), persisted open state).
-- [x] **Emblem Inventory Manager** ([`InventoryManager.tsx`](src/components/InventoryManager.tsx)):
-  bulk-mark owned emblems per grade (Bronze/Silver/Gold tabs, color filter, search, "Own all shown",
-  live counts) — feeds the per-grade owned store.
-- [x] **Held Items inventory** ([`HeldItemsInventory.tsx`](src/components/HeldItemsInventory.tsx)):
-  dedicated page to set each held item's grade (1–40) globally; grades sync with the Builder's
-  held-item sliders and apply everywhere that item is equipped. Detail modal shows flat stats at
-  the current grade plus grade 1/10/20 effect tiers ([`heldItemDetail.tsx`](src/ui/heldItemDetail.tsx)).
-- [x] **Held-item data** — bundle carries full `statsByGrade` tables (grades 1–40) and optional
-  `effect` tiers (label + three values at item levels 1, 10, 20) from UNITE-DB via `normalize.py`.
-- [x] Quality-of-life — combat analytics (physical/special eHP + relative basic-attack output),
-  **shareable build links** (`#b=` URL hash), auto-persisted current build, **per-grade owned-emblem
-  inventory** (Bronze/Silver/Gold favorited independently via the picker's grade toggle; "owned only"
-  filter; recommendations prefer owned), Bronze/Silver/Gold swappable per equipped emblem,
-  **emblem-set summary** ([`EmblemSetSummary.tsx`](src/components/EmblemSetSummary.tsx): net flat
-  stats color-coded + per-color counts & active set bonus), **styled hover tooltips**
-  ([`Tooltip.tsx`](src/components/Tooltip.tsx)) on emblems/held/trainer items, Clear button, portable static build
-- [x] **Themes** — light + dark (neon "Neo"-derived palette), toggleable in the header and
-  persisted; all surfaces read from semantic Tailwind tokens ([`src/index.css`](src/index.css)).
-- [x] **Distribution** ([docs/07-distribution.md](docs/07-distribution.md)) — hosted web app +
-  installable PWA on [GitHub Pages](https://aerokita.github.io/FoxForge-UNITE/)
-  ([`pages.yml`](.github/workflows/pages.yml)); the service worker auto-updates the app on
-  reload. Game-data updates are fetched at runtime from Pages
-  ([`SettingsMenu.tsx`](src/components/SettingsMenu.tsx)), so a patch needs no app rebuild.
+The live product surface, theming, and data pipeline are documented in [`AGENTS.md`](AGENTS.md). Basic vs Advanced mode, collapsible cards, shareable `#b=` links, and GitHub Pages deploys live there — this README does not keep a second milestone graveyard.
 
 ### Deliberately not built
-- **Nintendo / Pokémon UNITE account login** to read owned emblems — there is no official public
-  OAuth for third parties; the only route would be handling the user's Nintendo credentials, a
-  security/ToS line not worth crossing. The local owned-emblem inventory delivers the same UX safely.
+- **Nintendo / Pokémon UNITE account login** to read owned emblems — there is no official public OAuth for third parties; the only route would be handling the user's Nintendo credentials, a security/ToS line not worth crossing. The local owned-emblem inventory delivers the same UX safely.
 
 ### Open refinements
-- Per-move AS level-availability is best-effort; emblem-set quick presets
+- Per-move attack-speed level availability is best-effort. Hosted Pages uses a self-destroying service worker on purpose; do not re-enable it to chase offline caching.

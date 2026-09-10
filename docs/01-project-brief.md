@@ -1,5 +1,7 @@
-# Project Brief: Pokémon UNITE Build Optimizer  
-  
+# Project Brief: Pokémon UNITE Build Optimizer
+
+**Superseded by [`AGENTS.md`](../AGENTS.md).** This file is the original v1 sketch (`computeStats()` as the UI path, battle items out of scope, suggested folders). Do not treat it as the live architecture.
+
 ## Overview  
   
 A personal web tool that helps Pokémon UNITE players — from casual to  

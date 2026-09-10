@@ -13,9 +13,11 @@ import type { EmblemColor, EmblemLoadout, EmblemSetBonus, EmblemSlot, StatBlock 
 
 export const MAX_EMBLEM_SLOTS = 10;
 
-/** Grade key into Emblem.statsByGrade — platinum shares gold's values. */
-function gradeKey(grade: EmblemSlot["grade"]): "bronze" | "silver" | "gold" {
-  return grade === "platinum" ? "gold" : grade;
+/** Grade key into Emblem.statsByGrade — platinum shares gold's values.
+ * Unknown grades (share-hash junk) fall back to gold so lookup cannot throw. */
+function gradeKey(grade: string): "bronze" | "silver" | "gold" {
+  if (grade === "bronze" || grade === "silver") return grade;
+  return "gold";
 }
 
 /** Sum raw (unrounded) flat stats across all slots. */

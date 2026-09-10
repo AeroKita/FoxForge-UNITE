@@ -78,6 +78,33 @@ describe("community data bundle", () => {
     expect(eff.attack).toBeGreaterThan(429);
   });
 
+  it("6 synthetic Brown flats 16.7 + Float Stone G40 stack to Atk 578", () => {
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    const sixBrown = computeEmblemLoadout(
+      Array.from({ length: 6 }, (_, i) => ({
+        emblem: {
+          id: `synthetic-${i}`,
+          pokemonName: `Synthetic${i}`,
+          colors: ["brown" as const],
+          iconAsset: "",
+          statsByGrade: {
+            bronze: { attack: 16.7 },
+            silver: { attack: 16.7 },
+            gold: { attack: 16.7 },
+          },
+        },
+        grade: "gold" as const,
+      })),
+      bundle.setBonuses,
+    );
+    const floatStone = bundle.heldItems.find((i) => i.id === "float-stone")!;
+    const ctx: CalcContext = { inCombat: true, goalsScored: 0 };
+    const ordered = computeEffectiveStats(lucario, 15, sixBrown, [floatStone], [40], ctx);
+    // floor((429 + round(100.2)) * 1.04) + 28 = 578
+    // (item-flats-inside-% would give 579; flats-not-multiplied would give 574)
+    expect(ordered.attack).toBe(578);
+  });
+
   it("marks UNITE-DB gold-only emblems (no silver/bronze on CDN)", () => {
     const goldOnly = bundle.emblems.filter((e) => e.goldOnly);
     expect(goldOnly.map((e) => e.pokemonName).sort()).toEqual([
@@ -530,6 +557,14 @@ describe("community data bundle", () => {
         "2 use(s)",
         "1 stored use(s)",
         "3 time(s)",
+        "HHas the user",
+        "conditionss",
+        "Pokeon",
+        "haas ",
+        "designatedd ",
+        "telekinitic",
+        "telekenitic",
+        "up to 1 times",
       ];
       const texts = collectUserFacingTexts(bundle);
       for (const bad of banned) {

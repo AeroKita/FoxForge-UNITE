@@ -1,5 +1,7 @@
-# Architecture  
-  
+# Architecture
+
+**Superseded by [`AGENTS.md`](../AGENTS.md).** This file is the original v1 sketch (suggested folders, `computeStats()` as the UI path). Do not treat it as the live architecture.
+
 ## Recommended Stack  
   
 | Layer | Choice | Rationale |  

@@ -1,5 +1,7 @@
 # Execution plan: user-facing copy correction + regression gates
 
+**Historical.** The copy pipeline landed. Do not re-execute this plan. New typos go through `SPELLING_FIXES` / `replaceText` per [`docs/11-adding-content.md`](11-adding-content.md).
+
 **For:** a follow-up Grok 4.6 agent implementing this plan.  
 **Overseer:** the agent that produced `docs/copy-audit-report.md`.  
 **Inventory:** that report is the finding list. Do not rediscover from scratch. Do not expand into UI label unification or UNITE-DB house style.

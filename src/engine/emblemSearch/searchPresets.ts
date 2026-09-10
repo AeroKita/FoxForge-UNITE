@@ -1,17 +1,17 @@
 /**
  * Shared "preset" search-option builder.
  *
- * Both the Beginner one-click flow and the Expert "Reset to auto defaults"
+ * Both the Basic one-click flow and the Advanced "Reset to auto defaults"
  * action want to translate a Pokémon's meta color targets into a real search
  * configuration. Historically the feasibility logic that decides whether those
  * targets can be enforced as *hard* color constraints (exact enumeration) vs.
  * merely steered toward via the soft color-bonus incentive (weighted/heuristic)
- * lived inline in `EmblemOptimizer.syncAdvancedFromBasic`. Beginner never used
- * it, so Beginner always ran the heuristic search.
+ * lived inline in `EmblemOptimizer.syncAdvancedFromBasic`. Basic never used
+ * it, so Basic always ran the heuristic search.
  *
- * This module is the single source of truth for that decision so Beginner and
- * Expert behave identically: a Beginner search now runs the Expert-equivalent
- * search (exact whenever feasible on the actual Beginner pool, heuristic
+ * This module is the single source of truth for that decision so Basic and
+ * Advanced behave identically: a Basic search now runs the Advanced-equivalent
+ * search (exact whenever feasible on the actual Basic pool, heuristic
  * otherwise) with the controls hidden.
  */
 
@@ -28,7 +28,7 @@ import type { EmblemCandidate, SearchOptions } from "./types";
 const SLOTS = 10;
 
 /**
- * Beginner search effort/quality picker value.
+ * Basic search effort/quality picker value.
  *
  *  • "quick" / "normal" / "thorough" → heuristic search at increasing effort.
  *  • "exact" → exhaustive exact enumeration. Only offered when enumeration is
@@ -78,7 +78,7 @@ export interface BasicSearchParams {
 }
 
 /**
- * Map Beginner/Basic UI state to the search the engine should run.
+ * Map Basic UI state to the search the engine should run.
  *
  * Two independent concepts:
  *  • Concept A — exact COLOR matching (hard constraints): pool-driven. Whenever
@@ -194,7 +194,7 @@ export function resolveColorSearchMode(
   if (constrainedBuildCount === 0n) return weighted(0n);
 
   // Feasible (count > 0n) OR DP overflow (null). Both set the constraints as
-  // hard targets — exactly as Expert did. The orchestrator then decides exact
+  // hard targets — exactly as Advanced did. The orchestrator then decides exact
   // vs heuristic via shouldRunExact on the name-only enum space (not the
   // grade-inflated display count).
   return {
@@ -241,7 +241,7 @@ export interface AdvancedColorUiDefaults {
  * Derive the Advanced-mode color UI state (mode, checked colors, counts) from a
  * Pokémon's meta targets and the pool the search will actually run on.
  *
- * Powers first-time Expert sync, Pokémon-change sync, and Reset to defaults in Advanced mode.
+ * Powers first-time Advanced sync, Pokémon-change sync, and Reset to defaults in Advanced mode.
  */
 export function deriveAdvancedColorUiDefaults(
   pokemon: Pokemon | null,
@@ -310,12 +310,12 @@ export interface PresetSearchBuild {
 /**
  * Build the SearchOptions for a one-click / preset search.
  *
- * Produces the Expert-equivalent configuration: stat priorities, protect
+ * Produces the Advanced-equivalent configuration: stat priorities, protect
  * floors and Pokémon-aware scoring from {@link deriveBasicObjective}, plus the
  * meta color targets enforced as hard constraints whenever they are feasible
  * on `pool` (otherwise soft color-bonus steering). With the default exactCap
  * (1B) exact enumeration runs whenever the constrained build count is countable
- * and within budget — identical to an Expert search with auto defaults. Pass
+ * and within budget — identical to an Advanced search with auto defaults. Pass
  * exactCap=0 to keep the hard constraints but force the heuristic phase.
  */
 export function buildPresetSearchOptions(params: BuildPresetParams): PresetSearchBuild {

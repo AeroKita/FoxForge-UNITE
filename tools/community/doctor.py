@@ -13,7 +13,7 @@ VENV_PY = REPO / "tools" / "extract" / ".venv" / "bin" / "python3"
 RAW = REPO / "tools" / "community" / "_raw"
 VENV_SETUP = (
     "python3 -m venv tools/extract/.venv && "
-    "tools/extract/.venv/bin/pip install requests openpyxl"
+    "tools/extract/.venv/bin/pip install -r tools/community/requirements.txt"
 )
 
 
