@@ -1607,6 +1607,126 @@
       "why": "UNITE-DB Greninja Attack Basic drops the possessive on enemies",
       "pokemon": "greninja",
       "move": "attack"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "are of effect",
+      "replace": "area of effect",
+      "why": "Espeon Future Sight Basic drops the a in area of effect",
+      "pokemon": "espeon",
+      "move": "future-sight"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "HP. for a short time",
+      "replace": "HP. For a short time",
+      "why": "Sylveon Fairy Frolic Basic leaves for lowercase after a sentence period",
+      "pokemon": "sylveon",
+      "move": "fairy-frolic"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "quietly focuses its mind",
+      "replace": "quietly focus its mind",
+      "why": "Sylveon Calm Mind Basic uses focuses after Has the user",
+      "pokemon": "sylveon",
+      "move": "calm-mind"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "time. using this move",
+      "replace": "time. Using this move",
+      "why": "Dragonite Extreme Speed Basic leaves using lowercase after a sentence period",
+      "pokemon": "dragonite",
+      "move": "extreme-speed"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "direction. if the move hits",
+      "replace": "direction. If the move hits",
+      "why": "Dragonite Dragon Breath Basic leaves if lowercase after a sentence period",
+      "pokemon": "dragonite",
+      "move": "dragon-breath"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "time. damage the opposing",
+      "replace": "time, damage the opposing",
+      "why": "Inteleon Liquidation Basic uses a period in the middle of one sentence",
+      "pokemon": "inteleon",
+      "move": "liquidation"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "net. leaving them",
+      "replace": "net, leaving them",
+      "why": "Pikachu Electroweb Basic uses a period instead of a comma before leaving",
+      "pokemon": "pikachu",
+      "move": "electroweb"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "Pokémon. the user's Attack",
+      "replace": "Pokémon, the user's Attack",
+      "why": "Tyranitar Rock Polish Basic uses a period instead of a comma before the user's",
+      "pokemon": "tyranitar",
+      "move": "rock-polish"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "increases up (up to",
+      "replace": "increases (up to",
+      "why": "Tinkaton Mold Breaker Basic says increases up",
+      "pokemon": "tinkaton",
+      "move": "mold-breaker"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "2% max hp damage",
+      "replace": "2% max HP damage",
+      "why": "Falinks Iron Head Basic upgrade leaves max hp lowercase",
+      "pokemon": "falinks",
+      "move": "iron-head"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "override the previous effects and refreshes the duration",
+      "replace": "override the previous effects and refresh the duration",
+      "why": "Goal Hacker applications (plural) takes refresh, not refreshes",
+      "item": "goal-hacker"
     }
   ]
 }

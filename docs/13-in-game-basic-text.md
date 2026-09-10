@@ -43,7 +43,7 @@ Staged Ability promotion still **clears** UNITE-DB Basic so the archive can fill
 ## Strengthening accuracy (plans, in order)
 
 1. **Tooltip stills still beat Game8.** Same capture habit as move clips: Practice → Ability/move tooltip → PNG. Agent can read PNG/JPEG with the Read tool and check spelling against the archive. Video is not required.
-2. Mega **Pre-Mega** Abilities (Solar Power, Blaze, Justified, Intimidate) and Ability pages Game8 paraphrased (Lucario Steadfast, Articuno Snow Cloak with a `(0)` placeholder) still need operator stills.
+2. Mega **Pre-Mega** Abilities (Solar Power, Blaze, Justified, Intimidate) and Ability pages Game8 paraphrased (Lucario Steadfast, Articuno Snow Cloak with a `(0)` placeholder) still need operator stills. Mega Charizard X **Fire Punch** Basic still describes an intense blast of fire (Flame Burst copy) while Advanced is a fiery-fist dash — transcribe from an in-game tooltip still; do not invent the Basic.
 3. **Do not promote the whole roster blindly.** Each slug is a product choice. Counterexample: Mew's Ability **name** stays Synchronize (`passive2` is Move Reset). The in-game Synchronize tooltip may mention the Move Reset icon.
 4. **Keep harvest off the description-only path.** Harvest is add-only. Description-only work uses **curate**.
 5. Re-run `ingest_game8_effects.py` only as a one-shot if Game8 adds a missing license. Default is `--dry-run`. Do not wire it to `refresh.py`.

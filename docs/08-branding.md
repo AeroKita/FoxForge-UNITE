@@ -12,13 +12,13 @@ Edit [`src/ui/brand.ts`](../src/ui/brand.ts):
 ```ts
 export const APP_NAME = "FoxForge UNITE";        // header title, HTML <title>, PWA name
 export const APP_SHORT_NAME = "FoxForge";        // PWA home-screen label
-export const APP_TAGLINE = "Forge your UNITE Loadout!"; // header subtitle
+export const APP_TAGLINE = "Forge your UNITE Loadout!"; // reserved; not shown in the app header
 export const APP_DESCRIPTION = "…";              // PWA + meta description
 export const GITHUB_REPO_SLUG = "FoxForge-UNITE"; // repo name, Pages path, VITE_BASE
 ```
 
 That single file drives:
-- the in-app header title + tagline ([`src/App.tsx`](../src/App.tsx)),
+- the in-app name in Settings → About ([`src/components/SettingsMenu.tsx`](../src/components/SettingsMenu.tsx)); the Build/Optimize app bar shows the selected Pokémon, not `APP_TAGLINE` (`APP_TAGLINE` is unused in the UI today)
 - the browser tab title (`index.html` `__APP_NAME__` placeholder, replaced by the
   `htmlBranding` plugin in [`vite.config.ts`](../vite.config.ts)),
 - the PWA manifest `name` / `short_name` / `description`,

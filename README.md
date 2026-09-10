@@ -1,6 +1,6 @@
 # FoxForge UNITE
 
-**Forge your UNITE loadout!** A build optimizer for Pokémon UNITE that helps
+**Forge your UNITE Loadout!** A build optimizer for Pokémon UNITE that helps
 players design optimized builds — recommending Emblem loadouts and Held Items
 tailored to a selected Pokémon, with real-time stat calculation and
 level-scaling visualization.

@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.3",
-  "lastUpdated": "2026-09-08",
+  "lastUpdated": "2026-09-10",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-08"
+    "fetched": "2026-09-10"
   },
   "pokemon": [
     {
@@ -5866,7 +5866,7 @@
           "id": "smack-down",
           "name": "Smack Down",
           "slot": "move1",
-          "description": "Has the user deliver an uppercut punch to an opposing Pokémon in the designated direction, dealing damage to it and throwing it into the air. While the thrown Pokémon is airborne, the user can use this move again to perform a follow-up attack that smacks that Pokémon down to the ground, dealing damage to all opposing Pokémon in an area of effect centered on the point of impact. If this move deals damage to Pokémon on the opposing team, the user's muscle gauge increases by 2 increment for each one that was hit.\n\nUpgrade (Level 13): Widens the area-of-effect in which damage is dealt when the grappled enemy slams the ground. Additionally, muscle gauge will now increase by 2 increments for each enemy player hit from the slam.",
+          "description": "Has the user deliver an uppercut punch to an opposing Pokémon in the designated direction, dealing damage to it and throwing it into the air. While the thrown Pokémon is airborne, the user can use this move again to perform a follow-up attack that smacks that Pokémon down to the ground, dealing damage to all opposing Pokémon in an area of effect centered on the point of impact. If this move deals damage to Pokémon on the opposing team, the user's muscle gauge increases by 2 increments for each one that was hit.\n\nUpgrade (Level 13): Widens the area-of-effect in which damage is dealt when the grappled enemy slams the ground. Additionally, muscle gauge will now increase by 2 increments for each enemy player hit from the slam.",
           "cooldownSeconds": 6.0,
           "damageInstances": [
             {
@@ -16318,7 +16318,7 @@
           "id": "extreme-speed",
           "name": "Extreme Speed",
           "slot": "move1",
-          "description": "Has the user leap at the designated opposing Pokémon and throw it, dealing damage to opposing Pokémon in the area of effect and shoving them.\n\nAlso decreases the movement speed of opposing Pokémon it hits for a short time. using this move will reset Multiscale's cooldown.\n\nUpgrade (Level 11): If Dragonite's movement speed is currently decreased when this move is used, that movement speed decrease is negated before the move is used.",
+          "description": "Has the user leap at the designated opposing Pokémon and throw it, dealing damage to opposing Pokémon in the area of effect and shoving them.\n\nAlso decreases the movement speed of opposing Pokémon it hits for a short time. Using this move will reset Multiscale's cooldown.\n\nUpgrade (Level 11): If Dragonite's movement speed is currently decreased when this move is used, that movement speed decrease is negated before the move is used.",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -16344,7 +16344,7 @@
           "id": "dragon-breath",
           "name": "Dragon Breath",
           "slot": "move2",
-          "description": "Has the user exhale a mighty gust in the designated direction. if the move hits an opposing Pokémon, the user's next basic attack becomes a boosted attack.",
+          "description": "Has the user exhale a mighty gust in the designated direction. If the move hits an opposing Pokémon, the user's next basic attack becomes a boosted attack.",
           "cooldownSeconds": 7.5,
           "damageInstances": [
             {
@@ -16448,7 +16448,7 @@
           "id": "draco-impact",
           "name": "Draco Impact",
           "slot": "uniteMove",
-          "description": "Has the user fly high into the air before crashing down with several comets on a designated area, dealing damage to opposing Pokémon in the area of effect and throwing them. The farther the user flies, the more the Unite Move gauge is consumed. While this Unite Move is being used, the user becomes immune to hinderances.",
+          "description": "Has the user fly high into the air before crashing down with several comets on a designated area, dealing damage to opposing Pokémon in the area of effect and throwing them. The farther the user flies, the more the Unite Move gauge is consumed. While this Unite Move is being used, the user becomes immune to hindrances.",
           "cooldownSeconds": 112.0,
           "damageInstances": [
             {
@@ -18910,7 +18910,7 @@
           "id": "future-sight",
           "name": "Future Sight",
           "slot": "move2",
-          "description": "Has the user lock on to an opposing Pokémon, then deal damage a few seconds later to opposing Pokémon in an are of effect centered on the locked-on Pokémon. More damage is dealt the lower the locked-on Pokémon's remaining HP is. While the user is locked on to an opposing Pokémon, its other moves will target that Pokémon whenever possible. Each time one of these moves deals damage, Future Sight's cooldown is reduced. If the locked-on Pokémon is on the opposing team and is knocked out before the area-of-effect damage is dealt, a single powered-up use of Psyshock or Stored Power becomes available for a short time. When Psyshock is powered up, it hurls stronger psychic projectiles at a designated location that also cause an explosion, dealing damage to opposing Pokémon in the area of effect. When Stored Power is powered up, it unleashes an increased number of psychic power blasts and restores the user's HP when the blasts hit.\n\nUpgrade (Level 12): Espeon deals 15% additional damage to locked-on targets.",
+          "description": "Has the user lock on to an opposing Pokémon, then deal damage a few seconds later to opposing Pokémon in an area of effect centered on the locked-on Pokémon. More damage is dealt the lower the locked-on Pokémon's remaining HP is. While the user is locked on to an opposing Pokémon, its other moves will target that Pokémon whenever possible. Each time one of these moves deals damage, Future Sight's cooldown is reduced. If the locked-on Pokémon is on the opposing team and is knocked out before the area-of-effect damage is dealt, a single powered-up use of Psyshock or Stored Power becomes available for a short time. When Psyshock is powered up, it hurls stronger psychic projectiles at a designated location that also cause an explosion, dealing damage to opposing Pokémon in the area of effect. When Stored Power is powered up, it unleashes an increased number of psychic power blasts and restores the user's HP when the blasts hit.\n\nUpgrade (Level 12): Espeon deals 15% additional damage to locked-on targets.",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -19505,7 +19505,7 @@
           "id": "iron-head",
           "name": "Iron Head",
           "slot": "move1",
-          "description": "Has the user attack the designated area with its steel-hard heads, dealing damage and applying a slowing effect to opposing Pokémon it hits, as well as granting itself a shield. When the user is in No Retreat formation, the move's range is shortened, but its area of attack is widened. The user's next 4 basic attacks can be used while it's moving. When the user is in Dispatch formation, dispatched troopers returnn to the column when the user attacks with this move. The returning troopers shove and deal damage to opposing Pokémon they hit on their way back to the column.\n\nUpgrade (Level 10): Iron Head and the Troopers returning deal an additional 2% max hp damage to enemies they hit, capped to 400.",
+          "description": "Has the user attack the designated area with its steel-hard heads, dealing damage and applying a slowing effect to opposing Pokémon it hits, as well as granting itself a shield. When the user is in No Retreat formation, the move's range is shortened, but its area of attack is widened. The user's next 4 basic attacks can be used while it's moving. When the user is in Dispatch formation, dispatched troopers return to the column when the user attacks with this move. The returning troopers shove and deal damage to opposing Pokémon they hit on their way back to the column.\n\nUpgrade (Level 10): Iron Head and the Troopers returning deal an additional 2% max HP damage to enemies they hit, capped to 400.",
           "cooldownSeconds": 7.5,
           "damageInstances": [
             {
@@ -20796,7 +20796,7 @@
       "passiveAbility": {
         "id": "rough-skin",
         "name": "Rough Skin",
-        "description": "When the Pokémon is struck by a melee attack, a portion of the damage recieved is reflected back at the attacker.",
+        "description": "When the Pokémon is struck by a melee attack, a portion of the damage received is reflected back at the attacker.",
         "effects": [],
         "descriptionAdvanced": "When damaged by a nearby opposing Melee Pokémon, reflects 12.5% of the damage received back to that opposing Pokémon as Attack-based damage (0.6s CD).",
         "iconAsset": "/assets/skills/Garchomp/Rough+Skin.png"
@@ -22621,7 +22621,7 @@
           "id": "icicle-spear",
           "name": "Icicle Spear",
           "slot": "move1",
-          "description": "Has the user launch all of its stored ice crystals in rapid succession at the designated opposing Pokémon. If the user has no ice crystals when this move is used, 2 ice crystals are instantly created and those are launched. The crystals shatter when they hit the designated Pokémon, dealing damage to the opposing Pokémon in the area of effect. Launched ice crystals can hit Pokémon on the opposing team that are not the designated target of this move. If this occurs, the ice crystals will still shatter on impact and deal damage in an area of effect in the same way. Ice crystals launched by this move deal increasing damage each time they hit the same opposing Pokémon. After this move is used, the cooldown of Ice Shard or Freeze-Dery is reduced.\n\nUpgrade (Level 10): Each launched ice crystal also deals additional damage to enemies hit, equal to a set percentage of their max HP.",
+          "description": "Has the user launch all of its stored ice crystals in rapid succession at the designated opposing Pokémon. If the user has no ice crystals when this move is used, 2 ice crystals are instantly created and those are launched. The crystals shatter when they hit the designated Pokémon, dealing damage to the opposing Pokémon in the area of effect. Launched ice crystals can hit Pokémon on the opposing team that are not the designated target of this move. If this occurs, the ice crystals will still shatter on impact and deal damage in an area of effect in the same way. Ice crystals launched by this move deal increasing damage each time they hit the same opposing Pokémon. After this move is used, the cooldown of Ice Shard or Freeze-Dry is reduced.\n\nUpgrade (Level 10): Each launched ice crystal also deals additional damage to enemies hit, equal to a set percentage of their max HP.",
           "cooldownSeconds": 6.0,
           "damageInstances": [
             {
@@ -27858,7 +27858,7 @@
           "id": "liquidation",
           "name": "Liquidation",
           "slot": "move2",
-          "description": "Has the user continually fire water projectiles from both hands, dealing damage to the designated opposing Pokémon it hits. If this move hits 5 times within a short period of time. damage the opposing Pokémon takes from the user's attacks will be increased for a short time. This move has a set chance of becoming a critical hit. This move can be used while moving via Acrobatics.\n\nUpgrade (Level 13): Increases the number of projectiles shot during the duration to 10.",
+          "description": "Has the user continually fire water projectiles from both hands, dealing damage to the designated opposing Pokémon it hits. If this move hits 5 times within a short period of time, the damage the opposing Pokémon takes from the user's attacks will be increased for a short time. This move has a set chance of becoming a critical hit. This move can be used while moving via Acrobatics.\n\nUpgrade (Level 13): Increases the number of projectiles shot during the duration to 10.",
           "cooldownSeconds": 6.0,
           "damageInstances": [
             {
@@ -42376,7 +42376,7 @@
           "id": "electroweb",
           "name": "Electroweb",
           "slot": "move2",
-          "description": "Attacks and captures opposing Pokémon using an electric net. leaving them unable to move.",
+          "description": "Attacks and captures opposing Pokémon using an electric net, leaving them unable to move.",
           "cooldownSeconds": 9.0,
           "damageInstances": [
             {
@@ -51488,7 +51488,7 @@
           "id": "calm-mind",
           "name": "Calm Mind",
           "slot": "move2",
-          "description": "Has the user quietly focuses its mind and calm its spirit to increase its Sp. Atk., Sp. Def, and movement speed for a short time.\n\nUpgrade (Level 12): One time only while using this move, if the user is hit by an opposing Pokémon's move, the damage is completely nullified, and the user is granted a shield.",
+          "description": "Has the user quietly focus its mind and calm its spirit to increase its Sp. Atk., Sp. Def, and movement speed for a short time.\n\nUpgrade (Level 12): One time only while using this move, if the user is hit by an opposing Pokémon's move, the damage is completely nullified, and the user is granted a shield.",
           "cooldownSeconds": 8.0,
           "damageInstances": [],
           "effects": [],
@@ -51506,7 +51506,7 @@
           "id": "fairy-frolic",
           "name": "Fairy Frolic",
           "slot": "uniteMove",
-          "description": "Has the user jump into the air and briefly become invincible. The moment the user lands, it deals damage to the opposing Pokémon in the area of effect and restores its own HP. for a short time afterward, a set percentage of damage dealt by the user is converted into HP for the user.",
+          "description": "Has the user jump into the air and briefly become invincible. The moment the user lands, it deals damage to the opposing Pokémon in the area of effect and restores its own HP. For a short time afterward, a set percentage of damage dealt by the user is converted into HP for the user.",
           "cooldownSeconds": 112.0,
           "damageInstances": [
             {
@@ -52682,7 +52682,7 @@
           "id": "ice-hammer",
           "name": "Ice Hammer",
           "slot": "move2",
-          "description": "Has the user leap in the designated direction and swing down its freezing hammer, dealing damage, applying a slowing effect to opposing Pokémon in the area of effect, and decreasing their Attack and Sp. Atk. for short time.\n\nUpgrade (Level 11): Strengthens the Attack decrease of opposing Pokémon hit to 50% and the Sp. Atk decrease to 30%.",
+          "description": "Has the user leap in the designated direction and swing down its freezing hammer, dealing damage, applying a slowing effect to opposing Pokémon in the area of effect, and decreasing their Attack and Sp. Atk. for a short time.\n\nUpgrade (Level 11): Strengthens the Attack decrease of opposing Pokémon hit to 50% and the Sp. Atk decrease to 30%.",
           "cooldownSeconds": 5.0,
           "damageInstances": [
             {
@@ -52708,7 +52708,7 @@
           "id": "thief",
           "name": "Thief",
           "slot": "move2",
-          "description": "Increases the user's movement speed for a short time. When the user is moving toward an opposing Pokémon affected by hindrances, its movement speed is further increased.\n\nAlso, when the user deals damage to opposing Pokémon with its next basic attack, the user steals annd uses a portion of the Pokémon's Defense aand Sp. Def. for a short time.\n\nUpgrade (Level 11): Strengthens the Defense and Sp. Def decrease on targets hit by the empowered auto attack to 25%; strengthens the Defense and Sp. Def increases on the user to 25% per target hit (maximum 125%).",
+          "description": "Increases the user's movement speed for a short time. When the user is moving toward an opposing Pokémon affected by hindrances, its movement speed is further increased.\n\nAlso, when the user deals damage to opposing Pokémon with its next basic attack, the user steals and uses a portion of the Pokémon's Defense and Sp. Def. for a short time.\n\nUpgrade (Level 11): Strengthens the Defense and Sp. Def decrease on targets hit by the empowered auto attack to 25%; strengthens the Defense and Sp. Def increases on the user to 25% per target hit (maximum 125%).",
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
@@ -52766,7 +52766,7 @@
       "passiveAbility": {
         "id": "mold-breaker",
         "name": "Mold Breaker",
-        "description": "This Pokémon deals additional damage to opposing Pokémon that have an active shield effect. Each time this Pokémon hits Pokémon from the opposing team with moves or boosted basic attacks, its hammer becomes stronger and its Attack increases up (up to 60 times maximum). Also, after the hammer is strengthened 20, 40, annd 60 times, Rock Smash, Gigaton Hammer, and Smack Down power up.",
+        "description": "This Pokémon deals additional damage to opposing Pokémon that have an active shield effect. Each time this Pokémon hits Pokémon from the opposing team with moves or boosted basic attacks, its hammer becomes stronger and its Attack increases (up to 60 times). Also, after the hammer is strengthened 20, 40, and 60 times, Rock Smash, Gigaton Hammer, and Smack Down power up.",
         "effects": [],
         "descriptionAdvanced": "When damaging an opposing Pokémon with an active shield effect, 30% of the damage dealt to the shield is dealt as additional damage to the target's HP.\n\nThis Pokémon's hammer strengthens every time they hit Pokémon from the opposing team with boosted attacks or moves, increasing this Pokémon's Attack by 0.5% per target hit (up to 100 times; maximum 50% Attack). After the hammer is strengthened 20, 40, and 60 times; Rock Smash, Gigaton Hammer, and Smack Down gain increased range.",
         "iconAsset": "/assets/skills/Tinkaton/Mold+Breaker.png"
@@ -55083,7 +55083,7 @@
           "id": "rock-polish",
           "name": "Rock Polish",
           "slot": "move2",
-          "description": "Has the user charge ahead in the designated direction, dealing damage to any opposing Pokémon it hits. If this move hits any opposing Pokémon. the user's Attack is increased for a short time.",
+          "description": "Has the user charge ahead in the designated direction, dealing damage to any opposing Pokémon it hits. If this move hits any opposing Pokémon, the user's Attack is increased for a short time.",
           "cooldownSeconds": 8.0,
           "damageInstances": [
             {
@@ -67185,7 +67185,7 @@
       "id": "goal-hacker",
       "displayName": "Goal Hacker",
       "iconAsset": "/assets/items/battle/Goal+Hacker.png",
-      "description": "Tampers with 1 goal zone in range for 4s. If used on an ally goal zone: doubles any shield provided by the goal zone, and strengthens the goal zone's HP restoration rate (restoring HP every 0.5s) for the duration of the effect. If used on an opposing goal zone: disables shield effects and HP restoration from that goal zone for the duration of the effect. Additional applications on an affected goal zone override the previous effects and refreshes the duration.",
+      "description": "Tampers with 1 goal zone in range for 4s. If used on an ally goal zone: doubles any shield provided by the goal zone, and strengthens the goal zone's HP restoration rate (restoring HP every 0.5s) for the duration of the effect. If used on an opposing goal zone: disables shield effects and HP restoration from that goal zone for the duration of the effect. Additional applications on an affected goal zone override the previous effects and refresh the duration.",
       "effects": []
     },
     {

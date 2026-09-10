@@ -745,6 +745,16 @@ class TestFixSpelling(unittest.TestCase):
         self.assertEqual(fix_spelling("a telekinitic force"), "a telekinetic force")
         self.assertEqual(fix_spelling("The telekenitic force clings"), "The telekinetic force clings")
         self.assertEqual(fix_spelling("all status conditionss"), "all status conditions")
+        self.assertEqual(fix_spelling("damage recieved is reflected"), "damage received is reflected")
+        self.assertEqual(fix_spelling("immune to hinderances"), "immune to hindrances")
+        self.assertEqual(fix_spelling("a hinderance effect"), "a hindrance effect")
+        self.assertEqual(fix_spelling("Ice Shard or Freeze-Dery"), "Ice Shard or Freeze-Dry")
+        self.assertEqual(fix_spelling("troopers returnn to the column"), "troopers return to the column")
+        self.assertEqual(fix_spelling("steals annd uses"), "steals and uses")
+        self.assertEqual(fix_spelling("Defense aand Sp. Def"), "Defense and Sp. Def")
+        self.assertEqual(fix_spelling("in an are of effect"), "in an area of effect")
+        self.assertEqual(fix_spelling("for short time"), "for a short time")
+        self.assertEqual(fix_spelling("increases by 2 increment for each"), "increases by 2 increments for each")
 
     def test_cooldown_abbrev_uppercases_cd(self):
         self.assertEqual(fix_spelling("triggered (4s cd)."), "triggered (4s CD).")

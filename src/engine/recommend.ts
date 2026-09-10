@@ -213,7 +213,8 @@ export function solveEmblemSet(
 /**
  * Assemble the best emblem set the player can field from emblems they OWN, each
  * at its best owned grade. Returns up to 10 picks (fewer if the inventory is
- * thin) — the "Your Emblems" build that adapts to the user's collection.
+ * thin). Owned-inventory search in the UI is the Optimize tab; this helper is
+ * no longer surfaced as a Builds tab.
  */
 export function solveOwnedEmblemSet(
   pokemon: Pokemon,

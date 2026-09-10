@@ -1,6 +1,6 @@
 # Implementation Plan: Pokémon UNITE Build Optimizer
 
-*Historical milestone plan; the bundle filename is now the stable `src/data/patch-current.json` (see [docs/04-data-sourcing.md](04-data-sourcing.md)).*
+*Historical milestone plan; the bundle filename is now the stable `src/data/patch-current.json` (see [docs/04-data-sourcing.md](04-data-sourcing.md)). APK encryption later blocked first-party extraction; UNITE-DB is the live data path.*
 
 > Saved planning artifact (not yet executed). Engine-first build, with first-party
 > datamining of the game APK as the primary data source.

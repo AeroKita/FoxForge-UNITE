@@ -833,6 +833,16 @@ SPELLING_FIXES = {
     "telekinitic": "telekinetic",
     "telekenitic": "telekinetic",
     "conditionss": "conditions",
+    "recieved": "received",
+    "hinderances": "hindrances",
+    "hinderance": "hindrance",
+    "Freeze-Dery": "Freeze-Dry",
+    "returnn": "return",
+    "annd": "and",
+    "aand": "and",
+    "are of effect": "area of effect",
+    "for short time": "for a short time",
+    "2 increment for": "2 increments for",
 }
 
 

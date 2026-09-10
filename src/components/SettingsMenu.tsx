@@ -60,10 +60,8 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
               <span className="font-mono text-xs text-faint">v{APP_VERSION}</span>
             </div>
             <p className="mt-2 text-xs text-faint">
-              Reload to pick up a new app version. Install it from your browser ("Add to Home
-              Screen" / "Install") for an app-like window. Game data is bundled with the app and
-              also fetched from GitHub Pages. The hosted Pages build does not keep a persistent
-              service worker, so an old cache cannot blank the app.
+              The app auto-updates on reload. Install it from your browser ("Add to Home Screen" /
+              "Install") for an offline-capable window.
             </p>
           </div>
         </Section>
@@ -75,8 +73,8 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
 
         <Section title="Legal">
           <p className="text-xs text-faint">
-            Most data is from Unite-DB, the in-game Basic archive, and Mathcord (attack-speed).
-            Serebii is a historical Basic transcription source only — the scraper is retired.
+            Most data is from the amazing Unite-DB team · Serebii · Some values verified against
+            official in-game text · Attack-speed model from Mathcord.
           </p>
           <p className="mx-auto mt-3 max-w-3xl text-xs leading-relaxed text-muted">
             {LEGAL_DISCLAIMER}

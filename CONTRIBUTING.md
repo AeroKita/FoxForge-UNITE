@@ -25,7 +25,7 @@ npm install
 
 ```bash
 npm run dev      # open the printed URL
-npm run verify   # the full CI gate — should pass on a clean checkout
+npm run test:tools && npm run verify   # the full CI gate — should pass on a clean checkout
 ```
 
 ## Contributing
@@ -48,10 +48,10 @@ npm run lint:fix
 npm run format
 ```
 
-6. **Run the full gate locally** and fix everything it reports. This is the exact sequence CI runs, and it's the source of truth for what "done" means — it catches stale generated files (e.g. optimizer presets), formatting, types, and the accuracy gates, so you don't have to track those rules by hand:
+6. **Run the full gate locally** and fix everything it reports. CI runs Python tool tests first, then the Node verify script. `npm run verify` stays Node-only (lint → format:check → typecheck → test → validate → verifyPatch → validate:art) so it can run in environments without Python deps. The local full gate matching CI is:
 
 ```bash
-npm run verify
+npm run test:tools && npm run verify
 ```
 
 7. **Commit with a conventional-commit message** (`feat`, `fix`, `chore`, `docs`, `refactor`, `test`). Reference an issue (`#123`) if one applies. Keep all files for one logical change in a single commit where practical.
@@ -66,7 +66,7 @@ git commit -m "feat: add float stone OOC move-speed tier (#123)"
 
 Before you open a PR, confirm every box. CI runs the same gate and will block the PR otherwise.
 
-- [ ] `npm run verify` passes locally (lint → format:check → typecheck → test → validate → verifyPatch → validate:art).
+- [ ] `npm run test:tools && npm run verify` passes locally (Python pipeline tests, then lint → format:check → typecheck → test → validate → verifyPatch → validate:art).
 - [ ] New or changed behavior is covered by a test that you wrote *before* the implementation.
 - [ ] No game math or stat formatting was reimplemented in a component — it routes through the engine and `src/ui/format.ts`.
 - [ ] No React/DOM imports leaked into `src/engine/`.

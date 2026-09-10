@@ -23,7 +23,7 @@ Success is: regenerated bundles no longer contain the audited errors, CI fails i
 1. **Never hand-edit** `src/data/patch-current.json` or `public/data/patch-*.json` as the source of a prose fix. Those files are normalize output. The next `data.yml` refresh will overwrite orphaned edits.
 2. **Never edit** `tools/community/_raw/` (re-downloaded).
 3. **Do not** rewrite UNITE-DB house style: `themself`, semicolon-as-comma Advanced clauses, leading decimals (`.75s`), official `Has the user…`, or every “dealing X and decreases” parallelism. Those are voice, not this PR. Adding dozens of style overrides is clutter and they expire badly.
-4. **Do not** put corrected paragraphs in `move_descriptions.json` unless Basic is **blank**. That file only backfills blanks; it will not override live UNITE-DB text.
+4. **Obsolete (do not follow).** Archive bodies in `move_descriptions.json` **do** override UNITE-DB Basic whenever they have a real body. New Basic typos are fixed in that archive plus a banned fragment in `patchBundle.test.ts`. See [`docs/11-adding-content.md`](11-adding-content.md) and [`docs/13-in-game-basic-text.md`](13-in-game-basic-text.md).
 5. **Do not** change `src/engine/`, optimizer math, or emblem arrays.
 6. **Do not** add a full English spellchecker or hunspell in CI. Game terms create noise; we gate **known-bad fragments + structural junk** only.
 7. Prefer **one durable mechanism** over a pile of one-off exceptions:

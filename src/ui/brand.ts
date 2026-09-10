@@ -12,7 +12,7 @@ export const APP_NAME = "FoxForge UNITE";
 // Compact form for tight spots (home-screen PWA label, etc.).
 export const APP_SHORT_NAME = "FoxForge";
 
-// Shown under the title in the app header.
+// Reserved slogan (README / branding docs). Not rendered in the app header.
 export const APP_TAGLINE = "Forge your UNITE Loadout!";
 
 // Used for the PWA manifest + meta description.

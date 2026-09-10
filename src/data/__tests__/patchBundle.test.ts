@@ -565,6 +565,24 @@ describe("community data bundle", () => {
         "telekinitic",
         "telekenitic",
         "up to 1 times",
+        "recieved",
+        "hinderances",
+        "Freeze-Dery",
+        "returnn",
+        "annd",
+        "aand",
+        "are of effect",
+        "HP. for a short time",
+        "time. using this move",
+        "direction. if the move hits",
+        "time. damage the opposing",
+        "net. leaving them",
+        "Pokémon. the user's Attack",
+        "quietly focuses its mind",
+        "2 increment for",
+        "for short time",
+        "override the previous effects and refreshes the duration",
+        "increases up (up to",
       ];
       const texts = collectUserFacingTexts(bundle);
       for (const bad of banned) {
@@ -611,6 +629,12 @@ describe("community data bundle", () => {
         "the the ",
         " in in ",
         "within in ",
+        "HP. for a short time",
+        "time. using this move",
+        "direction. if the move hits",
+        "time. damage the opposing",
+        "net. leaving them",
+        "Pokémon. the user's Attack",
       ];
       for (const bad of glues) {
         const hit = texts.find((t) => t.includes(bad));

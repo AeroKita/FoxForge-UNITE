@@ -1,14 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "../state/store";
-import {
-  pokemonById,
-  heldItemById,
-  battleItemById,
-  emblemById,
-  emblems as allEmblems,
-  setBonuses,
-} from "../data/gameData";
-import { recommendBuild, solveOwnedEmblemSet } from "../engine/recommend";
+import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
 import { EMBLEM_COLOR_HEX, GRADE_LETTER } from "../ui/colors";
@@ -21,20 +13,18 @@ import { itemTip, emblemTip, moveTip } from "./tips";
 import { MarqueeText } from "../ui/MarqueeText";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
-type Tab = "recommended" | "creative" | "yours";
+export const BUILD_TABS = ["recommended", "creative"] as const;
+export type Tab = (typeof BUILD_TABS)[number];
 
 const TAB_LABEL: Record<Tab, string> = {
   recommended: "Recommended",
   creative: "Creative",
-  yours: "Yours",
 };
 
-// A unified shape for curated, creative, and inventory builds.
 interface DisplayBuild {
   name: string;
   emblemName?: string;
   lane?: string;
-  source: "curated" | "owned";
   heldItemIds: string[];
   battleItemId?: string;
   emblems: EmblemBuildPick[];
@@ -49,7 +39,6 @@ function toDisplayBuilds(builds: PokemonBuild[] | undefined): DisplayBuild[] {
       name: b.name,
       emblemName: b.emblemName,
       lane: b.lane,
-      source: "curated" as const,
       heldItemIds: b.heldItemIds,
       battleItemId: b.battleItemId,
       emblems: b.emblems,
@@ -57,13 +46,8 @@ function toDisplayBuilds(builds: PokemonBuild[] | undefined): DisplayBuild[] {
     }));
 }
 
-function buildsForTab(
-  tab: Tab,
-  curated: DisplayBuild[],
-  creative: DisplayBuild[],
-  yours: DisplayBuild[],
-): DisplayBuild[] {
-  return tab === "recommended" ? curated : tab === "creative" ? creative : yours;
+export function buildsForTab<T>(tab: Tab, curated: T[], creative: T[]): T[] {
+  return tab === "recommended" ? curated : creative;
 }
 
 function applyDisplayBuild(
@@ -82,35 +66,16 @@ function applyDisplayBuild(
 }
 
 export function RecommendPanel() {
-  const { loadout, dispatch, owned, expert } = useStore();
+  const { loadout, dispatch, expert } = useStore();
   const pokemon = loadout.pokemonId ? pokemonById.get(loadout.pokemonId) : null;
 
   const curated = useMemo(() => toDisplayBuilds(pokemon?.builds), [pokemon]);
   const creative = useMemo(() => toDisplayBuilds(pokemon?.creativeBuilds), [pokemon]);
 
-  const yours: DisplayBuild[] = useMemo(() => {
-    if (!pokemon) return [];
-    const rec = recommendBuild(pokemon, [...heldItemById.values()], setBonuses);
-    const emblems = solveOwnedEmblemSet(pokemon, allEmblems, owned);
-    return emblems.length
-      ? [
-          {
-            name: "Your Emblems",
-            emblemName: "From your inventory",
-            source: "owned" as const,
-            heldItemIds: rec.heldItemIds,
-            battleItemId: rec.battleItemId ?? undefined,
-            emblems,
-          },
-        ]
-      : [];
-  }, [pokemon, owned]);
-
   const [tab, setTab] = useState<Tab>("recommended");
   const [idxByTab, setIdxByTab] = useState<Record<Tab, number>>({
     recommended: 0,
     creative: 0,
-    yours: 0,
   });
 
   // The Pokémon we've already auto-applied for. Initialised to the cold-load
@@ -132,7 +97,7 @@ export function RecommendPanel() {
   useEffect(() => {
     if (!pokemon || lastAutoAppliedPokemonId.current === pokemon.id) return;
     lastAutoAppliedPokemonId.current = pokemon.id;
-    setIdxByTab({ recommended: 0, creative: 0, yours: 0 });
+    setIdxByTab({ recommended: 0, creative: 0 });
     setTab("recommended");
     applyFor(toDisplayBuilds(pokemon.builds)[0] ?? null);
   }, [pokemon, applyFor]);
@@ -140,13 +105,13 @@ export function RecommendPanel() {
   const selectTab = (next: Tab) => {
     if (next === tab) return;
     setTab(next);
-    const list = buildsForTab(next, curated, creative, yours);
+    const list = buildsForTab(next, curated, creative);
     const i = list.length ? Math.min(idxByTab[next], list.length - 1) : 0;
     applyFor(list[i] ?? null);
   };
 
   const go = (delta: number) => {
-    const list = buildsForTab(tab, curated, creative, yours);
+    const list = buildsForTab(tab, curated, creative);
     if (list.length < 2) return;
     const next = (idxByTab[tab] + delta + list.length) % list.length;
     setIdxByTab((m) => ({ ...m, [tab]: next }));
@@ -155,7 +120,7 @@ export function RecommendPanel() {
 
   if (!pokemon) return null;
 
-  const builds = buildsForTab(tab, curated, creative, yours);
+  const builds = buildsForTab(tab, curated, creative);
   const idx = builds.length ? Math.min(idxByTab[tab], builds.length - 1) : 0;
   const build = builds[idx] ?? null;
 
@@ -167,14 +132,11 @@ export function RecommendPanel() {
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
   const trainer = build?.battleItemId ? battleItemById.get(build.battleItemId) : null;
-  const ownedCount = build?.emblems.length ?? 0;
+  const emblemCount = build?.emblems.length ?? 0;
 
   const finalMoveDisplays = (() => {
     if (!build) return [];
-    const ids =
-      tab === "yours"
-        ? { move1Id: loadout.move1Id, move2Id: loadout.move2Id }
-        : moveIdsFromNames(pokemon, build.moves);
+    const ids = moveIdsFromNames(pokemon, build.moves);
     return (["move1", "move2"] as const)
       .map((slot) => resolveFinalMove(pokemon, slot, slot === "move1" ? ids.move1Id : ids.move2Id))
       .filter((m): m is NonNullable<typeof m> => m != null);
@@ -194,7 +156,7 @@ export function RecommendPanel() {
     <CollapsibleCard title="Builds" persistKey="recommend" tone="indigo">
       {/* Source tabs — selecting a tab auto-applies that build variant */}
       <div className="mb-3 flex gap-1 rounded-xl bg-raise p-1">
-        {(["recommended", "creative", "yours"] as Tab[]).map((t) => (
+        {BUILD_TABS.map((t) => (
           <button
             key={t}
             onClick={() => selectTab(t)}
@@ -232,17 +194,10 @@ export function RecommendPanel() {
         <p className="text-sm text-faint">
           {tab === "recommended"
             ? `No Recommended builds for ${pokemon.displayName} yet.`
-            : tab === "creative"
-              ? `No Creative builds for ${pokemon.displayName} yet.`
-              : "You haven't marked any emblems as owned yet. Mark some in the Emblem Inventory and your best set will appear here."}
+            : `No Creative builds for ${pokemon.displayName} yet.`}
         </p>
       ) : (
         <div className="flex flex-col gap-4">
-          {tab === "yours" && ownedCount < 10 && (
-            <p className="rounded-lg bg-raise px-3 py-2 text-xs text-muted">
-              {ownedCount}/10 from your inventory — mark more emblems as owned to complete the set.
-            </p>
-          )}
           <div className="flex flex-wrap items-start gap-x-6 gap-y-3">
             <div>
               <p className="mb-1 text-xs font-medium text-faint">Held Items</p>
@@ -303,7 +258,7 @@ export function RecommendPanel() {
               )}
             </div>
             <div>
-              <p className="mb-1 text-xs font-medium text-faint">Emblems ({ownedCount})</p>
+              <p className="mb-1 text-xs font-medium text-faint">Emblems ({emblemCount})</p>
               <div className="flex flex-wrap gap-1">
                 {resolvedEmblems.map(({ emblem, grade }, i) => (
                   <Tooltip key={i} content={emblemTip(emblem, grade)}>
