@@ -62,12 +62,12 @@ These kits were transcribed from in-game screenshots / Switch text in their inte
 | Solgaleo | `2c4dfaa` | `plans/2026-08-23-solgaleo-integration-plan.md` |
 | Sylveon | `3658d8c` | `plans/2026-09-07-sylveon-pixilate-and-basic-text-plan.md` |
 | Morpeko | `a3bac04` | `plans/2026-09-05-morpeko-integration-plan.md` |
-| Lucario | pending review | 2026-09-10 operator in-game transcript (reviewed; not committed) |
-| Venusaur | pending review | 2026-09-10 operator in-game transcript (not committed) |
-| Charizard | pending review | 2026-09-10 operator in-game transcript (not committed) |
-| Mega Charizard X | pending review | 2026-09-10 operator in-game transcript (not committed) |
-| Mega Charizard Y | pending review | 2026-09-10 operator in-game transcript (not committed) |
-| Mega Lucario | pending review | 2026-09-10 operator in-game transcript (not committed) |
+| Lucario | `9e0fcf2` | 2026-09-10 operator in-game transcript |
+| Venusaur | `9e0fcf2` | 2026-09-10 operator in-game transcript |
+| Charizard | `9e0fcf2` | 2026-09-10 operator in-game transcript (Flame Burst starts with **Attacks with**) |
+| Mega Charizard X | `9e0fcf2` | 2026-09-10 operator in-game transcript |
+| Mega Charizard Y | `9e0fcf2` | 2026-09-10 operator in-game transcript |
+| Mega Lucario | `9e0fcf2` | 2026-09-10 operator in-game transcript (Power-Up Punch shares Lucario's stem; Mega Evolves line only) |
 
 ## Applied 2026-09-08 (operator-supplied Ability Basic only)
 

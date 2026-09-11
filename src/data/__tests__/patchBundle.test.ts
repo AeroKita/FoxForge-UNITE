@@ -215,6 +215,8 @@ describe("community data bundle", () => {
       expect(byId["power-up-punch"].description).toContain(
         "its movement speed is decreased but its Attack slowly increases and the damage",
       );
+      expect(byId["power-up-punch"].description).not.toContain("decreased, but");
+      expect(byId["power-up-punch"].description).not.toContain("When the user Mega Evolves");
       expect(byId["power-up-punch"].description).toContain(
         "Upgrade (Level 11): The user becomes immune to hindrances while charging power.",
       );
@@ -366,6 +368,10 @@ describe("community data bundle", () => {
       expect(pre.description).toContain("This effect can stack up to 4 times.");
       expect(pre.description).not.toContain("8% for 4s");
       expect(mega.name).toBe("Adaptability");
+      expect(byId["power-up-punch"].description).toContain(
+        "its movement speed is decreased but its Attack slowly increases and the damage",
+      );
+      expect(byId["power-up-punch"].description).not.toContain("decreased, but");
       expect(byId["power-up-punch"].description).toContain(
         "When the user Mega Evolves, it can charge power for a longer duration and it throws opposing Pokémon.",
       );
