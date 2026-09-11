@@ -44,7 +44,7 @@ export const LEGAL_DISCLAIMER =
 
 // Footer copyright line. Year is computed at render so it never goes stale.
 export const LEGAL_DATA_ATTRIBUTION =
-  "Most data is from the amazing Unite-DB team · All values verified against official in-game text · Attack-speed model from Mathcord.";
+  "Some data from the amazing Unite-DB team · All values verified against official in-game text · Attack-speed model from Mathcord.";
 
 // Footer copyright line. Year is computed at render so it never goes stale.
 export const copyrightLine = () => `© ${APP_NAME} ${new Date().getFullYear()}`;
