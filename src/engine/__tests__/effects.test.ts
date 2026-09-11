@@ -35,4 +35,54 @@ describe("active-boost resolution", () => {
     const boosts = availableActiveBoosts(find("tsareena"), [null, null, null], null);
     expect(boosts.some((b) => b.id === "move:Triple Axel")).toBe(true);
   });
+
+  it("resolves remapped regional and Mega catalog keys to current displayNames", () => {
+    const cases: [string, string, string][] = [
+      ["alolan-ninetales", "Alolan Ninetales", "Aurora Veil"],
+      ["alolan-raichu", "Alolan Raichu", "Stored Power"],
+      ["mewtwoy", "Mega Mewtwo Y", "Mega Evolution"],
+      ["mega-gyarados", "Mega Gyarados", "Dragon Breath"],
+    ];
+    for (const [id, displayName, source] of cases) {
+      const pokemon = find(id);
+      expect(pokemon.displayName).toBe(displayName);
+      expect(moves[displayName], displayName).toBeDefined();
+      expect(
+        moves[displayName].some((e) => e.source === source),
+        displayName,
+      ).toBe(true);
+      const boosts = availableActiveBoosts(pokemon, [null, null, null], null);
+      expect(
+        boosts.some((b) => b.id === `move:${source}`),
+        displayName,
+      ).toBe(true);
+    }
+    expect(moves["Ninetales"]).toBeUndefined();
+    expect(moves["Raichu"]).toBeUndefined();
+    expect(moves["Mewtwo Y"]).toBeUndefined();
+    expect(moves["Gyarados [Mega]"]).toBeUndefined();
+  });
+
+  it("uses the live-sheet Stored Power value for Alolan Raichu", () => {
+    expect(moves["Alolan Raichu"]?.find((e) => e.source === "Stored Power")).toMatchObject({
+      asPoints: 45,
+      minLevel: 5,
+    });
+  });
+
+  it("offers Cramorant Hurricane as a self attack-speed buff", () => {
+    const boosts = availableActiveBoosts(find("cramorant"), [null, null, null], null);
+    expect(boosts.some((b) => b.id === "move:Hurricane" && b.asPoints === 40)).toBe(true);
+    expect(moves["Cramorant"]?.[0]).toMatchObject({
+      source: "Hurricane",
+      asPoints: 40,
+      minLevel: 4,
+    });
+  });
+
+  it("does not offer Sableye Confuse Ray as a self attack-speed buff", () => {
+    const boosts = availableActiveBoosts(find("sableye"), [null, null, null], null);
+    expect(boosts.some((b) => b.source === "move")).toBe(false);
+    expect(moves["Sableye"]).toBeUndefined();
+  });
 });

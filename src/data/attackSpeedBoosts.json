@@ -297,7 +297,7 @@
         "perLevel": 10.0
       }
     ],
-    "Gyarados [Mega]": [
+    "Mega Gyarados": [
       {
         "source": "Evolution",
         "asPoints": 40.0
@@ -350,7 +350,7 @@
         "minLevel": 7
       }
     ],
-    "Mewtwo Y": [
+    "Mega Mewtwo Y": [
       {
         "source": "Pressure",
         "asPoints": 3.0
@@ -361,7 +361,7 @@
         "minLevel": 5
       }
     ],
-    "Ninetales": [
+    "Alolan Ninetales": [
       {
         "source": "Aurora Veil",
         "asPoints": 15.0,
@@ -380,10 +380,10 @@
         "minLevel": 9
       }
     ],
-    "Raichu": [
+    "Alolan Raichu": [
       {
         "source": "Stored Power",
-        "asPoints": 35.0,
+        "asPoints": 45.0,
         "minLevel": 5
       },
       {
@@ -428,6 +428,13 @@
         "source": "Unite Buff",
         "asPoints": 20.0,
         "minLevel": 9
+      }
+    ],
+    "Cramorant": [
+      {
+        "source": "Hurricane",
+        "asPoints": 40.0,
+        "minLevel": 4
       }
     ]
   }

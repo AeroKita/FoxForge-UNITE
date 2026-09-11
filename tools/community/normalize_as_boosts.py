@@ -10,7 +10,9 @@ Two outputs:
     ally buffs are the real toggles.
   - moves: per-Pokémon move/ability AS boosts, parsed from the calculator's
     "Additional Attack Speed" formula, including level availability (minLevel/
-    maxLevel) and per-level scaling where present.
+    maxLevel) and per-level scaling where present. Sheet species/bracket
+    labels are remapped to FoxForge displayNames. Cramorant Hurricane is
+    overlaid from UNITE-DB Advanced when the formula omits it.
 
 Usage:  python3 normalize_as_boosts.py
 """
@@ -48,6 +50,28 @@ GLOBAL_KIND = {
     "Mew Coaching": ("ally", "mew-coaching"),
 }
 
+# Mathcord sheet labels → FoxForge roster displayName. Catalog keys only;
+# bundle display names stay form-qualified for players.
+SHEET_DISPLAY_NAME = {
+    "Ninetales": "Alolan Ninetales",
+    "Raichu": "Alolan Raichu",
+    "Rapidash": "Galarian Rapidash",
+    "Mewtwo Y": "Mega Mewtwo Y",
+    "Mewtwo X": "Mega Mewtwo X",
+    "Gyarados [Mega]": "Mega Gyarados",
+    "Charizard [Mega X]": "Mega Charizard X",
+    "Charizard [Mega Y]": "Mega Charizard Y",
+    "Lucario [Mega]": "Mega Lucario",
+}
+
+# Self-buffs confirmed in UNITE-DB Advanced text but absent from the calculator
+# formula. Do not add enemy-only effects (Sableye Confuse Ray).
+MANUAL_MOVES: dict[str, list[dict]] = {
+    "Cramorant": [
+        {"source": "Hurricane", "asPoints": 40.0, "minLevel": 4},
+    ],
+}
+
 
 def parse_level_cond(cond: str | None):
     """Map an Excel level condition (on cell B4 = level) to min/max level."""
@@ -60,6 +84,34 @@ def parse_level_cond(cond: str | None):
             out["minLevel"] = n + 1
         else:
             out["maxLevel"] = n - 1
+    return out
+
+
+def sheet_display_name(sheet_name: str) -> str:
+    """Map a Mathcord sheet Pokémon name to the FoxForge roster displayName.
+
+    Regional and Mega licenses keep the player-facing form-qualified names
+    (Alolan Raichu, Mega Mewtwo Y, …). The calculator still uses species or
+    bracket labels; this remap is catalog-key only and does not change bundle
+    display names.
+    """
+    return SHEET_DISPLAY_NAME.get(sheet_name, sheet_name)
+
+
+def merge_manual_moves(moves: dict[str, list]) -> dict[str, list]:
+    """Overlay UNITE-DB-backed self-buffs that the calculator formula omits.
+
+    Only add a Pokémon's own attack-speed buff. Do not add enemy-only effects
+    (for example Sableye Confuse Ray, which raises the confused target's speed).
+    Sheet rows win when both sources list the same move name.
+    """
+    out = {name: list(entries) for name, entries in moves.items()}
+    for name, extras in MANUAL_MOVES.items():
+        existing = out.setdefault(name, [])
+        have = {entry["source"] for entry in existing}
+        for extra in extras:
+            if extra["source"] not in have:
+                existing.append(dict(extra))
     return out
 
 
@@ -106,7 +158,9 @@ def main() -> None:
         if isinstance(per, (int, float)):
             entry["perLevel"] = per
         entry.update(parse_level_cond(cond))
-        moves.setdefault(pokemon, []).append(entry)
+        moves.setdefault(sheet_display_name(pokemon), []).append(entry)
+
+    moves = merge_manual_moves(moves)
 
     out = {
         "_source": "docs/Attack Speed Calculator.xlsx",
