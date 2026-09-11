@@ -139,7 +139,7 @@ describe("community data bundle", () => {
   it("every build move name resolves to a move in that Pokémon's catalog", () => {
     for (const p of bundle.pokemon) {
       const names = new Set(p.moves.map((m) => m.name));
-      for (const b of p.builds ?? []) {
+      for (const b of [...(p.builds ?? []), ...(p.creativeBuilds ?? [])]) {
         for (const mv of b.moves ?? []) {
           expect(names.has(mv), `${p.id}: build "${b.name}" move "${mv}"`).toBe(true);
         }

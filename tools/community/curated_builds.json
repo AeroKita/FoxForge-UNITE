@@ -1041,6 +1041,67 @@
       }
     ]
   },
+  "sylveon": {
+    "creativeBuilds": [
+      {
+        "name": "A Fast Fairy",
+        "emblemName": "A Fast Fairy",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "exp-share",
+          "amulet-coin",
+          "choice-specs"
+        ],
+        "battleItemId": "x-speed",
+        "emblems": [
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "907-floragato",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "193-yanma",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "082-magneton",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "101-electrode",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Mystical Fire",
+          "Draining Kiss"
+        ]
+      }
+    ]
+  },
   "decidueye": {
     "recommendedTitles": [
       "Phantom Ranger",

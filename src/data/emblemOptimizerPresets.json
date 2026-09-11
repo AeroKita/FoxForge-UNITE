@@ -1850,16 +1850,18 @@
       "protectedFloors": {
         "hp": 0,
         "attack": -15,
+        "defense": -3,
         "spAttack": 0,
         "moveSpeed": 0
       },
       "colorTargets": {
         "green": 6,
         "white": 6,
+        "yellow": 2,
         "black": 3
       },
       "confidence": 1,
-      "buildCount": 4,
+      "buildCount": 5,
       "source": "auto"
     },
     "talonflame": {
