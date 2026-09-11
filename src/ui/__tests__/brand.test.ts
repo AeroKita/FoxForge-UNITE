@@ -61,6 +61,14 @@ describe("link-preview meta tags", () => {
     expect(html).toContain(`<meta name="twitter:description" content="${APP_DESCRIPTION}" />`);
     expect(html).toContain(`<meta name="twitter:image" content="${OG_IMAGE_URL}" />`);
   });
+
+  it("uses the embed description wording", () => {
+    expect(APP_DESCRIPTION).toContain("Design optimized");
+    expect(APP_DESCRIPTION).toContain("Emblems");
+    expect(APP_DESCRIPTION).toContain("Held Items and Trainer Items");
+    expect(APP_DESCRIPTION).not.toMatch(/attack speed/i);
+    expect(APP_DESCRIPTION).toMatch(/stats!$/);
+  });
 });
 
 describe("Legal data attribution", () => {
