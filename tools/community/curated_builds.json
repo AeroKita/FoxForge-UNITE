@@ -1,5 +1,5 @@
 {
-  "_comment": "Hand-curated builds merged by normalize.py (apply_curated_builds). Keyed by Pokémon id. Keys per id: 'builds' (replace Recommended), 'creativeBuilds' (set Creative), 'recommendedTitles' (rename raw Recommended by index). 'builds' and 'recommendedTitles' are mutually exclusive. Top-level '_emblemNameRemap' remaps raw emblemName values across all Recommended builds before per-Pokémon overrides: a string value replaces unconditionally; an object value selects by the Pokémon's role. See plans/2026-06-17-curated-builds-overlay-plan.md. Top-level '_emblemNamePrefixRemap' is a fallback applied after '_emblemNameRemap' misses: its keys are matched as PREFIXES of the raw emblemName (so trailing word-order changes from UNITE-DB still match), with the same string-vs-role-object value semantics.",
+  "_comment": "Hand-curated builds merged by normalize.py (apply_curated_builds). Keyed by Pokémon id. Keys per id: 'builds' (replace Recommended), 'creativeBuilds' (set Creative), 'recommendedTitles' (rename raw Recommended by index). 'builds' and 'recommendedTitles' are mutually exclusive. Top-level '_emblemNameRemap' remaps raw emblemName values across all Recommended builds before per-Pokémon overrides: a string value replaces unconditionally; an object value selects by the Pokémon's role. See plans/2026-06-17-curated-builds-overlay-plan.md. Top-level '_emblemNamePrefixRemap' is a fallback applied after '_emblemNameRemap' misses: its keys are matched as PREFIXES of the raw emblemName (so trailing word-order changes from UNITE-DB still match), with the same string-vs-role-object value semantics. Per-Pokémon recommendedTitles pin Pokédex-inspired display names after the remap, so a UNITE-DB regenerate cannot restore generic Standard/Bulk/Tank/ADC labels. Do not hand-edit emblemName in generated patch JSON.",
   "_emblemNameRemap": {
     "Special Attack Cooldown Reduction - Bulk for Survivability": "Standard Special Attacker",
     "Special Attack Attack Speed (Chansey may be substituted with Pidgey)": "Legendary Attack Speed",
@@ -859,6 +859,10 @@
     ]
   },
   "urshifu": {
+    "recommendedTitles": [
+      "Rapid Strike",
+      "Single Strike"
+    ],
     "creativeBuilds": [
       {
         "name": "Flurry of Surging Strikes",
@@ -920,6 +924,11 @@
     ]
   },
   "latios": {
+    "recommendedTitles": [
+      "Jet Stream",
+      "Luster Mind",
+      "Blue Eon"
+    ],
     "creativeBuilds": [
       {
         "name": "Step on the Gas (Special)",
@@ -981,6 +990,12 @@
     ]
   },
   "latias": {
+    "recommendedTitles": [
+      "Mist Veil",
+      "Eon Heart",
+      "Empathic Cheer",
+      "Glass Down"
+    ],
     "creativeBuilds": [
       {
         "name": "Step on the Gas (Special)",
@@ -1042,6 +1057,12 @@
     ]
   },
   "sylveon": {
+    "recommendedTitles": [
+      "Soothing Aura",
+      "Ribbon Feelers",
+      "Dragon Vanquisher",
+      "Intertwining Dance"
+    ],
     "creativeBuilds": [
       {
         "name": "A Fast Fairy",
@@ -1105,7 +1126,7 @@
   "decidueye": {
     "recommendedTitles": [
       "Phantom Ranger",
-      "Attack Damage Carry (ADC)",
+      "Arrow Quill",
       "Deadeye"
     ],
     "creativeBuilds": [
@@ -1261,10 +1282,10 @@
   },
   "absol": {
     "recommendedTitles": [
-      "Critical Hit Specialist",
-      "Critical Hit Specialist",
-      "Critical Hit Specialist",
-      "Critical Hit Specialist"
+      "Disaster Sense",
+      "Calamity Blade",
+      "Forewarned Cut",
+      "Omen Slash"
     ]
   },
   "scizor": {
@@ -1279,7 +1300,7 @@
     "builds": [
       {
         "name": "Items Only",
-        "emblemName": "Legendary Attack Speed",
+        "emblemName": "Ultimate Genome",
         "lane": "Path Damage",
         "heldItemIds": [
           "mewtwonite-y",
@@ -2103,6 +2124,383 @@
           "Zap Cannon"
         ]
       }
+    ]
+  },
+  "aegislash": {
+    "recommendedTitles": [
+      "Royal Guard",
+      "Spectral Blade",
+      "King's Aegis",
+      "Cursed Sword"
+    ]
+  },
+  "blastoise": {
+    "recommendedTitles": [
+      "Shell Cannons",
+      "Spinning Fortress",
+      "Jet Pressure",
+      "Hydro Siege"
+    ]
+  },
+  "blaziken": {
+    "recommendedTitles": [
+      "Wrist Flames",
+      "Blazing Kicks"
+    ]
+  },
+  "ceruledge": {
+    "recommendedTitles": [
+      "Ghost Cut",
+      "Bitter Charge",
+      "Resentful Blade",
+      "Possessed Charge"
+    ]
+  },
+  "charizard": {
+    "recommendedTitles": [
+      "Wildfire Breath",
+      "Boulder Melt",
+      "Sky Blaze"
+    ]
+  },
+  "mega-charizard-x": {
+    "recommendedTitles": [
+      "Black-Winged"
+    ]
+  },
+  "mega-charizard-y": {
+    "recommendedTitles": [
+      "Drought Sky"
+    ]
+  },
+  "cinderace": {
+    "recommendedTitles": [
+      "Stadium Striker",
+      "Burning Soccer",
+      "Match Point",
+      "Goal Scorer"
+    ]
+  },
+  "clefable": {
+    "recommendedTitles": [
+      "Moonlit Hide",
+      "Fairy Charm"
+    ]
+  },
+  "comfey": {
+    "recommendedTitles": [
+      "Flower Lei",
+      "Posy Picker",
+      "Healing Vine",
+      "Sweet Lei"
+    ]
+  },
+  "cramorant": {
+    "recommendedTitles": [
+      "Gulp Missile",
+      "Arrokuda Dive",
+      "Gulping Storm"
+    ]
+  },
+  "crustle": {
+    "recommendedTitles": [
+      "Stone Home",
+      "Boulder Claim",
+      "Cracked Shell"
+    ]
+  },
+  "darkrai": {
+    "recommendedTitles": [
+      "Lunar Nightmare",
+      "Bad Dreams",
+      "Pitch-Black Void",
+      "New Moon"
+    ]
+  },
+  "dhelmise": {
+    "recommendedTitles": [
+      "Ghost Anchor"
+    ]
+  },
+  "eldegoss": {
+    "recommendedTitles": [
+      "Seed Fluff",
+      "Cotton Bloom",
+      "Rescue Fluff",
+      "Leaf Cotton",
+      "Spreading Seeds"
+    ]
+  },
+  "empoleon": {
+    "recommendedTitles": [
+      "Emperor's Pride",
+      "Trident Horns"
+    ]
+  },
+  "goodra": {
+    "recommendedTitles": [
+      "Sappy Hug",
+      "Gooey Dragon"
+    ]
+  },
+  "mega-gyarados": {
+    "recommendedTitles": [
+      "Black Cascade",
+      "Tyrant Serpent"
+    ]
+  },
+  "ho-oh": {
+    "recommendedTitles": [
+      "Rainbow Wings",
+      "Phoenix Dive",
+      "Seven Colors",
+      "Sacred Ashes",
+      "Revival Flame"
+    ]
+  },
+  "hoopa": {
+    "recommendedTitles": [
+      "Hyperspace Prank",
+      "Ring Trick",
+      "Confined Mischief",
+      "Unbound Rings"
+    ]
+  },
+  "lapras": {
+    "recommendedTitles": [
+      "Ferry Song",
+      "Gentle Giant",
+      "Perish Choir"
+    ]
+  },
+  "leafeon": {
+    "recommendedTitles": [
+      "Fresh Air",
+      "Solar Leaf"
+    ]
+  },
+  "mega-lucario": {
+    "recommendedTitles": [
+      "Aura Overflow"
+    ]
+  },
+  "machamp": {
+    "recommendedTitles": [
+      "Four-Armed Fury",
+      "Powerhouse",
+      "Belt Throw",
+      "Submission Combat"
+    ]
+  },
+  "mamoswine": {
+    "recommendedTitles": [
+      "Twin Tusk",
+      "Ice Age",
+      "Frozen Charge"
+    ]
+  },
+  "mew": {
+    "recommendedTitles": [
+      "Ancient Mirage",
+      "Every Technique"
+    ]
+  },
+  "mewtwox": {
+    "recommendedTitles": [
+      "Spliced Future",
+      "Psychic Warp",
+      "Fighting Genes",
+      "Apex Clone"
+    ]
+  },
+  "mimikyu": {
+    "recommendedTitles": [
+      "Ragged Disguise",
+      "Sneaky Play",
+      "Trick Claw"
+    ]
+  },
+  "miraidon": {
+    "recommendedTitles": [
+      "Ruinous Engine",
+      "Apex Motor"
+    ]
+  },
+  "mr-mime": {
+    "recommendedTitles": [
+      "Invisible Wall",
+      "Mime Act",
+      "Pantomime",
+      "Stage Guard"
+    ]
+  },
+  "alolan-ninetales": {
+    "recommendedTitles": [
+      "Snow Veil",
+      "Alolan Aurora",
+      "Nine Snow Tails",
+      "Sacred Snow"
+    ]
+  },
+  "pawmot": {
+    "recommendedTitles": [
+      "Charged Palms"
+    ]
+  },
+  "pikachu": {
+    "recommendedTitles": [
+      "Cheek Sparks",
+      "Thunder Mouse",
+      "Storm Cheeks",
+      "Volt Star"
+    ]
+  },
+  "psyduck": {
+    "recommendedTitles": [
+      "Vacant Stare",
+      "Headache",
+      "Migraine Wave",
+      "Psychic Duck"
+    ]
+  },
+  "alolan-raichu": {
+    "recommendedTitles": [
+      "Tail Surf",
+      "Pancake Ride",
+      "Psychic Surf"
+    ]
+  },
+  "sableye": {
+    "recommendedTitles": [
+      "Gem Eater",
+      "Cave Lurk",
+      "Stolen Jewel",
+      "Darkness Grin"
+    ]
+  },
+  "scyther": {
+    "recommendedTitles": [
+      "Ninja Blur",
+      "Twin Scythes",
+      "Afterimage"
+    ]
+  },
+  "sirfetchd": {
+    "recommendedTitles": [
+      "Noble Leek",
+      "Knight's Honor"
+    ]
+  },
+  "slowbro": {
+    "recommendedTitles": [
+      "Dopey Shell",
+      "Shellder Bite",
+      "Slack Tide",
+      "Space Out"
+    ]
+  },
+  "snorlax": {
+    "recommendedTitles": [
+      "Nap Guard",
+      "Big Yawn",
+      "Hungry Slam",
+      "Hibernation"
+    ]
+  },
+  "suicune": {
+    "recommendedTitles": [
+      "North Wind",
+      "Pure Water",
+      "Aurora Run",
+      "Crystal Beacon"
+    ]
+  },
+  "talonflame": {
+    "recommendedTitles": [
+      "Mach Dive",
+      "Ember Shower"
+    ]
+  },
+  "tinkaton": {
+    "recommendedTitles": [
+      "Scrap Thief",
+      "Frost Hammer",
+      "Corviknight Crush",
+      "Daring Swing"
+    ]
+  },
+  "trevenant": {
+    "recommendedTitles": [
+      "Forest Trap",
+      "Elder Curse",
+      "Horned Stump"
+    ]
+  },
+  "tsareena": {
+    "recommendedTitles": [
+      "Queenly Majesty",
+      "Fruit Queen",
+      "High Heel"
+    ]
+  },
+  "tyranitar": {
+    "recommendedTitles": [
+      "Mountain Breaker",
+      "Desert Tyrant",
+      "Sand Stream"
+    ]
+  },
+  "umbreon": {
+    "recommendedTitles": [
+      "Moonlit Rings",
+      "Night Watch",
+      "Lunar Wish",
+      "Midnight Guard"
+    ]
+  },
+  "vaporeon": {
+    "recommendedTitles": [
+      "Mermaid Tail",
+      "Bubble Jet",
+      "Water Cells",
+      "Fin Ridge",
+      "Aqua Veil"
+    ]
+  },
+  "venusaur": {
+    "recommendedTitles": [
+      "Solar Bloom",
+      "Overgrow",
+      "Flower Cannon"
+    ]
+  },
+  "wigglytuff": {
+    "recommendedTitles": [
+      "Balloon Song",
+      "Lullaby",
+      "Inflate"
+    ]
+  },
+  "zacian": {
+    "recommendedTitles": [
+      "Crowned Sword",
+      "Hero of Galar",
+      "Behemoth Slayer"
+    ]
+  },
+  "zeraora": {
+    "recommendedTitles": [
+      "Thunderclap",
+      "Stored Lightning",
+      "Plasma Claws",
+      "Paw Spark",
+      "Live Wire"
+    ]
+  },
+  "zoroark": {
+    "recommendedTitles": [
+      "Pack Illusion",
+      "False Face"
     ]
   }
 }

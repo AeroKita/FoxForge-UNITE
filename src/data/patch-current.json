@@ -511,7 +511,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "Disaster Sense",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-attack",
@@ -570,7 +570,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "Calamity Blade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-attack",
@@ -629,7 +629,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "Forewarned Cut",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-attack",
@@ -688,7 +688,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "Omen Slash",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-attack",
@@ -1199,7 +1199,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Royal Guard",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "full-heal",
           "moves": [
@@ -1257,7 +1257,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Spectral Blade",
           "heldItemOptional": "muscle-band",
           "battleItemId": "full-heal",
           "moves": [
@@ -1315,7 +1315,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "King's Aegis",
           "heldItemOptional": "scope-lens",
           "battleItemId": "full-heal",
           "moves": [
@@ -1373,7 +1373,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Critical Hit Specialist",
+          "emblemName": "Cursed Sword",
           "battleItemId": "full-heal",
           "moves": [
             "Shadow Claw",
@@ -4237,7 +4237,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Shell Cannons",
           "heldItemOptional": "exp-share",
           "battleItemId": "eject-button",
           "moves": [
@@ -4295,7 +4295,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Spinning Fortress",
           "battleItemId": "eject-button",
           "moves": [
             "Hydro Pump",
@@ -4352,7 +4352,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Jet Pressure",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "moves": [
@@ -4410,7 +4410,7 @@
             }
           ],
           "lane": "Utility Carry",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Hydro Siege",
           "battleItemId": "eject-button",
           "moves": [
             "Hydro Pump",
@@ -4933,7 +4933,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Wrist Flames",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal"
@@ -4988,7 +4988,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Blazing Kicks",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal"
@@ -6763,7 +6763,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Ghost Cut",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -6822,7 +6822,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Bitter Charge",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -6881,7 +6881,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Resentful Blade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -6940,7 +6940,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Possessed Charge",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -8171,7 +8171,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Wildfire Breath",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -8230,7 +8230,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Boulder Melt",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -8289,7 +8289,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Sky Blaze",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -8755,7 +8755,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Black-Winged",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -9227,7 +9227,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Drought Sky",
           "heldItemOptional": "scope-lens",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -9719,7 +9719,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Attack Damage Carry (ADC)",
+          "emblemName": "Stadium Striker",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -9777,7 +9777,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Attack Damage Carry (ADC)",
+          "emblemName": "Burning Soccer",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -9836,7 +9836,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Attack Damage Carry (ADC)",
+          "emblemName": "Match Point",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -9894,7 +9894,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Attack Damage Carry (ADC)",
+          "emblemName": "Goal Scorer",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -10365,7 +10365,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Moonlit Hide",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
           "moves": [
@@ -10422,7 +10422,7 @@
             }
           ],
           "lane": "Path Support or Tank",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Fairy Charm",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -10963,7 +10963,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Flower Lei",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
           "moves": [
@@ -11021,7 +11021,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Posy Picker",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
           "moves": [
@@ -11079,7 +11079,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Healing Vine",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
           "moves": [
@@ -11137,7 +11137,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Sweet Lei",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
           "moves": [
@@ -11635,7 +11635,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Gulp Missile",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
           "moves": [
@@ -11693,7 +11693,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Arrokuda Dive",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
           "moves": [
@@ -11751,7 +11751,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Gulping Storm",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
           "moves": [
@@ -12256,7 +12256,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Physical Tank",
+          "emblemName": "Stone Home",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "moves": [
@@ -12314,7 +12314,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Physical Tank",
+          "emblemName": "Boulder Claim",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -12373,7 +12373,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Physical Tank",
+          "emblemName": "Cracked Shell",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -12878,7 +12878,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Lunar Nightmare",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -12937,7 +12937,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Bad Dreams",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -12995,7 +12995,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Pitch-Black Void",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -13054,7 +13054,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "New Moon",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -13639,7 +13639,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Attack Damage Carry (ADC)",
+          "emblemName": "Arrow Quill",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -14886,7 +14886,7 @@
             }
           ],
           "lane": "Anywhere Utility Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Ghost Anchor",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed"
@@ -17739,7 +17739,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Seed Fluff",
           "heldItemOptional": "curse-incense",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -17798,7 +17798,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Cotton Bloom",
           "heldItemOptional": "curse-incense",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -17857,7 +17857,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Rescue Fluff",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -17915,7 +17915,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Leaf Cotton",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -17974,7 +17974,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Spreading Seeds",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
@@ -18495,7 +18495,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Special Attack Bulk (No Crit Dump)",
+          "emblemName": "Emperor's Pride",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -18554,7 +18554,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Trident Horns",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -23506,7 +23506,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Sappy Hug",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -23564,7 +23564,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Gooey Dragon",
           "heldItemOptional": "big-root",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -26100,7 +26100,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Black Cascade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -26159,7 +26159,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Tyrant Serpent",
           "heldItemOptional": "rocky-helmet",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -26650,7 +26650,7 @@
             }
           ],
           "lane": "Path Protector",
-          "emblemName": "Standard Defender",
+          "emblemName": "Rainbow Wings",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -26708,7 +26708,7 @@
             }
           ],
           "lane": "Path Damage Support",
-          "emblemName": "Standard Defender",
+          "emblemName": "Phoenix Dive",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -26766,7 +26766,7 @@
             }
           ],
           "lane": "Path Support Protector",
-          "emblemName": "Standard Defender",
+          "emblemName": "Seven Colors",
           "heldItemOptional": "rocky-helmet",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -26825,7 +26825,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Defender",
+          "emblemName": "Sacred Ashes",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -26883,7 +26883,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Defender",
+          "emblemName": "Revival Flame",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -27381,7 +27381,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Hyperspace Prank",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27440,7 +27440,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Ring Trick",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27499,7 +27499,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Confined Mischief",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27558,7 +27558,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Cooldown Reduction - Mobility for Survivability",
+          "emblemName": "Unbound Rings",
           "heldItemOptional": "exp-share",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -28648,7 +28648,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Ferry Song",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
           "battleItemOptional": "potion",
@@ -28706,7 +28706,7 @@
             }
           ],
           "lane": "Path Utility",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Gentle Giant",
           "heldItemOptional": "exp-share",
           "battleItemId": "x-speed",
           "battleItemOptional": "potion",
@@ -28764,7 +28764,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Perish Choir",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "x-speed",
           "battleItemOptional": "potion",
@@ -29277,7 +29277,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Mist Veil",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -29336,7 +29336,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Eon Heart",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -29395,7 +29395,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Empathic Cheer",
           "heldItemOptional": "drive-lens",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -29454,7 +29454,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Glass Down",
           "heldItemOptional": "shell-bell",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -30006,7 +30006,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Jet Stream",
           "battleItemId": "eject-button",
           "moves": [
             "Dragon Pulse",
@@ -30063,7 +30063,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Luster Mind",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "moves": [
@@ -30121,7 +30121,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Blue Eon",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "moves": [
@@ -30738,7 +30738,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Fresh Air",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "x-attack",
           "battleItemOptional": "full-heal",
@@ -30802,7 +30802,8 @@
           "moves": [
             "Solar Blade",
             "Leaf Blade"
-          ]
+          ],
+          "emblemName": "Solar Leaf"
         }
       ]
     },
@@ -32192,7 +32193,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Aura Overflow",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
           "moves": [
@@ -32676,7 +32677,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Four-Armed Fury",
           "heldItemOptional": "scope-lens",
           "battleItemId": "eject-button",
           "moves": [
@@ -32734,7 +32735,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Powerhouse",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
@@ -32793,7 +32794,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Belt Throw",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
           "moves": [
@@ -32855,7 +32856,8 @@
           "moves": [
             "Submission",
             "Close Combat"
-          ]
+          ],
+          "emblemName": "Submission Combat"
         }
       ]
     },
@@ -33383,7 +33385,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Twin Tusk",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "moves": [
@@ -33441,7 +33443,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Ice Age",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "moves": [
@@ -33499,7 +33501,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Frozen Charge",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "moves": [
@@ -36496,7 +36498,8 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "battleItemId": "eject-button"
+          "battleItemId": "eject-button",
+          "emblemName": "Ancient Mirage"
         },
         {
           "name": "Items Only",
@@ -36549,7 +36552,8 @@
           ],
           "lane": "Support",
           "heldItemOptional": "drive-lens",
-          "battleItemId": "eject-button"
+          "battleItemId": "eject-button",
+          "emblemName": "Every Technique"
         }
       ]
     },
@@ -37027,7 +37031,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Spliced Future",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "battleItemOptional": "potion",
@@ -37086,7 +37090,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Psychic Warp",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "battleItemOptional": "potion",
@@ -37145,7 +37149,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Fighting Genes",
           "heldItemOptional": "focus-band",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -37204,7 +37208,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Apex Clone",
           "heldItemOptional": "focus-band",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -37641,7 +37645,7 @@
       "builds": [
         {
           "name": "Items Only",
-          "emblemName": "Legendary Attack Speed",
+          "emblemName": "Ultimate Genome",
           "lane": "Path Damage",
           "heldItemIds": [
             "mewtwonite-y",
@@ -38193,7 +38197,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Ragged Disguise",
           "heldItemOptional": "curse-bangle",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -38258,7 +38262,8 @@
           "moves": [
             "Play Rough",
             "Shadow Sneak"
-          ]
+          ],
+          "emblemName": "Sneaky Play"
         },
         {
           "name": "Trick Claw",
@@ -38316,7 +38321,8 @@
           "moves": [
             "Shadow Claw",
             "Trick Room"
-          ]
+          ],
+          "emblemName": "Trick Claw"
         }
       ]
     },
@@ -38809,7 +38815,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Special Attack Cooldown Reduction - Mobility for Survivability",
+          "emblemName": "Ruinous Engine",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "moves": [
@@ -38867,7 +38873,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Apex Motor",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -40293,7 +40299,7 @@
             }
           ],
           "lane": "Path Disrupter",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Invisible Wall",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "moves": [
@@ -40351,7 +40357,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Mime Act",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -40410,7 +40416,7 @@
             }
           ],
           "lane": "Path Supporter",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Pantomime",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -40469,7 +40475,7 @@
             }
           ],
           "lane": "Path Disrupter",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Stage Guard",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -40969,7 +40975,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Snow Veil",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -40992,7 +40998,8 @@
           "moves": [
             "Dazzling Gleam",
             "Aurora Veil"
-          ]
+          ],
+          "emblemName": "Alolan Aurora"
         },
         {
           "name": "Dazzling Veil",
@@ -41044,7 +41051,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Nine Snow Tails",
           "heldItemOptional": "drive-lens",
           "battleItemId": "x-attack",
           "moves": [
@@ -41102,7 +41109,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Sacred Snow",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
@@ -42147,7 +42154,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Charged Palms",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal"
@@ -42622,7 +42629,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Cheek Sparks",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -42681,7 +42688,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Thunder Mouse",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -42740,7 +42747,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Storm Cheeks",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -42799,7 +42806,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Volt Star",
           "heldItemOptional": "drive-lens",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -43313,7 +43320,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Vacant Stare",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -43371,7 +43378,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Headache",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -43429,7 +43436,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Migraine Wave",
           "heldItemOptional": "curse-incense",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -43488,7 +43495,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Psychic Duck",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -44516,7 +44523,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Tail Surf",
           "heldItemOptional": "muscle-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -44575,7 +44582,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Pancake Ride",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -44634,7 +44641,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Psychic Surf",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -46147,7 +46154,7 @@
             }
           ],
           "lane": "Anywhere Support",
-          "emblemName": "Standard Support",
+          "emblemName": "Gem Eater",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "moves": [
@@ -46205,7 +46212,7 @@
             }
           ],
           "lane": "Anywhere Support",
-          "emblemName": "Standard Support",
+          "emblemName": "Cave Lurk",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -46264,7 +46271,7 @@
             }
           ],
           "lane": "Anywhere Support",
-          "emblemName": "Standard Support",
+          "emblemName": "Stolen Jewel",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -46323,7 +46330,7 @@
             }
           ],
           "lane": "Anywhere Support",
-          "emblemName": "Standard Support",
+          "emblemName": "Darkness Grin",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47451,7 +47458,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Ninja Blur",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47510,7 +47517,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Twin Scythes",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47569,7 +47576,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Afterimage",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -48104,7 +48111,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Noble Leek",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -48163,7 +48170,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Knight's Honor",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -49142,7 +49149,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Dopey Shell",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "moves": [
@@ -49200,7 +49207,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Shellder Bite",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "moves": [
@@ -49258,7 +49265,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Slack Tide",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "moves": [
@@ -49316,7 +49323,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Space Out",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -49770,7 +49777,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Nap Guard",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -49829,7 +49836,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Big Yawn",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -49888,7 +49895,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Defender",
+          "emblemName": "Hungry Slam",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -49947,7 +49954,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard Defender",
+          "emblemName": "Hibernation",
           "heldItemOptional": "big-root",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -51052,7 +51059,7 @@
             }
           ],
           "lane": "Path Tank / Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "North Wind",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -51109,7 +51116,7 @@
             }
           ],
           "lane": "Path Tank / Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Pure Water",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -51167,7 +51174,7 @@
             }
           ],
           "lane": "Damage",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Aurora Run",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -51225,7 +51232,7 @@
             }
           ],
           "lane": "Damage",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Crystal Beacon",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -51720,7 +51727,7 @@
             }
           ],
           "lane": "Center Split / Path Damage / Support",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Soothing Aura",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
           "moves": [
@@ -51778,7 +51785,7 @@
             }
           ],
           "lane": "Center Split / Path Damage",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Ribbon Feelers",
           "heldItemOptional": "choice-specs",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -51837,7 +51844,7 @@
             }
           ],
           "lane": "Center Split / Path Damage",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Dragon Vanquisher",
           "heldItemOptional": "muscle-band",
           "battleItemId": "potion",
           "battleItemOptional": "full-heal",
@@ -51896,7 +51903,7 @@
             }
           ],
           "lane": "Center Split / Path Damage",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Intertwining Dance",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -52441,7 +52448,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Mach Dive",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
           "battleItemOptional": "shedinja-doll",
@@ -52500,7 +52507,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Ember Shower",
           "heldItemOptional": "float-stone",
           "battleItemId": "eject-button",
           "battleItemOptional": "shedinja-doll",
@@ -53014,7 +53021,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Scrap Thief",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -53072,7 +53079,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Frost Hammer",
           "heldItemOptional": "charging-charm",
           "battleItemId": "eject-button",
           "moves": [
@@ -53130,7 +53137,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Corviknight Crush",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -53188,7 +53195,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Daring Swing",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -53701,7 +53708,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Physical Damage Tank",
+          "emblemName": "Forest Trap",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -53759,7 +53766,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Physical Damage Tank",
+          "emblemName": "Elder Curse",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -53817,7 +53824,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Standard Defender",
+          "emblemName": "Horned Stump",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -54390,7 +54397,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Queenly Majesty",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -54448,7 +54455,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Fruit Queen",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -54506,7 +54513,7 @@
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "High Heel",
           "heldItemOptional": "aeos-cookie",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -55492,7 +55499,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Mountain Breaker",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -55550,7 +55557,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Desert Tyrant",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -55609,7 +55616,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Sand Stream",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -56112,7 +56119,7 @@
             }
           ],
           "lane": "Path Disrupter",
-          "emblemName": "Standard Defender",
+          "emblemName": "Moonlit Rings",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -56171,7 +56178,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Defender",
+          "emblemName": "Night Watch",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -56230,7 +56237,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Standard Defender",
+          "emblemName": "Lunar Wish",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -56289,7 +56296,7 @@
             }
           ],
           "lane": "Path Disrupter",
-          "emblemName": "Standard Defender",
+          "emblemName": "Midnight Guard",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -56880,7 +56887,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Rapid Strike",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -56939,7 +56946,7 @@
             }
           ],
           "lane": "Center Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Single Strike",
           "heldItemOptional": "charging-charm",
           "battleItemId": "eject-button",
           "moves": [
@@ -57514,7 +57521,7 @@
             }
           ],
           "lane": "Path Disruption",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Mermaid Tail",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -57573,7 +57580,7 @@
             }
           ],
           "lane": "Path Disruption",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Bubble Jet",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
           "moves": [
@@ -57631,7 +57638,7 @@
             }
           ],
           "lane": "Path Disruption",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Water Cells",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -57690,7 +57697,7 @@
             }
           ],
           "lane": "Path Disruption (Unite Emphasis)",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Fin Ridge",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
           "moves": [
@@ -57748,7 +57755,7 @@
             }
           ],
           "lane": "Path Support",
-          "emblemName": "Special Attack Tank",
+          "emblemName": "Aqua Veil",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
           "moves": [
@@ -58247,7 +58254,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Solar Bloom",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -58305,7 +58312,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Overgrow",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -58364,7 +58371,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Special Attacker",
+          "emblemName": "Flower Cannon",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -58833,7 +58840,7 @@
             }
           ],
           "lane": "Path Support or Tank",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Balloon Song",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -58892,7 +58899,7 @@
             }
           ],
           "lane": "Path Support or Tank",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Lullaby",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -58951,7 +58958,7 @@
             }
           ],
           "lane": "Path Tank",
-          "emblemName": "Special Attack Bulk",
+          "emblemName": "Inflate",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
           "battleItemOptional": "goal-getter",
@@ -60058,7 +60065,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Crowned Sword",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -60117,7 +60124,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Hero of Galar",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -60176,7 +60183,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard All-Rounder",
+          "emblemName": "Behemoth Slayer",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -61121,7 +61128,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Thunderclap",
           "heldItemOptional": "attack-weight",
           "battleItemId": "x-attack",
           "battleItemOptional": "full-heal",
@@ -61180,7 +61187,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Stored Lightning",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-attack",
@@ -61239,7 +61246,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Plasma Claws",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-attack",
           "battleItemOptional": "full-heal",
@@ -61298,7 +61305,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Paw Spark",
           "heldItemOptional": "attack-weight",
           "battleItemId": "x-attack",
           "battleItemOptional": "full-heal",
@@ -61357,7 +61364,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Charging Charm (Less Critical Rate, Slight higher bulk)",
+          "emblemName": "Live Wire",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "moves": [
@@ -61863,7 +61870,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "Pack Illusion",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -61922,7 +61929,7 @@
             }
           ],
           "lane": "Anywhere Damage",
-          "emblemName": "Standard Speedster",
+          "emblemName": "False Face",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
           "moves": [

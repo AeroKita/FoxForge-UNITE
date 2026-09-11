@@ -3,12 +3,16 @@
 from __future__ import annotations
 
 import json
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
+import normalize
 from normalize import (
     PLAYABLE_PASSIVE_SLUGS,
     _norm_move_name,
+    apply_curated_builds,
     license_identity,
     advanced_desc,
     append_upgrade_from_advanced,
@@ -1307,6 +1311,87 @@ class TestApplyPatchNoteOverrides(unittest.TestCase):
             if e.get("kind") == "replaceText" and e["find"] in e["replace"]
         ]
         self.assertEqual(unsafe, [])
+
+
+class TestApplyCuratedTitles(unittest.TestCase):
+    """Lore titles in recommendedTitles must win over UNITE-DB remap on regenerate."""
+
+    def test_recommended_titles_override_role_remap(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        curated_path = Path(tmp.name) / "curated_builds.json"
+        curated_path.write_text(
+            json.dumps(
+                {
+                    "_emblemNamePrefixRemap": {
+                        "Bulk Leaning": {"AllRounder": "Standard All-Rounder"},
+                    },
+                    "aegislash": {
+                        "recommendedTitles": ["Royal Guard", "Spectral Blade"],
+                    },
+                }
+            )
+        )
+        pokemon = [
+            {
+                "id": "aegislash",
+                "role": "AllRounder",
+                "moves": [{"name": "Sacred Sword", "isUpgrade": True}],
+                "builds": [
+                    {"emblemName": "Bulk Leaning Standard Physical", "name": "A"},
+                    {"emblemName": "Bulk Leaning Standard Physical", "name": "B"},
+                ],
+            }
+        ]
+        with mock.patch.object(normalize, "CURATED", curated_path):
+            apply_curated_builds(pokemon, [], [], [])
+        self.assertEqual(
+            [b["emblemName"] for b in pokemon[0]["builds"]],
+            ["Royal Guard", "Spectral Blade"],
+        )
+
+    def test_full_builds_overlay_keeps_custom_emblem_name(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        curated_path = Path(tmp.name) / "curated_builds.json"
+        curated_path.write_text(
+            json.dumps(
+                {
+                    "_emblemNamePrefixRemap": {
+                        "Bulk Leaning": {"AllRounder": "Standard All-Rounder"},
+                    },
+                    "lucario": {
+                        "builds": [
+                            {
+                                "name": "Extreme Rush",
+                                "emblemName": "Doggo Zoomies",
+                                "lane": "Path Damage",
+                                "heldItemIds": ["muscle-band"],
+                                "battleItemId": "eject-button",
+                                "emblems": [{"emblemId": "001-bulbasaur", "grade": "gold"}],
+                                "moves": ["Close Combat"],
+                            }
+                        ],
+                    },
+                }
+            )
+        )
+        pokemon = [
+            {
+                "id": "lucario",
+                "role": "AllRounder",
+                "moves": [{"name": "Close Combat", "isUpgrade": True}],
+                "builds": [
+                    {"emblemName": "Bulk Leaning Standard Physical", "name": "raw"},
+                ],
+            }
+        ]
+        emblems = [{"id": "001-bulbasaur"}]
+        held = [{"id": "muscle-band"}]
+        battle = [{"id": "eject-button"}]
+        with mock.patch.object(normalize, "CURATED", curated_path):
+            apply_curated_builds(pokemon, emblems, held, battle)
+        self.assertEqual(pokemon[0]["builds"][0]["emblemName"], "Doggo Zoomies")
 
 
 if __name__ == "__main__":

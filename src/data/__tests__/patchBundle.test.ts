@@ -1208,6 +1208,67 @@ describe("community data bundle", () => {
     expect(build.emblemName).toBe("Singing Special Attacker");
   });
 
+  // Generic UNITE-DB / remap labels. If a refresh ships these again, the
+  // lore overlay in curated_builds.json was skipped or a new Pokémon needs titles.
+  const GENERIC_BUILD_LABELS = new Set([
+    "Standard All-Rounder",
+    "Standard Special Attacker",
+    "Standard Defender",
+    "Standard Speedster",
+    "Standard Support",
+    "Standard Attacker",
+    "Special Attack Bulk",
+    "Special Attack Tank",
+    "Physical Tank",
+    "Physical Damage Tank",
+    "Attack Damage Carry (ADC)",
+    "Critical Hit Specialist",
+    "Legendary Attack Speed",
+    "Special Attack Cooldown Reduction - Mobility for Survivability",
+    "Special Attack Cooldown Reduction - Bulk for Survivability",
+    "Charging Charm (Less Critical Rate, Slight higher bulk)",
+    "Special Attack Bulk (No Crit Dump)",
+    "Items Only",
+    "Dazzling Veil (no emblems)",
+    "Bulk Leaning Standard Physical",
+    "Bulk Leaning Physical Standard",
+    "Offense Leaning Physical Standard",
+    "Lv 40 Scope Lens+Lv 40 Razor Claw",
+  ]);
+
+  it("does not ship generic UNITE-DB build labels", () => {
+    const hits: string[] = [];
+    for (const p of bundle.pokemon) {
+      for (const tab of ["builds", "creativeBuilds"] as const) {
+        for (const b of p[tab] ?? []) {
+          const label = b.emblemName ?? b.name ?? "";
+          if (GENERIC_BUILD_LABELS.has(label)) {
+            hits.push(`${p.id}/${tab}: ${label}`);
+          }
+        }
+      }
+    }
+    expect(hits, hits.join("\n")).toEqual([]);
+  });
+
+  it("keeps hand-named Lucario Recommended and Creative builds", () => {
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    expect(lucario.builds?.map((b) => b.emblemName)).toEqual([
+      "Doggo Zoomies",
+      "Punch Rush",
+      "Punchy Doggy",
+      "Amplified Aura Cannon",
+    ]);
+    expect(lucario.creativeBuilds?.map((b) => b.emblemName)).toEqual([
+      "Step on the Gas (Physical)",
+    ]);
+  });
+
+  it("keeps Sylveon Creative A Fast Fairy", () => {
+    const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
+    expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["A Fast Fairy"]);
+  });
+
   describe("upgrade-line paragraph formatting", () => {
     it("Pikachu Thunderbolt has a blank line before the upgrade bonus", () => {
       const pikachu = bundle.pokemon.find((p) => p.id === "pikachu")!;
