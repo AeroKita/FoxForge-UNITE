@@ -29,6 +29,33 @@ export const SITE_ORIGIN = `https://${SITE_HOST}`;
 export const PAGES_BASE_PATH = "/";
 export const PAGES_DATA_BASE = `${SITE_ORIGIN}/data`;
 
+// Link-preview card (Discord, Telegram, Slack). File lives in public/ and is
+// not referenced by the React UI — crawlers read these tags from index.html.
+export const OG_IMAGE_FILE = "og-image.jpg";
+export const OG_IMAGE_URL = `${SITE_ORIGIN}/${OG_IMAGE_FILE}`;
+export const OG_IMAGE_WIDTH = "1024";
+export const OG_IMAGE_HEIGHT = "537";
+
+/** Static <meta> tags injected into index.html at build time. */
+export function socialMetaTags(): string {
+  return [
+    `<meta name="description" content="${APP_DESCRIPTION}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${APP_NAME}" />`,
+    `<meta property="og:title" content="${APP_NAME}" />`,
+    `<meta property="og:description" content="${APP_DESCRIPTION}" />`,
+    `<meta property="og:url" content="${SITE_ORIGIN}/" />`,
+    `<meta property="og:image" content="${OG_IMAGE_URL}" />`,
+    `<meta property="og:image:width" content="${OG_IMAGE_WIDTH}" />`,
+    `<meta property="og:image:height" content="${OG_IMAGE_HEIGHT}" />`,
+    `<meta property="og:image:alt" content="${APP_NAME}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${APP_NAME}" />`,
+    `<meta name="twitter:description" content="${APP_DESCRIPTION}" />`,
+    `<meta name="twitter:image" content="${OG_IMAGE_URL}" />`,
+  ].join("\n    ");
+}
+
 // ---------------------------------------------------------------- ownership --
 // The person/handle who created + maintains the project. Surfaced in
 // Settings → About. Change in one place to re-credit.

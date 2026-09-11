@@ -4,7 +4,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
-import { APP_NAME, APP_SHORT_NAME, APP_DESCRIPTION, PAGES_BASE_PATH } from "./src/ui/brand";
+import {
+  APP_NAME,
+  APP_SHORT_NAME,
+  APP_DESCRIPTION,
+  PAGES_BASE_PATH,
+  socialMetaTags,
+} from "./src/ui/brand";
 
 // Single source for the displayed version: package.json. Injected via `define` below.
 const { version } = createRequire(import.meta.url)("./package.json") as { version: string };
@@ -57,7 +63,9 @@ const BOOT_SHELL = `<script>
 const htmlBranding = () => ({
   name: "html-branding",
   transformIndexHtml: (html: string) =>
-    html.replaceAll("__APP_NAME__", APP_NAME).replace("<head>", `<head>${BOOT_SHELL}`),
+    html
+      .replaceAll("__APP_NAME__", APP_NAME)
+      .replace("<head>", `<head>${BOOT_SHELL}\n    ${socialMetaTags()}`),
 });
 
 // base: relative "./" by default (works at a domain root or any sub-path); the
