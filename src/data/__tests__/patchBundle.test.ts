@@ -176,18 +176,209 @@ describe("community data bundle", () => {
       expect(fly.description).not.toContain("0.4s");
     });
 
-    it("Lucario Extreme Speed Basic is in-game Effect text with pre-Game8 Upgrade", () => {
+    it("Lucario Extreme Speed Basic keeps its archive body and Upgrade", () => {
       const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
       const extreme = lucario.moves.find((m) => m.id === "extreme-speed")!;
       expect(extreme.description).toContain("breathtaking speed");
       expect(extreme.description).toContain("Extreme Speed mark");
       expect(extreme.description).toContain("\n\nAfter the user learns");
       expect(extreme.description).toContain(
-        "Upgrade (Level 11): Increases Attack for a short time when this move is used.",
+        "Upgrade (Level 11): Also increases Attack for a short time when this move is used.",
       );
       expect(extreme.description).not.toContain("7.5%");
       expect(extreme.descriptionAdvanced).toContain("7.5%");
       expect(extreme.description).not.toContain("point-blank range");
+    });
+
+    it("Lucario shows operator in-game Basic for Steadfast and all moves", () => {
+      // Distinctive in-game phrases from the 2026-09-10 Lucario transcript.
+      // Attack / basicAttack is out of scope.
+      const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+      const byId = Object.fromEntries(lucario.moves.map((m) => [m.id, m]));
+
+      expect(lucario.passiveAbility.id).toBe("steadfast");
+      expect(lucario.passiveAbility.name).toBe("Steadfast");
+      expect(lucario.passiveAbility.description).toContain(
+        "When the Pokémon is at low HP, it is granted a shield",
+      );
+      expect(lucario.passiveAbility.description).not.toContain("30s cooldown");
+      expect(lucario.passiveAbility.description).not.toContain("While at low HP, gain a shield");
+
+      expect(byId["quick-attack"].description).toContain("almost invisible");
+      expect(byId["meteor-mash"].description).toContain("punch like a comet");
+
+      expect(byId["extreme-speed"].description).toContain("\n\nThis mark cannot stack");
+      expect(byId["extreme-speed"].description).toContain(
+        "Upgrade (Level 11): Also increases Attack for a short time when this move is used.",
+      );
+
+      expect(byId["power-up-punch"].description).toContain(
+        "its movement speed is decreased but its Attack slowly increases and the damage",
+      );
+      expect(byId["power-up-punch"].description).toContain(
+        "Upgrade (Level 11): The user becomes immune to hindrances while charging power.",
+      );
+      expect(byId["power-up-punch"].description).not.toContain(
+        "Become immune to hindrances while charging power.",
+      );
+
+      expect(byId["bone-rush"].description).toContain("applying an Extreme Speed mark");
+      expect(byId["bone-rush"].description).toContain(
+        "Upgrade (Level 13): Using this move again will reset the cooldown for Extreme Speed or Power-Up Punch.",
+      );
+
+      expect(byId["close-combat"].description).toContain(
+        "Upgrade (Level 13): Increases damage dealt by this move.",
+      );
+      expect(byId["close-combat"].description).not.toContain("Increased damage.");
+
+      expect(byId["aura-cannon"].description).toContain(
+        "\n\nOpposing Pokémon damaged by this Unite Move",
+      );
+      expect(byId["aura-cannon"].description).toContain(
+        "\n\nAfter using this Unite Move, the user's next Power-Up Punch deals increased damage.",
+      );
+      expect(byId["aura-cannon"].description).not.toContain("users's");
+    });
+
+    it("Venusaur shows operator in-game Basic for Overgrow and all moves", () => {
+      // Distinctive in-game phrases from the 2026-09-10 Venusaur transcript.
+      // Attack / basicAttack is out of scope.
+      const venusaur = bundle.pokemon.find((p) => p.id === "venusaur")!;
+      const byId = Object.fromEntries(venusaur.moves.map((m) => [m.id, m]));
+
+      expect(venusaur.passiveAbility.id).toBe("overgrow");
+      expect(venusaur.passiveAbility.name).toBe("Overgrow");
+      expect(venusaur.passiveAbility.description).toContain(
+        "When the Pokémon is at low HP, the damage it deals is increased.",
+      );
+
+      expect(byId["seed-bomb"].description).toContain("Hurls a large seed");
+
+      expect(byId["sludge-bomb"].description).toContain(
+        "Upgrade (Level 11): Increases this move's area of effect.",
+      );
+      expect(byId["sludge-bomb"].description).not.toContain("Increased area of effect.");
+
+      expect(byId["giga-drain"].description).toContain(
+        "Also reduces the damage the user receives for a short time.",
+      );
+      expect(byId["giga-drain"].description).toContain(
+        "Upgrade (Level 11): Increases the amount of HP this move restores.",
+      );
+      expect(byId["giga-drain"].description).not.toContain("Increases amount of HP restored.");
+
+      expect(byId["razor-leaf"].description).toContain("sharp-edged leaves");
+
+      expect(byId["solar-beam"].description).toContain("Blasts a bundled beam of light");
+      expect(byId["solar-beam"].description).toContain(
+        "Upgrade (Level 13): Reduces this move's cooldown.",
+      );
+      expect(byId["solar-beam"].description).not.toContain("Blasta");
+      expect(byId["solar-beam"].description).not.toContain("Reduced cooldown.");
+
+      expect(byId["petal-dance"].description).toContain(
+        "If this move hits Pokémon on the opposing team, the cooldown of Giga Drain or Sludge Bomb is reduced.",
+      );
+      expect(byId["petal-dance"].description).toContain(
+        "Upgrade (Level 13): Increases this move's area of effect.",
+      );
+      expect(byId["petal-dance"].description).not.toContain("this moves area");
+
+      expect(byId["verdant-anger"].description).toContain("Launches a giant seed");
+    });
+
+    it("Charizard shows operator in-game Basic for Blaze and all moves", () => {
+      const charizard = bundle.pokemon.find((p) => p.id === "charizard")!;
+      const byId = Object.fromEntries(charizard.moves.map((m) => [m.id, m]));
+      expect(charizard.passiveAbility.description).toContain(
+        "When the Pokémon is at half HP or less, its critical-hit rate is increased.",
+      );
+      expect(byId["flame-burst"].description).toMatch(/^Attacks with a bursting flame/);
+      expect(byId["flamethrower"].description).toContain(
+        "Upgrade (Level 11): Increases this move's damage, and the damage caused by burning.",
+      );
+      expect(byId["fire-punch"].description).toContain("punch with a fiery fist");
+      expect(byId["fire-blast"].description).toContain(
+        "Upgrade (Level 13): Increases damage dealt by this move.",
+      );
+      expect(byId["flare-blitz"].description).toContain("charge forward cloaked in fire");
+      expect(byId["seismic-slam"].description).toContain(
+        "when the user deals damage to an opposing Pokémon, the user recovers HP.",
+      );
+      expect(byId["seismic-slam"].description).not.toContain("deals damaged");
+    });
+
+    it("Mega Charizard X shows operator in-game Basic including Solar Power and Fire Punch", () => {
+      const x = bundle.pokemon.find((p) => p.id === "mega-charizard-x")!;
+      const byId = Object.fromEntries(x.moves.map((m) => [m.id, m]));
+      const pre = playablePassives(x).find((a) => a.phase === "preMega")!;
+      const mega = playablePassives(x).find((a) => a.phase === "mega")!;
+      expect(pre.name).toBe("Solar Power");
+      expect(pre.description).toContain("loses some HP");
+      expect(pre.description).toContain("This Ability's effect does not trigger");
+      expect(pre.description).not.toContain("5% of its current HP");
+      expect(mega.name).toBe("Tough Claws");
+      expect(mega.description).toContain("maximum three counters");
+      expect(byId["fire-punch"].description).toContain("punch with a fiery fist");
+      expect(byId["fire-punch"].description).toContain(
+        "When the user has Mega Evolved, all Pokémon it hits are burned.",
+      );
+      expect(byId["fire-punch"].description).not.toContain("intense blast of fire");
+      expect(byId["fire-spin"].description).toContain("area of effect");
+      expect(byId["fire-spin"].description).not.toContain("area of affect");
+      expect(byId["flare-blitz"].description).toContain("this move's cooldown");
+      expect(byId["flare-blitz"].description).not.toContain("moves's");
+      expect(byId["seismic-slam"].description).toContain(
+        "After using this Unite Move, the user Mega Evolves.",
+      );
+    });
+
+    it("Mega Charizard Y shows operator in-game Basic including Pre-Mega Blaze", () => {
+      const y = bundle.pokemon.find((p) => p.id === "mega-charizard-y")!;
+      const byId = Object.fromEntries(y.moves.map((m) => [m.id, m]));
+      const pre = playablePassives(y).find((a) => a.phase === "preMega")!;
+      expect(pre.name).toBe("Blaze");
+      expect(pre.description).toContain(
+        "When the Pokémon receives damage, it deals increased damage for a short time.",
+      );
+      expect(pre.description).not.toContain("Increases Attack by 8%");
+      expect(byId["flamethrower"].description).toContain(
+        "When the user Mega Evolves, its movement speed is further increased.",
+      );
+      expect(byId["flamethrower"].description).toContain(
+        "Upgrade (Level 11): Increases this move's damage and the damage caused by burning.",
+      );
+      expect(byId["fire-spin"].description).not.toContain("area of affect");
+      expect(byId["fire-blast"].description).toContain(
+        "When the user Mega Evolves, this move's area of effect is increased.",
+      );
+      expect(byId["seismic-slam"].description).toContain("its basic attacks deal increased damage");
+      expect(byId["seismic-slam"].description).not.toContain("basic attack deal");
+    });
+
+    it("Mega Lucario shows operator in-game Basic including Justified", () => {
+      const lucario = bundle.pokemon.find((p) => p.id === "mega-lucario")!;
+      const byId = Object.fromEntries(lucario.moves.map((m) => [m.id, m]));
+      const pre = playablePassives(lucario).find((a) => a.phase === "preMega")!;
+      const mega = playablePassives(lucario).find((a) => a.phase === "mega")!;
+      expect(pre.name).toBe("Justified");
+      expect(pre.description).toContain("This effect can stack up to 4 times.");
+      expect(pre.description).not.toContain("8% for 4s");
+      expect(mega.name).toBe("Adaptability");
+      expect(byId["power-up-punch"].description).toContain(
+        "When the user Mega Evolves, it can charge power for a longer duration and it throws opposing Pokémon.",
+      );
+      expect(byId["power-up-punch"].description).toContain(
+        "Upgrade (Level 11): The user becomes immune to hindrances while charging power.",
+      );
+      expect(byId["close-combat"].description).toContain(
+        "the user's moves hit Pokémon from the opposing team.",
+      );
+      expect(byId["aura-cannon"].description).toContain(
+        "\n\nAfter using this Unite Move, the user Mega Evolves.",
+      );
+      expect(byId["aura-cannon"].description).not.toContain("Pokmon");
     });
 
     it("Talonflame Gale Wings passive has Advanced text", () => {
@@ -583,6 +774,17 @@ describe("community data bundle", () => {
         "for short time",
         "override the previous effects and refreshes the duration",
         "increases up (up to",
+        "Unleases",
+        "elaves ",
+        "obsucres",
+        "direciton",
+        "befre ",
+        "might gust",
+        "for a short term",
+        "Sp, Atk",
+        "shoot a flame of in",
+        "Every 2 this Unite",
+        "the user Release",
       ];
       const texts = collectUserFacingTexts(bundle);
       for (const bad of banned) {

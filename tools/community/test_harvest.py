@@ -5,7 +5,7 @@ from __future__ import annotations
 import copy
 import unittest
 
-from harvest_descriptions import harvest
+from harvest_descriptions import harvest, load_operator_locks
 
 
 def _bundle(**pokemon_overrides) -> dict:
@@ -250,6 +250,82 @@ class TestHarvest(unittest.TestCase):
         )
         self.assertEqual(len(changes), 1)
         self.assertTrue(changes[0].startswith("~"))
+
+
+class TestOperatorLockedHarvest(unittest.TestCase):
+    """Operator in-game Basic keys must not be written by harvest."""
+
+    def test_locked_empty_key_is_not_filled(self):
+        bundle = _bundle(
+            id="venusaur",
+            displayName="Venusaur",
+            moves=[
+                {
+                    "id": "solar-beam",
+                    "name": "Solar Beam",
+                    "slot": "move2",
+                    "description": "UNITE-DB stand-in that must not land.",
+                }
+            ],
+        )
+        updated, changes = harvest(
+            bundle,
+            {"venusaur": {}},
+            locks={"venusaur": frozenset({"solar beam"})},
+        )
+        self.assertNotIn("solar beam", updated["venusaur"])
+        self.assertEqual(changes, [])
+
+    def test_locked_upgrade_only_archive_is_not_replaced(self):
+        bundle = _bundle(
+            id="venusaur",
+            displayName="Venusaur",
+            moves=[
+                {
+                    "id": "solar-beam",
+                    "name": "Solar Beam",
+                    "slot": "move2",
+                    "description": "A real body from the bundle that harvest must not write.",
+                }
+            ],
+        )
+        archive = {"venusaur": {"solar beam": "Upgrade (Level 13): Reduced cooldown."}}
+        updated, changes = harvest(
+            bundle,
+            archive,
+            locks={"venusaur": frozenset({"solar beam"})},
+        )
+        self.assertEqual(
+            updated["venusaur"]["solar beam"],
+            "Upgrade (Level 13): Reduced cooldown.",
+        )
+        self.assertEqual(changes, [])
+
+    def test_unlocked_empty_key_is_still_filled(self):
+        bundle = _bundle(
+            moves=[
+                {
+                    "id": "thunderbolt",
+                    "name": "Thunderbolt",
+                    "slot": "move1",
+                    "description": "Deals damage.",
+                }
+            ]
+        )
+        updated, changes = harvest(bundle, {}, locks={"venusaur": frozenset({"solar beam"})})
+        self.assertEqual(updated["pikachu"]["thunderbolt"], "Deals damage.")
+        self.assertEqual(len(changes), 1)
+
+    def test_live_lock_file_includes_operator_kits(self):
+        locks = load_operator_locks()
+        self.assertIn("solar beam", locks["venusaur"])
+        self.assertIn("overgrow", locks["venusaur"])
+        self.assertIn("steadfast", locks["lucario"])
+        self.assertIn("pixilate", locks["sylveon"])
+        self.assertIn("blaze", locks["charizard"])
+        self.assertIn("solar power", locks["mega-charizard-x"])
+        self.assertIn("fire punch", locks["mega-charizard-x"])
+        self.assertIn("justified", locks["mega-lucario"])
 
 
 if __name__ == "__main__":

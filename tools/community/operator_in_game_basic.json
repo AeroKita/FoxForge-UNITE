@@ -1,0 +1,125 @@
+{
+  "_source": "Operator-confirmed English in-game Basic (Moves and Passives). Harvest must not write these keys. Normalize fails if a locked key has no real archive body. Attack / basicAttack is never locked. Add keys here when the operator pastes a kit; do not unlock to refresh.",
+  "locks": {
+    "lucario": [
+      "aura cannon",
+      "bone rush",
+      "close combat",
+      "extreme speed",
+      "meteor mash",
+      "power-up punch",
+      "quick attack",
+      "steadfast"
+    ],
+    "venusaur": [
+      "giga drain",
+      "overgrow",
+      "petal dance",
+      "razor leaf",
+      "seed bomb",
+      "sludge bomb",
+      "solar beam",
+      "verdant anger"
+    ],
+    "morpeko": [
+      "assurance",
+      "hunger switch",
+      "hungry supercharge wheel",
+      "power trip",
+      "spark",
+      "thunder shock"
+    ],
+    "solgaleo": [
+      "attack - cosmog",
+      "cosmic power",
+      "full metal body",
+      "iron head",
+      "psyshock",
+      "shining meteor crush",
+      "teleport",
+      "unaware"
+    ],
+    "reshiram": [
+      "blue flare",
+      "dragon breath",
+      "dragon dance",
+      "flames that bring lightning",
+      "tailwind",
+      "turboblaze"
+    ],
+    "yveltal": [
+      "dark aura",
+      "dark pulse",
+      "gust",
+      "lash out",
+      "lumiere of demise",
+      "oblivion wing"
+    ],
+    "palkia": [
+      "aqua ring",
+      "aura sphere",
+      "dragon claw",
+      "multi dimensional rend",
+      "pressure",
+      "slash"
+    ],
+    "quaquaval": [
+      "carnival splash",
+      "liquidation",
+      "low sweep",
+      "moxie",
+      "pound",
+      "wing attack"
+    ],
+    "sylveon": [
+      "adaptability",
+      "attack - eevee",
+      "baby doll eyes",
+      "baby-doll eyes",
+      "calm mind",
+      "draining kiss",
+      "fairy frolic",
+      "hyper voice",
+      "mystical fire",
+      "pixilate",
+      "swift"
+    ],
+    "charizard": [
+      "blaze",
+      "fire blast",
+      "fire punch",
+      "fire spin",
+      "flame burst",
+      "flamethrower",
+      "flare blitz",
+      "seismic slam"
+    ],
+    "mega-charizard-x": [
+      "fire punch",
+      "fire spin",
+      "flame burst",
+      "flare blitz",
+      "seismic slam",
+      "solar power",
+      "tough claws"
+    ],
+    "mega-charizard-y": [
+      "blaze",
+      "drought",
+      "fire blast",
+      "fire spin",
+      "flame burst",
+      "flamethrower",
+      "seismic slam"
+    ],
+    "mega-lucario": [
+      "adaptability",
+      "aura cannon",
+      "close combat",
+      "justified",
+      "meteor mash",
+      "power-up punch",
+      "quick attack"
+    ]
+  }
+}

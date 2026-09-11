@@ -1,9 +1,11 @@
 """Harvest Basic move/passive descriptions from the bundle into move_descriptions.json.
 
 Archives missing keys so normalize.py can backfill future upstream deletions.
-Existing archive bodies are never overwritten (add-only). Upgrade-only leftovers
-(no body before the Upgrade line) are treated like blank. New keys store the
-body only. If Basic already has an Upgrade paragraph, normalize keeps it.
+Existing archive bodies are never overwritten (add-only). Operator-locked keys
+in operator_in_game_basic.json are never written (even when the archive is
+blank or upgrade-only). Upgrade-only leftovers (no body before the Upgrade
+line) are treated like blank. New keys store the body only. If Basic already
+has an Upgrade paragraph, normalize keeps it.
 """
 
 from __future__ import annotations
@@ -13,22 +15,28 @@ import json
 import sys
 from pathlib import Path
 
-from normalize import _norm_move_name, description_body
+from normalize import _norm_move_name, description_body, load_operator_locks
 
 REPO = Path(__file__).resolve().parents[2]
 BUNDLE = REPO / "src" / "data" / "patch-current.json"
 MOVE_DESCRIPTIONS = REPO / "tools" / "community" / "move_descriptions.json"
 
 
-def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
+def harvest(
+    bundle: dict,
+    archive: dict,
+    locks: dict[str, frozenset[str]] | None = None,
+) -> tuple[dict, list[str]]:
     """Merge missing bundle descriptions into *archive* (pokemon id → norm name → text).
 
     Returns the updated descriptions mapping and human-readable change lines.
-    Existing archive bodies are never overwritten. Blank or upgrade-only bundle
-    text is skipped. New and upgrade-only-archive keys store ``description_body``.
+    Existing archive bodies are never overwritten. Operator-locked keys are
+    never written. Blank or upgrade-only bundle text is skipped. New and
+    upgrade-only-archive keys store ``description_body``.
     """
     result: dict = copy.deepcopy(archive)
     changes: list[str] = []
+    locked = locks or {}
 
     for pokemon in bundle.get("pokemon") or []:
         pid = pokemon.get("id")
@@ -62,6 +70,8 @@ def harvest(bundle: dict, archive: dict) -> tuple[dict, list[str]]:
             key = _norm_move_name(name)
             if not key:
                 continue
+            if key in (locked.get(pid) or ()):
+                continue
 
             prior_name = seen_keys.get(key)
             if prior_name is not None and prior_name != name:
@@ -84,7 +94,7 @@ def main() -> int:
     doc = json.loads(MOVE_DESCRIPTIONS.read_text())
     descriptions = doc.get("descriptions") or {}
 
-    updated, changes = harvest(bundle, descriptions)
+    updated, changes = harvest(bundle, descriptions, load_operator_locks())
     for line in changes:
         print(line)
 

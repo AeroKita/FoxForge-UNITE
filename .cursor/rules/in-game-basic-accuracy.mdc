@@ -7,9 +7,9 @@ alwaysApply: true
 
 Basic tooltip copy is owned in `tools/community/move_descriptions.json`. Do not invent it. Do not copy Serebii, Bulbapedia, or similar sites as the live source. The Serebii scraper is retired.
 
-UNITE-DB Basic is often a pre-evolution leftover, unofficial, upgrade-only, or the same as Advanced numbers. The owned archive wins over UNITE-DB Basic when it has a real body. Prefer operator-supplied in-game text or tooltip stills over Game8 when they disagree. Advanced stays UNITE-DB `rsb.true_desc` (and staged `passive2_description` / `passive3_description`). When Basic already has an Upgrade paragraph, keep it — do not replace it with Advanced.
+UNITE-DB Basic is often a pre-evolution leftover, unofficial, upgrade-only, or the same as Advanced numbers. The owned archive wins over UNITE-DB Basic when it has a real body. Prefer operator-supplied in-game text or tooltip stills. Advanced stays UNITE-DB `rsb.true_desc` (and staged `passive2_description` / `passive3_description`). When Basic already has an Upgrade paragraph, keep it — do not replace it with Advanced.
 
-Game8 `Effect` headings were a one-time transcription aid (`tools/community/ingest_game8_effects.py`). Do not add that script to harvest or refresh. Do not copy Game8 How to Use, patch history, or strategy.
+Do not restore a Game8 ingest, crawler, or cache. Do not copy fan-site Effect / How to Use / strategy prose as the live source.
 
 There is no official Nintendo/TiMi gamemaster API. `uniteapi.dev` is match analytics, not constants. First-party APK datamining is blocked (rotated Unity XOR keys). Do not reverse `libil2cpp.so`, dump APKs, or write decrypt tools. Agents cannot operate a Switch or a UNITE client from this session.
 

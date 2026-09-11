@@ -13,6 +13,7 @@ from normalize import (
     append_upgrade_from_advanced,
     apply_archive_move_basic,
     apply_patch_note_overrides,
+    assert_operator_lock_bodies,
     build_emblems,
     build_upgrade_move,
     description_body,
@@ -318,6 +319,35 @@ class TestParagraphizeBasicBody(unittest.TestCase):
         self.assertIn("\n\nAfter the user learns", updated["lucario"]["extreme speed"])
         self.assertNotIn("\n\n", updated["lucario"]["steadfast"])
         self.assertNotIn("\n\nWhen this move hits", updated["lucario"]["basic attack"])
+
+
+class TestOperatorLockBodies(unittest.TestCase):
+    """Locked operator Basic must have a real archive body before normalize."""
+
+    def test_raises_when_locked_body_missing(self):
+        with self.assertRaises(ValueError) as ctx:
+            assert_operator_lock_bodies(
+                {"venusaur": {}},
+                {"venusaur": frozenset({"solar beam"})},
+            )
+        self.assertIn("venusaur/solar beam", str(ctx.exception))
+
+    def test_raises_when_locked_body_is_upgrade_only(self):
+        with self.assertRaises(ValueError):
+            assert_operator_lock_bodies(
+                {
+                    "venusaur": {
+                        "solar beam": "Upgrade (Level 13): Reduced cooldown.",
+                    }
+                },
+                {"venusaur": frozenset({"solar beam"})},
+            )
+
+    def test_ok_when_locked_body_present(self):
+        assert_operator_lock_bodies(
+            {"venusaur": {"solar beam": "Blasts a bundled beam of light."}},
+            {"venusaur": frozenset({"solar beam"})},
+        )
 
 
 class TestPassiveBasicDesc(unittest.TestCase):
@@ -755,6 +785,17 @@ class TestFixSpelling(unittest.TestCase):
         self.assertEqual(fix_spelling("in an are of effect"), "in an area of effect")
         self.assertEqual(fix_spelling("for short time"), "for a short time")
         self.assertEqual(fix_spelling("increases by 2 increment for each"), "increases by 2 increments for each")
+        self.assertEqual(fix_spelling("Unleases a flurry"), "Unleashes a flurry")
+        self.assertEqual(fix_spelling("and elaves nearby"), "and leaves nearby")
+        self.assertEqual(fix_spelling("and obsucres opposing"), "and obscures opposing")
+        self.assertEqual(fix_spelling("designated direciton"), "designated direction")
+        self.assertEqual(fix_spelling("location befre slashing"), "location before slashing")
+        self.assertEqual(fix_spelling("the might gust is exhaled"), "the mighty gust is exhaled")
+        self.assertEqual(fix_spelling("reduced for a short term"), "reduced for a short time")
+        self.assertEqual(fix_spelling("and Sp, Atk."), "and Sp. Atk.")
+        self.assertEqual(fix_spelling("shoot a flame of in the"), "shoot a flame in the")
+        self.assertEqual(fix_spelling("Every 2 this Unite Move"), "Every 2 times this Unite Move")
+        self.assertEqual(fix_spelling("the user Release a telekinetic"), "the user releases a telekinetic")
 
     def test_cooldown_abbrev_uppercases_cd(self):
         self.assertEqual(fix_spelling("triggered (4s cd)."), "triggered (4s CD).")

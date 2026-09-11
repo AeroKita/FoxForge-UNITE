@@ -843,6 +843,17 @@ SPELLING_FIXES = {
     "are of effect": "area of effect",
     "for short time": "for a short time",
     "2 increment for": "2 increments for",
+    "Unleases": "Unleashes",
+    "elaves": "leaves",
+    "obsucres": "obscures",
+    "direciton": "direction",
+    "befre": "before",
+    "might gust": "mighty gust",
+    "for a short term": "for a short time",
+    "Sp, Atk": "Sp. Atk",
+    "shoot a flame of in": "shoot a flame in",
+    "Every 2 this Unite": "Every 2 times this Unite",
+    "the user Release": "the user releases",
 }
 
 
@@ -1061,6 +1072,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
 
 CURATED = HERE / "curated_builds.json"
 MOVE_DESCRIPTIONS = HERE / "move_descriptions.json"
+OPERATOR_LOCKS = HERE / "operator_in_game_basic.json"
 MOVE_GIFS = HERE / "move_gifs.json"
 MOVE_CLIPS = HERE / "move_clips.json"
 VALID_GRADES = {"bronze", "silver", "gold", "platinum"}
@@ -1080,13 +1092,50 @@ def load_move_clips() -> dict:
     return json.loads(MOVE_CLIPS.read_text()).get("clips", {})
 
 
+def load_operator_locks(path: Path | None = None) -> dict[str, frozenset[str]]:
+    """Return pokemon id → locked normalized move/Ability keys."""
+    src = path or OPERATOR_LOCKS
+    if not src.is_file():
+        return {}
+    raw = json.loads(src.read_text(encoding="utf-8")).get("locks") or {}
+    out: dict[str, frozenset[str]] = {}
+    for pid, keys in raw.items():
+        if str(pid).startswith("_") or not isinstance(keys, list):
+            continue
+        out[str(pid)] = frozenset(str(k) for k in keys)
+    return out
+
+
+def assert_operator_lock_bodies(
+    descriptions: dict,
+    locks: dict[str, frozenset[str]] | None = None,
+) -> None:
+    """Raise if a locked in-game Basic key has no real archive body.
+
+    Locked text is operator-owned. Normalize must not ship UNITE-DB in its place.
+    """
+    locked = locks if locks is not None else load_operator_locks()
+    missing: list[str] = []
+    for pid, keys in sorted(locked.items()):
+        bucket = descriptions.get(pid) or {}
+        for key in sorted(keys):
+            if not description_body(bucket.get(key) or ""):
+                missing.append(f"{pid}/{key}")
+    if missing:
+        raise ValueError(
+            "operator in-game Basic lock missing archive body: " + ", ".join(missing)
+        )
+
+
 def load_move_descriptions() -> dict:
     """Owned in-game Basic fallback texts, keyed by pokemon id -> normalized
     move name -> description. Empty if the file is absent."""
     if not MOVE_DESCRIPTIONS.exists():
         print("  (no move_descriptions.json — skipping description backfill)")
         return {}
-    return json.loads(MOVE_DESCRIPTIONS.read_text()).get("descriptions", {})
+    descriptions = json.loads(MOVE_DESCRIPTIONS.read_text()).get("descriptions", {})
+    assert_operator_lock_bodies(descriptions)
+    return descriptions
 
 
 def _validate_curated_build(b, pid, kind, emblem_ids, held_ids, battle_ids, upgrade_moves):
