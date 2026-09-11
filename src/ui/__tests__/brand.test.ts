@@ -63,11 +63,9 @@ describe("link-preview meta tags", () => {
   });
 
   it("uses the embed description wording", () => {
-    expect(APP_DESCRIPTION).toContain("Design optimized");
-    expect(APP_DESCRIPTION).toContain("Emblems");
-    expect(APP_DESCRIPTION).toContain("Held Items and Trainer Items");
-    expect(APP_DESCRIPTION).not.toMatch(/attack speed/i);
-    expect(APP_DESCRIPTION).toMatch(/stats!$/);
+    expect(APP_DESCRIPTION).toBe(
+      "FoxForge UNITE — A Pokémon UNITE tool for casual and veteran Trainers!",
+    );
   });
 });
 

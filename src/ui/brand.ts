@@ -17,7 +17,7 @@ export const APP_TAGLINE = "Forge your UNITE Loadout!";
 
 // Used for the PWA manifest + meta description.
 export const APP_DESCRIPTION =
-  "FoxForge UNITE — Design optimized Pokémon UNITE loadouts: Emblems, Held Items and Trainer Items, and live stats!";
+  "FoxForge UNITE — A Pokémon UNITE tool for casual and veteran Trainers!";
 
 // GitHub repo slug + hosted site URLs. Display name stays "FoxForge UNITE";
 // the hyphenated slug is for the GitHub repo. The public site is the custom
