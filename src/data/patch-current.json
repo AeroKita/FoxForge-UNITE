@@ -51913,7 +51913,7 @@
           "lane": "Anywhere Damage",
           "heldItemIds": [
             "exp-share",
-            "amulet-coin",
+            "choice-scarf",
             "choice-specs"
           ],
           "battleItemId": "x-speed",
