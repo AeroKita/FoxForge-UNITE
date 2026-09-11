@@ -6101,7 +6101,8 @@
           "moves": [
             "Superpower",
             "Smack Down"
-          ]
+          ],
+          "emblemName": "Pulverizing Fist"
         },
         {
           "name": "Super Lunge",
@@ -6158,7 +6159,8 @@
           "moves": [
             "Superpower",
             "Lunge"
-          ]
+          ],
+          "emblemName": "Swollen Charge"
         },
         {
           "name": "Smack Life",
@@ -6216,7 +6218,8 @@
           "moves": [
             "Leech Life",
             "Smack Down"
-          ]
+          ],
+          "emblemName": "Ultra Absorption"
         },
         {
           "name": "Leech Lunge",
@@ -6274,7 +6277,8 @@
           "moves": [
             "Leech Life",
             "Lunge"
-          ]
+          ],
+          "emblemName": "Swollen Drain"
         }
       ]
     },
@@ -14251,7 +14255,8 @@
           "moves": [
             "Mystical Fire",
             "Flame Charge"
-          ]
+          ],
+          "emblemName": "Oracle Flame"
         },
         {
           "name": "Blast Spin",
@@ -14309,7 +14314,8 @@
           "moves": [
             "Fire Blast",
             "Fire Spin"
-          ]
+          ],
+          "emblemName": "Fiery Vortex"
         },
         {
           "name": "Mystical Spin",
@@ -14365,7 +14371,8 @@
           "moves": [
             "Mystical Fire",
             "Fire Spin"
-          ]
+          ],
+          "emblemName": "Seer's Branch"
         }
       ]
     },
@@ -19068,7 +19075,8 @@
           "moves": [
             "Psyshock",
             "Psybeam"
-          ]
+          ],
+          "emblemName": "Velvet Fur"
         },
         {
           "name": "Stored Beam",
@@ -19125,7 +19133,8 @@
           "moves": [
             "Stored Power",
             "Psybeam"
-          ]
+          ],
+          "emblemName": "Scarlet Orb"
         },
         {
           "name": "Shock Sight",
@@ -19183,7 +19192,8 @@
           "moves": [
             "Psyshock",
             "Future Sight"
-          ]
+          ],
+          "emblemName": "Forked Tail"
         },
         {
           "name": "Stored Sight",
@@ -19241,7 +19251,8 @@
           "moves": [
             "Stored Power",
             "Future Sight"
-          ]
+          ],
+          "emblemName": "Sun Foresight"
         }
       ]
     },
@@ -20902,7 +20913,8 @@
           "moves": [
             "Dragon Rush",
             "Dragon Claw"
-          ]
+          ],
+          "emblemName": "Sonic Jet"
         },
         {
           "name": "Full Dragon",
@@ -20958,7 +20970,8 @@
           "moves": [
             "Dragon Rush",
             "Dragon Claw"
-          ]
+          ],
+          "emblemName": "Sharp Scales"
         },
         {
           "name": "Earthquake Dig",
@@ -21016,7 +21029,8 @@
           "moves": [
             "Dig",
             "Earthquake"
-          ]
+          ],
+          "emblemName": "Underground Mach"
         },
         {
           "name": "Earthquake Dig",
@@ -21074,7 +21088,8 @@
           "moves": [
             "Dig",
             "Earthquake"
-          ]
+          ],
+          "emblemName": "Volcanic Den"
         }
       ],
       "creativeBuilds": [
@@ -21616,7 +21631,8 @@
           "moves": [
             "Psyshock",
             "Psychic"
-          ]
+          ],
+          "emblemName": "Psychic Peak"
         },
         {
           "name": "Future Moon",
@@ -21674,7 +21690,8 @@
           "moves": [
             "Future Sight",
             "Moonblast"
-          ]
+          ],
+          "emblemName": "Noble Premonition"
         },
         {
           "name": "Psyblast",
@@ -21732,7 +21749,8 @@
           "moves": [
             "Psyshock",
             "Moonblast"
-          ]
+          ],
+          "emblemName": "Moon Embrace"
         },
         {
           "name": "Future Psychic",
@@ -21790,7 +21808,8 @@
           "moves": [
             "Future Sight",
             "Psychic"
-          ]
+          ],
+          "emblemName": "Small Black Hole"
         }
       ]
     },
@@ -22893,7 +22912,8 @@
           "moves": [
             "Icicle Spear",
             "Ice Shard"
-          ]
+          ],
+          "emblemName": "Needle Fur"
         },
         {
           "name": "Freeze Wind",
@@ -22950,7 +22970,8 @@
           "moves": [
             "Icy Wind",
             "Freeze Dry"
-          ]
+          ],
+          "emblemName": "Diamond Dust"
         },
         {
           "name": "Freeze Wind",
@@ -23007,7 +23028,8 @@
           "moves": [
             "Icy Wind",
             "Freeze Dry"
-          ]
+          ],
+          "emblemName": "Captivating Snow"
         }
       ]
     },

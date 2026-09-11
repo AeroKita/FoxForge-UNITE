@@ -1220,6 +1220,12 @@
     ]
   },
   "garchomp": {
+    "recommendedTitles": [
+      "Sonic Jet",
+      "Sharp Scales",
+      "Underground Mach",
+      "Volcanic Den"
+    ],
     "creativeBuilds": [
       {
         "name": "Heavy is the Crown",
@@ -2148,6 +2154,14 @@
       "Blazing Kicks"
     ]
   },
+  "buzzwole": {
+    "recommendedTitles": [
+      "Pulverizing Fist",
+      "Swollen Charge",
+      "Ultra Absorption",
+      "Swollen Drain"
+    ]
+  },
   "ceruledge": {
     "recommendedTitles": [
       "Ghost Cut",
@@ -2222,6 +2236,13 @@
       "Ghost Anchor"
     ]
   },
+  "delphox": {
+    "recommendedTitles": [
+      "Oracle Flame",
+      "Fiery Vortex",
+      "Seer's Branch"
+    ]
+  },
   "eldegoss": {
     "recommendedTitles": [
       "Seed Fluff",
@@ -2235,6 +2256,29 @@
     "recommendedTitles": [
       "Emperor's Pride",
       "Trident Horns"
+    ]
+  },
+  "espeon": {
+    "recommendedTitles": [
+      "Velvet Fur",
+      "Scarlet Orb",
+      "Forked Tail",
+      "Sun Foresight"
+    ]
+  },
+  "gardevoir": {
+    "recommendedTitles": [
+      "Psychic Peak",
+      "Noble Premonition",
+      "Moon Embrace",
+      "Small Black Hole"
+    ]
+  },
+  "glaceon": {
+    "recommendedTitles": [
+      "Needle Fur",
+      "Diamond Dust",
+      "Captivating Snow"
     ]
   },
   "goodra": {

@@ -1269,6 +1269,65 @@ describe("community data bundle", () => {
     expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["A Fast Fairy"]);
   });
 
+  it("pins Buzzwole Recommended lore titles", () => {
+    const buzzwole = bundle.pokemon.find((p) => p.id === "buzzwole")!;
+    expect(buzzwole.builds?.map((b) => b.emblemName)).toEqual([
+      "Pulverizing Fist",
+      "Swollen Charge",
+      "Ultra Absorption",
+      "Swollen Drain",
+    ]);
+  });
+
+  it("pins Garchomp Recommended lore titles and keeps Creative Heavy is the Crown", () => {
+    const garchomp = bundle.pokemon.find((p) => p.id === "garchomp")!;
+    expect(garchomp.builds?.map((b) => b.emblemName)).toEqual([
+      "Sonic Jet",
+      "Sharp Scales",
+      "Underground Mach",
+      "Volcanic Den",
+    ]);
+    expect(garchomp.creativeBuilds?.map((b) => b.emblemName)).toEqual(["Heavy is the Crown"]);
+  });
+
+  it("pins Espeon Recommended lore titles", () => {
+    const espeon = bundle.pokemon.find((p) => p.id === "espeon")!;
+    expect(espeon.builds?.map((b) => b.emblemName)).toEqual([
+      "Velvet Fur",
+      "Scarlet Orb",
+      "Forked Tail",
+      "Sun Foresight",
+    ]);
+  });
+
+  it("pins Glaceon Recommended lore titles", () => {
+    const glaceon = bundle.pokemon.find((p) => p.id === "glaceon")!;
+    expect(glaceon.builds?.map((b) => b.emblemName)).toEqual([
+      "Needle Fur",
+      "Diamond Dust",
+      "Captivating Snow",
+    ]);
+  });
+
+  it("pins Gardevoir Recommended lore titles", () => {
+    const gardevoir = bundle.pokemon.find((p) => p.id === "gardevoir")!;
+    expect(gardevoir.builds?.map((b) => b.emblemName)).toEqual([
+      "Psychic Peak",
+      "Noble Premonition",
+      "Moon Embrace",
+      "Small Black Hole",
+    ]);
+  });
+
+  it("pins Delphox Recommended lore titles", () => {
+    const delphox = bundle.pokemon.find((p) => p.id === "delphox")!;
+    expect(delphox.builds?.map((b) => b.emblemName)).toEqual([
+      "Oracle Flame",
+      "Fiery Vortex",
+      "Seer's Branch",
+    ]);
+  });
+
   describe("upgrade-line paragraph formatting", () => {
     it("Pikachu Thunderbolt has a blank line before the upgrade bonus", () => {
       const pikachu = bundle.pokemon.find((p) => p.id === "pikachu")!;
