@@ -14,7 +14,9 @@ export const APP_NAME = "FoxForge UNITE";        // header title, HTML <title>, 
 export const APP_SHORT_NAME = "FoxForge";        // PWA home-screen label
 export const APP_TAGLINE = "Forge your UNITE Loadout!"; // reserved; not shown in the app header
 export const APP_DESCRIPTION = "…";              // PWA + meta description
-export const GITHUB_REPO_SLUG = "FoxForge-UNITE"; // repo name, Pages path, VITE_BASE
+export const GITHUB_REPO_SLUG = "FoxForge-UNITE"; // GitHub repo name
+export const SITE_HOST = "foxforge-unite.com";    // custom domain, public/CNAME
+export const PAGES_BASE_PATH = "/";               // VITE_BASE for build:pages
 ```
 
 That single file drives:
@@ -25,7 +27,7 @@ That single file drives:
 - exported loadout `app` labels ([`src/state/loadout.ts`](../src/state/loadout.ts)),
 - the default remote data URL ([`src/data/dataSource.ts`](../src/data/dataSource.ts)).
 
-If you change `GITHUB_REPO_SLUG`, also update the same slug in `package.json` (`build:pages` `VITE_BASE`) and `tools/community/publish_bundle.py` (`BASE_URL`). Those files cannot import TypeScript.
+If you change `SITE_HOST` or `PAGES_BASE_PATH`, also update `package.json` (`build:pages` `VITE_BASE`), `public/CNAME`, and `tools/community/publish_bundle.py` (`BASE_URL`). Those files cannot import TypeScript. `GITHUB_REPO_SLUG` is only the GitHub repo name.
 
 ### 2. Do NOT change
 

@@ -4,7 +4,7 @@ The tool ships **one way: a hosted installable web app** on GitHub Pages, with *
 
 ## Distribution
 
-**Hosted web app** (zero install): GitHub Pages deploys `dist/` on every push to `main` ([`.github/workflows/pages.yml`](../.github/workflows/pages.yml)). It is installable from the browser ("Add to Home Screen" / "Install"). Game data is bundled in the build and also fetched from Pages. The Pages deploy sets Vite PWA `selfDestroying` so a leftover service worker cannot serve a blank stale cache. Local non-Pages builds may still register a service worker.
+**Hosted web app** (zero install): GitHub Pages deploys `dist/` on every push to `main` ([`.github/workflows/pages.yml`](../.github/workflows/pages.yml)) at **https://foxforge-unite.com/**. It is installable from the browser ("Add to Home Screen" / "Install"). Game data is bundled in the build and also fetched from the same origin. The Pages deploy sets Vite PWA `selfDestroying` so a leftover service worker cannot serve a blank stale cache. Local non-Pages builds may still register a service worker. The `github.io` project URL redirects to the custom domain once DNS is live.
 
 ## Two update channels
 
@@ -14,7 +14,9 @@ The tool ships **one way: a hosted installable web app** on GitHub Pages, with *
 ## One-time setup (in GitHub repo settings)
 
 1. **Pages**: Settings → Pages → Source = GitHub Actions.
-2. If the repo/owner ever changes, update `GITHUB_REPO_SLUG` in `src/ui/brand.ts`, `VITE_BASE` in `package.json` (`build:pages`), and `BASE_URL` in `tools/community/publish_bundle.py`. You can still override the fetch URL at build time with `VITE_DATA_BASE_URL`.
+2. **Custom domain**: Settings → Pages → Custom domain = `foxforge-unite.com`, then Enforce HTTPS. The same hostname lives in `public/CNAME` so the Actions artifact keeps it.
+3. **DNS** at the registrar (apex A records to GitHub Pages; optional `www` CNAME to `aerokita.github.io`). See [GitHub's custom-domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+4. If the public host or repo/owner ever changes, update `SITE_HOST` / `SITE_ORIGIN` in `src/ui/brand.ts`, `VITE_BASE` in `package.json` (`build:pages`), `public/CNAME`, and `BASE_URL` in `tools/community/publish_bundle.py`. You can still override the fetch URL at build time with `VITE_DATA_BASE_URL`.
 
 ## Notes
 

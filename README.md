@@ -11,7 +11,7 @@ Two ways to use the tool — pick whichever suits you.
 
 ### 1. Use it in your browser (no install)
 
-Open the hosted web app: **<https://aerokita.github.io/FoxForge-UNITE/>**
+Open the hosted web app: **<https://foxforge-unite.com/>**
 
 It's an installable web app ("Add to Home Screen" / "Install"). Game data is bundled with the build and also fetched from Pages at launch. The hosted Pages deploy disables the service worker on purpose (`selfDestroying` in `vite.config.ts`) so an old cache cannot blank the app. Local `npm run dev` / `npm run build` can still register a service worker.
 
@@ -88,7 +88,7 @@ Licensed under [AGPL-3.0-only](LICENSE).
 ```bash
 npm run dev                     # vite dev server — the app
 npm run build                   # production static site → dist/ (portable: base "./")
-npm run build:pages             # static build with the GitHub Pages base path
+npm run build:pages             # static build for the custom-domain root (`VITE_BASE=/`)
 npm run preview                 # serve the built dist/ locally
 npm test                        # engine + bundle + attack-speed + state + UI suites (vitest)
 npm run validate                # known-values gate from docs/03-Calculation-Engine.md

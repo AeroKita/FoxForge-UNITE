@@ -15,7 +15,7 @@ REPO = Path(__file__).resolve().parents[2]
 BASELINE = REPO / "src" / "data" / "patch-current.json"
 PUBLIC_DATA = REPO / "public" / "data"
 MANIFEST = PUBLIC_DATA / "manifest.json"
-BASE_URL = "https://aerokita.github.io/FoxForge-UNITE/data"
+BASE_URL = "https://foxforge-unite.com/data"
 
 
 def _load_baseline() -> tuple[str, str]:

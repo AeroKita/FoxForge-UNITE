@@ -9,7 +9,7 @@ import { APP_NAME, APP_SHORT_NAME, APP_DESCRIPTION, PAGES_BASE_PATH } from "./sr
 // Single source for the displayed version: package.json. Injected via `define` below.
 const { version } = createRequire(import.meta.url)("./package.json") as { version: string };
 
-// GitHub Pages build (VITE_BASE=/FoxForge-UNITE/): no active service worker.
+// GitHub Pages build (VITE_BASE=/): no active service worker.
 // Returning visitors may still have an old SW that serves a stale index.html
 // pointing at removed JS bundles → blank white page. A one-shot self-destructing
 // sw.js (same URL) lets legacy pages unregister + reload; new HTML never re-registers.
@@ -61,7 +61,7 @@ const htmlBranding = () => ({
 });
 
 // base: relative "./" by default (works at a domain root or any sub-path); the
-// Pages build overrides with VITE_BASE=/FoxForge-UNITE/.
+// Pages build overrides with VITE_BASE=/.
 export default defineConfig({
   base: process.env.VITE_BASE ?? "./",
   define: { __APP_VERSION__: JSON.stringify(version) },

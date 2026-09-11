@@ -54,7 +54,7 @@ class TestPublishBundle(unittest.TestCase):
                 {
                     "version": "2099-01-01",
                     "patchVersion": "9.9.9.9",
-                    "url": "https://aerokita.github.io/FoxForge-UNITE/data/patch-9.9.9.9.json",
+                    "url": "https://foxforge-unite.com/data/patch-9.9.9.9.json",
                 },
             )
 
@@ -67,7 +67,7 @@ class TestPublishBundle(unittest.TestCase):
                     {
                         "version": "2000-01-01",
                         "patchVersion": "9.9.9.9",
-                        "url": "https://aerokita.github.io/FoxForge-UNITE/data/patch-9.9.9.9.json",
+                        "url": "https://foxforge-unite.com/data/patch-9.9.9.9.json",
                     },
                     indent=2,
                 )

@@ -19,12 +19,15 @@ export const APP_TAGLINE = "Forge your UNITE Loadout!";
 export const APP_DESCRIPTION =
   "FoxForge UNITE — design optimized Pokémon UNITE loadouts: emblems, held & trainer items, attack speed, and live stats.";
 
-// GitHub repo slug + hosted Pages URLs. Display name stays "FoxForge UNITE";
-// the hyphenated slug is for paths, remotes, and VITE_BASE.
+// GitHub repo slug + hosted site URLs. Display name stays "FoxForge UNITE";
+// the hyphenated slug is for the GitHub repo. The public site is the custom
+// domain at the root (`VITE_BASE=/`), not the github.io project path.
 export const GITHUB_REPO_SLUG = "FoxForge-UNITE";
 export const GITHUB_REPO = `AeroKita/${GITHUB_REPO_SLUG}`;
-export const PAGES_BASE_PATH = `/${GITHUB_REPO_SLUG}/`;
-export const PAGES_DATA_BASE = `https://aerokita.github.io/${GITHUB_REPO_SLUG}/data`;
+export const SITE_HOST = "foxforge-unite.com";
+export const SITE_ORIGIN = `https://${SITE_HOST}`;
+export const PAGES_BASE_PATH = "/";
+export const PAGES_DATA_BASE = `${SITE_ORIGIN}/data`;
 
 // ---------------------------------------------------------------- ownership --
 // The person/handle who created + maintains the project. Surfaced in

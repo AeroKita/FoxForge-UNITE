@@ -29,7 +29,7 @@
     "validate:art": "python3 tools/community/validate_art.py",
     "fetch:art": "python3 tools/community/fetch_art.py",
     "fetch:gifs": "python3 tools/community/fetch_gifs.py",
-    "build:pages": "VITE_BASE=/FoxForge-UNITE/ npm run build",
+    "build:pages": "VITE_BASE=/ npm run build",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt \"src/**/*.{ts,tsx}\" vite.config.ts",
