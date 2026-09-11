@@ -1,0 +1,12 @@
+Meowscarada  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  overgrow.png         →  Overgrow             [Passive]
+  leafage.png          →  Leafage              [Move 1 · Base]
+  flower-trick.png     →  Flower Trick (Lv 6)  [Move 1 · Final]
+  night-slash.png      →  Night Slash (Lv 6)   [Move 1 · Final]
+  hone-claws.png       →  Hone Claws           [Move 2 · Base]
+  double-team.png      →  Double Team (Lv 7)   [Move 2 · Final]
+  trailblaze.png       →  Trailblaze (Lv 7)    [Move 2 · Final]
+  floral-flourish.png  →  Floral Flourish      [Unite · Unite]

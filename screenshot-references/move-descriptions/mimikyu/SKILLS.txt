@@ -1,0 +1,12 @@
+Mimikyu  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  disguise.png      →  Disguise             [Passive]
+  astonish.png      →  Astonish             [Move 1 · Base]
+  play-rough.png    →  Play Rough (Lv 5)    [Move 1 · Final]
+  shadow-claw.png   →  Shadow Claw (Lv 5)   [Move 1 · Final]
+  scratch.png       →  Scratch              [Move 2 · Base]
+  shadow-sneak.png  →  Shadow Sneak (Lv 7)  [Move 2 · Final]
+  trick-room.png    →  Trick Room (Lv 7)    [Move 2 · Final]
+  play-with-me.png  →  Play With Me...      [Unite · Unite]

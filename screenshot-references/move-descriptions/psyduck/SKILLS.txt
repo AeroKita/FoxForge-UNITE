@@ -1,0 +1,12 @@
+Psyduck  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  swift-swim.png            →  Swift Swim             [Passive]
+  confusion.png             →  Confusion              [Move 1 · Base]
+  surf.png                  →  Surf (Lv 4)            [Move 1 · Final]
+  bubble-beam.png           →  Bubble Beam (Lv 4)     [Move 1 · Final]
+  tail-whip.png             →  Tail Whip              [Move 2 · Base]
+  disable.png               →  Disable (Lv 6)         [Move 2 · Final]
+  psychic.png               →  Psychic (Lv 6)         [Move 2 · Final]
+  full-power-psy-ay-ay.png  →  Full-Power Psy-ay-ay!  [Unite · Unite]

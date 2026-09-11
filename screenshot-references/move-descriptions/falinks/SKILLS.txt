@@ -1,0 +1,12 @@
+Falinks  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  battle-armor.png          →  Battle Armor          [Passive]
+  tackle.png                →  Tackle                [Move 1 · Base]
+  megahorn.png              →  Megahorn (Lv 4)       [Move 1 · Final]
+  iron-head.png             →  Iron Head (Lv 4)      [Move 1 · Final]
+  bulk-up.png               →  Bulk Up               [Move 2 · Base]
+  no-retreat.png            →  No Retreat (Lv 6)     [Move 2 · Final]
+  beat-up.png               →  Beat Up (Lv 6)        [Move 2 · Final]
+  dust-devil-formation.png  →  Dust Devil Formation  [Unite · Unite]

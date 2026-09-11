@@ -1,0 +1,12 @@
+Solgaleo  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  unaware.png               →  Unaware               [Passive · Cosmog]
+  sturdy.png                →  Sturdy                [Passive · Cosmoem]
+  full-metal-body.png       →  Full Metal Body       [Passive · Solgaleo]
+  teleport.png              →  Teleport              [Move 1 · Base]
+  iron-head.png             →  Iron Head (Lv 7)      [Move 1 · Final]
+  cosmic-power.png          →  Cosmic Power          [Move 2 · Base]
+  psyshock.png              →  Psyshock (Lv 7)       [Move 2 · Final]
+  shining-meteor-crush.png  →  Shining Meteor Crush  [Unite · Unite]

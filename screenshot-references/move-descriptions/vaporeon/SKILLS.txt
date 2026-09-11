@@ -1,0 +1,13 @@
+Vaporeon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  run-away.png           →  Run Away            [Passive · Eevee]
+  water-absorb.png       →  Water Absorb        [Passive · Vaporeon]
+  swift.png              →  Swift               [Move 1 · Base]
+  hydro-pump.png         →  Hydro Pump (Lv 4)   [Move 1 · Final]
+  muddy-water.png        →  Muddy Water (Lv 4)  [Move 1 · Final]
+  tackle.png             →  Tackle              [Move 2 · Base]
+  aqua-ring.png          →  Aqua Ring (Lv 6)    [Move 2 · Final]
+  flip-turn.png          →  Flip Turn (Lv 6)    [Move 2 · Final]
+  aquamarine-splash.png  →  Aquamarine Splash   [Unite · Unite]

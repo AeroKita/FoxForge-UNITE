@@ -1,0 +1,12 @@
+Mew  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  synchronize.png      →  Synchronize          [Passive]
+  electro-ball.png     →  Electro Ball         [Move 1 · Base]
+  solar-beam.png       →  Solar Beam (Lv 1)    [Move 1 · Final]
+  surf.png             →  Surf (Lv 1)          [Move 1 · Final]
+  coaching.png         →  Coaching             [Move 2 · Base]
+  light-screen.png     →  Light Screen (Lv 3)  [Move 2 · Final]
+  agility.png          →  Agility (Lv 3)       [Move 2 · Final]
+  mystical-mirage.png  →  Mystical Mirage      [Unite · Unite]

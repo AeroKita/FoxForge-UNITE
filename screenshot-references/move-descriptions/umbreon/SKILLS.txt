@@ -1,0 +1,13 @@
+Umbreon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  anticipation.png      →  Anticipation      [Passive · Eevee]
+  inner-focus.png       →  Inner Focus       [Passive · Umbreon]
+  swift.png             →  Swift             [Move 1 · Base]
+  mean-look.png         →  Mean Look (Lv 4)  [Move 1 · Final]
+  foul-play.png         →  Foul Play (Lv 4)  [Move 1 · Final]
+  fake-tears.png        →  Fake Tears        [Move 2 · Base]
+  wish.png              →  Wish (Lv 6)       [Move 2 · Final]
+  snarl.png             →  Snarl (Lv 6)      [Move 2 · Final]
+  moonlight-prance.png  →  Moonlight Prance  [Unite · Unite]

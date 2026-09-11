@@ -1,0 +1,12 @@
+Galarian Rapidash  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  pastel-veil.png     →  Pastel Veil            [Passive]
+  confusion.png       →  Confusion              [Move 1 · Base]
+  dazzling-gleam.png  →  Dazzling Gleam (Lv 5)  [Move 1 · Final]
+  fairy-wind.png      →  Fairy Wind (Lv 5)      [Move 1 · Final]
+  tackle.png          →  Tackle                 [Move 2 · Base]
+  smart-strike.png    →  Smart Strike (Lv 7)    [Move 2 · Final]
+  agility.png         →  Agility (Lv 7)         [Move 2 · Final]
+  triad-blitz.png     →  Triad Blitz            [Unite · Unite]

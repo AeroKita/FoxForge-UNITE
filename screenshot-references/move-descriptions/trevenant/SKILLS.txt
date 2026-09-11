@@ -1,0 +1,12 @@
+Trevenant  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  natural-cure.png    →  Natural Cure        [Passive]
+  will-o-wisp.png     →  Will-o-Wisp         [Move 1 · Base]
+  wood-hammer.png     →  Wood Hammer (Lv 5)  [Move 1 · Final]
+  curse.png           →  Curse (Lv 5)        [Move 1 · Final]
+  branch-poke.png     →  Branch Poke         [Move 2 · Base]
+  horn-leech.png      →  Horn Leech (Lv 7)   [Move 2 · Final]
+  pain-split.png      →  Pain Split (Lv 7)   [Move 2 · Final]
+  phantom-forest.png  →  Phantom Forest      [Unite · Unite]

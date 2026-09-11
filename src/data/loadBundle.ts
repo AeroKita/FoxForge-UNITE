@@ -76,6 +76,7 @@ const ability = z.object({
   effects: z.array(moveEffect),
   iconAsset: z.string().optional(),
   phase: z.enum(["preMega", "mega"]).optional(),
+  stageLabel: z.string().optional(),
 });
 
 const emblemGrade = z.enum(["bronze", "silver", "gold", "platinum"]);

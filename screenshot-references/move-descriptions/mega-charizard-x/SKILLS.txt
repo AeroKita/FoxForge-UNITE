@@ -1,0 +1,11 @@
+Mega Charizard X  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  solar-power.png   →  Solar Power         [Passive · Pre-Mega]
+  tough-claws.png   →  Tough Claws         [Passive · Mega]
+  flame-burst.png   →  Flame Burst         [Move 1 · Base]
+  fire-punch.png    →  Fire Punch (Lv 5)   [Move 1 · Final]
+  fire-spin.png     →  Fire Spin           [Move 2 · Base]
+  flare-blitz.png   →  Flare Blitz (Lv 7)  [Move 2 · Final]
+  seismic-slam.png  →  Seismic Slam        [Unite · Unite]

@@ -385,9 +385,9 @@ ACTIVATION_NOTE = re.compile(r"[.!?]?\s+Activates at Level \d+\s*$")
 
 
 def strip_activation_note(text: str) -> str:
-    """Remove a trailing stale 'Activates at Level N' sentence from a Serebii
-    basic description and ensure the result ends in sentence punctuation.
-    The real unlock level is carried by the move's upgradeLevel, not this text."""
+    """Remove a trailing stale 'Activates at Level N' sentence and ensure the
+    result ends in sentence punctuation. The real unlock level is carried by
+    the move's upgradeLevel, not this text."""
     if not text:
         return text
     cleaned = ACTIVATION_NOTE.sub("", text).rstrip()
@@ -478,8 +478,9 @@ def apply_archive_move_basic(move: dict, over: dict) -> None:
 
 # Pokémon whose on-field Ability is the last UNITE-DB stage (passive3, else
 # passive2), not the pre-evolution ``name``. Mega licenses are a separate path
-# (``mega_license_passive_names``) and must not be listed here. Mew's
-# ``passive2_name`` is Move Reset (a UI control), not the playable Ability.
+# (``mega_license_passive_names``) and must not be listed here. Dual-form
+# licenses in ``FORM_PASSIVE_STAGES`` keep both stages and skip this lookup.
+# Mew's ``passive2_name`` is Move Reset (a UI control), not the playable Ability.
 PLAYABLE_PASSIVE_SLUGS = frozenset(
     {
         "solgaleo",
@@ -499,6 +500,40 @@ PLAYABLE_PASSIVE_SLUGS = frozenset(
         "vaporeon",
     }
 )
+
+# Operator-confirmed dual/triple Passives that are evolution forms, not Mega.
+# Values are (ability name, chip label) in display order. Add a slug only
+# when stills show each staged Ability.
+FORM_PASSIVE_STAGES: dict[str, tuple[tuple[str, str], ...]] = {
+    "raichu": (("Static", "Pikachu"), ("Surge Surfer", "Raichu")),
+    "sylveon": (("Adaptability", "Eevee"), ("Pixilate", "Sylveon")),
+    "aegislash": (("No Guard", "Honedge"), ("Stance Change", "Aegislash")),
+    "ceruledge": (("Flame Body", "Charcadet"), ("Weak Armor", "Ceruledge")),
+    "dragonite": (("Marvel Scale", "Dragonair"), ("Multiscale", "Dragonite")),
+    "espeon": (("Anticipation", "Eevee"), ("Magic Bounce", "Espeon")),
+    "glaceon": (("Run Away", "Eevee"), ("Snow Cloak", "Glaceon")),
+    "gyarados": (("Rattled", "Magikarp"), ("Moxie", "Gyarados")),
+    "leafeon": (("Run Away", "Eevee"), ("Chlorophyll", "Leafeon")),
+    "solgaleo": (
+        ("Unaware", "Cosmog"),
+        ("Sturdy", "Cosmoem"),
+        ("Full Metal Body", "Solgaleo"),
+    ),
+    "tsareena": (("Oblivious", "Bounsweet"), ("Queenly Majesty", "Tsareena")),
+    "tyranitar": (
+        ("Guts", "Larvitar"),
+        ("Shed Skin", "Pupitar"),
+        ("Sand Stream", "Tyranitar"),
+    ),
+    "umbreon": (("Anticipation", "Eevee"), ("Inner Focus", "Umbreon")),
+    "urshifu": (("Inner Focus", "Kubfu"), ("Unseen Fist", "Urshifu")),
+    "vaporeon": (("Run Away", "Eevee"), ("Water Absorb", "Vaporeon")),
+}
+
+
+def form_passive_stages(pokemon_name: str) -> tuple[tuple[str, str], ...] | None:
+    """Return (ability, chip label) pairs for a dual-form license, or None."""
+    return FORM_PASSIVE_STAGES.get(slugify(pokemon_name))
 
 
 def resolve_playable_passive(skill: dict | None, pokemon_name: str = "") -> dict | None:
@@ -565,6 +600,35 @@ def mega_license_passive_names(skill: dict | None) -> list[str]:
     return names
 
 
+# Mega licenses whose stills also show the pre-evolution Ability (before Pre-Mega).
+# Values are the form-name chip. Add a slug only when stills show that Ability.
+MEGA_PRE_EVO_STAGE: dict[str, str] = {
+    "mega-gyarados": "Magikarp",
+}
+
+
+def mega_passive_slots(
+    skill: dict | None, pokemon_name: str = ""
+) -> list[tuple[str, str | None, str | None]]:
+    """Return (ability, phase, stage_label) rows for a Mega license Moves card.
+
+    Two-stage licenses emit Pre-Mega then Mega. Three-stage licenses still drop the
+    first UNITE-DB name unless ``MEGA_PRE_EVO_STAGE`` names a form chip from stills.
+    """
+    names = mega_license_passive_names(skill)
+    if len(names) != 2:
+        return []
+    rows: list[tuple[str, str | None, str | None]] = []
+    staged = staged_passive_names(skill)
+    if len(staged) >= 3:
+        label = MEGA_PRE_EVO_STAGE.get(slugify(pokemon_name))
+        if label:
+            rows.append((staged[0], None, label))
+    rows.append((names[0], "preMega", None))
+    rows.append((names[1], "mega", None))
+    return rows
+
+
 def iter_playable_passives(pokemon: dict) -> list[dict]:
     """Primary ``passiveAbility`` plus any ``extraPassives``."""
     out: list[dict] = []
@@ -604,6 +668,7 @@ def assemble_passive_ability(
     pokemon_clips: dict,
     pokemon_gifs: dict,
     phase: str | None = None,
+    stage_label: str | None = None,
 ) -> dict:
     """Build one bundle Ability dict (id, Basic, optional Advanced, art, phase)."""
     skill_like = {
@@ -635,6 +700,8 @@ def assemble_passive_ability(
                 out["gifAsset"] = gif_path
     if phase:
         out["phase"] = phase
+    if stage_label:
+        out["stageLabel"] = stage_label
     return out
 
 
@@ -751,6 +818,23 @@ def _norm_gif_key(name: str) -> str:
 
 def slugify(s: str) -> str:
     return "".join(c if c.isalnum() else "-" for c in s.lower()).strip("-")
+
+
+# UNITE-DB species names that are regional forms in this game. Bundle id and
+# displayName are form-qualified so a later Kantonian (or other) license can
+# use the bare species id. Art paths still use the UNITE-DB folder name.
+REGIONAL_LICENSE_NAMES: dict[str, tuple[str, str]] = {
+    "Raichu": ("alolan-raichu", "Alolan Raichu"),
+    "Ninetales": ("alolan-ninetales", "Alolan Ninetales"),
+    "Rapidash": ("galarian-rapidash", "Galarian Rapidash"),
+}
+
+
+def license_identity(raw_name: str, display_name: str | None = None) -> tuple[str, str]:
+    """Return (bundle id, displayName) for a UNITE-DB Pokémon row."""
+    if raw_name in REGIONAL_LICENSE_NAMES:
+        return REGIONAL_LICENSE_NAMES[raw_name]
+    return slugify(raw_name), display_name or raw_name
 
 
 # UNITE-DB source data misspells some official Pokémon names and ships prose
@@ -964,12 +1048,13 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
         skills = p.get("skills") or []
         raw_passive = next((s for s in skills if s.get("ability") == "Passive"), None)
         display_name = p.get("display_name", name)
-        mega_names = (
-            mega_license_passive_names(raw_passive)
+        mega_slots = (
+            mega_passive_slots(raw_passive, name)
             if is_mega_license(name, display_name)
             else []
         )
-        if len(mega_names) == 2:
+        form_stages = form_passive_stages(name)
+        if mega_slots or form_stages:
             passive = raw_passive
         else:
             passive = resolve_playable_passive(raw_passive, name)
@@ -988,7 +1073,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
         builds = [nb for b in (p.get("builds") or [])
                   if (nb := build_one_build(b, pokedex_to_id, move_names))]
         exclude = p.get("exclude_stats")
-        pid = slugify(name)
+        pid, display_name = license_identity(name, display_name)
         over = descs.get(pid, {})
         # Owned archive Basic wins over UNITE-DB whenever it has a real body.
         if over:
@@ -1013,8 +1098,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
             if gif_path and not clip_path:
                 m["gifAsset"] = gif_path
         extra_passives: list[dict] = []
-        if len(mega_names) == 2 and raw_passive:
-            phases = ("preMega", "mega")
+        if mega_slots and raw_passive:
             built = [
                 assemble_passive_ability(
                     ability_name,
@@ -1024,9 +1108,26 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
                     staged_passive_advanced(raw_passive, ability_name),
                     pokemon_clips,
                     pokemon_gifs,
-                    phases[i],
+                    phase,
+                    stage_label,
                 )
-                for i, ability_name in enumerate(mega_names)
+                for ability_name, phase, stage_label in mega_slots
+            ]
+            passive_ability = built[0]
+            extra_passives = built[1:]
+        elif form_stages:
+            built = [
+                assemble_passive_ability(
+                    ability_name,
+                    name,
+                    over,
+                    staged_passive_raw_basic(raw_passive, ability_name) if raw_passive else "",
+                    staged_passive_advanced(raw_passive, ability_name) if raw_passive else "",
+                    pokemon_clips,
+                    pokemon_gifs,
+                    stage_label=label,
+                )
+                for ability_name, label in form_stages
             ]
             passive_ability = built[0]
             extra_passives = built[1:]

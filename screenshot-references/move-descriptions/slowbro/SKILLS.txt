@@ -1,0 +1,12 @@
+Slowbro  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  oblivious.png    →  Oblivious           [Passive]
+  water-gun.png    →  Water Gun           [Move 1 · Base]
+  scald.png        →  Scald (Lv 4)        [Move 1 · Final]
+  surf.png         →  Surf (Lv 4)         [Move 1 · Final]
+  slack-off.png    →  Slack Off           [Move 2 · Base]
+  amnesia.png      →  Amnesia (Lv 6)      [Move 2 · Final]
+  telekinesis.png  →  Telekinesis (Lv 6)  [Move 2 · Final]
+  slowbeam.png     →  Slowbeam            [Unite · Unite]

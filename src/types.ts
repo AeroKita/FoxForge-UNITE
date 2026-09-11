@@ -167,6 +167,8 @@ export interface Ability {
   iconAsset?: string; // skills/<Pokemon>/<Passive>.png
   /** Set on mega-license Abilities that share the Passive section with a pair. */
   phase?: PassivePhase;
+  /** Form name chip for dual-form (non-mega) Passive pairs, e.g. Pikachu / Raichu. */
+  stageLabel?: string;
 }
 
 // ----- Held Items ------------------------------------------------------------

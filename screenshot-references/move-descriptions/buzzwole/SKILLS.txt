@@ -1,0 +1,12 @@
+Buzzwole  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  beast-boost.png       →  Beast Boost        [Passive]
+  mega-punch.png        →  Mega Punch         [Move 1 · Base]
+  lunge.png             →  Lunge (Lv 7)       [Move 1 · Final]
+  smack-down.png        →  Smack Down (Lv 7)  [Move 1 · Final]
+  fell-stinger.png      →  Fell Stinger       [Move 2 · Base]
+  leech-life.png        →  Leech Life (Lv 5)  [Move 2 · Final]
+  superpower.png        →  Superpower (Lv 5)  [Move 2 · Final]
+  ultra-swole-slam.png  →  Ultra Swole Slam   [Unite · Unite]

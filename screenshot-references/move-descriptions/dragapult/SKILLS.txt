@@ -1,0 +1,12 @@
+Dragapult  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  clear-body.png         →  Clear Body            [Passive]
+  astonish.png           →  Astonish              [Move 1 · Base]
+  dragon-breath.png      →  Dragon Breath (Lv 7)  [Move 1 · Final]
+  shadow-ball.png        →  Shadow Ball (Lv 7)    [Move 1 · Final]
+  quick-attack.png       →  Quick Attack          [Move 2 · Base]
+  dragon-dance.png       →  Dragon Dance (Lv 5)   [Move 2 · Final]
+  phantom-force.png      →  Phantom Force (Lv 5)  [Move 2 · Final]
+  dreep-and-destroy.png  →  Dreep and Destroy     [Unite · Unite]

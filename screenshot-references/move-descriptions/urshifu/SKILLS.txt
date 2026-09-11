@@ -1,0 +1,14 @@
+Urshifu  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  inner-focus.png      →  Inner Focus             [Passive · Kubfu]
+  unseen-fist.png      →  Unseen Fist             [Passive · Urshifu]
+  rock-smash.png       →  Rock Smash              [Move 1 · Base]
+  wicked-blow.png      →  Wicked Blow (Lv 5)      [Move 1 · Final]
+  surging-strikes.png  →  Surging Strikes (Lv 5)  [Move 1 · Final]
+  headbutt.png         →  Headbutt                [Move 2 · Base]
+  throat-chop.png      →  Throat Chop (Lv 7)      [Move 2 · Final]
+  liquidation.png      →  Liquidation (Lv 7)      [Move 2 · Final]
+  ebon-fist.png        →  Ebon Fist               [Unite · Unite]
+  flowing-fists.png    →  Flowing Fists           [Unite · Unite]

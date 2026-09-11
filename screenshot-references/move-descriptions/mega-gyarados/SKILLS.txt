@@ -1,0 +1,12 @@
+Mega Gyarados  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  swift-swim.png      →  Swift Swim            [Passive · Magikarp]
+  intimidate.png      →  Intimidate            [Passive · Pre-Mega]
+  mold-breaker.png    →  Mold Breaker          [Passive · Mega]
+  flail.png           →  Flail                 [Move 1 · Base]
+  dragon-breath.png   →  Dragon Breath (Lv 7)  [Move 1 · Final]
+  splash.png          →  Splash                [Move 2 · Base]
+  waterfall.png       →  Waterfall (Lv 7)      [Move 2 · Final]
+  dragon-current.png  →  Dragon Current        [Unite · Unite]

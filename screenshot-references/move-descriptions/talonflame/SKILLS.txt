@@ -1,0 +1,12 @@
+Talonflame  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  gale-wings.png    →  Gale Wings           [Passive]
+  peck.png          →  Peck                 [Move 1 · Base]
+  flame-charge.png  →  Flame Charge (Lv 5)  [Move 1 · Final]
+  aerial-ace.png    →  Aerial Ace (Lv 5)    [Move 1 · Final]
+  acrobatics.png    →  Acrobatics           [Move 2 · Base]
+  fly.png           →  Fly (Lv 7)           [Move 2 · Final]
+  brave-bird.png    →  Brave Bird (Lv 7)    [Move 2 · Final]
+  flame-sweep.png   →  Flame Sweep          [Unite · Unite]

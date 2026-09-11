@@ -171,7 +171,7 @@ describe("community data bundle", () => {
         "Upgrade (Level 13): Throws opposing Pokémon hit for 0.4s",
       );
       expect(fly.description).toContain(
-        "Upgrade (Level 13): Also throws enemies when this move hits.",
+        "Upgrade (Level 13): Also throws opposing Pokémon when this move hits.",
       );
       expect(fly.description).not.toContain("0.4s");
     });
@@ -297,8 +297,9 @@ describe("community data bundle", () => {
         "When the Pokémon is at half HP or less, its critical-hit rate is increased.",
       );
       expect(byId["flame-burst"].description).toMatch(/^Attacks with a bursting flame/);
+      expect(byId["flamethrower"].description).toMatch(/^Attacks with an intense blast of fire/);
       expect(byId["flamethrower"].description).toContain(
-        "Upgrade (Level 11): Increases this move's damage, and the damage caused by burning.",
+        "Upgrade (Level 11): Increases this move's damage and the damage caused by burning.",
       );
       expect(byId["fire-punch"].description).toContain("punch with a fiery fist");
       expect(byId["fire-blast"].description).toContain(
@@ -321,7 +322,7 @@ describe("community data bundle", () => {
       expect(pre.description).toContain("This Ability's effect does not trigger");
       expect(pre.description).not.toContain("5% of its current HP");
       expect(mega.name).toBe("Tough Claws");
-      expect(mega.description).toContain("maximum three counters");
+      expect(mega.description).toContain("maximum 3 counters");
       expect(byId["fire-punch"].description).toContain("punch with a fiery fist");
       expect(byId["fire-punch"].description).toContain(
         "When the user has Mega Evolved, all Pokémon it hits are burned.",
@@ -392,18 +393,137 @@ describe("community data bundle", () => {
       expect(talonflame.passiveAbility.descriptionAdvanced).toContain("85% max HP");
     });
 
-    it("Tyranitar shows Sand Stream and in-game Basic, not Larvitar Guts", () => {
+    it("Tyranitar shows Guts, Shed Skin, and Sand Stream as a three-stage form pair", () => {
       const tyranitar = bundle.pokemon.find((p) => p.id === "tyranitar")!;
-      expect(tyranitar.passiveAbility.id).toBe("sand-stream");
-      expect(tyranitar.passiveAbility.name).toBe("Sand Stream");
-      expect(tyranitar.passiveAbility.iconAsset).toContain("Sand+Stream");
-      expect(tyranitar.passiveAbility.description).toContain("sandstorm");
-      expect(tyranitar.passiveAbility.description).toContain("Unite Move");
-      expect(tyranitar.passiveAbility.description).not.toContain("Larvitar");
-      expect(tyranitar.passiveAbility.description).not.toContain("10%");
+      const passives = playablePassives(tyranitar);
+      expect(passives.map((a) => a.name)).toEqual(["Guts", "Shed Skin", "Sand Stream"]);
+      expect(passives.map((a) => a.stageLabel)).toEqual(["Larvitar", "Pupitar", "Tyranitar"]);
+      expect(passives.every((a) => a.phase === undefined)).toBe(true);
+      expect(passives[0].description).toContain("its Attack increases");
+      expect(passives[1].description).toContain("status conditions are nullified");
+      expect(passives[2].description).toContain("sandstorm");
+      expect(passives[2].description).toContain("Unite Move");
+      expect(passives[2].iconAsset).toContain("Sand+Stream");
+      expect(passives[2].description).not.toContain("Larvitar");
+      expect(passives[2].description).not.toContain("10%");
     });
 
-    it("playable Abilities use in-game Basic, not pre-evolution leftovers", () => {
+    it("evolution licenses show pre-evolution Passives as form pairs", () => {
+      const cases = [
+        {
+          id: "aegislash",
+          stages: [
+            { name: "No Guard", label: "Honedge", needle: "Increases received damage" },
+            { name: "Stance Change", label: "Aegislash", needle: "Blade Forme" },
+          ],
+        },
+        {
+          id: "ceruledge",
+          stages: [
+            {
+              name: "Flame Body",
+              label: "Charcadet",
+              needle: "deals damage around itself with flames",
+            },
+            { name: "Weak Armor", label: "Ceruledge", needle: "receive a wound" },
+          ],
+        },
+        {
+          id: "dragonite",
+          stages: [
+            { name: "Marvel Scale", label: "Dragonair", needle: "afflicted by a status condition" },
+            {
+              name: "Multiscale",
+              label: "Dragonite",
+              needle: "Reduces the damage the Pokémon receives",
+            },
+          ],
+        },
+        {
+          id: "espeon",
+          stages: [
+            { name: "Anticipation", label: "Eevee", needle: "hindrance is negated" },
+            { name: "Magic Bounce", label: "Espeon", needle: "immune to hindrances" },
+          ],
+        },
+        {
+          id: "glaceon",
+          stages: [
+            { name: "Run Away", label: "Eevee", needle: "becomes invincible" },
+            { name: "Snow Cloak", label: "Glaceon", needle: "enters stealth" },
+          ],
+        },
+        {
+          id: "gyarados",
+          stages: [
+            { name: "Rattled", label: "Magikarp", needle: "effort gauge" },
+            { name: "Moxie", label: "Gyarados", needle: "all of its move cooldowns are reduced" },
+          ],
+        },
+        {
+          id: "leafeon",
+          stages: [
+            { name: "Run Away", label: "Eevee", needle: "not in combat" },
+            { name: "Chlorophyll", label: "Leafeon", needle: "Chlorophyll gauge" },
+          ],
+        },
+        {
+          id: "solgaleo",
+          stages: [
+            { name: "Unaware", label: "Cosmog", needle: "Attack and Sp. Atk is ignored" },
+            { name: "Sturdy", label: "Cosmoem", needle: "1 HP will remain" },
+            { name: "Full Metal Body", label: "Solgaleo", needle: "Attack does not decrease" },
+          ],
+        },
+        {
+          id: "tsareena",
+          stages: [
+            { name: "Oblivious", label: "Bounsweet", needle: "duration of hindrance effects" },
+            { name: "Queenly Majesty", label: "Tsareena", needle: "Queenly Majesty buff" },
+          ],
+        },
+        {
+          id: "umbreon",
+          stages: [
+            {
+              name: "Anticipation",
+              label: "Eevee",
+              needle: "shoved, thrown, or left unable to act",
+            },
+            { name: "Inner Focus", label: "Umbreon", needle: "Defense and Sp. Def are increased" },
+          ],
+        },
+        {
+          id: "urshifu",
+          stages: [
+            { name: "Inner Focus", label: "Kubfu", needle: "duration of hindrance effects" },
+            { name: "Unseen Fist", label: "Urshifu", needle: "pierces part of the shield" },
+          ],
+        },
+        {
+          id: "vaporeon",
+          stages: [
+            { name: "Run Away", label: "Eevee", needle: "nullifies damage" },
+            { name: "Water Absorb", label: "Vaporeon", needle: "water shield" },
+          ],
+        },
+      ] as const;
+      for (const c of cases) {
+        const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
+        const passives = playablePassives(p);
+        expect(passives, c.id).toHaveLength(c.stages.length);
+        expect(p.extraPassives, c.id).toHaveLength(c.stages.length - 1);
+        for (const [i, stage] of c.stages.entries()) {
+          expect(passives[i].name, `${c.id}/${stage.name}`).toBe(stage.name);
+          expect(passives[i].stageLabel, `${c.id}/${stage.name}`).toBe(stage.label);
+          expect(passives[i].phase, `${c.id}/${stage.name}`).toBeUndefined();
+          expect(passives[i].description, `${c.id}/${stage.name}`).toContain(stage.needle);
+          expect(passives[i].description, `${c.id}/${stage.name}`).not.toContain(stage.label);
+        }
+      }
+    });
+
+    it("playable Ability Basic does not keep pre-evolution species names in the body", () => {
       const cases = [
         {
           id: "aegislash",
@@ -455,13 +575,6 @@ describe("community data bundle", () => {
           not: "Eevee",
         },
         {
-          id: "raichu",
-          name: "Surge Surfer",
-          file: "Surge+Surfer",
-          needle: "while moving",
-          not: "paralyzes all nearby",
-        },
-        {
           id: "tsareena",
           name: "Queenly Majesty",
           file: "Queenly+Majesty",
@@ -492,10 +605,11 @@ describe("community data bundle", () => {
       ] as const;
       for (const c of cases) {
         const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
-        expect(p.passiveAbility.name, c.id).toBe(c.name);
-        expect(p.passiveAbility.iconAsset, c.id).toContain(c.file);
-        expect(p.passiveAbility.description, c.id).toContain(c.needle);
-        expect(p.passiveAbility.description, c.id).not.toContain(c.not);
+        const ability = playablePassives(p).find((a) => a.name === c.name);
+        expect(ability, c.id).toBeDefined();
+        expect(ability!.iconAsset, c.id).toContain(c.file);
+        expect(ability!.description, c.id).toContain(c.needle);
+        expect(ability!.description, c.id).not.toContain(c.not);
       }
       const mew = bundle.pokemon.find((p) => p.id === "mew")!;
       expect(mew.passiveAbility.name).toBe("Synchronize");
@@ -504,18 +618,38 @@ describe("community data bundle", () => {
       expect(mew.passiveAbility.description).toContain("Move Reset");
     });
 
-    it("Sylveon shows Pixilate and in-game Basic move text", () => {
+    it("Alolan Raichu, Alolan Ninetales, and Galarian Rapidash use form-qualified names", () => {
+      const raichu = bundle.pokemon.find((p) => p.id === "alolan-raichu")!;
+      const ninetales = bundle.pokemon.find((p) => p.id === "alolan-ninetales")!;
+      const rapidash = bundle.pokemon.find((p) => p.id === "galarian-rapidash")!;
+      expect(raichu.displayName).toBe("Alolan Raichu");
+      expect(ninetales.displayName).toBe("Alolan Ninetales");
+      expect(rapidash.displayName).toBe("Galarian Rapidash");
+      expect(bundle.pokemon.find((p) => p.id === "raichu")).toBeUndefined();
+      expect(bundle.pokemon.find((p) => p.id === "ninetales")).toBeUndefined();
+      expect(bundle.pokemon.find((p) => p.id === "rapidash")).toBeUndefined();
+    });
+
+    it("Sylveon shows Adaptability and Pixilate as a form pair plus in-game Basic move text", () => {
       const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
       const byId = Object.fromEntries(sylveon.moves.map((m) => [m.id, m]));
+      const passives = playablePassives(sylveon);
 
-      expect(sylveon.passiveAbility.id).toBe("pixilate");
-      expect(sylveon.passiveAbility.name).toBe("Pixilate");
-      expect(sylveon.passiveAbility.iconAsset).toContain("Pixilate");
-      expect(sylveon.passiveAbility.description).toContain("Sp. Atk and Sp. Def");
-      expect(sylveon.passiveAbility.description).not.toContain("Eevee");
-      expect(sylveon.passiveAbility.description).not.toContain("5%");
-      expect(sylveon.passiveAbility.descriptionAdvanced).toContain("5%");
-      expect(sylveon.passiveAbility.descriptionAdvanced).toContain("1.5s");
+      expect(passives).toHaveLength(2);
+      expect(passives[0].name).toBe("Adaptability");
+      expect(passives[0].stageLabel).toBe("Eevee");
+      expect(passives[0].phase).toBeUndefined();
+      expect(passives[0].iconAsset).toContain("Adaptability");
+      expect(passives[0].description).toContain("its Sp. Atk is increased for a short time");
+      expect(passives[0].description).not.toContain("Eevee");
+      expect(passives[0].description).not.toContain("5%");
+      expect(passives[1].name).toBe("Pixilate");
+      expect(passives[1].stageLabel).toBe("Sylveon");
+      expect(passives[1].phase).toBeUndefined();
+      expect(passives[1].iconAsset).toContain("Pixilate");
+      expect(passives[1].description).toContain("Sp. Atk and Sp. Def");
+      expect(passives[1].descriptionAdvanced).toContain("5%");
+      expect(passives[1].descriptionAdvanced).toContain("1.5s");
 
       expect(byId.swift.description).toContain("opposing Pokémon");
       expect(byId.swift.description).not.toContain("4 star-shaped");
@@ -534,6 +668,13 @@ describe("community data bundle", () => {
       expect(byId["draining-kiss"].description).not.toContain("Increased healing.");
 
       expect(byId["calm-mind"].description).toContain("Has the user quietly focus");
+      expect(byId["calm-mind"].description).toContain(
+        "the damage is completely nullified and the user is granted a shield",
+      );
+      expect(byId["calm-mind"].description).toContain(
+        "Upgrade (Level 12): One time only while using this move, if the user is hit by an opposing Pokémon's move, the damage is completely nullified and the user is granted a shield.",
+      );
+      expect(byId["calm-mind"].description).not.toContain("nullified, and");
       expect(byId["calm-mind"].description).not.toContain("40%");
 
       expect(byId["baby-doll-eyes"].description).toContain("Has the user stare");
@@ -543,6 +684,188 @@ describe("community data bundle", () => {
       expect(byId["fairy-frolic"].description).not.toContain("10s");
 
       expect(byId["mystical-fire"].description).toMatch(/^Has the user create four small flames/);
+      expect(byId["mystical-fire"].description).toContain(
+        "Upgrade (Level 10): Increases the number of flames by one.",
+      );
+    });
+
+    it("Urshifu Ebon Fist uses the stitched in-game Unite tooltip", () => {
+      const urshifu = bundle.pokemon.find((p) => p.id === "urshifu")!;
+      const ebon = urshifu.moves.find((m) => m.id === "ebon-fist")!;
+      expect(ebon.slot).toBe("uniteMove");
+      expect(ebon.description).toContain("Has the user dash at the designated opposing Pokémon");
+      expect(ebon.description).toContain("shoves it in that direction");
+      expect(ebon.description).toContain("reset Wicked Blow's cooldown");
+      expect(ebon.description).not.toContain("debuff effects");
+    });
+
+    it("Alolan Raichu shows Static and Surge Surfer as a form pair plus in-game Basic", () => {
+      const raichu = bundle.pokemon.find((p) => p.id === "alolan-raichu")!;
+      const byId = Object.fromEntries(raichu.moves.map((m) => [m.id, m]));
+      const passives = playablePassives(raichu);
+
+      expect(passives).toHaveLength(2);
+      expect(passives[0].name).toBe("Static");
+      expect(passives[0].stageLabel).toBe("Pikachu");
+      expect(passives[0].phase).toBeUndefined();
+      expect(passives[0].iconAsset).toContain("Static");
+      expect(passives[0].description).toContain(
+        "Paralyzes all opponents near the Pokémon for a short time",
+      );
+      expect(passives[0].description).not.toContain("30s");
+      expect(passives[1].name).toBe("Surge Surfer");
+      expect(passives[1].stageLabel).toBe("Raichu");
+      expect(passives[1].phase).toBeUndefined();
+      expect(passives[1].iconAsset).toContain("Surge+Surfer");
+      expect(passives[1].description).toContain("while moving");
+
+      expect(byId["thunder-shock"].description).toContain(
+        "Releases electricity at the designated opposing Pokémon",
+      );
+      expect(byId["stored-power"].description).toContain(
+        "Upgrade (Level 11): The electric blasts decrease opposing Pokémon's Sp. Def. This effect can stack up to 3 times.",
+      );
+      expect(byId["stored-power"].description).not.toContain("8%");
+      expect(byId["electro-ball"].description).toContain(
+        "A maximum of 2 uses can be kept in reserve",
+      );
+      expect(byId["electro-ball"].description).toContain(
+        "Upgrade (Level 11): Deals damage over time to opposing Pokémon hit by this move.",
+      );
+      expect(byId["electro-ball"].description).not.toContain("0.5s");
+      expect(byId["thunderbolt"].description).toContain(
+        "Upgrade (Level 13): Leaves opposing Pokémon unable to move instead of paralyzed.",
+      );
+      expect(byId["thunderbolt"].description).not.toContain("Immobilizes");
+      expect(byId["psychic"].description).toContain(
+        "Upgrade (Level 13): Deals damage over time in the designated area for a short time.",
+      );
+      expect(byId["thunderstorm-aerial"].description).toContain("star-shaped zone of electricity");
+    });
+
+    it("Pikachu shows operator in-game Basic for Static and all moves", () => {
+      const pikachu = bundle.pokemon.find((p) => p.id === "pikachu")!;
+      const byId = Object.fromEntries(pikachu.moves.map((m) => [m.id, m]));
+      expect(playablePassives(pikachu)).toHaveLength(1);
+      expect(pikachu.passiveAbility.stageLabel).toBeUndefined();
+      expect(pikachu.passiveAbility.description).toContain(
+        "Paralyzes all opponents near the Pokémon for a short time",
+      );
+      expect(pikachu.passiveAbility.description).not.toContain("enemies nearby");
+      expect(byId["thunder-shock"].description).toContain("Releases electricity, dealing damage");
+      expect(byId["thunder-shock"].description).not.toContain("Fires electricity");
+      expect(byId["electro-ball"].description).toContain(
+        "Upgrade (Level 11): Increases damage dealt by this move.",
+      );
+      expect(byId.thunder.description).toContain(
+        "Upgrade (Level 11): Increases the number of attacks for this move.",
+      );
+      expect(byId.electroweb.description).toContain("electric net");
+      expect(byId["volt-tackle"].description).toContain(
+        "Upgrade (Level 13): Reduces this move's cooldown.",
+      );
+      expect(byId.thunderbolt.description).toContain(
+        "Upgrade (Level 13): Increases damage dealt by this move.",
+      );
+      expect(byId.thunderstorm.description).toContain(
+        "Attacks Pokémon from the opposing team near the user",
+      );
+    });
+
+    it("Blastoise shows operator in-game Basic for Torrent and all moves", () => {
+      const blastoise = bundle.pokemon.find((p) => p.id === "blastoise")!;
+      const byId = Object.fromEntries(blastoise.moves.map((m) => [m.id, m]));
+      expect(playablePassives(blastoise)).toHaveLength(1);
+      expect(blastoise.passiveAbility.description).toContain(
+        "When the Pokémon is at half HP or less, its Attack and Sp. Atk are increased.",
+      );
+      expect(byId["water-gun"].description).toContain("Attacks with a shot of water");
+      expect(byId["hydro-pump"].description).toContain(
+        "Upgrade (Level 11): Increases damage dealt by this move.",
+      );
+      expect(byId["water-spout"].description).toContain(
+        "Upgrade (Level 11): Increases damage dealt by this move.",
+      );
+      expect(byId["skull-bash"].description).toContain("Fiercely rams");
+      expect(byId.surf.description).toContain("is granted a shield effect when it hits");
+      expect(byId.surf.description).toContain(
+        "Upgrade (Level 13): Strengthens the effect of the shield granted by this move.",
+      );
+      expect(byId.surf.description).not.toContain("Also grants a shield");
+      expect(byId["rapid-spin"].description).toContain("the user becomes resistant to hindrances");
+      expect(byId["rapid-spin"].description).not.toContain("becomes immune to hindrances");
+      expect(byId["rapid-spin"].description).toContain(
+        "Upgrade (Level 13): Also increases the user's Defense and Sp. Def while using this move.",
+      );
+      expect(byId["hydro-typhoon"].description).toContain(
+        "throwing opposing Pokémon in a large area",
+      );
+    });
+
+    it("Clefable shows operator in-game Basic for Magic Guard and all moves", () => {
+      const clefable = bundle.pokemon.find((p) => p.id === "clefable")!;
+      const byId = Object.fromEntries(clefable.moves.map((m) => [m.id, m]));
+      expect(playablePassives(clefable)).toHaveLength(1);
+      expect(clefable.passiveAbility.description).toContain(
+        "The Pokémon receives a shield effect when it restores ally Pokémon's HP.",
+      );
+      expect(clefable.passiveAbility.description).not.toContain(
+        "This Pokémon receives a shield when restoring",
+      );
+      expect(byId["heal-pulse"].description).toContain("immediately restore HP");
+      expect(byId.moonlight.description).toContain(
+        "Upgrade (Level 10): Widens this move's area of effect and increases the duration of its effects.",
+      );
+      expect(byId["draining-kiss"].description).toContain("releases a heart");
+      expect(byId["draining-kiss"].description).not.toContain("air kiss");
+      expect(byId["draining-kiss"].description).toContain(
+        "Upgrade (Level 10): Widens this move's area of effect and increases the amount of HP it restores.",
+      );
+      expect(byId["disarming-voice"].description).toContain("charming cry");
+      expect(byId.gravity.description).toContain("their moves have no movement effect");
+      expect(byId.gravity.description).toContain(
+        "Upgrade (Level 12): Widens the zone's area of effect and increases the duration of its effects.",
+      );
+      expect(byId["follow-me"].description).toContain(
+        "Upgrade (Level 12): Increases the user's Defense and Sp. Def when this move is used.",
+      );
+      expect(byId["follow-me"].description).not.toContain("Defense by 150");
+      expect(byId["wonder-wish"].description).toContain("waggle its finger");
+    });
+
+    it("Alolan Ninetales shows operator in-game Basic for Snow Warning and all moves", () => {
+      const ninetales = bundle.pokemon.find((p) => p.id === "alolan-ninetales")!;
+      const byId = Object.fromEntries(ninetales.moves.map((m) => [m.id, m]));
+      expect(playablePassives(ninetales)).toHaveLength(1);
+      expect(ninetales.passiveAbility.stageLabel).toBeUndefined();
+      expect(ninetales.passiveAbility.description).toContain(
+        "Causes snow to fall on an opposing Pokémon",
+      );
+      expect(ninetales.passiveAbility.description).not.toContain("30%");
+      expect(byId["powder-snow"].description).toContain("chilly gust of powdery snow");
+      expect(byId.avalanche.description).toContain(
+        "Upgrade (Level 11): Also decreases the movement speed of opposing Pokémon for a short time when this move hits.",
+      );
+      expect(byId.avalanche.description).not.toContain("enemies");
+      expect(byId["dazzling-gleam"].description).toContain(
+        "Upgrade (Level 11): Increases damage dealt and the length of time opposing Pokémon are unable to act.",
+      );
+      expect(byId["icy-wind"].description).toContain(
+        "Also shoves opposing Pokémon that are especially close to the user.",
+      );
+      expect(byId["icy-wind"].description).not.toContain("Breathes wind");
+      expect(byId.blizzard.description).toContain(
+        "Upgrade (Level 13): Increases damage dealt by this move.",
+      );
+      expect(byId["aurora-veil"].description).toContain("with increased attack speed");
+      expect(byId["aurora-veil"].description).toContain("inside the aurora");
+      expect(byId["aurora-veil"].description).not.toContain("insde");
+      expect(byId["aurora-veil"].description).toContain(
+        "Upgrade (Level 13): Reduces this move's cooldown and further reduces damage ally Pokémon receive.",
+      );
+      expect(byId["snow-globe"].description).toContain(
+        "Deals increased damage to opposing Pokémon that are frozen.",
+      );
     });
 
     it("mega licenses show a Pre-Mega and Mega Ability pair", () => {
@@ -555,7 +878,6 @@ describe("community data bundle", () => {
         },
         { id: "mega-charizard-y", pre: "Blaze", mega: "Drought", megaFile: "Drought" },
         { id: "mega-lucario", pre: "Justified", mega: "Adaptability", megaFile: "Adaptability" },
-        { id: "mega-gyarados", pre: "Intimidate", mega: "Mold Breaker", megaFile: "Mold+Breaker" },
       ] as const;
       for (const c of cases) {
         const p = bundle.pokemon.find((mon) => mon.id === c.id)!;
@@ -569,10 +891,22 @@ describe("community data bundle", () => {
         expect(passives[1].iconAsset).toContain(c.megaFile);
         expect(passives.map((a) => a.name)).not.toContain("Swift Swim");
       }
+      const megaGyarados = bundle.pokemon.find((mon) => mon.id === "mega-gyarados")!;
+      const gyaradosPassives = playablePassives(megaGyarados);
+      expect(gyaradosPassives.map((a) => a.name)).toEqual([
+        "Swift Swim",
+        "Intimidate",
+        "Mold Breaker",
+      ]);
+      expect(gyaradosPassives[0].stageLabel).toBe("Magikarp");
+      expect(gyaradosPassives[0].phase).toBeUndefined();
+      expect(gyaradosPassives[1].phase).toBe("preMega");
+      expect(gyaradosPassives[2].phase).toBe("mega");
+      expect(gyaradosPassives[2].iconAsset).toContain("Mold+Breaker");
       const megaBasics = [
         {
           id: "mega-charizard-x",
-          needle: "maximum three counters",
+          needle: "maximum 3 counters",
           also: "becomes a boosted attack",
         },
         { id: "mega-charizard-y", needle: "sunny area of effect" },
@@ -585,7 +919,7 @@ describe("community data bundle", () => {
         expect(mega.description).toContain(c.needle);
         if ("also" in c) expect(mega.description).toContain(c.also);
       }
-      for (const id of ["mewtwox", "mewtwoy", "lucario", "sylveon"] as const) {
+      for (const id of ["mewtwox", "mewtwoy", "lucario"] as const) {
         const p = bundle.pokemon.find((mon) => mon.id === id)!;
         expect(playablePassives(p)).toHaveLength(1);
         expect(p.extraPassives ?? []).toHaveLength(0);

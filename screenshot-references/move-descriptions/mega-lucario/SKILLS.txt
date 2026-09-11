@@ -1,0 +1,11 @@
+Mega Lucario  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  justified.png       →  Justified              [Passive · Pre-Mega]
+  adaptability.png    →  Adaptability           [Passive · Mega]
+  quick-attack.png    →  Quick Attack           [Move 1 · Base]
+  power-up-punch.png  →  Power-Up Punch (Lv 5)  [Move 1 · Final]
+  meteor-mash.png     →  Meteor Mash            [Move 2 · Base]
+  close-combat.png    →  Close Combat (Lv 7)    [Move 2 · Final]
+  aura-cannon.png     →  Aura Cannon            [Unite · Unite]

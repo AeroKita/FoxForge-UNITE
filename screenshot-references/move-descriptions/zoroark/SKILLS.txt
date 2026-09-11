@@ -1,0 +1,12 @@
+Zoroark  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  illusion.png        →  Illusion             [Passive]
+  slash.png           →  Slash                [Move 1 · Base]
+  shadow-claw.png     →  Shadow Claw (Lv 7)   [Move 1 · Final]
+  cut.png             →  Cut (Lv 7)           [Move 1 · Final]
+  fury-swipes.png     →  Fury Swipes          [Move 2 · Base]
+  night-slash.png     →  Night Slash (Lv 5)   [Move 2 · Final]
+  feint-attack.png    →  Feint Attack (Lv 5)  [Move 2 · Final]
+  nightfall-daze.png  →  Nightfall Daze       [Unite · Unite]

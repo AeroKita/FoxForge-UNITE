@@ -1,0 +1,13 @@
+Blaziken  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  blaze.png                →  Blaze                [Passive]
+  aerial-ace.png           →  Aerial Ace           [Move 1 · Base]
+  fire-punch.png           →  Fire Punch (Lv 7)    [Move 1 · Final]
+  overheat.png             →  Overheat (Lv 7)      [Move 1 · Final]
+  ember.png                →  Ember                [Move 2 · Base]
+  focus-blast.png          →  Focus Blast (Lv 5)   [Move 2 · Final]
+  blaze-kick.png           →  Blaze Kick (Lv 5)    [Move 2 · Final]
+  spinning-flame-fist.png  →  Spinning Flame Fist  [Unite · Unite]
+  spinning-flame-kick.png  →  Spinning Flame Kick  [Unite · Unite]

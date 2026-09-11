@@ -1,0 +1,12 @@
+Gengar  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  levitate.png        →  Levitate            [Passive]
+  will-o-wisp.png     →  Will-o-Wisp         [Move 1 · Base]
+  shadow-ball.png     →  Shadow Ball (Lv 7)  [Move 1 · Final]
+  sludge-bomb.png     →  Sludge Bomb (Lv 7)  [Move 1 · Final]
+  lick.png            →  Lick                [Move 2 · Base]
+  dream-eater.png     →  Dream Eater (Lv 5)  [Move 2 · Final]
+  hex.png             →  Hex (Lv 5)          [Move 2 · Final]
+  phantom-ambush.png  →  Phantom Ambush      [Unite · Unite]

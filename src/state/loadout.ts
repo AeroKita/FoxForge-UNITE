@@ -44,8 +44,18 @@ const LEGACY_EMBLEM_ID_REMAP: Record<string, string> = {
   "152-chicorita": "152-chikorita",
 };
 
+const LEGACY_POKEMON_ID_REMAP: Record<string, string> = {
+  raichu: "alolan-raichu",
+  ninetales: "alolan-ninetales",
+  rapidash: "galarian-rapidash",
+};
+
 function remapEmblemId(emblemId: string): string {
   return LEGACY_EMBLEM_ID_REMAP[emblemId] ?? emblemId;
+}
+
+function remapPokemonId(pokemonId: string): string {
+  return LEGACY_POKEMON_ID_REMAP[pokemonId] ?? pokemonId;
 }
 
 /** Remap legacy emblemId prefixes in owned-key strings (`emblemId:grade`). */
@@ -217,7 +227,7 @@ export function sanitizeLoadout(x: unknown): Loadout | null {
     .slice(0, MAX_EMBLEMS)
     .map((e) => ({ emblemId: remapEmblemId(e.emblemId), grade: e.grade }));
   return {
-    pokemonId: typeof o.pokemonId === "string" ? o.pokemonId : null,
+    pokemonId: typeof o.pokemonId === "string" ? remapPokemonId(o.pokemonId) : null,
     level: typeof o.level === "number" ? Math.max(1, Math.min(15, Math.round(o.level))) : 15,
     heldItemIds: held,
     battleItemId: typeof o.battleItemId === "string" ? o.battleItemId : null,
@@ -249,7 +259,7 @@ export function normalizeLoadout(x: unknown): Loadout {
     sanitizeLoadout(x) ??
     emptyLoadout(
       x && typeof x === "object" && typeof (x as Record<string, unknown>).pokemonId === "string"
-        ? ((x as Record<string, unknown>).pokemonId as string)
+        ? remapPokemonId((x as Record<string, unknown>).pokemonId as string)
         : null,
     )
   );

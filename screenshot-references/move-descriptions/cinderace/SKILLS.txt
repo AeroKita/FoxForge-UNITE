@@ -1,0 +1,12 @@
+Cinderace  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  blaze.png                 →  Blaze                 [Passive]
+  ember.png                 →  Ember                 [Move 1 · Base]
+  pyro-ball.png             →  Pyro Ball (Lv 7)      [Move 1 · Final]
+  blaze-kick.png            →  Blaze Kick (Lv 7)     [Move 1 · Final]
+  low-sweep.png             →  Low Sweep             [Move 2 · Base]
+  flame-charge.png          →  Flame Charge (Lv 8)   [Move 2 · Final]
+  feint.png                 →  Feint (Lv 8)          [Move 2 · Final]
+  blazing-bicycle-kick.png  →  Blazing Bicycle Kick  [Unite · Unite]

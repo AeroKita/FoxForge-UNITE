@@ -1,0 +1,12 @@
+Comfey  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  triage.png                  →  Triage                  [Passive]
+  synthesis.png               →  Synthesis               [Move 1 · Base]
+  floral-healing.png          →  Floral Healing (Lv 4)   [Move 1 · Final]
+  sweet-kiss.png              →  Sweet Kiss (Lv 4)       [Move 1 · Final]
+  vine-whip.png               →  Vine Whip               [Move 2 · Base]
+  magical-leaf.png            →  Magical Leaf (Lv 6)     [Move 2 · Final]
+  grass-knot.png              →  Grass Knot (Lv 6)       [Move 2 · Final]
+  flowery-fields-forever.png  →  Flowery Fields Forever  [Unite · Unite]

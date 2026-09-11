@@ -1,0 +1,12 @@
+Blissey  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  natural-cure.png      →  Natural Cure         [Passive]
+  pound.png             →  Pound                [Move 1 · Base]
+  egg-bomb.png          →  Egg Bomb (Lv 6)      [Move 1 · Final]
+  helping-hand.png      →  Helping Hand (Lv 6)  [Move 1 · Final]
+  heal-pulse.png        →  Heal Pulse           [Move 2 · Base]
+  soft-boiled.png       →  Soft-Boiled (Lv 4)   [Move 2 · Final]
+  safeguard.png         →  Safeguard (Lv 4)     [Move 2 · Final]
+  bliss-assistance.png  →  Bliss Assistance     [Unite · Unite]

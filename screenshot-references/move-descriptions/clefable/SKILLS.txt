@@ -1,0 +1,12 @@
+Clefable  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  magic-guard.png      →  Magic Guard           [Passive]
+  heal-pulse.png       →  Heal Pulse            [Move 1 · Base]
+  moonlight.png        →  Moonlight (Lv 4)      [Move 1 · Final]
+  draining-kiss.png    →  Draining Kiss (Lv 4)  [Move 1 · Final]
+  disarming-voice.png  →  Disarming Voice       [Move 2 · Base]
+  gravity.png          →  Gravity (Lv 6)        [Move 2 · Final]
+  follow-me.png        →  Follow Me (Lv 6)      [Move 2 · Final]
+  wonder-wish.png      →  Wonder Wish           [Unite · Unite]

@@ -24,6 +24,15 @@ tools/community/_clips/*/*.MP4
 tools/community/_clips/*/*.mov
 tools/community/_clips/*/*.MOV
 
-# private in-game reference screenshots (move descriptions, etc.) — reference
-# only, never distributed.
-screenshot-references/
+# private in-game tooltip stills — reference only, never distributed.
+# Keep per-Pokémon SKILLS.txt checklists and the folder README.
+screenshot-references/**
+!screenshot-references/
+!screenshot-references/move-descriptions/
+!screenshot-references/move-descriptions/README.md
+!screenshot-references/move-descriptions/*/
+!screenshot-references/move-descriptions/*/SKILLS.txt
+screenshot-references/**/.DS_Store
+
+# temporary stills-transcription sidecars (never commit)
+tools/community/_stills_inbox/

@@ -1,0 +1,12 @@
+Mamoswine  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  thick-fat.png        →  Thick Fat               [Passive]
+  ice-shard.png        →  Ice Shard               [Move 1 · Base]
+  icicle-crash.png     →  Icicle Crash (Lv 5)     [Move 1 · Final]
+  ice-fang.png         →  Ice Fang (Lv 5)         [Move 1 · Final]
+  tackle.png           →  Tackle                  [Move 2 · Base]
+  high-horsepower.png  →  High Horsepower (Lv 7)  [Move 2 · Final]
+  earthquake.png       →  Earthquake (Lv 7)       [Move 2 · Final]
+  mammoth-mash.png     →  Mammoth Mash            [Unite · Unite]

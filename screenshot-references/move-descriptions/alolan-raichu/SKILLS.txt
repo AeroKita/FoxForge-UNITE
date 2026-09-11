@@ -1,0 +1,13 @@
+Alolan Raichu  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  static.png               →  Static               [Passive · Pikachu]
+  surge-surfer.png         →  Surge Surfer         [Passive · Raichu]
+  thunder-shock.png        →  Thunder Shock        [Move 1 · Base]
+  stored-power.png         →  Stored Power (Lv 5)  [Move 1 · Final]
+  electro-ball.png         →  Electro Ball (Lv 5)  [Move 1 · Final]
+  thunder-wave.png         →  Thunder Wave         [Move 2 · Base]
+  thunderbolt.png          →  Thunderbolt (Lv 7)   [Move 2 · Final]
+  psychic.png              →  Psychic (Lv 7)       [Move 2 · Final]
+  thunderstorm-aerial.png  →  Thunderstorm Aerial  [Unite · Unite]

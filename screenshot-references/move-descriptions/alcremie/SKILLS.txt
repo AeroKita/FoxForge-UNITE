@@ -1,0 +1,12 @@
+Alcremie  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  aroma-veil.png            →  Aroma Veil             [Passive]
+  helping-hand.png          →  Helping Hand           [Move 1 · Base]
+  decorate.png              →  Decorate (Lv 4)        [Move 1 · Final]
+  recover.png               →  Recover (Lv 4)         [Move 1 · Final]
+  charm.png                 →  Charm                  [Move 2 · Base]
+  dazzling-gleam.png        →  Dazzling Gleam (Lv 6)  [Move 2 · Final]
+  sweet-scent.png           →  Sweet Scent (Lv 6)     [Move 2 · Final]
+  fluffy-cream-supreme.png  →  Fluffy Cream Supreme   [Unite · Unite]

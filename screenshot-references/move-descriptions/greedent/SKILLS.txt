@@ -1,0 +1,12 @@
+Greedent  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  cheek-pouch.png       →  Cheek Pouch          [Passive]
+  tackle.png            →  Tackle               [Move 1 · Base]
+  bullet-seed.png       →  Bullet Seed (Lv 7)   [Move 1 · Final]
+  belch.png             →  Belch (Lv 7)         [Move 1 · Final]
+  defense-curl.png      →  Defense Curl         [Move 2 · Base]
+  stuff-cheeks.png      →  Stuff Cheeks (Lv 5)  [Move 2 · Final]
+  covet.png             →  Covet (Lv 5)         [Move 2 · Final]
+  berry-belly-flop.png  →  Berry Belly Flop     [Unite · Unite]

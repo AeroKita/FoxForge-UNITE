@@ -9,6 +9,7 @@ from pathlib import Path
 from normalize import (
     PLAYABLE_PASSIVE_SLUGS,
     _norm_move_name,
+    license_identity,
     advanced_desc,
     append_upgrade_from_advanced,
     apply_archive_move_basic,
@@ -23,10 +24,13 @@ from normalize import (
     paragraphize_archive_entry,
     paragraphize_basic_body,
     paragraphize_move_archive,
+    assemble_passive_ability,
     collect_passive_archive_keys,
+    form_passive_stages,
     passive_basic_desc,
     is_mega_license,
     mega_license_passive_names,
+    mega_passive_slots,
     resolve_playable_passive,
     staged_passive_names,
     reword_add_label,
@@ -652,11 +656,134 @@ class TestMegaLicensePassives(unittest.TestCase):
             ["Solar Power", "Tough Claws"],
         )
 
+    def test_mega_gyarados_stills_keep_magikarp_swift_swim(self):
+        """Stills show Swift Swim on Magikarp before Pre-Mega Intimidate."""
+        self.assertEqual(
+            mega_passive_slots(self._GYARADOS, "Mega-Gyarados"),
+            [
+                ("Swift Swim", None, "Magikarp"),
+                ("Intimidate", "preMega", None),
+                ("Mold Breaker", "mega", None),
+            ],
+        )
+
+    def test_two_stage_mega_slots_are_pre_mega_then_mega(self):
+        self.assertEqual(
+            mega_passive_slots(self._CHARIZARD_X, "Mega-Charizard-X"),
+            [
+                ("Solar Power", "preMega", None),
+                ("Tough Claws", "mega", None),
+            ],
+        )
+
     def test_staged_names_skip_blanks(self):
         self.assertEqual(staged_passive_names({"name": "Pressure"}), ["Pressure"])
 
     def test_empty_skill(self):
         self.assertEqual(mega_license_passive_names(None), [])
+
+
+class TestLicenseIdentity(unittest.TestCase):
+    """Regional UNITE licenses keep a form-qualified id and display name."""
+
+    def test_alolan_raichu(self):
+        self.assertEqual(license_identity("Raichu", "Raichu"), ("alolan-raichu", "Alolan Raichu"))
+
+    def test_alolan_ninetales(self):
+        self.assertEqual(
+            license_identity("Ninetales", "Ninetales"),
+            ("alolan-ninetales", "Alolan Ninetales"),
+        )
+
+    def test_galarian_rapidash(self):
+        self.assertEqual(
+            license_identity("Rapidash", "Rapidash"),
+            ("galarian-rapidash", "Galarian Rapidash"),
+        )
+
+    def test_kantonian_licenses_keep_species_names(self):
+        self.assertEqual(license_identity("Pikachu", "Pikachu"), ("pikachu", "Pikachu"))
+        self.assertEqual(license_identity("Slowbro", "Slowbro"), ("slowbro", "Slowbro"))
+        self.assertEqual(license_identity("Meowth", "Meowth"), ("meowth", "Meowth"))
+        self.assertEqual(license_identity("Articuno", "Articuno"), ("articuno", "Articuno"))
+        self.assertEqual(license_identity("Mr.Mime", "Mr. Mime"), ("mr-mime", "Mr. Mime"))
+
+    def test_mega_licenses_keep_existing_ids(self):
+        self.assertEqual(
+            license_identity("Mega-Charizard-X", "Mega Charizard X"),
+            ("mega-charizard-x", "Mega Charizard X"),
+        )
+        self.assertEqual(
+            license_identity("MewtwoX", "Mega Mewtwo X"),
+            ("mewtwox", "Mega Mewtwo X"),
+        )
+
+
+class TestFormPassiveStages(unittest.TestCase):
+    """Dual-form Passives are operator-confirmed evolution pairs, not Mega phases."""
+
+    def test_raichu_pair(self):
+        self.assertEqual(
+            form_passive_stages("Raichu"),
+            (("Static", "Pikachu"), ("Surge Surfer", "Raichu")),
+        )
+
+    def test_sylveon_pair(self):
+        self.assertEqual(
+            form_passive_stages("Sylveon"),
+            (("Adaptability", "Eevee"), ("Pixilate", "Sylveon")),
+        )
+
+    def test_stills_form_pairs_use_evolution_chips(self):
+        """Pre-evolution Ability stills show as extra Passives with form-name chips."""
+        cases = {
+            "Aegislash": (("No Guard", "Honedge"), ("Stance Change", "Aegislash")),
+            "Ceruledge": (("Flame Body", "Charcadet"), ("Weak Armor", "Ceruledge")),
+            "Dragonite": (("Marvel Scale", "Dragonair"), ("Multiscale", "Dragonite")),
+            "Espeon": (("Anticipation", "Eevee"), ("Magic Bounce", "Espeon")),
+            "Glaceon": (("Run Away", "Eevee"), ("Snow Cloak", "Glaceon")),
+            "Gyarados": (("Rattled", "Magikarp"), ("Moxie", "Gyarados")),
+            "Leafeon": (("Run Away", "Eevee"), ("Chlorophyll", "Leafeon")),
+            "Solgaleo": (
+                ("Unaware", "Cosmog"),
+                ("Sturdy", "Cosmoem"),
+                ("Full Metal Body", "Solgaleo"),
+            ),
+            "Tsareena": (("Oblivious", "Bounsweet"), ("Queenly Majesty", "Tsareena")),
+            "Tyranitar": (
+                ("Guts", "Larvitar"),
+                ("Shed Skin", "Pupitar"),
+                ("Sand Stream", "Tyranitar"),
+            ),
+            "Umbreon": (("Anticipation", "Eevee"), ("Inner Focus", "Umbreon")),
+            "Urshifu": (("Inner Focus", "Kubfu"), ("Unseen Fist", "Urshifu")),
+            "Vaporeon": (("Run Away", "Eevee"), ("Water Absorb", "Vaporeon")),
+        }
+        for name, expected in cases.items():
+            self.assertEqual(form_passive_stages(name), expected, name)
+
+    def test_absent_when_stills_show_one_passive(self):
+        for name in ("Ninetales", "Pikachu", "Blastoise", "Clefable", "Lucario"):
+            self.assertIsNone(form_passive_stages(name), name)
+
+    def test_mega_licenses_are_not_form_pairs(self):
+        self.assertIsNone(form_passive_stages("Mega Charizard X"))
+        self.assertIsNone(form_passive_stages("Mega Lucario"))
+        self.assertIsNone(form_passive_stages("Mega Gyarados"))
+
+    def test_assemble_sets_stage_label_without_mega_phase(self):
+        out = assemble_passive_ability(
+            "Static",
+            "Raichu",
+            {},
+            "Paralyzes all opponents near the Pokémon.",
+            "",
+            {},
+            {},
+            stage_label="Pikachu",
+        )
+        self.assertEqual(out["stageLabel"], "Pikachu")
+        self.assertNotIn("phase", out)
 
 
 class TestDescriptionBody(unittest.TestCase):

@@ -166,9 +166,9 @@ npm run data:gaps
 ```
 
 7. When writing Basic text:
-   - Copy in-game Basic tooltip text (Switch/mobile tooltip, or a PNG still under `tools/community/_descs/<id>/`). Do not paste another website as the live source.
+   - Copy in-game Basic tooltip text (Switch/mobile tooltip, or a PNG still under `screenshot-references/move-descriptions/<id>/`). Do not paste another website as the live source.
    - Keep `\n\n` between paragraphs.
-   - Prefer `Upgrade (Level N):` using the upgrade’s second level from UNITE-DB (often 11 or 13).
+   - Prefer `Upgrade (Level N):` using the upgrade’s second level from UNITE-DB (`level2`, often 10, 11, 12, or 13). The yellow in-game banner **Once you reach Lv. N** and the UI **Lv N** chip are the **learn** level, not the Upgrade level. Stills usually show a bare `Upgrade:` — do not copy the learn number into `Upgrade (Level N):`. Keep a number that was already correct in the archive.
    - If Basic already has body text but no Upgrade line, the **normalize** script (part of refresh) will copy **only** the Advanced Upgrade paragraph automatically — you do not need to paste numbers by hand.
    - No `attack` key needed unless you have basic-attack Basic text (basic attacks are excluded from the blank-description check).
    - If the app still shows a pre-evolution Ability name (Eevee Adaptability, Larvitar Guts, …), add that Pokémon’s UNITE-DB `name` slug to `PLAYABLE_PASSIVE_SLUGS` in `tools/community/normalize.py`. Do not add `mew`. Do not add mega-license slugs. Then run curate + `fetch_art.py` (not a full harvest). See [`13-in-game-basic-text.md`](13-in-game-basic-text.md).

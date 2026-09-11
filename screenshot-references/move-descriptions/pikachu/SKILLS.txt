@@ -1,0 +1,12 @@
+Pikachu  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  static.png         →  Static               [Passive]
+  thunder-shock.png  →  Thunder Shock        [Move 1 · Base]
+  electro-ball.png   →  Electro Ball (Lv 4)  [Move 1 · Final]
+  thunder.png        →  Thunder (Lv 4)       [Move 1 · Final]
+  electroweb.png     →  Electroweb           [Move 2 · Base]
+  volt-tackle.png    →  Volt Tackle (Lv 6)   [Move 2 · Final]
+  thunderbolt.png    →  Thunderbolt (Lv 6)   [Move 2 · Final]
+  thunderstorm.png   →  Thunderstorm         [Unite · Unite]

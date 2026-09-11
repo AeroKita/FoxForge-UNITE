@@ -1,0 +1,13 @@
+Leafeon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  run-away.png          →  Run Away            [Passive · Eevee]
+  chlorophyll.png       →  Chlorophyll         [Passive · Leafeon]
+  swift.png             →  Swift               [Move 1 · Base]
+  razor-leaf.png        →  Razor Leaf (Lv 4)   [Move 1 · Final]
+  solar-blade.png       →  Solar Blade (Lv 4)  [Move 1 · Final]
+  quick-attack.png      →  Quick Attack        [Move 2 · Base]
+  aerial-ace.png        →  Aerial Ace (Lv 6)   [Move 2 · Final]
+  leaf-blade.png        →  Leaf Blade (Lv 6)   [Move 2 · Final]
+  emerald-two-step.png  →  Emerald Two-Step    [Unite · Unite]

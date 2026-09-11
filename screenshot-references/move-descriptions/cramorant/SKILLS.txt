@@ -1,0 +1,12 @@
+Cramorant  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  gulp-missile.png          →  Gulp Missile          [Passive]
+  whirlpool.png             →  Whirlpool             [Move 1 · Base]
+  surf.png                  →  Surf (Lv 6)           [Move 1 · Final]
+  dive.png                  →  Dive (Lv 6)           [Move 1 · Final]
+  feather-dance.png         →  Feather Dance         [Move 2 · Base]
+  hurricane.png             →  Hurricane (Lv 4)      [Move 2 · Final]
+  air-slash.png             →  Air Slash (Lv 4)      [Move 2 · Final]
+  gatling-gulp-missile.png  →  Gatling Gulp Missile  [Unite · Unite]

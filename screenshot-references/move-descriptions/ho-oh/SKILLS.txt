@@ -1,0 +1,12 @@
+Ho-Oh  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  regenerator.png       →  Regenerator          [Passive]
+  safeguard.png         →  Safeguard            [Move 1 · Base]
+  sacred-fire.png       →  Sacred Fire (Lv 7)   [Move 1 · Final]
+  fire-spin.png         →  Fire Spin (Lv 7)     [Move 1 · Final]
+  tailwind.png          →  Tailwind             [Move 2 · Base]
+  flamethrower.png      →  Flamethrower (Lv 5)  [Move 2 · Final]
+  sky-attack.png        →  Sky Attack (Lv 5)    [Move 2 · Final]
+  rekindling-flame.png  →  Rekindling Flame     [Unite · Unite]

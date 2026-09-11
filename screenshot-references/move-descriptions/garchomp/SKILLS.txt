@@ -1,0 +1,12 @@
+Garchomp  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  rough-skin.png     →  Rough Skin          [Passive]
+  sand-attack.png    →  Sand Attack         [Move 1 · Base]
+  dig.png            →  Dig (Lv 5)          [Move 1 · Final]
+  dragon-rush.png    →  Dragon Rush (Lv 5)  [Move 1 · Final]
+  bulldoze.png       →  Bulldoze            [Move 2 · Base]
+  earthquake.png     →  Earthquake (Lv 7)   [Move 2 · Final]
+  dragon-claw.png    →  Dragon Claw (Lv 7)  [Move 2 · Final]
+  livid-outrage.png  →  Livid Outrage       [Unite · Unite]

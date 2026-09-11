@@ -1,6 +1,6 @@
 {
   "_source": "https://www.pokemonunite.jp/en/topics/battle/20260902-1/",
-  "_patch": "Drive to Victory — 1.24.1.3 (official notes labeled 1.24.1.1, live 2026-09-03 04:00 UTC)",
+  "_patch": "Drive to Victory — 1.24.1.4 (official notes labeled 1.24.1.1, live 2026-09-03 04:00 UTC)",
   "_note": "Self-expiring deltas layered onto UNITE-DB raw data by normalize.py: official patch-note numbers/text while upstream is stale, plus sentence-level UNITE-DB punctuation or wording that SPELLING_FIXES cannot safely rewrite. Every entry has a guard (expect*/find) equal to the PRE-fix value; once UNITE-DB ships the corrected string the guard stops matching and the entry expires (skipped with a notice). Prune expired entries when the post-fix data-refresh PR lands.",
   "overrides": [
     {

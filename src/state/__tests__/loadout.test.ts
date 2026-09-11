@@ -29,6 +29,55 @@ function mockLocalStorage() {
   return store;
 }
 
+describe("legacy Pokémon id remap", () => {
+  it("remaps raichu to alolan-raichu in sanitizeLoadout", () => {
+    const out = sanitizeLoadout({
+      pokemonId: "raichu",
+      level: 15,
+      heldItemIds: [null, null, null],
+      battleItemId: null,
+      emblems: [],
+      activeBoostIds: [],
+    });
+    expect(out?.pokemonId).toBe("alolan-raichu");
+  });
+
+  it("remaps ninetales and rapidash to regional ids", () => {
+    expect(
+      sanitizeLoadout({
+        pokemonId: "ninetales",
+        level: 15,
+        heldItemIds: [null, null, null],
+        battleItemId: null,
+        emblems: [],
+        activeBoostIds: [],
+      })?.pokemonId,
+    ).toBe("alolan-ninetales");
+    expect(
+      sanitizeLoadout({
+        pokemonId: "rapidash",
+        level: 15,
+        heldItemIds: [null, null, null],
+        battleItemId: null,
+        emblems: [],
+        activeBoostIds: [],
+      })?.pokemonId,
+    ).toBe("galarian-rapidash");
+  });
+
+  it("passes through Pokémon ids that are not regional remaps", () => {
+    const out = sanitizeLoadout({
+      pokemonId: "pikachu",
+      level: 15,
+      heldItemIds: [null, null, null],
+      battleItemId: null,
+      emblems: [],
+      activeBoostIds: [],
+    });
+    expect(out?.pokemonId).toBe("pikachu");
+  });
+});
+
 describe("legacy emblem id remap", () => {
   beforeEach(() => mockLocalStorage());
   afterEach(() => vi.unstubAllGlobals());

@@ -1,0 +1,12 @@
+Decidueye  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  long-reach.png      →  Long Reach             [Passive]
+  leafage.png         →  Leafage                [Move 1 · Base]
+  razor-leaf.png      →  Razor Leaf (Lv 7)      [Move 1 · Final]
+  spirit-shackle.png  →  Spirit Shackle (Lv 7)  [Move 1 · Final]
+  astonish.png        →  Astonish               [Move 2 · Base]
+  leaf-storm.png      →  Leaf Storm (Lv 8)      [Move 2 · Final]
+  shadow-sneak.png    →  Shadow Sneak (Lv 8)    [Move 2 · Final]
+  nock-nock.png       →  Nock Nock              [Unite · Unite]

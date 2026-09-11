@@ -1,0 +1,13 @@
+Glaceon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  run-away.png       →  Run Away             [Passive · Eevee]
+  snow-cloak.png     →  Snow Cloak           [Passive · Glaceon]
+  swift.png          →  Swift                [Move 1 · Base]
+  icicle-spear.png   →  Icicle Spear (Lv 4)  [Move 1 · Final]
+  icy-wind.png       →  Icy Wind (Lv 4)      [Move 1 · Final]
+  tail-whip.png      →  Tail Whip            [Move 2 · Base]
+  ice-shard.png      →  Ice Shard (Lv 6)     [Move 2 · Final]
+  freeze-dry.png     →  Freeze-Dry (Lv 6)    [Move 2 · Final]
+  glacial-stage.png  →  Glacial Stage        [Unite · Unite]

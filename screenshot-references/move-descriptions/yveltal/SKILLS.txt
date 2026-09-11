@@ -1,0 +1,10 @@
+Yveltal  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  dark-aura.png          →  Dark Aura             [Passive]
+  gust.png               →  Gust                  [Move 1 · Base]
+  oblivion-wing.png      →  Oblivion Wing (Lv 5)  [Move 1 · Final]
+  lash-out.png           →  Lash Out              [Move 2 · Base]
+  dark-pulse.png         →  Dark Pulse (Lv 7)     [Move 2 · Final]
+  lumiere-of-demise.png  →  Lumière of Demise     [Unite · Unite]

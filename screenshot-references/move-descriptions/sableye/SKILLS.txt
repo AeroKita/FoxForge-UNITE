@@ -1,0 +1,12 @@
+Sableye  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  prankster.png     →  Prankster            [Passive]
+  thief.png         →  Thief                [Move 1 · Base]
+  knock-off.png     →  Knock Off (Lv 4)     [Move 1 · Final]
+  shadow-sneak.png  →  Shadow Sneak (Lv 4)  [Move 1 · Final]
+  astonish.png      →  Astonish             [Move 2 · Base]
+  feint-attack.png  →  Feint Attack (Lv 6)  [Move 2 · Final]
+  confuse-ray.png   →  Confuse Ray (Lv 6)   [Move 2 · Final]
+  chaos-glower.png  →  Chaos Glower         [Unite · Unite]

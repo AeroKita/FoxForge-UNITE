@@ -570,7 +570,7 @@
       "psychic": "/assets/skills/Mr.Mime/Psychic.mp4",
       "showtime": "/assets/skills/Mr.Mime/Showtime.mp4"
     },
-    "ninetales": {
+    "alolan-ninetales": {
       "aurora-veil": "/assets/skills/Ninetales/Aurora+Veil.mp4",
       "avalanche": "/assets/skills/Ninetales/Avalanche.mp4",
       "blizzard": "/assets/skills/Ninetales/Blizzard.mp4",
@@ -620,7 +620,7 @@
       "pound": "/assets/skills/Quaquaval/Pound.mp4",
       "wing-attack": "/assets/skills/Quaquaval/Wing+Attack.mp4"
     },
-    "raichu": {
+    "alolan-raichu": {
       "electro-ball": "/assets/skills/Raichu/Electro+Ball.mp4",
       "psychic": "/assets/skills/Raichu/Psychic.mp4",
       "stored-power": "/assets/skills/Raichu/Stored+Power.mp4",
@@ -629,7 +629,7 @@
       "thunderbolt": "/assets/skills/Raichu/Thunderbolt.mp4",
       "thunderstorm-aerial": "/assets/skills/Raichu/Thunderstorm+Aerial.mp4"
     },
-    "rapidash": {
+    "galarian-rapidash": {
       "agility": "/assets/skills/Rapidash/Agility.mp4",
       "confusion": "/assets/skills/Rapidash/Confusion.mp4",
       "dazzling-gleam": "/assets/skills/Rapidash/Dazzling+Gleam.mp4",

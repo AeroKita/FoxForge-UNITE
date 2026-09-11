@@ -1,0 +1,13 @@
+Sylveon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  adaptability.png    →  Adaptability          [Passive · Eevee]
+  pixilate.png        →  Pixilate              [Passive · Sylveon]
+  swift.png           →  Swift                 [Move 1 · Base]
+  mystical-fire.png   →  Mystical Fire (Lv 4)  [Move 1 · Final]
+  hyper-voice.png     →  Hyper Voice (Lv 4)    [Move 1 · Final]
+  baby-doll-eyes.png  →  Baby-Doll Eyes        [Move 2 · Base]
+  draining-kiss.png   →  Draining Kiss (Lv 6)  [Move 2 · Final]
+  calm-mind.png       →  Calm Mind (Lv 6)      [Move 2 · Final]
+  fairy-frolic.png    →  Fairy Frolic          [Unite · Unite]

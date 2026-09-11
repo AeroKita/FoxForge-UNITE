@@ -1,0 +1,12 @@
+Machamp  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  guts.png           →  Guts                  [Passive]
+  karate-chop.png    →  Karate Chop           [Move 1 · Base]
+  close-combat.png   →  Close Combat (Lv 7)   [Move 1 · Final]
+  cross-chop.png     →  Cross Chop (Lv 7)     [Move 1 · Final]
+  bulk-up.png        →  Bulk Up               [Move 2 · Base]
+  dynamic-punch.png  →  Dynamic Punch (Lv 5)  [Move 2 · Final]
+  submission.png     →  Submission (Lv 5)     [Move 2 · Final]
+  barrage-blow.png   →  Barrage Blow          [Unite · Unite]

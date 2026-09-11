@@ -1,0 +1,13 @@
+Dragonite  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  marvel-scale.png   →  Marvel Scale          [Passive · Dragonair]
+  multiscale.png     →  Multiscale            [Passive · Dragonite]
+  twister.png        →  Twister               [Move 1 · Base]
+  dragon-dance.png   →  Dragon Dance (Lv 5)   [Move 1 · Final]
+  extreme-speed.png  →  Extreme Speed (Lv 5)  [Move 1 · Final]
+  dragon-breath.png  →  Dragon Breath         [Move 2 · Base]
+  hyper-beam.png     →  Hyper Beam (Lv 8)     [Move 2 · Final]
+  outrage.png        →  Outrage (Lv 8)        [Move 2 · Final]
+  draco-impact.png   →  Draco Impact          [Unite · Unite]

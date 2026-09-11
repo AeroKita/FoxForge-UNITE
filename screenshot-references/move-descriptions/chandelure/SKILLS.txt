@@ -1,0 +1,12 @@
+Chandelure  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  infiltrator.png      →  Infiltrator          [Passive]
+  ember.png            →  Ember                [Move 1 · Base]
+  flamethrower.png     →  Flamethrower (Lv 5)  [Move 1 · Final]
+  overheat.png         →  Overheat (Lv 5)      [Move 1 · Final]
+  night-shade.png      →  Night Shade          [Move 2 · Base]
+  poltergeist.png      →  Poltergeist (Lv 7)   [Move 2 · Final]
+  imprison.png         →  Imprison (Lv 7)      [Move 2 · Final]
+  ignite-midnight.png  →  Ignite Midnight      [Unite · Unite]

@@ -1,0 +1,12 @@
+Latios  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  levitate.png      →  Levitate             [Passive]
+  confusion.png     →  Confusion            [Move 1 · Base]
+  luster-purge.png  →  Luster Purge (Lv 7)  [Move 1 · Final]
+  telekinesis.png   →  Telekinesis (Lv 7)   [Move 1 · Final]
+  swift.png         →  Swift                [Move 2 · Base]
+  dragon-pulse.png  →  Dragon Pulse (Lv 5)  [Move 2 · Final]
+  draco-meteor.png  →  Draco Meteor (Lv 5)  [Move 2 · Final]
+  eon-blast.png     →  Eon Blast            [Unite · Unite]

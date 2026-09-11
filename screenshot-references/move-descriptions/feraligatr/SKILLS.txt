@@ -1,0 +1,10 @@
+Feraligatr  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  torrent.png       →  Torrent           [Passive]
+  bite.png          →  Bite              [Move 1 · Base]
+  crunch.png        →  Crunch (Lv 5)     [Move 1 · Final]
+  scratch.png       →  Scratch           [Move 2 · Base]
+  waterfall.png     →  Waterfall (Lv 7)  [Move 2 · Final]
+  big-jaw-bite.png  →  Big Jaw Bite      [Unite · Unite]

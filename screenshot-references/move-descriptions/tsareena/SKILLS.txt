@@ -1,0 +1,13 @@
+Tsareena  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  oblivious.png        →  Oblivious            [Passive · Bounsweet]
+  queenly-majesty.png  →  Queenly Majesty      [Passive · Tsareena]
+  razor-leaf.png       →  Razor Leaf           [Move 1 · Base]
+  triple-axel.png      →  Triple Axel (Lv 5)   [Move 1 · Final]
+  stomp.png            →  Stomp (Lv 5)         [Move 1 · Final]
+  rapid-spin.png       →  Rapid Spin           [Move 2 · Base]
+  trop-kick.png        →  Trop Kick (Lv 6)     [Move 2 · Final]
+  grassy-glide.png     →  Grassy Glide (Lv 6)  [Move 2 · Final]
+  queen-ascendant.png  →  Queen Ascendant      [Unite · Unite]

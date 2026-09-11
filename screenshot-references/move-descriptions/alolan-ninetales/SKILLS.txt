@@ -1,0 +1,12 @@
+Alolan Ninetales  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  snow-warning.png    →  Snow Warning           [Passive]
+  powder-snow.png     →  Powder Snow            [Move 1 · Base]
+  avalanche.png       →  Avalanche (Lv 4)       [Move 1 · Final]
+  dazzling-gleam.png  →  Dazzling Gleam (Lv 4)  [Move 1 · Final]
+  icy-wind.png        →  Icy Wind               [Move 2 · Base]
+  blizzard.png        →  Blizzard (Lv 6)        [Move 2 · Final]
+  aurora-veil.png     →  Aurora Veil (Lv 6)     [Move 2 · Final]
+  snow-globe.png      →  Snow Globe             [Unite · Unite]

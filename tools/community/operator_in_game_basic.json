@@ -30,12 +30,12 @@
       "thunder shock"
     ],
     "solgaleo": [
-      "attack - cosmog",
       "cosmic power",
       "full metal body",
       "iron head",
       "psyshock",
       "shining meteor crush",
+      "sturdy",
       "teleport",
       "unaware"
     ],
@@ -120,6 +120,876 @@
       "meteor mash",
       "power-up punch",
       "quick attack"
+    ],
+    "alolan-raichu": [
+      "electro ball",
+      "psychic",
+      "static",
+      "stored power",
+      "surge surfer",
+      "thunder shock",
+      "thunder wave",
+      "thunderbolt",
+      "thunderstorm aerial"
+    ],
+    "pikachu": [
+      "electro ball",
+      "electroweb",
+      "static",
+      "thunder",
+      "thunder shock",
+      "thunderbolt",
+      "thunderstorm",
+      "volt tackle"
+    ],
+    "alolan-ninetales": [
+      "aurora veil",
+      "avalanche",
+      "blizzard",
+      "dazzling gleam",
+      "icy wind",
+      "powder snow",
+      "snow globe",
+      "snow warning"
+    ],
+    "blastoise": [
+      "hydro pump",
+      "hydro typhoon",
+      "rapid spin",
+      "skull bash",
+      "surf",
+      "torrent",
+      "water gun",
+      "water spout"
+    ],
+    "clefable": [
+      "disarming voice",
+      "draining kiss",
+      "follow me",
+      "gravity",
+      "heal pulse",
+      "magic guard",
+      "moonlight",
+      "wonder wish"
+    ],
+    "absol": [
+      "feint",
+      "midnight slash",
+      "night slash",
+      "psycho cut",
+      "pursuit",
+      "slash",
+      "sucker punch",
+      "super luck"
+    ],
+    "aegislash": [
+      "coup de grace",
+      "iron defense",
+      "iron head",
+      "no guard",
+      "sacred sword",
+      "shadow claw",
+      "shadow sneak",
+      "stance change",
+      "wide guard"
+    ],
+    "alcremie": [
+      "aroma veil",
+      "charm",
+      "dazzling gleam",
+      "decorate",
+      "fluffy cream supreme",
+      "helping hand",
+      "recover",
+      "sweet scent"
+    ],
+    "armarouge": [
+      "armor cannon",
+      "fire spin",
+      "flame charge",
+      "flash fire",
+      "incinerate",
+      "psykaboom",
+      "psyshock",
+      "will-o-wisp"
+    ],
+    "articuno": [
+      "blizzard",
+      "ice beam",
+      "ice shard",
+      "ice wing whiteout",
+      "icy wind",
+      "snow cloak"
+    ],
+    "azumarill": [
+      "aqua tail",
+      "belly bash",
+      "bubble",
+      "huge power",
+      "play rough",
+      "tackle",
+      "water pulse",
+      "whirlpool"
+    ],
+    "blaziken": [
+      "aerial ace",
+      "blaze",
+      "blaze kick",
+      "ember",
+      "fire punch",
+      "focus blast",
+      "overheat",
+      "spinning flame fist",
+      "spinning flame kick"
+    ],
+    "blissey": [
+      "bliss assistance",
+      "egg bomb",
+      "heal pulse",
+      "helping hand",
+      "natural cure",
+      "pound",
+      "safeguard",
+      "soft-boiled"
+    ],
+    "buzzwole": [
+      "beast boost",
+      "fell stinger",
+      "leech life",
+      "lunge",
+      "mega punch",
+      "smack down",
+      "superpower",
+      "ultra swole slam"
+    ],
+    "ceruledge": [
+      "bitter blade",
+      "flame body",
+      "flame charge",
+      "lava plume",
+      "phantom force",
+      "psycho cut",
+      "revenant rend",
+      "take down",
+      "weak armor"
+    ],
+    "chandelure": [
+      "ember",
+      "flamethrower",
+      "ignite midnight",
+      "imprison",
+      "infiltrator",
+      "night shade",
+      "overheat",
+      "poltergeist"
+    ],
+    "cinderace": [
+      "blaze",
+      "blaze kick",
+      "blazing bicycle kick",
+      "ember",
+      "feint",
+      "flame charge",
+      "low sweep",
+      "pyro ball"
+    ],
+    "comfey": [
+      "floral healing",
+      "flowery fields forever",
+      "grass knot",
+      "magical leaf",
+      "sweet kiss",
+      "synthesis",
+      "triage",
+      "vine whip"
+    ],
+    "cramorant": [
+      "air slash",
+      "dive",
+      "feather dance",
+      "gatling gulp missile",
+      "gulp missile",
+      "hurricane",
+      "surf",
+      "whirlpool"
+    ],
+    "crustle": [
+      "fury cutter",
+      "rock slide",
+      "rock tomb",
+      "rubble rouser",
+      "shell smash",
+      "stealth rock",
+      "sturdy",
+      "x-scissor"
+    ],
+    "darkrai": [
+      "bad dreams",
+      "calm mind",
+      "dark pulse",
+      "dark void",
+      "hypnosis",
+      "nasty plot",
+      "shadow claw",
+      "worst nightmare"
+    ],
+    "decidueye": [
+      "astonish",
+      "leaf storm",
+      "leafage",
+      "long reach",
+      "nock nock",
+      "razor leaf",
+      "shadow sneak",
+      "spirit shackle"
+    ],
+    "delphox": [
+      "blaze",
+      "ember",
+      "fanciful fireworks",
+      "fire blast",
+      "fire spin",
+      "flame charge",
+      "mystical fire",
+      "will-o-wisp"
+    ],
+    "dhelmise": [
+      "anchor shot",
+      "bulldoze",
+      "heavy slam",
+      "payback",
+      "power whip",
+      "seaweed snare",
+      "steelworker",
+      "whirlpool"
+    ],
+    "dodrio": [
+      "agility",
+      "drill peck",
+      "jump kick",
+      "peck",
+      "quick attack",
+      "run away",
+      "tri attack",
+      "triple trample"
+    ],
+    "dragapult": [
+      "astonish",
+      "clear body",
+      "dragon breath",
+      "dragon dance",
+      "dreep and destroy",
+      "phantom force",
+      "quick attack",
+      "shadow ball"
+    ],
+    "dragonite": [
+      "draco impact",
+      "dragon breath",
+      "dragon dance",
+      "extreme speed",
+      "hyper beam",
+      "marvel scale",
+      "multiscale",
+      "outrage",
+      "twister"
+    ],
+    "duraludon": [
+      "dragon pulse",
+      "dragon tail",
+      "flash cannon",
+      "heavy metal",
+      "laser focus",
+      "metal claw",
+      "revolving ruin",
+      "stealth rock"
+    ],
+    "eldegoss": [
+      "cotton cloud crash",
+      "cotton down",
+      "cotton guard",
+      "cotton spore",
+      "leaf tornado",
+      "leafage",
+      "pollen puff",
+      "synthesis"
+    ],
+    "empoleon": [
+      "aqua jet",
+      "hydro cannon",
+      "metal claw",
+      "peck",
+      "sovereign slide",
+      "torrent",
+      "water gun",
+      "whirlpool"
+    ],
+    "espeon": [
+      "anticipation",
+      "future sight",
+      "growl",
+      "magic bounce",
+      "psybeam",
+      "psychic solare",
+      "psyshock",
+      "stored power",
+      "swift"
+    ],
+    "falinks": [
+      "battle armor",
+      "beat up",
+      "bulk up",
+      "dust devil formation",
+      "iron head",
+      "megahorn",
+      "no retreat",
+      "tackle"
+    ],
+    "feraligatr": [
+      "big jaw bite",
+      "bite",
+      "crunch",
+      "scratch",
+      "torrent",
+      "waterfall"
+    ],
+    "garchomp": [
+      "bulldoze",
+      "dig",
+      "dragon claw",
+      "dragon rush",
+      "earthquake",
+      "livid outrage",
+      "rough skin",
+      "sand attack"
+    ],
+    "gardevoir": [
+      "confusion",
+      "fairy singularity",
+      "future sight",
+      "moonblast",
+      "psychic",
+      "psyshock",
+      "synchronize",
+      "teleport"
+    ],
+    "gengar": [
+      "dream eater",
+      "hex",
+      "levitate",
+      "lick",
+      "phantom ambush",
+      "shadow ball",
+      "sludge bomb",
+      "will-o-wisp"
+    ],
+    "glaceon": [
+      "freeze-dry",
+      "glacial stage",
+      "ice shard",
+      "icicle spear",
+      "icy wind",
+      "run away",
+      "snow cloak",
+      "swift",
+      "tail whip"
+    ],
+    "goodra": [
+      "acid spray",
+      "bubble",
+      "dragon pulse",
+      "gooey",
+      "muddy water",
+      "power whip",
+      "right as rain",
+      "tackle"
+    ],
+    "greedent": [
+      "belch",
+      "berry belly flop",
+      "bullet seed",
+      "cheek pouch",
+      "covet",
+      "defense curl",
+      "stuff cheeks",
+      "tackle"
+    ],
+    "greninja": [
+      "bubble",
+      "double team",
+      "smokescreen",
+      "substitute",
+      "surf",
+      "torrent",
+      "water shuriken",
+      "waterburst shuriken"
+    ],
+    "gyarados": [
+      "aqua tail",
+      "bounce",
+      "dragon breath",
+      "dragon current",
+      "flail",
+      "moxie",
+      "rattled",
+      "splash",
+      "waterfall"
+    ],
+    "ho-oh": [
+      "fire spin",
+      "flamethrower",
+      "regenerator",
+      "rekindling flame",
+      "sacred fire",
+      "safeguard",
+      "sky attack",
+      "tailwind"
+    ],
+    "hoopa": [
+      "astonish",
+      "confusion",
+      "hyperspace hole",
+      "magician",
+      "phantom force",
+      "rings unbound",
+      "shadow ball",
+      "trick"
+    ],
+    "inteleon": [
+      "acrobatics",
+      "azure spy vision",
+      "fell stinger",
+      "liquidation",
+      "snipe shot",
+      "sniper",
+      "tearful look",
+      "water gun"
+    ],
+    "lapras": [
+      "bubble beam",
+      "ice beam",
+      "ice shard",
+      "lapras express",
+      "perish song",
+      "shell armor",
+      "water pulse",
+      "whirlpool"
+    ],
+    "latias": [
+      "confusion",
+      "dragon breath",
+      "dragon cheer",
+      "dragon pulse",
+      "levitate",
+      "mist ball",
+      "mist blast",
+      "swift"
+    ],
+    "latios": [
+      "confusion",
+      "draco meteor",
+      "dragon pulse",
+      "eon blast",
+      "levitate",
+      "luster purge",
+      "swift",
+      "telekinesis"
+    ],
+    "leafeon": [
+      "aerial ace",
+      "chlorophyll",
+      "emerald two-step",
+      "leaf blade",
+      "quick attack",
+      "razor leaf",
+      "run away",
+      "solar blade",
+      "swift"
+    ],
+    "machamp": [
+      "barrage blow",
+      "bulk up",
+      "close combat",
+      "cross chop",
+      "dynamic punch",
+      "guts",
+      "karate chop",
+      "submission"
+    ],
+    "mamoswine": [
+      "earthquake",
+      "high horsepower",
+      "ice fang",
+      "ice shard",
+      "icicle crash",
+      "mammoth mash",
+      "tackle",
+      "thick fat"
+    ],
+    "mega-gyarados": [
+      "dragon breath",
+      "dragon current",
+      "flail",
+      "intimidate",
+      "mold breaker",
+      "splash",
+      "swift swim",
+      "waterfall"
+    ],
+    "meganium": [
+      "full bloom aroma",
+      "grass knot",
+      "magical leaf",
+      "overgrow",
+      "petal blizzard",
+      "synthesis"
+    ],
+    "meowscarada": [
+      "double team",
+      "floral flourish",
+      "flower trick",
+      "hone claws",
+      "leafage",
+      "night slash",
+      "overgrow",
+      "trailblaze"
+    ],
+    "meowth": [
+      "assurance",
+      "feint",
+      "feint attack",
+      "fury swipes",
+      "gold coin barrage",
+      "pay day",
+      "pickup",
+      "scratch"
+    ],
+    "metagross": [
+      "clear body",
+      "compute and crush",
+      "gyro ball",
+      "iron defense",
+      "magnet rise",
+      "meteor mash",
+      "tackle",
+      "zen headbutt"
+    ],
+    "mew": [
+      "agility",
+      "coaching",
+      "electro ball",
+      "light screen",
+      "mystical mirage",
+      "solar beam",
+      "surf",
+      "synchronize"
+    ],
+    "mewtwox": [
+      "barrier",
+      "confusion",
+      "future sight",
+      "infinite psyburn",
+      "pressure",
+      "psystrike",
+      "recover",
+      "teleport"
+    ],
+    "mewtwoy": [
+      "barrier",
+      "confusion",
+      "future sight",
+      "infinite psyburn",
+      "pressure",
+      "psystrike",
+      "recover",
+      "teleport"
+    ],
+    "mimikyu": [
+      "astonish",
+      "disguise",
+      "play rough",
+      "play with me...",
+      "scratch",
+      "shadow claw",
+      "shadow sneak",
+      "trick room"
+    ],
+    "miraidon": [
+      "bright future meteor storm",
+      "charge beam",
+      "electro drift",
+      "hadron engine",
+      "parabolic charge",
+      "thunder",
+      "thunder shock",
+      "thunder wave"
+    ],
+    "moltres": [
+      "firebird inferno",
+      "flame body",
+      "heat wave",
+      "incinerate",
+      "sky attack",
+      "wing attack"
+    ],
+    "mr-mime": [
+      "barrier",
+      "confusion",
+      "fake out",
+      "filter",
+      "light screen",
+      "power swap",
+      "psychic",
+      "showtime"
+    ],
+    "pawmot": [
+      "iron fist",
+      "mach punch",
+      "nuzzle",
+      "scratch",
+      "supercell slam",
+      "thunder punch",
+      "volt switch",
+      "zip zap full-charge spark"
+    ],
+    "psyduck": [
+      "bubble beam",
+      "confusion",
+      "disable",
+      "full-power psy-ay-ay!",
+      "psychic",
+      "surf",
+      "swift swim",
+      "tail whip"
+    ],
+    "galarian-rapidash": [
+      "agility",
+      "confusion",
+      "dazzling gleam",
+      "fairy wind",
+      "pastel veil",
+      "smart strike",
+      "tackle",
+      "triad blitz"
+    ],
+    "sableye": [
+      "astonish",
+      "chaos glower",
+      "confuse ray",
+      "feint attack",
+      "knock off",
+      "prankster",
+      "shadow sneak",
+      "thief"
+    ],
+    "scizor": [
+      "bullet punch",
+      "double hit",
+      "fury cutter",
+      "quick attack",
+      "red illusion dive",
+      "swords dance",
+      "technician"
+    ],
+    "scyther": [
+      "double hit",
+      "dual wingbeat",
+      "fury cutter",
+      "green illusion dive",
+      "quick attack",
+      "swords dance",
+      "technician"
+    ],
+    "sirfetchd": [
+      "brutal swing",
+      "detect",
+      "dual wingbeat",
+      "fury cutter",
+      "leaf blade",
+      "lunging leek nova blast",
+      "quick attack",
+      "steadfast"
+    ],
+    "skeledirge": [
+      "blaze",
+      "disarming voice",
+      "hyper voice",
+      "roar",
+      "rousing symphony",
+      "snarl"
+    ],
+    "slowbro": [
+      "amnesia",
+      "oblivious",
+      "scald",
+      "slack off",
+      "slowbeam",
+      "surf",
+      "telekinesis",
+      "water gun"
+    ],
+    "snorlax": [
+      "block",
+      "flail",
+      "gluttony",
+      "heavy slam",
+      "power nap",
+      "rest",
+      "tackle",
+      "yawn"
+    ],
+    "suicune": [
+      "avalanche",
+      "endless ice spikes",
+      "ice beam",
+      "icy wind",
+      "pressure",
+      "surf",
+      "water pulse",
+      "whirlpool"
+    ],
+    "talonflame": [
+      "acrobatics",
+      "aerial ace",
+      "brave bird",
+      "flame charge",
+      "flame sweep",
+      "fly",
+      "gale wings",
+      "peck"
+    ],
+    "tinkaton": [
+      "fairy wind",
+      "gigaton hammer",
+      "ice hammer",
+      "kiss bliss kaboom",
+      "mold breaker",
+      "rock smash",
+      "smack down",
+      "thief"
+    ],
+    "trevenant": [
+      "branch poke",
+      "curse",
+      "horn leech",
+      "natural cure",
+      "pain split",
+      "phantom forest",
+      "will-o-wisp",
+      "wood hammer"
+    ],
+    "tsareena": [
+      "grassy glide",
+      "oblivious",
+      "queen ascendant",
+      "queenly majesty",
+      "rapid spin",
+      "razor leaf",
+      "stomp",
+      "triple axel",
+      "trop kick"
+    ],
+    "typhlosion": [
+      "blaze",
+      "ember",
+      "eruption",
+      "explosive heat haze",
+      "flame wheel",
+      "tackle"
+    ],
+    "tyranitar": [
+      "ancient power",
+      "bite",
+      "dark pulse",
+      "guts",
+      "rock polish",
+      "sand stream",
+      "sand tomb",
+      "shed skin",
+      "stone edge",
+      "tyrannical rampage"
+    ],
+    "umbreon": [
+      "anticipation",
+      "fake tears",
+      "foul play",
+      "inner focus",
+      "mean look",
+      "moonlight prance",
+      "snarl",
+      "swift",
+      "wish"
+    ],
+    "urshifu": [
+      "ebon fist",
+      "flowing fists",
+      "headbutt",
+      "inner focus",
+      "liquidation",
+      "rock smash",
+      "surging strikes",
+      "throat chop",
+      "unseen fist",
+      "wicked blow"
+    ],
+    "vaporeon": [
+      "aqua ring",
+      "aquamarine splash",
+      "flip turn",
+      "hydro pump",
+      "muddy water",
+      "run away",
+      "swift",
+      "tackle",
+      "water absorb"
+    ],
+    "wigglytuff": [
+      "cute charm",
+      "dazzling gleam",
+      "defense curl",
+      "double slap",
+      "pound",
+      "rollout",
+      "sing",
+      "starlight recital"
+    ],
+    "zacian": [
+      "agility",
+      "intrepid sword",
+      "metal claw",
+      "play rough",
+      "quick attack",
+      "sacred sword",
+      "slash",
+      "sovereign sword"
+    ],
+    "zapdos": [
+      "discharge",
+      "high-voltage siege",
+      "static",
+      "thunder shock",
+      "thunderbolt",
+      "zap cannon"
+    ],
+    "zeraora": [
+      "agility",
+      "discharge",
+      "plasma gale",
+      "slash",
+      "spark",
+      "volt absorb",
+      "volt switch",
+      "wild charge"
+    ],
+    "zoroark": [
+      "cut",
+      "feint attack",
+      "fury swipes",
+      "illusion",
+      "night slash",
+      "nightfall daze",
+      "shadow claw",
+      "slash"
     ]
   }
 }

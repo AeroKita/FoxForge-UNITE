@@ -1,0 +1,12 @@
+Lapras  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  shell-armor.png     →  Shell Armor         [Passive]
+  whirlpool.png       →  Whirlpool           [Move 1 · Base]
+  water-pulse.png     →  Water Pulse (Lv 5)  [Move 1 · Final]
+  perish-song.png     →  Perish Song (Lv 5)  [Move 1 · Final]
+  ice-shard.png       →  Ice Shard           [Move 2 · Base]
+  bubble-beam.png     →  Bubble Beam (Lv 7)  [Move 2 · Final]
+  ice-beam.png        →  Ice Beam (Lv 7)     [Move 2 · Final]
+  lapras-express.png  →  Lapras Express      [Unite · Unite]

@@ -1,0 +1,11 @@
+Mega Charizard Y  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  blaze.png         →  Blaze                [Passive · Pre-Mega]
+  drought.png       →  Drought              [Passive · Mega]
+  flame-burst.png   →  Flame Burst          [Move 1 · Base]
+  flamethrower.png  →  Flamethrower (Lv 5)  [Move 1 · Final]
+  fire-spin.png     →  Fire Spin            [Move 2 · Base]
+  fire-blast.png    →  Fire Blast (Lv 7)    [Move 2 · Final]
+  seismic-slam.png  →  Seismic Slam         [Unite · Unite]

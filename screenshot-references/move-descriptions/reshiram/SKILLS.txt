@@ -1,0 +1,10 @@
+Reshiram  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  turboblaze.png                   →  Turboblaze                   [Passive]
+  dragon-breath.png                →  Dragon Breath                [Move 1 · Base]
+  blue-flare.png                   →  Blue Flare (Lv 7)            [Move 1 · Final]
+  tailwind.png                     →  Tailwind                     [Move 2 · Base]
+  dragon-dance.png                 →  Dragon Dance (Lv 5)          [Move 2 · Final]
+  flames-that-bring-lightning.png  →  Flames That Bring Lightning  [Unite · Unite]

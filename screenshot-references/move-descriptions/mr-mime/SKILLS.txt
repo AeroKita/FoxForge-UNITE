@@ -1,0 +1,12 @@
+Mr. Mime  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  filter.png        →  Filter             [Passive]
+  fake-out.png      →  Fake Out           [Move 1 · Base]
+  confusion.png     →  Confusion (Lv 4)   [Move 1 · Final]
+  psychic.png       →  Psychic (Lv 4)     [Move 1 · Final]
+  light-screen.png  →  Light Screen       [Move 2 · Base]
+  barrier.png       →  Barrier (Lv 6)     [Move 2 · Final]
+  power-swap.png    →  Power Swap (Lv 6)  [Move 2 · Final]
+  showtime.png      →  Showtime           [Unite · Unite]

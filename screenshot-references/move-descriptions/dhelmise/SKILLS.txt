@@ -1,0 +1,12 @@
+Dhelmise  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  steelworker.png    →  Steelworker         [Passive]
+  payback.png        →  Payback             [Move 1 · Base]
+  power-whip.png     →  Power Whip (Lv 5)   [Move 1 · Final]
+  whirlpool.png      →  Whirlpool (Lv 5)    [Move 1 · Final]
+  bulldoze.png       →  Bulldoze            [Move 2 · Base]
+  anchor-shot.png    →  Anchor Shot (Lv 7)  [Move 2 · Final]
+  heavy-slam.png     →  Heavy Slam (Lv 7)   [Move 2 · Final]
+  seaweed-snare.png  →  Seaweed Snare       [Unite · Unite]

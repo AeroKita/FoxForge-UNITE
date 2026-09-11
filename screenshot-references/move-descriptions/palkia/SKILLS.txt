@@ -1,0 +1,10 @@
+Palkia  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  pressure.png                →  Pressure                [Passive]
+  aqua-ring.png               →  Aqua Ring               [Move 1 · Base]
+  aura-sphere.png             →  Aura Sphere (Lv 5)      [Move 1 · Final]
+  slash.png                   →  Slash                   [Move 2 · Base]
+  dragon-claw.png             →  Dragon Claw (Lv 7)      [Move 2 · Final]
+  multi-dimensional-rend.png  →  Multi Dimensional Rend  [Unite · Unite]

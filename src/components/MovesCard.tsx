@@ -6,6 +6,7 @@ import {
   resolveFinalMove,
   uniteMoves,
   playablePassives,
+  passiveChipLabel,
   type FinalSlot,
 } from "../engine/moves";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -13,9 +14,9 @@ import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
 import { MoveMedia } from "./MoveMedia";
 import { moveTip, pickDescription } from "./tips";
-import type { Ability, Move, PassivePhase, Pokemon } from "../types";
+import type { Ability, Move, Pokemon } from "../types";
 
-/** Flip to `false` to hide Pre-Mega / Mega chips without touching the rows. */
+/** Flip to `false` to hide Passive chips without touching the rows. */
 const SHOW_PASSIVE_PHASE_CHIPS = true;
 
 /** A read-only move row (base skill, Unite move) — icon + name + tooltip. */
@@ -104,22 +105,23 @@ function ChoosableMoveSlot({
   );
 }
 
-function PassivePhaseChip({ phase }: { phase: PassivePhase }) {
+function PassiveChip({ label }: { label: string }) {
   if (!SHOW_PASSIVE_PHASE_CHIPS) return null;
-  const mega = phase === "mega";
+  const mega = label === "Mega";
   return (
     <span
       className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
         mega ? "bg-accent-weak text-accent-ink" : "bg-raise text-faint"
       }`}
     >
-      {mega ? "Mega" : "Pre-Mega"}
+      {label}
     </span>
   );
 }
 
 function PassiveRow({ ability, advanced }: { ability: Ability; advanced: boolean }) {
   const desc = pickDescription(ability, advanced);
+  const chip = passiveChipLabel(ability);
   return (
     <Tooltip
       content={
@@ -138,7 +140,7 @@ function PassiveRow({ ability, advanced }: { ability: Ability; advanced: boolean
       <span className="flex items-center gap-2">
         <MoveIcon src={ability.iconAsset} alt={ability.name} size="h-8 w-8" />
         <span className="min-w-0 truncate text-sm font-medium text-ink">{ability.name}</span>
-        {ability.phase ? <PassivePhaseChip phase={ability.phase} /> : null}
+        {chip ? <PassiveChip label={chip} /> : null}
       </span>
     </Tooltip>
   );

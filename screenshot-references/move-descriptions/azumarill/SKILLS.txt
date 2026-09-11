@@ -1,0 +1,12 @@
+Azumarill  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  huge-power.png   →  Huge Power          [Passive]
+  tackle.png       →  Tackle              [Move 1 · Base]
+  play-rough.png   →  Play Rough (Lv 6)   [Move 1 · Final]
+  water-pulse.png  →  Water Pulse (Lv 6)  [Move 1 · Final]
+  bubble.png       →  Bubble              [Move 2 · Base]
+  whirlpool.png    →  Whirlpool (Lv 4)    [Move 2 · Final]
+  aqua-tail.png    →  Aqua Tail (Lv 4)    [Move 2 · Final]
+  belly-bash.png   →  Belly Bash          [Unite · Unite]

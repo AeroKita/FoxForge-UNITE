@@ -1,0 +1,12 @@
+Darkrai  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  bad-dreams.png       →  Bad Dreams          [Passive]
+  hypnosis.png         →  Hypnosis            [Move 1 · Base]
+  dark-void.png        →  Dark Void (Lv 5)    [Move 1 · Final]
+  shadow-claw.png      →  Shadow Claw (Lv 5)  [Move 1 · Final]
+  calm-mind.png        →  Calm Mind           [Move 2 · Base]
+  nasty-plot.png       →  Nasty Plot (Lv 7)   [Move 2 · Final]
+  dark-pulse.png       →  Dark Pulse (Lv 7)   [Move 2 · Final]
+  worst-nightmare.png  →  Worst Nightmare     [Unite · Unite]

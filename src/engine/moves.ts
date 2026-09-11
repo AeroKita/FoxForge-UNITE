@@ -25,9 +25,18 @@ export function uniteMoves(pokemon: Pokemon): Move[] {
 }
 
 /** Every Ability shown on the Moves card. Most Pokémon have one; mega-evolution
- *  licenses append the Mega-form Ability in `extraPassives`. */
+ *  licenses and dual/triple-form kits append later Abilities in `extraPassives`. */
 export function playablePassives(pokemon: Pokemon): Ability[] {
   return [pokemon.passiveAbility, ...(pokemon.extraPassives ?? [])];
+}
+
+/** Chip text next to a Passive name. Mega licenses use Pre-Mega / Mega.
+ *  Dual-form licenses use the form name. No chip when neither applies. */
+export function passiveChipLabel(ability: Ability): string | null {
+  if (ability.phase === "mega") return "Mega";
+  if (ability.phase === "preMega") return "Pre-Mega";
+  const label = ability.stageLabel?.trim();
+  return label ? label : null;
 }
 
 /** The move name the top Recommended build picks for a slot, if it maps to an upgrade. */

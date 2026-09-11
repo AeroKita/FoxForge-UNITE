@@ -1,0 +1,12 @@
+Mega Mewtwo X  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  pressure.png          →  Pressure             [Passive]
+  confusion.png         →  Confusion            [Move 1 · Base]
+  future-sight.png      →  Future Sight (Lv 5)  [Move 1 · Final]
+  psystrike.png         →  Psystrike (Lv 5)     [Move 1 · Final]
+  barrier.png           →  Barrier              [Move 2 · Base]
+  recover.png           →  Recover (Lv 7)       [Move 2 · Final]
+  teleport.png          →  Teleport (Lv 7)      [Move 2 · Final]
+  infinite-psyburn.png  →  Infinite Psyburn     [Unite · Unite]

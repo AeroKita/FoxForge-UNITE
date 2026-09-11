@@ -1,0 +1,12 @@
+Metagross  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  clear-body.png         →  Clear Body           [Passive]
+  iron-defense.png       →  Iron Defense         [Move 1 · Base]
+  meteor-mash.png        →  Meteor Mash (Lv 5)   [Move 1 · Final]
+  gyro-ball.png          →  Gyro Ball (Lv 5)     [Move 1 · Final]
+  tackle.png             →  Tackle               [Move 2 · Base]
+  zen-headbutt.png       →  Zen Headbutt (Lv 7)  [Move 2 · Final]
+  magnet-rise.png        →  Magnet Rise (Lv 7)   [Move 2 · Final]
+  compute-and-crush.png  →  Compute and Crush    [Unite · Unite]

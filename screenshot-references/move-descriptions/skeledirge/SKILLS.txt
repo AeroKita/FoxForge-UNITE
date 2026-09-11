@@ -1,0 +1,10 @@
+Skeledirge  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  blaze.png             →  Blaze               [Passive]
+  disarming-voice.png   →  Disarming Voice     [Move 1 · Base]
+  hyper-voice.png       →  Hyper Voice (Lv 5)  [Move 1 · Final]
+  roar.png              →  Roar                [Move 2 · Base]
+  snarl.png             →  Snarl (Lv 7)        [Move 2 · Final]
+  rousing-symphony.png  →  Rousing Symphony    [Unite · Unite]

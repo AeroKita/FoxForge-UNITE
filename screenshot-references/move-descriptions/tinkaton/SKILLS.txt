@@ -1,0 +1,12 @@
+Tinkaton  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  mold-breaker.png       →  Mold Breaker           [Passive]
+  rock-smash.png         →  Rock Smash             [Move 1 · Base]
+  gigaton-hammer.png     →  Gigaton Hammer (Lv 7)  [Move 1 · Final]
+  smack-down.png         →  Smack Down (Lv 7)      [Move 1 · Final]
+  fairy-wind.png         →  Fairy Wind             [Move 2 · Base]
+  ice-hammer.png         →  Ice Hammer (Lv 5)      [Move 2 · Final]
+  thief.png              →  Thief (Lv 5)           [Move 2 · Final]
+  kiss-bliss-kaboom.png  →  Kiss Bliss Kaboom      [Unite · Unite]

@@ -1,0 +1,12 @@
+Greninja  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  torrent.png              →  Torrent                [Passive]
+  bubble.png               →  Bubble                 [Move 1 · Base]
+  water-shuriken.png       →  Water Shuriken (Lv 7)  [Move 1 · Final]
+  surf.png                 →  Surf (Lv 7)            [Move 1 · Final]
+  substitute.png           →  Substitute             [Move 2 · Base]
+  double-team.png          →  Double Team (Lv 5)     [Move 2 · Final]
+  smokescreen.png          →  Smokescreen (Lv 5)     [Move 2 · Final]
+  waterburst-shuriken.png  →  Waterburst Shuriken    [Unite · Unite]

@@ -1,0 +1,12 @@
+Blastoise  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  torrent.png        →  Torrent             [Passive]
+  water-gun.png      →  Water Gun           [Move 1 · Base]
+  hydro-pump.png     →  Hydro Pump (Lv 5)   [Move 1 · Final]
+  water-spout.png    →  Water Spout (Lv 5)  [Move 1 · Final]
+  skull-bash.png     →  Skull Bash          [Move 2 · Base]
+  surf.png           →  Surf (Lv 7)         [Move 2 · Final]
+  rapid-spin.png     →  Rapid Spin (Lv 7)   [Move 2 · Final]
+  hydro-typhoon.png  →  Hydro Typhoon       [Unite · Unite]

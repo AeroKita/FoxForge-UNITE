@@ -1,7 +1,13 @@
 import { bundle } from "../data/gameData";
 import { cachedPatchVersion } from "../data/dataSource";
 import { useStore, type ThemePref } from "../state/store";
-import { APP_NAME, APP_OWNER, LEGAL_DISCLAIMER, copyrightLine } from "../ui/brand";
+import {
+  APP_NAME,
+  APP_OWNER,
+  LEGAL_DATA_ATTRIBUTION,
+  LEGAL_DISCLAIMER,
+  copyrightLine,
+} from "../ui/brand";
 import { APP_VERSION } from "../ui/version";
 import { BottomSheet } from "./shell/BottomSheet";
 
@@ -72,10 +78,7 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
         </Section>
 
         <Section title="Legal">
-          <p className="text-xs text-faint">
-            Most data is from the amazing Unite-DB team · Serebii · Some values verified against
-            official in-game text · Attack-speed model from Mathcord.
-          </p>
+          <p className="text-xs text-faint">{LEGAL_DATA_ATTRIBUTION}</p>
           <p className="mx-auto mt-3 max-w-3xl text-xs leading-relaxed text-muted">
             {LEGAL_DISCLAIMER}
           </p>

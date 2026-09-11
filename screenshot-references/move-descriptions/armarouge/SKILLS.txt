@@ -1,0 +1,12 @@
+Armarouge  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  flash-fire.png    →  Flash Fire           [Passive]
+  incinerate.png    →  Incinerate           [Move 1 · Base]
+  fire-spin.png     →  Fire Spin (Lv 5)     [Move 1 · Final]
+  armor-cannon.png  →  Armor Cannon (Lv 5)  [Move 1 · Final]
+  will-o-wisp.png   →  Will-o-Wisp          [Move 2 · Base]
+  flame-charge.png  →  Flame Charge (Lv 7)  [Move 2 · Final]
+  psyshock.png      →  Psyshock (Lv 7)      [Move 2 · Final]
+  psykaboom.png     →  Psykaboom            [Unite · Unite]

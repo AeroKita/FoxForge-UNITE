@@ -7,6 +7,7 @@ import {
   moveIdsFromNames,
   uniteMoves,
   playablePassives,
+  passiveChipLabel,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
 
@@ -65,6 +66,23 @@ describe("move-selection helpers", () => {
     };
     const stub = { ...lucario, extraPassives: [extra] };
     expect(playablePassives(stub).map((a) => a.id)).toEqual([lucario.passiveAbility.id, "drought"]);
+  });
+
+  it("labels Mega phases as Pre-Mega / Mega and form pairs by stageLabel", () => {
+    expect(passiveChipLabel({ ...lucario.passiveAbility, phase: "preMega" })).toBe("Pre-Mega");
+    expect(passiveChipLabel({ ...lucario.passiveAbility, phase: "mega" })).toBe("Mega");
+    expect(passiveChipLabel({ ...lucario.passiveAbility, stageLabel: "Pikachu" })).toBe("Pikachu");
+    expect(passiveChipLabel(lucario.passiveAbility)).toBeNull();
+  });
+
+  it("prefers Mega phase over stageLabel when both are present", () => {
+    expect(
+      passiveChipLabel({
+        ...lucario.passiveAbility,
+        phase: "mega",
+        stageLabel: "Charizard",
+      }),
+    ).toBe("Mega");
   });
 
   it("returns every Unite Move, including dual-unite Pokémon", () => {

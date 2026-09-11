@@ -1,0 +1,12 @@
+Snorlax  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  gluttony.png    →  Gluttony           [Passive]
+  tackle.png      →  Tackle             [Move 1 · Base]
+  heavy-slam.png  →  Heavy Slam (Lv 5)  [Move 1 · Final]
+  flail.png       →  Flail (Lv 5)       [Move 1 · Final]
+  rest.png        →  Rest               [Move 2 · Base]
+  block.png       →  Block (Lv 7)       [Move 2 · Final]
+  yawn.png        →  Yawn (Lv 7)        [Move 2 · Final]
+  power-nap.png   →  Power Nap          [Unite · Unite]

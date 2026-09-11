@@ -1,0 +1,12 @@
+Empoleon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  torrent.png          →  Torrent              [Passive]
+  water-gun.png        →  Water Gun            [Move 1 · Base]
+  hydro-cannon.png     →  Hydro Cannon (Lv 7)  [Move 1 · Final]
+  whirlpool.png        →  Whirlpool (Lv 7)     [Move 1 · Final]
+  peck.png             →  Peck                 [Move 2 · Base]
+  metal-claw.png       →  Metal Claw (Lv 5)    [Move 2 · Final]
+  aqua-jet.png         →  Aqua Jet (Lv 5)      [Move 2 · Final]
+  sovereign-slide.png  →  Sovereign Slide      [Unite · Unite]

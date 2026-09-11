@@ -1,0 +1,12 @@
+Pawmot  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  iron-fist.png                  →  Iron Fist                  [Passive]
+  nuzzle.png                     →  Nuzzle                     [Move 1 · Base]
+  thunder-punch.png              →  Thunder Punch (Lv 5)       [Move 1 · Final]
+  supercell-slam.png             →  Supercell Slam (Lv 5)      [Move 1 · Final]
+  scratch.png                    →  Scratch                    [Move 2 · Base]
+  volt-switch.png                →  Volt Switch (Lv 7)         [Move 2 · Final]
+  mach-punch.png                 →  Mach Punch (Lv 7)          [Move 2 · Final]
+  zip-zap-full-charge-spark.png  →  Zip Zap Full-Charge Spark  [Unite · Unite]

@@ -1,0 +1,12 @@
+Gardevoir  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  synchronize.png        →  Synchronize          [Passive]
+  confusion.png          →  Confusion            [Move 1 · Base]
+  psychic.png            →  Psychic (Lv 7)       [Move 1 · Final]
+  moonblast.png          →  Moonblast (Lv 7)     [Move 1 · Final]
+  teleport.png           →  Teleport             [Move 2 · Base]
+  psyshock.png           →  Psyshock (Lv 5)      [Move 2 · Final]
+  future-sight.png       →  Future Sight (Lv 5)  [Move 2 · Final]
+  fairy-singularity.png  →  Fairy Singularity    [Unite · Unite]

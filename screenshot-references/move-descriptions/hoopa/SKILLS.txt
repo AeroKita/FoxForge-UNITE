@@ -1,0 +1,12 @@
+Hoopa  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  magician.png         →  Magician                [Passive]
+  astonish.png         →  Astonish                [Move 1 · Base]
+  phantom-force.png    →  Phantom Force (Lv 6)    [Move 1 · Final]
+  shadow-ball.png      →  Shadow Ball (Lv 6)      [Move 1 · Final]
+  confusion.png        →  Confusion               [Move 2 · Base]
+  hyperspace-hole.png  →  Hyperspace Hole (Lv 4)  [Move 2 · Final]
+  trick.png            →  Trick (Lv 4)            [Move 2 · Final]
+  rings-unbound.png    →  Rings Unbound           [Unite · Unite]

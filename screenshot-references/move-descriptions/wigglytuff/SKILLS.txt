@@ -1,0 +1,12 @@
+Wigglytuff  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  cute-charm.png         →  Cute Charm             [Passive]
+  pound.png              →  Pound                  [Move 1 · Base]
+  double-slap.png        →  Double Slap (Lv 6)     [Move 1 · Final]
+  dazzling-gleam.png     →  Dazzling Gleam (Lv 6)  [Move 1 · Final]
+  defense-curl.png       →  Defense Curl           [Move 2 · Base]
+  rollout.png            →  Rollout (Lv 4)         [Move 2 · Final]
+  sing.png               →  Sing (Lv 4)            [Move 2 · Final]
+  starlight-recital.png  →  Starlight Recital      [Unite · Unite]

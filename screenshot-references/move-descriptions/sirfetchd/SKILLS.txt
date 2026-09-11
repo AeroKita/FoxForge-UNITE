@@ -1,0 +1,12 @@
+Sirfetch'd  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  steadfast.png                →  Steadfast                [Passive]
+  dual-wingbeat.png            →  Dual Wingbeat            [Move 1 · Base]
+  fury-cutter.png              →  Fury Cutter (Lv 5)       [Move 1 · Final]
+  leaf-blade.png               →  Leaf Blade (Lv 5)        [Move 1 · Final]
+  quick-attack.png             →  Quick Attack             [Move 2 · Base]
+  brutal-swing.png             →  Brutal Swing (Lv 7)      [Move 2 · Final]
+  detect.png                   →  Detect (Lv 7)            [Move 2 · Final]
+  lunging-leek-nova-blast.png  →  Lunging Leek Nova Blast  [Unite · Unite]

@@ -1,0 +1,10 @@
+Morpeko  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  hunger-switch.png             →  Hunger Switch             [Passive]
+  thunder-shock.png             →  Thunder Shock             [Move 1 · Base]
+  spark.png                     →  Spark (Lv 5)              [Move 1 · Final]
+  power-trip.png                →  Power Trip                [Move 2 · Base]
+  assurance.png                 →  Assurance (Lv 7)          [Move 2 · Final]
+  hungry-supercharge-wheel.png  →  Hungry Supercharge Wheel  [Unite · Unite]

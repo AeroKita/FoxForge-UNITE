@@ -1,0 +1,14 @@
+Tyranitar  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  guts.png                →  Guts                  [Passive · Larvitar]
+  shed-skin.png           →  Shed Skin             [Passive · Pupitar]
+  sand-stream.png         →  Sand Stream           [Passive · Tyranitar]
+  bite.png                →  Bite                  [Move 1 · Base]
+  dark-pulse.png          →  Dark Pulse (Lv 5)     [Move 1 · Final]
+  stone-edge.png          →  Stone Edge (Lv 5)     [Move 1 · Final]
+  rock-polish.png         →  Rock Polish           [Move 2 · Base]
+  ancient-power.png       →  Ancient Power (Lv 9)  [Move 2 · Final]
+  sand-tomb.png           →  Sand Tomb (Lv 9)      [Move 2 · Final]
+  tyrannical-rampage.png  →  Tyrannical Rampage    [Unite · Unite]

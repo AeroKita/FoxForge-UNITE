@@ -1,0 +1,12 @@
+Meowth  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  pickup.png             →  Pickup               [Passive]
+  scratch.png            →  Scratch              [Move 1 · Base]
+  pay-day.png            →  Pay Day (Lv 5)       [Move 1 · Final]
+  fury-swipes.png        →  Fury Swipes (Lv 5)   [Move 1 · Final]
+  feint.png              →  Feint                [Move 2 · Base]
+  feint-attack.png       →  Feint Attack (Lv 7)  [Move 2 · Final]
+  assurance.png          →  Assurance (Lv 7)     [Move 2 · Final]
+  gold-coin-barrage.png  →  Gold Coin Barrage    [Unite · Unite]

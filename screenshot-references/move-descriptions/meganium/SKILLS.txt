@@ -1,0 +1,10 @@
+Meganium  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  overgrow.png          →  Overgrow               [Passive]
+  magical-leaf.png      →  Magical Leaf           [Move 1 · Base]
+  grass-knot.png        →  Grass Knot (Lv 5)      [Move 1 · Final]
+  synthesis.png         →  Synthesis              [Move 2 · Base]
+  petal-blizzard.png    →  Petal Blizzard (Lv 7)  [Move 2 · Final]
+  full-bloom-aroma.png  →  Full Bloom Aroma       [Unite · Unite]

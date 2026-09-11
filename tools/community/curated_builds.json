@@ -1114,7 +1114,7 @@
       "The name's leon. Inteleon."
     ]
   },
-  "rapidash": {
+  "galarian-rapidash": {
     "recommendedTitles": [
       "Spirit",
       "Fast Honse",
@@ -1642,18 +1642,51 @@
         ],
         "battleItemId": "eject-button",
         "emblems": [
-          { "emblemId": "048-venonat", "grade": "gold" },
-          { "emblemId": "012-butterfree", "grade": "gold" },
-          { "emblemId": "249-lugia", "grade": "gold" },
-          { "emblemId": "071-victreebel", "grade": "bronze" },
-          { "emblemId": "045-vileplume", "grade": "gold" },
-          { "emblemId": "049-venomoth", "grade": "gold" },
-          { "emblemId": "088-grimer", "grade": "gold" },
-          { "emblemId": "089-muk", "grade": "gold" },
-          { "emblemId": "211-qwilfish", "grade": "gold" },
-          { "emblemId": "248-tyranitar", "grade": "gold" }
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          },
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Blue Flare", "Dragon Dance"]
+        "moves": [
+          "Blue Flare",
+          "Dragon Dance"
+        ]
       }
     ]
   },
@@ -1663,61 +1696,172 @@
         "name": "Emissary of the Sun",
         "emblemName": "Emissary of the Sun",
         "lane": "Path Damage",
-        "heldItemIds": ["attack-weight", "razor-claw", "muscle-band"],
+        "heldItemIds": [
+          "attack-weight",
+          "razor-claw",
+          "muscle-band"
+        ],
         "battleItemId": "full-heal",
         "emblems": [
-          { "emblemId": "057-primeape", "grade": "gold" },
-          { "emblemId": "068-machamp", "grade": "gold" },
-          { "emblemId": "105-marowak", "grade": "gold" },
-          { "emblemId": "250-ho-oh", "grade": "gold" },
-          { "emblemId": "142-aerodactyl", "grade": "bronze" },
-          { "emblemId": "031-nidoqueen", "grade": "gold" },
-          { "emblemId": "206-dunsparce", "grade": "gold" },
-          { "emblemId": "115-kangaskhan", "grade": "gold" },
-          { "emblemId": "018-pidgeot", "grade": "gold" },
-          { "emblemId": "235-smeargle", "grade": "gold" }
+          {
+            "emblemId": "057-primeape",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "068-machamp",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "105-marowak",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "bronze"
+          },
+          {
+            "emblemId": "031-nidoqueen",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "018-pidgeot",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "235-smeargle",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Iron Head", "Psyshock"]
+        "moves": [
+          "Iron Head",
+          "Psyshock"
+        ]
       },
       {
         "name": "The Beast That Devours The Sun",
         "emblemName": "The Beast That Devours The Sun",
         "lane": "Path Damage",
-        "heldItemIds": ["attack-weight", "razor-claw", "aeos-cookie"],
+        "heldItemIds": [
+          "attack-weight",
+          "razor-claw",
+          "aeos-cookie"
+        ],
         "battleItemId": "full-heal",
         "emblems": [
-          { "emblemId": "028-sandslash", "grade": "gold" },
-          { "emblemId": "068-machamp", "grade": "gold" },
-          { "emblemId": "105-marowak", "grade": "gold" },
-          { "emblemId": "250-ho-oh", "grade": "gold" },
-          { "emblemId": "142-aerodactyl", "grade": "gold" },
-          { "emblemId": "130-gyarados", "grade": "gold" },
-          { "emblemId": "022-fearow", "grade": "gold" },
-          { "emblemId": "128-tauros", "grade": "gold" },
-          { "emblemId": "115-kangaskhan", "grade": "gold" },
-          { "emblemId": "141-kabutops", "grade": "gold" }
+          {
+            "emblemId": "028-sandslash",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "068-machamp",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "105-marowak",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "130-gyarados",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "022-fearow",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "128-tauros",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Iron Head", "Psyshock"]
+        "moves": [
+          "Iron Head",
+          "Psyshock"
+        ]
       },
       {
         "name": "Radiant Sun",
         "emblemName": "Radiant Sun",
         "lane": "Path Damage",
-        "heldItemIds": ["attack-weight", "razor-claw", "resonant-guard"],
+        "heldItemIds": [
+          "attack-weight",
+          "razor-claw",
+          "resonant-guard"
+        ],
         "battleItemId": "full-heal",
         "emblems": [
-          { "emblemId": "057-primeape", "grade": "gold" },
-          { "emblemId": "068-machamp", "grade": "gold" },
-          { "emblemId": "105-marowak", "grade": "gold" },
-          { "emblemId": "250-ho-oh", "grade": "gold" },
-          { "emblemId": "142-aerodactyl", "grade": "bronze" },
-          { "emblemId": "031-nidoqueen", "grade": "gold" },
-          { "emblemId": "206-dunsparce", "grade": "gold" },
-          { "emblemId": "115-kangaskhan", "grade": "gold" },
-          { "emblemId": "018-pidgeot", "grade": "gold" },
-          { "emblemId": "235-smeargle", "grade": "gold" }
+          {
+            "emblemId": "057-primeape",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "068-machamp",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "105-marowak",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "bronze"
+          },
+          {
+            "emblemId": "031-nidoqueen",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "018-pidgeot",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "235-smeargle",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Iron Head", "Psyshock"]
+        "moves": [
+          "Iron Head",
+          "Psyshock"
+        ]
       }
     ]
   },
@@ -1727,41 +1871,115 @@
         "name": "Full Belly Mode",
         "emblemName": "Full Belly Mode",
         "lane": "Center Damage",
-        "heldItemIds": ["attack-weight", "razor-claw", "muscle-band"],
+        "heldItemIds": [
+          "attack-weight",
+          "razor-claw",
+          "muscle-band"
+        ],
         "battleItemId": "full-heal",
         "emblems": [
-          { "emblemId": "057-primeape", "grade": "gold" },
-          { "emblemId": "068-machamp", "grade": "gold" },
-          { "emblemId": "105-marowak", "grade": "gold" },
-          { "emblemId": "250-ho-oh", "grade": "gold" },
-          { "emblemId": "142-aerodactyl", "grade": "bronze" },
-          { "emblemId": "130-gyarados", "grade": "gold" },
-          { "emblemId": "022-fearow", "grade": "gold" },
-          { "emblemId": "141-kabutops", "grade": "gold" },
-          { "emblemId": "018-pidgeot", "grade": "gold" },
-          { "emblemId": "128-tauros", "grade": "gold" }
+          {
+            "emblemId": "057-primeape",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "068-machamp",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "105-marowak",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "bronze"
+          },
+          {
+            "emblemId": "130-gyarados",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "022-fearow",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "018-pidgeot",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "128-tauros",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Spark", "Assurance"]
+        "moves": [
+          "Spark",
+          "Assurance"
+        ]
       },
       {
         "name": "Hangry Mode",
         "emblemName": "Hangry Mode",
         "lane": "Center Damage",
-        "heldItemIds": ["attack-weight", "razor-claw", "accel-bracer"],
+        "heldItemIds": [
+          "attack-weight",
+          "razor-claw",
+          "accel-bracer"
+        ],
         "battleItemId": "full-heal",
         "emblems": [
-          { "emblemId": "028-sandslash", "grade": "gold" },
-          { "emblemId": "068-machamp", "grade": "gold" },
-          { "emblemId": "105-marowak", "grade": "gold" },
-          { "emblemId": "250-ho-oh", "grade": "gold" },
-          { "emblemId": "142-aerodactyl", "grade": "gold" },
-          { "emblemId": "130-gyarados", "grade": "gold" },
-          { "emblemId": "022-fearow", "grade": "gold" },
-          { "emblemId": "128-tauros", "grade": "gold" },
-          { "emblemId": "115-kangaskhan", "grade": "gold" },
-          { "emblemId": "141-kabutops", "grade": "gold" }
+          {
+            "emblemId": "028-sandslash",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "068-machamp",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "105-marowak",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "130-gyarados",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "022-fearow",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "128-tauros",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          }
         ],
-        "moves": ["Spark", "Assurance"]
+        "moves": [
+          "Spark",
+          "Assurance"
+        ]
       }
     ]
   },
@@ -1771,21 +1989,58 @@
         "name": "Bolt Cannon",
         "emblemName": "The Thunderbird",
         "lane": "Path Damage",
-        "heldItemIds": ["wise-glasses", "drive-lens", "energy-amplifier"],
+        "heldItemIds": [
+          "wise-glasses",
+          "drive-lens",
+          "energy-amplifier"
+        ],
         "battleItemId": "eject-button",
         "emblems": [
-          { "emblemId": "045-vileplume", "grade": "gold" },
-          { "emblemId": "049-venomoth", "grade": "gold" },
-          { "emblemId": "088-grimer", "grade": "gold" },
-          { "emblemId": "089-muk", "grade": "gold" },
-          { "emblemId": "211-qwilfish", "grade": "gold" },
-          { "emblemId": "248-tyranitar", "grade": "gold" },
-          { "emblemId": "048-venonat", "grade": "gold" },
-          { "emblemId": "012-butterfree", "grade": "gold" },
-          { "emblemId": "249-lugia", "grade": "gold" },
-          { "emblemId": "071-victreebel", "grade": "bronze" }
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          }
         ],
-        "moves": ["Thunderbolt", "Zap Cannon"]
+        "moves": [
+          "Thunderbolt",
+          "Zap Cannon"
+        ]
       }
     ]
   }

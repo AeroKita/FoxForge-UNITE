@@ -1,0 +1,12 @@
+Crustle  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  sturdy.png         →  Sturdy               [Passive]
+  rock-slide.png     →  Rock Slide           [Move 1 · Base]
+  rock-tomb.png      →  Rock Tomb (Lv 4)     [Move 1 · Final]
+  shell-smash.png    →  Shell Smash (Lv 4)   [Move 1 · Final]
+  fury-cutter.png    →  Fury Cutter          [Move 2 · Base]
+  stealth-rock.png   →  Stealth Rock (Lv 6)  [Move 2 · Final]
+  x-scissor.png      →  X-Scissor (Lv 6)     [Move 2 · Final]
+  rubble-rouser.png  →  Rubble Rouser        [Unite · Unite]

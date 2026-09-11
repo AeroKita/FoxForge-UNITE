@@ -1,0 +1,12 @@
+Delphox  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  blaze.png               →  Blaze                 [Passive]
+  ember.png               →  Ember                 [Move 1 · Base]
+  fire-blast.png          →  Fire Blast (Lv 6)     [Move 1 · Final]
+  mystical-fire.png       →  Mystical Fire (Lv 6)  [Move 1 · Final]
+  will-o-wisp.png         →  Will-o-Wisp           [Move 2 · Base]
+  fire-spin.png           →  Fire Spin (Lv 7)      [Move 2 · Final]
+  flame-charge.png        →  Flame Charge (Lv 7)   [Move 2 · Final]
+  fanciful-fireworks.png  →  Fanciful Fireworks    [Unite · Unite]

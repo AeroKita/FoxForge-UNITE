@@ -1,0 +1,12 @@
+Latias  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  levitate.png       →  Levitate              [Passive]
+  confusion.png      →  Confusion             [Move 1 · Base]
+  mist-ball.png      →  Mist Ball (Lv 6)      [Move 1 · Final]
+  dragon-cheer.png   →  Dragon Cheer (Lv 6)   [Move 1 · Final]
+  swift.png          →  Swift                 [Move 2 · Base]
+  dragon-pulse.png   →  Dragon Pulse (Lv 4)   [Move 2 · Final]
+  dragon-breath.png  →  Dragon Breath (Lv 4)  [Move 2 · Final]
+  mist-blast.png     →  Mist Blast            [Unite · Unite]

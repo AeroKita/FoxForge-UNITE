@@ -1,0 +1,12 @@
+Eldegoss  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  cotton-down.png         →  Cotton Down          [Passive]
+  leafage.png             →  Leafage              [Move 1 · Base]
+  pollen-puff.png         →  Pollen Puff (Lv 4)   [Move 1 · Final]
+  leaf-tornado.png        →  Leaf Tornado (Lv 4)  [Move 1 · Final]
+  synthesis.png           →  Synthesis            [Move 2 · Base]
+  cotton-guard.png        →  Cotton Guard (Lv 6)  [Move 2 · Final]
+  cotton-spore.png        →  Cotton Spore (Lv 6)  [Move 2 · Final]
+  cotton-cloud-crash.png  →  Cotton Cloud Crash   [Unite · Unite]

@@ -1,0 +1,13 @@
+Espeon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-2.png, <skill-id>-3.png, …
+
+  anticipation.png    →  Anticipation         [Passive · Eevee]
+  magic-bounce.png    →  Magic Bounce         [Passive · Espeon]
+  swift.png           →  Swift                [Move 1 · Base]
+  psyshock.png        →  Psyshock (Lv 4)      [Move 1 · Final]
+  stored-power.png    →  Stored Power (Lv 4)  [Move 1 · Final]
+  growl.png           →  Growl                [Move 2 · Base]
+  psybeam.png         →  Psybeam (Lv 6)       [Move 2 · Final]
+  future-sight.png    →  Future Sight (Lv 6)  [Move 2 · Final]
+  psychic-solare.png  →  Psychic Solare       [Unite · Unite]
