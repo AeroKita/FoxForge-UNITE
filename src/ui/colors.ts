@@ -29,7 +29,7 @@ export const ALL_EMBLEM_COLORS: EmblemColor[] = [
   "gray",
 ];
 
-// Single-letter grade badge.
+// Single-letter grade labels (G/B/S/P). Emblem faces do not render these chips; art already shows grade.
 export const GRADE_LETTER: Record<string, string> = {
   bronze: "B",
   silver: "S",

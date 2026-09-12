@@ -7,7 +7,7 @@ import { CollapsibleCard } from "../CollapsibleCard";
 import { EmblemSetSummary } from "../EmblemSetSummary";
 import { Tooltip } from "../Tooltip";
 import { emblemTip } from "../tips";
-import { EMBLEM_COLOR_HEX, GRADE_LETTER } from "../../ui/colors";
+import { EmblemFace } from "../EmblemFace";
 import { emblemIconForGrade } from "../../ui/emblemIcon";
 import { asset } from "../../ui/asset";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
@@ -123,25 +123,12 @@ export function ResultCards({
               if (!emblem) return null;
               return (
                 <Tooltip key={i} content={emblemTip(emblem, p.grade)}>
-                  <span className="relative inline-block">
-                    <img
-                      src={asset(emblemIconForGrade(emblem, p.grade))}
-                      alt={emblem.pokemonName}
-                      className="h-16 w-16 object-contain"
-                    />
-                    <span className="absolute -bottom-0.5 -right-0.5 rounded bg-neutral-800 px-0.5 text-[9px] font-bold text-white">
-                      {GRADE_LETTER[p.grade]}
-                    </span>
-                    <span className="absolute -left-1 -top-1 flex gap-0.5">
-                      {emblem.colors.map((c) => (
-                        <span
-                          key={c}
-                          className="h-2.5 w-2.5 rounded-full ring-1 ring-white"
-                          style={{ background: EMBLEM_COLOR_HEX[c] }}
-                        />
-                      ))}
-                    </span>
-                  </span>
+                  <EmblemFace
+                    src={asset(emblemIconForGrade(emblem, p.grade))}
+                    alt={emblem.pokemonName}
+                    colors={emblem.colors}
+                    colorDotClass="h-2.5 w-2.5"
+                  />
                 </Tooltip>
               );
             })}

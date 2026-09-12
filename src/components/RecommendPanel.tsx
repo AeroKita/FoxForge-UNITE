@@ -3,7 +3,7 @@ import { useStore } from "../state/store";
 import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
-import { EMBLEM_COLOR_HEX, GRADE_LETTER } from "../ui/colors";
+import { EmblemFace } from "./EmblemFace";
 import { emblemIconForGrade } from "../ui/emblemIcon";
 import { EmblemSetSummary } from "./EmblemSetSummary";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -262,25 +262,11 @@ export function RecommendPanel() {
               <div className="flex flex-wrap gap-1">
                 {resolvedEmblems.map(({ emblem, grade }, i) => (
                   <Tooltip key={i} content={emblemTip(emblem, grade)}>
-                    <span className="relative inline-block">
-                      <img
-                        src={asset(emblemIconForGrade(emblem, grade))}
-                        alt={emblem.pokemonName}
-                        className="h-16 w-16 object-contain"
-                      />
-                      <span className="absolute -bottom-0.5 -right-0.5 rounded bg-neutral-800 px-0.5 text-[9px] font-bold text-white">
-                        {GRADE_LETTER[grade]}
-                      </span>
-                      <span className="absolute -left-0.5 -top-0.5 flex gap-0.5">
-                        {emblem.colors.map((c) => (
-                          <span
-                            key={c}
-                            className="h-2 w-2 rounded-full ring-1 ring-white"
-                            style={{ background: EMBLEM_COLOR_HEX[c] }}
-                          />
-                        ))}
-                      </span>
-                    </span>
+                    <EmblemFace
+                      src={asset(emblemIconForGrade(emblem, grade))}
+                      alt={emblem.pokemonName}
+                      colors={emblem.colors}
+                    />
                   </Tooltip>
                 ))}
               </div>

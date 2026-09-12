@@ -16,7 +16,8 @@ import { asset } from "../ui/asset";
 import { emblemIconForGrade } from "../ui/emblemIcon";
 import { heldItemStatLines, statLines } from "../ui/format";
 import { gradesForEmblem } from "../ui/emblems";
-import { EMBLEM_COLOR_HEX, ALL_EMBLEM_COLORS, GRADE_LETTER } from "../ui/colors";
+import { EMBLEM_COLOR_HEX, ALL_EMBLEM_COLORS } from "../ui/colors";
+import { EmblemFace } from "./EmblemFace";
 import { setProgressRows, STAT_LABEL } from "../ui/setProgress";
 import { PickerModal, type PickItem } from "./PickerModal";
 import { Tooltip } from "./Tooltip";
@@ -180,23 +181,12 @@ export function LoadoutBoard() {
                     onClick={() => setEmblemSheet(i)}
                     className="relative min-h-11"
                   >
-                    <img
+                    <EmblemFace
                       src={asset(emblemIconForGrade(emblem, pick.grade))}
                       alt=""
-                      className="h-12 w-12 object-contain"
+                      colors={emblem.colors}
+                      sizeClass="h-12 w-12"
                     />
-                    <span className="absolute -left-0.5 -top-0.5 flex gap-0.5">
-                      {emblem.colors.map((c) => (
-                        <span
-                          key={c}
-                          className="h-2 w-2 rounded-full ring-1 ring-white"
-                          style={{ background: EMBLEM_COLOR_HEX[c] }}
-                        />
-                      ))}
-                    </span>
-                    <span className="absolute -bottom-0.5 -right-0.5 rounded bg-neutral-800 px-0.5 text-[9px] font-bold text-white">
-                      {GRADE_LETTER[pick.grade]}
-                    </span>
                   </button>
                 </div>
               );
