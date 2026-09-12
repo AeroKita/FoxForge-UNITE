@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "../state/store";
 import { deriveBuild } from "../engine/derive";
-import { formatStat, formatDelta } from "../ui/format";
+import { formatStat, formatExactDelta } from "../ui/format";
 import { offenseFor } from "../ui/offense";
+import { dockFlashDeltas, retainFlashBaseline } from "../ui/statFlashes";
 import { ROLE_BAND } from "../ui/theme";
 import { BottomSheet } from "./shell/BottomSheet";
 import { EffectiveStatsGrid } from "./EffectiveStatsGrid";
@@ -16,6 +17,7 @@ export function StatDock() {
   const [open, setOpen] = useState(false);
   const [flashes, setFlashes] = useState<Partial<Record<TrackedKey, number>>>({});
   const prevRef = useRef<{ pokemonId: string; values: Record<TrackedKey, number> } | null>(null);
+  const flashBaselineRef = useRef<Record<TrackedKey, number> | null>(null);
   const pokemonChangedAt = useRef(0);
 
   const derived = useMemo(
@@ -32,6 +34,7 @@ export function StatDock() {
   useEffect(() => {
     if (!pokemon || !effective || !offense) {
       prevRef.current = null;
+      flashBaselineRef.current = null;
       return;
     }
     const values: Record<TrackedKey, number> = {
@@ -44,17 +47,18 @@ export function StatDock() {
     prevRef.current = { pokemonId: pokemon.id, values };
     if (!prev || prev.pokemonId !== pokemon.id) {
       pokemonChangedAt.current = Date.now();
+      flashBaselineRef.current = null;
       return;
     }
     if (Date.now() - pokemonChangedAt.current < 800) return;
-    const next: Partial<Record<TrackedKey, number>> = {};
-    for (const k of TRACKED) {
-      const d = values[k] - prev.values[k];
-      if (Math.abs(d) > 1e-9) next[k] = d;
-    }
-    if (Object.keys(next).length === 0) return;
-    setFlashes((f) => ({ ...f, ...next }));
-    const t = setTimeout(() => setFlashes({}), 1500);
+    if (Object.keys(dockFlashDeltas(values, prev.values, TRACKED)).length === 0) return;
+    const baseline = retainFlashBaseline(flashBaselineRef.current, prev.values);
+    flashBaselineRef.current = baseline;
+    setFlashes(dockFlashDeltas(values, baseline, TRACKED));
+    const t = setTimeout(() => {
+      setFlashes({});
+      flashBaselineRef.current = null;
+    }, 1500);
     return () => clearTimeout(t);
   }, [pokemon, effective, offense]);
 
@@ -105,7 +109,7 @@ export function StatDock() {
                       <span
                         className={`text-[11px] ${flashes[cell.key]! >= 0 ? "text-pos" : "text-neg"}`}
                       >
-                        {formatDelta(flashes[cell.key]!, cell.kind)}
+                        {formatExactDelta(flashes[cell.key]!, cell.kind)}
                       </span>
                     )}
                   </span>
