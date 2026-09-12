@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-09-11",
+  "lastUpdated": "2026-09-12",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-11"
+    "fetched": "2026-09-12"
   },
   "pokemon": [
     {
