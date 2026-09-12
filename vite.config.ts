@@ -8,6 +8,7 @@ import {
   APP_NAME,
   APP_SHORT_NAME,
   APP_DESCRIPTION,
+  DOCUMENT_TITLE,
   PAGES_BASE_PATH,
   socialMetaTags,
 } from "./src/ui/brand";
@@ -65,6 +66,8 @@ const htmlBranding = () => ({
   transformIndexHtml: (html: string) =>
     html
       .replaceAll("__APP_NAME__", APP_NAME)
+      .replaceAll("__DOCUMENT_TITLE__", DOCUMENT_TITLE)
+      .replaceAll("__APP_DESCRIPTION__", APP_DESCRIPTION)
       .replace("<head>", `<head>${BOOT_SHELL}\n    ${socialMetaTags()}`),
 });
 

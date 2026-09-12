@@ -15,9 +15,16 @@ export const APP_SHORT_NAME = "FoxForge";
 // Reserved slogan (README / branding docs). Not rendered in the app header.
 export const APP_TAGLINE = "Forge your UNITE Loadout!";
 
-// Used for the PWA manifest + meta description.
+// Used for the PWA manifest + meta description. Names Held Items, Battle
+// Items, and Emblems so search snippets match how Trainers look for a helper.
 export const APP_DESCRIPTION =
-  "FoxForge UNITE — A Pokémon UNITE tool for casual and veteran Trainers!";
+  "Plan Pokémon UNITE builds: Held Items, Battle Items, and Emblems with live stats. For casual and veteran Trainers!";
+
+/**
+ * Browser-tab and crawler title. Distinct from APP_NAME so the in-app chrome
+ * can stay short while search results name the product and the game.
+ */
+export const DOCUMENT_TITLE = "FoxForge UNITE | Pokémon UNITE Build Optimizer";
 
 // GitHub repo slug + hosted site URLs. Display name stays "FoxForge UNITE";
 // the hyphenated slug is for the GitHub repo. The public site is the custom
@@ -36,23 +43,69 @@ export const OG_IMAGE_URL = `${SITE_ORIGIN}/${OG_IMAGE_FILE}`;
 export const OG_IMAGE_WIDTH = "1024";
 export const OG_IMAGE_HEIGHT = "537";
 
+/** JSON-LD graph for search engines. Injected as application/ld+json. */
+export function jsonLdGraph(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: APP_NAME,
+    alternateName: DOCUMENT_TITLE,
+    url: `${SITE_ORIGIN}/`,
+    description: APP_DESCRIPTION,
+    applicationCategory: "GameApplication",
+    operatingSystem: "Any",
+    image: OG_IMAGE_URL,
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+}
+
+/** robots.txt body copied to public/ so GitHub Pages serves it at the site root. */
+export function robotsTxt(): string {
+  return ["User-agent: *", "Allow: /", "", `Sitemap: ${SITE_ORIGIN}/sitemap.xml`, ""].join("\n");
+}
+
+/** sitemap.xml body copied to public/ so GitHub Pages serves it at the site root. */
+export function sitemapXml(): string {
+  return [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    `  <url>`,
+    `    <loc>${SITE_ORIGIN}/</loc>`,
+    `    <changefreq>weekly</changefreq>`,
+    `    <priority>1.0</priority>`,
+    `  </url>`,
+    `</urlset>`,
+    ``,
+  ].join("\n");
+}
+
 /** Static <meta> tags injected into index.html at build time. */
 export function socialMetaTags(): string {
   return [
     `<meta name="description" content="${APP_DESCRIPTION}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${APP_NAME}" />`,
-    `<meta property="og:title" content="${APP_NAME}" />`,
+    `<meta property="og:title" content="${DOCUMENT_TITLE}" />`,
     `<meta property="og:description" content="${APP_DESCRIPTION}" />`,
     `<meta property="og:url" content="${SITE_ORIGIN}/" />`,
+    `<meta property="og:locale" content="en_US" />`,
     `<meta property="og:image" content="${OG_IMAGE_URL}" />`,
     `<meta property="og:image:width" content="${OG_IMAGE_WIDTH}" />`,
     `<meta property="og:image:height" content="${OG_IMAGE_HEIGHT}" />`,
     `<meta property="og:image:alt" content="${APP_NAME}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:title" content="${APP_NAME}" />`,
+    `<meta name="twitter:title" content="${DOCUMENT_TITLE}" />`,
     `<meta name="twitter:description" content="${APP_DESCRIPTION}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE_URL}" />`,
+    `<meta name="twitter:image:alt" content="${APP_NAME}" />`,
+    `<link rel="canonical" href="${SITE_ORIGIN}/" />`,
+    `<script type="application/ld+json">${JSON.stringify(jsonLdGraph())}</script>`,
   ].join("\n    ");
 }
 
