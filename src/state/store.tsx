@@ -36,6 +36,7 @@ import {
   resolveSlotGrades,
   saveHeldItemGradeMemory,
 } from "./heldItemGrades";
+import { requestPersistentStorage } from "./persistentStorage";
 
 export type Action =
   | { type: "setPokemon"; pokemonId: string }
@@ -260,6 +261,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     saveCurrent(loadout);
   }, [loadout]);
+
+  // Best-effort: ask the browser to keep this origin. Trainer keys still live
+  // in localStorage either way; this only reduces eviction pressure.
+  useEffect(() => {
+    void requestPersistentStorage();
+  }, []);
 
   // Apply the resolved theme to <html data-theme>; CSS variables cascade from there.
   useEffect(() => {

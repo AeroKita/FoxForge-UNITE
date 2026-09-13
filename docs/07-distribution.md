@@ -9,7 +9,7 @@ The tool ships **one way: a hosted installable web app** on GitHub Pages, with *
 ## Two update channels
 
 1. **App updates** (UI/engine code) — a new Pages deploy is picked up on the next reload. No manual step, no separate release.
-2. **Game-data updates** (stats every patch) — the app fetches `data/manifest.json` from Pages at launch; if `version` (the bundle's `lastUpdated`) changed, it downloads + zod-validates + caches the new bundle, applied next launch ([`dataSource.ts`](../src/data/dataSource.ts)). The bundled JSON is the offline fallback. **A patch update = publish one JSON — no app rebuild.** [`data.yml`](../.github/workflows/data.yml) re-scrapes daily at 09:00 UTC and opens a review PR.
+2. **Game-data updates** (stats every patch) — the app fetches `data/manifest.json` from Pages at launch; if `version` (the bundle's `lastUpdated`) changed, it downloads + zod-validates + caches the new bundle in IndexedDB (`src/data/dataCacheStore.ts`), applied next launch ([`dataSource.ts`](../src/data/dataSource.ts)). `src/main.tsx` hydrates that cache before importing the app so `activeRaw()` can read it synchronously. Trainer data (current loadout, saved builds, owned emblems, grades) stays in `localStorage`; a leftover `unite-build-optimizer.dataCache.v1` localStorage key is migrated then deleted so the patch JSON cannot exhaust iPhone quota. A Home Screen icon is a full document load (Pages has no live service worker). Safari and the Home Screen icon do not share storage. The bundled JSON is the offline fallback. **A patch update = publish one JSON — no app rebuild.** [`data.yml`](../.github/workflows/data.yml) re-scrapes daily at 09:00 UTC and opens a review PR.
 
 ## One-time setup (in GitHub repo settings)
 

@@ -1264,9 +1264,28 @@ describe("community data bundle", () => {
     ]);
   });
 
-  it("keeps Sylveon Creative A Fast Fairy", () => {
+  it("keeps Sylveon Creative That's a Fast Dog", () => {
     const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
-    expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["A Fast Fairy"]);
+    expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["That's a Fast Dog"]);
+  });
+
+  it("uses the shared special-gas Creative emblems on Gengar, Latios, Latias, and Sylveon", () => {
+    const emblems = [
+      { emblemId: "101-electrode", grade: "gold" },
+      { emblemId: "100-voltorb", grade: "gold" },
+      { emblemId: "172-pichu", grade: "gold" },
+      { emblemId: "170-chinchou", grade: "gold" },
+      { emblemId: "243-raikou", grade: "gold" },
+      { emblemId: "1008-miraidon", grade: "platinum" },
+      { emblemId: "145-zapdos", grade: "gold" },
+      { emblemId: "189-jumpluff", grade: "gold" },
+      { emblemId: "094-gengar", grade: "gold" },
+      { emblemId: "906-sprigatito", grade: "platinum" },
+    ];
+    for (const id of ["gengar", "latios", "latias", "sylveon"] as const) {
+      const pokemon = bundle.pokemon.find((p) => p.id === id);
+      expect(pokemon?.creativeBuilds?.[0]?.emblems, id).toEqual(emblems);
+    }
   });
 
   it("pins Buzzwole Recommended lore titles", () => {

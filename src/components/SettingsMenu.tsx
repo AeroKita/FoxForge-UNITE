@@ -69,6 +69,11 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
               The app auto-updates on reload. Install it from your browser ("Add to Home Screen" /
               "Install") for an offline-capable window.
             </p>
+            <p className="mt-2 text-xs text-faint">
+              Your Pokémon, build, grades, owned emblems, and saved loadouts stay on this device. On
+              iPhone, Safari and the Home Screen icon do not share that data — add the icon from
+              foxforge-unite.com.
+            </p>
           </div>
         </Section>
 

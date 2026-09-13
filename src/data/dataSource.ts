@@ -3,8 +3,11 @@
 // The app ships with a bundled patch JSON (offline baseline). At launch it
 // checks a remote manifest; if the published data has a newer `version` (the
 // bundle's `lastUpdated`, which changes on every regeneration), it downloads +
-// validates + caches it, applied on the next launch. A new game patch then
+// validates + caches it, applied on the next load. A new game patch then
 // reaches every installed copy by publishing one JSON — no app rebuild.
+//
+// The blob lives in IndexedDB (see dataCacheStore.ts), not localStorage — the
+// ~2.4M-char JSON would crowd out trainer data on iPhone's ~5 MB quota.
 //
 // Publish target (override with VITE_DATA_BASE_URL at build time):
 //   <base>/manifest.json -> { "version": "2026-06-20", "patchVersion": "1.24.0.0", "url": "<base>/patch-1.24.0.0.json" }
@@ -12,25 +15,18 @@
 
 import { PAGES_DATA_BASE } from "../ui/brand";
 import { loadBundle } from "./loadBundle";
+import {
+  type CacheEntry,
+  clearDataCache as clearHydratedCache,
+  getHydratedCache,
+  writeDataCache,
+} from "./dataCacheStore";
 
-const CACHE_KEY = "unite-build-optimizer.dataCache.v1";
 const DATA_BASE = (import.meta.env.VITE_DATA_BASE_URL as string | undefined) ?? PAGES_DATA_BASE;
 const MANIFEST_URL = `${DATA_BASE}/manifest.json`;
 
-interface CacheEntry {
-  version: string;
-  patchVersion: string;
-  raw: unknown;
-  fetchedAt: number;
-}
-
 function readCache(): CacheEntry | null {
-  try {
-    const s = localStorage.getItem(CACHE_KEY);
-    return s ? (JSON.parse(s) as CacheEntry) : null;
-  } catch {
-    return null;
-  }
+  return getHydratedCache();
 }
 
 /** The cached remote bundle's raw JSON (or null) — preferred over the bundled copy. */
@@ -56,11 +52,7 @@ export function cachedPatchVersion(): string | null {
   return readCache()?.patchVersion ?? null;
 }
 export function clearDataCache(): void {
-  try {
-    localStorage.removeItem(CACHE_KEY);
-  } catch {
-    /* ignore */
-  }
+  clearHydratedCache();
 }
 
 export interface DataCheckResult {
@@ -91,19 +83,12 @@ export async function checkDataNow(currentVersion: string): Promise<DataCheckRes
     const raw = await fetch(m.url, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null));
     if (!raw) return { status: "offline" };
     loadBundle(raw); // validate against the schema; throws on malformed data
-    try {
-      localStorage.setItem(
-        CACHE_KEY,
-        JSON.stringify({
-          version: m.version,
-          patchVersion: m.patchVersion ?? "?",
-          raw,
-          fetchedAt: Date.now(),
-        } satisfies CacheEntry),
-      );
-    } catch {
-      /* quota */
-    }
+    await writeDataCache({
+      version: m.version,
+      patchVersion: m.patchVersion ?? "?",
+      raw,
+      fetchedAt: Date.now(),
+    });
     return { status: "updated", patchVersion: m.patchVersion };
   } catch {
     return { status: "offline" };

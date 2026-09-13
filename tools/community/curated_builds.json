@@ -811,19 +811,19 @@
         "battleItemId": "full-heal",
         "emblems": [
           {
+            "emblemId": "101-electrode",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
             "emblemId": "172-pichu",
             "grade": "gold"
           },
           {
-            "emblemId": "907-floragato",
-            "grade": "platinum"
-          },
-          {
-            "emblemId": "193-yanma",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "189-jumpluff",
+            "emblemId": "170-chinchou",
             "grade": "gold"
           },
           {
@@ -831,24 +831,24 @@
             "grade": "gold"
           },
           {
-            "emblemId": "145-zapdos",
-            "grade": "gold"
-          },
-          {
             "emblemId": "1008-miraidon",
             "grade": "platinum"
           },
           {
-            "emblemId": "082-magneton",
+            "emblemId": "145-zapdos",
             "grade": "gold"
           },
           {
-            "emblemId": "101-electrode",
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "094-gengar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "906-sprigatito",
             "grade": "platinum"
-          },
-          {
-            "emblemId": "100-voltorb",
-            "grade": "gold"
           }
         ],
         "moves": [
@@ -942,19 +942,19 @@
         "battleItemId": "eject-button",
         "emblems": [
           {
+            "emblemId": "101-electrode",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
             "emblemId": "172-pichu",
             "grade": "gold"
           },
           {
-            "emblemId": "907-floragato",
-            "grade": "platinum"
-          },
-          {
-            "emblemId": "193-yanma",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "189-jumpluff",
+            "emblemId": "170-chinchou",
             "grade": "gold"
           },
           {
@@ -962,24 +962,24 @@
             "grade": "gold"
           },
           {
-            "emblemId": "145-zapdos",
-            "grade": "gold"
-          },
-          {
             "emblemId": "1008-miraidon",
             "grade": "platinum"
           },
           {
-            "emblemId": "082-magneton",
+            "emblemId": "145-zapdos",
             "grade": "gold"
           },
           {
-            "emblemId": "101-electrode",
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "094-gengar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "906-sprigatito",
             "grade": "platinum"
-          },
-          {
-            "emblemId": "100-voltorb",
-            "grade": "gold"
           }
         ],
         "moves": [
@@ -1009,19 +1009,19 @@
         "battleItemId": "eject-button",
         "emblems": [
           {
+            "emblemId": "101-electrode",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
             "emblemId": "172-pichu",
             "grade": "gold"
           },
           {
-            "emblemId": "907-floragato",
-            "grade": "platinum"
-          },
-          {
-            "emblemId": "193-yanma",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "189-jumpluff",
+            "emblemId": "170-chinchou",
             "grade": "gold"
           },
           {
@@ -1029,24 +1029,24 @@
             "grade": "gold"
           },
           {
-            "emblemId": "145-zapdos",
-            "grade": "gold"
-          },
-          {
             "emblemId": "1008-miraidon",
             "grade": "platinum"
           },
           {
-            "emblemId": "082-magneton",
+            "emblemId": "145-zapdos",
             "grade": "gold"
           },
           {
-            "emblemId": "101-electrode",
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "094-gengar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "906-sprigatito",
             "grade": "platinum"
-          },
-          {
-            "emblemId": "100-voltorb",
-            "grade": "gold"
           }
         ],
         "moves": [
@@ -1065,8 +1065,8 @@
     ],
     "creativeBuilds": [
       {
-        "name": "A Fast Fairy",
-        "emblemName": "A Fast Fairy",
+        "name": "That's a Fast Dog",
+        "emblemName": "That's a Fast Dog",
         "lane": "Anywhere Damage",
         "heldItemIds": [
           "exp-share",
@@ -1076,19 +1076,19 @@
         "battleItemId": "x-speed",
         "emblems": [
           {
+            "emblemId": "101-electrode",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
             "emblemId": "172-pichu",
             "grade": "gold"
           },
           {
-            "emblemId": "907-floragato",
-            "grade": "platinum"
-          },
-          {
-            "emblemId": "193-yanma",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "189-jumpluff",
+            "emblemId": "170-chinchou",
             "grade": "gold"
           },
           {
@@ -1096,24 +1096,24 @@
             "grade": "gold"
           },
           {
-            "emblemId": "145-zapdos",
-            "grade": "gold"
-          },
-          {
             "emblemId": "1008-miraidon",
             "grade": "platinum"
           },
           {
-            "emblemId": "082-magneton",
+            "emblemId": "145-zapdos",
             "grade": "gold"
           },
           {
-            "emblemId": "101-electrode",
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "094-gengar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "906-sprigatito",
             "grade": "platinum"
-          },
-          {
-            "emblemId": "100-voltorb",
-            "grade": "gold"
           }
         ],
         "moves": [

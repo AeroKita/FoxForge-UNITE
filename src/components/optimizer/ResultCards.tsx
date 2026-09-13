@@ -77,7 +77,7 @@ export function ResultCards({
           type="button"
           onClick={onClearResults}
           aria-label="Clear Results"
-          className="min-h-11 rounded-lg border border-line px-4 py-2 text-sm font-medium text-muted transition hover:bg-neg/10 hover:text-neg active:scale-[0.98]"
+          className="min-h-11 rounded-lg bg-neg px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-neg/90 active:scale-[0.98]"
         >
           Clear Results
         </button>
