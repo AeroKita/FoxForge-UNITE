@@ -1269,6 +1269,29 @@ describe("community data bundle", () => {
     expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["That's a Fast Dog"]);
   });
 
+  it("collapses slash multi-path lanes to Anywhere Damage", () => {
+    const slashLanes: string[] = [];
+    for (const p of bundle.pokemon) {
+      for (const tab of ["builds", "creativeBuilds"] as const) {
+        for (const b of p[tab] ?? []) {
+          const lane = b.lane ?? "";
+          if (lane.includes("/")) {
+            slashLanes.push(`${p.id}/${tab}: ${lane}`);
+          }
+        }
+      }
+    }
+    expect(slashLanes, slashLanes.join("\n")).toEqual([]);
+
+    const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
+    expect(sylveon.builds?.map((b) => b.lane)).toEqual([
+      "Anywhere Damage",
+      "Anywhere Damage",
+      "Anywhere Damage",
+      "Anywhere Damage",
+    ]);
+  });
+
   it("uses the shared special-gas Creative emblems on Gengar, Latios, Latias, and Sylveon", () => {
     const emblems = [
       { emblemId: "101-electrode", grade: "gold" },

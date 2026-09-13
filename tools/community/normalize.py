@@ -1279,7 +1279,11 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
         preset (priorities / protectedFloors / colorTargets). This is the
         highest-priority override consumed by optimizerPresets.ts, taking
         precedence over the auto-generated emblemOptimizerPresets.json entry.
-    Underscore-prefixed keys (e.g. "_comment") are ignored.
+    Top-level "_emblemNameRemap" / "_emblemNamePrefixRemap" remap raw
+    emblemName values. Top-level "_laneRemap" remaps raw build lane strings
+    on Recommended and Creative builds (exact match) before per-Pokémon
+    overlays. Underscore-prefixed keys (e.g. "_comment") are otherwise
+    ignored.
     """
     if not CURATED.exists():
         print("  (no curated_builds.json — skipping curation overlay)")
@@ -1287,6 +1291,7 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
     overlay = json.loads(CURATED.read_text())
     remap = overlay.get("_emblemNameRemap", {})
     prefix_remap = overlay.get("_emblemNamePrefixRemap", {})
+    lane_remap = overlay.get("_laneRemap", {})
     for p in pokemon:
         for b in p.get("builds", []):
             name = b.get("emblemName")
@@ -1306,6 +1311,12 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
             elif not isinstance(rule, str):
                 print(f"  ! {p['id']}: no remap entry for role {p['role']!r} "
                       f"on label {name!r} — left unchanged")
+        if lane_remap:
+            for tab in ("builds", "creativeBuilds"):
+                for b in p.get(tab, []) or []:
+                    lane = b.get("lane")
+                    if lane in lane_remap:
+                        b["lane"] = lane_remap[lane]
     emblem_ids = {e["id"] for e in emblems}
     held_ids = {h["id"] for h in held}
     battle_ids = {b["id"] for b in battle}

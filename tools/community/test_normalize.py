@@ -1393,6 +1393,48 @@ class TestApplyCuratedTitles(unittest.TestCase):
             apply_curated_builds(pokemon, emblems, held, battle)
         self.assertEqual(pokemon[0]["builds"][0]["emblemName"], "Doggo Zoomies")
 
+    def test_lane_remap_collapses_multi_path_labels(self):
+        """Slash-separated multi-path UNITE-DB lanes become Anywhere Damage."""
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        curated_path = Path(tmp.name) / "curated_builds.json"
+        curated_path.write_text(
+            json.dumps(
+                {
+                    "_laneRemap": {
+                        "Center Split / Path Damage": "Anywhere Damage",
+                        "Center Split / Path Damage / Support": "Anywhere Damage",
+                        "Center / Path Damage": "Anywhere Damage",
+                        "Center / Center Split": "Anywhere Damage",
+                        "Center / Center Split Damage": "Anywhere Damage",
+                        "Path Tank / Support": "Anywhere Damage",
+                    },
+                }
+            )
+        )
+        pokemon = [
+            {
+                "id": "sylveon",
+                "role": "Attacker",
+                "moves": [],
+                "builds": [
+                    {"name": "Hyper Mind", "lane": "Center Split / Path Damage / Support"},
+                    {"name": "Drain Fire", "lane": "Center Split / Path Damage"},
+                    {"name": "Keep Path", "lane": "Path Damage"},
+                ],
+                "creativeBuilds": [
+                    {"name": "Creative", "lane": "Path Tank / Support"},
+                ],
+            }
+        ]
+        with mock.patch.object(normalize, "CURATED", curated_path):
+            apply_curated_builds(pokemon, [], [], [])
+        self.assertEqual(
+            [b["lane"] for b in pokemon[0]["builds"]],
+            ["Anywhere Damage", "Anywhere Damage", "Path Damage"],
+        )
+        self.assertEqual(pokemon[0]["creativeBuilds"][0]["lane"], "Anywhere Damage")
+
 
 if __name__ == "__main__":
     unittest.main()

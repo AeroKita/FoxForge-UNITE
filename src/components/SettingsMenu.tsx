@@ -65,15 +65,6 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
               <span className="text-sm font-medium">App version</span>
               <span className="font-mono text-xs text-faint">v{APP_VERSION}</span>
             </div>
-            <p className="mt-2 text-xs text-faint">
-              The app auto-updates on reload. Install it from your browser ("Add to Home Screen" /
-              "Install") for an offline-capable window.
-            </p>
-            <p className="mt-2 text-xs text-faint">
-              Your Pokémon, build, grades, owned emblems, and saved loadouts stay on this device. On
-              iPhone, Safari and the Home Screen icon do not share that data — add the icon from
-              foxforge-unite.com.
-            </p>
           </div>
         </Section>
 

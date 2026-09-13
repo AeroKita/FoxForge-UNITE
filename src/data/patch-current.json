@@ -2526,7 +2526,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -2584,7 +2584,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -2642,7 +2642,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -3607,7 +3607,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "muscle-band",
           "battleItemId": "x-speed",
           "battleItemOptional": "x-attack",
@@ -3665,7 +3665,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -3723,7 +3723,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -19069,7 +19069,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -19127,7 +19127,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -19185,7 +19185,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -19244,7 +19244,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -19792,7 +19792,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -19850,7 +19850,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -19908,7 +19908,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -22905,7 +22905,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center / Center Split",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "drive-lens",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -22964,7 +22964,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center / Center Split Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "moves": [
@@ -23022,7 +23022,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center / Center Split Damage",
+          "lane": "Anywhere Damage",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -51080,7 +51080,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank / Support",
+          "lane": "Anywhere Damage",
           "emblemName": "North Wind",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -51137,7 +51137,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank / Support",
+          "lane": "Anywhere Damage",
           "emblemName": "Pure Water",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -51748,7 +51748,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage / Support",
+          "lane": "Anywhere Damage",
           "emblemName": "Soothing Aura",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -51806,7 +51806,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "emblemName": "Ribbon Feelers",
           "heldItemOptional": "choice-specs",
           "battleItemId": "x-speed",
@@ -51865,7 +51865,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "emblemName": "Dragon Vanquisher",
           "heldItemOptional": "muscle-band",
           "battleItemId": "potion",
@@ -51924,7 +51924,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Split / Path Damage",
+          "lane": "Anywhere Damage",
           "emblemName": "Intertwining Dance",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
