@@ -7,7 +7,7 @@ import type { ResolvedEmblemPreset } from "../../engine/emblemSearch/optimizerPr
 import type { EmblemCandidate, SearchMode } from "../../engine/emblemSearch/types";
 import type { EmblemColor, EmblemGrade, EmblemLoadout, StatBlock } from "../../types";
 import type { pokemonById } from "../../data/gameData";
-import { EMBLEM_COLOR_HEX } from "../../ui/colors";
+import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../../ui/colors";
 import type { SearchResult } from "../../engine/emblemSearch/types";
 
 // ---------------------------------------------------------------------------
@@ -29,16 +29,8 @@ export type Effort = "quick" | "normal" | "thorough";
 
 export type ColorMode = "off" | "exact" | "weighted";
 
-export const POSITIVE_COLORS: EmblemColor[] = [
-  "brown",
-  "green",
-  "blue",
-  "purple",
-  "white",
-  "red",
-  "yellow",
-  "black",
-];
+/** Every emblem color the Advanced Color card can target, including utility sets. */
+export const CONSTRAINT_COLORS: EmblemColor[] = ALL_EMBLEM_COLORS;
 
 export const PROTECT_STATS: Array<[string, string]> = [
   ["hp", "HP"],

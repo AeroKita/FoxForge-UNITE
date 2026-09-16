@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { setProgressRows } from "../setProgress";
+import { formatActiveSetBonuses, formatSetBonus, setProgressRows } from "../setProgress";
 import type { EmblemColor, EmblemSetBonus } from "../../types";
 
 const brownBonus: EmblemSetBonus = {
@@ -67,5 +67,27 @@ describe("setProgressRows", () => {
     ]);
     const rows = setProgressRows(counts, fixtureBonuses);
     expect(rows.map((r) => r.color)).toEqual(["white", "brown"]);
+  });
+});
+
+describe("formatSetBonus", () => {
+  it("stat colors use the short stat label and a positive percent", () => {
+    expect(formatSetBonus("brown", 0.04)).toBe("+4% Atk");
+    expect(formatSetBonus("black", 0.08)).toBe("+8% CDR");
+  });
+
+  it("utility colors show the real effect, not the HP placeholder", () => {
+    expect(formatSetBonus("pink", -0.16)).toBe("+16% Tenacity");
+    expect(formatSetBonus("navy", -0.02)).toBe("+2% Unite charge rate");
+    expect(formatSetBonus("gray", -0.12)).toBe("+12% Damage reduction");
+  });
+
+  it("formatActiveSetBonuses lists color plus effect", () => {
+    expect(
+      formatActiveSetBonuses([
+        { color: "brown", bonusPercent: 0.04 },
+        { color: "pink", bonusPercent: -0.16 },
+      ]),
+    ).toBe("brown +4% Atk, pink +16% Tenacity");
   });
 });

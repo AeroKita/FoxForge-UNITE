@@ -47,8 +47,8 @@ import type {
 } from "../engine/emblemSearch/types";
 import type { EmblemColor, EmblemGrade, StatBlock } from "../types";
 import {
+  CONSTRAINT_COLORS,
   emblemPicksFromResult,
-  POSITIVE_COLORS,
   SLOTS,
   type AppliedState,
   type ColorMode,
@@ -81,7 +81,7 @@ export function useEmblemOptimizer(): {
   const [customWeights, setCustomWeights] = useState<Record<string, number>>({});
   const [colorMode, setColorMode] = useState<ColorMode>("off");
   const [colorCounts, setColorCounts] = useState<Record<EmblemColor, number>>(
-    Object.fromEntries(POSITIVE_COLORS.map((c) => [c, 0])) as Record<EmblemColor, number>,
+    Object.fromEntries(CONSTRAINT_COLORS.map((c) => [c, 0])) as Record<EmblemColor, number>,
   );
   const [activeColors, setActiveColors] = useState<Set<EmblemColor>>(new Set());
   const [targetValues, setTargetValues] = useState<Record<string, string>>({});
@@ -437,7 +437,7 @@ export function useEmblemOptimizer(): {
     const defaults = deriveAdvancedColorUiDefaults(p, targetPool, allEmblems);
     const nextColors = new Set(defaults.activeColors);
     const nextCounts = Object.fromEntries(
-      POSITIVE_COLORS.map((c) => [c, defaults.colorCounts.get(c) ?? 0]),
+      CONSTRAINT_COLORS.map((c) => [c, defaults.colorCounts.get(c) ?? 0]),
     ) as Record<EmblemColor, number>;
     setColorMode(defaults.colorMode);
     setActiveColors(nextColors);
@@ -465,7 +465,7 @@ export function useEmblemOptimizer(): {
     if (defaults.activeColors.length === 0) return;
     const nextColors = new Set(defaults.activeColors);
     const nextCounts = Object.fromEntries(
-      POSITIVE_COLORS.map((c) => [c, defaults.colorCounts.get(c) ?? 0]),
+      CONSTRAINT_COLORS.map((c) => [c, defaults.colorCounts.get(c) ?? 0]),
     ) as Record<EmblemColor, number>;
     setActiveColors(nextColors);
     setColorCounts(nextCounts);

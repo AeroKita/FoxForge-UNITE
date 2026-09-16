@@ -3,7 +3,8 @@
  *
  * Key invariants:
  *  1. A color whose count meets a threshold returns the correct tier + percent.
- *  2. Colors with only negative bonuses (e.g. pink) are excluded.
+ *  2. Utility colors (pink/navy/gray) are included as `kind: "utility"` with
+ *     the absolute magnitude (pink −16% → 0.16), not excluded.
  *  3. A count below ALL thresholds yields no entry for that color.
  *  4. concreteBonusDelta correctly distinguishes multiplied vs percent-point stats.
  *  5. Multiple active colors each produce their own entry.
@@ -56,6 +57,7 @@ describe("proposedColorBonuses", () => {
     expect(b.tier).toBe(1);
     expect(b.percent).toBeCloseTo(0.01);
     expect(b.percentPoint).toBe(false);
+    expect(b.kind).toBe("stat");
   });
 
   it("[PREV-4] count at tier-2 boundary → tier 2, correct percent", () => {
@@ -77,8 +79,18 @@ describe("proposedColorBonuses", () => {
     expect(result[0].percent).toBeCloseTo(0.04);
   });
 
-  it("[PREV-7] negative-bonus color (pink) is excluded", () => {
+  it("[PREV-7] utility color (pink) is included with absolute magnitude", () => {
     const result = proposedColorBonuses(new Map([["pink", 7]]), TEST_SET_BONUSES);
+    expect(result).toHaveLength(1);
+    expect(result[0].color).toBe("pink");
+    expect(result[0].kind).toBe("utility");
+    expect(result[0].tier).toBe(3);
+    expect(result[0].percent).toBeCloseTo(0.16);
+    expect(result[0].percentPoint).toBe(false);
+  });
+
+  it("[PREV-7b] utility color below its first threshold is omitted", () => {
+    const result = proposedColorBonuses(new Map([["pink", 2]]), TEST_SET_BONUSES);
     expect(result).toHaveLength(0);
   });
 
@@ -110,9 +122,27 @@ describe("proposedColorBonuses", () => {
   });
 
   it("[PREV-11] color not in setBonuses → not in result", () => {
-    // navy has no set bonus in our fixture (and not in TEST_SET_BONUSES)
-    const result = proposedColorBonuses(new Map([["navy", 6]]), TEST_SET_BONUSES);
+    const result = proposedColorBonuses(new Map([["yellow", 6]]), TEST_SET_BONUSES);
     expect(result).toHaveLength(0);
+  });
+
+  it("[PREV-12] live bundle: pink/navy/gray preview as utility magnitudes", async () => {
+    const { setBonuses } = await import("../../../data/gameData");
+    const result = proposedColorBonuses(
+      new Map([
+        ["pink", 7],
+        ["navy", 5],
+        ["gray", 3],
+      ]),
+      setBonuses,
+    );
+    const byColor = Object.fromEntries(result.map((r) => [r.color, r]));
+    expect(byColor.pink?.kind).toBe("utility");
+    expect(byColor.pink?.percent).toBeCloseTo(0.16);
+    expect(byColor.navy?.kind).toBe("utility");
+    expect(byColor.navy?.percent).toBeCloseTo(0.02);
+    expect(byColor.gray?.kind).toBe("utility");
+    expect(byColor.gray?.percent).toBeCloseTo(0.03);
   });
 });
 
@@ -132,6 +162,7 @@ describe("concreteBonusDelta", () => {
     percent,
     tier: 3,
     percentPoint,
+    kind: "stat",
   });
 
   it("[DELTA-1] multiplied stat: delta = baseStat × percent", () => {

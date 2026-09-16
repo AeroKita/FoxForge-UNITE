@@ -1,5 +1,6 @@
 import type { DerivedBuild } from "../engine/derive";
 import { STAT_ROWS, formatStat, formatExactDelta } from "../ui/format";
+import { formatActiveSetBonuses } from "../ui/setProgress";
 
 /** Shared 10-stat grid with deltas, OOC move speed, and set-bonus footnotes. */
 export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
@@ -51,13 +52,7 @@ export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
           </span>
         )}
         {emblemLoadout.activeSetBonuses.length > 0 && (
-          <>
-            {" "}
-            · Set bonuses:{" "}
-            {emblemLoadout.activeSetBonuses
-              .map((b) => `${b.color} +${(b.bonusPercent * 100).toFixed(0)}%`)
-              .join(", ")}
-          </>
+          <> · Set bonuses: {formatActiveSetBonuses(emblemLoadout.activeSetBonuses)}</>
         )}
       </p>
       <p className="mt-1 text-xs text-faint">

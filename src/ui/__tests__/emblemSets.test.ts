@@ -36,4 +36,12 @@ describe("emblem color-set infographic data", () => {
       { count: 7, percent: 16 },
     ]);
   });
+
+  it("utility rows are pink, navy, gray so the optimizer Color card can list them", () => {
+    expect(EMBLEM_SET_INFO.filter((r) => r.kind === "utility").map((r) => r.color)).toEqual([
+      "pink",
+      "navy",
+      "gray",
+    ]);
+  });
 });

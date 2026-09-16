@@ -11,6 +11,7 @@
  */
 
 import type { EmblemColor, EmblemSetBonus, StatBlock } from "../../types";
+import { setBonusStat } from "../formulas";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -20,13 +21,14 @@ export interface ColorBonusPreviewItem {
   color: EmblemColor;
   /** The entered count for this color. */
   count: number;
-  /** Which stat the bonus applies to. */
+  /** Which stat the bonus applies to. Placeholder HP for utility sets — unused in UI. */
   stat: keyof StatBlock;
   /**
    * Bonus fraction, e.g. 0.04 for a 4% bonus.
    * For PERCENT_POINT_STATS (cdr, attackSpeed) this is an additive delta on the
    * percent-domain value; for all other stats it is a multiplier applied to
-   * (base + flat emblems).
+   * (base + flat emblems). Utility sets use the absolute magnitude of the
+   * bundle's placeholder (pink −16% → 0.16).
    */
   percent: number;
   /** 1-based tier number (tier 1 = lowest threshold, tier 3 = highest). */
@@ -36,6 +38,11 @@ export interface ColorBonusPreviewItem {
    * than a multiplicative % of base. Affects how the concrete delta is displayed.
    */
   percentPoint: boolean;
+  /**
+   * Utility sets (pink/navy/gray) do not scale a StatBlock field — preview the
+   * effect name instead of an HP/Atk approximation.
+   */
+  kind: "stat" | "utility";
 }
 
 // ---------------------------------------------------------------------------
@@ -44,7 +51,7 @@ export interface ColorBonusPreviewItem {
 
 /**
  * Stats that receive percentage-point additive bonuses (not base-multiplied).
- * Mirrors PERCENT_POINT_STATS in formulas.ts — kept local to avoid coupling.
+ * Mirrors PERCENT_POINT_STATS in formulas.ts (not exported from there).
  */
 const PERCENT_POINT_STATS: ReadonlySet<keyof StatBlock> = new Set(["attackSpeed", "cdr"] as const);
 
@@ -55,9 +62,11 @@ const PERCENT_POINT_STATS: ReadonlySet<keyof StatBlock> = new Set(["attackSpeed"
 /**
  * Compute which color set-bonus tiers would be achieved given per-color counts.
  *
- * - Only colors with at least one positive bonus threshold are returned.
- * - Colors with only negative bonuses (e.g. pink → −HP) are filtered out.
- * - Mirrors `colorBonusScore(counts, true).details` from uniteemblemfinder.
+ * - Stat-set colors with a positive threshold are returned as `kind: "stat"`.
+ * - Utility colors (pink/navy/gray; `setBonusStat` is null) are returned as
+ *   `kind: "utility"` with `percent` as the absolute magnitude.
+ * - Mirrors `colorBonusScore(counts, true).details` from uniteemblemfinder for
+ *   stat sets; utility sets are a FoxForge preview addition.
  *
  * The input `colorCounts` uses ALL active colors (checked in the UI), not only
  * the colors with hard constraints. This matches the reference's "preview" which
@@ -87,16 +96,18 @@ export function proposedColorBonuses(
     }
     if (tierIdx < 0) continue;
 
-    const percent = def.thresholds[thresholds[tierIdx]];
-    if (percent <= 0) continue; // skip negative-bonus colors (e.g. pink → −HP)
+    const rawPercent = def.thresholds[thresholds[tierIdx]];
+    const utility = setBonusStat(def.color) === null;
+    if (!utility && rawPercent <= 0) continue;
 
     result.push({
       color: def.color,
       count,
       stat: def.stat,
-      percent,
+      percent: Math.abs(rawPercent),
       tier: tierIdx + 1, // 1-based, matching uniteemblemfinder's tier display
-      percentPoint: PERCENT_POINT_STATS.has(def.stat),
+      percentPoint: !utility && PERCENT_POINT_STATS.has(def.stat),
+      kind: utility ? "utility" : "stat",
     });
   }
 

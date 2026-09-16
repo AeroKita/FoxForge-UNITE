@@ -10,6 +10,7 @@ import { emblemTip } from "../tips";
 import { EmblemFace } from "../EmblemFace";
 import { emblemIconForGrade } from "../../ui/emblemIcon";
 import { asset } from "../../ui/asset";
+import { formatActiveSetBonuses } from "../../ui/setProgress";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
 
 export interface ResultPanelProps {
@@ -226,9 +227,7 @@ export function ResultCards({
                 <>
                   {" "}
                   · Set bonuses:{" "}
-                  {effectiveDelta.emblemLoadout.activeSetBonuses
-                    .map((b) => `${b.color} +${(b.bonusPercent * 100).toFixed(0)}%`)
-                    .join(", ")}
+                  {formatActiveSetBonuses(effectiveDelta.emblemLoadout.activeSetBonuses)}
                 </>
               )}
             </p>
