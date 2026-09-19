@@ -95,7 +95,6 @@ export function EmblemWheel({
             alt=""
             colors={slot.emblem.colors}
             sizeClass="h-full w-full"
-            glyphClass="h-[22%] w-[22%]"
           />
         ) : (
           <span className="flex h-full w-full items-center justify-center rounded-full border-2 border-dashed border-muted/40 text-xl text-muted">
