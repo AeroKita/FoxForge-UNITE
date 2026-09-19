@@ -15,7 +15,7 @@ export function emblemIconForGrade(emblem: { id: string }, grade: EmblemGrade): 
   return `/assets/emblems/pokedex/${pokedex}${GRADE_LETTER[grade]}.png`;
 }
 
-/** Color-set glyph. Stub until Part 5. */
-export function emblemSetGlyphAsset(_color: EmblemColor): string {
-  return "";
+/** Color-set glyph mirrored from UNITE-DB `emblems/sets/<Color>.png`. */
+export function emblemSetGlyphAsset(color: EmblemColor): string {
+  return `/assets/emblems/sets/${color.charAt(0).toUpperCase()}${color.slice(1)}.png`;
 }

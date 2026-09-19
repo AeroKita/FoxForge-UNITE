@@ -213,6 +213,21 @@ textarea {
   padding-right: 2rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes emblem-pop {
+    from {
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .emblem-pop {
+    animation: emblem-pop 180ms ease-out;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .text-marquee-track {
     animation: none;

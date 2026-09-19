@@ -3,13 +3,12 @@ import { useStore } from "../state/store";
 import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
-import { EmblemFace } from "./EmblemFace";
-import { emblemIconForGrade } from "../ui/emblemIcon";
-import { EmblemSetSummary } from "./EmblemSetSummary";
+import { EmblemPanels } from "./EmblemPanels";
+import { EmblemWheel } from "./EmblemWheel";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
-import { itemTip, emblemTip, moveTip, battleItemTip } from "./tips";
+import { itemTip, moveTip, battleItemTip } from "./tips";
 import { MarqueeText } from "../ui/MarqueeText";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
@@ -132,7 +131,6 @@ export function RecommendPanel() {
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
   const trainer = build?.battleItemId ? battleItemById.get(build.battleItemId) : null;
-  const emblemCount = build?.emblems.length ?? 0;
 
   const finalMoveDisplays = (() => {
     if (!build) return [];
@@ -257,22 +255,11 @@ export function RecommendPanel() {
                 <span className="text-xs text-faint">—</span>
               )}
             </div>
-            <div>
-              <p className="mb-1 text-xs font-medium text-faint">Emblems ({emblemCount})</p>
-              <div className="flex flex-wrap gap-1">
-                {resolvedEmblems.map(({ emblem, grade }, i) => (
-                  <Tooltip key={i} content={emblemTip(emblem, grade)}>
-                    <EmblemFace
-                      src={asset(emblemIconForGrade(emblem, grade))}
-                      alt={emblem.pokemonName}
-                      colors={emblem.colors}
-                    />
-                  </Tooltip>
-                ))}
-              </div>
-            </div>
           </div>
-          <EmblemSetSummary picks={build.emblems} precise={expert} />
+          <div className="flex items-start gap-3">
+            <EmblemWheel size="sm" slots={resolvedEmblems} />
+            <EmblemPanels picks={build.emblems} pokemon={pokemon} level={loadout.level} />
+          </div>
         </div>
       )}
     </CollapsibleCard>

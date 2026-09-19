@@ -1,4 +1,13 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { StoreProvider, useStore } from "./state/store";
 import { pokemonById } from "./data/gameData";
 import { ROLE_COLOR, ROLE_LABEL } from "./ui/theme";
@@ -53,7 +62,7 @@ function usePersistentTab(): [Tab, (t: Tab) => void] {
 }
 
 function Workspace() {
-  const { loadout, mode, setMode, expert } = useStore();
+  const { loadout, mode, setMode, expert, pendingOwnedImport } = useStore();
   const [tab, setTab] = usePersistentTab();
   const [optimizeVisited, setOptimizeVisited] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -63,6 +72,11 @@ function Workspace() {
   useEffect(() => {
     if (tab === "optimize") setOptimizeVisited(true);
   }, [tab]);
+
+  const pendingOwnedOnMount = useRef(pendingOwnedImport);
+  useEffect(() => {
+    if (pendingOwnedOnMount.current) setTab("emblems");
+  }, [setTab]);
 
   const tabs = expert ? ALL_TABS : ALL_TABS.filter((t) => t.id !== "compare");
 

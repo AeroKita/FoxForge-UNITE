@@ -1,8 +1,9 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { asset } from "../ui/asset";
-import { EMBLEM_COLOR_HEX, EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
+import { EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
 import { BottomSheet } from "./shell/BottomSheet";
 import { Tooltip } from "./Tooltip";
+import { SetGlyph } from "./SetGlyph";
 import type { EmblemColor, EmblemGrade } from "../types";
 
 export interface PickItem {
@@ -135,6 +136,7 @@ export function PickerModal({
                 label={f.label}
                 active={activeFilter === f.label}
                 activeColor={f.activeColor}
+                glyph={f.label as EmblemColor}
                 onClick={() => setActiveFilter(f.label)}
               />
             ))}
@@ -187,11 +189,7 @@ export function PickerModal({
               {it.colors && it.colors.length > 0 && (
                 <span className="absolute -left-1 -top-1 flex gap-0.5">
                   {it.colors.map((c) => (
-                    <span
-                      key={c}
-                      className="h-2 w-2 rounded-full ring-1 ring-white"
-                      style={{ background: EMBLEM_COLOR_HEX[c] }}
-                    />
+                    <SetGlyph key={c} color={c} sizeClass="h-3 w-3" />
                   ))}
                 </span>
               )}
@@ -240,11 +238,13 @@ function FilterChip({
   active,
   onClick,
   activeColor,
+  glyph,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
   activeColor?: string;
+  glyph?: EmblemColor;
 }) {
   const style =
     active && activeColor
@@ -261,8 +261,9 @@ function FilterChip({
             ? "border-line"
             : "border-transparent bg-accent text-white"
           : "border-transparent bg-raise text-muted hover:bg-raise"
-      }`}
+      } inline-flex items-center gap-1.5`}
     >
+      {glyph && <SetGlyph color={glyph} sizeClass="h-4 w-4" />}
       {label}
     </button>
   );

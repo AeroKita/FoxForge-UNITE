@@ -21,14 +21,21 @@ import {
   toLoadout,
   saveCurrent,
   loadCurrent,
-  loadoutFromUrl,
-  shareUrlFor,
   loadOwnedEmblems,
   saveOwnedEmblems,
   ownedKey,
   normalizeLoadout,
   MAX_EMBLEMS,
 } from "./loadout";
+import {
+  buildShareUrl,
+  encodeEmblemsLink,
+  encodeLoadoutLink,
+  encodeOwnedLink,
+  readShareHash,
+  type ShareResolver,
+} from "./shareLink";
+import { emblemIdByDex } from "../data/gameData";
 import {
   clampHeldGrade,
   gradeForHeldItem,
@@ -183,16 +190,21 @@ interface Store {
   loadout: Loadout;
   dispatch: React.Dispatch<Action>;
   saved: SavedLoadout[];
-  save: (name: string, id?: string) => void;
+  save: (name: string, id?: string) => SavedLoadout | null;
   remove: (id: string) => void;
   loadSaved: (saved: SavedLoadout) => void;
   saveError: string | null;
   owned: Set<string>; // keys are `${emblemId}:${grade}`
   toggleOwned: (emblemId: string, grade: EmblemGrade) => void;
   bulkSetOwned: (emblemIds: string[], grade: EmblemGrade, own: boolean) => void;
-  /** Replace the entire owned-emblem set (used by inventory file import). */
+  /** Replace the entire owned-emblem set (used by inventory import). */
   replaceOwned: (keys: Set<string>) => void;
   shareUrl: () => string;
+  emblemShareUrl: () => string;
+  ownedShareUrl: () => string;
+  pendingOwnedImport: Set<string> | null;
+  applyPendingOwnedImport: (mode: "replace" | "merge") => void;
+  dismissPendingOwnedImport: () => void;
   mode: ViewMode;
   setMode: (m: ViewMode) => void;
   expert: boolean; // convenience: mode === "expert"
@@ -213,13 +225,23 @@ interface Store {
   ownedHeldItemIds: string[];
 }
 
+const shareResolver: ShareResolver = {
+  emblemIdForDex: (dex) => emblemIdByDex.get(dex) ?? null,
+  dexForEmblemId: (id) => Number(/^(\d+)/.exec(id)?.[1] ?? 0),
+};
+
 const Ctx = createContext<Store | null>(null);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  // Initial build: a shared link (#b=) wins, else the last in-progress build, else empty.
-  const [loadout, dispatch] = useReducer(reducer, null, () => {
-    const fromUrl = loadoutFromUrl();
-    if (fromUrl) return normalizeLoadout(fromUrl);
+  const [initialShare] = useState(() =>
+    typeof location !== "undefined" ? readShareHash(location.hash, shareResolver) : null,
+  );
+  const [loadout, dispatch] = useReducer(reducer, initialShare, (share) => {
+    if (share?.kind === "loadout") return normalizeLoadout(share.loadout);
+    if (share?.kind === "emblems") {
+      const current = loadCurrent() ?? emptyLoadout();
+      return normalizeLoadout({ ...current, emblems: share.picks });
+    }
     const current = loadCurrent();
     if (current) return current;
     return emptyLoadout();
@@ -227,6 +249,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [saved, setSaved] = useState<SavedLoadout[]>(() => loadSavedLoadouts());
   const [saveError, setSaveError] = useState<string | null>(null);
   const [owned, setOwned] = useState<Set<string>>(() => loadOwnedEmblems());
+  const [pendingOwnedImport, setPendingOwnedImport] = useState<Set<string> | null>(() =>
+    initialShare?.kind === "owned" ? initialShare.owned : null,
+  );
   const [heldGradeMemory, setHeldGradeMemory] = useState<Record<string, number>>(() =>
     loadHeldItemGradeMemory(),
   );
@@ -262,6 +287,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     saveCurrent(loadout);
   }, [loadout]);
 
+  // Drop a consumed share hash so a reload keeps the Trainer's own edits.
+  useEffect(() => {
+    if (!initialShare) return;
+    history.replaceState(null, "", `${location.pathname}${location.search}`);
+  }, [initialShare]);
+
   // Best-effort: ask the browser to keep this origin. Trainer keys still live
   // in localStorage either way; this only reduces eviction pressure.
   useEffect(() => {
@@ -293,10 +324,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       owned,
       save: (name, id) => {
         try {
-          setSaved(persistSave(saved, loadout, name, id));
+          const next = persistSave(saved, loadout, name, id);
+          setSaved(next);
           setSaveError(null);
+          return next.find((l) => l.id === id) ?? next[next.length - 1] ?? null;
         } catch (e) {
           setSaveError(e instanceof Error ? e.message : String(e));
+          return null;
         }
       },
       remove: (id) => setSaved(persistDelete(saved, id)),
@@ -327,7 +361,29 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           saveOwnedEmblems(next);
           return next;
         }),
-      shareUrl: () => shareUrlFor(loadout),
+      shareUrl: () => buildShareUrl(encodeLoadoutLink(loadout)),
+      emblemShareUrl: () => buildShareUrl(encodeEmblemsLink(loadout.emblems)),
+      ownedShareUrl: () => buildShareUrl(encodeOwnedLink(owned, shareResolver)),
+      pendingOwnedImport,
+      applyPendingOwnedImport: (mode) => {
+        if (!pendingOwnedImport) return;
+        if (mode === "replace") {
+          setOwned(() => {
+            const next = new Set(pendingOwnedImport);
+            saveOwnedEmblems(next);
+            return next;
+          });
+        } else {
+          setOwned((prev) => {
+            const next = new Set(prev);
+            for (const key of pendingOwnedImport) next.add(key);
+            saveOwnedEmblems(next);
+            return next;
+          });
+        }
+        setPendingOwnedImport(null);
+      },
+      dismissPendingOwnedImport: () => setPendingOwnedImport(null),
       mode,
       expert: mode === "expert",
       setMode: (m) => {
@@ -361,6 +417,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       saved,
       saveError,
       owned,
+      pendingOwnedImport,
       mode,
       theme,
       themePref,

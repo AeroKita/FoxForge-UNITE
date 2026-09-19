@@ -44,6 +44,13 @@ export const heldItemById = new Map(bundle.heldItems.map((i) => [i.id, i]));
 export const battleItemById = new Map((bundle.battleItems ?? []).map((i) => [i.id, i]));
 export const emblemById = new Map(bundle.emblems.map((e) => [e.id, e]));
 
+/** First emblem id for each pokedex number (pokedex prefixes are unique). */
+export const emblemIdByDex = new Map<number, string>();
+for (const emblem of bundle.emblems) {
+  const dex = Number(emblem.id.split("-")[0]);
+  if (Number.isFinite(dex) && !emblemIdByDex.has(dex)) emblemIdByDex.set(dex, emblem.id);
+}
+
 /** Item grade we model (UNITE held items: grades 1–40; in-game cap is 40). */
 export const ITEM_GRADE_MAX = 40;
 export const ITEM_GRADE_DEFAULT = 40;

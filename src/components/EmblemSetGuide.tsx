@@ -1,14 +1,11 @@
-import { EMBLEM_COLOR_HEX } from "../ui/colors";
 import { EMBLEM_SET_INFO, formatSetMagnitude, type SetInfoRow } from "../ui/emblemSets";
 import { useModalDismiss } from "../ui/useModalDismiss";
+import { SetGlyph } from "./SetGlyph";
 
 function Row({ r }: { r: SetInfoRow }) {
   return (
     <div className="flex items-start gap-3 border-t border-line py-2 first:border-t-0">
-      <span
-        className="mt-0.5 h-4 w-4 shrink-0 rounded-full ring-1 ring-black/10"
-        style={{ background: EMBLEM_COLOR_HEX[r.color] }}
-      />
+      <SetGlyph color={r.color} sizeClass="h-4 w-4 shrink-0" />
       <div className="w-28 shrink-0">
         <div className="text-sm font-medium capitalize text-ink">{r.color}</div>
         <div className="text-[11px] leading-tight text-faint">{r.label}</div>

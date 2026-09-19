@@ -4,12 +4,8 @@ import { deriveEmblemLoadoutImpact } from "../../engine/emblemSearch/pokemonScor
 import type { EmblemGrade } from "../../types";
 import { STAT_ROWS, formatExactDelta, formatStat } from "../../ui/format";
 import { CollapsibleCard } from "../CollapsibleCard";
-import { EmblemSetSummary } from "../EmblemSetSummary";
-import { Tooltip } from "../Tooltip";
-import { emblemTip } from "../tips";
-import { EmblemFace } from "../EmblemFace";
-import { emblemIconForGrade } from "../../ui/emblemIcon";
-import { asset } from "../../ui/asset";
+import { EmblemPanels } from "../EmblemPanels";
+import { EmblemWheel } from "../EmblemWheel";
 import { formatActiveSetBonuses } from "../../ui/setProgress";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
 
@@ -50,21 +46,33 @@ export function ResultCards({
     setPreviewLevel(searchLevel);
   }, [searchLevel, buildKey]);
 
-  const effectiveDelta = useMemo((): EffectiveDelta | null => {
+  const impact = useMemo(() => {
     if (!picks.length || !pokemon) return null;
     try {
-      const impact = deriveEmblemLoadoutImpact(pokemon, previewLevel, picks, setBonuses);
-      if (!impact || Object.keys(impact.emblemDelta).length === 0) return null;
-      return {
-        effective: impact.effective,
-        delta: impact.emblemDelta,
-        emblemLoadout: impact.emblemLoadout,
-        oocMoveSpeed: impact.oocMoveSpeed,
-      };
+      return deriveEmblemLoadoutImpact(pokemon, previewLevel, picks, setBonuses);
     } catch {
       return null;
     }
   }, [picks, pokemon, previewLevel]);
+
+  const effectiveDelta = useMemo((): EffectiveDelta | null => {
+    if (!impact || Object.keys(impact.emblemDelta).length === 0) return null;
+    return {
+      effective: impact.effective,
+      delta: impact.emblemDelta,
+      emblemLoadout: impact.emblemLoadout,
+      oocMoveSpeed: impact.oocMoveSpeed,
+    };
+  }, [impact]);
+
+  const wheelSlots = useMemo(
+    () =>
+      picks.map((p) => {
+        const emblem = emblemById.get(p.emblemId);
+        return emblem ? { emblem, grade: p.grade } : null;
+      }),
+    [picks],
+  );
 
   const previewingOtherLevel = previewLevel !== searchLevel;
 
@@ -116,27 +124,19 @@ export function ResultCards({
           <p className="text-center text-xs text-accent-ink">New results — tap › to view</p>
         )}
 
-        <div className="flex flex-col gap-2.5">
-          <p className="text-xs font-medium text-faint">Emblems</p>
-          <div className="flex flex-wrap gap-1">
-            {picks.map((p, i) => {
-              const emblem = emblemById.get(p.emblemId);
-              if (!emblem) return null;
-              return (
-                <Tooltip key={i} content={emblemTip(emblem, p.grade)}>
-                  <EmblemFace
-                    src={asset(emblemIconForGrade(emblem, p.grade))}
-                    alt={emblem.pokemonName}
-                    colors={emblem.colors}
-                    colorDotClass="h-2.5 w-2.5"
-                  />
-                </Tooltip>
-              );
-            })}
+        <div className="flex items-start gap-3">
+          <EmblemWheel size="sm" slots={wheelSlots} />
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-medium text-faint">Emblems</p>
           </div>
         </div>
 
-        <EmblemSetSummary picks={picks} />
+        <EmblemPanels
+          picks={picks}
+          pokemon={pokemon ?? null}
+          level={previewLevel}
+          impact={impact}
+        />
 
         {effectiveDelta && pokemon && (
           <div className="rounded-xl border border-line-soft bg-surface/60 p-3 ring-1 ring-line/40">
