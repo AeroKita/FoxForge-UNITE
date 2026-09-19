@@ -315,10 +315,63 @@ function nextGradeIndices(
   return false;
 }
 
+/** Index the pool's grade variants by Pokémon name. */
+export function groupVariantsByName(pool: EmblemCandidate[]): Map<string, EmblemCandidate[]> {
+  const variantsByName = new Map<string, EmblemCandidate[]>();
+  for (const c of pool) {
+    const variants = variantsByName.get(c.pokemonName);
+    if (variants) variants.push(c);
+    else variantsByName.set(c.pokemonName, [c]);
+  }
+  return variantsByName;
+}
+
+/**
+ * Whether grade enumeration has anything to enumerate.
+ *
+ * An inventory held at one grade (all gold, all silver, or all bronze) yields
+ * a single variant per Pokémon, so the grade-aware path would re-derive the
+ * identical loadouts while paying the grade-aware indexing cost. Treat the
+ * option as off there — {@link bestVariantForMode} returns that lone variant,
+ * making the two paths produce the same builds.
+ */
+export function shouldEnumerateGrades(
+  opts: SearchOptions,
+  variantsByName: Map<string, EmblemCandidate[]>,
+): boolean {
+  if (!opts.enumerateGradeVariants) return false;
+  for (const variants of variantsByName.values()) {
+    if (variants.length > 1) return true;
+  }
+  return false;
+}
+
+/**
+ * Elementary symmetric polynomials e_0…e_maxK of `values`: e_j is the sum,
+ * across every size-j subset, of the product of that subset's members.
+ *
+ * With one value per Pokémon name (its grade-variant count), e_j is exactly
+ * the number of grade-resolved ways to pick j names out of that group.
+ */
+function elementarySymmetric(values: number[], maxK: number): number[] {
+  const e = Array.from({ length: maxK + 1 }, () => 0);
+  e[0] = 1;
+  for (const v of values) {
+    for (let j = maxK; j >= 1; j--) e[j] += e[j - 1] * v;
+  }
+  return e;
+}
+
 /**
  * Prefix sums of evaluation counts per k-vector when grade variants are
  * enumerated. evalPrefix[j] = global start index of k-vector j;
  * evalPrefix[kVectors.length] = total evaluations.
+ *
+ * Groups are picked independently, so a k-vector's evaluation count factorises
+ * into one elementary symmetric term per group. That keeps this O(names ×
+ * picks) instead of walking the combination space, which would otherwise cost
+ * one iteration per build — hundreds of millions of them on a wide search,
+ * before any build is evaluated.
  */
 export function computeGradeAwareKPrefix(
   groups: ColorGroup[],
@@ -327,24 +380,23 @@ export function computeGradeAwareKPrefix(
   variantsByName: Map<string, EmblemCandidate[]>,
 ): number[] {
   const G = groups.length;
-  const prefix = [0];
 
+  const maxK = Array.from({ length: G }, () => 0);
   for (const k of kVectors) {
-    let kTotal = 0;
-    const idxs = k.map((kg) => Array.from({ length: kg }, (_, i) => i));
-    const comboCount = k.reduce((acc, kg, gi) => acc * (binomNum(sizes[gi], kg) || 1), 1);
+    for (let gi = 0; gi < G; gi++) if (k[gi] > maxK[gi]) maxK[gi] = k[gi];
+  }
 
-    for (let c = 0; c < comboCount; c++) {
-      const names = assembleNames(groups, k, idxs);
-      kTotal += variantProductForNames(names, variantsByName);
+  const eByGroup = groups.map((group, gi) =>
+    elementarySymmetric(
+      group.names.map((name) => variantsByName.get(name)!.length),
+      Math.min(maxK[gi], sizes[gi]),
+    ),
+  );
 
-      if (c + 1 >= comboCount) break;
-      let carry = true;
-      for (let gi = G - 1; gi >= 0 && carry; gi--) {
-        if (nextCombo(idxs[gi], k[gi], sizes[gi])) carry = false;
-        else resetCombo(idxs[gi], k[gi]);
-      }
-    }
+  const prefix = [0];
+  for (const k of kVectors) {
+    let kTotal = 1;
+    for (let gi = 0; gi < G && kTotal > 0; gi++) kTotal *= eByGroup[gi][k[gi]] ?? 0;
     prefix.push(prefix[prefix.length - 1] + kTotal);
   }
   return prefix;
@@ -365,7 +417,8 @@ function decodeEvalPosition(
   variantsByName: Map<string, EmblemCandidate[]>,
   pos: number,
   enumerateGrades: boolean,
-): EvalSliceState {
+  shouldAbort?: () => boolean,
+): EvalSliceState | null {
   let lo = 0;
   let hi = kVectors.length - 1;
   let j = 0;
@@ -395,6 +448,7 @@ function decodeEvalPosition(
   let acc = 0;
 
   for (let c = 0; c < comboCount; c++) {
+    if ((c & 0xffff) === 0 && shouldAbort?.()) return null;
     const names = assembleNames(groups, k, idxs);
     const gradeCount = variantProductForNames(names, variantsByName);
     if (acc + gradeCount > localInK) {
@@ -478,19 +532,15 @@ export async function searchColorExactSlice(
 
   const sizes = groups.map((g) => g.names.length);
   const endGlobal = startGlobal + sliceSize;
-  const enumerateGrades = opts.enumerateGradeVariants ?? false;
 
-  const variantsByName = new Map<string, EmblemCandidate[]>();
-  for (const c of pool) {
-    if (!variantsByName.has(c.pokemonName)) variantsByName.set(c.pokemonName, []);
-    variantsByName.get(c.pokemonName)!.push(c);
-  }
+  const variantsByName = groupVariantsByName(pool);
+  const enumerateGrades = shouldEnumerateGrades(opts, variantsByName);
 
   const evalPrefix = enumerateGrades
     ? computeGradeAwareKPrefix(groups, sizes, kVectors, variantsByName)
     : kPrefix;
 
-  let state = decodeEvalPosition(
+  const decoded = decodeEvalPosition(
     evalPrefix,
     kVectors,
     groups,
@@ -498,7 +548,10 @@ export async function searchColorExactSlice(
     variantsByName,
     startGlobal,
     enumerateGrades,
+    shouldAbort,
   );
+  if (!decoded) return null;
+  const state = decoded;
 
   let evaluated = 0;
   let best: { loadout: EmblemCandidate[]; ev: EvalResult } | null = null;
@@ -574,13 +627,9 @@ export async function searchColorExact(
   if (kVectors === null || kVectors.length === 0) return null;
 
   const kPrefix = computeKPrefix(sizes, kVectors);
-  const enumerateGrades = opts.enumerateGradeVariants ?? false;
 
-  const variantsByName = new Map<string, EmblemCandidate[]>();
-  for (const c of pool) {
-    if (!variantsByName.has(c.pokemonName)) variantsByName.set(c.pokemonName, []);
-    variantsByName.get(c.pokemonName)!.push(c);
-  }
+  const variantsByName = groupVariantsByName(pool);
+  const enumerateGrades = shouldEnumerateGrades(opts, variantsByName);
 
   const evalPrefix = enumerateGrades
     ? computeGradeAwareKPrefix(groups, sizes, kVectors, variantsByName)

@@ -26,6 +26,8 @@ import {
   enumerateColorKVectors,
   computeKPrefix,
   computeGradeAwareKPrefix,
+  groupVariantsByName,
+  shouldEnumerateGrades,
   EXACT_PARALLEL_MIN,
 } from "./exactColor";
 import { isBetter } from "./evaluate";
@@ -77,15 +79,12 @@ export async function searchColorExactParallel(
   if (!kVectors || kVectors.length === 0) return null;
 
   const kPrefix = computeKPrefix(sizes, kVectors);
-  const enumerateGrades = opts.enumerateGradeVariants ?? false;
+
+  const variantsByName = groupVariantsByName(pool);
+  const enumerateGrades = shouldEnumerateGrades(opts, variantsByName);
 
   let totalCombos: number;
   if (enumerateGrades) {
-    const variantsByName = new Map<string, EmblemCandidate[]>();
-    for (const c of pool) {
-      if (!variantsByName.has(c.pokemonName)) variantsByName.set(c.pokemonName, []);
-      variantsByName.get(c.pokemonName)!.push(c);
-    }
     const evalPrefix = computeGradeAwareKPrefix(groups, sizes, kVectors, variantsByName);
     totalCombos = evalPrefix[evalPrefix.length - 1];
   } else {

@@ -91,8 +91,6 @@ export function useEmblemOptimizer(): {
   const [exactCap, setExactCap] = useState<number>(DEFAULT_EXACT_CAP);
   const [resultCount, setResultCount] = useState(DEFAULT_RESULT_COUNT);
 
-  const enumerateGradeVariants = mixedGrades;
-
   const poolConfig = useMemo<PoolConfig>(
     () => ({ useOwned, mixedGrades, allowedGrades }),
     [useOwned, mixedGrades, allowedGrades],
@@ -101,6 +99,12 @@ export function useEmblemOptimizer(): {
   const buildCount = useMemo(() => approximateBuildCount(pool, SLOTS), [pool]);
   const candidateCount = pool.length;
   const poolDistinctNames = useMemo(() => distinctPokemonCount(pool), [pool]);
+
+  // An inventory held at a single grade contributes one variant per Pokémon,
+  // so there are no grades to mix and the grade-aware search would re-derive
+  // the same builds. The engine guards this too (shouldEnumerateGrades); this
+  // keeps the displayed search method honest.
+  const enumerateGradeVariants = mixedGrades && candidateCount > poolDistinctNames;
 
   const basicPoolConfig = useMemo<PoolConfig>(
     () => ({
@@ -117,6 +121,11 @@ export function useEmblemOptimizer(): {
 
   const basicNotEnoughEmblems = basicPool.length < SLOTS;
   const advancedNotEnoughEmblems = pool.length < SLOTS;
+
+  const basicEnumerateGradeVariants = useMemo(
+    () => BASIC_POOL_DEFAULTS.mixedGrades && basicPool.length > distinctPokemonCount(basicPool),
+    [basicPool],
+  );
 
   const basicObjective = useMemo(() => {
     if (!pokemon) return null;
@@ -135,9 +144,9 @@ export function useEmblemOptimizer(): {
       basicPool,
       basicObjective.colorTargets as Map<EmblemColor, number>,
       SLOTS,
-      BASIC_POOL_DEFAULTS.mixedGrades,
+      basicEnumerateGradeVariants,
     );
-  }, [basicObjective, basicPool]);
+  }, [basicObjective, basicPool, basicEnumerateGradeVariants]);
 
   const basicExactColorFeasible = basicColorResolution?.mode === "exact";
   const basicExactEnumFeasible = basicColorResolution?.willRunExact ?? false;
@@ -615,7 +624,7 @@ export function useEmblemOptimizer(): {
       pokemonList,
       forceHeuristic,
       exactCap: basicExactCap,
-      enumerateGradeVariants: BASIC_POOL_DEFAULTS.mixedGrades,
+      enumerateGradeVariants: basicEnumerateGradeVariants,
     });
     await run(
       basicPool,
@@ -630,6 +639,7 @@ export function useEmblemOptimizer(): {
     basicObjective,
     basicPool,
     basicColorResolution,
+    basicEnumerateGradeVariants,
     optimizeLevel,
     basicEffort,
     run,
