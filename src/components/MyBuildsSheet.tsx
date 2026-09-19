@@ -44,12 +44,12 @@ export function MyBuildsSheet({ onClose }: { onClose: () => void }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Loadout name…"
-          className="min-h-11 flex-1 rounded-lg border border-line px-3 py-2 text-sm outline-none focus:border-accent"
+          className="min-h-11 min-w-0 flex-1 rounded-lg border border-line px-3 py-2 text-sm outline-none focus:border-accent"
         />
         <button
           onClick={handleSave}
           disabled={!loadout.pokemonId || saved.length >= MAX_SAVED_LOADOUTS}
-          className="min-h-11 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-strong active:scale-[0.98] disabled:opacity-40"
+          className="min-h-11 shrink-0 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-strong active:scale-[0.98] disabled:opacity-40"
         >
           {savedId ? "Saved ✓" : "Save"}
         </button>
