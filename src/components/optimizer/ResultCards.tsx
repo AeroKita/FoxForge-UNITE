@@ -3,8 +3,10 @@ import { emblemById, setBonuses } from "../../data/gameData";
 import { deriveEmblemLoadoutImpact } from "../../engine/emblemSearch/pokemonScore";
 import type { EmblemGrade } from "../../types";
 import { STAT_ROWS, formatExactDelta, formatStat } from "../../ui/format";
+import { slotsFromPicks } from "../../ui/emblemWheel";
 import { CollapsibleCard } from "../CollapsibleCard";
-import { EmblemPreview } from "../EmblemPanels";
+import { EmblemSetSummary } from "../EmblemSetSummary";
+import { EmblemCoinRow } from "../EmblemCoinRow";
 import { formatActiveSetBonuses } from "../../ui/setProgress";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
 
@@ -64,15 +66,6 @@ export function ResultCards({
     };
   }, [impact]);
 
-  const wheelSlots = useMemo(
-    () =>
-      picks.map((p) => {
-        const emblem = emblemById.get(p.emblemId);
-        return emblem ? { emblem, grade: p.grade } : null;
-      }),
-    [picks],
-  );
-
   const previewingOtherLevel = previewLevel !== searchLevel;
 
   return (
@@ -123,13 +116,12 @@ export function ResultCards({
           <p className="text-center text-xs text-accent-ink">New results — tap › to view</p>
         )}
 
-        <EmblemPreview
-          slots={wheelSlots}
-          picks={picks}
-          pokemon={pokemon ?? null}
-          level={previewLevel}
-          impact={impact}
-        />
+        <div className="flex flex-col gap-2.5">
+          <p className="text-xs font-medium text-faint">Emblems</p>
+          <EmblemCoinRow slots={slotsFromPicks(picks, (id) => emblemById.get(id))} />
+        </div>
+
+        <EmblemSetSummary picks={picks} />
 
         {effectiveDelta && pokemon && (
           <div className="rounded-xl border border-line-soft bg-surface/60 p-3 ring-1 ring-line/40">

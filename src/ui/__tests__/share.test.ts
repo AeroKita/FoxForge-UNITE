@@ -33,15 +33,26 @@ describe("shareLink", () => {
     expect(nav.clipboard.writeText).toHaveBeenCalledWith("https://example/#e=1g");
   });
 
-  it("returns copied when share rejects with an AbortError-like error and clipboard works", async () => {
+  it("returns canceled when the trainer dismisses the share sheet", async () => {
     const nav = {
       share: vi.fn().mockRejectedValue(abortLike()),
-      clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
+      clipboard: { writeText: vi.fn() },
     };
     await expect(
       shareLink("https://example/#o=abc", "FoxForge emblem inventory", nav),
-    ).resolves.toBe("copied");
-    expect(nav.clipboard.writeText).toHaveBeenCalledWith("https://example/#o=abc");
+    ).resolves.toBe("canceled");
+    expect(nav.clipboard.writeText).not.toHaveBeenCalled();
+  });
+
+  it("falls back to clipboard when share throws a non-abort error", async () => {
+    const nav = {
+      share: vi.fn().mockRejectedValue(new Error("share unavailable")),
+      clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
+    };
+    await expect(shareLink("https://example/#e=1g", "FoxForge emblem set", nav)).resolves.toBe(
+      "copied",
+    );
+    expect(nav.clipboard.writeText).toHaveBeenCalledWith("https://example/#e=1g");
   });
 
   it("returns failed when both share and clipboard are unavailable", async () => {

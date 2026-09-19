@@ -15,6 +15,24 @@ export const EMBLEM_COLOR_HEX: Record<EmblemColor, string> = {
   gray: "#9ca3af",
 };
 
+/**
+ * In-game / UNITE-DB Equipped Sets fills (CSS discs and capsule bars).
+ * Distinct from `EMBLEM_COLOR_HEX`, which stays on the wheel and filters.
+ */
+export const EMBLEM_SET_UI_HEX: Record<EmblemColor, string> = {
+  brown: "#FF8C4E",
+  green: "#7AFA8F",
+  blue: "#5FB2FF",
+  purple: "#B872FF",
+  white: "#DFEEF8",
+  red: "#FF6C6C",
+  yellow: "#F5F761",
+  black: "#55606C",
+  pink: "#FFA8FC",
+  navy: "#577DE9",
+  gray: "#B0B0B0",
+};
+
 export const ALL_EMBLEM_COLORS: EmblemColor[] = [
   "brown",
   "green",

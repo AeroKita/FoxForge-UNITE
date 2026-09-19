@@ -42,7 +42,7 @@ export const PROTECT_STATS: Array<[string, string]> = [
   ["critRate", "Crit Rate"],
   ["cdr", "CDR"],
   ["attackSpeed", "Atk Spd"],
-  ["moveSpeed", "Move Speed"],
+  ["moveSpeed", "Speed"],
 ];
 
 export const STAT_LABELS: Partial<Record<string, string>> = {
@@ -54,7 +54,7 @@ export const STAT_LABELS: Partial<Record<string, string>> = {
   critRate: "Crit Rate",
   cdr: "CDR",
   attackSpeed: "Atk Speed",
-  moveSpeed: "Move Speed",
+  moveSpeed: "Speed",
 };
 
 export const STAT_ROW_GRID =

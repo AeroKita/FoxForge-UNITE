@@ -4,6 +4,7 @@ import { EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
 import { BottomSheet } from "./shell/BottomSheet";
 import { Tooltip } from "./Tooltip";
 import { SetGlyph } from "./SetGlyph";
+import { EmblemFace } from "./EmblemFace";
 import type { EmblemColor, EmblemGrade } from "../types";
 
 export interface PickItem {
@@ -186,12 +187,21 @@ export function PickerModal({
                 ownedHere ? "border-as-border bg-as-bg" : "border-line"
               }`}
             >
-              {it.colors && it.colors.length > 0 && (
-                <span className="absolute -left-1 -top-1 flex gap-0.5">
-                  {it.colors.map((c) => (
-                    <SetGlyph key={c} color={c} sizeClass="h-3 w-3" />
-                  ))}
-                </span>
+              {it.colors && it.colors.length > 0 ? (
+                <EmblemFace
+                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
+                  alt={it.name}
+                  colors={it.colors}
+                  sizeClass="h-12 w-12"
+                  glyphClass="h-3 w-3"
+                />
+              ) : (
+                <img
+                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
+                  alt={it.name}
+                  loading="lazy"
+                  className="h-12 w-12 object-contain"
+                />
               )}
               {onToggleOwn && (
                 <span
@@ -208,12 +218,6 @@ export function PickerModal({
                   ★
                 </span>
               )}
-              <img
-                src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
-                alt={it.name}
-                loading="lazy"
-                className="h-12 w-12 object-contain"
-              />
               <span className="text-xs font-medium leading-tight text-ink">{it.name}</span>
               {subtitle && <span className="text-[10px] text-faint">{subtitle}</span>}
             </button>

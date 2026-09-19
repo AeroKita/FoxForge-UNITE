@@ -1,6 +1,6 @@
 // Loadout model + localStorage persistence (up to 20 saved loadouts).
-// A loadout fully describes a build: Pokémon, level, 3 held items, 1 trainer
-// (battle) item, an emblem set, and which active effects are toggled on.
+// A loadout fully describes a build: Pokémon, level, 3 held items, 1 battle
+// item, an emblem set, and which active effects are toggled on.
 
 import type { EmblemGrade } from "../types";
 import { generateId } from "../utils/generateId";
@@ -14,7 +14,7 @@ export interface Loadout {
   pokemonId: string | null;
   level: number; // 1-15
   heldItemIds: (string | null)[]; // exactly 3 slots
-  battleItemId: string | null; // "Trainer Item"
+  battleItemId: string | null;
   move1Id: string | null; // chosen final (upgrade) move for slot 1; null → derived default
   move2Id: string | null; // chosen final (upgrade) move for slot 2; null → derived default
   emblems: EmblemPick[]; // up to 10

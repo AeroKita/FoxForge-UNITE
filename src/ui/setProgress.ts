@@ -10,7 +10,7 @@ export const STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
   hp: "HP",
   attackSpeed: "Atk Spd",
   cdr: "CDR",
-  moveSpeed: "Move",
+  moveSpeed: "Speed",
 };
 
 const SET_INFO_BY_COLOR = new Map(EMBLEM_SET_INFO.map((r) => [r.color, r]));
@@ -38,16 +38,75 @@ export function formatSetBonus(color: EmblemColor, bonusPercent: number): string
   return `${pct} ${label}`;
 }
 
-/** Compact Equipped Sets caption: `+4% Atk`, `+12% Move (OOC)`, `−3 dmg`. */
+/** Compact Equipped Sets caption: `+4% Atk`, `+12% Speed (OOC)`, `−3 dmg`. */
 export function formatSetEffectShort(info: SetInfoRow, tier: { value: number }): string {
-  const mag = formatSetMagnitude(info, tier.value);
-  if (info.kind === "utility") {
-    return `${mag} ${SHORT_UTILITY[info.color] ?? info.label}`;
+  return `${formatSetMagnitude(info, tier.value)} ${setEffectNoun(info)}`;
+}
+
+/**
+ * Equipped Sets expand copy. Yellow spells out Out of Combat; other colors
+ * stay compact.
+ */
+export function formatSetEffectEquipped(info: SetInfoRow, tier: { value: number }): string {
+  if (info.color === "yellow") {
+    return `${formatSetMagnitude(info, tier.value)} ${STAT_LABEL.moveSpeed} (Out of Combat)`;
   }
-  if (info.color === "yellow") return `${mag} Move (OOC)`;
+  return formatSetEffectShort(info, tier);
+}
+
+/** Compact noun for a color set, without the signed magnitude. */
+export function setEffectNoun(info: SetInfoRow): string {
+  if (info.kind === "utility") return SHORT_UTILITY[info.color] ?? info.label;
+  if (info.color === "yellow") return `${STAT_LABEL.moveSpeed} (OOC)`;
   const stat = setBonusStat(info.color);
-  const label = (stat && STAT_LABEL[stat]) || info.label;
-  return `${mag} ${label}`;
+  return (stat && STAT_LABEL[stat]) || info.label;
+}
+
+export const COLOR_SET_GUIDE_TITLE = "Color-Set Guide";
+
+const GUIDE_STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
+  attack: "Attack",
+  spAttack: "Special Attack",
+  defense: "Defense",
+  spDefense: "Special Defense",
+  hp: "HP",
+  attackSpeed: "Basic Attack Speed",
+  cdr: "Cooldown Reduction",
+  moveSpeed: "Movement Speed",
+};
+
+const GUIDE_UTILITY: Partial<Record<EmblemColor, string>> = {
+  pink: "Hindrance Effect Duration",
+  navy: "Unite Charge Rate",
+  gray: "Damage Received",
+};
+
+/** Beginner-facing noun for the Color-Set Guide. */
+export function guideSetNoun(info: SetInfoRow): string {
+  if (info.kind === "utility") return GUIDE_UTILITY[info.color] ?? info.label;
+  if (info.color === "yellow") return "Movement Speed (Out of Combat)";
+  const stat = setBonusStat(info.color);
+  return (stat && GUIDE_STAT_LABEL[stat]) || info.label;
+}
+
+export interface EmblemSetGuideRow {
+  color: EmblemColor;
+  kind: SetInfoRow["kind"];
+  noun: string;
+  tiers: { count: number; magnitude: string }[];
+}
+
+/** All 11 colors for the Color-Set Guide, with beginner nouns and magnitudes. */
+export function emblemSetGuideRows(): EmblemSetGuideRow[] {
+  return EMBLEM_SET_INFO.map((info) => ({
+    color: info.color,
+    kind: info.kind,
+    noun: guideSetNoun(info),
+    tiers: info.tiers.map((t) => ({
+      count: t.count,
+      magnitude: formatSetMagnitude(info, t.value),
+    })),
+  }));
 }
 
 /** Footnote list: `brown +4% Atk, pink −16% hindrance effect duration`. */

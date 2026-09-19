@@ -10,7 +10,7 @@ interface EmblemFaceProps {
   sizeClass?: string;
   /** Tailwind size classes for each color glyph. */
   glyphClass?: string;
-  /** Hide color glyphs (small wheels). */
+  /** Hide color glyphs. */
   showGlyphs?: boolean;
 }
 
@@ -27,10 +27,10 @@ export function EmblemFace({
   showGlyphs = true,
 }: EmblemFaceProps) {
   return (
-    <span className="relative inline-block">
-      <img src={src} alt={alt} className={`${sizeClass} object-contain`} />
+    <span className={`relative inline-block ${sizeClass}`}>
+      <img src={src} alt={alt} className="h-full w-full object-contain" loading="lazy" />
       {showGlyphs && (
-        <span className="absolute -left-0.5 -top-0.5 flex gap-0.5">
+        <span className="absolute -bottom-0.5 -right-0.5 flex gap-px rounded-full bg-surface/95 p-px shadow ring-1 ring-line/60">
           {emblemFaceOverlays(colors).map((overlay) => (
             <SetGlyph key={overlay.color} color={overlay.color} sizeClass={glyphClass} />
           ))}

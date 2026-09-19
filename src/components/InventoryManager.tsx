@@ -12,9 +12,11 @@ import { statLines } from "../ui/format";
 import { emblemsForGrade } from "../ui/emblems";
 import { ownedKey } from "../state/loadout";
 import { emblemIconForGrade } from "../ui/emblemIcon";
+import { COLOR_SET_GUIDE_TITLE } from "../ui/setProgress";
 import { shareLink } from "../ui/share";
 import { useTransientValue } from "../ui/transientValue";
 import { EmblemSetGuide } from "./EmblemSetGuide";
+import { EmblemFace } from "./EmblemFace";
 import { SetGlyph } from "./SetGlyph";
 import { Tooltip } from "./Tooltip";
 import { emblemTip } from "./tips";
@@ -83,7 +85,7 @@ export function InventoryManager() {
             Inventory
             <button
               onClick={() => setGuideOpen(true)}
-              aria-label="Emblem color sets guide"
+              aria-label={COLOR_SET_GUIDE_TITLE}
               title="What do the colors do?"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-sm font-bold text-muted hover:bg-raise hover:text-ink"
             >
@@ -219,18 +221,14 @@ export function InventoryManager() {
                   isOwned ? "border-as-border bg-as-bg" : "border-line hover:border-line"
                 }`}
               >
-                <span className="relative shrink-0">
-                  <img
+                <span className="shrink-0">
+                  <EmblemFace
                     src={asset(emblemIconForGrade(e, grade))}
                     alt={e.pokemonName}
-                    loading="lazy"
-                    className="h-10 w-10 object-contain"
+                    colors={e.colors}
+                    sizeClass="h-10 w-10"
+                    glyphClass="h-3 w-3"
                   />
-                  <span className="absolute -left-0.5 -top-0.5 flex gap-0.5">
-                    {e.colors.map((c) => (
-                      <SetGlyph key={c} color={c} sizeClass="h-3 w-3" />
-                    ))}
-                  </span>
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-xs font-medium text-ink">

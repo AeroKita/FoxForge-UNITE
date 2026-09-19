@@ -1,11 +1,15 @@
-export type ShareResult = "shared" | "copied" | "failed";
+export type ShareResult = "shared" | "copied" | "failed" | "canceled";
 
 export type ShareNav = {
   share?: (data: ShareData) => Promise<void>;
   clipboard?: Pick<Clipboard, "writeText">;
 };
 
-/** Web Share API first, clipboard second. */
+function isAbortError(err: unknown): boolean {
+  return typeof err === "object" && err != null && "name" in err && err.name === "AbortError";
+}
+
+/** Web Share API first, clipboard second. Dismissing the share sheet is cancel, not copy. */
 export async function shareLink(
   url: string,
   title: string,
@@ -16,8 +20,8 @@ export async function shareLink(
       await nav.share({ url, title });
       return "shared";
     }
-  } catch {
-    /* canceled or unsupported — fall back to clipboard */
+  } catch (err) {
+    if (isAbortError(err)) return "canceled";
   }
   try {
     if (nav.clipboard?.writeText) {

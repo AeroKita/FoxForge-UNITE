@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatExactDelta, formatExactStatValue, heldItemStatLines } from "../format";
+import { formatExactDelta, formatExactStatValue, heldItemStatLines, STAT_ROWS } from "../format";
 
 describe("exact held-item stat formatting", () => {
   it("shows fractional attack without rounding (Muscle Band G31)", () => {
@@ -21,5 +21,10 @@ describe("exact held-item stat formatting", () => {
     const lines = heldItemStatLines({ attack: 15.25, attackSpeed: 0.07625 });
     expect(lines.find((l) => l.key === "attack")?.value).toBe("+15.25");
     expect(lines.find((l) => l.key === "attackSpeed")?.value).toBe("+7.625%");
+  });
+
+  it("labels moveSpeed as Speed on held-item and emblem flats", () => {
+    expect(STAT_ROWS.find((r) => r.key === "moveSpeed")?.label).toBe("Speed");
+    expect(heldItemStatLines({ moveSpeed: 175 })[0]?.label).toBe("Speed");
   });
 });

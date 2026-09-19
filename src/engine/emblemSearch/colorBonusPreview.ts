@@ -139,7 +139,7 @@ export const BONUS_STAT_LABELS: Partial<Record<keyof StatBlock, string>> = {
   spDefense: "Sp. Def",
   attackSpeed: "Atk Spd",
   cdr: "CDR",
-  moveSpeed: "Move Spd",
+  moveSpeed: "Speed",
   critRate: "Crit",
   lifesteal: "Lifesteal",
   spLifesteal: "Sp. Lifesteal",

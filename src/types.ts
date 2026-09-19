@@ -214,7 +214,7 @@ export type EmblemColor =
   | "purple" // Sp. Defense
   | "white" // HP
   | "red" // Atk Speed
-  | "yellow" // Move Speed (OOC)
+  | "yellow" // Speed (OOC)
   | "black" // CDR
   | "pink" // hindrance effect duration
   | "navy" // Unite Move gauge time to full charge

@@ -22,7 +22,7 @@ const METRICS: Metric[] = [
   { key: "defense", label: "Defense", color: "#3b82f6" },
   { key: "spAttack", label: "Sp. Atk", color: "#8b5cf6" },
   { key: "spDefense", label: "Sp. Def", color: "#a855f7" },
-  { key: "moveSpeed", label: "Move Speed", color: "#f59e0b" },
+  { key: "moveSpeed", label: "Speed", color: "#f59e0b" },
   { key: "aps", label: "Attacks/sec", color: "#0ea5e9" },
 ];
 

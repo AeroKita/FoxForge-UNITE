@@ -3,12 +3,14 @@ import { useStore } from "../state/store";
 import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
-import { EmblemPreview } from "./EmblemPanels";
+import { EmblemCoinRow } from "./EmblemCoinRow";
+import { EmblemSetSummary } from "./EmblemSetSummary";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
 import { itemTip, moveTip, battleItemTip } from "./tips";
 import { MarqueeText } from "../ui/MarqueeText";
+import { slotsFromPicks } from "../ui/emblemWheel";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
 export const BUILD_TABS = ["recommended", "creative"] as const;
@@ -47,6 +49,17 @@ function toDisplayBuilds(builds: PokemonBuild[] | undefined): DisplayBuild[] {
 export function buildsForTab<T>(tab: Tab, curated: T[], creative: T[]): T[] {
   return tab === "recommended" ? curated : creative;
 }
+
+/**
+ * Flex order/width for Builds kit sections.
+ * Below `sm`: Final Moves on its own row, then Held Items + Battle Item, then Emblems.
+ */
+export const BUILD_KIT_SECTION_CLASS = {
+  held: "order-2 sm:order-1",
+  moves: "order-1 w-full sm:order-2 sm:w-auto",
+  battle: "order-3",
+  emblems: "order-4 w-full sm:w-auto",
+} as const;
 
 function applyDisplayBuild(
   pokemon: Pokemon,
@@ -122,14 +135,9 @@ export function RecommendPanel() {
   const idx = builds.length ? Math.min(idxByTab[tab], builds.length - 1) : 0;
   const build = builds[idx] ?? null;
 
-  const resolvedEmblems = (build?.emblems ?? [])
-    .map((p) => {
-      const e = emblemById.get(p.emblemId);
-      return e ? { emblem: e, grade: p.grade } : null;
-    })
-    .filter((x): x is NonNullable<typeof x> => x !== null);
+  const resolvedEmblems = slotsFromPicks(build?.emblems ?? [], (id) => emblemById.get(id));
 
-  const trainer = build?.battleItemId ? battleItemById.get(build.battleItemId) : null;
+  const battleItem = build?.battleItemId ? battleItemById.get(build.battleItemId) : null;
 
   const finalMoveDisplays = (() => {
     if (!build) return [];
@@ -196,7 +204,7 @@ export function RecommendPanel() {
       ) : (
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-start gap-x-6 gap-y-3">
-            <div>
+            <div className={BUILD_KIT_SECTION_CLASS.held}>
               <p className="mb-1 text-xs font-medium text-faint">Held Items</p>
               <div className="flex gap-2">
                 {build.heldItemIds.map((id) => {
@@ -219,7 +227,7 @@ export function RecommendPanel() {
               </div>
             </div>
             {finalMoveDisplays.length > 0 && (
-              <div>
+              <div className={BUILD_KIT_SECTION_CLASS.moves}>
                 <p className="mb-1 text-xs font-medium text-faint">Final Moves</p>
                 <div className="flex gap-2">
                   {finalMoveDisplays.map((mv) => (
@@ -235,18 +243,18 @@ export function RecommendPanel() {
                 </div>
               </div>
             )}
-            <div>
-              <p className="mb-1 text-xs font-medium text-faint">Trainer Item</p>
-              {trainer ? (
-                <Tooltip content={battleItemTip(trainer, expert)}>
+            <div className={BUILD_KIT_SECTION_CLASS.battle}>
+              <p className="mb-1 text-xs font-medium text-faint">Battle Item</p>
+              {battleItem ? (
+                <Tooltip content={battleItemTip(battleItem, expert)}>
                   <span className="flex w-16 flex-col items-center">
                     <img
-                      src={asset(trainer.iconAsset)}
-                      alt={trainer.displayName}
+                      src={asset(battleItem.iconAsset)}
+                      alt={battleItem.displayName}
                       className="h-10 w-10 object-contain"
                     />
                     <span className="mt-0.5 text-center text-[10px] leading-tight text-muted">
-                      {trainer.displayName}
+                      {battleItem.displayName}
                     </span>
                   </span>
                 </Tooltip>
@@ -254,13 +262,12 @@ export function RecommendPanel() {
                 <span className="text-xs text-faint">—</span>
               )}
             </div>
+            <div className={BUILD_KIT_SECTION_CLASS.emblems}>
+              <p className="mb-1 text-xs font-medium text-faint">Emblems</p>
+              <EmblemCoinRow slots={resolvedEmblems} />
+            </div>
           </div>
-          <EmblemPreview
-            slots={resolvedEmblems}
-            picks={build.emblems}
-            pokemon={pokemon}
-            level={loadout.level}
-          />
+          <EmblemSetSummary picks={build.emblems} precise={expert} />
         </div>
       )}
     </CollapsibleCard>
