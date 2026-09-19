@@ -1,4 +1,4 @@
-import type { EmblemGrade } from "../types";
+import type { EmblemColor, EmblemGrade } from "../types";
 
 // UNITE-DB emblem faces are named <pokedex><gradeLetter>.png — A=gold, B=silver,
 // C=bronze. Some newer Pokémon only have A-grade art on the CDN; fetch_art.py
@@ -13,4 +13,9 @@ const GRADE_LETTER: Record<EmblemGrade, string> = {
 export function emblemIconForGrade(emblem: { id: string }, grade: EmblemGrade): string {
   const pokedex = emblem.id.split("-")[0];
   return `/assets/emblems/pokedex/${pokedex}${GRADE_LETTER[grade]}.png`;
+}
+
+/** Color-set glyph. Stub until Part 5. */
+export function emblemSetGlyphAsset(_color: EmblemColor): string {
+  return "";
 }

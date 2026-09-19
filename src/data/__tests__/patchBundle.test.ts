@@ -25,6 +25,9 @@ function collectUserFacingTexts(bundle: GameDataBundle): string[] {
   }
   for (const item of [...bundle.heldItems, ...(bundle.battleItems ?? [])]) {
     if (item.description) texts.push(`${item.id} description: ${item.description}`);
+    if ("descriptionAdvanced" in item && item.descriptionAdvanced) {
+      texts.push(`${item.id} descriptionAdvanced: ${item.descriptionAdvanced}`);
+    }
   }
   return texts;
 }
@@ -1542,5 +1545,39 @@ describe("community data bundle", () => {
       expect(fist.description).toContain("for a short time.\n\nAfter using this move");
       expect(fist.description).not.toContain("time.After");
     });
+  });
+
+  describe("battle items carry in-game Basic and UNITE-DB Advanced", () => {
+    const byId = Object.fromEntries((bundle.battleItems ?? []).map((i) => [i.id, i]));
+    const cases: [string, string, number][] = [
+      ["eject-button", "designated direction", 80],
+      ["fluffy-tail", "unable to act", 22],
+      ["full-heal", "status conditions", 60],
+      ["goal-getter", "goal-scoring speed", 60],
+      ["goal-hacker", "ally goal zone", 80],
+      ["potion", "some of your Pokémon's HP", 30],
+      ["shedinja-doll", "unable to act", 45],
+      ["slow-smoke", "cloud of smoke", 35],
+      ["x-attack", "Attack, Sp. Atk, and basic attack speed", 40],
+      ["x-speed", "movement speed from being decreased", 50],
+    ];
+
+    it("names Goal-Getter with the in-game hyphen", () => {
+      expect(byId["goal-getter"].displayName).toBe("Goal-Getter");
+    });
+
+    it.each(cases)(
+      "%s carries in-game Basic, distinct Advanced, and cooldown",
+      (id, phrase, cooldown) => {
+        const item = byId[id];
+        expect(item, id).toBeDefined();
+        expect(item.displayName.length).toBeGreaterThan(0);
+        expect(item.description).toContain(phrase);
+        expect(item.descriptionAdvanced).toEqual(expect.any(String));
+        expect(item.descriptionAdvanced!.length).toBeGreaterThan(0);
+        expect(item.descriptionAdvanced).not.toBe(item.description);
+        expect(item.cooldownSeconds).toBe(cooldown);
+      },
+    );
   });
 });

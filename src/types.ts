@@ -264,6 +264,10 @@ export interface BattleItem {
   displayName: string;
   iconAsset: string;
   description: string;
+  /** UNITE-DB numeric text; Basic `description` is the in-game sentence. */
+  descriptionAdvanced?: string;
+  /** Clock chip beside the name on the Battle Items screen. */
+  cooldownSeconds?: number;
   effects: ItemEffect[];
 }
 

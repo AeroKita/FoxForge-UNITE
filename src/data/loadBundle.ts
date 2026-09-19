@@ -190,6 +190,8 @@ const battleItem = z.object({
   displayName: z.string(),
   iconAsset: z.string(),
   description: z.string(),
+  descriptionAdvanced: z.string().optional(),
+  cooldownSeconds: z.number().int().nonnegative().optional(),
   effects: z.array(itemEffect),
 });
 

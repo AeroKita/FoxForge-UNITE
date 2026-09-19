@@ -8,6 +8,8 @@ import type { EmblemColor } from "../types";
 
 export interface SetTier {
   count: number; // emblems of this color needed
+  /** Whole-number magnitude. Part 1 drops `percent`; both are filled until then. */
+  value: number;
   percent: number; // magnitude in whole %, e.g. 4 for +4%
 }
 
@@ -16,6 +18,8 @@ export interface SetInfoRow {
   label: string; // what the set affects
   kind: "stat" | "utility";
   note?: string;
+  unit?: "percent" | "flat";
+  sign?: "+" | "−";
   tiers: SetTier[];
 }
 
@@ -40,8 +44,21 @@ export const EMBLEM_SET_INFO: SetInfoRow[] = (Object.keys(META) as EmblemColor[]
   const def = byColor.get(color);
   const tiers: SetTier[] = def
     ? Object.entries(def.thresholds)
-        .map(([count, pct]) => ({ count: Number(count), percent: Math.round(Math.abs(pct) * 100) }))
+        .map(([count, pct]) => {
+          const magnitude = Math.round(Math.abs(pct) * 100);
+          return { count: Number(count), value: magnitude, percent: magnitude };
+        })
         .sort((a, b) => a.count - b.count)
     : [];
   return { color, ...META[color], tiers };
 });
+
+/** Format the signed magnitude for a set tier (`+1%`, `−3`). Stub until Part 1. */
+export function formatSetMagnitude(_row: SetInfoRow, _value: number): string {
+  return "";
+}
+
+/** Format a reached tier as in-game wording (`+1% Attack`). Stub until Part 1. */
+export function formatSetTier(_row: SetInfoRow, _tier: SetTier): string {
+  return "";
+}
