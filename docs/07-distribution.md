@@ -20,5 +20,6 @@ The tool ships **one way: a hosted installable web app** on GitHub Pages, with *
 
 ## Notes
 
+- **Sharing** is hash-only (`#p=` / `#e=` / `#o=` and legacy `#b=`). Nothing in a share link leaves the device.
 - **Size**: the build is ≈258 KB gzipped JS plus ~22 MB of art, bundled for offline use —
   flip `asset()` to a remote base later if you want a lighter initial load.

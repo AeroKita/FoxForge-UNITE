@@ -121,7 +121,7 @@ and recompute pick it up automatically.
 
 ## Status
 
-The live product surface, theming, and data pipeline are documented in [`AGENTS.md`](AGENTS.md). Basic vs Advanced mode, collapsible cards, shareable `#b=` links, and GitHub Pages deploys live there — this README does not keep a second milestone graveyard.
+the live product surface, theming, and data pipeline are documented in [`AGENTS.md`](AGENTS.md). Basic vs Advanced mode, collapsible cards, shareable hash links (`#p=` / `#e=` / `#o=`, plus legacy `#b=`), and GitHub Pages deploys live there — this README does not keep a second milestone graveyard.
 
 ### Deliberately not built
 - **Nintendo / Pokémon UNITE account login** to read owned emblems — there is no official public OAuth for third parties; the only route would be handling the user's Nintendo credentials, a security/ToS line not worth crossing. The local owned-emblem inventory delivers the same UX safely.
