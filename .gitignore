@@ -32,6 +32,10 @@ screenshot-references/**
 !screenshot-references/move-descriptions/README.md
 !screenshot-references/move-descriptions/*/
 !screenshot-references/move-descriptions/*/SKILLS.txt
+!screenshot-references/battle-item-descriptions/
+!screenshot-references/battle-item-descriptions/README.md
+!screenshot-references/emblem-color-descriptions/
+!screenshot-references/emblem-color-descriptions/README.md
 screenshot-references/**/.DS_Store
 
 # temporary stills-transcription sidecars (never commit)

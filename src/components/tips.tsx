@@ -40,9 +40,8 @@ export function moveTip(move: Move, advanced: boolean) {
   );
 }
 
-export function itemTip(item: HeldItem | BattleItem, grade = ITEM_GRADE_DEFAULT) {
-  const stats =
-    "statsByGrade" in item ? heldItemStatLines(statsAtGrade(item as HeldItem, grade)) : [];
+export function itemTip(item: HeldItem, grade = ITEM_GRADE_DEFAULT) {
+  const stats = heldItemStatLines(statsAtGrade(item, grade));
   return (
     <span>
       <span className="font-semibold">{item.displayName}</span>
@@ -52,6 +51,19 @@ export function itemTip(item: HeldItem | BattleItem, grade = ITEM_GRADE_DEFAULT)
           {stats.map((l) => `${l.label} ${l.value}`).join(" · ")}
         </span>
       )}
+    </span>
+  );
+}
+
+export function battleItemTip(item: BattleItem, advanced: boolean) {
+  const desc = pickDescription(item, advanced);
+  return (
+    <span>
+      <span className="font-semibold">{item.displayName}</span>
+      {item.cooldownSeconds != null && (
+        <span className="ml-1 text-faint">· {item.cooldownSeconds}s CD</span>
+      )}
+      {desc && <span className="mt-0.5 block text-faint">{desc}</span>}
     </span>
   );
 }

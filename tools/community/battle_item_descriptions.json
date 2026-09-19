@@ -1,0 +1,55 @@
+{
+  "_source": "Battle item Basic descriptions — owned, hand-maintained. Transcribed from the in-game Battle Items screen (English) stills in screenshot-references/battle-item-descriptions/. normalize.py always uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`; `displayName` and `cooldownSeconds` override UNITE-DB when present. No script writes this file.",
+  "items": {
+    "eject-button": {
+      "displayName": "Eject Button",
+      "cooldownSeconds": 80,
+      "description": "Quickly moves your Pokémon in the designated direction."
+    },
+    "fluffy-tail": {
+      "displayName": "Fluffy Tail",
+      "cooldownSeconds": 22,
+      "description": "Leaves wild Pokémon unable to act for a short time and also increases damage dealt to those Pokémon."
+    },
+    "full-heal": {
+      "displayName": "Full Heal",
+      "cooldownSeconds": 60,
+      "description": "Removes all status conditions from your Pokémon and makes it immune to hindrances for a short time."
+    },
+    "goal-getter": {
+      "displayName": "Goal-Getter",
+      "cooldownSeconds": 60,
+      "description": "Doubles goal-scoring speed for a short time."
+    },
+    "goal-hacker": {
+      "displayName": "Goal Hacker",
+      "cooldownSeconds": 80,
+      "description": "Strengthens the shield and HP recovery effects of an ally goal zone for a short time when used within or near that goal zone. Nullifies the shield and HP recovery effects of an opposing goal zone for a short time when used within or near that goal zone."
+    },
+    "potion": {
+      "displayName": "Potion",
+      "cooldownSeconds": 30,
+      "description": "Restores some of your Pokémon's HP."
+    },
+    "shedinja-doll": {
+      "displayName": "Shedinja Doll",
+      "cooldownSeconds": 45,
+      "description": "For a short time, it makes your Pokémon impervious to damage and immune to status conditions but leaves it unable to act."
+    },
+    "slow-smoke": {
+      "displayName": "Slow Smoke",
+      "cooldownSeconds": 35,
+      "description": "Creates a cloud of smoke that greatly decreases the movement speed and basic attack speed of opposing Pokémon for a short time."
+    },
+    "x-attack": {
+      "displayName": "X Attack",
+      "cooldownSeconds": 40,
+      "description": "Increases the Pokémon's Attack, Sp. Atk, and basic attack speed for a short time."
+    },
+    "x-speed": {
+      "displayName": "X Speed",
+      "cooldownSeconds": 50,
+      "description": "For a short time, increases your Pokémon's movement speed and prevents its movement speed from being decreased."
+    }
+  }
+}

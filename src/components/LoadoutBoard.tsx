@@ -24,7 +24,7 @@ import { Tooltip } from "./Tooltip";
 import { GradeField } from "./GradeField";
 import { BottomSheet } from "./shell/BottomSheet";
 import { MyBuildsSheet } from "./MyBuildsSheet";
-import { itemTip, emblemTip, statsAtGrade } from "./tips";
+import { itemTip, emblemTip, statsAtGrade, battleItemTip, pickDescription } from "./tips";
 import type { BattleItem, HeldItem } from "../types";
 
 type Picker =
@@ -42,6 +42,7 @@ export function LoadoutBoard() {
     heldSlotGrades,
     setHeldItemGradeForSlot,
     heldItemGrade,
+    expert,
   } = useStore();
   const [picker, setPicker] = useState<Picker>(null);
   const [buildsOpen, setBuildsOpen] = useState(false);
@@ -64,8 +65,8 @@ export function LoadoutBoard() {
     id: i.id,
     name: i.displayName,
     icon: i.iconAsset,
-    title: i.description,
-    tip: itemTip(i),
+    title: pickDescription(i, expert),
+    tip: battleItemTip(i, expert),
   }));
   const emblemPickItems: PickItem[] = emblems.map((e) => ({
     id: e.id,
@@ -157,7 +158,7 @@ export function LoadoutBoard() {
             onClick={() => setPicker({ kind: "battle" })}
             tip={
               loadout.battleItemId && battleItemById.get(loadout.battleItemId)
-                ? itemTip(battleItemById.get(loadout.battleItemId)!)
+                ? battleItemTip(battleItemById.get(loadout.battleItemId)!, expert)
                 : "Add a Trainer Item"
             }
           />

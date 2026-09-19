@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-19",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-13"
+    "fetched": "2026-09-19"
   },
   "pokemon": [
     {
@@ -67443,71 +67443,91 @@
       "id": "eject-button",
       "displayName": "Eject Button",
       "iconAsset": "/assets/items/battle/Eject+Button.png",
-      "description": "Quickly moves forward.",
-      "effects": []
+      "description": "Quickly moves your Pokémon in the designated direction.",
+      "descriptionAdvanced": "Quickly moves forward.",
+      "effects": [],
+      "cooldownSeconds": 80
     },
     {
       "id": "fluffy-tail",
       "displayName": "Fluffy Tail",
       "iconAsset": "/assets/items/battle/Fluffy+Tail.png",
-      "description": "Applies a debuff to the designated wild Pokémon for 3s; disabling the target's attacks. When damaging the debuffed target: deals 100 + 100% Atk + 60% Sp. Atk + 10 × (Lv. - 1) as additional damage (0.5s CD).",
-      "effects": []
+      "description": "Leaves wild Pokémon unable to act for a short time and also increases damage dealt to those Pokémon.",
+      "descriptionAdvanced": "Applies a debuff to the designated wild Pokémon for 3s; disabling the target's attacks. When damaging the debuffed target: deals 100 + 100% Atk + 60% Sp. Atk + 10 × (Lv. - 1) as additional damage (0.5s CD).",
+      "effects": [],
+      "cooldownSeconds": 22
     },
     {
       "id": "full-heal",
       "displayName": "Full Heal",
       "iconAsset": "/assets/items/battle/Full+Heal.png",
-      "description": "Cleanses status conditions, and becomes unstoppable for 1.5s.",
-      "effects": []
+      "description": "Removes all status conditions from your Pokémon and makes it immune to hindrances for a short time.",
+      "descriptionAdvanced": "Cleanses status conditions, and becomes unstoppable for 1.5s.",
+      "effects": [],
+      "cooldownSeconds": 60
     },
     {
       "id": "goal-getter",
-      "displayName": "Goal Getter",
+      "displayName": "Goal-Getter",
       "iconAsset": "/assets/items/battle/Goal+Getter.png",
-      "description": "Doubles goal-scoring speed for 10s.",
-      "effects": []
+      "description": "Doubles goal-scoring speed for a short time.",
+      "descriptionAdvanced": "Doubles goal-scoring speed for 10s.",
+      "effects": [],
+      "cooldownSeconds": 60
     },
     {
       "id": "goal-hacker",
       "displayName": "Goal Hacker",
       "iconAsset": "/assets/items/battle/Goal+Hacker.png",
-      "description": "Tampers with 1 goal zone in range for 4s. If used on an ally goal zone: doubles any shield provided by the goal zone, and strengthens the goal zone's HP restoration rate (restoring HP every 0.5s) for the duration of the effect. If used on an opposing goal zone: disables shield effects and HP restoration from that goal zone for the duration of the effect. Additional applications on an affected goal zone override the previous effects and refresh the duration.",
-      "effects": []
+      "description": "Strengthens the shield and HP recovery effects of an ally goal zone for a short time when used within or near that goal zone. Nullifies the shield and HP recovery effects of an opposing goal zone for a short time when used within or near that goal zone.",
+      "descriptionAdvanced": "Tampers with 1 goal zone in range for 4s. If used on an ally goal zone: doubles any shield provided by the goal zone, and strengthens the goal zone's HP restoration rate (restoring HP every 0.5s) for the duration of the effect. If used on an opposing goal zone: disables shield effects and HP restoration from that goal zone for the duration of the effect. Additional applications on an affected goal zone override the previous effects and refresh the duration.",
+      "effects": [],
+      "cooldownSeconds": 80
     },
     {
       "id": "potion",
       "displayName": "Potion",
       "iconAsset": "/assets/items/battle/Potion.png",
-      "description": "Restores HP equal to 160 + 20% max HP.",
-      "effects": []
+      "description": "Restores some of your Pokémon's HP.",
+      "descriptionAdvanced": "Restores HP equal to 160 + 20% max HP.",
+      "effects": [],
+      "cooldownSeconds": 30
     },
     {
       "id": "slow-smoke",
       "displayName": "Slow Smoke",
       "iconAsset": "/assets/items/battle/Slow+Smoke.png",
-      "description": "Creates a cloud of smoke in an area of effect around the user for 3.5s; decreasing the movement speed of opposing Pokémon in the area of effect by 80%, and their basic attack speed by 50%.",
-      "effects": []
+      "description": "Creates a cloud of smoke that greatly decreases the movement speed and basic attack speed of opposing Pokémon for a short time.",
+      "descriptionAdvanced": "Creates a cloud of smoke in an area of effect around the user for 3.5s; decreasing the movement speed of opposing Pokémon in the area of effect by 80%, and their basic attack speed by 50%.",
+      "effects": [],
+      "cooldownSeconds": 35
     },
     {
       "id": "x-attack",
       "displayName": "X Attack",
       "iconAsset": "/assets/items/battle/X+Attack.png",
-      "description": "Increases Attack and Sp. Attack by 20%, and basic attack speed by 25% for 6.5s.",
-      "effects": []
+      "description": "Increases the Pokémon's Attack, Sp. Atk, and basic attack speed for a short time.",
+      "descriptionAdvanced": "Increases Attack and Sp. Attack by 20%, and basic attack speed by 25% for 6.5s.",
+      "effects": [],
+      "cooldownSeconds": 40
     },
     {
       "id": "x-speed",
       "displayName": "X Speed",
       "iconAsset": "/assets/items/battle/X+Speed.png",
-      "description": "Increases movement speed by 45%, and prevents movement speed from being decreased for 6s.",
-      "effects": []
+      "description": "For a short time, increases your Pokémon's movement speed and prevents its movement speed from being decreased.",
+      "descriptionAdvanced": "Increases movement speed by 45%, and prevents movement speed from being decreased for 6s.",
+      "effects": [],
+      "cooldownSeconds": 50
     },
     {
       "id": "shedinja-doll",
       "displayName": "Shedinja Doll",
       "iconAsset": "/assets/items/battle/Shedinja+Doll.png",
-      "description": "Makes the user impervious to damage, immune to status conditions, and unable to act for 2s.",
-      "effects": []
+      "description": "For a short time, it makes your Pokémon impervious to damage and immune to status conditions but leaves it unable to act.",
+      "descriptionAdvanced": "Makes the user impervious to damage, immune to status conditions, and unable to act for 2s.",
+      "effects": [],
+      "cooldownSeconds": 45
     }
   ],
   "emblems": [

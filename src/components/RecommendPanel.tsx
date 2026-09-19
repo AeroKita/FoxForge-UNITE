@@ -9,7 +9,7 @@ import { EmblemSetSummary } from "./EmblemSetSummary";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
-import { itemTip, emblemTip, moveTip } from "./tips";
+import { itemTip, emblemTip, moveTip, battleItemTip } from "./tips";
 import { MarqueeText } from "../ui/MarqueeText";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
@@ -241,7 +241,7 @@ export function RecommendPanel() {
             <div>
               <p className="mb-1 text-xs font-medium text-faint">Trainer Item</p>
               {trainer ? (
-                <Tooltip content={itemTip(trainer)}>
+                <Tooltip content={battleItemTip(trainer, expert)}>
                   <span className="flex w-16 flex-col items-center">
                     <img
                       src={asset(trainer.iconAsset)}
