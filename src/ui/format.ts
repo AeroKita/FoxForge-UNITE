@@ -19,7 +19,7 @@ export const STAT_ROWS: StatRow[] = [
   { key: "critRate", label: "Crit Rate", kind: "percent" },
   { key: "cdr", label: "CDR", kind: "percent" },
   { key: "lifesteal", label: "Lifesteal", kind: "percent" },
-  { key: "moveSpeed", label: "Move Speed", kind: "int" },
+  { key: "moveSpeed", label: "Speed", kind: "int" },
 ];
 
 export function formatStat(value: number, kind: StatKind): string {

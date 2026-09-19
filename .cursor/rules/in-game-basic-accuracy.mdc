@@ -23,4 +23,12 @@ There is no official Nintendo/TiMi gamemaster API. `uniteapi.dev` is match analy
 
 Tooltip stills: `screenshot-references/move-descriptions/<pokemon-id>/` (`SKILLS.txt` lists Passives and Moves). Transcribe from those pixels into the archive. Do not hand-edit `src/data/patch-current.json`.
 
+## Battle items
+
+Battle-item Basic lives in `tools/community/battle_item_descriptions.json`, transcribed from `screenshot-references/battle-item-descriptions/`. UNITE-DB stays Advanced (`descriptionAdvanced`). Every item must have an archive entry (the pipeline test enforces this). Never hand-edit the bundle.
+
+## Emblem set wording
+
+Labels in `src/ui/emblemSets.ts` follow `screenshot-references/emblem-color-descriptions/`. Gray is **flat** received damage (`−3 / −6 / −12`), not a percent.
+
 Longer sourcing notes: `docs/13-in-game-basic-text.md`.

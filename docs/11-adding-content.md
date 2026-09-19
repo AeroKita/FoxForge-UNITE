@@ -4,7 +4,7 @@
 
 | You have | Open this section | Time |
 | --- | --- | --- |
-| New held item, trainer item, or balance text already on UNITE-DB | [A — Balance / items](#a--balance--items) | ~5–15 min |
+| New held item, battle item, or balance text already on UNITE-DB | [A — Balance / items](#a--balance--items) | ~5–15 min |
 | New Pokémon already on [unite-db.com](https://unite-db.com) | [B — New Pokémon](#b--new-pokémon) | ~20–40 min (+ clips later) |
 | New move/passive video recordings | [C — Move clips](#c--move-clips) | ~10–20 min |
 | Pokémon in UNITE but **not** on UNITE-DB yet | [D — Provisional](#d--provisional) | ~1–2 hr |

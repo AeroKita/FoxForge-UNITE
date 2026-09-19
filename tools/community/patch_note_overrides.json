@@ -847,7 +847,7 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "zone overrides the",
       "replace": "zone override the",
@@ -1721,7 +1721,7 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "override the previous effects and refreshes the duration",
       "replace": "override the previous effects and refresh the duration",

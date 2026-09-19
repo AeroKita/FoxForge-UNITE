@@ -1,0 +1,14 @@
+---
+description: FoxForge browser preview — user-resizable, mobile-first
+alwaysApply: true
+---
+
+# Browser QA viewport
+
+Do **not** lock `Emulation.setDeviceMetricsOverride` to a 393px strip. That leaves empty chrome and the user cannot stretch the preview.
+
+The Cursor browser pane **is** the preview. Leave it unlocked so the user can drag the pane edge to shrink or stretch the site. The layout is fluid (`sm:` at 640px).
+
+When you need a phone check, resize the pane or use a short-lived 393×852 override, then **clear it** and unlock. Screenshots should show the full pane the user can resize — do not clip to a tiny column beside empty space.
+
+iPhone 15 CSS size is 393×852 if you must emulate briefly. Average phones are in that range; the user’s own pane width is the review source of truth.

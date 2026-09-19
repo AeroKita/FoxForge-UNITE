@@ -75,7 +75,7 @@ export function StatDock() {
     {
       key: "moveSpeed",
       value: formatStat(effective.moveSpeed, "int"),
-      label: "Move Speed",
+      label: "Speed",
       kind: "int",
     },
     {

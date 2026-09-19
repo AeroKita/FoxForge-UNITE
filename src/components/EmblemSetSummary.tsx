@@ -1,9 +1,9 @@
 import { emblemById, setBonuses } from "../data/gameData";
-import { sumEmblemFlats, countColors, computeEmblemLoadout } from "../engine/emblems";
-import { statLines } from "../ui/format";
+import { sumEmblemFlats } from "../engine/emblems";
+import { emblemFlatRows, equippedSetRows, slotsFromPicks } from "../ui/emblemWheel";
 import { formatSetBonus } from "../ui/setProgress";
-import { EMBLEM_COLOR_HEX } from "../ui/colors";
-import type { EmblemColor, EmblemGrade } from "../types";
+import type { EmblemGrade } from "../types";
+import { SetGlyph } from "./SetGlyph";
 
 /**
  * The net flat stats a 10-emblem set provides in isolation (rounded as in-game),
@@ -17,21 +17,11 @@ export function EmblemSetSummary({
   picks: { emblemId: string; grade: EmblemGrade }[];
   precise?: boolean;
 }) {
-  const slots = picks
-    .map((p) => {
-      const e = emblemById.get(p.emblemId);
-      return e ? { emblem: e, grade: p.grade } : null;
-    })
-    .filter((s): s is NonNullable<typeof s> => s !== null);
+  const slots = slotsFromPicks(picks, (id) => emblemById.get(id));
   if (slots.length === 0) return null;
 
-  const flats = sumEmblemFlats(slots); // raw, unrounded; display applies rounding/precision
-  const lines = statLines(flats, precise);
-  const counts = countColors(slots);
-  const bonusByColor = new Map(
-    computeEmblemLoadout(slots, setBonuses).activeSetBonuses.map((b) => [b.color, b.bonusPercent]),
-  );
-  const colorRows = [...counts.entries()].filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
+  const flatRows = emblemFlatRows(sumEmblemFlats(slots), precise);
+  const setRows = equippedSetRows(slots, setBonuses);
 
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-1 rounded-xl bg-surface/60 p-3 ring-1 ring-line">
@@ -40,16 +30,16 @@ export function EmblemSetSummary({
           Emblem Stats
         </p>
         <div className="flex flex-col gap-0.5">
-          {lines.length === 0 ? (
+          {flatRows.length === 0 ? (
             <span className="text-xs text-faint">No flat stats</span>
           ) : (
-            lines.map((l) => (
-              <div key={l.key} className="flex items-baseline justify-between gap-3 text-xs">
-                <span className="text-muted">{l.label}</span>
+            flatRows.map((row) => (
+              <div key={row.key} className="flex items-baseline justify-between gap-3 text-xs">
+                <span className="text-muted">{row.label}</span>
                 <span
-                  className={`font-mono font-semibold ${l.sign === "pos" ? "text-pos" : "text-neg"}`}
+                  className={`font-mono font-semibold ${row.sign === "pos" ? "text-pos" : "text-neg"}`}
                 >
-                  {l.value}
+                  {row.delta}
                 </span>
               </div>
             ))
@@ -61,24 +51,20 @@ export function EmblemSetSummary({
           Color Sets
         </p>
         <div className="flex flex-col gap-0.5">
-          {colorRows.map(([color, n]) => {
-            const bonus = bonusByColor.get(color as EmblemColor);
-            return (
-              <div key={color} className="flex items-center justify-between gap-2 text-xs">
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className="h-2.5 w-2.5 rounded-full ring-1 ring-black/10"
-                    style={{ background: EMBLEM_COLOR_HEX[color as EmblemColor] }}
-                  />
-                  <span className="capitalize text-muted">{color}</span>
-                  <span className="text-faint">×{n}</span>
-                </span>
-                <span className={`font-mono ${bonus ? "font-semibold text-ink" : "text-faint"}`}>
-                  {bonus != null ? formatSetBonus(color as EmblemColor, bonus) : "—"}
-                </span>
-              </div>
-            );
-          })}
+          {setRows.map((row) => (
+            <div key={row.color} className="flex items-center justify-between gap-2 text-xs">
+              <span className="flex items-center gap-1.5">
+                <SetGlyph color={row.color} sizeClass="h-3.5 w-3.5 shrink-0" />
+                <span className="capitalize text-muted">{row.color}</span>
+                <span className="text-faint">×{row.count}</span>
+              </span>
+              <span
+                className={`font-mono ${row.bonusPercent != null ? "font-semibold text-ink" : "text-faint"}`}
+              >
+                {row.bonusPercent != null ? formatSetBonus(row.color, row.bonusPercent) : "—"}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

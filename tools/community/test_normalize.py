@@ -1436,5 +1436,127 @@ class TestApplyCuratedTitles(unittest.TestCase):
         self.assertEqual(pokemon[0]["creativeBuilds"][0]["lane"], "Anywhere Damage")
 
 
+class TestBuildBattleItems(unittest.TestCase):
+    HERE = Path(__file__).resolve().parent
+    REPO = HERE.parent.parent
+    RAW = HERE / "_raw" / "battle_items.json"
+    ARCHIVE = HERE / "battle_item_descriptions.json"
+    STILLS = REPO / "screenshot-references" / "battle-item-descriptions"
+    IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".heic", ".gif"}
+
+    def _build(self, rows, archive):
+        from normalize import build_battle_items
+        return build_battle_items(rows, archive)
+
+    def test_archive_basic_becomes_description_and_raw_becomes_advanced(self):
+        rows = [{
+            "name": "Eject Button",
+            "display_name": "Eject Button",
+            "description": "Quickly moves forward.",
+            "cooldown": 80,
+        }]
+        archive = {
+            "eject-button": {
+                "displayName": "Eject Button",
+                "cooldownSeconds": 80,
+                "description": "Quickly moves your Pokémon in the designated direction.",
+            }
+        }
+        out = self._build(rows, archive)
+        self.assertEqual(len(out), 1)
+        item = out[0]
+        self.assertEqual(item["id"], "eject-button")
+        self.assertEqual(item["displayName"], "Eject Button")
+        self.assertEqual(
+            item["description"],
+            "Quickly moves your Pokémon in the designated direction.",
+        )
+        self.assertEqual(item["descriptionAdvanced"], "Quickly moves forward.")
+        self.assertEqual(item["cooldownSeconds"], 80)
+
+    def test_missing_archive_falls_back_and_prints_notice(self):
+        rows = [{
+            "name": "Eject Button",
+            "display_name": "Eject Button",
+            "description": "Quickly moves forward.",
+            "cooldown": 80,
+        }]
+        from io import StringIO
+        from contextlib import redirect_stdout
+        buf = StringIO()
+        with redirect_stdout(buf):
+            out = self._build(rows, {})
+        self.assertEqual(out[0]["description"], "Quickly moves forward.")
+        self.assertEqual(out[0]["descriptionAdvanced"], "Quickly moves forward.")
+        self.assertIn("eject-button", buf.getvalue())
+        self.assertIn("has no in-game Basic", buf.getvalue())
+
+    def test_archive_cooldown_wins_and_prints_notice(self):
+        rows = [{
+            "name": "Eject Button",
+            "display_name": "Eject Button",
+            "description": "Quickly moves forward.",
+            "cooldown": 80,
+        }]
+        archive = {
+            "eject-button": {
+                "description": "Quickly moves your Pokémon in the designated direction.",
+                "cooldownSeconds": 99,
+            }
+        }
+        from io import StringIO
+        from contextlib import redirect_stdout
+        buf = StringIO()
+        with redirect_stdout(buf):
+            out = self._build(rows, archive)
+        self.assertEqual(out[0]["cooldownSeconds"], 99)
+        self.assertIn("cooldown", buf.getvalue().lower())
+
+    def test_archive_display_name_overrides_raw(self):
+        rows = [{
+            "name": "Goal Getter",
+            "display_name": "Goal Getter",
+            "description": "Doubles goal-scoring speed for 10s.",
+            "cooldown": 60,
+        }]
+        archive = {
+            "goal-getter": {
+                "displayName": "Goal-Getter",
+                "cooldownSeconds": 60,
+                "description": "Doubles goal-scoring speed for a short time.",
+            }
+        }
+        out = self._build(rows, archive)
+        self.assertEqual(out[0]["id"], "goal-getter")
+        self.assertEqual(out[0]["displayName"], "Goal-Getter")
+
+    def test_every_raw_battle_item_has_an_archive_entry(self):
+        from normalize import slugify
+        raw = json.loads(self.RAW.read_text(encoding="utf-8"))
+        archive = json.loads(self.ARCHIVE.read_text(encoding="utf-8"))
+        items = archive.get("items") or {}
+        missing = []
+        for row in raw:
+            key = slugify(row["name"])
+            entry = items.get(key) or {}
+            if not (entry.get("description") or "").strip():
+                missing.append(key)
+        self.assertEqual(missing, [])
+
+    def test_stills_lock_archive_keys_when_images_are_present(self):
+        if not self.STILLS.is_dir():
+            return
+        images = [
+            p for p in self.STILLS.iterdir()
+            if p.is_file() and p.suffix.lower() in self.IMAGE_SUFFIXES
+        ]
+        if not images:
+            return
+        archive = json.loads(self.ARCHIVE.read_text(encoding="utf-8"))
+        items = archive.get("items") or {}
+        missing = [p.stem for p in images if p.stem not in items]
+        self.assertEqual(missing, [])
+
+
 if __name__ == "__main__":
     unittest.main()

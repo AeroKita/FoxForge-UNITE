@@ -214,11 +214,11 @@ export type EmblemColor =
   | "purple" // Sp. Defense
   | "white" // HP
   | "red" // Atk Speed
-  | "yellow" // Move Speed (OOC)
+  | "yellow" // Speed (OOC)
   | "black" // CDR
-  | "pink" // Tenacity (hindrance reduction)
-  | "navy" // Unite charge rate
-  | "gray"; // Damage reduction
+  | "pink" // hindrance effect duration
+  | "navy" // Unite Move gauge time to full charge
+  | "gray"; // flat received damage
 
 export type EmblemGrade = "bronze" | "silver" | "gold" | "platinum";
 
@@ -264,6 +264,10 @@ export interface BattleItem {
   displayName: string;
   iconAsset: string;
   description: string;
+  /** UNITE-DB numeric text; Basic `description` is the in-game sentence. */
+  descriptionAdvanced?: string;
+  /** Clock chip beside the name on the Battle Items screen. */
+  cooldownSeconds?: number;
   effects: ItemEffect[];
 }
 

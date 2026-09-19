@@ -2,8 +2,9 @@
 
 Reads the normalized bundle, collects every CDN image URL the app references
 (Pokémon portraits + thumbnails, held/battle item icons, emblem faces for all
-grades), de-dupes, and mirrors them under public/assets/<cdn-path> so the app
-can serve art offline. Idempotent: skips valid files; re-downloads corrupt ones.
+grades, and the eleven color-set glyphs at emblems/sets/<Color>.png), de-dupes,
+and mirrors them under public/assets/<cdn-path> so the app can serve art
+offline. Idempotent: skips valid files; re-downloads corrupt ones.
 
 UNITE-DB only hosts A-grade emblem art for some newer Pokémon (B/C return 403).
 When silver/bronze faces are missing on the CDN, the gold (A) face is copied so
@@ -73,6 +74,20 @@ def collect_asset_paths() -> set[str]:
         pokedex = e["id"].split("-", 1)[0]
         for suffix in ("B", "C"):
             paths.add(f"/assets/emblems/pokedex/{pokedex}{suffix}.png")
+    for color in (
+        "Green",
+        "Yellow",
+        "Red",
+        "Blue",
+        "White",
+        "Black",
+        "Brown",
+        "Purple",
+        "Pink",
+        "Navy",
+        "Gray",
+    ):
+        paths.add(f"/assets/emblems/sets/{color}.png")
     return {p for p in paths if p.startswith("/assets/")}
 
 

@@ -6,7 +6,7 @@ import {
 import { formatBuildCount, matchingBuildDisplayCount } from "../../../engine/emblemSearch/pool";
 import type { ResolvedEmblemPreset } from "../../../engine/emblemSearch/optimizerPresets";
 import type { EmblemColor } from "../../../types";
-import { EMBLEM_SET_INFO, type SetInfoRow } from "../../../ui/emblemSets";
+import { EMBLEM_SET_INFO, formatSetMagnitude, type SetInfoRow } from "../../../ui/emblemSets";
 import { CollapsibleCard } from "../../CollapsibleCard";
 import { Segmented } from "../../Segmented";
 import { ColorCountField } from "../ColorCountField";
@@ -182,11 +182,16 @@ export function ColorCard({
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {colorBonusPreviews.map((b) => {
-                    const pctStr = `+${(b.percent * 100).toFixed(0)}%`;
-                    const effectLabel =
+                    const utilRow =
                       b.kind === "utility"
-                        ? (UTILITY_SET_ROWS.find((r) => r.color === b.color)?.label ?? b.color)
-                        : (BONUS_STAT_LABELS[b.stat] ?? String(b.stat));
+                        ? (UTILITY_SET_ROWS.find((r) => r.color === b.color) ?? null)
+                        : null;
+                    const pctStr = utilRow
+                      ? formatSetMagnitude(utilRow, Math.round(b.percent * 100))
+                      : `+${(b.percent * 100).toFixed(0)}%`;
+                    const effectLabel = utilRow
+                      ? utilRow.label
+                      : (BONUS_STAT_LABELS[b.stat] ?? String(b.stat));
                     const baseStats = pokemon?.baseStatsByLevel?.[optimizeLevel - 1];
                     const baseVal = b.kind === "stat" ? (baseStats?.[b.stat] ?? 0) : 0;
                     const delta =

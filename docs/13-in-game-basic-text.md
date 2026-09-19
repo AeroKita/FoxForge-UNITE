@@ -35,9 +35,10 @@ Companion rule for agents: `.cursor/rules/in-game-basic-accuracy.mdc`. Runbook c
 3. If the Ability name in the app is still the pre-evo name, add the UNITE-DB `name` slug to `PLAYABLE_PASSIVE_SLUGS` in `tools/community/normalize.py`.
 4. Remove `patch_note_overrides.json` rows whose `move` id was the old Ability (normalize raises on unknown ids). Example: Tsareena **Oblivious** override after promoting **Queenly Majesty**.
 5. Tests first: `test_normalize.py` for promotion; `patchBundle.test.ts` for name + a distinctive Basic phrase (and a `not.toContain` for the leftover pre-evo word).
-6. `npm run data:refresh -- --mode curate --patch-version 1.24.1.4 --no-verify`
-7. `python3 tools/community/fetch_art.py` (curate does not download new Ability icons).
-8. `npm run test:tools && npm run verify`
+6. Battle-item Basic: transcribe into `tools/community/battle_item_descriptions.json` from `screenshot-references/battle-item-descriptions/`. UNITE-DB stays Advanced. Every item needs an archive entry.
+7. `npm run data:refresh -- --mode curate --no-verify`
+8. `python3 tools/community/fetch_art.py` (curate does not download new Ability icons).
+9. `npm run test:tools && npm run verify`
 
 Staged Ability promotion still **clears** UNITE-DB Basic so the archive can fill the playable Ability. For moves, the archive body replaces UNITE-DB whenever it is present. Staged UNITE-DB Advanced (often numeric) still ships as `descriptionAdvanced` when present. Empty staged Advanced (Ceruledge Weak Armor, Raichu Surge Surfer, most mega extras) omits Advanced; the UI falls back to Basic.
 

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useStore } from "../state/store";
 import { emblems as allEmblems } from "../data/gameData";
 import { asset } from "../ui/asset";
@@ -10,9 +10,14 @@ import {
 } from "../ui/colors";
 import { statLines } from "../ui/format";
 import { emblemsForGrade } from "../ui/emblems";
-import { ownedKey, ownedEmblemsToFileJSON, parseOwnedEmblemsFile } from "../state/loadout";
+import { ownedKey } from "../state/loadout";
 import { emblemIconForGrade } from "../ui/emblemIcon";
+import { COLOR_SET_GUIDE_TITLE } from "../ui/setProgress";
+import { shareLink } from "../ui/share";
+import { useTransientValue } from "../ui/transientValue";
 import { EmblemSetGuide } from "./EmblemSetGuide";
+import { EmblemFace } from "./EmblemFace";
+import { SetGlyph } from "./SetGlyph";
 import { Tooltip } from "./Tooltip";
 import { emblemTip } from "./tips";
 import type { EmblemColor, EmblemGrade } from "../types";
@@ -24,15 +29,21 @@ const GRADES: EmblemGrade[] = ["bronze", "silver", "gold"];
  * Search, filter by color, bulk own/clear the current view, and see live counts.
  */
 export function InventoryManager() {
-  const { owned, toggleOwned, bulkSetOwned, replaceOwned } = useStore();
+  const {
+    owned,
+    toggleOwned,
+    bulkSetOwned,
+    ownedShareUrl,
+    pendingOwnedImport,
+    applyPendingOwnedImport,
+    dismissPendingOwnedImport,
+  } = useStore();
   const [grade, setGrade] = useState<EmblemGrade>("gold");
   const [query, setQuery] = useState("");
   const [color, setColor] = useState<EmblemColor | "all">("all");
   const [guideOpen, setGuideOpen] = useState(false);
-  const [importMsg, setImportMsg] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const validEmblemIds = useMemo(() => new Set(allEmblems.map((e) => e.id)), []);
+  const [copied, flashCopied] = useTransientValue<true>(1500);
+  const [status, showStatus] = useTransientValue<string>(2000);
 
   const gradeEmblems = useMemo(() => emblemsForGrade(allEmblems, grade), [grade]);
 
@@ -52,34 +63,18 @@ export function InventoryManager() {
   );
   const shownIds = shown.map((e) => e.id);
 
-  const exportInventory = () => {
-    const blob = new Blob([ownedEmblemsToFileJSON(owned)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "foxforge-owned-emblems.json";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+  const shareInventory = async () => {
+    const result = await shareLink(ownedShareUrl(), "FoxForge emblem inventory");
+    if (result === "copied") flashCopied(true);
+    else if (result === "failed") {
+      showStatus("Couldn't copy the link — long-press the address bar instead.");
+    }
   };
 
-  const importInventory = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = ""; // allow re-importing the same file
-    if (!file) return;
-    try {
-      const next = parseOwnedEmblemsFile(await file.text(), validEmblemIds);
-      if (!next) {
-        setImportMsg("Not a valid emblem inventory file.");
-        return;
-      }
-      replaceOwned(next);
-      setImportMsg(`Imported ${next.size} owned emblem${next.size === 1 ? "" : "s"} ✓`);
-      setTimeout(() => setImportMsg(null), 2500);
-    } catch {
-      setImportMsg("Couldn't read that file.");
-    }
+  const applyImport = (mode: "replace" | "merge") => {
+    const n = pendingOwnedImport?.size ?? 0;
+    applyPendingOwnedImport(mode);
+    showStatus(`Imported ${n} owned emblem${n === 1 ? "" : "s"} ✓`);
   };
 
   return (
@@ -90,7 +85,7 @@ export function InventoryManager() {
             Inventory
             <button
               onClick={() => setGuideOpen(true)}
-              aria-label="Emblem color sets guide"
+              aria-label={COLOR_SET_GUIDE_TITLE}
               title="What do the colors do?"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-sm font-bold text-muted hover:bg-raise hover:text-ink"
             >
@@ -114,31 +109,19 @@ export function InventoryManager() {
       </div>
 
       <div className="mb-3 flex flex-col gap-2">
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={exportInventory}
-            className="min-h-11 flex-1 rounded-lg border border-line px-3 py-2.5 text-sm font-medium text-ink hover:bg-raise"
-          >
-            ↓ Export JSON
-          </button>
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            className="min-h-11 flex-1 rounded-lg border border-line px-3 py-2.5 text-sm font-medium text-ink hover:bg-raise"
-          >
-            ↑ Import JSON
-          </button>
-        </div>
-        <p className="text-xs text-muted">Back up or restore your full collection (all grades).</p>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="application/json,.json"
-          onChange={importInventory}
-          className="hidden"
-        />
-        {importMsg && <p className="text-xs text-muted">{importMsg}</p>}
+        <button
+          type="button"
+          onClick={() => void shareInventory()}
+          className="min-h-11 rounded-lg border border-line px-3 py-2.5 text-sm font-medium text-ink hover:bg-raise"
+        >
+          {copied ? "Link copied ✓" : "Share inventory link"}
+        </button>
+        <p className="text-xs text-muted">
+          Open the link on another device to bring your collection over.
+        </p>
+        <p role="status" aria-live="polite" className="min-h-4 text-xs text-muted">
+          {status ?? ""}
+        </p>
       </div>
 
       <div className="mb-3 flex flex-col gap-2">
@@ -170,6 +153,7 @@ export function InventoryManager() {
               <ColorFilterChip
                 key={c}
                 label={c}
+                glyph={c}
                 active={color === c}
                 activeColor={EMBLEM_COLOR_HEX[c]}
                 onClick={() => setColor(c)}
@@ -194,6 +178,37 @@ export function InventoryManager() {
         </div>
       </div>
 
+      {pendingOwnedImport && (
+        <div className="mb-3 rounded-xl border border-accent bg-accent-weak p-3">
+          <p className="mb-2 text-sm text-ink">
+            This link carries an emblem inventory ({pendingOwnedImport.size} owned).
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => applyImport("merge")}
+              className="min-h-11 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-white hover:bg-accent-strong"
+            >
+              Merge
+            </button>
+            <button
+              type="button"
+              onClick={() => applyImport("replace")}
+              className="min-h-11 rounded-lg bg-neg px-3 py-2 text-sm font-semibold text-white"
+            >
+              Replace mine
+            </button>
+            <button
+              type="button"
+              onClick={dismissPendingOwnedImport}
+              className="min-h-11 rounded-lg border border-line px-3 py-2 text-sm font-medium text-muted hover:bg-raise"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="grid max-h-[60vh] grid-cols-1 gap-2 overflow-y-auto sm:grid-cols-2 md:grid-cols-3">
         {shown.map((e) => {
           const isOwned = owned.has(ownedKey(e.id, grade));
@@ -206,22 +221,14 @@ export function InventoryManager() {
                   isOwned ? "border-as-border bg-as-bg" : "border-line hover:border-line"
                 }`}
               >
-                <span className="relative shrink-0">
-                  <img
+                <span className="shrink-0">
+                  <EmblemFace
                     src={asset(emblemIconForGrade(e, grade))}
                     alt={e.pokemonName}
-                    loading="lazy"
-                    className="h-10 w-10 object-contain"
+                    colors={e.colors}
+                    sizeClass="h-10 w-10"
+                    glyphClass="h-3 w-3"
                   />
-                  <span className="absolute -left-0.5 -top-0.5 flex gap-0.5">
-                    {e.colors.map((c) => (
-                      <span
-                        key={c}
-                        className="h-2 w-2 rounded-full ring-1 ring-white"
-                        style={{ background: EMBLEM_COLOR_HEX[c] }}
-                      />
-                    ))}
-                  </span>
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-xs font-medium text-ink">
@@ -252,11 +259,13 @@ function ColorFilterChip({
   active,
   onClick,
   activeColor,
+  glyph,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
   activeColor?: string;
+  glyph?: EmblemColor;
 }) {
   const style =
     active && activeColor
@@ -267,14 +276,15 @@ function ColorFilterChip({
       type="button"
       onClick={onClick}
       style={style}
-      className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium capitalize ${
+      className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-medium capitalize ${
         active
           ? activeColor
             ? "border-line"
             : "border-transparent bg-accent text-white"
           : "border-transparent bg-raise text-muted hover:bg-raise"
-      } min-h-11`}
+      }`}
     >
+      {glyph && <SetGlyph color={glyph} sizeClass="h-4 w-4" />}
       {label}
     </button>
   );

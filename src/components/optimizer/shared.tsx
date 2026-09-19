@@ -7,8 +7,9 @@ import type { ResolvedEmblemPreset } from "../../engine/emblemSearch/optimizerPr
 import type { EmblemCandidate, SearchMode } from "../../engine/emblemSearch/types";
 import type { EmblemColor, EmblemGrade, EmblemLoadout, StatBlock } from "../../types";
 import type { pokemonById } from "../../data/gameData";
-import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../../ui/colors";
+import { ALL_EMBLEM_COLORS } from "../../ui/colors";
 import type { SearchResult } from "../../engine/emblemSearch/types";
+import { SetGlyph } from "../SetGlyph";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -41,7 +42,7 @@ export const PROTECT_STATS: Array<[string, string]> = [
   ["critRate", "Crit Rate"],
   ["cdr", "CDR"],
   ["attackSpeed", "Atk Spd"],
-  ["moveSpeed", "Move Speed"],
+  ["moveSpeed", "Speed"],
 ];
 
 export const STAT_LABELS: Partial<Record<string, string>> = {
@@ -53,7 +54,7 @@ export const STAT_LABELS: Partial<Record<string, string>> = {
   critRate: "Crit Rate",
   cdr: "CDR",
   attackSpeed: "Atk Speed",
-  moveSpeed: "Move Speed",
+  moveSpeed: "Speed",
 };
 
 export const STAT_ROW_GRID =
@@ -217,12 +218,7 @@ export function presetAutofillIntro(
 }
 
 export function ColorDot({ color }: { color: EmblemColor }) {
-  return (
-    <span
-      className="inline-block h-3 w-3 rounded-full ring-1 ring-black/10"
-      style={{ background: EMBLEM_COLOR_HEX[color] }}
-    />
-  );
+  return <SetGlyph color={color} sizeClass="h-3 w-3" />;
 }
 
 export function emblemPicksFromResult(result: SearchResult | null | undefined): EmblemPick[] {

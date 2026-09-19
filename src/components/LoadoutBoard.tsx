@@ -8,30 +8,31 @@ import {
   battleItemById,
   emblemById,
   isUniqueHeldItem,
-  setBonuses,
+  pokemonById,
 } from "../data/gameData";
-import { MAX_EMBLEMS } from "../state/loadout";
-import { countColors } from "../engine/emblems";
+import { MAX_EMBLEM_SLOTS } from "../engine/emblems";
 import { asset } from "../ui/asset";
 import { emblemIconForGrade } from "../ui/emblemIcon";
 import { heldItemStatLines, statLines } from "../ui/format";
 import { gradesForEmblem } from "../ui/emblems";
-import { EMBLEM_COLOR_HEX, ALL_EMBLEM_COLORS } from "../ui/colors";
-import { EmblemFace } from "./EmblemFace";
-import { setProgressRows, formatSetBonus } from "../ui/setProgress";
+import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../ui/colors";
+import { shareLink } from "../ui/share";
+import { useTransientValue } from "../ui/transientValue";
 import { PickerModal, type PickItem } from "./PickerModal";
+import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { GradeField } from "./GradeField";
 import { BottomSheet } from "./shell/BottomSheet";
 import { MyBuildsSheet } from "./MyBuildsSheet";
-import { itemTip, emblemTip, statsAtGrade } from "./tips";
+import { EmblemWheel } from "./EmblemWheel";
+import { useEmblemPanelData } from "./useEmblemPanelData";
+import { EquippedSets } from "./EquippedSets";
+import { EquippedStats } from "./EquippedStats";
+import { EmblemSetGuide } from "./EmblemSetGuide";
+import { itemTip, emblemTip, statsAtGrade, battleItemTip, pickDescription } from "./tips";
 import type { BattleItem, HeldItem } from "../types";
 
-type Picker =
-  | { kind: "held"; slot: number }
-  | { kind: "battle" }
-  | { kind: "emblem"; initialFilterLabel?: string }
-  | null;
+type Picker = { kind: "held"; slot: number } | { kind: "battle" } | { kind: "emblem" } | null;
 
 export function LoadoutBoard() {
   const {
@@ -42,11 +43,15 @@ export function LoadoutBoard() {
     heldSlotGrades,
     setHeldItemGradeForSlot,
     heldItemGrade,
+    emblemShareUrl,
+    expert,
   } = useStore();
   const [picker, setPicker] = useState<Picker>(null);
   const [buildsOpen, setBuildsOpen] = useState(false);
   const [gradeSlot, setGradeSlot] = useState<number | null>(null);
   const [emblemSheet, setEmblemSheet] = useState<number | null>(null);
+  const [copiedEmblems, flashCopiedEmblems] = useTransientValue<true>(1500);
+  const [guideOpen, setGuideOpen] = useState(false);
 
   const emblemGoldOnlyIds = useMemo(
     () => new Set(emblems.filter((e) => e.goldOnly).map((e) => e.id)),
@@ -64,8 +69,8 @@ export function LoadoutBoard() {
     id: i.id,
     name: i.displayName,
     icon: i.iconAsset,
-    title: i.description,
-    tip: itemTip(i),
+    title: pickDescription(i, expert),
+    tip: battleItemTip(i, expert),
   }));
   const emblemPickItems: PickItem[] = emblems.map((e) => ({
     id: e.id,
@@ -76,17 +81,22 @@ export function LoadoutBoard() {
 
   const slots = useMemo(
     () =>
-      loadout.emblems
-        .map((p) => {
-          const e = emblemById.get(p.emblemId);
-          return e ? { emblem: e, grade: p.grade, pick: p } : null;
-        })
-        .filter((s): s is NonNullable<typeof s> => s !== null),
+      Array.from({ length: MAX_EMBLEM_SLOTS }, (_, i) => {
+        const pick = loadout.emblems[i];
+        if (!pick) return null;
+        const emblem = emblemById.get(pick.emblemId);
+        return emblem ? { emblem, grade: pick.grade } : null;
+      }),
     [loadout.emblems],
   );
 
-  const progressRows =
-    loadout.emblems.length > 0 ? setProgressRows(countColors(slots), setBonuses) : [];
+  const pokemon = loadout.pokemonId ? (pokemonById.get(loadout.pokemonId) ?? null) : null;
+  const { setRows, statRows, flatRows, oocGain } = useEmblemPanelData({
+    picks: loadout.emblems,
+    pokemon,
+    level: loadout.level,
+    precise: expert,
+  });
 
   const gradeSheetItem =
     gradeSlot != null && loadout.heldItemIds[gradeSlot]
@@ -104,159 +114,143 @@ export function LoadoutBoard() {
       : null;
 
   return (
-    <section className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
-      <div className="mb-1 flex items-center justify-between">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Loadout</h3>
-        <button
-          type="button"
-          aria-label="My builds"
-          onClick={() => setBuildsOpen(true)}
-          className="flex min-h-11 min-w-11 items-center justify-center text-muted hover:text-ink"
-        >
-          <svg
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
+    <>
+      <CollapsibleCard
+        title="Items"
+        persistKey="loadout-items"
+        defaultOpen
+        right={
+          <button
+            type="button"
+            aria-label="My Builds"
+            onClick={() => setBuildsOpen(true)}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-xs font-medium text-muted hover:text-ink"
           >
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-          </svg>
-        </button>
-      </div>
-
-      <p className="mb-3 text-xs text-faint">
-        Tap a slot to swap items — tap an item's name to set its grade.
-      </p>
-
-      <div className="flex items-center gap-2">
-        {loadout.heldItemIds.map((id, slot) => {
-          const item = id ? heldItemById.get(id) : null;
-          const grade = heldSlotGrades[slot];
-          return (
-            <div key={`held-${slot}`} className="flex flex-col items-center">
-              <SlotTile
-                item={item ?? null}
-                grade={grade}
-                onGradeTap={item && !isUniqueHeldItem(item) ? () => setGradeSlot(slot) : undefined}
-                emptyLabel="Held"
-                onClick={() => setPicker({ kind: "held", slot })}
-                tip={item ? itemTip(item, grade) : "Add a held item"}
-              />
-            </div>
-          );
-        })}
-        <div className="h-10 w-px bg-line" aria-hidden />
-        <div className="flex flex-col items-center">
-          <SlotTile
-            item={loadout.battleItemId ? (battleItemById.get(loadout.battleItemId) ?? null) : null}
-            emptyLabel="Trainer"
-            onClick={() => setPicker({ kind: "battle" })}
-            tip={
-              loadout.battleItemId && battleItemById.get(loadout.battleItemId)
-                ? itemTip(battleItemById.get(loadout.battleItemId)!)
-                : "Add a Trainer Item"
-            }
-          />
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <p className="mb-1 text-[11px] text-faint">
-          Emblems ({loadout.emblems.length}/{MAX_EMBLEMS})
+            My Builds
+            <svg
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+            </svg>
+          </button>
+        }
+      >
+        <p className="mb-3 text-xs text-faint">
+          Tap a slot to swap items — tap an item's name to set its grade.
         </p>
-        <div className="grid grid-cols-5 gap-2">
-          {Array.from({ length: MAX_EMBLEMS }, (_, i) => {
-            const pick = loadout.emblems[i];
-            const emblem = pick ? emblemById.get(pick.emblemId) : null;
-            if (pick && emblem) {
-              return (
-                <div key={i} className="flex flex-col items-center">
-                  <button
-                    type="button"
-                    aria-label={emblem.pokemonName}
-                    onClick={() => setEmblemSheet(i)}
-                    className="relative min-h-11"
-                  >
-                    <EmblemFace
-                      src={asset(emblemIconForGrade(emblem, pick.grade))}
-                      alt=""
-                      colors={emblem.colors}
-                      sizeClass="h-12 w-12"
-                    />
-                  </button>
-                </div>
-              );
-            }
+
+        <div className="flex items-center gap-2">
+          {loadout.heldItemIds.map((id, slot) => {
+            const item = id ? heldItemById.get(id) : null;
+            const grade = heldSlotGrades[slot];
             return (
-              <div key={i} className="flex flex-col items-center">
-                <button
-                  type="button"
-                  aria-label="Add emblem"
-                  onClick={() => setPicker({ kind: "emblem" })}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-dashed border-line text-xl text-faint"
-                >
-                  +
-                </button>
+              <div key={`held-${slot}`} className="flex flex-col items-center">
+                <SlotTile
+                  item={item ?? null}
+                  grade={grade}
+                  onGradeTap={
+                    item && !isUniqueHeldItem(item) ? () => setGradeSlot(slot) : undefined
+                  }
+                  emptyLabel="Held"
+                  onClick={() => setPicker({ kind: "held", slot })}
+                  tip={item ? itemTip(item, grade) : "Add a held item"}
+                />
               </div>
             );
           })}
+          <div className="h-10 w-px bg-line" aria-hidden />
+          <div className="flex flex-col items-center">
+            <SlotTile
+              item={
+                loadout.battleItemId ? (battleItemById.get(loadout.battleItemId) ?? null) : null
+              }
+              emptyLabel="Battle"
+              onClick={() => setPicker({ kind: "battle" })}
+              tip={
+                loadout.battleItemId && battleItemById.get(loadout.battleItemId)
+                  ? battleItemTip(battleItemById.get(loadout.battleItemId)!, expert)
+                  : "Add a Battle Item"
+              }
+            />
+          </div>
         </div>
-      </div>
+      </CollapsibleCard>
 
-      {progressRows.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {progressRows.map((row) => {
-            const chipBody = (
-              <>
-                <span
-                  className="h-2.5 w-2.5 rounded-full ring-1 ring-black/10"
-                  style={{ background: EMBLEM_COLOR_HEX[row.color] }}
-                />
-                {row.met ? (
-                  <>
-                    <span className="font-medium text-ink">×{row.count}</span>
-                    <span className="text-muted">
-                      {" "}
-                      ({formatSetBonus(row.color, row.met.bonusPercent)})
-                    </span>
-                    <span className="text-pos">✓</span>
-                  </>
-                ) : row.next ? (
-                  <span className="text-muted">
-                    {row.count}/{row.next}
-                  </span>
-                ) : (
-                  <span className="text-faint">×{row.count}</span>
-                )}
-              </>
-            );
-            const chipClass =
-              "flex min-h-11 items-center gap-1.5 rounded-full bg-raise px-2.5 py-1 text-xs";
-            const actionable = row.met === null || row.next !== null;
-            if (actionable) {
-              return (
-                <button
-                  key={row.color}
-                  type="button"
-                  onClick={() => setPicker({ kind: "emblem", initialFilterLabel: row.color })}
-                  className={chipClass}
+      <CollapsibleCard title="Emblems" persistKey="loadout-emblems" defaultOpen>
+        <p className="mb-3 text-xs text-faint">
+          Tap a coin to set its grade — tap an empty slot to add one. Tap the ? for the Color-Set
+          Guide. Tap a set row for its color bonus.
+        </p>
+        <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start">
+          <div className="flex flex-col items-center gap-3">
+            <EmblemWheel
+              slots={slots}
+              onSlotClick={(i) => setEmblemSheet(i)}
+              onEmptyClick={() => setPicker({ kind: "emblem" })}
+              onHubClick={() => setGuideOpen(true)}
+            />
+            <div className="flex justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  void shareLink(emblemShareUrl(), "FoxForge emblem set").then((result) => {
+                    if (result === "copied") flashCopiedEmblems(true);
+                  });
+                }}
+                disabled={loadout.emblems.length === 0}
+                className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-accent/40 bg-accent-weak px-3 text-xs font-medium text-accent-ink hover:bg-accent/15 disabled:opacity-40"
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
                 >
-                  {chipBody}
-                </button>
-              );
-            }
-            return (
-              <span key={row.color} className={chipClass}>
-                {chipBody}
-              </span>
-            );
-          })}
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                {copiedEmblems ? "Link copied ✓" : "Copy emblem link"}
+              </button>
+              <button
+                type="button"
+                onClick={() => dispatch({ type: "applyBuild", emblems: [] })}
+                disabled={loadout.emblems.length === 0}
+                className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line px-3 text-xs font-medium text-muted hover:border-neg/40 hover:text-neg disabled:opacity-40"
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+                Clear emblems
+              </button>
+            </div>
+          </div>
+          <div className="flex min-w-0 flex-col gap-4">
+            <EquippedSets rows={setRows} />
+            <EquippedStats rows={statRows} flatRows={flatRows} oocGain={oocGain} />
+          </div>
         </div>
-      )}
+      </CollapsibleCard>
 
       {picker?.kind === "held" && (
         <PickerModal
@@ -269,7 +263,7 @@ export function LoadoutBoard() {
       )}
       {picker?.kind === "battle" && (
         <PickerModal
-          title="Choose Trainer Item"
+          title="Choose Battle Item"
           items={battlePickItems}
           onPick={(id) => dispatch({ type: "setBattleItem", id })}
           onClear={() => dispatch({ type: "setBattleItem", id: null })}
@@ -279,7 +273,6 @@ export function LoadoutBoard() {
       {picker?.kind === "emblem" && (
         <PickerModal
           title="Choose Emblem"
-          initialFilterLabel={picker.initialFilterLabel}
           items={emblemPickItems}
           onPick={(id, grade) =>
             dispatch({ type: "addEmblem", emblemId: id, grade: grade ?? "gold" })
@@ -385,7 +378,8 @@ export function LoadoutBoard() {
       )}
 
       {buildsOpen && <MyBuildsSheet onClose={() => setBuildsOpen(false)} />}
-    </section>
+      <EmblemSetGuide open={guideOpen} onClose={() => setGuideOpen(false)} />
+    </>
   );
 }
 

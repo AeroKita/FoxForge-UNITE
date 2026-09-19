@@ -1,6 +1,6 @@
 // Rule-based build recommendations. Transparent heuristics (no ML): score held
 // items by how well their stats serve the Pokémon's role/attack type, pick
-// emblem color targets that hit set-bonus thresholds, and choose a trainer item.
+// emblem color targets that hit set-bonus thresholds, and choose a battle item.
 // Everything is derived from the data (item stats), so it adapts as data updates.
 
 import type { Emblem, EmblemColor, EmblemGrade, HeldItem, Pokemon, StatBlock } from "../types";

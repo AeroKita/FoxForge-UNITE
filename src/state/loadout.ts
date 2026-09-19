@@ -1,9 +1,8 @@
 // Loadout model + localStorage persistence (up to 20 saved loadouts).
-// A loadout fully describes a build: Pokémon, level, 3 held items, 1 trainer
-// (battle) item, an emblem set, and which active effects are toggled on.
+// A loadout fully describes a build: Pokémon, level, 3 held items, 1 battle
+// item, an emblem set, and which active effects are toggled on.
 
 import type { EmblemGrade } from "../types";
-import { APP_NAME } from "../ui/brand";
 import { generateId } from "../utils/generateId";
 
 export interface EmblemPick {
@@ -15,7 +14,7 @@ export interface Loadout {
   pokemonId: string | null;
   level: number; // 1-15
   heldItemIds: (string | null)[]; // exactly 3 slots
-  battleItemId: string | null; // "Trainer Item"
+  battleItemId: string | null;
   move1Id: string | null; // chosen final (upgrade) move for slot 1; null → derived default
   move2Id: string | null; // chosen final (upgrade) move for slot 2; null → derived default
   emblems: EmblemPick[]; // up to 10
@@ -165,46 +164,6 @@ export function decodeLoadout(encoded: string): Loadout | null {
   }
 }
 
-/** Read a shared build from the URL hash (#b=...), if present. */
-export function loadoutFromUrl(): Loadout | null {
-  const m = typeof location !== "undefined" && location.hash.match(/[#&]b=([^&]+)/);
-  return m ? decodeLoadout(decodeURIComponent(m[1])) : null;
-}
-
-/** Build a shareable URL encoding the given loadout. */
-export function shareUrlFor(loadout: Loadout): string {
-  const base = `${location.origin}${location.pathname}`;
-  return `${base}#b=${encodeURIComponent(encodeLoadout(loadout))}`;
-}
-
-// ----- Shareable file export/import (.json) ---------------------------------
-// A small versioned wrapper so exported builds stay readable if the loadout
-// shape changes later. Import is lenient: it accepts a wrapped export or a bare
-// Loadout, and sanitizes the shape (clamps level, 3 held slots, caps emblems).
-
-const FILE_KIND = "foxforge.loadout";
-const FILE_SCHEMA_VERSION = 1;
-
-export interface LoadoutFile {
-  app: string;
-  kind: typeof FILE_KIND;
-  schemaVersion: number;
-  exportedAt: number;
-  loadout: Loadout;
-}
-
-/** Serialize the current loadout into a shareable, versioned JSON string. */
-export function loadoutToFileJSON(loadout: Loadout): string {
-  const payload: LoadoutFile = {
-    app: APP_NAME,
-    kind: FILE_KIND,
-    schemaVersion: FILE_SCHEMA_VERSION,
-    exportedAt: Date.now(),
-    loadout,
-  };
-  return JSON.stringify(payload, null, 2);
-}
-
 /** Coerce arbitrary parsed JSON into a valid Loadout, or null if unusable. */
 export function sanitizeLoadout(x: unknown): Loadout | null {
   if (!x || typeof x !== "object") return null;
@@ -265,26 +224,6 @@ export function normalizeLoadout(x: unknown): Loadout {
   );
 }
 
-/** Parse an exported file (wrapped or bare) into a Loadout, or null. */
-export function parseLoadoutFile(text: string): Loadout | null {
-  try {
-    const data = JSON.parse(text) as Record<string, unknown>;
-    const inner = data && typeof data === "object" && "loadout" in data ? data.loadout : data;
-    return sanitizeLoadout(inner);
-  } catch {
-    return null;
-  }
-}
-
-/** A filesystem-safe download name, e.g. "foxforge-lucario.json". */
-export function loadoutFileName(loadout: Loadout, pokemonName?: string): string {
-  const slug = (pokemonName ?? loadout.pokemonId ?? "build")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-  return `foxforge-${slug || "build"}.json`;
-}
-
 // ----- Owned-emblem inventory (local; no account) ---------------------------
 
 /** Composite key for owning a specific grade of an emblem (independent grades). */
@@ -313,50 +252,4 @@ export const VALID_GRADES: ReadonlySet<string> = new Set(["bronze", "silver", "g
 
 export function isEmblemGrade(grade: string): grade is EmblemGrade {
   return VALID_GRADES.has(grade);
-}
-
-/**
- * Serialize the owned-emblem set to the canonical backup format: a sorted,
- * pretty-printed JSON array of `emblemId:grade` strings. Sorting keeps file
- * diffs stable. This is a direct mirror of what is persisted to localStorage.
- */
-export function ownedEmblemsToFileJSON(owned: Set<string>): string {
-  return JSON.stringify([...owned].sort(), null, 2);
-}
-
-/**
- * Parse a backup file back into an owned-emblem set.
- *
- * Returns `null` for a structurally invalid file (leave the inventory
- * unchanged): not valid JSON, top-level value not an array, or any array
- * element not a string. For a structurally valid array, returns a Set of the
- * keys that survive per-entry validation; malformed keys, unknown grades, and
- * (when `validEmblemIds` is supplied) emblem IDs not in the current patch are
- * dropped silently. The Set deduplicates automatically.
- */
-export function parseOwnedEmblemsFile(
-  text: string,
-  validEmblemIds?: Set<string>,
-): Set<string> | null {
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    return null;
-  }
-  if (!Array.isArray(parsed)) return null;
-  if (!parsed.every((x) => typeof x === "string")) return null;
-
-  const next = new Set<string>();
-  for (const entry of parsed as string[]) {
-    const remapped = remapOwnedKey(entry);
-    const i = remapped.lastIndexOf(":");
-    if (i <= 0) continue; // no colon, or empty emblemId → malformed, skip
-    const emblemId = remapped.slice(0, i);
-    const grade = remapped.slice(i + 1);
-    if (!isEmblemGrade(grade)) continue;
-    if (validEmblemIds && !validEmblemIds.has(emblemId)) continue;
-    next.add(ownedKey(emblemId, grade));
-  }
-  return next;
 }

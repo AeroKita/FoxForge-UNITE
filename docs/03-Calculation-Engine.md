@@ -36,7 +36,8 @@ Apply in exactly this sequence to match in-game behavior:
 | Yellow | Move Speed (OOC) | 3:+4%, 5:+6%, 7:+12% |  
 | Black | CDR | 3:+2%, 5:+4%, 7:+8% |  
 | Pink | Hindrance reduction | 3:-4%, 5:-8%, 7:-16% |  
-| Navy / Gray | — | no set bonus |  
+| Navy | Unite Move gauge time | 3/5/7 utility; no StatBlock effect |
+| Gray | Flat received damage | 3/5/7 utility (`−3 / −6 / −12`); no StatBlock effect |  
   
 - Only one emblem per Pokémon counts toward a color set (duplicates of the same  
   Pokémon at different grades count once).  

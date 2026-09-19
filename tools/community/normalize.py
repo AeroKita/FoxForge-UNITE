@@ -1173,6 +1173,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
 
 CURATED = HERE / "curated_builds.json"
 MOVE_DESCRIPTIONS = HERE / "move_descriptions.json"
+BATTLE_ITEM_ARCHIVE = HERE / "battle_item_descriptions.json"
 OPERATOR_LOCKS = HERE / "operator_in_game_basic.json"
 MOVE_GIFS = HERE / "move_gifs.json"
 MOVE_CLIPS = HERE / "move_clips.json"
@@ -1237,6 +1238,16 @@ def load_move_descriptions() -> dict:
     descriptions = json.loads(MOVE_DESCRIPTIONS.read_text()).get("descriptions", {})
     assert_operator_lock_bodies(descriptions)
     return descriptions
+
+
+def load_battle_item_archive() -> dict[str, dict]:
+    """Owned battle-item Basic texts keyed by slug id. Empty if the file is absent."""
+    if not BATTLE_ITEM_ARCHIVE.exists():
+        print("  (no battle_item_descriptions.json — using UNITE-DB text for battle items)")
+        return {}
+    raw = json.loads(BATTLE_ITEM_ARCHIVE.read_text(encoding="utf-8"))
+    items = raw.get("items") or {}
+    return {str(k): v for k, v in items.items() if not str(k).startswith("_") and isinstance(v, dict)}
 
 
 def _validate_curated_build(b, pid, kind, emblem_ids, held_ids, battle_ids, upgrade_moves):
@@ -1608,14 +1619,47 @@ def build_held_items(rows) -> list:
     return out
 
 
-def build_battle_items(rows) -> list:
-    return [{
-        "id": slugify(b["name"]),
-        "displayName": b["display_name"],
-        "iconAsset": f"{ASSETS}/items/battle/{icon_name(b)}.png",
-        "description": b.get("description", "") or "",
-        "effects": [],
-    } for b in rows]
+def build_battle_items(rows, archive: dict | None = None) -> list:
+    owned = archive if archive is not None else {}
+    out = []
+    for b in rows:
+        item_id = slugify(b["name"])
+        entry = owned.get(item_id) or {}
+        raw_desc = b.get("description", "") or ""
+        archive_desc = (entry.get("description") or "").strip()
+        if archive_desc:
+            description = archive_desc
+        else:
+            description = raw_desc
+            print(
+                f"  ! battle item {item_id} has no in-game Basic in "
+                "battle_item_descriptions.json; using UNITE-DB text"
+            )
+        raw_cd = b.get("cooldown")
+        archive_cd = entry.get("cooldownSeconds")
+        if archive_cd is not None:
+            cooldown = int(archive_cd)
+            if raw_cd is not None and int(raw_cd) != cooldown:
+                print(
+                    f"  ! battle item {item_id} cooldownSeconds archive={cooldown} "
+                    f"raw={int(raw_cd)}; using archive"
+                )
+        elif raw_cd is not None:
+            cooldown = int(raw_cd)
+        else:
+            cooldown = None
+        item = {
+            "id": item_id,
+            "displayName": entry.get("displayName") or b["display_name"],
+            "iconAsset": f"{ASSETS}/items/battle/{icon_name(b)}.png",
+            "description": description,
+            "descriptionAdvanced": raw_desc,
+            "effects": [],
+        }
+        if cooldown is not None:
+            item["cooldownSeconds"] = cooldown
+        out.append(item)
+    return out
 
 
 # ---- emblems ---------------------------------------------------------------
@@ -1688,7 +1732,7 @@ def main() -> None:
     pokedex_to_id = {e["id"].split("-", 1)[0]: e["id"] for e in emblems}
     pokemon = build_pokemon(load("pokemon"), load("stats"), pokedex_to_id)
     held = build_held_items(load("held_items"))
-    battle = build_battle_items(load("battle_items"))
+    battle = build_battle_items(load("battle_items"), load_battle_item_archive())
     set_bonuses = build_set_bonuses(load("emblem_sets"))
     apply_curated_builds(pokemon, emblems, held, battle)
 

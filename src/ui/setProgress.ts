@@ -1,7 +1,6 @@
-import { activeBonusPercent } from "../engine/emblems";
 import { setBonusStat } from "../engine/formulas";
-import type { EmblemColor, EmblemSetBonus, StatBlock } from "../types";
-import { EMBLEM_SET_INFO } from "./emblemSets";
+import type { EmblemColor, StatBlock } from "../types";
+import { EMBLEM_SET_INFO, formatSetMagnitude, formatSetTier, type SetInfoRow } from "./emblemSets";
 
 export const STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
   attack: "Atk",
@@ -11,77 +10,108 @@ export const STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
   hp: "HP",
   attackSpeed: "Atk Spd",
   cdr: "CDR",
-  moveSpeed: "Move",
+  moveSpeed: "Speed",
 };
 
 const SET_INFO_BY_COLOR = new Map(EMBLEM_SET_INFO.map((r) => [r.color, r]));
 
+const SHORT_UTILITY: Partial<Record<EmblemColor, string>> = {
+  pink: "hindrance",
+  navy: "Unite charge",
+  gray: "dmg",
+};
+
 /**
  * Display a reached set bonus. Utility colors (pink/navy/gray) are stored in
- * the bundle as negative HP placeholders — show the real effect and a positive
- * magnitude instead of "−16% HP".
+ * the bundle as negative HP placeholders — show the in-game wording and the
+ * row's own sign/unit instead of "−16% HP".
  */
 export function formatSetBonus(color: EmblemColor, bonusPercent: number): string {
-  const pct = `+${Math.round(Math.abs(bonusPercent) * 100)}%`;
   const info = SET_INFO_BY_COLOR.get(color);
-  if (info?.kind === "utility") return `${pct} ${info.label}`;
+  if (info?.kind === "utility") {
+    const value = Math.round(Math.abs(bonusPercent) * 100);
+    return formatSetTier(info, { count: 0, value });
+  }
+  const pct = `+${Math.round(Math.abs(bonusPercent) * 100)}%`;
   const stat = setBonusStat(color);
   const label = (stat && STAT_LABEL[stat]) || info?.label || color;
   return `${pct} ${label}`;
 }
 
-/** Footnote list: `brown +4% Atk, pink +16% Tenacity`. */
+/** Compact Equipped Sets caption: `+4% Atk`, `+12% Speed (OOC)`, `−3 dmg`. */
+export function formatSetEffectShort(info: SetInfoRow, tier: { value: number }): string {
+  return `${formatSetMagnitude(info, tier.value)} ${setEffectNoun(info)}`;
+}
+
+/**
+ * Equipped Sets expand copy. Yellow spells out Out of Combat; other colors
+ * stay compact.
+ */
+export function formatSetEffectEquipped(info: SetInfoRow, tier: { value: number }): string {
+  if (info.color === "yellow") {
+    return `${formatSetMagnitude(info, tier.value)} ${STAT_LABEL.moveSpeed} (Out of Combat)`;
+  }
+  return formatSetEffectShort(info, tier);
+}
+
+/** Compact noun for a color set, without the signed magnitude. */
+export function setEffectNoun(info: SetInfoRow): string {
+  if (info.kind === "utility") return SHORT_UTILITY[info.color] ?? info.label;
+  if (info.color === "yellow") return `${STAT_LABEL.moveSpeed} (OOC)`;
+  const stat = setBonusStat(info.color);
+  return (stat && STAT_LABEL[stat]) || info.label;
+}
+
+export const COLOR_SET_GUIDE_TITLE = "Color-Set Guide";
+
+const GUIDE_STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
+  attack: "Attack",
+  spAttack: "Special Attack",
+  defense: "Defense",
+  spDefense: "Special Defense",
+  hp: "HP",
+  attackSpeed: "Basic Attack Speed",
+  cdr: "Cooldown Reduction",
+  moveSpeed: "Movement Speed",
+};
+
+const GUIDE_UTILITY: Partial<Record<EmblemColor, string>> = {
+  pink: "Hindrance Effect Duration",
+  navy: "Unite Charge Rate",
+  gray: "Damage Received",
+};
+
+/** Beginner-facing noun for the Color-Set Guide. */
+export function guideSetNoun(info: SetInfoRow): string {
+  if (info.kind === "utility") return GUIDE_UTILITY[info.color] ?? info.label;
+  if (info.color === "yellow") return "Movement Speed (Out of Combat)";
+  const stat = setBonusStat(info.color);
+  return (stat && GUIDE_STAT_LABEL[stat]) || info.label;
+}
+
+export interface EmblemSetGuideRow {
+  color: EmblemColor;
+  kind: SetInfoRow["kind"];
+  noun: string;
+  tiers: { count: number; magnitude: string }[];
+}
+
+/** All 11 colors for the Color-Set Guide, with beginner nouns and magnitudes. */
+export function emblemSetGuideRows(): EmblemSetGuideRow[] {
+  return EMBLEM_SET_INFO.map((info) => ({
+    color: info.color,
+    kind: info.kind,
+    noun: guideSetNoun(info),
+    tiers: info.tiers.map((t) => ({
+      count: t.count,
+      magnitude: formatSetMagnitude(info, t.value),
+    })),
+  }));
+}
+
+/** Footnote list: `brown +4% Atk, pink −16% hindrance effect duration`. */
 export function formatActiveSetBonuses(
   bonuses: { color: EmblemColor; bonusPercent: number }[],
 ): string {
   return bonuses.map((b) => `${b.color} ${formatSetBonus(b.color, b.bonusPercent)}`).join(", ");
-}
-
-export interface SetProgressRow {
-  color: EmblemColor;
-  count: number;
-  /** Highest met threshold's bonus, or null if none met yet. */
-  met: { threshold: number; bonusPercent: number; stat: keyof StatBlock } | null;
-  /** Next threshold above count, or null when the top threshold is met. */
-  next: number | null;
-}
-
-/** One row per color with count > 0, sorted by count desc (ties: alphabetical
- *  color). Colors with no entry in `bonuses` get met: null, next: null. */
-export function setProgressRows(
-  counts: Map<EmblemColor, number>,
-  bonuses: EmblemSetBonus[],
-): SetProgressRow[] {
-  const bonusByColor = new Map(bonuses.map((b) => [b.color, b]));
-
-  const rows: SetProgressRow[] = [];
-  for (const [color, count] of counts) {
-    if (count <= 0) continue;
-    const bonus = bonusByColor.get(color);
-    if (!bonus) {
-      rows.push({ color, count, met: null, next: null });
-      continue;
-    }
-
-    const thresholds = Object.keys(bonus.thresholds)
-      .map(Number)
-      .sort((a, b) => a - b);
-
-    const metPercent = activeBonusPercent(count, bonus.thresholds);
-    const met =
-      metPercent != null
-        ? {
-            threshold: thresholds.filter((t) => t <= count).pop()!,
-            bonusPercent: metPercent,
-            stat: bonus.stat,
-          }
-        : null;
-
-    const next = thresholds.find((t) => t > count) ?? null;
-
-    rows.push({ color, count, met, next });
-  }
-
-  rows.sort((a, b) => b.count - a.count || a.color.localeCompare(b.color));
-  return rows;
 }

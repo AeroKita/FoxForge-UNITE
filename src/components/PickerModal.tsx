@@ -1,8 +1,10 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { asset } from "../ui/asset";
-import { EMBLEM_COLOR_HEX, EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
+import { EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
 import { BottomSheet } from "./shell/BottomSheet";
 import { Tooltip } from "./Tooltip";
+import { SetGlyph } from "./SetGlyph";
+import { EmblemFace } from "./EmblemFace";
 import type { EmblemColor, EmblemGrade } from "../types";
 
 export interface PickItem {
@@ -135,6 +137,7 @@ export function PickerModal({
                 label={f.label}
                 active={activeFilter === f.label}
                 activeColor={f.activeColor}
+                glyph={f.label as EmblemColor}
                 onClick={() => setActiveFilter(f.label)}
               />
             ))}
@@ -184,16 +187,21 @@ export function PickerModal({
                 ownedHere ? "border-as-border bg-as-bg" : "border-line"
               }`}
             >
-              {it.colors && it.colors.length > 0 && (
-                <span className="absolute -left-1 -top-1 flex gap-0.5">
-                  {it.colors.map((c) => (
-                    <span
-                      key={c}
-                      className="h-2 w-2 rounded-full ring-1 ring-white"
-                      style={{ background: EMBLEM_COLOR_HEX[c] }}
-                    />
-                  ))}
-                </span>
+              {it.colors && it.colors.length > 0 ? (
+                <EmblemFace
+                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
+                  alt={it.name}
+                  colors={it.colors}
+                  sizeClass="h-12 w-12"
+                  glyphClass="h-3 w-3"
+                />
+              ) : (
+                <img
+                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
+                  alt={it.name}
+                  loading="lazy"
+                  className="h-12 w-12 object-contain"
+                />
               )}
               {onToggleOwn && (
                 <span
@@ -210,12 +218,6 @@ export function PickerModal({
                   ★
                 </span>
               )}
-              <img
-                src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
-                alt={it.name}
-                loading="lazy"
-                className="h-12 w-12 object-contain"
-              />
               <span className="text-xs font-medium leading-tight text-ink">{it.name}</span>
               {subtitle && <span className="text-[10px] text-faint">{subtitle}</span>}
             </button>
@@ -240,11 +242,13 @@ function FilterChip({
   active,
   onClick,
   activeColor,
+  glyph,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
   activeColor?: string;
+  glyph?: EmblemColor;
 }) {
   const style =
     active && activeColor
@@ -261,8 +265,9 @@ function FilterChip({
             ? "border-line"
             : "border-transparent bg-accent text-white"
           : "border-transparent bg-raise text-muted hover:bg-raise"
-      }`}
+      } inline-flex items-center gap-1.5`}
     >
+      {glyph && <SetGlyph color={glyph} sizeClass="h-4 w-4" />}
       {label}
     </button>
   );

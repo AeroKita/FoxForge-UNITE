@@ -8,7 +8,8 @@ patch. Treat it as first-class.
 The build-time baseline bundle `src/data/patch-current.json` (stable filename;  
 `patchVersion` lives inside the JSON) is sourced from  
 [UNITE-DB](https://unite-db.com) via `tools/community/` (`fetch.py` →  
-`normalize.py`; art via `fetch_art.py`). The version-stamped published copy  
+`normalize.py`; art via `fetch_art.py`, which also mirrors the eleven
+color-set glyphs at `emblems/sets/<Color>.png`). The version-stamped published copy  
 under `public/data/` (`patch-<patchVersion>.json` + `manifest.json`) is produced  
 by the data-refresh tooling, not hand-named. This is the documented community  
 fallback: first-party APK datamining is **blocked** because v1.23.1.1 encrypts  

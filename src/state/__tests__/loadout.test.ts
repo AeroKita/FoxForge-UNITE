@@ -1,17 +1,11 @@
 import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
-import { APP_NAME } from "../../ui/brand";
 import {
   emptyLoadout,
   encodeLoadout,
   decodeLoadout,
   loadOwnedEmblems,
-  loadoutToFileJSON,
-  parseLoadoutFile,
   sanitizeLoadout,
   normalizeLoadout,
-  loadoutFileName,
-  ownedEmblemsToFileJSON,
-  parseOwnedEmblemsFile,
   type Loadout,
 } from "../loadout";
 
@@ -110,17 +104,6 @@ describe("legacy emblem id remap", () => {
     store.set("unite-build-optimizer.ownedEmblems.v2", JSON.stringify(["152-chicorita:gold"]));
     expect(loadOwnedEmblems()).toEqual(new Set(["152-chikorita:gold"]));
   });
-
-  it("remaps legacy key in parseOwnedEmblemsFile with validEmblemIds", () => {
-    const valid = new Set(["152-chikorita"]);
-    const parsed = parseOwnedEmblemsFile(JSON.stringify(["152-chicorita:gold"]), valid);
-    expect(parsed).toEqual(new Set(["152-chikorita:gold"]));
-  });
-
-  it("passes through non-legacy keys in parseOwnedEmblemsFile", () => {
-    const parsed = parseOwnedEmblemsFile(JSON.stringify(["001-bulbasaur:gold"]));
-    expect(parsed).toEqual(new Set(["001-bulbasaur:gold"]));
-  });
 });
 
 describe("loadout sharing", () => {
@@ -167,45 +150,7 @@ describe("loadout sharing", () => {
   });
 });
 
-describe("loadout file export/import", () => {
-  const sample: Loadout = {
-    pokemonId: "lucario",
-    level: 13,
-    heldItemIds: ["muscle-band", "scope-lens", null],
-    battleItemId: "x-attack",
-    move1Id: null,
-    move2Id: null,
-    emblems: [
-      { emblemId: "001-bulbasaur", grade: "gold" },
-      { emblemId: "004-charmander", grade: "silver" },
-    ],
-    activeBoostIds: ["x-attack"],
-  };
-
-  it("round-trips a loadout through the file wrapper", () => {
-    expect(parseLoadoutFile(loadoutToFileJSON(sample))).toEqual(sample);
-  });
-
-  it("labels the export with the current app name", () => {
-    const parsed = JSON.parse(loadoutToFileJSON(sample)) as { app: string };
-    expect(parsed.app).toBe(APP_NAME);
-  });
-
-  it("imports a file exported under the previous FoxForge GG app label", () => {
-    const legacy = {
-      app: "FoxForge GG",
-      kind: "foxforge.loadout",
-      schemaVersion: 1,
-      exportedAt: 0,
-      loadout: sample,
-    };
-    expect(parseLoadoutFile(JSON.stringify(legacy))).toEqual(sample);
-  });
-
-  it("accepts a bare loadout object (no wrapper)", () => {
-    expect(parseLoadoutFile(JSON.stringify(sample))).toEqual(sample);
-  });
-
+describe("sanitizeLoadout", () => {
   it("sanitizes bad shapes: clamps level, 3 held slots, caps emblems", () => {
     const messy = sanitizeLoadout({
       pokemonId: "pikachu",
@@ -236,69 +181,10 @@ describe("loadout file export/import", () => {
     };
     expect(sanitizeLoadout(raw)?.emblems).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
     expect(normalizeLoadout(raw).emblems).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
-    expect(parseLoadoutFile(JSON.stringify(raw))?.emblems).toEqual([
-      { emblemId: "001-bulbasaur", grade: "gold" },
-    ]);
     expect(
       decodeLoadout(
         encodeLoadout({ ...emptyLoadout("pikachu"), emblems: raw.emblems as Loadout["emblems"] }),
       )?.emblems,
     ).toEqual([{ emblemId: "001-bulbasaur", grade: "gold" }]);
-  });
-
-  it("rejects non-loadout JSON and junk", () => {
-    expect(parseLoadoutFile("{}")).toBeNull();
-    expect(parseLoadoutFile("not json")).toBeNull();
-    expect(parseLoadoutFile(JSON.stringify({ foo: 1 }))).toBeNull();
-  });
-
-  it("builds a filesystem-safe download name", () => {
-    expect(loadoutFileName(sample, "Mr. Mime")).toBe("foxforge-mr-mime.json");
-    expect(loadoutFileName(emptyLoadout())).toBe("foxforge-build.json");
-  });
-});
-
-describe("owned-emblem inventory file export/import", () => {
-  it("round-trips a sorted array", () => {
-    const original = new Set(["004-charmander:silver", "001-bulbasaur:gold"]);
-    const json = ownedEmblemsToFileJSON(original);
-    expect(json.indexOf("001-bulbasaur:gold")).toBeLessThan(json.indexOf("004-charmander:silver"));
-    expect(parseOwnedEmblemsFile(json)).toEqual(original);
-  });
-
-  it("accepts all four grades including platinum", () => {
-    const parsed = parseOwnedEmblemsFile(JSON.stringify(["pikachu:platinum"]));
-    expect(parsed).toEqual(new Set(["pikachu:platinum"]));
-  });
-
-  it("returns null for structural errors", () => {
-    expect(parseOwnedEmblemsFile("not json")).toBeNull();
-    expect(parseOwnedEmblemsFile("{}")).toBeNull();
-    expect(parseOwnedEmblemsFile(JSON.stringify({ a: 1 }))).toBeNull();
-    expect(parseOwnedEmblemsFile(JSON.stringify(["ok:gold", 5]))).toBeNull();
-  });
-
-  it("skips malformed entries silently without nulling the whole file", () => {
-    const parsed = parseOwnedEmblemsFile(
-      JSON.stringify(["nocolon", ":gold", "x:diamond", "001-bulbasaur:gold"]),
-    );
-    expect(parsed).toEqual(new Set(["001-bulbasaur:gold"]));
-  });
-
-  it("drops unknown emblem IDs when validEmblemIds is supplied", () => {
-    const input = JSON.stringify(["001-bulbasaur:gold", "made-up-mon:gold"]);
-    const valid = new Set(["001-bulbasaur"]);
-    expect(parseOwnedEmblemsFile(input, valid)).toEqual(new Set(["001-bulbasaur:gold"]));
-    expect(parseOwnedEmblemsFile(input)).toEqual(
-      new Set(["001-bulbasaur:gold", "made-up-mon:gold"]),
-    );
-  });
-
-  it("deduplicates repeated keys", () => {
-    const parsed = parseOwnedEmblemsFile(
-      JSON.stringify(["001-bulbasaur:gold", "001-bulbasaur:gold"]),
-    );
-    expect(parsed).toEqual(new Set(["001-bulbasaur:gold"]));
-    expect(parsed?.size).toBe(1);
   });
 });
