@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { setBonuses } from "../../data/gameData";
-import { formatActiveSetBonuses, formatSetBonus } from "../setProgress";
+import { EMBLEM_SET_INFO } from "../emblemSets";
+import { formatActiveSetBonuses, formatSetBonus, formatSetEffectShort } from "../setProgress";
 
 describe("formatSetBonus", () => {
   it("stat colors use the short stat label and a positive percent", () => {
@@ -33,5 +34,27 @@ describe("formatSetBonus", () => {
         expect(text).not.toContain("+-");
       }
     }
+  });
+});
+
+describe("formatSetEffectShort", () => {
+  const byColor = new Map(EMBLEM_SET_INFO.map((r) => [r.color, r]));
+
+  it("uses compact stat labels so Equipped Sets rows do not wrap", () => {
+    const brown = byColor.get("brown")!;
+    const red = byColor.get("red")!;
+    const yellow = byColor.get("yellow")!;
+    expect(formatSetEffectShort(brown, { value: 4 })).toBe("+4% Atk");
+    expect(formatSetEffectShort(red, { value: 8 })).toBe("+8% Atk Spd");
+    expect(formatSetEffectShort(yellow, { value: 12 })).toBe("+12% Move (OOC)");
+  });
+
+  it("shortens utility phrases without using the HP placeholder", () => {
+    const pink = byColor.get("pink")!;
+    const navy = byColor.get("navy")!;
+    const gray = byColor.get("gray")!;
+    expect(formatSetEffectShort(pink, { value: 16 })).toBe("−16% hindrance");
+    expect(formatSetEffectShort(navy, { value: 2 })).toBe("−2% Unite charge");
+    expect(formatSetEffectShort(gray, { value: 3 })).toBe("−3 dmg");
   });
 });

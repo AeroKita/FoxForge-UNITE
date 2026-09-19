@@ -2,7 +2,8 @@ import type { EmblemLoadoutImpact } from "../engine/emblemSearch/pokemonScore";
 import { activeBonusPercent, countColors, MAX_EMBLEM_SLOTS } from "../engine/emblems";
 import type { EmblemColor, EmblemSetBonus, EmblemSlot, StatBlock } from "../types";
 import { EMBLEM_SET_INFO, type SetInfoRow } from "./emblemSets";
-import { formatDelta, formatStat, STAT_ROWS } from "./format";
+import { formatDelta, STAT_ROWS } from "./format";
+import { formatSetEffectShort } from "./setProgress";
 
 export interface WheelPosition {
   left: number;
@@ -21,8 +22,12 @@ export interface EquippedSetRow {
 export interface ImpactRow {
   key: keyof StatBlock;
   label: string;
-  before: string;
-  after: string;
+  delta: string;
+  sign: "pos" | "neg";
+}
+
+export interface OocGainRow {
+  label: string;
   delta: string;
   sign: "pos" | "neg";
 }
@@ -69,23 +74,43 @@ export function equippedSetRows(
   return rows;
 }
 
-/** Non-zero emblemDelta rows in STAT_ROWS order. before = effective − delta. */
+/** Non-zero emblemDelta rows in STAT_ROWS order. Gains only — no before/after totals. */
 export function emblemImpactRows(impact: EmblemLoadoutImpact | null): ImpactRow[] {
   if (!impact) return [];
   const rows: ImpactRow[] = [];
   for (const row of STAT_ROWS) {
     const delta = impact.emblemDelta[row.key];
     if (delta == null || delta === 0) continue;
-    const after = impact.effective[row.key];
-    const before = after - delta;
     rows.push({
       key: row.key,
       label: row.label,
-      before: formatStat(before, row.kind),
-      after: formatStat(after, row.kind),
       delta: formatDelta(delta, row.kind),
       sign: delta > 0 ? "pos" : "neg",
     });
   }
   return rows;
+}
+
+/** Short Equipped Sets caption: active bonus, else count/next threshold. */
+export function equippedSetCaption(row: EquippedSetRow): string {
+  if (row.active) return formatSetEffectShort(row.info, row.active);
+  if (row.next != null) return `${row.count}/${row.next}`;
+  return `×${row.count}`;
+}
+
+/**
+ * Extra out-of-combat move speed from a yellow set, vs in-combat with the
+ * same emblems. Null when yellow is inactive or the extra is zero.
+ */
+export function emblemOocMoveGain(impact: EmblemLoadoutImpact | null): OocGainRow | null {
+  if (!impact?.oocMoveSpeed) return null;
+  const yellow = impact.emblemLoadout.activeSetBonuses.some((b) => b.color === "yellow");
+  if (!yellow) return null;
+  const gain = impact.oocMoveSpeed - impact.effective.moveSpeed;
+  if (gain === 0) return null;
+  return {
+    label: "Move Speed (OOC)",
+    delta: formatDelta(gain, "int"),
+    sign: gain > 0 ? "pos" : "neg",
+  };
 }

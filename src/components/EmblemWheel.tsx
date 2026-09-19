@@ -57,7 +57,7 @@ export function EmblemWheel({
   );
 
   const lg = size === "lg";
-  const boxClass = lg ? "w-[min(80vw,300px)]" : "w-24";
+  const boxClass = lg ? "w-[min(80vw,280px)]" : "w-32";
 
   const defaultHub = lg ? (
     <div className="flex flex-col items-center justify-center text-center">
@@ -95,15 +95,15 @@ export function EmblemWheel({
             src={asset(emblemIconForGrade(slot.emblem, slot.grade))}
             alt=""
             colors={slot.emblem.colors}
-            sizeClass={lg ? "h-12 w-12" : "h-5 w-5"}
+            sizeClass={lg ? "h-11 w-11" : "h-7 w-7"}
             showGlyphs={lg}
           />
         ) : lg ? (
-          <span className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-dashed border-line text-xl text-faint">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-dashed border-line text-xl text-faint">
             +
           </span>
         ) : (
-          <span className="block h-5 w-5 rounded-full bg-raise" />
+          <span className="block h-7 w-7 rounded-full bg-raise" />
         );
         const className = `absolute -translate-x-1/2 -translate-y-1/2 ${
           popping.has(i) ? "emblem-pop" : ""

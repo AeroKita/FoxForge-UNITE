@@ -4,23 +4,22 @@ import {
   deriveEmblemLoadoutImpact,
   type EmblemLoadoutImpact,
 } from "../engine/emblemSearch/pokemonScore";
-import type { EmblemGrade, EmblemColor, Pokemon } from "../types";
-import { emblemImpactRows, equippedSetRows } from "../ui/emblemWheel";
+import type { EmblemColor, EmblemGrade, EmblemSlot, Pokemon } from "../types";
+import { emblemImpactRows, emblemOocMoveGain, equippedSetRows } from "../ui/emblemWheel";
+import { EmblemWheel } from "./EmblemWheel";
 import { EquippedSets } from "./EquippedSets";
 import { EquippedStats } from "./EquippedStats";
 
-export function EmblemPanels({
+function useEmblemPanelData({
   picks,
   pokemon,
   level,
   impact: impactProp,
-  onRowClick,
 }: {
   picks: { emblemId: string; grade: EmblemGrade }[];
   pokemon: Pokemon | null;
   level: number;
   impact?: EmblemLoadoutImpact | null;
-  onRowClick?: (color: EmblemColor) => void;
 }) {
   const slots = useMemo(
     () =>
@@ -42,15 +41,73 @@ export function EmblemPanels({
   }, [impactProp, pokemon, level, picks, slots.length]);
 
   const statRows = useMemo(() => emblemImpactRows(impact), [impact]);
+  const oocGain = useMemo(() => emblemOocMoveGain(impact), [impact]);
+
+  return { setRows, statRows, oocGain };
+}
+
+export function EmblemPanels({
+  picks,
+  pokemon,
+  level,
+  impact,
+  onRowClick,
+  className,
+}: {
+  picks: { emblemId: string; grade: EmblemGrade }[];
+  pokemon: Pokemon | null;
+  level: number;
+  impact?: EmblemLoadoutImpact | null;
+  onRowClick?: (color: EmblemColor) => void;
+  className?: string;
+}) {
+  const { setRows, statRows, oocGain } = useEmblemPanelData({
+    picks,
+    pokemon,
+    level,
+    impact,
+  });
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className={["flex flex-col gap-4", className].filter(Boolean).join(" ")}>
       <EquippedSets rows={setRows} onRowClick={onRowClick} />
-      <EquippedStats
-        rows={statRows}
-        setBonuses={impact?.emblemLoadout.activeSetBonuses ?? []}
-        oocMoveSpeed={impact?.oocMoveSpeed}
-      />
+      <EquippedStats rows={statRows} oocGain={oocGain} />
+    </div>
+  );
+}
+
+/** Read-only small wheel, set rows, and compact gains. Row on sm+, stack on phones. */
+export function EmblemPreview({
+  slots,
+  picks,
+  pokemon,
+  level,
+  impact,
+  onRowClick,
+}: {
+  slots: (EmblemSlot | null)[];
+  picks: { emblemId: string; grade: EmblemGrade }[];
+  pokemon: Pokemon | null;
+  level: number;
+  impact?: EmblemLoadoutImpact | null;
+  onRowClick?: (color: EmblemColor) => void;
+}) {
+  const { setRows, statRows, oocGain } = useEmblemPanelData({
+    picks,
+    pokemon,
+    level,
+    impact,
+  });
+
+  return (
+    <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start">
+      <EmblemWheel size="sm" slots={slots} />
+      <div className="min-w-0 w-full flex-1">
+        <EquippedSets rows={setRows} onRowClick={onRowClick} />
+      </div>
+      <div className="w-full shrink-0 sm:w-40">
+        <EquippedStats rows={statRows} oocGain={oocGain} />
+      </div>
     </div>
   );
 }

@@ -4,8 +4,7 @@ import { deriveEmblemLoadoutImpact } from "../../engine/emblemSearch/pokemonScor
 import type { EmblemGrade } from "../../types";
 import { STAT_ROWS, formatExactDelta, formatStat } from "../../ui/format";
 import { CollapsibleCard } from "../CollapsibleCard";
-import { EmblemPanels } from "../EmblemPanels";
-import { EmblemWheel } from "../EmblemWheel";
+import { EmblemPreview } from "../EmblemPanels";
 import { formatActiveSetBonuses } from "../../ui/setProgress";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
 
@@ -124,14 +123,8 @@ export function ResultCards({
           <p className="text-center text-xs text-accent-ink">New results — tap › to view</p>
         )}
 
-        <div className="flex items-start gap-3">
-          <EmblemWheel size="sm" slots={wheelSlots} />
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-medium text-faint">Emblems</p>
-          </div>
-        </div>
-
-        <EmblemPanels
+        <EmblemPreview
+          slots={wheelSlots}
           picks={picks}
           pokemon={pokemon ?? null}
           level={previewLevel}

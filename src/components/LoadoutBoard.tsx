@@ -168,14 +168,14 @@ export function LoadoutBoard() {
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start">
-        <div>
+        <div className="flex flex-col items-center sm:items-stretch">
           <EmblemWheel
             slots={slots}
             size="lg"
             onSlotClick={(i) => setEmblemSheet(i)}
             onEmptyClick={() => setPicker({ kind: "emblem" })}
           />
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-wrap gap-1">
             <button
               type="button"
               onClick={() => {
@@ -184,7 +184,7 @@ export function LoadoutBoard() {
                 });
               }}
               disabled={loadout.emblems.length === 0}
-              className="min-h-11 flex-1 rounded-lg border border-line px-3 py-2 text-sm font-medium text-ink hover:bg-raise disabled:opacity-40"
+              className="min-h-11 flex-1 rounded-lg px-2 text-sm text-muted hover:bg-raise hover:text-ink disabled:opacity-40"
             >
               {copiedEmblems ? "Link copied ✓" : "Copy emblem link"}
             </button>
@@ -192,7 +192,7 @@ export function LoadoutBoard() {
               type="button"
               onClick={() => dispatch({ type: "applyBuild", emblems: [] })}
               disabled={loadout.emblems.length === 0}
-              className="min-h-11 rounded-lg border border-line px-3 py-2 text-sm font-medium text-muted hover:text-neg disabled:opacity-40"
+              className="min-h-11 rounded-lg px-2 text-sm text-muted hover:bg-raise hover:text-neg disabled:opacity-40"
             >
               Clear emblems
             </button>

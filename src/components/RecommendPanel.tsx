@@ -3,8 +3,7 @@ import { useStore } from "../state/store";
 import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
-import { EmblemPanels } from "./EmblemPanels";
-import { EmblemWheel } from "./EmblemWheel";
+import { EmblemPreview } from "./EmblemPanels";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
@@ -256,10 +255,12 @@ export function RecommendPanel() {
               )}
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <EmblemWheel size="sm" slots={resolvedEmblems} />
-            <EmblemPanels picks={build.emblems} pokemon={pokemon} level={loadout.level} />
-          </div>
+          <EmblemPreview
+            slots={resolvedEmblems}
+            picks={build.emblems}
+            pokemon={pokemon}
+            level={loadout.level}
+          />
         </div>
       )}
     </CollapsibleCard>

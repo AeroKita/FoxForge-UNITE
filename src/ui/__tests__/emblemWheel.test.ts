@@ -3,9 +3,15 @@ import { setBonuses } from "../../data/gameData";
 import type { EmblemColor, EmblemSlot, StatBlock } from "../../types";
 import type { EmblemLoadoutImpact } from "../../engine/emblemSearch/pokemonScore";
 import { MAX_EMBLEM_SLOTS } from "../../engine/emblems";
-import { formatDelta, formatStat, STAT_ROWS } from "../format";
+import { formatDelta, STAT_ROWS } from "../format";
 import { EMBLEM_SET_INFO } from "../emblemSets";
-import { emblemImpactRows, equippedSetRows, wheelSlotPositions } from "../emblemWheel";
+import {
+  emblemImpactRows,
+  emblemOocMoveGain,
+  equippedSetCaption,
+  equippedSetRows,
+  wheelSlotPositions,
+} from "../emblemWheel";
 
 function slot(name: string, colors: EmblemColor[]): EmblemSlot {
   return {
@@ -96,8 +102,28 @@ describe("equippedSetRows", () => {
   });
 });
 
+describe("equippedSetCaption", () => {
+  it("prints a short active bonus, else progress to the next threshold", () => {
+    const rows = equippedSetRows(
+      [
+        slot("b1", ["brown"]),
+        slot("b2", ["brown"]),
+        slot("b3", ["brown"]),
+        slot("b4", ["brown"]),
+        slot("b5", ["brown"]),
+        slot("b6", ["brown"]),
+        slot("p1", ["pink"]),
+      ],
+      setBonuses,
+    );
+    const byColor = new Map(rows.map((r) => [r.color, r]));
+    expect(equippedSetCaption(byColor.get("brown")!)).toBe("+4% Atk");
+    expect(equippedSetCaption(byColor.get("pink")!)).toBe("1/3");
+  });
+});
+
 describe("emblemImpactRows", () => {
-  it("formats before/after/delta from emblemDelta in STAT_ROWS order", () => {
+  it("formats signed deltas from emblemDelta in STAT_ROWS order, with no before/after totals", () => {
     const impact = {
       effective: { ...zeros(), hp: 1000, attack: 400 },
       emblemDelta: { hp: 120, attack: -5 },
@@ -107,25 +133,59 @@ describe("emblemImpactRows", () => {
 
     const rows = emblemImpactRows(impact);
     expect(rows.map((r) => r.key)).toEqual(["hp", "attack"]);
-    expect(rows[0]).toMatchObject({
+    expect(rows[0]).toEqual({
       key: "hp",
       label: STAT_ROWS.find((r) => r.key === "hp")!.label,
-      before: formatStat(880, "int"),
-      after: formatStat(1000, "int"),
       delta: formatDelta(120, "int"),
       sign: "pos",
     });
-    expect(rows[1]).toMatchObject({
+    expect(rows[1]).toEqual({
       key: "attack",
       label: STAT_ROWS.find((r) => r.key === "attack")!.label,
-      before: formatStat(405, "int"),
-      after: formatStat(400, "int"),
       delta: formatDelta(-5, "int"),
       sign: "neg",
     });
+    expect(rows[0]).not.toHaveProperty("before");
+    expect(rows[0]).not.toHaveProperty("after");
   });
 
   it("returns [] for a null impact", () => {
     expect(emblemImpactRows(null)).toEqual([]);
+  });
+});
+
+describe("emblemOocMoveGain", () => {
+  it("returns the extra out-of-combat move speed when yellow is active", () => {
+    const impact = {
+      effective: { ...zeros(), moveSpeed: 4545 },
+      emblemDelta: { moveSpeed: 245 },
+      emblemLoadout: {
+        slots: [],
+        flatTotals: {},
+        activeSetBonuses: [{ color: "yellow", bonusPercent: 0.12 }],
+      },
+      oocMoveSpeed: 5090,
+    } as EmblemLoadoutImpact;
+
+    expect(emblemOocMoveGain(impact)).toEqual({
+      label: "Move Speed (OOC)",
+      delta: formatDelta(545, "int"),
+      sign: "pos",
+    });
+  });
+
+  it("returns null when yellow is not active", () => {
+    const impact = {
+      effective: { ...zeros(), moveSpeed: 4300 },
+      emblemDelta: { moveSpeed: 21 },
+      emblemLoadout: {
+        slots: [],
+        flatTotals: {},
+        activeSetBonuses: [{ color: "brown", bonusPercent: 0.04 }],
+      },
+      oocMoveSpeed: 4300,
+    } as EmblemLoadoutImpact;
+    expect(emblemOocMoveGain(impact)).toBeNull();
+    expect(emblemOocMoveGain(null)).toBeNull();
   });
 });
