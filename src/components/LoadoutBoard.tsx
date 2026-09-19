@@ -18,7 +18,7 @@ import { heldItemStatLines, statLines } from "../ui/format";
 import { gradesForEmblem } from "../ui/emblems";
 import { EMBLEM_COLOR_HEX, ALL_EMBLEM_COLORS } from "../ui/colors";
 import { EmblemFace } from "./EmblemFace";
-import { setProgressRows, STAT_LABEL } from "../ui/setProgress";
+import { setProgressRows, formatSetBonus } from "../ui/setProgress";
 import { PickerModal, type PickItem } from "./PickerModal";
 import { Tooltip } from "./Tooltip";
 import { GradeField } from "./GradeField";
@@ -221,8 +221,7 @@ export function LoadoutBoard() {
                     <span className="font-medium text-ink">×{row.count}</span>
                     <span className="text-muted">
                       {" "}
-                      (+{(row.met.bonusPercent * 100).toFixed(0)}%{" "}
-                      {STAT_LABEL[row.met.stat] ?? row.met.stat})
+                      ({formatSetBonus(row.color, row.met.bonusPercent)})
                     </span>
                     <span className="text-pos">✓</span>
                   </>

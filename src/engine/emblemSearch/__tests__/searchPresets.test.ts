@@ -156,6 +156,28 @@ describe("resolveColorSearchMode", () => {
     expect(res.colorConstraints).toBeNull();
   });
 
+  it("[PRE-4b] pink/navy/gray targets are enforceable as exact constraints", () => {
+    const emblems = [
+      ...nOf(8, ["pink"], "pk", { hp: 50, defense: -5 }),
+      ...nOf(8, ["navy"], "nv"),
+      ...nOf(8, ["gray"], "gy"),
+      ...nOf(8, ["white"], "wh"),
+    ];
+    const pool = buildCandidatePool(emblems, {});
+    const targets = new Map<EmblemColor, number>([
+      ["pink", 3],
+      ["navy", 3],
+      ["gray", 3],
+    ]);
+    const res = resolveColorSearchMode(pool, targets, SLOTS);
+    expect(res.mode).toBe("exact");
+    expect(res.colorConstraints!.get("pink")).toBe(3);
+    expect(res.colorConstraints!.get("navy")).toBe(3);
+    expect(res.colorConstraints!.get("gray")).toBe(3);
+    expect(res.constrainedBuildCount).not.toBeNull();
+    expect(res.constrainedBuildCount! > 0n).toBe(true);
+  });
+
   it("[PRE-12] feasible over-cap pool → exact mode, non-null constraints, willRunExact false", () => {
     // Rich pool: many dual brown+white + singles so brown=6,white=6 is feasible
     // but the constrained build count exceeds DEFAULT_EXACT_CAP.
@@ -494,6 +516,21 @@ describe("preset → runSearch integration", () => {
     expect(result!.phase).toBe("heuristic");
     expect(result!.picks).toHaveLength(SLOTS);
   }, 30000);
+});
+
+describe("colorTargetsFromUi", () => {
+  it("includes utility colors when they are checked with a positive count", () => {
+    const targets = colorTargetsFromUi(["pink", "navy", "gray", "brown"], {
+      pink: 3,
+      navy: 5,
+      gray: 0,
+      brown: 6,
+    });
+    expect(targets.get("pink")).toBe(3);
+    expect(targets.get("navy")).toBe(5);
+    expect(targets.has("gray")).toBe(false);
+    expect(targets.get("brown")).toBe(6);
+  });
 });
 
 // ---------------------------------------------------------------------------

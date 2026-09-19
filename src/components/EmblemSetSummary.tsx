@@ -1,7 +1,7 @@
 import { emblemById, setBonuses } from "../data/gameData";
 import { sumEmblemFlats, countColors, computeEmblemLoadout } from "../engine/emblems";
 import { statLines } from "../ui/format";
-import { STAT_LABEL } from "../ui/setProgress";
+import { formatSetBonus } from "../ui/setProgress";
 import { EMBLEM_COLOR_HEX } from "../ui/colors";
 import type { EmblemColor, EmblemGrade } from "../types";
 
@@ -31,7 +31,6 @@ export function EmblemSetSummary({
   const bonusByColor = new Map(
     computeEmblemLoadout(slots, setBonuses).activeSetBonuses.map((b) => [b.color, b.bonusPercent]),
   );
-  const statByColor = new Map(setBonuses.map((s) => [s.color, s.stat]));
   const colorRows = [...counts.entries()].filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
 
   return (
@@ -64,7 +63,6 @@ export function EmblemSetSummary({
         <div className="flex flex-col gap-0.5">
           {colorRows.map(([color, n]) => {
             const bonus = bonusByColor.get(color as EmblemColor);
-            const stat = statByColor.get(color as EmblemColor);
             return (
               <div key={color} className="flex items-center justify-between gap-2 text-xs">
                 <span className="flex items-center gap-1.5">
@@ -76,9 +74,7 @@ export function EmblemSetSummary({
                   <span className="text-faint">×{n}</span>
                 </span>
                 <span className={`font-mono ${bonus ? "font-semibold text-ink" : "text-faint"}`}>
-                  {bonus
-                    ? `+${(bonus * 100).toFixed(0)}% ${stat ? (STAT_LABEL[stat] ?? stat) : ""}`
-                    : "—"}
+                  {bonus != null ? formatSetBonus(color as EmblemColor, bonus) : "—"}
                 </span>
               </div>
             );

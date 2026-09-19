@@ -10,6 +10,8 @@ import {
   enumerateColorKVectors,
   computeKPrefix,
   computeGradeAwareKPrefix,
+  groupVariantsByName,
+  shouldEnumerateGrades,
   searchColorExactSlice,
   searchColorExact,
 } from "../exactColor";
@@ -186,6 +188,105 @@ describe("full dataset — mixedGrades gates enumeration", () => {
     expect(nameOnly).not.toBeNull();
     expect(gradeAware).not.toBeNull();
     expect(gradeAware! > nameOnly!).toBe(true);
+  });
+});
+
+describe("single-grade inventories skip grade enumeration", () => {
+  // Regression: a pool built from an inventory held at one grade (all gold,
+  // all silver, or all bronze) has one variant per Pokémon, so the grade-aware
+  // path re-derives identical builds. It used to be entered anyway, indexing
+  // the whole space before the first evaluation and freezing the UI.
+  function singleGradePool(grade: string, count = 12) {
+    const emblems: Emblem[] = Array.from({ length: count }, (_, i) =>
+      makeEmblem(`Mon${i}`, ["brown"] as never, { attack: 1 }),
+    );
+    const ownedKeys = new Set(emblems.map((e) => `${e.id}:${grade}`));
+    return buildCandidatePool(emblems, { ownedKeys, mixedGrades: true });
+  }
+
+  it.each(["gold", "silver", "bronze"])("%s-only pool reports no grades to enumerate", (grade) => {
+    const pool = singleGradePool(grade);
+    const targets = new Map<string, number>([["brown", 10]]);
+    expect(shouldEnumerateGrades(minOpts(targets, true), groupVariantsByName(pool))).toBe(false);
+  });
+
+  it("a second owned grade re-enables enumeration", () => {
+    const emblems: Emblem[] = Array.from({ length: 12 }, (_, i) =>
+      makeEmblem(`Mon${i}`, ["brown"] as never, { attack: 1 }),
+    );
+    const ownedKeys = new Set(emblems.map((e) => `${e.id}:gold`));
+    ownedKeys.add(`${emblems[0].id}:silver`);
+    const pool = buildCandidatePool(emblems, { ownedKeys, mixedGrades: true });
+    const targets = new Map<string, number>([["brown", 10]]);
+    expect(shouldEnumerateGrades(minOpts(targets, true), groupVariantsByName(pool))).toBe(true);
+  });
+
+  it("mixed grades on or off searches an identical space and result", async () => {
+    const pool = singleGradePool("gold");
+    const targets = new Map<string, number>([["brown", 10]]);
+
+    const on = await searchColorExact(pool, minOpts(targets, true), []);
+    const off = await searchColorExact(pool, minOpts(targets, false), []);
+
+    expect(on).not.toBeNull();
+    expect(on!.evaluated).toBe(off!.evaluated);
+    expect(on!.ev.score).toBe(off!.ev.score);
+  });
+});
+
+describe("computeGradeAwareKPrefix", () => {
+  it("indexes a wide space without walking it", () => {
+    // 60 Pokémon choose 10 is ~7.5e10 builds. Walking that to build the index
+    // is what froze the UI; the closed form must return effectively instantly.
+    const emblems: Emblem[] = Array.from({ length: 60 }, (_, i) =>
+      makeEmblem(`Mon${i}`, ["brown"] as never, { attack: 1 }),
+    );
+    const pool = buildCandidatePool(emblems, {
+      ownedKeys: new Set(emblems.map((e) => `${e.id}:gold`)),
+      mixedGrades: true,
+    });
+    const targets = new Map<string, number>([["brown", 10]]);
+    const groups = buildColorTargetGroups(pool, targets as Map<never, number>);
+    const sizes = groups.map((g) => g.names.length);
+    const kVectors = enumerateColorKVectors(groups, sizes, [10], 10)!;
+
+    const started = Date.now();
+    const prefix = computeGradeAwareKPrefix(groups, sizes, kVectors, groupVariantsByName(pool));
+    const elapsed = Date.now() - started;
+
+    // Every name carries one variant, so the grade-aware total is the plain
+    // combination count C(60, 10).
+    expect(prefix[prefix.length - 1]).toBe(75_394_027_566);
+    expect(elapsed).toBeLessThan(1_000);
+  });
+
+  it("matches a brute-force walk on a mixed-grade pool", () => {
+    // Uneven variant counts: some names gold-only, some gold+silver.
+    const emblems: Emblem[] = Array.from({ length: 9 }, (_, i) =>
+      makeEmblem(`Mon${i}`, [i % 2 === 0 ? "brown" : "green"] as never, { attack: 1 }),
+    );
+    const ownedKeys = new Set<string>();
+    emblems.forEach((e, i) => {
+      ownedKeys.add(`${e.id}:gold`);
+      if (i % 3 === 0) ownedKeys.add(`${e.id}:silver`);
+    });
+    const pool = buildCandidatePool(emblems, { ownedKeys, mixedGrades: true });
+    const targets = new Map<string, number>([
+      ["brown", 3],
+      ["green", 2],
+    ]);
+    const groups = buildColorTargetGroups(pool, targets as Map<never, number>);
+    const sizes = groups.map((g) => g.names.length);
+    const kVectors = enumerateColorKVectors(groups, sizes, [3, 2], 5)!;
+    const variantsByName = groupVariantsByName(pool);
+
+    const prefix = computeGradeAwareKPrefix(groups, sizes, kVectors, variantsByName);
+
+    // The search evaluates one loadout per indexed position, so the index
+    // total must equal what an exhaustive run actually visits.
+    expect(prefix[prefix.length - 1]).toBe(
+      Number(countExactEnumerationSpace(pool, targets as never, 5, true)),
+    );
   });
 });
 

@@ -63,6 +63,12 @@ describe("evaluate — color target matching", () => {
     const counts = new Map([["brown", 3] as [string, number]]);
     expect(colorsMatchTargets(counts as never, null)).toBe(true);
   });
+
+  it("matches utility-color (pink) targets the same as stat colors", () => {
+    const counts = new Map([["pink", 3] as [string, number]]);
+    expect(colorsMatchTargets(counts as never, new Map([["pink", 3]]) as never)).toBe(true);
+    expect(colorsMatchTargets(counts as never, new Map([["pink", 5]]) as never)).toBe(false);
+  });
 });
 
 describe("evaluate — maximize scoring", () => {
@@ -90,6 +96,51 @@ describe("evaluate — maximize scoring", () => {
     const ev = evaluateLoadout(pool, opts, setBonuses);
     expect(ev.valid).toBe(false);
     expect(ev.score).toBe(-1e12);
+  });
+
+  it("pink Clefairy gold flats score via HP priority and Exact pink=1", () => {
+    const clefairy = emblems.find((e) => e.id === "035-clefairy")!;
+    expect(clefairy.colors).toEqual(["pink"]);
+    const [cand] = buildCandidatePool([clefairy], { grades: ["gold"] });
+    expect(cand.stats.hp).toBe(50);
+    expect(cand.stats.defense).toBe(-5);
+
+    const opts: SearchOptions = {
+      ...makeMaximizeOpts(),
+      slots: 1,
+      priorities: { hp: 3 },
+      colorConstraints: new Map([["pink", 1]]),
+    };
+    const ev = evaluateLoadout([cand], opts, setBonuses);
+    expect(ev.valid).toBe(true);
+    expect(ev.colorCounts.get("pink")).toBe(1);
+    expect(ev.totals.hp).toBe(50);
+    expect(ev.score).toBeGreaterThan(0);
+
+    const miss = evaluateLoadout(
+      [cand],
+      { ...opts, colorConstraints: new Map([["pink", 3]]) },
+      setBonuses,
+    );
+    expect(miss.valid).toBe(false);
+  });
+
+  it("Clefairy Defense −5 is penalized by a Defense protect floor", () => {
+    const clefairy = emblems.find((e) => e.id === "035-clefairy")!;
+    const [cand] = buildCandidatePool([clefairy], { grades: ["gold"] });
+    const opts: SearchOptions = {
+      ...makeMaximizeOpts(),
+      slots: 1,
+      priorities: { hp: 3 },
+      protected: { defense: 0 },
+      colorConstraints: new Map([["pink", 1]]),
+    };
+    const ev = evaluateLoadout([cand], opts, setBonuses);
+    expect(ev.valid).toBe(true);
+    expect(ev.totals.defense).toBe(-5);
+    expect(ev.score).toBeLessThan(
+      evaluateLoadout([cand], { ...opts, protected: {} }, setBonuses).score,
+    );
   });
 
   it("protect floor penalty reduces score for stat below floor", () => {

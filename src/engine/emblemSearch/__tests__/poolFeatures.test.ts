@@ -297,6 +297,19 @@ describe("color mode — SearchOptions wiring", () => {
     expect(colorConstraints!.get("brown")).toBe(6);
   });
 
+  it("[FU-3b] exact mode can constrain pink, navy, and gray", () => {
+    const { colorConstraints } = buildColorOpts(
+      "exact",
+      ["pink", "navy", "gray"],
+      { pink: 3, navy: 5, gray: 7 },
+      false,
+    );
+    expect(colorConstraints).not.toBeNull();
+    expect(colorConstraints!.get("pink")).toBe(3);
+    expect(colorConstraints!.get("navy")).toBe(5);
+    expect(colorConstraints!.get("gray")).toBe(7);
+  });
+
   it("[FU-3c] colorBonuses is forced true when mode is 'weighted' regardless of checkbox", () => {
     const { colorBonuses } = buildColorOpts("weighted", [], {}, false);
     expect(colorBonuses).toBe(true);

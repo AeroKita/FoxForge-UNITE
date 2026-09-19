@@ -22,11 +22,7 @@ function Row({ r }: { r: SetInfoRow }) {
             key={t.count}
             className="rounded bg-raise px-1.5 py-0.5 font-mono text-[11px] text-muted"
           >
-            {t.count}×{" "}
-            <span className="font-semibold text-ink">
-              {r.kind === "stat" ? "+" : "−"}
-              {t.percent}%
-            </span>
+            {t.count}× <span className="font-semibold text-ink">+{t.percent}%</span>
           </span>
         ))}
       </div>

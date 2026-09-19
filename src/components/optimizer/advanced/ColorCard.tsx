@@ -6,17 +6,21 @@ import {
 import { formatBuildCount, matchingBuildDisplayCount } from "../../../engine/emblemSearch/pool";
 import type { ResolvedEmblemPreset } from "../../../engine/emblemSearch/optimizerPresets";
 import type { EmblemColor } from "../../../types";
+import { EMBLEM_SET_INFO, type SetInfoRow } from "../../../ui/emblemSets";
 import { CollapsibleCard } from "../../CollapsibleCard";
 import { Segmented } from "../../Segmented";
 import { ColorCountField } from "../ColorCountField";
 import {
   ColorDot,
-  POSITIVE_COLORS,
   presetAutofillIntro,
   SLOTS,
   type ColorMode,
   type OptimizerPokemon,
 } from "../shared";
+
+const STAT_SET_ROWS = EMBLEM_SET_INFO.filter((r) => r.kind === "stat");
+const UTILITY_SET_ROWS = EMBLEM_SET_INFO.filter((r) => r.kind === "utility");
+const UTILITY_COLORS = new Set(UTILITY_SET_ROWS.map((r) => r.color));
 
 export interface ColorCardProps {
   colorMode: ColorMode;
@@ -65,6 +69,15 @@ export function ColorCard({
   optimizeLevel,
   emblemPresetResolution,
 }: ColorCardProps) {
+  const hasUtilityTarget = [...activeColors].some((c) => UTILITY_COLORS.has(c));
+
+  const toggleColor = (col: EmblemColor, checked: boolean) => {
+    const next = new Set(activeColors);
+    if (checked) next.add(col);
+    else next.delete(col);
+    setActiveColors(next);
+  };
+
   return (
     <CollapsibleCard title="Color" persistKey="optimizer-colors" defaultOpen={false}>
       <div className="flex flex-col gap-3">
@@ -112,40 +125,33 @@ export function ColorCard({
                 change Pokémon.
               </p>
             )}
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {POSITIVE_COLORS.map((col) => (
-                <label
-                  key={col}
-                  className={`flex min-h-12 cursor-pointer items-center gap-2 rounded-lg border bg-white/5 p-2 text-xs transition ${
-                    activeColors.has(col) ? "border-accent/60 bg-accent-weak" : "border-line"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={activeColors.has(col)}
-                    onChange={(e) => {
-                      const next = new Set(activeColors);
-                      if (e.target.checked) next.add(col);
-                      else next.delete(col);
-                      setActiveColors(next);
-                    }}
-                    className="accent-accent"
-                  />
-                  <ColorDot color={col} />
-                  <span className="flex-1 capitalize">{col}</span>
-                  <div
-                    className={`shrink-0 ${activeColors.has(col) ? "" : "invisible"}`}
-                    aria-hidden={!activeColors.has(col)}
-                  >
-                    <ColorCountField
-                      label={col}
-                      value={colorCounts[col] ?? 0}
-                      max={Math.min(SLOTS, colorCapacities.get(col) ?? SLOTS)}
-                      onCommit={(n) => setColorCounts((prev) => ({ ...prev, [col]: n }))}
-                    />
-                  </div>
-                </label>
-              ))}
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[10px] font-medium uppercase tracking-wide text-faint">
+                Stat sets
+              </span>
+              <ColorTargetGrid
+                rows={STAT_SET_ROWS}
+                activeColors={activeColors}
+                colorCounts={colorCounts}
+                colorCapacities={colorCapacities}
+                onToggle={toggleColor}
+                onCount={(col, n) => setColorCounts((prev) => ({ ...prev, [col]: n }))}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[10px] font-medium uppercase tracking-wide text-faint">
+                Utility sets
+              </span>
+              <ColorTargetGrid
+                rows={UTILITY_SET_ROWS}
+                columns="utility"
+                activeColors={activeColors}
+                colorCounts={colorCounts}
+                colorCapacities={colorCapacities}
+                onToggle={toggleColor}
+                onCount={(col, n) => setColorCounts((prev) => ({ ...prev, [col]: n }))}
+              />
             </div>
 
             {colorMode === "exact" && !colorConstraintValid && (
@@ -177,10 +183,14 @@ export function ColorCard({
                 <div className="flex flex-wrap gap-1.5">
                   {colorBonusPreviews.map((b) => {
                     const pctStr = `+${(b.percent * 100).toFixed(0)}%`;
-                    const statLabel = BONUS_STAT_LABELS[b.stat] ?? String(b.stat);
+                    const effectLabel =
+                      b.kind === "utility"
+                        ? (UTILITY_SET_ROWS.find((r) => r.color === b.color)?.label ?? b.color)
+                        : (BONUS_STAT_LABELS[b.stat] ?? String(b.stat));
                     const baseStats = pokemon?.baseStatsByLevel?.[optimizeLevel - 1];
-                    const baseVal = baseStats?.[b.stat] ?? 0;
-                    const delta = baseVal > 0 ? concreteBonusDelta(b, baseVal) : null;
+                    const baseVal = b.kind === "stat" ? (baseStats?.[b.stat] ?? 0) : 0;
+                    const delta =
+                      b.kind === "stat" && baseVal > 0 ? concreteBonusDelta(b, baseVal) : null;
                     const deltaStr =
                       delta !== null
                         ? b.percentPoint
@@ -197,14 +207,14 @@ export function ColorCard({
                         <span className="capitalize">{b.color}</span>
                         <span className="text-faint">×{b.count}</span>
                         <span className="font-medium text-pos">
-                          {pctStr} {statLabel}
+                          {pctStr} {effectLabel}
                         </span>
                         {deltaStr && <span className="text-muted">{deltaStr}</span>}
                       </span>
                     );
                   })}
                 </div>
-                {pokemon && (
+                {pokemon && colorBonusPreviews.some((b) => b.kind === "stat") && (
                   <span className="text-xs text-faint">
                     Based on {pokemon.displayName} at level {optimizeLevel}.
                   </span>
@@ -213,6 +223,12 @@ export function ColorCard({
             )}
             {activeColors.size > 0 && colorBonusPreviews.length === 0 && (
               <p className="text-xs text-faint">No set-bonus tier reached at these counts.</p>
+            )}
+            {hasUtilityTarget && colorMode === "weighted" && (
+              <p className="text-xs text-faint">
+                Weighted does not steer toward pink, navy, or gray. Switch to Exact to require those
+                counts.
+              </p>
             )}
 
             {colorMode === "exact" &&
@@ -257,5 +273,68 @@ export function ColorCard({
         )}
       </div>
     </CollapsibleCard>
+  );
+}
+
+function ColorTargetGrid({
+  rows,
+  columns = "stat",
+  activeColors,
+  colorCounts,
+  colorCapacities,
+  onToggle,
+  onCount,
+}: {
+  rows: SetInfoRow[];
+  columns?: "stat" | "utility";
+  activeColors: Set<EmblemColor>;
+  colorCounts: Record<EmblemColor, number>;
+  colorCapacities: Map<EmblemColor, number>;
+  onToggle: (color: EmblemColor, checked: boolean) => void;
+  onCount: (color: EmblemColor, n: number) => void;
+}) {
+  return (
+    <div
+      className={
+        columns === "utility"
+          ? "grid grid-cols-1 gap-2 sm:grid-cols-3"
+          : "grid grid-cols-2 gap-2 sm:grid-cols-4"
+      }
+    >
+      {rows.map((row) => {
+        const col = row.color;
+        const active = activeColors.has(col);
+        return (
+          <label
+            key={col}
+            className={`flex min-h-12 cursor-pointer items-center gap-2 rounded-lg border bg-white/5 p-2 text-xs transition ${
+              active ? "border-accent/60 bg-accent-weak" : "border-line"
+            }`}
+          >
+            <input
+              type="checkbox"
+              checked={active}
+              onChange={(e) => onToggle(col, e.target.checked)}
+              className="accent-accent"
+            />
+            <ColorDot color={col} />
+            <span className="flex min-w-0 flex-1 flex-col leading-tight">
+              <span className="capitalize">{col}</span>
+              {row.kind === "utility" && (
+                <span className="text-[10px] text-faint">{row.label}</span>
+              )}
+            </span>
+            <div className={`shrink-0 ${active ? "" : "invisible"}`} aria-hidden={!active}>
+              <ColorCountField
+                label={col}
+                value={colorCounts[col] ?? 0}
+                max={Math.min(SLOTS, colorCapacities.get(col) ?? SLOTS)}
+                onCommit={(n) => onCount(col, n)}
+              />
+            </div>
+          </label>
+        );
+      })}
+    </div>
   );
 }
