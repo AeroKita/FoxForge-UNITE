@@ -216,9 +216,9 @@ export type EmblemColor =
   | "red" // Atk Speed
   | "yellow" // Move Speed (OOC)
   | "black" // CDR
-  | "pink" // Tenacity (hindrance reduction)
-  | "navy" // Unite charge rate
-  | "gray"; // Damage reduction
+  | "pink" // hindrance effect duration
+  | "navy" // Unite Move gauge time to full charge
+  | "gray"; // flat received damage
 
 export type EmblemGrade = "bronze" | "silver" | "gold" | "platinum";
 

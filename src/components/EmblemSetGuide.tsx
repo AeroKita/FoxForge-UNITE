@@ -1,5 +1,5 @@
 import { EMBLEM_COLOR_HEX } from "../ui/colors";
-import { EMBLEM_SET_INFO, type SetInfoRow } from "../ui/emblemSets";
+import { EMBLEM_SET_INFO, formatSetMagnitude, type SetInfoRow } from "../ui/emblemSets";
 import { useModalDismiss } from "../ui/useModalDismiss";
 
 function Row({ r }: { r: SetInfoRow }) {
@@ -11,10 +11,7 @@ function Row({ r }: { r: SetInfoRow }) {
       />
       <div className="w-28 shrink-0">
         <div className="text-sm font-medium capitalize text-ink">{r.color}</div>
-        <div className="text-[11px] leading-tight text-faint">
-          {r.label}
-          {r.note ? ` · ${r.note}` : ""}
-        </div>
+        <div className="text-[11px] leading-tight text-faint">{r.label}</div>
       </div>
       <div className="flex flex-1 flex-wrap gap-1">
         {r.tiers.map((t) => (
@@ -22,7 +19,8 @@ function Row({ r }: { r: SetInfoRow }) {
             key={t.count}
             className="rounded bg-raise px-1.5 py-0.5 font-mono text-[11px] text-muted"
           >
-            {t.count}× <span className="font-semibold text-ink">+{t.percent}%</span>
+            {t.count}×{" "}
+            <span className="font-semibold text-ink">{formatSetMagnitude(r, t.value)}</span>
           </span>
         ))}
       </div>

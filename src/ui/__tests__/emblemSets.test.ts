@@ -32,10 +32,9 @@ describe("emblem color-set infographic data", () => {
     expect(byColor.get("black")!.label).toBe("move cooldown reduction");
   });
 
-  it("yellow is movement speed when out of combat with no note", () => {
+  it("yellow is movement speed when out of combat", () => {
     const yellow = byColor.get("yellow")!;
     expect(yellow.label).toBe("movement speed when out of combat");
-    expect(yellow.note).toBeUndefined();
   });
 
   it("pink, navy, and gray are utility rows with a minus sign", () => {

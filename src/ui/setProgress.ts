@@ -1,7 +1,7 @@
 import { activeBonusPercent } from "../engine/emblems";
 import { setBonusStat } from "../engine/formulas";
 import type { EmblemColor, EmblemSetBonus, StatBlock } from "../types";
-import { EMBLEM_SET_INFO } from "./emblemSets";
+import { EMBLEM_SET_INFO, formatSetTier } from "./emblemSets";
 
 export const STAT_LABEL: Partial<Record<keyof StatBlock, string>> = {
   attack: "Atk",
@@ -18,19 +18,22 @@ const SET_INFO_BY_COLOR = new Map(EMBLEM_SET_INFO.map((r) => [r.color, r]));
 
 /**
  * Display a reached set bonus. Utility colors (pink/navy/gray) are stored in
- * the bundle as negative HP placeholders — show the real effect and a positive
- * magnitude instead of "−16% HP".
+ * the bundle as negative HP placeholders — show the in-game wording and the
+ * row's own sign/unit instead of "−16% HP".
  */
 export function formatSetBonus(color: EmblemColor, bonusPercent: number): string {
-  const pct = `+${Math.round(Math.abs(bonusPercent) * 100)}%`;
   const info = SET_INFO_BY_COLOR.get(color);
-  if (info?.kind === "utility") return `${pct} ${info.label}`;
+  if (info?.kind === "utility") {
+    const value = Math.round(Math.abs(bonusPercent) * 100);
+    return formatSetTier(info, { count: 0, value });
+  }
+  const pct = `+${Math.round(Math.abs(bonusPercent) * 100)}%`;
   const stat = setBonusStat(color);
   const label = (stat && STAT_LABEL[stat]) || info?.label || color;
   return `${pct} ${label}`;
 }
 
-/** Footnote list: `brown +4% Atk, pink +16% Tenacity`. */
+/** Footnote list: `brown +4% Atk, pink −16% hindrance effect duration`. */
 export function formatActiveSetBonuses(
   bonuses: { color: EmblemColor; bonusPercent: number }[],
 ): string {
