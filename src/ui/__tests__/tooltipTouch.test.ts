@@ -32,4 +32,10 @@ describe("tooltip touch trigger", () => {
     expect(shouldPinOnTouchClick("long-press", "touch")).toBe(false);
     expect(shouldPinOnTouchClick("long-press", "mouse")).toBe(false);
   });
+
+  it("does not pin on tap click when the popup is already open so the backdrop can dismiss", () => {
+    expect(shouldPinOnTouchClick("tap", "touch", true)).toBe(false);
+    expect(shouldPinOnTouchClick("tap", "pen", true)).toBe(false);
+    expect(shouldPinOnTouchClick("tap", "touch", false)).toBe(true);
+  });
 });

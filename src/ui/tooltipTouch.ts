@@ -22,7 +22,12 @@ export function shouldStartLongPressTimer(
 
 /**
  * True when a completed touch/pen click should pin the tooltip popup.
+ * False when the popup is already open so the backdrop click can dismiss it.
  */
-export function shouldPinOnTouchClick(trigger: TooltipTouchTrigger, pointerType: string): boolean {
-  return trigger === "tap" && isTouchLikePointer(pointerType);
+export function shouldPinOnTouchClick(
+  trigger: TooltipTouchTrigger,
+  pointerType: string,
+  pinned = false,
+): boolean {
+  return !pinned && trigger === "tap" && isTouchLikePointer(pointerType);
 }

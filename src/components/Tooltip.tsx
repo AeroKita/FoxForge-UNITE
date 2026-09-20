@@ -81,7 +81,7 @@ export function Tooltip({
           firedRef.current = false;
           return;
         }
-        if (shouldPinOnTouchClick(touchTrigger, pointerTypeRef.current)) {
+        if (shouldPinOnTouchClick(touchTrigger, pointerTypeRef.current, pinned)) {
           e.preventDefault();
           e.stopPropagation();
           setPinned(true);
