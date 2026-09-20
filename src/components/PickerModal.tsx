@@ -15,6 +15,8 @@ export interface PickItem {
   title?: string; // hover tooltip (e.g. item description)
   tip?: ReactNode; // rich long-press/hover tooltip content (e.g. itemTip output)
   colors?: EmblemColor[];
+  disabled?: boolean;
+  group?: string;
 }
 
 const GRADES: EmblemGrade[] = ["bronze", "silver", "gold"];
@@ -35,6 +37,7 @@ interface Props {
   goldOnlyIds?: Set<string>; // hide from silver/bronze pickers (UNITE-DB gold-only emblems)
   initialFilterLabel?: string;
   footer?: ReactNode;
+  groupInfo?: Record<string, { title: string; hint?: string }>;
 }
 
 export function PickerModal({
@@ -52,6 +55,7 @@ export function PickerModal({
   onClear,
   goldOnlyIds,
   initialFilterLabel,
+  groupInfo,
 }: Props) {
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<string | null>(initialFilterLabel ?? null);
@@ -71,6 +75,12 @@ export function PickerModal({
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, query, activeFilter, filters, ownedOnly, owned, grade, goldOnlyIds]);
+
+  const ungrouped = useMemo(() => shown.filter((it) => !it.group), [shown]);
+  const groupIds = useMemo(
+    () => [...new Set(shown.flatMap((it) => (it.group ? [it.group] : [])))],
+    [shown],
+  );
 
   const ownedCount = owned
     ? grades
@@ -170,70 +180,136 @@ export function PickerModal({
             <span className="text-xs font-medium leading-tight">Empty slot</span>
           </button>
         )}
-        {shown.map((it) => {
-          const ownedHere = isOwned(it.id);
-          const tip = grades && tipForGrade ? tipForGrade(it.id, grade) : it.tip;
-          const subtitle =
-            grades && subtitleForGrade ? subtitleForGrade(it.id, grade) : it.subtitle;
-          const tile = (
-            <button
-              type="button"
-              onClick={() => {
-                onPick(it.id, grades ? grade : undefined);
-                onClose();
-              }}
-              title={it.title ?? it.name}
-              className={`relative flex min-h-24 w-full flex-col items-center justify-center gap-1 rounded-xl border p-2 text-center hover:border-accent hover:bg-accent-weak ${
-                ownedHere ? "border-as-border bg-as-bg" : "border-line"
-              }`}
-            >
-              {it.colors && it.colors.length > 0 ? (
-                <EmblemFace
-                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
-                  alt={it.name}
-                  colors={it.colors}
-                  sizeClass="h-12 w-12"
-                  glyphClass="h-3 w-3"
-                />
-              ) : (
-                <img
-                  src={asset(grades && iconForGrade ? iconForGrade(it.id, grade) : it.icon)}
-                  alt={it.name}
-                  loading="lazy"
-                  className="h-12 w-12 object-contain"
-                />
-              )}
-              {onToggleOwn && (
-                <span
-                  role="button"
-                  title={
-                    ownedHere ? `Owned (${grade}) — click to unmark` : `Mark ${grade} as owned`
-                  }
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onToggleOwn(it.id, grade);
-                  }}
-                  className={`absolute right-1 top-1 flex min-h-11 min-w-11 items-center justify-center text-sm leading-none ${ownedHere ? "text-as-ink" : "text-faint hover:text-as-ink"}`}
-                >
-                  ★
-                </span>
-              )}
-              <span className="text-xs font-medium leading-tight text-ink">{it.name}</span>
-              {subtitle && <span className="text-[10px] text-faint">{subtitle}</span>}
-            </button>
-          );
-          return tip ? (
-            <Tooltip key={it.id} content={tip} className="w-full">
-              {tile}
-            </Tooltip>
-          ) : (
-            <span key={it.id} className="contents">
-              {tile}
-            </span>
-          );
-        })}
+        {ungrouped.map((it) => (
+          <PickerTile
+            key={it.id}
+            item={it}
+            grade={grade}
+            grades={grades}
+            ownedHere={!!isOwned(it.id)}
+            iconForGrade={iconForGrade}
+            tipForGrade={tipForGrade}
+            subtitleForGrade={subtitleForGrade}
+            onToggleOwn={onToggleOwn}
+            onPick={onPick}
+            onClose={onClose}
+          />
+        ))}
       </div>
+      {groupIds.map((groupId) => {
+        const meta = groupInfo?.[groupId];
+        const groupItems = shown.filter((it) => it.group === groupId);
+        if (groupItems.length === 0) return null;
+        return (
+          <div key={groupId} className="mt-4">
+            <h3 className="text-sm font-semibold text-ink">{meta?.title ?? groupId}</h3>
+            {meta?.hint && <p className="mb-2 text-xs text-muted">{meta.hint}</p>}
+            <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-4">
+              {groupItems.map((it) => (
+                <PickerTile
+                  key={it.id}
+                  item={it}
+                  grade={grade}
+                  grades={grades}
+                  ownedHere={!!isOwned(it.id)}
+                  iconForGrade={iconForGrade}
+                  tipForGrade={tipForGrade}
+                  subtitleForGrade={subtitleForGrade}
+                  onToggleOwn={onToggleOwn}
+                  onPick={onPick}
+                  onClose={onClose}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </BottomSheet>
+  );
+}
+
+function PickerTile({
+  item,
+  grade,
+  grades,
+  ownedHere,
+  iconForGrade,
+  tipForGrade,
+  subtitleForGrade,
+  onToggleOwn,
+  onPick,
+  onClose,
+}: {
+  item: PickItem;
+  grade: EmblemGrade;
+  grades?: boolean;
+  ownedHere: boolean;
+  iconForGrade?: (id: string, grade: EmblemGrade) => string;
+  tipForGrade?: (id: string, grade: EmblemGrade) => ReactNode;
+  subtitleForGrade?: (id: string, grade: EmblemGrade) => string;
+  onToggleOwn?: (id: string, grade: EmblemGrade) => void;
+  onPick: (id: string, grade?: EmblemGrade) => void;
+  onClose: () => void;
+}) {
+  const tip = grades && tipForGrade ? tipForGrade(item.id, grade) : item.tip;
+  const subtitle = grades && subtitleForGrade ? subtitleForGrade(item.id, grade) : item.subtitle;
+  const tile = (
+    <button
+      type="button"
+      aria-disabled={item.disabled || undefined}
+      onClick={() => {
+        if (item.disabled) return;
+        onPick(item.id, grades ? grade : undefined);
+        onClose();
+      }}
+      title={item.title ?? item.name}
+      className={`relative flex min-h-24 w-full flex-col items-center justify-center gap-1 rounded-xl border p-2 text-center ${
+        item.disabled
+          ? "cursor-default border-line opacity-50 grayscale"
+          : `hover:border-accent hover:bg-accent-weak ${
+              ownedHere ? "border-as-border bg-as-bg" : "border-line"
+            }`
+      }`}
+    >
+      {item.colors && item.colors.length > 0 ? (
+        <EmblemFace
+          src={asset(grades && iconForGrade ? iconForGrade(item.id, grade) : item.icon)}
+          alt={item.name}
+          colors={item.colors}
+          sizeClass="h-12 w-12"
+          glyphClass="h-3 w-3"
+        />
+      ) : (
+        <img
+          src={asset(grades && iconForGrade ? iconForGrade(item.id, grade) : item.icon)}
+          alt={item.name}
+          loading="lazy"
+          className="h-12 w-12 object-contain"
+        />
+      )}
+      {onToggleOwn && (
+        <span
+          role="button"
+          title={ownedHere ? `Owned (${grade}) — click to unmark` : `Mark ${grade} as owned`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleOwn(item.id, grade);
+          }}
+          className={`absolute right-1 top-1 flex min-h-11 min-w-11 items-center justify-center text-sm leading-none ${ownedHere ? "text-as-ink" : "text-faint hover:text-as-ink"}`}
+        >
+          ★
+        </span>
+      )}
+      <span className="text-xs font-medium leading-tight text-ink">{item.name}</span>
+      {subtitle && <span className="text-[10px] text-faint">{subtitle}</span>}
+    </button>
+  );
+  return tip ? (
+    <Tooltip content={tip} className="w-full">
+      {tile}
+    </Tooltip>
+  ) : (
+    <span className="contents">{tile}</span>
   );
 }
 

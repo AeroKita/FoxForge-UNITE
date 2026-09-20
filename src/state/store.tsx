@@ -43,6 +43,7 @@ import {
   resolveSlotGrades,
   saveHeldItemGradeMemory,
 } from "./heldItemGrades";
+import { affixUniqueHeldItems, canAssignHeldItem } from "./uniqueHeldLoadout";
 import { requestPersistentStorage } from "./persistentStorage";
 
 export type Action =
@@ -71,6 +72,13 @@ export type Action =
   | { type: "reset" };
 
 export function reducer(state: Loadout, action: Action): Loadout {
+  if (action.type === "setHeldItem" && !canAssignHeldItem(state, action.slot, action.id)) {
+    return affixUniqueHeldItems(state);
+  }
+  return affixUniqueHeldItems(reduceLoadout(state, action));
+}
+
+function reduceLoadout(state: Loadout, action: Action): Loadout {
   switch (action.type) {
     case "setPokemon":
       // Switching Pokémon invalidates move-based active boosts and move picks
@@ -237,14 +245,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     typeof location !== "undefined" ? readShareHash(location.hash, shareResolver) : null,
   );
   const [loadout, dispatch] = useReducer(reducer, initialShare, (share) => {
-    if (share?.kind === "loadout") return normalizeLoadout(share.loadout);
+    if (share?.kind === "loadout") return affixUniqueHeldItems(normalizeLoadout(share.loadout));
     if (share?.kind === "emblems") {
       const current = loadCurrent() ?? emptyLoadout();
-      return normalizeLoadout({ ...current, emblems: share.picks });
+      return affixUniqueHeldItems(normalizeLoadout({ ...current, emblems: share.picks }));
     }
     const current = loadCurrent();
-    if (current) return current;
-    return emptyLoadout();
+    if (current) return affixUniqueHeldItems(current);
+    return affixUniqueHeldItems(emptyLoadout());
   });
   const [saved, setSaved] = useState<SavedLoadout[]>(() => loadSavedLoadouts());
   const [saveError, setSaveError] = useState<string | null>(null);
