@@ -484,7 +484,11 @@ function SlotTile({
           {item.displayName} · {grade}
         </button>
       ) : (
-        <span className={`mt-0.5 flex min-h-11 items-start justify-center pt-0.5 ${captionClass}`}>
+        <span
+          className={`mt-0.5 flex min-h-11 items-start justify-center ${
+            locked ? "pt-2" : "pt-0.5"
+          } ${captionClass}`}
+        >
           {item ? item.displayName : emptyLabel}
         </span>
       )}
