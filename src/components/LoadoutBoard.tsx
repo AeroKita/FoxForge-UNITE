@@ -10,6 +10,8 @@ import {
   isUniqueHeldItem,
   pokemonById,
 } from "../data/gameData";
+import { isUniqueHeldItemId } from "../data/uniqueHeld";
+import { slotHoldsAffixedUnique } from "../state/uniqueHeldLoadout";
 import { MAX_EMBLEM_SLOTS } from "../engine/emblems";
 import { asset } from "../ui/asset";
 import { emblemIconForGrade } from "../ui/emblemIcon";
@@ -19,6 +21,7 @@ import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../ui/colors";
 import { shareLink } from "../ui/share";
 import { useTransientValue } from "../ui/transientValue";
 import { PickerModal, type PickItem } from "./PickerModal";
+import { partitionHeldPickerItems } from "../ui/heldPicker";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { GradeField } from "./GradeField";
@@ -58,13 +61,17 @@ export function LoadoutBoard() {
     [],
   );
 
-  const heldPickItems: PickItem[] = heldItems.map((i) => ({
-    id: i.id,
-    name: i.displayName,
-    icon: i.iconAsset,
-    title: i.description,
-    tip: itemTip(i, heldItemGrade(i.id)),
-  }));
+  const heldPickItems: PickItem[] = (() => {
+    const rows: PickItem[] = heldItems.map((i) => ({
+      id: i.id,
+      name: i.displayName,
+      icon: i.iconAsset,
+      title: i.description,
+      tip: itemTip(i, heldItemGrade(i.id)),
+    }));
+    const { regular, unique } = partitionHeldPickerItems(rows, isUniqueHeldItemId);
+    return [...regular, ...unique];
+  })();
   const battlePickItems: PickItem[] = battleItems.map((i) => ({
     id: i.id,
     name: i.displayName,
@@ -143,24 +150,30 @@ export function LoadoutBoard() {
         }
       >
         <p className="mb-3 text-xs text-faint">
-          Tap a slot to swap items — tap an item's name to set its grade.
+          Tap a slot to swap items — unique items stay equipped. Tap an item's name to set its
+          grade.
         </p>
 
         <div className="flex items-center gap-2">
           {loadout.heldItemIds.map((id, slot) => {
             const item = id ? heldItemById.get(id) : null;
             const grade = heldSlotGrades[slot];
+            const uniqueLocked = slotHoldsAffixedUnique(loadout, slot);
             return (
               <div key={`held-${slot}`} className="flex flex-col items-center">
                 <SlotTile
                   item={item ?? null}
                   grade={grade}
+                  locked={uniqueLocked}
                   onGradeTap={
                     item && !isUniqueHeldItem(item) ? () => setGradeSlot(slot) : undefined
                   }
                   emptyLabel="Held"
-                  onClick={() => setPicker({ kind: "held", slot })}
+                  onClick={uniqueLocked ? undefined : () => setPicker({ kind: "held", slot })}
                   tip={item ? itemTip(item, grade) : "Add a held item"}
+                  ariaLabel={
+                    uniqueLocked && item ? `${item.displayName} (unique, locked)` : undefined
+                  }
                 />
               </div>
             );
@@ -256,6 +269,12 @@ export function LoadoutBoard() {
         <PickerModal
           title="Choose Held Item"
           items={heldPickItems}
+          groupInfo={{
+            unique: {
+              title: "Unique Items",
+              hint: "Cannot be selected — unique items stay on the Pokémon they belong to.",
+            },
+          }}
           onPick={(id) => dispatch({ type: "setHeldItem", slot: picker.slot, id })}
           onClear={() => dispatch({ type: "setHeldItem", slot: picker.slot, id: null })}
           onClose={() => setPicker(null)}
@@ -390,23 +409,55 @@ function SlotTile({
   emptyLabel,
   onClick,
   tip,
+  locked,
+  ariaLabel,
 }: {
   item: HeldItem | BattleItem | null;
   grade?: number;
   onGradeTap?: () => void;
   emptyLabel: string;
-  onClick: () => void;
+  onClick?: () => void;
   tip: React.ReactNode;
+  locked?: boolean;
+  ariaLabel?: string;
 }) {
   const tile = item ? (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={item.displayName}
-      className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-raise"
-    >
-      <img src={asset(item.iconAsset)} alt="" className="h-10 w-10 object-contain" />
-    </button>
+    locked || !onClick ? (
+      <div
+        aria-label={ariaLabel ?? item.displayName}
+        className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-raise"
+      >
+        <img src={asset(item.iconAsset)} alt="" className="h-10 w-10 object-contain" />
+        {locked && (
+          <span
+            className="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center rounded-full bg-surface text-muted shadow-sm ring-1 ring-line"
+            aria-hidden
+          >
+            <svg
+              className="h-3 w-3"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="5" y="11" width="14" height="10" rx="2" />
+              <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+            </svg>
+          </span>
+        )}
+      </div>
+    ) : (
+      <button
+        type="button"
+        onClick={onClick}
+        aria-label={item.displayName}
+        className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-raise"
+      >
+        <img src={asset(item.iconAsset)} alt="" className="h-10 w-10 object-contain" />
+      </button>
+    )
   ) : (
     <button
       type="button"

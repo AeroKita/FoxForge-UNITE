@@ -3,6 +3,7 @@ import type { Loadout, SavedLoadout } from "./loadout";
 import { emptyLoadout, toLoadout } from "./loadout";
 import { moveIdsFromNames } from "../engine/moves";
 import { pokemonById } from "../data/gameData";
+import { affixUniqueHeldItems } from "./uniqueHeldLoadout";
 
 export type CompareSource = "recommended" | "creative" | "current" | "saved";
 export type PresetSource = "recommended" | "creative";
@@ -33,7 +34,7 @@ export function hasCreative(pokemon: Pokemon | null): boolean {
  *  for deriveBuild(). Independent of the store's current loadout. */
 export function presetToLoadout(pokemon: Pokemon, build: PokemonBuild): Loadout {
   const { move1Id, move2Id } = moveIdsFromNames(pokemon, build.moves);
-  return {
+  return affixUniqueHeldItems({
     ...emptyLoadout(pokemon.id),
     heldItemIds: [
       build.heldItemIds[0] ?? null,
@@ -44,7 +45,7 @@ export function presetToLoadout(pokemon: Pokemon, build: PokemonBuild): Loadout 
     move1Id,
     move2Id,
     emblems: build.emblems.map((e) => ({ emblemId: e.emblemId, grade: e.grade })),
-  };
+  });
 }
 
 /** Resolve a side's selection into the concrete Loadout to derive + display.
@@ -59,11 +60,11 @@ export function selectionToLoadout(
   if (sel.source === "current") return current;
   if (sel.source === "saved") {
     const s = saved.find((x) => x.id === sel.savedId);
-    return s ? toLoadout(s) : current;
+    return s ? affixUniqueHeldItems(toLoadout(s)) : current;
   }
   const pokemon = sel.pokemonId ? (pokemonById.get(sel.pokemonId) ?? null) : null;
   const builds = presetBuilds(pokemon, sel.source);
-  if (!pokemon || builds.length === 0) return emptyLoadout(sel.pokemonId);
+  if (!pokemon || builds.length === 0) return affixUniqueHeldItems(emptyLoadout(sel.pokemonId));
   const i = Math.min(Math.max(sel.variant, 0), builds.length - 1);
   return presetToLoadout(pokemon, builds[i]);
 }

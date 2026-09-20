@@ -66,6 +66,13 @@ describe("presetToLoadout", () => {
       expect(loadout.move2Id).toBeTruthy();
     }
   });
+
+  it("affixes Lucarionite on Mega Lucario presets", () => {
+    const megaLucario = pokemonById.get("mega-lucario")!;
+    const build = presetBuilds(megaLucario, "recommended")[0];
+    const loadout = presetToLoadout(megaLucario, build);
+    expect(loadout.heldItemIds).toContain("lucarionite");
+  });
 });
 
 describe("selectionToLoadout", () => {
@@ -156,5 +163,28 @@ describe("selectionToLoadout", () => {
     };
     const out = selectionToLoadout(sel, current, saved);
     expect(out).toEqual(emptyLoadout("not-a-real-pokemon"));
+  });
+
+  it("strips unique items from a saved loadout on the wrong Pokémon", () => {
+    const mismatched: SavedLoadout[] = [
+      {
+        ...emptyLoadout("pikachu"),
+        id: "save-unique",
+        name: "Wrong unique",
+        savedAt: 1,
+        heldItemIds: ["rusted-sword", "muscle-band", null],
+      },
+    ];
+    const sel: SideSelection = {
+      source: "saved",
+      pokemonId: null,
+      variant: 0,
+      savedId: "save-unique",
+    };
+    expect(selectionToLoadout(sel, current, mismatched).heldItemIds).toEqual([
+      null,
+      "muscle-band",
+      null,
+    ]);
   });
 });
