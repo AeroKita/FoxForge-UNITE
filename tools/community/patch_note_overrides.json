@@ -1727,6 +1727,16 @@
       "replace": "override the previous effects and refresh the duration",
       "why": "Goal Hacker applications (plural) takes refresh, not refreshes",
       "item": "goal-hacker"
+    },
+    {
+      "kind": "replaceText",
+      "fields": [
+        "description"
+      ],
+      "find": "When a hindrance is inflicted on a Pokémon from the opposing team",
+      "replace": "When a powerful hindrance is inflicted on a Pokémon from the opposing team",
+      "why": "Vanguard Bell in-game Basic triggers on a powerful hindrance, not any hindrance",
+      "item": "vanguard-bell"
     }
   ]
 }

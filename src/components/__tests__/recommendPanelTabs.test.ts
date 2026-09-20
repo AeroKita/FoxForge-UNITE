@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { BUILD_TABS, BUILD_KIT_SECTION_CLASS, buildsForTab } from "../RecommendPanel";
+import {
+  BUILD_TABS,
+  BUILD_KIT_SECTION_CLASS,
+  BUILD_KIT_TOOLTIP_TRIGGER,
+  buildsForTab,
+} from "../RecommendPanel";
 
 describe("Builds tabs", () => {
   const curated = [{ name: "curated" }];
@@ -38,6 +43,10 @@ describe("Builds kit section layout", () => {
     expect(baseOrder(emblems)).toBe(4);
     expect(moves).toMatch(/(?:^|\s)w-full(?:\s|$)/);
     expect(emblems).toMatch(/(?:^|\s)w-full(?:\s|$)/);
+  });
+
+  it("opens kit tooltips on tap instead of long-press", () => {
+    expect(BUILD_KIT_TOOLTIP_TRIGGER).toBe("tap");
   });
 
   it("keeps Held → Moves → Battle → Emblems order from sm and up", () => {

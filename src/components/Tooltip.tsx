@@ -1,27 +1,39 @@
 import { type ReactNode, useRef, useState } from "react";
 import { useModalDismiss } from "../ui/useModalDismiss";
+import {
+  DEFAULT_TOOLTIP_TOUCH_TRIGGER,
+  shouldPinOnTouchClick,
+  shouldStartLongPressTimer,
+  type TooltipTouchTrigger,
+} from "../ui/tooltipTouch";
 
 const LONG_PRESS_MS = 500;
 
+export type { TooltipTouchTrigger };
+
 // Lightweight CSS hover tooltip (no deps). Renders a styled popup on hover/focus.
-// Touch/pen long-press opens the same content in a dismissible modal popup.
+// Touch/pen: long-press (default) or tap (`touchTrigger="tap"`) opens the same
+// content in a dismissible modal popup.
 // Use inside containers that don't clip overflow (panels, not scroll lists).
 export function Tooltip({
   content,
   children,
   side = "bottom",
   className = "",
+  touchTrigger = DEFAULT_TOOLTIP_TOUCH_TRIGGER,
 }: {
   content: ReactNode;
   children: ReactNode;
   side?: "top" | "bottom";
   className?: string;
+  touchTrigger?: TooltipTouchTrigger;
 }) {
   const pos = side === "top" ? "bottom-full mb-1.5" : "top-full mt-1.5";
   const [pinned, setPinned] = useState(false);
   const timer = useRef<number | null>(null);
   const start = useRef<{ x: number; y: number } | null>(null);
   const firedRef = useRef(false);
+  const pointerTypeRef = useRef("");
 
   useModalDismiss(() => setPinned(false), pinned);
 
@@ -34,7 +46,8 @@ export function Tooltip({
 
   const onPointerDown = (e: React.PointerEvent) => {
     firedRef.current = false;
-    if (e.pointerType !== "touch" && e.pointerType !== "pen") return;
+    pointerTypeRef.current = e.pointerType;
+    if (!shouldStartLongPressTimer(touchTrigger, e.pointerType)) return;
     start.current = { x: e.clientX, y: e.clientY };
     clearTimer();
     timer.current = window.setTimeout(() => {
@@ -55,7 +68,7 @@ export function Tooltip({
 
   return (
     <span
-      className={`group/tt relative inline-flex select-none [-webkit-touch-callout:none] ${className}`}
+      className={`group/tt relative inline-flex select-none [-webkit-touch-callout:none] ${touchTrigger === "tap" ? "cursor-pointer" : ""} ${className}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={cancel}
@@ -66,6 +79,12 @@ export function Tooltip({
           e.preventDefault();
           e.stopPropagation();
           firedRef.current = false;
+          return;
+        }
+        if (shouldPinOnTouchClick(touchTrigger, pointerTypeRef.current)) {
+          e.preventDefault();
+          e.stopPropagation();
+          setPinned(true);
         }
       }}
     >

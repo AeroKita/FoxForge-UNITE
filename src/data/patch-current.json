@@ -66990,7 +66990,7 @@
       "id": "vanguard-bell",
       "displayName": "Vanguard Bell",
       "iconAsset": "/assets/items/held/Vanguard+Bell.png",
-      "description": "When a hindrance is inflicted on a Pokémon from the opposing team, the holder's HP is restored by 6/8/10% max HP (5s CD).",
+      "description": "When a powerful hindrance is inflicted on a Pokémon from the opposing team, the holder's HP is restored by 6/8/10% max HP (5s CD).",
       "statsByGrade": {
         "1": {
           "hp": 15.0

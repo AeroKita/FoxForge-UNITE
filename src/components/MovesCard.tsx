@@ -159,8 +159,8 @@ export function MovesCard() {
   return (
     <CollapsibleCard title="Moves" persistKey="moves" tone="sky" defaultOpen={false}>
       <p className="mb-3 text-xs text-faint">
-        {pokemon.displayName}'s kit — pick one upgrade per move; your picks set the final moves in
-        the Builds card.
+        {pokemon.displayName}'s kit — pick one upgrade per move. Long-press a Move to see a
+        demonstration.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <ChoosableMoveSlot label="Move 1" pokemon={pokemon} slot="move1" />

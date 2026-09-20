@@ -16,6 +16,9 @@ import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 export const BUILD_TABS = ["recommended", "creative"] as const;
 export type Tab = (typeof BUILD_TABS)[number];
 
+/** Touch trigger for kit tooltips (Held/Battle Items, Final Moves, Emblems). */
+export const BUILD_KIT_TOOLTIP_TRIGGER = "tap" as const;
+
 const TAB_LABEL: Record<Tab, string> = {
   recommended: "Recommended",
   creative: "Creative",
@@ -210,7 +213,11 @@ export function RecommendPanel() {
                 {build.heldItemIds.map((id) => {
                   const item = heldItemById.get(id);
                   return item ? (
-                    <Tooltip key={id} content={itemTip(item)}>
+                    <Tooltip
+                      key={id}
+                      content={itemTip(item)}
+                      touchTrigger={BUILD_KIT_TOOLTIP_TRIGGER}
+                    >
                       <span className="flex w-16 flex-col items-center">
                         <img
                           src={asset(item.iconAsset)}
@@ -231,7 +238,11 @@ export function RecommendPanel() {
                 <p className="mb-1 text-xs font-medium text-faint">Final Moves</p>
                 <div className="flex gap-2">
                   {finalMoveDisplays.map((mv) => (
-                    <Tooltip key={mv.id} content={moveTip(mv, expert)}>
+                    <Tooltip
+                      key={mv.id}
+                      content={moveTip(mv, expert)}
+                      touchTrigger={BUILD_KIT_TOOLTIP_TRIGGER}
+                    >
                       <span className="flex w-16 flex-col items-center">
                         <MoveIcon src={mv.iconAsset} alt={mv.name} />
                         <span className="mt-0.5 text-center text-[10px] leading-tight text-muted">
@@ -246,7 +257,10 @@ export function RecommendPanel() {
             <div className={BUILD_KIT_SECTION_CLASS.battle}>
               <p className="mb-1 text-xs font-medium text-faint">Battle Item</p>
               {battleItem ? (
-                <Tooltip content={battleItemTip(battleItem, expert)}>
+                <Tooltip
+                  content={battleItemTip(battleItem, expert)}
+                  touchTrigger={BUILD_KIT_TOOLTIP_TRIGGER}
+                >
                   <span className="flex w-16 flex-col items-center">
                     <img
                       src={asset(battleItem.iconAsset)}
@@ -264,7 +278,7 @@ export function RecommendPanel() {
             </div>
             <div className={BUILD_KIT_SECTION_CLASS.emblems}>
               <p className="mb-1 text-xs font-medium text-faint">Emblems</p>
-              <EmblemCoinRow slots={resolvedEmblems} />
+              <EmblemCoinRow slots={resolvedEmblems} touchTrigger={BUILD_KIT_TOOLTIP_TRIGGER} />
             </div>
           </div>
           <EmblemSetSummary picks={build.emblems} precise={expert} />

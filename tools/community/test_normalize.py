@@ -1229,6 +1229,37 @@ class TestApplyPatchNoteOverrides(unittest.TestCase):
         self.assertEqual(skipped, 1)
         self.assertEqual(bundle["heldItems"][0]["description"], "Boost by 11/14/17%.")
 
+    def test_replace_text_inserts_powerful_on_vanguard_bell(self):
+        bundle = {
+            "pokemon": [],
+            "heldItems": [{
+                "id": "vanguard-bell",
+                "description": (
+                    "When a hindrance is inflicted on a Pokémon from the opposing team, "
+                    "the holder's HP is restored."
+                ),
+            }],
+            "battleItems": [],
+        }
+        overrides = [{
+            "kind": "replaceText",
+            "item": "vanguard-bell",
+            "fields": ["description"],
+            "find": "When a hindrance is inflicted on a Pokémon from the opposing team",
+            "replace": "When a powerful hindrance is inflicted on a Pokémon from the opposing team",
+            "why": "test vanguard bell powerful hindrance",
+        }]
+        applied, skipped = apply_patch_note_overrides(bundle, overrides)
+        self.assertEqual(applied, 1)
+        self.assertEqual(skipped, 0)
+        self.assertTrue(
+            bundle["heldItems"][0]["description"].startswith("When a powerful hindrance")
+        )
+        self.assertNotIn(
+            "When a hindrance is inflicted on a Pokémon from the opposing team",
+            bundle["heldItems"][0]["description"],
+        )
+
     def test_replace_text_rewrites_battle_item_by_item_id(self):
         bundle = _minimal_override_bundle()
         overrides = [{

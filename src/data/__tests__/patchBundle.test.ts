@@ -158,6 +158,14 @@ describe("community data bundle", () => {
     expect(mb.statsByGrade["40"]?.attackSpeed).toBeCloseTo(0.0875, 6);
   });
 
+  it("describes Vanguard Bell as triggering on a powerful hindrance", () => {
+    const bell = bundle.heldItems.find((i) => i.id === "vanguard-bell")!;
+    expect(bell.description).toContain("When a powerful hindrance");
+    expect(bell.description).not.toContain(
+      "When a hindrance is inflicted on a Pokémon from the opposing team",
+    );
+  });
+
   it("carries structured grade 1/10/20 effect tiers from the source", () => {
     const mb = bundle.heldItems.find((i) => i.id === "muscle-band")!;
     expect(mb.effect).toEqual({ label: "Remaining HP", tiers: ["1%", "2%", "3%"] });
@@ -1128,6 +1136,7 @@ describe("community data bundle", () => {
         "shoot a flame of in",
         "Every 2 this Unite",
         "the user Release",
+        "When a hindrance is inflicted on a Pokémon from the opposing team",
       ];
       const texts = collectUserFacingTexts(bundle);
       for (const bad of banned) {
