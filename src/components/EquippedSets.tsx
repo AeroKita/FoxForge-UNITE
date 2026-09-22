@@ -9,6 +9,21 @@ import {
 import type { EmblemColor } from "../types";
 import { SetGlyph } from "./SetGlyph";
 
+/**
+ * Height track for an Equipped Sets bonus panel.
+ * `0fr` collapses and `1fr` expands over 0.5s.
+ * `motion-safe` skips the transition when the user prefers reduced motion.
+ */
+export function equippedSetDetailTrackClass(open: boolean): string {
+  return [
+    "grid",
+    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+    "motion-safe:transition-[grid-template-rows]",
+    "motion-safe:duration-500",
+    "motion-safe:ease-out",
+  ].join(" ");
+}
+
 function TierPip({
   label,
   reached,
@@ -65,7 +80,7 @@ export function EquippedSets({ rows }: { rows: EquippedSetRow[] }) {
             const countInk = countOnFill ? readableTextColor(fill) : undefined;
             const detailId = `equipped-set-detail-${row.color}`;
             return (
-              <li key={row.color}>
+              <li key={row.color} className="flex flex-col">
                 <button
                   type="button"
                   aria-label={label}
@@ -103,22 +118,25 @@ export function EquippedSets({ rows }: { rows: EquippedSetRow[] }) {
                     </span>
                   </span>
                 </button>
-                {open && (
-                  <div
-                    id={detailId}
-                    role="region"
-                    aria-label={`${row.color} set bonus`}
-                    className="mt-1 flex items-center gap-2.5 rounded-xl bg-raise px-3 py-2 ring-1 ring-line"
-                  >
-                    <span
-                      className="h-8 w-1.5 shrink-0 rounded-full"
-                      style={{ background: fill }}
-                      aria-hidden
-                    />
-                    <SetGlyph color={row.color} sizeClass="h-7 w-7 shrink-0" />
-                    <p className="min-w-0 text-sm font-semibold text-ink">{detail}</p>
+                <div className={equippedSetDetailTrackClass(open)}>
+                  <div className="min-h-0 overflow-hidden">
+                    <div
+                      id={detailId}
+                      role="region"
+                      aria-label={`${row.color} set bonus`}
+                      aria-hidden={!open}
+                      className="mt-1 flex items-center gap-2.5 rounded-xl bg-raise px-3 py-2 ring-1 ring-inset ring-line"
+                    >
+                      <span
+                        className="h-8 w-1.5 shrink-0 rounded-full"
+                        style={{ background: fill }}
+                        aria-hidden
+                      />
+                      <SetGlyph color={row.color} sizeClass="h-7 w-7 shrink-0" />
+                      <p className="min-w-0 text-sm font-semibold text-ink">{detail}</p>
+                    </div>
                   </div>
-                )}
+                </div>
               </li>
             );
           })}
