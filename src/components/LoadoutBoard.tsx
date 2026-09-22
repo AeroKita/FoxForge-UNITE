@@ -198,7 +198,7 @@ export function LoadoutBoard() {
 
       <CollapsibleCard title="Emblems" persistKey="loadout-emblems" defaultOpen>
         <p className="mb-3 text-xs text-faint">
-          Tap a coin to set its grade — tap an empty slot to add one. Tap the ? for the Color-Set
+          Tap an Emblem to set its grade — tap an empty slot to add one. Tap the ? for the Color-Set
           Guide. Tap a set row for its color bonus.
         </p>
         <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start">
