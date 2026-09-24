@@ -1371,6 +1371,70 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
             n_presets += 1
     print(f"  curated overlay: +{n_rec} recommended, +{n_creative} creative, "
           f"{n_titles} titles renamed, {n_presets} emblem presets")
+    replace_retired_physical_emblem_set(pokemon)
+
+
+# The community physical shell that used Bronze Aerodactyl plus the brown
+# fighters. Any Recommended or Creative loadout whose ten slots are exactly
+# this multiset is rewritten to the Kabutops / Golem / Ho-Oh shell.
+_RETIRED_PHYSICAL_EMBLEM_SET = frozenset({
+    ("250-ho-oh", "gold"),
+    ("022-fearow", "gold"),
+    ("128-tauros", "gold"),
+    ("130-gyarados", "gold"),
+    ("018-pidgeot", "gold"),
+    ("142-aerodactyl", "bronze"),
+    ("031-nidoqueen", "gold"),
+    ("057-primeape", "gold"),
+    ("068-machamp", "gold"),
+    ("105-marowak", "gold"),
+})
+
+_CURRENT_PHYSICAL_EMBLEM_SET = [
+    {"emblemId": "141-kabutops", "grade": "gold"},
+    {"emblemId": "076-golem", "grade": "gold"},
+    {"emblemId": "250-ho-oh", "grade": "gold"},
+    {"emblemId": "142-aerodactyl", "grade": "gold"},
+    {"emblemId": "128-tauros", "grade": "gold"},
+    {"emblemId": "115-kangaskhan", "grade": "gold"},
+    {"emblemId": "206-dunsparce", "grade": "gold"},
+    {"emblemId": "130-gyarados", "grade": "gold"},
+    {"emblemId": "062-poliwrath", "grade": "gold"},
+    {"emblemId": "195-quagsire", "grade": "gold"},
+]
+
+
+def _emblem_multiset(emblems) -> frozenset | None:
+    if not isinstance(emblems, list) or len(emblems) != 10:
+        return None
+    pairs = []
+    for emblem in emblems:
+        if not isinstance(emblem, dict):
+            return None
+        pairs.append((emblem.get("emblemId"), emblem.get("grade")))
+    if len(set(pairs)) != 10:
+        return None
+    return frozenset(pairs)
+
+
+def replace_retired_physical_emblem_set(pokemon) -> int:
+    """Rewrite every loadout that still uses the retired 10-emblem physical shell.
+
+    Match is order-independent and exact: ten slots, each (emblemId, grade)
+    pair present once. Other emblem sets are left alone. Returns how many
+    loadouts were rewritten.
+    """
+    replaced = 0
+    for mon in pokemon:
+        for tab in ("builds", "creativeBuilds"):
+            for build in mon.get(tab) or []:
+                if _emblem_multiset(build.get("emblems")) != _RETIRED_PHYSICAL_EMBLEM_SET:
+                    continue
+                build["emblems"] = [dict(slot) for slot in _CURRENT_PHYSICAL_EMBLEM_SET]
+                replaced += 1
+    if replaced:
+        print(f"  emblem shell: rewrote {replaced} retired physical loadouts")
+    return replaced
 
 
 # ---- patch-note overrides --------------------------------------------------

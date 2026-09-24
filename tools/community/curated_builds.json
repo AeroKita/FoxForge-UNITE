@@ -520,11 +520,19 @@
         ],
         "emblems": [
           {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
             "emblemId": "250-ho-oh",
             "grade": "gold"
           },
           {
-            "emblemId": "022-fearow",
+            "emblemId": "142-aerodactyl",
             "grade": "gold"
           },
           {
@@ -532,31 +540,23 @@
             "grade": "gold"
           },
           {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
             "emblemId": "130-gyarados",
             "grade": "gold"
           },
           {
-            "emblemId": "018-pidgeot",
+            "emblemId": "062-poliwrath",
             "grade": "gold"
           },
           {
-            "emblemId": "142-aerodactyl",
-            "grade": "bronze"
-          },
-          {
-            "emblemId": "031-nidoqueen",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "057-primeape",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "068-machamp",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "105-marowak",
+            "emblemId": "195-quagsire",
             "grade": "gold"
           }
         ],
@@ -578,11 +578,19 @@
         ],
         "emblems": [
           {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
             "emblemId": "250-ho-oh",
             "grade": "gold"
           },
           {
-            "emblemId": "022-fearow",
+            "emblemId": "142-aerodactyl",
             "grade": "gold"
           },
           {
@@ -590,31 +598,23 @@
             "grade": "gold"
           },
           {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
             "emblemId": "130-gyarados",
             "grade": "gold"
           },
           {
-            "emblemId": "018-pidgeot",
+            "emblemId": "062-poliwrath",
             "grade": "gold"
           },
           {
-            "emblemId": "142-aerodactyl",
-            "grade": "bronze"
-          },
-          {
-            "emblemId": "031-nidoqueen",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "057-primeape",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "068-machamp",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "105-marowak",
+            "emblemId": "195-quagsire",
             "grade": "gold"
           }
         ],
@@ -637,11 +637,19 @@
         ],
         "emblems": [
           {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
             "emblemId": "250-ho-oh",
             "grade": "gold"
           },
           {
-            "emblemId": "022-fearow",
+            "emblemId": "142-aerodactyl",
             "grade": "gold"
           },
           {
@@ -649,31 +657,23 @@
             "grade": "gold"
           },
           {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
             "emblemId": "130-gyarados",
             "grade": "gold"
           },
           {
-            "emblemId": "018-pidgeot",
+            "emblemId": "062-poliwrath",
             "grade": "gold"
           },
           {
-            "emblemId": "142-aerodactyl",
-            "grade": "bronze"
-          },
-          {
-            "emblemId": "031-nidoqueen",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "057-primeape",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "068-machamp",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "105-marowak",
+            "emblemId": "195-quagsire",
             "grade": "gold"
           }
         ],
@@ -695,11 +695,19 @@
         ],
         "emblems": [
           {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
             "emblemId": "250-ho-oh",
             "grade": "gold"
           },
           {
-            "emblemId": "022-fearow",
+            "emblemId": "142-aerodactyl",
             "grade": "gold"
           },
           {
@@ -707,31 +715,23 @@
             "grade": "gold"
           },
           {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
             "emblemId": "130-gyarados",
             "grade": "gold"
           },
           {
-            "emblemId": "018-pidgeot",
+            "emblemId": "062-poliwrath",
             "grade": "gold"
           },
           {
-            "emblemId": "142-aerodactyl",
-            "grade": "bronze"
-          },
-          {
-            "emblemId": "031-nidoqueen",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "057-primeape",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "068-machamp",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "105-marowak",
+            "emblemId": "195-quagsire",
             "grade": "gold"
           }
         ],
@@ -1291,6 +1291,63 @@
           "Dragon Rush",
           "Dragon Claw"
         ]
+      },
+      {
+        "name": "Step on the Gas (Physical)",
+        "emblemName": "Step on the Gas (Physical)",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "muscle-band",
+          "float-stone",
+          "choice-scarf"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "051-dugtrio",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "101-electrode",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "050-diglett",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "171-lanturn",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Dragon Rush",
+          "Dragon Claw"
+        ]
       }
     ]
   },
@@ -1442,11 +1499,19 @@
         "battleItemId": "full-heal",
         "emblems": [
           {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
             "emblemId": "250-ho-oh",
             "grade": "gold"
           },
           {
-            "emblemId": "022-fearow",
+            "emblemId": "142-aerodactyl",
             "grade": "gold"
           },
           {
@@ -1454,31 +1519,23 @@
             "grade": "gold"
           },
           {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
             "emblemId": "130-gyarados",
             "grade": "gold"
           },
           {
-            "emblemId": "018-pidgeot",
+            "emblemId": "062-poliwrath",
             "grade": "gold"
           },
           {
-            "emblemId": "142-aerodactyl",
-            "grade": "bronze"
-          },
-          {
-            "emblemId": "031-nidoqueen",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "057-primeape",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "068-machamp",
-            "grade": "gold"
-          },
-          {
-            "emblemId": "105-marowak",
+            "emblemId": "195-quagsire",
             "grade": "gold"
           }
         ],
@@ -2168,6 +2225,65 @@
       "Swollen Charge",
       "Ultra Absorption",
       "Swollen Drain"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Step on the Gas (Physical)",
+        "emblemName": "Step on the Gas (Physical)",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "attack-weight",
+          "float-stone",
+          "amulet-coin"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "051-dugtrio",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "101-electrode",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "050-diglett",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "171-lanturn",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Superpower",
+          "Lunge"
+        ]
+      }
     ]
   },
   "ceruledge": {
@@ -2342,6 +2458,65 @@
       "Powerhouse",
       "Belt Throw",
       "Submission Combat"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Step on the Gas (Physical)",
+        "emblemName": "Step on the Gas (Physical)",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "attack-weight",
+          "float-stone",
+          "amulet-coin"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "051-dugtrio",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "101-electrode",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "050-diglett",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "171-lanturn",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Dynamic Punch",
+          "Cross Chop"
+        ]
+      }
     ]
   },
   "mamoswine": {
@@ -2397,6 +2572,65 @@
   "pawmot": {
     "recommendedTitles": [
       "Charged Palms"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Step on the Gas (Physical)",
+        "emblemName": "Step on the Gas (Physical)",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "muscle-band",
+          "float-stone",
+          "amulet-coin"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "051-dugtrio",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "101-electrode",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "050-diglett",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "171-lanturn",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Volt Switch",
+          "Thunder Punch"
+        ]
+      }
     ]
   },
   "pikachu": {

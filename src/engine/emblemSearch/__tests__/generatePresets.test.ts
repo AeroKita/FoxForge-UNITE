@@ -448,7 +448,7 @@ describe("generatePresetForPokemon", () => {
 
     const preset = generatePresetForPokemon(pokemon!, byId, bundle.setBonuses, bundle.emblems);
     expect(preset).not.toBeNull();
-    expect(preset!.colorTargets).toEqual({ brown: 6, white: 4, black: 2 });
-    expect(preset!.priorities.attack).toBe(1);
+    expect(preset!.colorTargets).toEqual({ brown: 5, white: 4, black: 4, blue: 2 });
+    expect(preset!.priorities.hp).toBe(1);
   });
 });

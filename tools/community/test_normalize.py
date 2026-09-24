@@ -37,6 +37,7 @@ from normalize import (
     mega_passive_slots,
     resolve_playable_passive,
     staged_passive_names,
+    replace_retired_physical_emblem_set,
     reword_add_label,
     strip_activation_note,
 )
@@ -1587,6 +1588,35 @@ class TestBuildBattleItems(unittest.TestCase):
         items = archive.get("items") or {}
         missing = [p.stem for p in images if p.stem not in items]
         self.assertEqual(missing, [])
+
+
+class TestRetiredPhysicalEmblemSet(unittest.TestCase):
+    """Exact retired physical shells become the Kabutops/Golem/Ho-Oh shell."""
+
+    def test_replaces_only_the_exact_ten_emblem_multiset(self):
+        retired = [
+            {"emblemId": eid, "grade": grade}
+            for eid, grade in normalize._RETIRED_PHYSICAL_EMBLEM_SET
+        ]
+        other = [{"emblemId": "250-ho-oh", "grade": "gold"}]
+        pokemon = [{
+            "id": "example",
+            "builds": [
+                {"name": "Match", "emblems": list(reversed(retired))},
+                {"name": "Partial", "emblems": list(retired[:9])},
+            ],
+            "creativeBuilds": [
+                {"name": "Keep", "emblems": other},
+            ],
+        }]
+        n = replace_retired_physical_emblem_set(pokemon)
+        self.assertEqual(n, 1)
+        self.assertEqual(
+            pokemon[0]["builds"][0]["emblems"],
+            normalize._CURRENT_PHYSICAL_EMBLEM_SET,
+        )
+        self.assertEqual(pokemon[0]["builds"][1]["emblems"], retired[:9])
+        self.assertEqual(pokemon[0]["creativeBuilds"][0]["emblems"], other)
 
 
 if __name__ == "__main__":

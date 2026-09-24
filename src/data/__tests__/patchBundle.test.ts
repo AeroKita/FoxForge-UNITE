@@ -1341,7 +1341,112 @@ describe("community data bundle", () => {
       "Underground Mach",
       "Volcanic Den",
     ]);
-    expect(garchomp.creativeBuilds?.map((b) => b.emblemName)).toEqual(["Heavy is the Crown"]);
+    expect(garchomp.creativeBuilds?.map((b) => b.emblemName)).toEqual([
+      "Heavy is the Crown",
+      "Step on the Gas (Physical)",
+    ]);
+  });
+
+  it("shares Lucario Step on the Gas (Physical) with Garchomp, Machamp, Buzzwole, and Pawmot", () => {
+    const gasEmblems = [
+      { emblemId: "051-dugtrio", grade: "gold" },
+      { emblemId: "101-electrode", grade: "platinum" },
+      { emblemId: "100-voltorb", grade: "gold" },
+      { emblemId: "142-aerodactyl", grade: "gold" },
+      { emblemId: "050-diglett", grade: "gold" },
+      { emblemId: "172-pichu", grade: "gold" },
+      { emblemId: "1008-miraidon", grade: "platinum" },
+      { emblemId: "145-zapdos", grade: "gold" },
+      { emblemId: "171-lanturn", grade: "gold" },
+      { emblemId: "243-raikou", grade: "gold" },
+    ];
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    const lucarioGas = lucario.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(lucarioGas?.emblems).toEqual(gasEmblems);
+    expect(lucarioGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(lucarioGas?.battleItemId).toBe("full-heal");
+
+    const garchomp = bundle.pokemon.find((p) => p.id === "garchomp")!;
+    const garchompGas = garchomp.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(garchompGas?.emblems).toEqual(gasEmblems);
+    expect(garchompGas?.heldItemIds).toEqual(["muscle-band", "float-stone", "choice-scarf"]);
+    expect(garchompGas?.battleItemId).toBe("full-heal");
+
+    const machamp = bundle.pokemon.find((p) => p.id === "machamp")!;
+    const machampGas = machamp.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(machampGas?.emblems).toEqual(gasEmblems);
+    expect(machampGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(machampGas?.battleItemId).toBe("full-heal");
+
+    const buzzwole = bundle.pokemon.find((p) => p.id === "buzzwole")!;
+    const buzzwoleGas = buzzwole.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(buzzwoleGas?.emblems).toEqual(gasEmblems);
+    expect(buzzwoleGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(buzzwoleGas?.battleItemId).toBe("full-heal");
+
+    const pawmot = bundle.pokemon.find((p) => p.id === "pawmot")!;
+    const pawmotGas = pawmot.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(pawmotGas?.emblems).toEqual(gasEmblems);
+    expect(pawmotGas?.heldItemIds).toEqual(["muscle-band", "float-stone", "amulet-coin"]);
+    expect(pawmotGas?.battleItemId).toBe("full-heal");
+  });
+
+  it("replaces the retired Bronze Aerodactyl physical shell everywhere", () => {
+    const retired = new Set([
+      "250-ho-oh|gold",
+      "022-fearow|gold",
+      "128-tauros|gold",
+      "130-gyarados|gold",
+      "018-pidgeot|gold",
+      "142-aerodactyl|bronze",
+      "031-nidoqueen|gold",
+      "057-primeape|gold",
+      "068-machamp|gold",
+      "105-marowak|gold",
+    ]);
+    const current = [
+      { emblemId: "141-kabutops", grade: "gold" },
+      { emblemId: "076-golem", grade: "gold" },
+      { emblemId: "250-ho-oh", grade: "gold" },
+      { emblemId: "142-aerodactyl", grade: "gold" },
+      { emblemId: "128-tauros", grade: "gold" },
+      { emblemId: "115-kangaskhan", grade: "gold" },
+      { emblemId: "206-dunsparce", grade: "gold" },
+      { emblemId: "130-gyarados", grade: "gold" },
+      { emblemId: "062-poliwrath", grade: "gold" },
+      { emblemId: "195-quagsire", grade: "gold" },
+    ];
+    const leftovers: string[] = [];
+    let rewritten = 0;
+    for (const p of bundle.pokemon) {
+      for (const tab of ["builds", "creativeBuilds"] as const) {
+        for (const b of p[tab] ?? []) {
+          const slots = (b.emblems ?? []).map((e) => `${e.emblemId}|${e.grade}`);
+          if (
+            slots.length === 10 &&
+            slots.every((s) => retired.has(s)) &&
+            new Set(slots).size === 10
+          ) {
+            leftovers.push(`${p.id}/${b.emblemName ?? b.name}`);
+          }
+          if (JSON.stringify(b.emblems) === JSON.stringify(current)) rewritten += 1;
+        }
+      }
+    }
+    expect(leftovers, leftovers.join("\n")).toEqual([]);
+    expect(rewritten).toBeGreaterThan(0);
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    expect(lucario.builds?.[0]?.emblems).toEqual(current);
   });
 
   it("pins Espeon Recommended lore titles", () => {

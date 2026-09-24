@@ -2,11 +2,11 @@
   "_meta": {
     "generatedFrom": "UNITE-DB community builds (patch-current.json builds[] + creativeBuilds[], 10-emblem sets)",
     "patchVersion": "1.24.1.4",
-    "generatedAt": "2026-09-19",
+    "generatedAt": "2026-09-24",
     "algorithm": "v1: priorities = normalized median positive flat magnitudes (0–1); protectedFloors = clamp(min(0, round(p10))) with moveSpeed 0 when builds keep it ≥ 0; colorTargets = vote-weighted (Recommended 1.0, Creative 0.5) counts ≥ 2, then priority-weighted one-off tier snap up (full-pool feasible), else relax lowest-value least-dominant color + retry; confidence = min(1, builds/2) × (1 − avg coefficient of variation)",
     "confidenceThreshold": 0.4,
-    "pokemonWithPresets": 100,
-    "pokemonFallback": 0
+    "pokemonWithPresets": 99,
+    "pokemonFallback": 1
   },
   "presets": {
     "absol": {
@@ -36,9 +36,10 @@
     "aegislash": {
       "priorities": {
         "hp": 1,
-        "attack": 0.93,
-        "defense": 0.19,
-        "moveSpeed": 0.07
+        "attack": 0.83,
+        "defense": 0.38,
+        "critRate": 0.07,
+        "moveSpeed": 0.09
       },
       "protectedFloors": {
         "hp": 0,
@@ -49,10 +50,10 @@
       },
       "colorTargets": {
         "brown": 6,
-        "white": 6,
-        "blue": 2
+        "blue": 4,
+        "white": 6
       },
-      "confidence": 0.89,
+      "confidence": 0.64,
       "buildCount": 4,
       "source": "auto"
     },
@@ -273,8 +274,8 @@
       },
       "protectedFloors": {
         "hp": 0,
-        "attack": 0,
-        "defense": -3,
+        "attack": -3,
+        "defense": -7,
         "spAttack": -28,
         "moveSpeed": 0
       },
@@ -283,7 +284,7 @@
         "white": 6
       },
       "confidence": 1,
-      "buildCount": 4,
+      "buildCount": 5,
       "source": "auto"
     },
     "ceruledge": {
@@ -353,19 +354,21 @@
     },
     "cinderace": {
       "priorities": {
-        "hp": 0.92,
-        "attack": 1,
-        "moveSpeed": 0.07
+        "hp": 1,
+        "attack": 0.87,
+        "defense": 0.39,
+        "critRate": 0.08,
+        "moveSpeed": 0.12
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -488,20 +491,23 @@
     },
     "decidueye": {
       "priorities": {
-        "hp": 0.88,
-        "attack": 1,
-        "moveSpeed": 0.06
+        "hp": 1,
+        "attack": 0.92,
+        "defense": 0.2,
+        "critRate": 0.08,
+        "moveSpeed": 0.12
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -4,
-        "spAttack": -28,
+        "defense": -3,
+        "spAttack": -25,
         "spDefense": -3,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 3,
         "white": 6
       },
       "confidence": 1,
@@ -534,18 +540,20 @@
     "dhelmise": {
       "priorities": {
         "hp": 1,
-        "attack": 0.92,
-        "moveSpeed": 0.06
+        "attack": 0.75,
+        "defense": 0.61,
+        "critRate": 0.06,
+        "moveSpeed": 0.09
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 0.5,
@@ -554,19 +562,21 @@
     },
     "dodrio": {
       "priorities": {
-        "hp": 0.74,
+        "hp": 0.88,
         "attack": 1,
-        "moveSpeed": 0.05
+        "defense": 0.37,
+        "critRate": 0.07,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -575,19 +585,21 @@
     },
     "dragapult": {
       "priorities": {
-        "hp": 0.83,
-        "attack": 1,
-        "moveSpeed": 0.06
+        "hp": 1,
+        "attack": 0.99,
+        "defense": 0.35,
+        "critRate": 0.08,
+        "moveSpeed": 0.12
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -596,19 +608,21 @@
     },
     "dragonite": {
       "priorities": {
-        "hp": 0.92,
-        "attack": 1,
-        "moveSpeed": 0.06
+        "hp": 1,
+        "attack": 0.9,
+        "defense": 0.58,
+        "critRate": 0.07,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -617,19 +631,21 @@
     },
     "duraludon": {
       "priorities": {
-        "hp": 0.83,
-        "attack": 1,
-        "moveSpeed": 0.06
+        "hp": 1,
+        "attack": 0.99,
+        "defense": 0.44,
+        "critRate": 0.08,
+        "moveSpeed": 0.12
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -773,10 +789,10 @@
       },
       "protectedFloors": {
         "hp": 0,
-        "attack": 0,
-        "defense": -3,
+        "attack": -2,
+        "defense": -6,
         "spAttack": -28,
-        "spDefense": -2,
+        "spDefense": -1,
         "moveSpeed": 0
       },
       "colorTargets": {
@@ -784,7 +800,7 @@
         "white": 6
       },
       "confidence": 1,
-      "buildCount": 5,
+      "buildCount": 6,
       "source": "auto"
     },
     "gardevoir": {
@@ -904,19 +920,21 @@
     },
     "greninja": {
       "priorities": {
-        "hp": 0.83,
-        "attack": 1,
-        "moveSpeed": 0.06
+        "hp": 1,
+        "attack": 0.99,
+        "defense": 0.37,
+        "critRate": 0.08,
+        "moveSpeed": 0.12
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -1103,18 +1121,21 @@
     "lucario": {
       "priorities": {
         "hp": 1,
-        "attack": 0.98,
-        "moveSpeed": 0.06
+        "attack": 0.78,
+        "defense": 0.51,
+        "critRate": 0.07,
+        "moveSpeed": 0.11
       },
       "protectedFloors": {
         "hp": 0,
-        "attack": -1,
-        "defense": -7,
-        "spAttack": -28,
+        "attack": -3,
+        "defense": -6,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -1129,8 +1150,8 @@
       },
       "protectedFloors": {
         "hp": 0,
-        "attack": 0,
-        "defense": -3,
+        "attack": -3,
+        "defense": -7,
         "spAttack": -28,
         "moveSpeed": 0
       },
@@ -1139,7 +1160,7 @@
         "white": 6
       },
       "confidence": 1,
-      "buildCount": 4,
+      "buildCount": 5,
       "source": "auto"
     },
     "mamoswine": {
@@ -1230,18 +1251,20 @@
     "mega-lucario": {
       "priorities": {
         "hp": 1,
-        "attack": 0.98,
-        "moveSpeed": 0.06
+        "attack": 0.78,
+        "defense": 0.51,
+        "critRate": 0.07,
+        "moveSpeed": 0.11
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 0.5,
@@ -1538,26 +1561,6 @@
       "buildCount": 2,
       "source": "auto"
     },
-    "pawmot": {
-      "priorities": {
-        "hp": 1,
-        "attack": 0.56
-      },
-      "protectedFloors": {
-        "hp": 0,
-        "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
-        "moveSpeed": 0
-      },
-      "colorTargets": {
-        "brown": 6,
-        "white": 6
-      },
-      "confidence": 0.5,
-      "buildCount": 1,
-      "source": "auto"
-    },
     "pikachu": {
       "priorities": {
         "hp": 0.73,
@@ -1604,24 +1607,26 @@
     },
     "quaquaval": {
       "priorities": {
-        "hp": 0.77,
-        "attack": 1,
-        "moveSpeed": 0.12
+        "hp": 1,
+        "attack": 0.73,
+        "defense": 0.4,
+        "moveSpeed": 0.18
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
         "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "spDefense": -4,
         "moveSpeed": 0
       },
       "colorTargets": {
-        "brown": 6,
+        "brown": 5,
         "white": 4,
-        "black": 2
+        "black": 4,
+        "blue": 2
       },
-      "confidence": 0.55,
+      "confidence": 0.62,
       "buildCount": 2,
       "source": "auto"
     },
@@ -1691,19 +1696,21 @@
     },
     "scyther": {
       "priorities": {
-        "hp": 0.77,
+        "hp": 0.92,
         "attack": 1,
-        "moveSpeed": 0.05
+        "defense": 0.45,
+        "critRate": 0.07,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -1867,19 +1874,21 @@
     },
     "talonflame": {
       "priorities": {
-        "hp": 0.69,
+        "hp": 0.8,
         "attack": 1,
-        "moveSpeed": 0.05
+        "defense": 0.36,
+        "critRate": 0.06,
+        "moveSpeed": 0.09
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
@@ -2014,19 +2023,22 @@
     "urshifu": {
       "priorities": {
         "hp": 1,
-        "attack": 0.99,
-        "moveSpeed": 0.06
+        "attack": 0.8,
+        "defense": 0.26,
+        "critRate": 0.06,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "defense": -2,
+        "spAttack": -25,
         "spDefense": -3,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 3,
         "white": 6
       },
       "confidence": 1,
@@ -2173,19 +2185,22 @@
     },
     "zeraora": {
       "priorities": {
-        "hp": 0.72,
+        "hp": 0.86,
         "attack": 1,
-        "moveSpeed": 0.05
+        "defense": 0.18,
+        "critRate": 0.06,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "defense": -2,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 3,
         "white": 6
       },
       "confidence": 1,
@@ -2194,19 +2209,21 @@
     },
     "zoroark": {
       "priorities": {
-        "hp": 0.72,
+        "hp": 0.85,
         "attack": 1,
-        "moveSpeed": 0.05
+        "defense": 0.36,
+        "critRate": 0.06,
+        "moveSpeed": 0.1
       },
       "protectedFloors": {
         "hp": 0,
         "attack": 0,
-        "defense": -3,
-        "spAttack": -28,
+        "spAttack": -25,
         "moveSpeed": 0
       },
       "colorTargets": {
         "brown": 6,
+        "blue": 4,
         "white": 6
       },
       "confidence": 1,
