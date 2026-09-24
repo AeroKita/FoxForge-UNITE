@@ -1383,6 +1383,7 @@ describe("community data bundle", () => {
     expect(machampGas?.emblems).toEqual(gasEmblems);
     expect(machampGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
     expect(machampGas?.battleItemId).toBe("full-heal");
+    expect(machampGas?.moves).toEqual(["Cross Chop", "Submission"]);
 
     const buzzwole = bundle.pokemon.find((p) => p.id === "buzzwole")!;
     const buzzwoleGas = buzzwole.creativeBuilds?.find(
