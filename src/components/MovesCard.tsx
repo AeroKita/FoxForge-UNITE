@@ -7,6 +7,8 @@ import {
   uniteMoves,
   playablePassives,
   passiveChipLabel,
+  basicAttack,
+  BASIC_ATTACK_SECTION_LABEL,
   type FinalSlot,
 } from "../engine/moves";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -155,6 +157,7 @@ export function MovesCard() {
 
   const uniteList = uniteMoves(pokemon);
   const passives = playablePassives(pokemon);
+  const attack = basicAttack(pokemon);
 
   return (
     <CollapsibleCard title="Moves" persistKey="moves" tone="sky" defaultOpen={false}>
@@ -163,7 +166,15 @@ export function MovesCard() {
         demonstration.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <ChoosableMoveSlot label="Move 1" pokemon={pokemon} slot="move1" />
+        <div>
+          {attack && (
+            <div className="mb-4">
+              <p className="mb-1 text-xs font-medium text-faint">{BASIC_ATTACK_SECTION_LABEL}</p>
+              <MoveRow move={attack} advanced={expert} />
+            </div>
+          )}
+          <ChoosableMoveSlot label="Move 1" pokemon={pokemon} slot="move1" />
+        </div>
         <ChoosableMoveSlot label="Move 2" pokemon={pokemon} slot="move2" />
         {uniteList.length > 0 && (
           <div>

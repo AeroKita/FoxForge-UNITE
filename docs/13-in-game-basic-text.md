@@ -30,7 +30,7 @@ Companion rule for agents: `.cursor/rules/in-game-basic-accuracy.mdc`. Runbook c
 
 ## How to apply a batch of in-game Basics (current recipe)
 
-1. Operator drops tooltip stills under `screenshot-references/move-descriptions/<pokemon-id>/` (see that folder's `SKILLS.txt`; Attack / `basicAttack` is out of scope). Long tooltips may need more than one still (`<skill-id>-2.png`).
+1. Operator drops move and Ability tooltip stills under `screenshot-references/move-descriptions/<pokemon-id>/` (see that folder's `SKILLS.txt`). Long tooltips may need more than one still (`<skill-id>-1`, `<skill-id>-2`, …). Basic Attack stills go under `screenshot-references/basic-attack-descriptions/<pokemon-id>/` and into the archive `basic attack` key.
 2. Transcribe into `move_descriptions.json` (normalized keys; `\n\n` between paragraphs; straight apostrophes). That body is the Basic source of truth: normalize prefers it over UNITE-DB. Keep the stills' sentences. Do **not** take `Upgrade (Level N)` from the yellow banner or the UI **Lv N** chip — those are the **learn** level (when the Pokémon learns the move). In-game stills usually show a bare `Upgrade:` with no number. Write `Upgrade (Level N):` using the existing archive number or UNITE-DB `level2` (often 10/11/12/13). Example: Sylveon Hyper Voice chip **Lv 4** is the learn level; the Upgrade line stays **Level 10**.
 3. If the Ability name in the app is still the pre-evo name, add the UNITE-DB `name` slug to `PLAYABLE_PASSIVE_SLUGS` in `tools/community/normalize.py`.
 4. Remove `patch_note_overrides.json` rows whose `move` id was the old Ability (normalize raises on unknown ids). Example: Tsareena **Oblivious** override after promoting **Queenly Majesty**.

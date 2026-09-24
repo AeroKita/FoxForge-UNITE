@@ -224,7 +224,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing damage to enemies and lowering their Defense by 15% for 2s when it hits. If this boosted attack hits only a single target, it deals increased damage.",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon and decreasing their Defense when it hits. If this boosted attack hits only a single opposing Pokémon, it deals increased damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -3307,7 +3307,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage to enemies within a cone area of effect in front of this Pokémon.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage to opposing Pokémon within a cone area of effect in front of the user.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -3950,7 +3950,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Blastoise’s third auto attack is empowered - dealing 3 instances of damage, slowing enemies hit and reducing Blastoise’s move cooldowns by 1 second each.",
+          "description": "Becomes a boosted attack with every third attack, dealing continual damage and decreasing the movement speed of opposing Pokémon for a short time when it hits. After the user uses a boosted attack, the cooldown of its other moves is reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -5809,7 +5809,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Each time a basic attack hits an opposing Pokémon, the muscle gauge charges by 1 increment. Becomes a boosted attack with every third attack, throwing two consecutive punches while restoring the user's HP.",
+          "description": "Each time a basic attack hits a Pokémon on the opposing team, the muscle gauge charges by 1 increment.\n\nBecomes a boosted attack with every third attack, throwing two consecutive punches while restoring the user's HP.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -7933,7 +7933,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Inflicts continuous damage. After evolving, the distance of the basic attack increases. If the opponent is burned the damage inflicted is increased.",
+          "description": "Deals continual damage. Deals additional damage to opposing Pokémon that have been burned by the user's moves. Increases in range when the user evolves.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -8579,7 +8579,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Inflicts continuous damage. After evolving, the distance of the basic attack increases. If the opponent is burned the damage inflicted is increased.",
+          "description": "Deals continual damage. Deals additional damage to opposing Pokémon that have been burned by the user's moves. Increases in range when the user evolves.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -11426,7 +11426,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every fourth attack. This boosted attack spits Arrokuda or other Pokémon at the enemy and deals area damage near the target when it hits.",
+          "description": "Becomes a boosted attack with every fourth attack. This boosted attack spits Arrokuda or other Pokémon at opposing Pokémon and deals damage to opposing Pokémon near the target when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -12040,7 +12040,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to enemies in the area of effect and decreases their movement speed for a short time.",
+          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to opposing Pokémon in the area of effect and decreases their movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -12663,7 +12663,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Basic attacks made against sleeping opposing Pokémon will become boosted attacks with increased range. Boosted attacks deal damage to opposing Pokémon with an attack from a void and restores the user's HP.",
+          "description": "Basic attacks made against sleeping opposing Pokémon will become boosted attacks with increased range.\n\nBoosted attacks deal damage to opposing Pokémon with an attack from a void and restore the user's HP.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -13344,7 +13344,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Increases the speed of basic attacks by 3% for a short time after one hits. This effect can stack up to 4 times, and with every third activation of this effect, basic attacks become boosted attacks for a short time. These boosted attacks fire more quills, but the damage dealt by each quill is decreased.",
+          "description": "Increases the speed of basic attacks for a short time after one hits. This effect can stack, and with every third activation of this effect, basic attacks become boosted attacks for a short time. These boosted attacks fire more quills, but the damage dealt by each quill is decreased.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -15175,7 +15175,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing consecutive blows with each of the user's heads. When the sprint gauge is full, basic attacks will cause the Pokémon to charge in the direction they're facing and consume all of the sprint gauge. If this charging attack hits an enemy, all of the user's move cooldowns are reduced.",
+          "description": "Becomes a boosted attack every 3 attacks, dealing increased damage when it hits.\n\nWhen the user is sprinting, its basic attack will have it charge in the direction it's facing, dealing damage with its beaks to opposing Pokémon in front of it. Hits from this attack will never be critical hits. If this charging attack hits opposing Pokémon, all of the user's move cooldowns are reduced. Using this attack fully consumes the user's sprint gauge.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -15800,7 +15800,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Each time damage is dealt to enemies, boosted basic attack gauge increases. When the boosted basic attack gauge is full (after 8 instances of damage), the Pokémon's basic attacks become boosted attacks.",
+          "description": "Each time this Pokémon deals damage to opposing Pokémon, its boosted basic attack gauge increases. When the boosted basic attack gauge is full, the Pokémon's basic attacks become boosted attacks.\n\nBoosted attacks deal increased damage and have an area of effect centered on opposing Pokémon they hit.\n\nThe boosted basic attack gauge will begin decreasing if this Pokémon does not deal damage to opposing Pokémon for a set amount of time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -16912,7 +16912,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, shooting a long beam that deals a large amount of damage to all enemies hit.",
+          "description": "Shoots a fierce blast of light from the user's mouth, dealing damage to opposing Pokémon it hits.\n\nBecomes a boosted attack with every third attack, shooting out a long beam that deals a large amount of damage to all opposing Pokémon it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -17539,7 +17539,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, attaching a bit of cotton fluff to the enemy. The user's basic attacks against an enemy with cotton fluff on it deal increased damage and decreases the enemies' movement speed for a short time.",
+          "description": "Becomes a boosted attack with every third attack, attaching a bit of cotton fluff to opposing Pokémon. The user's basic attacks against an opposing Pokémon with cotton fluff on it deal increased damage and decrease the opposing Pokémon's movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -19531,7 +19531,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, or after the user uses Tackle, Megahorn, or Iron Head. Boosted attacks also apply a slowing effect to opposing Pokémon they hit. When a boosted attack hits, the cooldown of Tackle, Megahorn, or Iron Head is reduced.",
+          "description": "Becomes a boosted attack with every third attack, or after the user uses Tackle, Megahorn, or Iron Head. Boosted attacks also apply a slowing effect to opposing Pokémon they hit.\n\nWhen a boosted attack hits, the cooldown of Tackle, Megahorn, or Iron Head is reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -20675,7 +20675,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every fifth attack, dealing increased damage and restoring the user's HP. Every time a basic attack or move hits an enemy, basic attack speed is increased.",
+          "description": "Becomes a boosted attack with every fifth attack, dealing increased damage and restoring the user's HP. For a short time after a boosted attack hits, every time one of the user's basic attacks or moves hits an opposing Pokémon, the user's basic attack speed is increased.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -21484,7 +21484,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to enemies in the area of effect and decreases their Sp. Defense by 10% for a short time.",
+          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to opposing Pokémon in the area of effect and decreases their Sp. Def for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -22145,7 +22145,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, lunging at an enemy and dealing damage.",
+          "description": "Becomes a boosted attack with every third attack, lunging at an opposing Pokémon and dealing damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -23365,7 +23365,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. Also, if this Pokémon recovers HP due to its Ability, its next basic attack becomes a boosted attack. Boosted attacks have the user spew slime, and if the slime hits opposing Pokémon from a distance, a Gooey slowing effect is applied to those Pokémon. If the slime hits opposing Pokémon from close range, it deals increased damage. If this Pokémon applies a Gooey slowing effect to an opposing Pokémon and then hits that Pokémon with a basic attack while the effect is active, all of this Pokémon's move cooldowns are reduced.",
+          "description": "Becomes a boosted attack with every third attack, applying a Gooey slowing effect to opposing Pokémon it hits. Boosted attacks launch slime at distant opposing Pokémon and deal increased damage to nearby opposing Pokémon.\n\nIf this Pokémon applies a Gooey slowing effect to an opposing Pokémon and then hits that Pokémon with a basic attack while the effect is active, all of this Pokémon's move cooldowns are reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -23928,7 +23928,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits and causing one berry to drop from Greedent's tail.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits and causing one Berry to drop from the user's tail.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -24506,7 +24506,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. At long range, a boosted attack deals increased damage to enemies and decreases their movement speed for a short time. At close range, a boosted attack deals more damage the lower the enemies' remaining HP is.",
+          "description": "At long range, reduces the cooldown of Bubble, Water Shuriken, or Surf when it hits. At close range, deals increased damage the lower the opposing Pokémon's remaining HP is. Becomes a boosted attack with every third attack. As a boosted attack at long range, deals increased damage to opposing Pokémon and decreases their movement speed for a short time. As a boosted attack at close range, deals more damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -25964,7 +25964,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage. Gyarados.",
+          "description": "Has the user lunge toward opposing Pokémon, dealing damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -26524,7 +26524,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, shooting out a sweeping flame that deals increased damage and restores the user's HP. When the user hits multiple Pokémon with a boosted attack, the amount of HP restored is increased.",
+          "description": "Becomes a boosted attack with every third attack, shooting out a sweeping flame that deals increased damage and restores the user's HP.\n\nWhen the user hits multiple Pokémon with a boosted attack, the amount of HP restored is increased.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -27247,7 +27247,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing damage to enemies by unleashing a beam of light. When Hoopa is unbound, every attack becomes a boosted attack and deals damage to up to 2 additional nearby enemies.",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon by unleashing a beam of light.\n\nWhen Hoopa is unbound, it unleashes beams of light with every basic attack, dealing damage to up to two nearby opposing Pokémon.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -31161,7 +31161,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, performing a combo attack with a bone. Deals damage to enemies in the area of effect and throws them.",
+          "description": "Becomes a boosted attack with every third attack, performing a combo attack with a bone. Deals damage to opposing Pokémon in the area of effect and throws them.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -32557,7 +32557,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits. This boosted attack also decreases the movement speed of enemies for a short time.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits. This boosted attack also decreases the movement speed of opposing Pokémon for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -33274,7 +33274,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing damage and freezing enemies for a short time when it hits. Mamoswine's basic attacks deal increased damage for a short time to enemies recently frozen with one of Mamoswine's moves.",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon and leaving them frozen for a short time when it hits. In addition, the user's basic attacks deal increased damage for a short time to opposing Pokémon it has frozen with one of its moves.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -33924,7 +33924,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Has the user whip its vines or headbutt, dealing damage to opposing Pokémon.",
+          "description": "Has the user whip its vines in a headbutt, dealing damage to opposing Pokémon.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -34413,7 +34413,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Whenever a set amount of time passes, the next basic attack becomes a booster attack. Boosted attacks have the user leap at opposing Pokémon and deal additional damage.",
+          "description": "Whenever a set amount of time passes, the next basic attack becomes a boosted attack.\n\nBoosted attacks have the user leap at opposing Pokémon and deal additional damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -35783,7 +35783,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, striking with an increased area of attack. When the Pokémon hits an opposing Pokémon with a boosted attack, the cooldown of Iron Defense, Meteor Mash, or Gyro Ball is reduced by a second. When the user hits two or more opposing Pokémon with this boosted attack, the moves' cooldowns will be reduced by 2 seconds.",
+          "description": "Becomes a boosted attack with every third attack, striking with an increased area of attack.\n\nWhen the Pokémon hits an opposing Pokémon with a boosted attack, the cooldown of Iron Defense, Meteor Mash, or Gyro Ball is reduced.\n\nWhen the user hits two or more opposing Pokémon with this boosted attack, the moves' cooldowns will be reduced even more.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -36439,7 +36439,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Each time the Pokémon uses a move, it gains a boost counter. A maximum of three counters can be stored. After three boost counters are stored, the Pokémon's next basic attack becomes a boosted attack that consumes all boost counters and launches a ball of psychic energy at an opposing Pokémon. The further the ball of psychic energy travels, the more damage it deals.",
+          "description": "Each time the Pokémon uses a move, it gains a boost counter. A maximum of three counters can be stored.\n\nAfter three boost counters are stored, the Pokémon's next basic attack becomes a boosted attack that consumes all boost counters and launches a ball of psychic energy at an opposing Pokémon. The further the ball of psychic energy travels, the more damage it deals.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -38115,7 +38115,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, striking twice with an increased area of attack. The next basic attack after using a move becomes a boosted attack.",
+          "description": "Becomes a boosted attack with every third attack, striking twice with an increased area of attack.\n\nThe next basic attack after using a move becomes a boosted attack.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -39297,7 +39297,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack every 0 attacks, dealing increased damage when it hits. When a boosted attack hits Pokémon from the opposing team, the user can use one move instantly, and the Unite Move gauge charges slightly.",
+          "description": "Becomes a boosted attack every 4 attacks, dealing increased damage when it hits.\n\nWhen a boosted attack hits opposing Pokémon, the user can use one move instantly.\n\nWhen a move is used instantly, the Unite Move gauge charges slightly.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -39722,7 +39722,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.\n\nWhen a boosted attack hits, the user's movement speed is increased for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -40225,7 +40225,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage and throwing enemies when it hits.",
+          "description": "Becomes a boosted attack whenever a set amount of time passes, dealing increased damage and throwing opposing Pokémon when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -40899,7 +40899,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby enemies and decreases their movement speed for a short time.",
+          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby opposing Pokémon and decreases their movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -42633,7 +42633,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also paralyzes enemies for a short time when it hits.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also paralyzes opposing Pokémon for a short time when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -43978,7 +43978,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "",
+          "description": "Becomes a boosted attack with every third attack, the user stepping in for a kick.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -45719,7 +45719,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "",
+          "description": "After every move, Unite Move, or 2 basic attacks, the next basic attack becomes a boosted attack, breathing flames and dealing damage to opposing Pokémon.\n\nWhen the flames hit an opposing Pokémon, they explode, dealing damage to nearby opposing Pokémon.\n\nWhen a boosted attack hits, the Unite Move gauge charges slightly.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -46151,7 +46151,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon it hits and decreasing their movement speed for a short time. If Sableye is in stealth when it hits an opposing Pokémon with a boosted attack, it will deal damage and apply a fear effect. Opposing Pokémon affected by fear will be forced to move away from Sableye. When the user enters stealth, it will charge a boosted attack immediately and hold it.",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon it hits and decreasing their movement speed for a short time.\n\nIf the user is in stealth when it hits an opposing Pokémon with a boosted attack, it will deal damage and apply a fear effect. Opposing Pokémon affected by fear will be forced to move away from the user.\n\nWhen the user enters stealth, it will be able to use the boosted attack immediately.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -49149,7 +49149,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, deal damage to nearby opposing Pokémon and decrease their movement speed.",
+          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby opposing Pokémon and decreases their movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -49806,7 +49806,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby enemies and decreases their movement speed for a short time.",
+          "description": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby opposing Pokémon and decreases their movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -51035,7 +51035,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "When the crystal gauge is full, the user's next basic attack becomes a boosted attack. Boosted attacks shoot water continuously and deal additional damage to frozen opposing Pokémon.",
+          "description": "When the crystal gauge is full, the user's next basic attack becomes a boosted attack.\n\nBoosted attacks shoot water continuously and deal additional damage to frozen opposing Pokémon.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -52445,7 +52445,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack every third attack, creating a fiery whirlwind that deals damage to enemies in the area of effect. This boosted attack remains readied even after leaving combat for a prolonged period of time.",
+          "description": "Becomes a boosted attack with every third attack, creating a fiery whirlwind that deals damage to opposing Pokémon in the area of effect. This boosted attack remains readied even if the user leaves combat for a prolonged period of time after the first two basic attacks.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -52990,7 +52990,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "As the user evolves, its hammer's size and basic attack range increase. Whenever a set amount of time passes, the next basic attack becomes a boosted attack, dealing increased damage and restoring the user's HP. When the user is hit by a basic attack from an opposing Pokémon, this boosted attack's cooldown is reduced.",
+          "description": "As the user evolves, its hammer's size and basic attack range increase.\n\nWhenever a set amount of time passes, the next basic attack becomes a boosted attack, dealing increased damage and restoring the user's HP.\n\nWhen the user is hit by a basic attack from an opposing Pokémon, this boosted attack's cooldown is reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -54306,7 +54306,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, lunging at an opposing Pokémon, damaging nearby opposing Pokémon and lowering the Defense of those hit by 20% for 1s.",
+          "description": "Becomes a boosted attack with every third attack, lunging at an opposing Pokémon, dealing damage, and lowering its Defense for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -55441,7 +55441,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
+          "description": "Becomes a boosted attack every 3 attacks, dealing increased damage when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -58237,7 +58237,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also pulls enemies inward between the vines.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also pulls opposing Pokémon inward between the user's vines.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -58853,7 +58853,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing damage to enemies and spinning them around when it hits.",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon and spinning them around when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -59441,7 +59441,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to nearby opposing Pokémon and increasing those Pokémon's destruction counter when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -59951,7 +59951,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "If basic attacks are performed consecutively within a set time, the effects of the second and subsequent basic attack stages will change as described below. (When the Pokémon is using a move, this set time is extended. ) Stage two: The user deals damage to opposing Pokémon and decreases their movement speed. Stage three: The user deals damage to opposing Pokémon while restoring its own HP. Stage four: The user quickly draws near an opposing Pokémon and deals damage to it. All of the user's move cooldowns are reduced.",
+          "description": "If basic attacks are performed consecutively within a set time, the effects of the second and subsequent basic attack stages will change as described below. (When the Pokémon is using a move, this set time is extended.).\n\nStage two: The user deals damage to opposing Pokémon and decreases their movement speed.\n\nStage three: The user deals damage to opposing Pokémon while restoring its own HP.\n\nStage four: The user quickly draws near an opposing Pokémon and deals damage to it. All of the user's move cooldowns are reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -60666,7 +60666,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Has the user hurl an electric orb, dealing damage to opposing Pokémon. Whenever a set amount of time passes, the user's next basic attack becomes a boosted attack, launching a powerful electric orb and dealing damage to opposing Pokémon. If this move hits Pokémon from the opposing team, the user's boosted attack cooldowns are reduced.",
+          "description": "Has the user hurl an electric orb, dealing damage to opposing Pokémon.\n\nWhenever a set amount of time passes, the user's next basic attack becomes a boosted attack, launching a powerful electric orb and dealing damage to opposing Pokémon. If this move hits Pokémon from the opposing team, the user's boosted attack cooldowns are reduced.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -61098,7 +61098,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage and paralyzing the enemy while restoring some of Zeraora's HP.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits. Also paralyzes opposing Pokémon and restores the user's HP.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {

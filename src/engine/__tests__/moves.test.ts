@@ -8,6 +8,8 @@ import {
   uniteMoves,
   playablePassives,
   passiveChipLabel,
+  basicAttack,
+  BASIC_ATTACK_SECTION_LABEL,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
 
@@ -83,6 +85,13 @@ describe("move-selection helpers", () => {
         stageLabel: "Charizard",
       }),
     ).toBe("Mega");
+  });
+
+  it("returns the basic attack and the Moves-card section label", () => {
+    expect(BASIC_ATTACK_SECTION_LABEL).toBe("Basic Attack");
+    const attack = basicAttack(lucario);
+    expect(attack?.slot).toBe("basicAttack");
+    expect(attack?.description.length).toBeGreaterThan(0);
   });
 
   it("returns every Unite Move, including dual-unite Pokémon", () => {

@@ -24,6 +24,14 @@ export function uniteMoves(pokemon: Pokemon): Move[] {
   return pokemon.moves.filter((m) => m.slot === "uniteMove");
 }
 
+/** Section heading for the basic-attack row on the Moves card. */
+export const BASIC_ATTACK_SECTION_LABEL = "Basic Attack";
+
+/** The Pokémon's basic attack, when the kit includes one. */
+export function basicAttack(pokemon: Pokemon): Move | undefined {
+  return pokemon.moves.find((m) => m.slot === "basicAttack");
+}
+
 /** Every Ability shown on the Moves card. Most Pokémon have one; mega-evolution
  *  licenses and dual/triple-form kits append later Abilities in `extraPassives`. */
 export function playablePassives(pokemon: Pokemon): Ability[] {
