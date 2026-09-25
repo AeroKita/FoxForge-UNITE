@@ -228,7 +228,7 @@ textarea {
   }
 
   /* Touch tooltip: grow from a center line over 300ms.
-     Closing fades the card away over 100ms. It does not fold, so no bar remains. */
+     Closing fades the card away over 200ms. It does not fold, so no bar remains. */
   @keyframes tip-unfold {
     from { transform: scaleY(0.04); }
     to { transform: scaleY(1); }
@@ -265,7 +265,7 @@ textarea {
   }
 
   .tip-fold {
-    animation: tip-fold 100ms ease-out both;
+    animation: tip-fold 200ms ease-out both;
   }
 
   .tip-unfold-ink {
@@ -273,7 +273,7 @@ textarea {
   }
 
   .tip-fold-ink {
-    animation: tip-fold-ink 100ms ease-out both;
+    animation: tip-fold-ink 200ms ease-out both;
   }
 
   .tip-unfold-backdrop {
@@ -281,7 +281,7 @@ textarea {
   }
 
   .tip-fold-backdrop {
-    animation: tip-fold-backdrop 100ms ease-out both;
+    animation: tip-fold-backdrop 200ms ease-out both;
   }
 }
 

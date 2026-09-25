@@ -16,9 +16,9 @@ import {
 } from "../tooltipUnfold";
 
 describe("tooltip unfold phase", () => {
-  it("opens over 300ms and fades closed over 100ms", () => {
+  it("opens over 300ms and fades closed over 200ms", () => {
     expect(TIP_UNFOLD_MS).toBe(300);
-    expect(TIP_CLOSE_MS).toBe(100);
+    expect(TIP_CLOSE_MS).toBe(200);
   });
 
   it("opens from closed, and a second show stays open", () => {
