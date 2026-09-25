@@ -1,4 +1,4 @@
-import { type ReactNode, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { useModalDismiss } from "../ui/useModalDismiss";
 import {
   DEFAULT_TOOLTIP_TOUCH_TRIGGER,
@@ -6,6 +6,15 @@ import {
   shouldStartLongPressTimer,
   type TooltipTouchTrigger,
 } from "../ui/tooltipTouch";
+import {
+  TIP_UNFOLD_MS,
+  nextTipPhase,
+  prefersReducedMotion,
+  tipBackdropClass,
+  tipPopupMounted,
+  tipShellClass,
+  type TipPhase,
+} from "../ui/tooltipUnfold";
 
 const LONG_PRESS_MS = 500;
 
@@ -29,13 +38,24 @@ export function Tooltip({
   touchTrigger?: TooltipTouchTrigger;
 }) {
   const pos = side === "top" ? "bottom-full mb-1.5" : "top-full mt-1.5";
-  const [pinned, setPinned] = useState(false);
+  const [phase, setPhase] = useState<TipPhase>("closed");
   const timer = useRef<number | null>(null);
   const start = useRef<{ x: number; y: number } | null>(null);
   const firedRef = useRef(false);
   const pointerTypeRef = useRef("");
+  const mounted = tipPopupMounted(phase);
 
-  useModalDismiss(() => setPinned(false), pinned);
+  const request = (event: "show" | "dismiss" | "finished") => {
+    setPhase((current) => nextTipPhase(current, event, prefersReducedMotion()));
+  };
+
+  useModalDismiss(() => request("dismiss"), mounted);
+
+  useEffect(() => {
+    if (phase !== "closing") return;
+    const id = window.setTimeout(() => request("finished"), TIP_UNFOLD_MS + 80);
+    return () => window.clearTimeout(id);
+  }, [phase]);
 
   const clearTimer = () => {
     if (timer.current !== null) {
@@ -52,7 +72,7 @@ export function Tooltip({
     clearTimer();
     timer.current = window.setTimeout(() => {
       firedRef.current = true;
-      setPinned(true);
+      request("show");
     }, LONG_PRESS_MS);
   };
 
@@ -81,10 +101,10 @@ export function Tooltip({
           firedRef.current = false;
           return;
         }
-        if (shouldPinOnTouchClick(touchTrigger, pointerTypeRef.current, pinned)) {
+        if (shouldPinOnTouchClick(touchTrigger, pointerTypeRef.current, phase !== "closed")) {
           e.preventDefault();
           e.stopPropagation();
-          setPinned(true);
+          request("show");
         }
       }}
     >
@@ -97,18 +117,26 @@ export function Tooltip({
         {content}
       </span>
 
-      {pinned && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-          onClick={() => setPinned(false)}
-        >
+      {mounted && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
-            className="max-h-[70vh] w-full max-w-sm overflow-y-auto rounded-2xl border border-line bg-surface p-4 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
+            className={`absolute inset-0 bg-black/40 ${tipBackdropClass(phase)}`}
+            onClick={() => request("dismiss")}
+          />
+          <div
+            className={`relative max-h-[70vh] w-full max-w-sm origin-center overflow-y-auto rounded-2xl border border-line bg-surface p-4 shadow-xl ${tipShellClass(phase)}`}
+            onAnimationEnd={(e) => {
+              if (e.target !== e.currentTarget) return;
+              if (e.animationName === "tip-fold") request("finished");
+            }}
             role="dialog"
             aria-modal="true"
           >
-            <div className="whitespace-pre-line text-sm leading-snug text-ink">{content}</div>
+            <div
+              className={`whitespace-pre-line text-sm leading-snug text-ink ${phase === "closing" ? "tip-fold-ink" : "tip-unfold-ink"}`}
+            >
+              {content}
+            </div>
           </div>
         </div>
       )}

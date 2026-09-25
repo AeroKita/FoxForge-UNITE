@@ -226,6 +226,64 @@ textarea {
   .emblem-pop {
     animation: emblem-pop 180ms ease-out;
   }
+
+  /* Touch tooltip: grow from a center line, then reveal the words.
+     Closing collapses back to that line after the words fade. */
+  @keyframes tip-unfold {
+    from { transform: scaleY(0.04); }
+    to { transform: scaleY(1); }
+  }
+
+  @keyframes tip-fold {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0.04); }
+  }
+
+  @keyframes tip-unfold-ink {
+    0%, 40% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes tip-fold-ink {
+    0% { opacity: 1; }
+    35%, 100% { opacity: 0; }
+  }
+
+  @keyframes tip-unfold-backdrop {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes tip-fold-backdrop {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  .tip-unfold {
+    transform-origin: center center;
+    animation: tip-unfold 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tip-fold {
+    transform-origin: center center;
+    animation: tip-fold 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tip-unfold-ink {
+    animation: tip-unfold-ink 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tip-fold-ink {
+    animation: tip-fold-ink 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tip-unfold-backdrop {
+    animation: tip-unfold-backdrop 200ms ease-out both;
+  }
+
+  .tip-fold-backdrop {
+    animation: tip-fold-backdrop 200ms ease-in both;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
