@@ -42,9 +42,11 @@ const attack: Move = {
 };
 
 describe("descriptionOnlyTip", () => {
-  it("shows the bold name and Basic description, and no still or clip when there is no video", () => {
-    const html = markup(descriptionOnlyTip(attack, false) as ReactElement | null);
-    expect(html).toContain('class="font-semibold">Attack');
+  it("shows the bold title it is given and leaves the description unchanged", () => {
+    const html = markup(
+      descriptionOnlyTip({ ...attack, name: "Basic Attack" }, false) as ReactElement | null,
+    );
+    expect(html).toContain('class="font-semibold">Basic Attack');
     expect(html).toContain("Becomes a boosted attack");
     expect(html).not.toContain("<img");
     expect(html).not.toContain("<video");

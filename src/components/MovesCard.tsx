@@ -9,6 +9,7 @@ import {
   passiveChipLabel,
   basicAttacks,
   BASIC_ATTACK_SECTION_LABEL,
+  moveRowLabel,
   type FinalSlot,
 } from "../engine/moves";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -30,16 +31,19 @@ function MoveRow({
   dimLabel?: string;
   advanced: boolean;
 }) {
+  const label = moveRowLabel(move);
   return (
     <Tooltip
       content={
-        move.slot === "basicAttack" ? descriptionOnlyTip(move, advanced) : moveTip(move, advanced)
+        move.slot === "basicAttack"
+          ? descriptionOnlyTip({ ...move, name: label }, advanced)
+          : moveTip(move, advanced)
       }
     >
       <span className="flex items-center gap-2">
-        <MoveIcon src={move.iconAsset} alt={move.name} size="h-8 w-8" />
+        <MoveIcon src={move.iconAsset} alt={label} size="h-8 w-8" />
         <span className="min-w-0">
-          <span className="block truncate text-sm font-medium text-ink">{move.name}</span>
+          <span className="block truncate text-sm font-medium text-ink">{label}</span>
           <span className="text-[10px] uppercase text-faint">
             {dimLabel}
             {dimLabel && move.moveType ? " · " : ""}

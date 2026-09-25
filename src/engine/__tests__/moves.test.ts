@@ -11,6 +11,7 @@ import {
   basicAttack,
   basicAttacks,
   BASIC_ATTACK_SECTION_LABEL,
+  moveRowLabel,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
 
@@ -93,6 +94,14 @@ describe("move-selection helpers", () => {
     const attack = basicAttack(lucario);
     expect(attack?.slot).toBe("basicAttack");
     expect(attack?.description.length).toBeGreaterThan(0);
+  });
+
+  it("labels a basic attack Basic Attack on the Moves card and keeps other move names", () => {
+    const attack = basicAttack(lucario);
+    expect(attack?.name).toBe("Attack");
+    expect(moveRowLabel(attack!)).toBe("Basic Attack");
+    const feint = lucario.moves.find((m) => m.slot !== "basicAttack");
+    expect(moveRowLabel(feint!)).toBe(feint!.name);
   });
 
   it("returns every basic attack, pre-evolution forms first", () => {
