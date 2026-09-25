@@ -1,5 +1,6 @@
 // Shared tooltip content builders for items and emblems (used by the Recommend
 // panel and the loadout editor).
+import type { ReactNode } from "react";
 import { ITEM_GRADE_DEFAULT } from "../data/gameData";
 import { heldItemStatLines, statLines } from "../ui/format";
 import type { BattleItem, Emblem, EmblemGrade, HeldItem, Move, StatBlock } from "../types";
@@ -17,6 +18,43 @@ export function pickDescription(
   advanced: boolean,
 ): string {
   return advanced && d.descriptionAdvanced ? d.descriptionAdvanced : d.description;
+}
+
+/**
+ * Tooltip body for a Basic Attack or Passive: the bold name, the description
+ * for the current mode, and a gameplay clip when `videoAsset` is set. No GIF
+ * or icon. `gifAsset` and `iconAsset` are accepted so callers can pass a Move
+ * or Ability without stripping fields; they are not rendered.
+ */
+export function descriptionOnlyTip(
+  entity: {
+    name: string;
+    description: string;
+    descriptionAdvanced?: string;
+    videoAsset?: string;
+    gifAsset?: string;
+    iconAsset?: string;
+    moveType?: string;
+    upgradeLevel?: number;
+    cooldownSeconds?: number;
+  },
+  advanced: boolean,
+): ReactNode {
+  const desc = pickDescription(entity, advanced);
+  return (
+    <span>
+      <span className="font-semibold">{entity.name}</span>
+      {entity.moveType && <span className="ml-1 text-faint">· {entity.moveType}</span>}
+      {entity.upgradeLevel ? (
+        <span className="ml-1 text-faint">· Lv {entity.upgradeLevel}</span>
+      ) : null}
+      {entity.cooldownSeconds != null && entity.cooldownSeconds > 0 && (
+        <span className="ml-1 text-faint">· {entity.cooldownSeconds}s CD</span>
+      )}
+      {desc ? <span className="mt-0.5 block text-faint">{desc}</span> : null}
+      {entity.videoAsset ? <MoveMedia videoAsset={entity.videoAsset} name={entity.name} /> : null}
+    </span>
+  );
 }
 
 export function moveTip(move: Move, advanced: boolean) {

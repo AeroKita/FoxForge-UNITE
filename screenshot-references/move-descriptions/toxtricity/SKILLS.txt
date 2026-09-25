@@ -1,0 +1,13 @@
+Toxtricity  —  drop tooltip stills here as <skill-id>.png
+Long tooltips: extra stills as <skill-id>-1.jpeg, <skill-id>-2.jpeg, …
+
+  punk-rock.jpeg          →  Punk Rock
+  charge.jpeg             →  Charge
+  shift-gear-1.jpeg       →  Shift Gear
+  shift-gear-2.jpeg       →  Shift Gear
+  growl.jpeg              →  Growl
+  overdrive-1.jpeg        →  Overdrive
+  overdrive-2.jpeg        →  Overdrive
+  overdrive-3.jpeg        →  Overdrive
+  venom-distortion-1.jpeg →  Venom Distortion
+  venom-distortion-2.jpeg →  Venom Distortion

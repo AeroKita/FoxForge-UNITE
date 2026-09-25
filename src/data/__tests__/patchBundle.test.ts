@@ -120,6 +120,16 @@ describe("community data bundle", () => {
     ]);
   });
 
+  it("gives every basic attack the shared in-game star icon", () => {
+    for (const p of bundle.pokemon) {
+      const attacks = p.moves.filter((m) => m.slot === "basicAttack");
+      expect(attacks.length, p.id).toBeGreaterThan(0);
+      for (const m of attacks) {
+        expect(m.iconAsset, `${p.id}/${m.id}`).toBe("/assets/skills/basic-attack.png");
+      }
+    }
+  });
+
   it("gives every non-basic move a local skill-icon path", () => {
     for (const p of bundle.pokemon) {
       for (const m of p.moves) {
@@ -1341,7 +1351,164 @@ describe("community data bundle", () => {
       "Underground Mach",
       "Volcanic Den",
     ]);
-    expect(garchomp.creativeBuilds?.map((b) => b.emblemName)).toEqual(["Heavy is the Crown"]);
+    expect(garchomp.creativeBuilds?.map((b) => b.emblemName)).toEqual([
+      "Heavy is the Crown",
+      "Step on the Gas (Physical)",
+    ]);
+  });
+
+  it("shares Lucario Step on the Gas (Physical) with Garchomp, Machamp, Buzzwole, and Pawmot", () => {
+    const gasEmblems = [
+      { emblemId: "051-dugtrio", grade: "gold" },
+      { emblemId: "101-electrode", grade: "platinum" },
+      { emblemId: "100-voltorb", grade: "gold" },
+      { emblemId: "142-aerodactyl", grade: "gold" },
+      { emblemId: "050-diglett", grade: "gold" },
+      { emblemId: "172-pichu", grade: "gold" },
+      { emblemId: "1008-miraidon", grade: "platinum" },
+      { emblemId: "145-zapdos", grade: "gold" },
+      { emblemId: "171-lanturn", grade: "gold" },
+      { emblemId: "243-raikou", grade: "gold" },
+    ];
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    const lucarioGas = lucario.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(lucarioGas?.emblems).toEqual(gasEmblems);
+    expect(lucarioGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(lucarioGas?.battleItemId).toBe("full-heal");
+
+    const garchomp = bundle.pokemon.find((p) => p.id === "garchomp")!;
+    const garchompGas = garchomp.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(garchompGas?.emblems).toEqual(gasEmblems);
+    expect(garchompGas?.heldItemIds).toEqual(["muscle-band", "float-stone", "choice-scarf"]);
+    expect(garchompGas?.battleItemId).toBe("full-heal");
+
+    const machamp = bundle.pokemon.find((p) => p.id === "machamp")!;
+    const machampGas = machamp.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(machampGas?.emblems).toEqual(gasEmblems);
+    expect(machampGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(machampGas?.battleItemId).toBe("full-heal");
+    expect(machampGas?.moves).toEqual(["Cross Chop", "Submission"]);
+
+    const buzzwole = bundle.pokemon.find((p) => p.id === "buzzwole")!;
+    const buzzwoleGas = buzzwole.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(buzzwoleGas?.emblems).toEqual(gasEmblems);
+    expect(buzzwoleGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
+    expect(buzzwoleGas?.battleItemId).toBe("full-heal");
+
+    const pawmot = bundle.pokemon.find((p) => p.id === "pawmot")!;
+    const pawmotGas = pawmot.creativeBuilds?.find(
+      (b) => b.emblemName === "Step on the Gas (Physical)",
+    );
+    expect(pawmotGas?.emblems).toEqual(gasEmblems);
+    expect(pawmotGas?.heldItemIds).toEqual(["muscle-band", "float-stone", "amulet-coin"]);
+    expect(pawmotGas?.battleItemId).toBe("full-heal");
+  });
+
+  it("shares Mega Mewtwo Y Ultimate Genome emblems on Rapid-Fire builds", () => {
+    const genome = [
+      { emblemId: "004-charmander", grade: "gold" },
+      { emblemId: "005-charmeleon", grade: "gold" },
+      { emblemId: "006-charizard", grade: "gold" },
+      { emblemId: "038-ninetales", grade: "gold" },
+      { emblemId: "244-entei", grade: "gold" },
+      { emblemId: "218-slugma", grade: "gold" },
+      { emblemId: "016-pidgey", grade: "gold" },
+      { emblemId: "242-blissey", grade: "gold" },
+      { emblemId: "145-zapdos", grade: "gold" },
+      { emblemId: "146-moltres", grade: "gold" },
+    ];
+    const mewtwoY = bundle.pokemon.find((p) => p.id === "mewtwoy")!;
+    expect(mewtwoY.builds?.find((b) => b.emblemName === "Ultimate Genome")?.emblems).toEqual(
+      genome,
+    );
+
+    const ninetales = bundle.pokemon.find((p) => p.id === "alolan-ninetales")!;
+    expect(ninetales.builds?.map((b) => b.emblemName)).toEqual([
+      "Snow Veil",
+      "Alolan Aurora",
+      "Rapid-Fire Snow",
+      "Sacred Snow",
+    ]);
+    const snow = ninetales.builds?.find((b) => b.emblemName === "Rapid-Fire Snow");
+    expect(snow?.emblems).toEqual(genome);
+    expect(snow?.moves).toEqual(["Dazzling Gleam", "Aurora Veil"]);
+
+    const hoopa = bundle.pokemon.find((p) => p.id === "hoopa")!;
+    const rings = hoopa.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Rings");
+    expect(rings?.emblems).toEqual(genome);
+    expect(rings?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "choice-scarf"]);
+    expect(rings?.battleItemId).toBe("full-heal");
+    expect(rings?.moves).toEqual(["Phantom Force", "Hyperspace Hole"]);
+
+    const eldegoss = bundle.pokemon.find((p) => p.id === "eldegoss")!;
+    const cotton = eldegoss.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Cotton");
+    expect(cotton?.emblems).toEqual(genome);
+    expect(cotton?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "buddy-barrier"]);
+    expect(cotton?.battleItemId).toBe("x-speed");
+    expect(cotton?.moves).toEqual(["Leaf Tornado", "Cotton Guard"]);
+
+    const raichu = bundle.pokemon.find((p) => p.id === "alolan-raichu")!;
+    const surfer = raichu.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Surfer");
+    expect(surfer?.emblems).toEqual(genome);
+    expect(surfer?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "choice-scarf"]);
+    expect(surfer?.battleItemId).toBe("eject-button");
+    expect(surfer?.moves).toEqual(["Stored Power", "Psychic"]);
+  });
+
+  it("replaces the retired Bronze Aerodactyl physical shell everywhere", () => {
+    const retired = new Set([
+      "250-ho-oh|gold",
+      "022-fearow|gold",
+      "128-tauros|gold",
+      "130-gyarados|gold",
+      "018-pidgeot|gold",
+      "142-aerodactyl|bronze",
+      "031-nidoqueen|gold",
+      "057-primeape|gold",
+      "068-machamp|gold",
+      "105-marowak|gold",
+    ]);
+    const current = [
+      { emblemId: "141-kabutops", grade: "gold" },
+      { emblemId: "076-golem", grade: "gold" },
+      { emblemId: "250-ho-oh", grade: "gold" },
+      { emblemId: "142-aerodactyl", grade: "gold" },
+      { emblemId: "128-tauros", grade: "gold" },
+      { emblemId: "115-kangaskhan", grade: "gold" },
+      { emblemId: "206-dunsparce", grade: "gold" },
+      { emblemId: "130-gyarados", grade: "gold" },
+      { emblemId: "062-poliwrath", grade: "gold" },
+      { emblemId: "195-quagsire", grade: "gold" },
+    ];
+    const leftovers: string[] = [];
+    let rewritten = 0;
+    for (const p of bundle.pokemon) {
+      for (const tab of ["builds", "creativeBuilds"] as const) {
+        for (const b of p[tab] ?? []) {
+          const slots = (b.emblems ?? []).map((e) => `${e.emblemId}|${e.grade}`);
+          if (
+            slots.length === 10 &&
+            slots.every((s) => retired.has(s)) &&
+            new Set(slots).size === 10
+          ) {
+            leftovers.push(`${p.id}/${b.emblemName ?? b.name}`);
+          }
+          if (JSON.stringify(b.emblems) === JSON.stringify(current)) rewritten += 1;
+        }
+      }
+    }
+    expect(leftovers, leftovers.join("\n")).toEqual([]);
+    expect(rewritten).toBeGreaterThan(0);
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    expect(lucario.builds?.[0]?.emblems).toEqual(current);
   });
 
   it("pins Espeon Recommended lore titles", () => {

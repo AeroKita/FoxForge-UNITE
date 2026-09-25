@@ -10,7 +10,7 @@ import {
   type SideSelection,
   type CompareSource,
 } from "../state/compareBuilds";
-import { STAT_ROWS, formatStat, formatDelta } from "../ui/format";
+import { STAT_ROWS, formatStat, formatDelta, formatLevelLabel } from "../ui/format";
 import { radarRows } from "../ui/radarData";
 import { asset } from "../ui/asset";
 import { CollapsibleCard } from "./CollapsibleCard";
@@ -254,6 +254,8 @@ function SidePicker({
   onOpenPicker: () => void;
 }) {
   const pokemon = selection.pokemonId ? (pokemonById.get(selection.pokemonId) ?? null) : null;
+  const level = selectionToLoadout(selection, current, saved).level;
+  const levelLabel = formatLevelLabel(level);
 
   const sourceOptions: CompareSource[] = ["recommended"];
   if (hasCreative(pokemon)) sourceOptions.push("creative");
@@ -279,6 +281,14 @@ function SidePicker({
     onChange({ ...selection, variant: next });
   };
 
+  const selectedSaved = saved.find((x) => x.id === selection.savedId) ?? saved[0] ?? null;
+  const selectedSavedPokemon = selectedSaved
+    ? pokemonById.get(selectedSaved.pokemonId ?? "")
+    : null;
+  const selectedSavedTitle = selectedSaved
+    ? `${selectedSaved.name}${selectedSavedPokemon ? ` — ${selectedSavedPokemon.displayName}` : ""}`
+    : "No saved loadouts";
+
   return (
     <div className="flex flex-col gap-2">
       <span className="text-xs text-muted">Build {label}</span>
@@ -303,7 +313,10 @@ function SidePicker({
                   alt=""
                   className="h-8 w-8 rounded-full object-contain"
                 />
-                <span className="truncate font-medium">{pokemon.displayName}</span>
+                <span className="min-w-0 flex-1 truncate font-medium">{pokemon.displayName}</span>
+                <span className="shrink-0 text-xs font-semibold tabular-nums text-muted">
+                  {levelLabel}
+                </span>
               </>
             ) : (
               <span className="text-muted">Choose Pokémon…</span>
@@ -349,27 +362,44 @@ function SidePicker({
         </>
       )}
       {selection.source === "current" && (
-        <p className="min-h-11 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink">
-          <span className="text-muted">Your current working build — </span>
-          {pokemonById.get(current.pokemonId ?? "")?.displayName ?? "No Pokémon selected"}
+        <p className="flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink">
+          <span className="min-w-0 flex-1 truncate">
+            <span className="text-muted">Your current working build — </span>
+            {pokemonById.get(current.pokemonId ?? "")?.displayName ?? "No Pokémon selected"}
+          </span>
+          <span className="shrink-0 text-xs font-semibold tabular-nums text-muted">
+            {levelLabel}
+          </span>
         </p>
       )}
       {selection.source === "saved" && (
-        <select
-          value={selection.savedId ?? ""}
-          onChange={(e) => onChange({ ...selection, savedId: e.target.value })}
-          className="min-h-11 rounded-lg border border-line bg-surface px-2 py-2 text-sm text-ink"
-        >
-          {saved.map((s) => {
-            const p = pokemonById.get(s.pokemonId ?? "");
-            return (
-              <option key={s.id} value={s.id}>
-                {s.name}
-                {p ? ` — ${p.displayName}` : ""}
-              </option>
-            );
-          })}
-        </select>
+        <div className="relative">
+          <div className="pointer-events-none flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-2 py-2 text-sm text-ink">
+            <span className="min-w-0 flex-1 truncate">{selectedSavedTitle}</span>
+            <span className="shrink-0 text-xs font-semibold tabular-nums text-muted">
+              {levelLabel}
+            </span>
+            <span className="shrink-0 text-faint" aria-hidden>
+              ▾
+            </span>
+          </div>
+          <select
+            value={selection.savedId ?? ""}
+            onChange={(e) => onChange({ ...selection, savedId: e.target.value })}
+            aria-label={`Build ${label} saved loadout`}
+            className="absolute inset-0 cursor-pointer opacity-0"
+          >
+            {saved.map((s) => {
+              const p = pokemonById.get(s.pokemonId ?? "");
+              return (
+                <option key={s.id} value={s.id}>
+                  {formatLevelLabel(s.level)} · {s.name}
+                  {p ? ` — ${p.displayName}` : ""}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       )}
     </div>
   );

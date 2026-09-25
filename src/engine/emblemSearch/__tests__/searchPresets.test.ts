@@ -204,8 +204,9 @@ describe("resolveColorSearchMode", () => {
 // ---------------------------------------------------------------------------
 
 describe("buildPresetSearchOptions", () => {
-  // Physical attacker → colorTargetsFor returns brown=6, white=6.
-  const pokemon = makePokemon("lucario", "physical", "Attacker");
+  // Machamp's community preset is brown=6, white=6. Lucario's preset also
+  // requires blue=4, which this fixture pool cannot satisfy.
+  const pokemon = makePokemon("machamp", "physical", "AllRounder");
   const feasibleEmblems = [
     ...nOf(8, ["brown", "white"], "bw"),
     ...nOf(4, ["brown"], "br"),
@@ -443,7 +444,7 @@ describe("buildPresetSearchOptions", () => {
 
 describe("preset → runSearch integration", () => {
   it("[PRE-7] feasible meta targets run an exact search", async () => {
-    const pokemon = makePokemon("lucario", "physical", "Attacker");
+    const pokemon = makePokemon("machamp", "physical", "AllRounder");
     // 6 dual brown+white + 4 green fill = brown6, white6 in a 10-pick build.
     const emblems = [...nOf(8, ["brown", "white"], "bw"), ...nOf(6, ["green"], "gr")];
     const pool = buildCandidatePool(emblems, {});
@@ -466,7 +467,7 @@ describe("preset → runSearch integration", () => {
   });
 
   it("[PRE-11] forceHeuristic skips exact and runs the heuristic path", async () => {
-    const pokemon = makePokemon("lucario", "physical", "Attacker");
+    const pokemon = makePokemon("machamp", "physical", "AllRounder");
     const emblems = [...nOf(8, ["brown", "white"], "bw"), ...nOf(6, ["green"], "gr")];
     const pool = buildCandidatePool(emblems, {});
     const { options, resolution } = buildPresetSearchOptions({
@@ -491,7 +492,7 @@ describe("preset → runSearch integration", () => {
   });
 
   it("[PRE-16] exactCap=0 keeps hard colors but runs the heuristic (Balanced + feasible)", async () => {
-    const pokemon = makePokemon("lucario", "physical", "Attacker");
+    const pokemon = makePokemon("machamp", "physical", "AllRounder");
     const emblems = [...nOf(8, ["brown", "white"], "bw"), ...nOf(6, ["green"], "gr")];
     const pool = buildCandidatePool(emblems, {});
     const { options, resolution } = buildPresetSearchOptions({

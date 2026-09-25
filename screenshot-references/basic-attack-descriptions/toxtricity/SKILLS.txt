@@ -1,0 +1,3 @@
+toxtricity  —  Basic Attack stills (long tooltip)
+  basic-attack-1.jpeg   →  Basic Attack
+  basic-attack-2.jpeg   →  Basic Attack

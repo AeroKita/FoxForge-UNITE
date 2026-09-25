@@ -24,6 +24,27 @@ export function uniteMoves(pokemon: Pokemon): Move[] {
   return pokemon.moves.filter((m) => m.slot === "uniteMove");
 }
 
+/** Section heading for the basic-attack row on the Moves card. */
+export const BASIC_ATTACK_SECTION_LABEL = "Basic Attack";
+
+/**
+ * Visible name on the Moves card row and in that row's tooltip title.
+ * Basic attacks are stored as "Attack"; the card shows "Basic Attack".
+ */
+export function moveRowLabel(move: { slot: Move["slot"]; name: string }): string {
+  return move.slot === "basicAttack" ? BASIC_ATTACK_SECTION_LABEL : move.name;
+}
+
+/** The Pokémon's basic attack, when the kit includes one. */
+export function basicAttack(pokemon: Pokemon): Move | undefined {
+  return basicAttacks(pokemon)[0];
+}
+
+/** Every basic attack on the Moves card, pre-evolution forms first. */
+export function basicAttacks(pokemon: Pokemon): Move[] {
+  return pokemon.moves.filter((m) => m.slot === "basicAttack");
+}
+
 /** Every Ability shown on the Moves card. Most Pokémon have one; mega-evolution
  *  licenses and dual/triple-form kits append later Abilities in `extraPassives`. */
 export function playablePassives(pokemon: Pokemon): Ability[] {

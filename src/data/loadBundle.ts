@@ -64,6 +64,7 @@ const move = z.object({
   iconAsset: z.string().optional(),
   moveType: z.string().optional(),
   isUpgrade: z.boolean().optional(),
+  stageLabel: z.string().optional(),
 });
 
 const ability = z.object({

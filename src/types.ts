@@ -146,8 +146,10 @@ export interface Move {
   damageInstances: DamageInstance[]; // a move may deal damage multiple times
   effects: MoveEffect[]; // CC, shields, heals, buffs
   tags: string[]; // "dash", "aoe", "lifesteal-source", etc.
-  iconAsset?: string; // skills/<Pokemon>/<Move>.png (absent for basic attack)
+  iconAsset?: string; // skills/<Pokemon>/<Move>.png, or the shared basic-attack icon
   moveType?: string; // UNITE-DB move type, e.g. "Dash", "Ranged", "Buff"
+  /** Form chip when a license has more than one basic attack (Eevee / Espeon). */
+  stageLabel?: string;
   isUpgrade?: boolean; // true for a chosen upgrade move (vs. the base skill)
 }
 

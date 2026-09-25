@@ -7,13 +7,15 @@ import {
   uniteMoves,
   playablePassives,
   passiveChipLabel,
+  basicAttacks,
+  BASIC_ATTACK_SECTION_LABEL,
+  moveRowLabel,
   type FinalSlot,
 } from "../engine/moves";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
-import { MoveMedia } from "./MoveMedia";
-import { moveTip, pickDescription } from "./tips";
+import { descriptionOnlyTip, moveTip } from "./tips";
 import type { Ability, Move, Pokemon } from "../types";
 
 /** Flip to `false` to hide Passive chips without touching the rows. */
@@ -29,12 +31,19 @@ function MoveRow({
   dimLabel?: string;
   advanced: boolean;
 }) {
+  const label = moveRowLabel(move);
   return (
-    <Tooltip content={moveTip(move, advanced)}>
+    <Tooltip
+      content={
+        move.slot === "basicAttack"
+          ? descriptionOnlyTip({ ...move, name: label }, advanced)
+          : moveTip(move, advanced)
+      }
+    >
       <span className="flex items-center gap-2">
-        <MoveIcon src={move.iconAsset} alt={move.name} size="h-8 w-8" />
+        <MoveIcon src={move.iconAsset} alt={label} size="h-8 w-8" />
         <span className="min-w-0">
-          <span className="block truncate text-sm font-medium text-ink">{move.name}</span>
+          <span className="block truncate text-sm font-medium text-ink">{label}</span>
           <span className="text-[10px] uppercase text-faint">
             {dimLabel}
             {dimLabel && move.moveType ? " · " : ""}
@@ -120,23 +129,9 @@ function PassiveChip({ label }: { label: string }) {
 }
 
 function PassiveRow({ ability, advanced }: { ability: Ability; advanced: boolean }) {
-  const desc = pickDescription(ability, advanced);
   const chip = passiveChipLabel(ability);
   return (
-    <Tooltip
-      content={
-        <span>
-          <span className="font-semibold">{ability.name}</span>
-          {desc && <span className="mt-0.5 block text-faint">{desc}</span>}
-          <MoveMedia
-            videoAsset={ability.videoAsset}
-            gifAsset={ability.gifAsset}
-            iconAsset={ability.iconAsset}
-            name={ability.name}
-          />
-        </span>
-      }
-    >
+    <Tooltip content={descriptionOnlyTip(ability, advanced)}>
       <span className="flex items-center gap-2">
         <MoveIcon src={ability.iconAsset} alt={ability.name} size="h-8 w-8" />
         <span className="min-w-0 truncate text-sm font-medium text-ink">{ability.name}</span>
@@ -155,15 +150,31 @@ export function MovesCard() {
 
   const uniteList = uniteMoves(pokemon);
   const passives = playablePassives(pokemon);
+  const attacks = basicAttacks(pokemon);
 
   return (
     <CollapsibleCard title="Moves" persistKey="moves" tone="sky" defaultOpen={false}>
       <p className="mb-3 text-xs text-faint">
-        {pokemon.displayName}'s kit — pick one upgrade per move. Long-press a Move to see a
+        {pokemon.displayName}'s kit — pick one upgrade per Move. Long-press a Move to see a
         demonstration.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <ChoosableMoveSlot label="Move 1" pokemon={pokemon} slot="move1" />
+        <div>
+          {attacks.length > 0 && (
+            <div className="mb-4">
+              <p className="mb-1 text-xs font-medium text-faint">{BASIC_ATTACK_SECTION_LABEL}</p>
+              <div className="flex flex-col gap-1.5">
+                {attacks.map((attack) => (
+                  <span key={attack.id} className="flex items-center gap-2">
+                    <MoveRow move={attack} advanced={expert} />
+                    {attack.stageLabel ? <PassiveChip label={attack.stageLabel} /> : null}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          <ChoosableMoveSlot label="Move 1" pokemon={pokemon} slot="move1" />
+        </div>
         <ChoosableMoveSlot label="Move 2" pokemon={pokemon} slot="move2" />
         {uniteList.length > 0 && (
           <div>

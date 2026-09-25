@@ -8,6 +8,10 @@ import {
   uniteMoves,
   playablePassives,
   passiveChipLabel,
+  basicAttack,
+  basicAttacks,
+  BASIC_ATTACK_SECTION_LABEL,
+  moveRowLabel,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
 
@@ -83,6 +87,40 @@ describe("move-selection helpers", () => {
         stageLabel: "Charizard",
       }),
     ).toBe("Mega");
+  });
+
+  it("returns the basic attack and the Moves-card section label", () => {
+    expect(BASIC_ATTACK_SECTION_LABEL).toBe("Basic Attack");
+    const attack = basicAttack(lucario);
+    expect(attack?.slot).toBe("basicAttack");
+    expect(attack?.description.length).toBeGreaterThan(0);
+  });
+
+  it("labels a basic attack Basic Attack on the Moves card and keeps other move names", () => {
+    const attack = basicAttack(lucario);
+    expect(attack?.name).toBe("Attack");
+    expect(moveRowLabel(attack!)).toBe("Basic Attack");
+    const feint = lucario.moves.find((m) => m.slot !== "basicAttack");
+    expect(moveRowLabel(feint!)).toBe(feint!.name);
+  });
+
+  it("returns every basic attack, pre-evolution forms first", () => {
+    const eevee = {
+      ...lucario.moves[0],
+      id: "attack-eevee",
+      slot: "basicAttack" as const,
+      stageLabel: "Eevee",
+    };
+    const espeon = {
+      ...lucario.moves[0],
+      id: "attack",
+      slot: "basicAttack" as const,
+      stageLabel: "Espeon",
+    };
+    const rest = lucario.moves.filter((m) => m.slot !== "basicAttack");
+    const stub = { ...lucario, moves: [eevee, espeon, ...rest] };
+    expect(basicAttacks(stub).map((m) => m.stageLabel)).toEqual(["Eevee", "Espeon"]);
+    expect(basicAttack(stub)?.stageLabel).toBe("Eevee");
   });
 
   it("returns every Unite Move, including dual-unite Pokémon", () => {
