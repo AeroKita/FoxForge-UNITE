@@ -11,9 +11,15 @@ import { SearchProgressOverlay } from "./SearchProgressOverlay";
 import { AdvancedOptimizer } from "./optimizer/AdvancedOptimizer";
 import { BasicOptimizer } from "./optimizer/BasicOptimizer";
 
-export function EmblemOptimizer({ onNavigate }: { onNavigate?: (page: string) => void } = {}) {
+export function EmblemOptimizer({
+  active,
+  onNavigate,
+}: {
+  active: boolean;
+  onNavigate?: (page: string) => void;
+}) {
   const { expert, setMode: setViewMode } = useStore();
-  const { shared, basic, advanced } = useEmblemOptimizer();
+  const { shared, basic, advanced } = useEmblemOptimizer(active);
 
   return (
     <div className="flex flex-col gap-3">

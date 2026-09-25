@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { ReactElement } from "react";
-import { descriptionOnlyTip, moveTip, pickDescription } from "../tips";
+import { descriptionOnlyTip, emblemTip, moveTip, pickDescription } from "../tips";
+import { activeTooltipMedia } from "../../ui/tooltipMedia";
+import { makeEmblem } from "../../engine/__tests__/fixtures";
 import type { Move } from "../../types";
 
 function markup(node: ReactElement | null): string {
@@ -60,7 +62,7 @@ describe("descriptionOnlyTip", () => {
     expect(html).not.toContain("Becomes a boosted attack");
   });
 
-  it("shows the clip and not the icon when videoAsset is set", () => {
+  it("does not mount a clip video until the tooltip is showing it", () => {
     const html = markup(
       descriptionOnlyTip(
         {
@@ -75,7 +77,27 @@ describe("descriptionOnlyTip", () => {
     );
     expect(html).toContain('class="font-semibold">Turboblaze');
     expect(html).toContain("Boosts movement speed.");
+    expect(html).not.toContain("<video");
+    expect(html).not.toContain("<img");
+  });
+
+  it("plays the clip and not the icon when the tooltip is active", () => {
+    const html = markup(
+      activeTooltipMedia(
+        descriptionOnlyTip(
+          {
+            name: "Turboblaze",
+            description: "Boosts movement speed.",
+            videoAsset: "/assets/skills/Reshiram/Turboblaze.mp4",
+            iconAsset: "/assets/skills/Reshiram/Turboblaze.png",
+            gifAsset: "/assets/skills/Reshiram/Turboblaze.webp",
+          },
+          false,
+        ) as ReactElement,
+      ),
+    );
     expect(html).toContain("<video");
+    expect(html).toContain("autoPlay");
     expect(html).toContain("Turboblaze.mp4");
     expect(html).not.toContain("<img");
     expect(html).not.toContain("Turboblaze.png");
@@ -102,5 +124,25 @@ describe("moveTip", () => {
     expect(html).toContain("Feint");
     expect(html).toContain("<img");
     expect(html).toContain("Feint.png");
+  });
+});
+
+describe("emblemTip", () => {
+  const emblem = makeEmblem("Pikachu", ["yellow"], {});
+  emblem.statsByGrade = {
+    bronze: { hp: 6 },
+    silver: { hp: 12 },
+    gold: { hp: 24 },
+  };
+
+  it("builds each grade's tooltip once and keeps the same text", () => {
+    const first = emblemTip(emblem, "gold");
+    const second = emblemTip(emblem, "gold");
+    expect(second).toBe(first);
+    const html = markup(first as ReactElement);
+    expect(html).toContain("Pikachu");
+    expect(html).toContain("gold");
+    expect(html).toContain("24");
+    expect(markup(emblemTip(emblem, "bronze") as ReactElement)).toContain("6");
   });
 });

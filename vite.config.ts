@@ -12,6 +12,7 @@ import {
   PAGES_BASE_PATH,
   socialMetaTags,
 } from "./src/ui/brand";
+import { productionManualChunk } from "./src/build/manualChunks";
 
 // Single source for the displayed version: package.json. Injected via `define` below.
 const { version } = createRequire(import.meta.url)("./package.json") as { version: string };
@@ -79,15 +80,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("patch-current.json")) return "game-data";
-          if (
-            id.includes("node_modules/recharts") ||
-            id.includes("node_modules/victory-vendor") ||
-            id.includes("node_modules/d3-")
-          )
-            return "charts";
-        },
+        manualChunks: productionManualChunk,
       },
     },
   },

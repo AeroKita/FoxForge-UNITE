@@ -3,20 +3,15 @@
 
 import bundled from "./patch-current.json";
 import { loadBundle } from "./loadBundle";
+import { selectActiveBundle } from "./selectActiveBundle";
 import { activeRaw, clearDataCache, refreshDataInBackground } from "./dataSource";
-import { ZodError } from "zod";
-import type { Pokemon, HeldItem, BattleItem, Emblem } from "../types";
+import type { Pokemon, HeldItem, BattleItem, Emblem, GameDataBundle } from "../types";
 
-function loadActiveBundle() {
-  try {
-    return loadBundle(activeRaw(bundled));
-  } catch (e) {
-    if (e instanceof ZodError) {
-      clearDataCache();
-      return loadBundle(bundled);
-    }
-    throw e;
-  }
+function loadActiveBundle(): GameDataBundle {
+  const baseline = bundled as unknown as GameDataBundle;
+  const selected = selectActiveBundle(baseline, activeRaw(baseline), loadBundle);
+  if (selected.rejectedCache) clearDataCache();
+  return selected.bundle;
 }
 
 export const bundle = loadActiveBundle();

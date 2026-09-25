@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { asset } from "../ui/asset";
+import { clipBlobUrl, resolveClipSrc } from "../ui/moveClipPreload";
+import { useTooltipMediaActive } from "../ui/tooltipMedia";
 
 type Stage = "video" | "gif" | "icon" | "none";
 
@@ -17,6 +19,7 @@ export function MoveMedia({
   iconAsset?: string;
   name: string;
 }) {
+  const active = useTooltipMediaActive();
   const first: Stage = videoAsset ? "video" : gifAsset ? "gif" : iconAsset ? "icon" : "none";
   const [stage, setStage] = useState<Stage>(first);
   const src =
@@ -28,6 +31,7 @@ export function MoveMedia({
           ? iconAsset
           : undefined;
   if (!src) return null;
+  if (stage === "video" && !active) return null;
   const fallback = (s: Stage): Stage =>
     s === "video"
       ? gifAsset
@@ -45,7 +49,7 @@ export function MoveMedia({
     <span className="mt-1.5 flex justify-center">
       {stage === "video" ? (
         <video
-          src={asset(src)}
+          src={resolveClipSrc(clipBlobUrl(src), asset(src))}
           autoPlay
           loop
           muted

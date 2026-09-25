@@ -15,7 +15,8 @@ import { slotHoldsAffixedUnique } from "../state/uniqueHeldLoadout";
 import { MAX_EMBLEM_SLOTS } from "../engine/emblems";
 import { asset } from "../ui/asset";
 import { emblemIconForGrade } from "../ui/emblemIcon";
-import { heldItemStatLines, statLines } from "../ui/format";
+import { heldItemStatLines } from "../ui/format";
+import { emblemGradeSubtitle } from "../ui/emblemStatText";
 import { gradesForEmblem } from "../ui/emblems";
 import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../ui/colors";
 import { shareLink } from "../ui/share";
@@ -304,12 +305,7 @@ export function LoadoutBoard() {
           iconForGrade={(id, g) => emblemIconForGrade({ id }, g)}
           subtitleForGrade={(id, g) => {
             const e = emblemById.get(id);
-            if (!e) return "";
-            return (
-              statLines(e.statsByGrade[g === "platinum" ? "gold" : g], true)
-                .map((l) => `${l.label} ${l.value}`)
-                .join(" · ") || "—"
-            );
+            return e ? emblemGradeSubtitle(e, g, true) : "";
           }}
           tipForGrade={(id, g) => {
             const e = emblemById.get(id);

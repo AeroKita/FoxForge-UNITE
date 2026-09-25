@@ -19,6 +19,9 @@ import type { EmblemCandidate } from "./types";
 import { emblemById } from "../../data/gameData";
 import { computeEffectiveStats, outOfCombatMoveSpeed, setBonusStat } from "../formulas";
 import { computeEmblemLoadout } from "../emblems";
+import { candidatesToEmblemSlots } from "./candidateSlots";
+
+export { candidatesToEmblemSlots };
 
 /** Convert EmblemCandidates to EmblemSlots for computeEmblemLoadout. */
 export function candidatesToSlots(candidates: EmblemCandidate[]): EmblemSlot[] {
@@ -73,31 +76,6 @@ export function computePokemonScore(
   }
 
   return { effectiveStats, score };
-}
-
-/**
- * Convert EmblemCandidates → EmblemSlot[] using gameData emblems lookup.
- * When the real emblem object isn't available we synthesise a minimal one.
- */
-export function candidatesToEmblemSlots(
-  candidates: EmblemCandidate[],
-  _setBonuses: EmblemSetBonus[],
-): EmblemSlot[] {
-  return candidates.map((c) => ({
-    emblem: {
-      id: c.id,
-      pokemonName: c.pokemonName,
-      colors: [...c.colors],
-      iconAsset: "",
-      goldOnly: false,
-      statsByGrade: {
-        bronze: { ...c.stats },
-        silver: { ...c.stats },
-        gold: { ...c.stats },
-      },
-    },
-    grade: c.grade,
-  }));
 }
 
 /** The set-bonus color that matters most for this Pokémon. */

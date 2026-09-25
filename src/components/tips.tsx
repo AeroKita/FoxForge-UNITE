@@ -2,7 +2,8 @@
 // panel and the loadout editor).
 import type { ReactNode } from "react";
 import { ITEM_GRADE_DEFAULT } from "../data/gameData";
-import { heldItemStatLines, statLines } from "../ui/format";
+import { heldItemStatLines } from "../ui/format";
+import { emblemGradeStatLines } from "../ui/emblemStatText";
 import type { BattleItem, Emblem, EmblemGrade, HeldItem, Move, StatBlock } from "../types";
 import { MoveMedia } from "./MoveMedia";
 
@@ -106,10 +107,14 @@ export function battleItemTip(item: BattleItem, advanced: boolean) {
   );
 }
 
+const emblemTipCache = new Map<string, ReactNode>();
+
 export function emblemTip(emblem: Emblem, grade: EmblemGrade) {
-  const key = grade === "platinum" ? "gold" : grade;
-  const stats = statLines(emblem.statsByGrade[key]);
-  return (
+  const key = `${emblem.id}:${grade}`;
+  const hit = emblemTipCache.get(key);
+  if (hit) return hit;
+  const stats = emblemGradeStatLines(emblem, grade);
+  const node = (
     <span>
       <span className="font-semibold capitalize">
         {emblem.pokemonName} · {grade}
@@ -120,4 +125,6 @@ export function emblemTip(emblem: Emblem, grade: EmblemGrade) {
       </span>
     </span>
   );
+  emblemTipCache.set(key, node);
+  return node;
 }

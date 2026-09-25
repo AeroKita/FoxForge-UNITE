@@ -8,7 +8,7 @@ import {
   EMBLEM_GRADE_HEX,
   readableTextColor,
 } from "../ui/colors";
-import { statLines } from "../ui/format";
+import { emblemGradeSubtitle } from "../ui/emblemStatText";
 import { emblemsForGrade } from "../ui/emblems";
 import { ownedKey } from "../state/loadout";
 import { emblemIconForGrade } from "../ui/emblemIcon";
@@ -212,7 +212,7 @@ export function InventoryManager() {
       <div className="grid max-h-[60vh] grid-cols-1 gap-2 overflow-y-auto sm:grid-cols-2 md:grid-cols-3">
         {shown.map((e) => {
           const isOwned = owned.has(ownedKey(e.id, grade));
-          const stats = statLines(e.statsByGrade[grade === "platinum" ? "gold" : grade], true);
+          const subtitle = emblemGradeSubtitle(e, grade, true);
           return (
             <Tooltip key={e.id} content={emblemTip(e, grade)} className="w-full">
               <button
@@ -234,9 +234,7 @@ export function InventoryManager() {
                   <span className="block truncate text-xs font-medium text-ink">
                     {e.pokemonName}
                   </span>
-                  <span className="block truncate text-[10px] text-faint">
-                    {stats.map((l) => `${l.label} ${l.value}`).join(" · ") || "—"}
-                  </span>
+                  <span className="block truncate text-[10px] text-faint">{subtitle}</span>
                 </span>
                 <span
                   className={`text-base leading-none ${isOwned ? "text-as-ink" : "text-faint"}`}

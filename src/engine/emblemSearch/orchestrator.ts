@@ -15,7 +15,7 @@ import { searchColorExact, EXACT_PARALLEL_MIN } from "./exactColor";
 import { searchColorExactParallel } from "./exactParallel";
 import { runHeuristic } from "./heuristic";
 import { runHeuristicParallel } from "./heuristicParallel";
-import { candidatesToEmblemSlots } from "./pokemonScore";
+import { candidatesToEmblemSlots } from "./candidateSlots";
 import { countExactEnumerationSpace, formatBuildCount } from "./pool";
 
 export const DEFAULT_EXACT_CAP = 1_000_000_000;

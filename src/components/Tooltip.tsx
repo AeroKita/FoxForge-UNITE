@@ -6,6 +6,7 @@ import {
   shouldStartLongPressTimer,
   type TooltipTouchTrigger,
 } from "../ui/tooltipTouch";
+import { TooltipMediaProvider } from "../ui/tooltipMedia";
 import {
   TIP_CLOSE_MS,
   nextTipPhase,
@@ -41,6 +42,7 @@ export function Tooltip({
 }) {
   const pos = side === "top" ? "bottom-full mb-1.5" : "top-full mt-1.5";
   const [phase, setPhase] = useState<TipPhase>("closed");
+  const [hovered, setHovered] = useState(false);
   const timer = useRef<number | null>(null);
   const start = useRef<{ x: number; y: number } | null>(null);
   const firedRef = useRef(false);
@@ -88,13 +90,23 @@ export function Tooltip({
     start.current = null;
   };
 
+  const onPointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHovered(true);
+  };
+
+  const onPointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHovered(false);
+    cancel();
+  };
+
   return (
     <span
-      className={`group/tt relative inline-flex select-none [-webkit-touch-callout:none] ${touchTrigger === "tap" ? "cursor-pointer" : ""} ${className}`}
+      className={`relative inline-flex select-none [-webkit-touch-callout:none] ${touchTrigger === "tap" ? "cursor-pointer" : ""} ${className}`}
+      onPointerEnter={onPointerEnter}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={cancel}
-      onPointerLeave={cancel}
+      onPointerLeave={onPointerLeave}
       onPointerCancel={cancel}
       onClickCapture={(e) => {
         if (firedRef.current) {
@@ -111,13 +123,15 @@ export function Tooltip({
       }}
     >
       {children}
-      <span
-        role="tooltip"
-        style={{ background: "var(--color-tip-bg)", color: "var(--color-tip-ink)" }}
-        className={`pointer-events-none absolute left-1/2 z-50 hidden w-max max-w-[240px] -translate-x-1/2 ${pos} whitespace-pre-line rounded-lg px-2.5 py-1.5 text-left text-[11px] leading-snug shadow-xl ring-1 ring-black/10 group-hover/tt:block`}
-      >
-        {content}
-      </span>
+      <TooltipMediaProvider active={hovered}>
+        <span
+          role="tooltip"
+          style={{ background: "var(--color-tip-bg)", color: "var(--color-tip-ink)" }}
+          className={`pointer-events-none absolute left-1/2 z-50 w-max max-w-[240px] -translate-x-1/2 ${pos} whitespace-pre-line rounded-lg px-2.5 py-1.5 text-left text-[11px] leading-snug shadow-xl ring-1 ring-black/10 ${hovered ? "block" : "hidden"}`}
+        >
+          {content}
+        </span>
+      </TooltipMediaProvider>
 
       {mounted && (
         <div
@@ -139,7 +153,7 @@ export function Tooltip({
             <div
               className={`whitespace-pre-line text-sm leading-snug text-ink ${phase === "closing" ? "tip-fold-ink" : "tip-unfold-ink"}`}
             >
-              {content}
+              <TooltipMediaProvider active>{content}</TooltipMediaProvider>
             </div>
           </div>
         </div>

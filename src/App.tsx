@@ -12,6 +12,7 @@ import { StoreProvider, useStore } from "./state/store";
 import { pokemonById } from "./data/gameData";
 import { ROLE_COLOR, ROLE_LABEL } from "./ui/theme";
 import { asset } from "./ui/asset";
+import { usePreloadMoveClips } from "./ui/moveClipPreload";
 import { AppBar } from "./components/shell/AppBar";
 import { TabBar, TAB_ICONS, type Tab } from "./components/shell/TabBar";
 import { BuildScreen } from "./components/screens/BuildScreen";
@@ -92,6 +93,7 @@ function Workspace() {
 
   const p = loadout.pokemonId ? pokemonById.get(loadout.pokemonId) : null;
   const role = p ? ROLE_COLOR[p.role] : null;
+  usePreloadMoveClips(p ?? null);
 
   const appBarProps = useMemo(() => {
     // Build and Optimize both pin the selected Pokémon to the top-left of the
@@ -186,7 +188,7 @@ function Workspace() {
             aria-hidden={tab !== "optimize"}
           >
             <Suspense fallback={null}>
-              <OptimizeScreen onNavigate={setTab} />
+              <OptimizeScreen active={tab === "optimize"} onNavigate={setTab} />
             </Suspense>
           </div>
         )}

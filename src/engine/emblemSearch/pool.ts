@@ -6,6 +6,60 @@ import type { Emblem, EmblemColor } from "../../types";
 import type { EmblemCandidate, PoolConfig } from "./types";
 import { buildCandidatePool, distinctPokemonCount } from "./adapt";
 
+/** Actual color-count DP evaluations (cache misses). Tests read this. */
+let colorDpRuns = 0;
+
+/** Returns the run count since the last take, then resets it. */
+export function takeColorDpRuns(): number {
+  const n = colorDpRuns;
+  colorDpRuns = 0;
+  return n;
+}
+
+const colorCountBuckets = new Map<string, Map<string, bigint | null>>();
+const MAX_CACHED_POOLS = 2;
+
+function poolSignature(pool: EmblemCandidate[]): string {
+  let sig = String(pool.length);
+  for (const c of pool) sig += `\0${c.id}\0${c.grade}\0${c.colors.join("+")}`;
+  return sig;
+}
+
+function colorCountBucket(poolKey: string): Map<string, bigint | null> {
+  const existing = colorCountBuckets.get(poolKey);
+  if (existing) {
+    colorCountBuckets.delete(poolKey);
+    colorCountBuckets.set(poolKey, existing);
+    return existing;
+  }
+  if (colorCountBuckets.size >= MAX_CACHED_POOLS) {
+    const oldest = colorCountBuckets.keys().next().value;
+    if (oldest !== undefined) colorCountBuckets.delete(oldest);
+  }
+  const created = new Map<string, bigint | null>();
+  colorCountBuckets.set(poolKey, created);
+  return created;
+}
+
+function cachedColorCount(
+  pool: EmblemCandidate[],
+  colorConstraints: Map<EmblemColor, number>,
+  slots: number,
+  gradeAware: boolean,
+): bigint | null {
+  const callKey = `${slots}|${gradeAware ? 1 : 0}|${[...colorConstraints.entries()]
+    .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
+    .map(([color, count]) => `${color}:${count}`)
+    .join(",")}`;
+  const bucket = colorCountBucket(poolSignature(pool));
+  const hit = bucket.get(callKey);
+  if (hit !== undefined) return hit;
+  colorDpRuns += 1;
+  const value = countConstrainedBuildsInternal(pool, colorConstraints, slots, gradeAware);
+  bucket.set(callKey, value);
+  return value;
+}
+
 export { distinctPokemonCount };
 
 /**
@@ -219,7 +273,7 @@ export function countConstrainedBuilds(
   colorConstraints: Map<EmblemColor, number>,
   slots = 10,
 ): bigint | null {
-  return countConstrainedBuildsInternal(pool, colorConstraints, slots, true);
+  return cachedColorCount(pool, colorConstraints, slots, true);
 }
 
 /**
@@ -239,7 +293,7 @@ export function countExactEnumerationSpace(
   slots = 10,
   gradeAware = false,
 ): bigint | null {
-  return countConstrainedBuildsInternal(pool, colorConstraints, slots, gradeAware);
+  return cachedColorCount(pool, colorConstraints, slots, gradeAware);
 }
 
 /**

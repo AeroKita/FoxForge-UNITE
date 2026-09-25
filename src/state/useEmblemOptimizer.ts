@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "./store";
+import { ownedForOptimizer } from "./optimizerVisibility";
 import type { EmblemPick } from "./loadout";
 import { emblems as allEmblems, setBonuses, pokemonById, pokemonList } from "../data/gameData";
 import {
@@ -58,12 +59,15 @@ import {
   type OptimizerSharedProps,
 } from "../components/optimizer/shared";
 
-export function useEmblemOptimizer(): {
+export function useEmblemOptimizer(active: boolean): {
   shared: OptimizerSharedProps;
   basic: OptimizerBasicProps;
   advanced: OptimizerAdvancedProps;
 } {
   const { loadout, dispatch, owned, expert } = useStore();
+  const shownOwnedRef = useRef(owned);
+  const shownOwned = ownedForOptimizer(active, owned, shownOwnedRef.current);
+  shownOwnedRef.current = shownOwned;
   const pokemon = loadout.pokemonId ? (pokemonById.get(loadout.pokemonId) ?? null) : null;
 
   const [basicUseOwned, setBasicUseOwned] = useState(BASIC_POOL_DEFAULTS.useOwned);
@@ -95,7 +99,10 @@ export function useEmblemOptimizer(): {
     () => ({ useOwned, mixedGrades, allowedGrades }),
     [useOwned, mixedGrades, allowedGrades],
   );
-  const pool = useMemo(() => buildPool(allEmblems, poolConfig, owned), [poolConfig, owned]);
+  const pool = useMemo(
+    () => buildPool(allEmblems, poolConfig, shownOwned),
+    [poolConfig, shownOwned],
+  );
   const buildCount = useMemo(() => approximateBuildCount(pool, SLOTS), [pool]);
   const candidateCount = pool.length;
   const poolDistinctNames = useMemo(() => distinctPokemonCount(pool), [pool]);
@@ -115,8 +122,8 @@ export function useEmblemOptimizer(): {
     [basicUseOwned, allowedGrades],
   );
   const basicPool = useMemo(
-    () => buildBasicPool(allEmblems, owned, basicPoolConfig),
-    [owned, basicPoolConfig],
+    () => buildBasicPool(allEmblems, shownOwned, basicPoolConfig),
+    [shownOwned, basicPoolConfig],
   );
 
   const basicNotEnoughEmblems = basicPool.length < SLOTS;
@@ -334,7 +341,7 @@ export function useEmblemOptimizer(): {
         colorMode,
         activeColors: [...activeColors].sort(),
         colorCounts,
-        ownedKeys: [...owned].sort(),
+        ownedKeys: [...shownOwned].sort(),
         resultCount,
       }),
     [
@@ -358,7 +365,7 @@ export function useEmblemOptimizer(): {
       colorMode,
       activeColors,
       colorCounts,
-      owned,
+      shownOwned,
       resultCount,
     ],
   );
@@ -580,6 +587,7 @@ export function useEmblemOptimizer(): {
 
   // Pool change: auto-upgrade Weighted → Exact when feasible; downgrade Exact when not.
   useLayoutEffect(() => {
+    if (!active) return;
     if (!expert || colorMode === "off" || activeColorsRef.current.size === 0) {
       prevExactFeasibleRef.current = null;
       return;
@@ -607,7 +615,7 @@ export function useEmblemOptimizer(): {
     }
 
     prevExactFeasibleRef.current = exactFeasible;
-  }, [expert, colorMode, poolConfig, owned, enumerateGradeVariants, pool]);
+  }, [active, expert, colorMode, poolConfig, shownOwned, enumerateGradeVariants, pool]);
 
   const handleBasicSearch = useCallback(async () => {
     if (!pokemon || !basicObjective || basicPool.length < SLOTS) return;
