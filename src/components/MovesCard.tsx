@@ -14,8 +14,7 @@ import {
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
-import { MoveMedia } from "./MoveMedia";
-import { moveTip, pickDescription } from "./tips";
+import { descriptionOnlyTip, moveTip } from "./tips";
 import type { Ability, Move, Pokemon } from "../types";
 
 /** Flip to `false` to hide Passive chips without touching the rows. */
@@ -32,7 +31,11 @@ function MoveRow({
   advanced: boolean;
 }) {
   return (
-    <Tooltip content={moveTip(move, advanced)}>
+    <Tooltip
+      content={
+        move.slot === "basicAttack" ? descriptionOnlyTip(move, advanced) : moveTip(move, advanced)
+      }
+    >
       <span className="flex items-center gap-2">
         <MoveIcon src={move.iconAsset} alt={move.name} size="h-8 w-8" />
         <span className="min-w-0">
@@ -122,23 +125,9 @@ function PassiveChip({ label }: { label: string }) {
 }
 
 function PassiveRow({ ability, advanced }: { ability: Ability; advanced: boolean }) {
-  const desc = pickDescription(ability, advanced);
   const chip = passiveChipLabel(ability);
   return (
-    <Tooltip
-      content={
-        <span>
-          <span className="font-semibold">{ability.name}</span>
-          {desc && <span className="mt-0.5 block text-faint">{desc}</span>}
-          <MoveMedia
-            videoAsset={ability.videoAsset}
-            gifAsset={ability.gifAsset}
-            iconAsset={ability.iconAsset}
-            name={ability.name}
-          />
-        </span>
-      }
-    >
+    <Tooltip content={descriptionOnlyTip(ability, advanced)}>
       <span className="flex items-center gap-2">
         <MoveIcon src={ability.iconAsset} alt={ability.name} size="h-8 w-8" />
         <span className="min-w-0 truncate text-sm font-medium text-ink">{ability.name}</span>

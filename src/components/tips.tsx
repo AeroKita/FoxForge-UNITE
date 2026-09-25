@@ -1,5 +1,6 @@
 // Shared tooltip content builders for items and emblems (used by the Recommend
 // panel and the loadout editor).
+import type { ReactNode } from "react";
 import { ITEM_GRADE_DEFAULT } from "../data/gameData";
 import { heldItemStatLines, statLines } from "../ui/format";
 import type { BattleItem, Emblem, EmblemGrade, HeldItem, Move, StatBlock } from "../types";
@@ -17,6 +18,32 @@ export function pickDescription(
   advanced: boolean,
 ): string {
   return advanced && d.descriptionAdvanced ? d.descriptionAdvanced : d.description;
+}
+
+/**
+ * Tooltip body for a Basic Attack or Passive: the description for the current
+ * mode, plus a gameplay clip when `videoAsset` is set. No name, type, cooldown,
+ * GIF, or icon. `gifAsset` and `iconAsset` are accepted so callers can pass a
+ * Move or Ability without stripping fields; they are not rendered.
+ */
+export function descriptionOnlyTip(
+  entity: {
+    name: string;
+    description: string;
+    descriptionAdvanced?: string;
+    videoAsset?: string;
+    gifAsset?: string;
+    iconAsset?: string;
+  },
+  advanced: boolean,
+): ReactNode {
+  const desc = pickDescription(entity, advanced);
+  return (
+    <span>
+      {desc ? <span className="block text-faint">{desc}</span> : null}
+      {entity.videoAsset ? <MoveMedia videoAsset={entity.videoAsset} name={entity.name} /> : null}
+    </span>
+  );
 }
 
 export function moveTip(move: Move, advanced: boolean) {
