@@ -1,5 +1,8 @@
-/** Duration of the touch-tooltip unfold and fold. Matches the Aura Cannon panel grow. */
-export const TIP_UNFOLD_MS = 200;
+/** Duration of the touch-tooltip unfold. */
+export const TIP_UNFOLD_MS = 300;
+
+/** Duration of the fade that removes the popup. No fold, so no leftover bar. */
+export const TIP_CLOSE_MS = 100;
 
 export type TipPhase = "closed" | "open" | "closing";
 

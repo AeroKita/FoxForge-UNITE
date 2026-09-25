@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useStore } from "../state/store";
 import { heldItems, isUniqueHeldItem, ITEM_GRADE_MAX } from "../data/gameData";
+import { clampHeldGrade } from "../state/heldItemGrades";
 import { asset } from "../ui/asset";
 import { heldItemStatLines } from "../ui/format";
 import { HeldItemDetailModal } from "../ui/heldItemDetail";
@@ -8,6 +9,34 @@ import { useHoldRepeat } from "../ui/useHoldRepeat";
 import { GradeField } from "./GradeField";
 import { statsAtGrade } from "./tips";
 import type { HeldItem } from "../types";
+
+/** Label beside the Items-page bulk grade chips. */
+export const BULK_SET_ALL_LABEL = "Set all to";
+
+/** Grades the bulk chips write. Last entry is the in-game cap. */
+export const BULK_HELD_GRADE_PRESETS = [1, 10, 20, ITEM_GRADE_MAX] as const;
+
+/** Visible text for one bulk chip. */
+export function bulkHeldGradeChipLabel(value: number): string {
+  return value === ITEM_GRADE_MAX ? "Max" : String(value);
+}
+
+/**
+ * Copy `memory` and set `value` on every graded item in `items`.
+ * Unique items and ids absent from `items` are left unchanged.
+ */
+export function gradesAfterBulkSet(
+  memory: Record<string, number>,
+  items: readonly HeldItem[],
+  value: number,
+): Record<string, number> {
+  const next = { ...memory };
+  const grade = clampHeldGrade(value);
+  for (const item of items) {
+    if (!isUniqueHeldItem(item)) next[item.id] = grade;
+  }
+  return next;
+}
 
 /**
  * Global held item grade inventory — set per-item grades (1–40) that sync with
@@ -32,8 +61,9 @@ export function HeldItemsInventory() {
   const detailGrade = detailItem ? heldItemGrade(detailItem.id) : 40;
 
   const setAllShown = (value: number) => {
-    for (const item of gradedItems) {
-      setHeldItemGradeById(item.id, value);
+    const next = gradesAfterBulkSet({}, gradedItems, value);
+    for (const [id, grade] of Object.entries(next)) {
+      setHeldItemGradeById(id, grade);
     }
   };
 
@@ -55,15 +85,15 @@ export function HeldItemsInventory() {
 
       {gradedItems.length > 0 && (
         <div className="mb-3 flex flex-wrap items-center gap-2">
-          <span className="text-xs text-muted">Set all shown to</span>
-          {[20, 30, ITEM_GRADE_MAX].map((value) => (
+          <span className="text-xs text-muted">{BULK_SET_ALL_LABEL}</span>
+          {BULK_HELD_GRADE_PRESETS.map((value) => (
             <button
               key={value}
               type="button"
               onClick={() => setAllShown(value)}
               className="min-h-11 rounded-full border border-line px-4 text-sm font-medium hover:bg-raise"
             >
-              {value === ITEM_GRADE_MAX ? "Max" : value}
+              {bulkHeldGradeChipLabel(value)}
             </button>
           ))}
         </div>

@@ -4,6 +4,7 @@ import {
   TIP_BACKDROP_OPEN_CLASS,
   TIP_SHELL_CLOSE_CLASS,
   TIP_SHELL_OPEN_CLASS,
+  TIP_CLOSE_MS,
   TIP_UNFOLD_MS,
   nextTipPhase,
   tipBackdropClass,
@@ -15,8 +16,9 @@ import {
 } from "../tooltipUnfold";
 
 describe("tooltip unfold phase", () => {
-  it("uses a 200ms unfold, matching the Aura Cannon panel grow", () => {
-    expect(TIP_UNFOLD_MS).toBe(200);
+  it("opens over 300ms and fades closed over 100ms", () => {
+    expect(TIP_UNFOLD_MS).toBe(300);
+    expect(TIP_CLOSE_MS).toBe(100);
   });
 
   it("opens from closed, and a second show stays open", () => {

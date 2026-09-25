@@ -7,7 +7,7 @@ import {
   type TooltipTouchTrigger,
 } from "../ui/tooltipTouch";
 import {
-  TIP_UNFOLD_MS,
+  TIP_CLOSE_MS,
   nextTipPhase,
   prefersReducedMotion,
   tipBackdropClass,
@@ -55,7 +55,7 @@ export function Tooltip({
 
   useEffect(() => {
     if (phase !== "closing") return;
-    const id = window.setTimeout(() => request("finished"), TIP_UNFOLD_MS + 80);
+    const id = window.setTimeout(() => request("finished"), TIP_CLOSE_MS + 40);
     return () => window.clearTimeout(id);
   }, [phase]);
 
@@ -124,7 +124,7 @@ export function Tooltip({
           className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${tipScrollPassClass(phase)}`}
         >
           <div
-            className={`absolute inset-0 bg-black/40 ${tipBackdropClass(phase)}`}
+            className={`absolute inset-0 bg-black/50 ${tipBackdropClass(phase)}`}
             onClick={() => request("dismiss")}
           />
           <div
