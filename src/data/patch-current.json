@@ -18049,6 +18049,65 @@
             "Cotton Spore"
           ]
         }
+      ],
+      "creativeBuilds": [
+        {
+          "name": "Rapid-Fire Cotton",
+          "emblemName": "Rapid-Fire Cotton",
+          "lane": "Anywhere Damage",
+          "heldItemIds": [
+            "muscle-band",
+            "rapid-fire-scarf",
+            "buddy-barrier"
+          ],
+          "battleItemId": "x-speed",
+          "emblems": [
+            {
+              "emblemId": "004-charmander",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "005-charmeleon",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "006-charizard",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "038-ninetales",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "244-entei",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "218-slugma",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "016-pidgey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "242-blissey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "145-zapdos",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "146-moltres",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Leaf Tornado",
+            "Cotton Guard"
+          ]
+        }
       ]
     },
     {
@@ -27703,6 +27762,65 @@
           "moves": [
             "Trick",
             "Phantom Force"
+          ]
+        }
+      ],
+      "creativeBuilds": [
+        {
+          "name": "Rapid-Fire Rings",
+          "emblemName": "Rapid-Fire Rings",
+          "lane": "Anywhere Damage",
+          "heldItemIds": [
+            "muscle-band",
+            "rapid-fire-scarf",
+            "choice-scarf"
+          ],
+          "battleItemId": "full-heal",
+          "emblems": [
+            {
+              "emblemId": "004-charmander",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "005-charmeleon",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "006-charizard",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "038-ninetales",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "244-entei",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "218-slugma",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "016-pidgey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "242-blissey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "145-zapdos",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "146-moltres",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Phantom Force",
+            "Hyperspace Hole"
           ]
         }
       ]
@@ -41207,48 +41325,48 @@
           ],
           "emblems": [
             {
-              "emblemId": "045-vileplume",
+              "emblemId": "004-charmander",
               "grade": "gold"
             },
             {
-              "emblemId": "049-venomoth",
+              "emblemId": "005-charmeleon",
               "grade": "gold"
             },
             {
-              "emblemId": "088-grimer",
+              "emblemId": "006-charizard",
               "grade": "gold"
             },
             {
-              "emblemId": "089-muk",
+              "emblemId": "038-ninetales",
               "grade": "gold"
             },
             {
-              "emblemId": "211-qwilfish",
+              "emblemId": "244-entei",
               "grade": "gold"
             },
             {
-              "emblemId": "248-tyranitar",
+              "emblemId": "218-slugma",
               "grade": "gold"
             },
             {
-              "emblemId": "048-venonat",
+              "emblemId": "016-pidgey",
               "grade": "gold"
             },
             {
-              "emblemId": "012-butterfree",
+              "emblemId": "242-blissey",
               "grade": "gold"
             },
             {
-              "emblemId": "249-lugia",
+              "emblemId": "145-zapdos",
               "grade": "gold"
             },
             {
-              "emblemId": "071-victreebel",
-              "grade": "bronze"
+              "emblemId": "146-moltres",
+              "grade": "gold"
             }
           ],
           "lane": "Path Damage",
-          "emblemName": "Nine Snow Tails",
+          "emblemName": "Rapid-Fire Snow",
           "heldItemOptional": "drive-lens",
           "battleItemId": "x-attack",
           "moves": [
@@ -44904,6 +45022,65 @@
           "moves": [
             "Stored Power",
             "Thunderbolt"
+          ]
+        }
+      ],
+      "creativeBuilds": [
+        {
+          "name": "Rapid-Fire Surfer",
+          "emblemName": "Rapid-Fire Surfer",
+          "lane": "Anywhere Damage",
+          "heldItemIds": [
+            "muscle-band",
+            "rapid-fire-scarf",
+            "choice-scarf"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "004-charmander",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "005-charmeleon",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "006-charizard",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "038-ninetales",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "244-entei",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "218-slugma",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "016-pidgey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "242-blissey",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "145-zapdos",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "146-moltres",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Stored Power",
+            "Psychic"
           ]
         }
       ]

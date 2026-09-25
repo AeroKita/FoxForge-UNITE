@@ -22,6 +22,11 @@ export const STAT_ROWS: StatRow[] = [
   { key: "moveSpeed", label: "Speed", kind: "int" },
 ];
 
+/** Short level chip used beside a build name (e.g. "Lv 13"). */
+export function formatLevelLabel(level: number): string {
+  return `Lv ${level}`;
+}
+
 export function formatStat(value: number, kind: StatKind): string {
   if (kind === "percent") return `${(value * 100).toFixed(1)}%`;
   return Math.round(value).toLocaleString();

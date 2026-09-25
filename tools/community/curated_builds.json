@@ -2374,6 +2374,65 @@
       "Rescue Fluff",
       "Leaf Cotton",
       "Spreading Seeds"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Rapid-Fire Cotton",
+        "emblemName": "Rapid-Fire Cotton",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "muscle-band",
+          "rapid-fire-scarf",
+          "buddy-barrier"
+        ],
+        "battleItemId": "x-speed",
+        "emblems": [
+          {
+            "emblemId": "004-charmander",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "005-charmeleon",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "006-charizard",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "038-ninetales",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "244-entei",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "218-slugma",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "016-pidgey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "242-blissey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "146-moltres",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Leaf Tornado",
+          "Cotton Guard"
+        ]
+      }
     ]
   },
   "empoleon": {
@@ -2432,6 +2491,65 @@
       "Ring Trick",
       "Confined Mischief",
       "Unbound Rings"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Rapid-Fire Rings",
+        "emblemName": "Rapid-Fire Rings",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "muscle-band",
+          "rapid-fire-scarf",
+          "choice-scarf"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "004-charmander",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "005-charmeleon",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "006-charizard",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "038-ninetales",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "244-entei",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "218-slugma",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "016-pidgey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "242-blissey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "146-moltres",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Phantom Force",
+          "Hyperspace Hole"
+        ]
+      }
     ]
   },
   "lapras": {
@@ -2562,11 +2680,200 @@
     ]
   },
   "alolan-ninetales": {
-    "recommendedTitles": [
-      "Snow Veil",
-      "Alolan Aurora",
-      "Nine Snow Tails",
-      "Sacred Snow"
+    "builds": [
+      {
+        "name": "Sheer Cold",
+        "heldItemIds": [
+          "slick-spoon",
+          "wise-glasses",
+          "drive-lens"
+        ],
+        "emblems": [
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          }
+        ],
+        "lane": "Path Damage",
+        "emblemName": "Snow Veil",
+        "heldItemOptional": "choice-specs",
+        "battleItemId": "eject-button",
+        "moves": [
+          "Avalanche",
+          "Blizzard"
+        ]
+      },
+      {
+        "name": "Dazzling Veil (no emblems)",
+        "heldItemIds": [
+          "slick-spoon",
+          "muscle-band",
+          "drive-lens"
+        ],
+        "emblems": [],
+        "lane": "Path Damage",
+        "heldItemOptional": "wise-glasses",
+        "battleItemId": "eject-button",
+        "battleItemOptional": "x-attack",
+        "moves": [
+          "Dazzling Gleam",
+          "Aurora Veil"
+        ],
+        "emblemName": "Alolan Aurora"
+      },
+      {
+        "name": "Dazzling Veil",
+        "heldItemIds": [
+          "rapid-fire-scarf",
+          "muscle-band",
+          "slick-spoon"
+        ],
+        "emblems": [
+          {
+            "emblemId": "004-charmander",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "005-charmeleon",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "006-charizard",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "038-ninetales",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "244-entei",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "218-slugma",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "016-pidgey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "242-blissey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "146-moltres",
+            "grade": "gold"
+          }
+        ],
+        "lane": "Path Damage",
+        "emblemName": "Rapid-Fire Snow",
+        "heldItemOptional": "drive-lens",
+        "battleItemId": "x-attack",
+        "moves": [
+          "Dazzling Gleam",
+          "Aurora Veil"
+        ]
+      },
+      {
+        "name": "Dazzling Veil",
+        "heldItemIds": [
+          "muscle-band",
+          "slick-spoon",
+          "drive-lens"
+        ],
+        "emblems": [
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          }
+        ],
+        "lane": "Path Damage",
+        "emblemName": "Sacred Snow",
+        "heldItemOptional": "wise-glasses",
+        "battleItemId": "eject-button",
+        "battleItemOptional": "x-attack",
+        "moves": [
+          "Dazzling Gleam",
+          "Aurora Veil"
+        ]
+      }
     ]
   },
   "pawmot": {
@@ -2654,6 +2961,65 @@
       "Tail Surf",
       "Pancake Ride",
       "Psychic Surf"
+    ],
+    "creativeBuilds": [
+      {
+        "name": "Rapid-Fire Surfer",
+        "emblemName": "Rapid-Fire Surfer",
+        "lane": "Anywhere Damage",
+        "heldItemIds": [
+          "muscle-band",
+          "rapid-fire-scarf",
+          "choice-scarf"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          {
+            "emblemId": "004-charmander",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "005-charmeleon",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "006-charizard",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "038-ninetales",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "244-entei",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "218-slugma",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "016-pidgey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "242-blissey",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "146-moltres",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Stored Power",
+          "Psychic"
+        ]
+      }
     ]
   },
   "sableye": {

@@ -1,2 +1,3 @@
-vaporeon  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+vaporeon  —  Basic Attack stills
+basic-attack-eevee.jpeg → Eevee
+basic-attack-vaporeon.jpeg → Vaporeon

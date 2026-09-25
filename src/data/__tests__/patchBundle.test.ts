@@ -1402,6 +1402,57 @@ describe("community data bundle", () => {
     expect(pawmotGas?.battleItemId).toBe("full-heal");
   });
 
+  it("shares Mega Mewtwo Y Ultimate Genome emblems on Rapid-Fire builds", () => {
+    const genome = [
+      { emblemId: "004-charmander", grade: "gold" },
+      { emblemId: "005-charmeleon", grade: "gold" },
+      { emblemId: "006-charizard", grade: "gold" },
+      { emblemId: "038-ninetales", grade: "gold" },
+      { emblemId: "244-entei", grade: "gold" },
+      { emblemId: "218-slugma", grade: "gold" },
+      { emblemId: "016-pidgey", grade: "gold" },
+      { emblemId: "242-blissey", grade: "gold" },
+      { emblemId: "145-zapdos", grade: "gold" },
+      { emblemId: "146-moltres", grade: "gold" },
+    ];
+    const mewtwoY = bundle.pokemon.find((p) => p.id === "mewtwoy")!;
+    expect(mewtwoY.builds?.find((b) => b.emblemName === "Ultimate Genome")?.emblems).toEqual(
+      genome,
+    );
+
+    const ninetales = bundle.pokemon.find((p) => p.id === "alolan-ninetales")!;
+    expect(ninetales.builds?.map((b) => b.emblemName)).toEqual([
+      "Snow Veil",
+      "Alolan Aurora",
+      "Rapid-Fire Snow",
+      "Sacred Snow",
+    ]);
+    const snow = ninetales.builds?.find((b) => b.emblemName === "Rapid-Fire Snow");
+    expect(snow?.emblems).toEqual(genome);
+    expect(snow?.moves).toEqual(["Dazzling Gleam", "Aurora Veil"]);
+
+    const hoopa = bundle.pokemon.find((p) => p.id === "hoopa")!;
+    const rings = hoopa.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Rings");
+    expect(rings?.emblems).toEqual(genome);
+    expect(rings?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "choice-scarf"]);
+    expect(rings?.battleItemId).toBe("full-heal");
+    expect(rings?.moves).toEqual(["Phantom Force", "Hyperspace Hole"]);
+
+    const eldegoss = bundle.pokemon.find((p) => p.id === "eldegoss")!;
+    const cotton = eldegoss.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Cotton");
+    expect(cotton?.emblems).toEqual(genome);
+    expect(cotton?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "buddy-barrier"]);
+    expect(cotton?.battleItemId).toBe("x-speed");
+    expect(cotton?.moves).toEqual(["Leaf Tornado", "Cotton Guard"]);
+
+    const raichu = bundle.pokemon.find((p) => p.id === "alolan-raichu")!;
+    const surfer = raichu.creativeBuilds?.find((b) => b.emblemName === "Rapid-Fire Surfer");
+    expect(surfer?.emblems).toEqual(genome);
+    expect(surfer?.heldItemIds).toEqual(["muscle-band", "rapid-fire-scarf", "choice-scarf"]);
+    expect(surfer?.battleItemId).toBe("eject-button");
+    expect(surfer?.moves).toEqual(["Stored Power", "Psychic"]);
+  });
+
   it("replaces the retired Bronze Aerodactyl physical shell everywhere", () => {
     const retired = new Set([
       "250-ho-oh|gold",

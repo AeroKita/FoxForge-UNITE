@@ -476,6 +476,79 @@ def apply_archive_move_basic(move: dict, over: dict) -> None:
     move["description"] = ensure_sentence_end(strip_activation_note(archived))
 
 
+# (stage label, archive key) in evolution order. The last row is the form
+# the license is played as and uses the ``basic attack`` body.
+STAGED_BASIC_ATTACKS: dict[str, tuple[tuple[str, str], ...]] = {
+    "aegislash": (("Honedge / Doublade", "attack - honedge"), ("Aegislash", "basic attack")),
+    "alolan-raichu": (("Pikachu", "attack - pikachu"), ("Raichu", "basic attack")),
+    "armarouge": (("Charcadet", "attack - charcadet"), ("Armarouge", "basic attack")),
+    "ceruledge": (("Charcadet", "attack - charcadet"), ("Ceruledge", "basic attack")),
+    "dragonite": (
+        ("Dratini", "attack - dratini"),
+        ("Dragonair", "attack - dragonair"),
+        ("Dragonite", "basic attack"),
+    ),
+    "empoleon": (
+        ("Piplup", "attack - piplup"),
+        ("Prinplup", "attack - prinplup"),
+        ("Empoleon", "basic attack"),
+    ),
+    "espeon": (("Eevee", "attack - eevee"), ("Espeon", "basic attack")),
+    "glaceon": (("Eevee", "attack - eevee"), ("Glaceon", "basic attack")),
+    "gyarados": (("Magikarp", "attack - magikarp"), ("Gyarados", "basic attack")),
+    "leafeon": (("Eevee", "attack - eevee"), ("Leafeon", "basic attack")),
+    "sylveon": (("Eevee", "attack - eevee"), ("Sylveon", "basic attack")),
+    "vaporeon": (("Eevee", "attack - eevee"), ("Vaporeon", "basic attack")),
+    "solgaleo": (
+        ("Cosmog", "attack - cosmog"),
+        ("Cosmoem", "attack - cosmoem"),
+        ("Solgaleo", "basic attack"),
+    ),
+    "urshifu": (
+        ("Kubfu", "attack - kubfu"),
+        ("Single Strike", "attack - single strike"),
+        ("Rapid Strike", "attack - rapid strike"),
+    ),
+    "mewtwox": (("Mewtwo", "attack - mewtwo"), ("Mega Mewtwo X", "basic attack")),
+    "mewtwoy": (("Mewtwo", "attack - mewtwo"), ("Mega Mewtwo Y", "basic attack")),
+}
+
+
+def expand_staged_basic_attacks(moves: list, pid: str, archive: dict) -> list:
+    """Replace one basic attack with a row per evolution or style when staged text exists."""
+    stages = STAGED_BASIC_ATTACKS.get(pid)
+    if not stages or not archive:
+        return moves
+    try:
+        idx = next(i for i, m in enumerate(moves) if m.get("slot") == "basicAttack")
+    except StopIteration:
+        return moves
+    base = moves[idx]
+    staged = []
+    for label, key in stages:
+        body = description_body(archive.get(key, "") or "").strip()
+        if not body:
+            continue
+        clone = dict(base)
+        clone["stageLabel"] = label
+        clone["name"] = "Attack"
+        clone["description"] = ensure_sentence_end(strip_activation_note(body))
+        clone["iconAsset"] = "/assets/skills/basic-attack.png"
+        form_id = slugify(label)
+        while "--" in form_id:
+            form_id = form_id.replace("--", "-")
+        if key != "basic attack":
+            new_id = "attack-" + form_id
+            if new_id == base.get("id"):
+                new_id = new_id + "-form"
+            clone["id"] = new_id
+            clone.pop("descriptionAdvanced", None)
+        staged.append(clone)
+    if len(staged) < 2:
+        return moves
+    return moves[:idx] + staged + moves[idx + 1 :]
+
+
 # Pokémon whose on-field Ability is the last UNITE-DB stage (passive3, else
 # passive2), not the pre-evolution ``name``. Mega licenses are a separate path
 # (``mega_license_passive_names``) and must not be listed here. Dual-form
@@ -742,9 +815,11 @@ def build_move(skill: dict, slot: str, folder: str) -> dict:
     }
     if mtype:
         move["moveType"] = mtype
-    # Every slot has CDN art except the basic attack ("Attack" has no icon).
+    # Every slot has CDN art except the basic attack, which uses one shared icon.
     if slot != "basicAttack":
         move["iconAsset"] = skill_icon(folder, name)
+    else:
+        move["iconAsset"] = "/assets/skills/basic-attack.png"
     adv = advanced_desc(rsb, skill.get("level2"))
     if adv:
         move["descriptionAdvanced"] = paragraphize_upgrade(adv)
@@ -1079,6 +1154,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
         if over:
             for m in moves:
                 apply_archive_move_basic(m, over)
+        moves = expand_staged_basic_attacks(moves, pid, over)
         # After archive backfill, copy Advanced's Upgrade paragraph onto Basic when
         # Basic still lacks an Upgrade marker.
         for m in moves:

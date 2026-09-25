@@ -17,6 +17,7 @@ from normalize import (
     advanced_desc,
     append_upgrade_from_advanced,
     apply_archive_move_basic,
+    expand_staged_basic_attacks,
     apply_patch_note_overrides,
     assert_operator_lock_bodies,
     build_emblems,
@@ -459,6 +460,28 @@ class TestApplyArchiveMoveBasic(unittest.TestCase):
         }
         apply_archive_move_basic(move, {"extreme speed": "Has the user dash."})
         self.assertEqual(move["description"], "UNITE-DB auto attack text.")
+
+    def test_staged_basic_attacks_keep_evolution_order(self):
+        base = {
+            "id": "attack",
+            "name": "Attack",
+            "slot": "basicAttack",
+            "description": "UNITE-DB.",
+        }
+        moves = expand_staged_basic_attacks(
+            [base, {"id": "feint", "slot": "move1"}],
+            "espeon",
+            {
+                "attack - eevee": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
+                "basic attack": "Becomes a boosted attack whenever a set amount of time passes, firing a beam in front of the user.",
+            },
+        )
+        self.assertEqual([m["stageLabel"] for m in moves if m["slot"] == "basicAttack"], ["Eevee", "Espeon"])
+        self.assertEqual(moves[0]["name"], "Attack")
+        self.assertEqual(moves[1]["id"], "attack")
+        self.assertIn("when it hits", moves[0]["description"])
+        self.assertIn("firing a beam", moves[1]["description"])
+        self.assertEqual(moves[2]["id"], "feint")
 
 
 class TestResolvePlayablePassive(unittest.TestCase):

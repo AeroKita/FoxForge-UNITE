@@ -29,7 +29,12 @@ export const BASIC_ATTACK_SECTION_LABEL = "Basic Attack";
 
 /** The Pokémon's basic attack, when the kit includes one. */
 export function basicAttack(pokemon: Pokemon): Move | undefined {
-  return pokemon.moves.find((m) => m.slot === "basicAttack");
+  return basicAttacks(pokemon)[0];
+}
+
+/** Every basic attack on the Moves card, pre-evolution forms first. */
+export function basicAttacks(pokemon: Pokemon): Move[] {
+  return pokemon.moves.filter((m) => m.slot === "basicAttack");
 }
 
 /** Every Ability shown on the Moves card. Most Pokémon have one; mega-evolution

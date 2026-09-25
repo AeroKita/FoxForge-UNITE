@@ -9,6 +9,7 @@ import {
   playablePassives,
   passiveChipLabel,
   basicAttack,
+  basicAttacks,
   BASIC_ATTACK_SECTION_LABEL,
 } from "../moves";
 import { pokemonList } from "../../data/gameData";
@@ -92,6 +93,25 @@ describe("move-selection helpers", () => {
     const attack = basicAttack(lucario);
     expect(attack?.slot).toBe("basicAttack");
     expect(attack?.description.length).toBeGreaterThan(0);
+  });
+
+  it("returns every basic attack, pre-evolution forms first", () => {
+    const eevee = {
+      ...lucario.moves[0],
+      id: "attack-eevee",
+      slot: "basicAttack" as const,
+      stageLabel: "Eevee",
+    };
+    const espeon = {
+      ...lucario.moves[0],
+      id: "attack",
+      slot: "basicAttack" as const,
+      stageLabel: "Espeon",
+    };
+    const rest = lucario.moves.filter((m) => m.slot !== "basicAttack");
+    const stub = { ...lucario, moves: [eevee, espeon, ...rest] };
+    expect(basicAttacks(stub).map((m) => m.stageLabel)).toEqual(["Eevee", "Espeon"]);
+    expect(basicAttack(stub)?.stageLabel).toBe("Eevee");
   });
 
   it("returns every Unite Move, including dual-unite Pokémon", () => {

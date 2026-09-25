@@ -1,2 +1,3 @@
-ceruledge  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+ceruledge  —  Basic Attack stills
+basic-attack-charcadet.jpeg → Charcadet
+basic-attack-ceruledge.jpeg → Ceruledge

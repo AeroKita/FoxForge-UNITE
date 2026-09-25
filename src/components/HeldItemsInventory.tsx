@@ -132,7 +132,6 @@ export function HeldItemsInventory() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium text-ink">{item.displayName}</p>
                 </div>
-                <span className="text-xs text-faint">No grade</span>
               </div>
             ))}
           </div>

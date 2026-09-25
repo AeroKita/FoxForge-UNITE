@@ -1,2 +1,6 @@
-dragonite  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+dragonite  —  Basic Attack stills
+basic-attack-dratini.jpeg → Dratini
+basic-attack-dragonair-1.jpeg → Dragonair
+basic-attack-dragonair-2.jpeg → Dragonair
+basic-attack-dragonite-1.jpeg → Dragonite
+basic-attack-dragonite-2.jpeg → Dragonite

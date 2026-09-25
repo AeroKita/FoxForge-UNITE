@@ -2,7 +2,7 @@
   "_meta": {
     "generatedFrom": "UNITE-DB community builds (patch-current.json builds[] + creativeBuilds[], 10-emblem sets)",
     "patchVersion": "1.24.1.4",
-    "generatedAt": "2026-09-24",
+    "generatedAt": "2026-09-25",
     "algorithm": "v1: priorities = normalized median positive flat magnitudes (0–1); protectedFloors = clamp(min(0, round(p10))) with moveSpeed 0 when builds keep it ≥ 0; colorTargets = vote-weighted (Recommended 1.0, Creative 0.5) counts ≥ 2, then priority-weighted one-off tier snap up (full-pool feasible), else relax lowest-value least-dominant color + retry; confidence = min(1, builds/2) × (1 − avg coefficient of variation)",
     "confidenceThreshold": 0.4,
     "pokemonWithPresets": 99,
@@ -82,22 +82,23 @@
     },
     "alolan-ninetales": {
       "priorities": {
-        "hp": 0.7,
-        "defense": 0.12,
-        "spAttack": 1
+        "hp": 1,
+        "defense": 0.15,
+        "spAttack": 0.65
       },
       "protectedFloors": {
         "hp": 0,
         "attack": -10,
-        "defense": 0,
+        "defense": -3,
         "spAttack": 0,
         "spDefense": -8,
         "moveSpeed": 0
       },
       "colorTargets": {
-        "green": 6,
-        "black": 7,
-        "white": 2
+        "green": 4,
+        "black": 5,
+        "white": 4,
+        "red": 2
       },
       "confidence": 1,
       "buildCount": 3,
@@ -105,26 +106,26 @@
     },
     "alolan-raichu": {
       "priorities": {
-        "hp": 0.93,
-        "defense": 0.16,
-        "spAttack": 1,
+        "hp": 1,
+        "defense": 0.17,
+        "spAttack": 0.56,
         "cdr": 0.06
       },
       "protectedFloors": {
         "hp": 0,
         "attack": -10,
-        "defense": 0,
+        "defense": -2,
         "spAttack": 0,
         "spDefense": -8,
         "moveSpeed": 0
       },
       "colorTargets": {
-        "green": 6,
+        "green": 5,
         "black": 7,
         "white": 2
       },
       "confidence": 1,
-      "buildCount": 3,
+      "buildCount": 4,
       "source": "auto"
     },
     "armarouge": {
@@ -655,23 +656,24 @@
     "eldegoss": {
       "priorities": {
         "hp": 1,
-        "spAttack": 0.67,
+        "spAttack": 0.38,
         "moveSpeed": 0.07
       },
       "protectedFloors": {
         "hp": 0,
         "attack": -15,
+        "defense": -2,
         "spAttack": 0,
-        "spDefense": -5,
+        "spDefense": -6,
         "moveSpeed": 0
       },
       "colorTargets": {
-        "green": 6,
+        "green": 5,
         "white": 6,
-        "black": 4
+        "black": 3
       },
       "confidence": 1,
-      "buildCount": 5,
+      "buildCount": 6,
       "source": "auto"
     },
     "empoleon": {
@@ -985,22 +987,24 @@
     "hoopa": {
       "priorities": {
         "hp": 1,
-        "spAttack": 0.63,
+        "spAttack": 0.36,
         "moveSpeed": 0.07
       },
       "protectedFloors": {
         "hp": 0,
         "attack": -15,
+        "defense": -3,
         "spAttack": 0,
+        "spDefense": -3,
         "moveSpeed": 0
       },
       "colorTargets": {
-        "green": 6,
+        "green": 5,
         "white": 6,
         "black": 4
       },
       "confidence": 1,
-      "buildCount": 4,
+      "buildCount": 5,
       "source": "auto"
     },
     "inteleon": {

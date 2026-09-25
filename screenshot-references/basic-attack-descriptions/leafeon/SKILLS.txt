@@ -1,2 +1,3 @@
-leafeon  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+leafeon  —  Basic Attack stills
+basic-attack-eevee.jpeg → Eevee
+basic-attack-leafeon.jpeg → Leafeon

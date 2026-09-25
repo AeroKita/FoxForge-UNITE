@@ -1,2 +1,5 @@
-solgaleo  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+solgaleo  —  Basic Attack stills
+basic-attack-cosmog.jpeg → Cosmog
+basic-attack-cosmoem.jpeg → Cosmoem
+basic-attack-solgaleo-1.jpeg → Solgaleo
+basic-attack-solgaleo-2.jpeg → Solgaleo

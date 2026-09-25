@@ -1,2 +1,2 @@
-scizor  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+scizor  —  Basic Attack stills
+basic-attack.jpeg → Basic Attack

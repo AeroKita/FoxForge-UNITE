@@ -5,6 +5,7 @@ import { MAX_SAVED_LOADOUTS } from "../state/loadout";
 import { shareLink } from "../ui/share";
 import { useTransientValue } from "../ui/transientValue";
 import { asset } from "../ui/asset";
+import { formatLevelLabel } from "../ui/format";
 import { BottomSheet } from "./shell/BottomSheet";
 
 export function MyBuildsSheet({ onClose }: { onClose: () => void }) {
@@ -95,7 +96,10 @@ export function MyBuildsSheet({ onClose }: { onClose: () => void }) {
                 }`}
               >
                 {p && <img src={asset(p.iconAsset)} alt="" className="h-7 w-7 object-contain" />}
-                <span className="flex-1 truncate text-sm text-ink">{s.name}</span>
+                <span className="min-w-0 flex-1 truncate text-sm text-ink">{s.name}</span>
+                <span className="shrink-0 text-xs font-semibold tabular-nums text-muted">
+                  {formatLevelLabel(s.level)}
+                </span>
                 <button
                   onClick={() => {
                     loadSaved(s);

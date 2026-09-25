@@ -1,2 +1,3 @@
-glaceon  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+glaceon  —  Basic Attack stills
+basic-attack-eevee.jpeg → Eevee
+basic-attack-glaceon.jpeg → Glaceon
