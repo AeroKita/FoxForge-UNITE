@@ -42,10 +42,10 @@ const attack: Move = {
 };
 
 describe("descriptionOnlyTip", () => {
-  it("shows the Basic description and no still or clip when there is no video", () => {
+  it("shows the bold name and Basic description, and no still or clip when there is no video", () => {
     const html = markup(descriptionOnlyTip(attack, false) as ReactElement | null);
+    expect(html).toContain('class="font-semibold">Attack');
     expect(html).toContain("Becomes a boosted attack");
-    expect(html).not.toContain("Attack");
     expect(html).not.toContain("<img");
     expect(html).not.toContain("<video");
     expect(html).not.toContain("basic-attack.png");
@@ -71,6 +71,7 @@ describe("descriptionOnlyTip", () => {
         false,
       ) as ReactElement | null,
     );
+    expect(html).toContain('class="font-semibold">Turboblaze');
     expect(html).toContain("Boosts movement speed.");
     expect(html).toContain("<video");
     expect(html).toContain("Turboblaze.mp4");
