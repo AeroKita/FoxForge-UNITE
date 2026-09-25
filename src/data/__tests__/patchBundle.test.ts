@@ -120,6 +120,16 @@ describe("community data bundle", () => {
     ]);
   });
 
+  it("gives every basic attack the shared in-game star icon", () => {
+    for (const p of bundle.pokemon) {
+      const attacks = p.moves.filter((m) => m.slot === "basicAttack");
+      expect(attacks.length, p.id).toBeGreaterThan(0);
+      for (const m of attacks) {
+        expect(m.iconAsset, `${p.id}/${m.id}`).toBe("/assets/skills/basic-attack.png");
+      }
+    }
+  });
+
   it("gives every non-basic move a local skill-icon path", () => {
     for (const p of bundle.pokemon) {
       for (const m of p.moves) {

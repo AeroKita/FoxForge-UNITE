@@ -237,6 +237,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, and decreasing their Defense by 15% for 2s when the attack hits. If this boosted attack hits only a single target, it deals bonus damage."
         },
         {
@@ -912,10 +913,10 @@
       ],
       "moves": [
         {
-          "id": "attack",
+          "id": "attack-honedge-doublade",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Slash at enemies in front of Aegislash, dealing damage to them. If the boost count is one or more, basic attacks become a boosted attack. When in Blade Stance: pierce through enemies, dealing damage. When in Shield Stance: ram enemies, dealing damage and leaving them unable to act for a short time, restore HP, and reduce the cooldown of Sacred Sword and Shadow Claw when this attack hits. Every boosted attack consumes one boost count. Up to 4 boosted attacks can be stored.",
+          "description": "The user slashes at opposing Pokémon in front of itself, dealing damage to them. If the boost count is one or more, the user's basic attack becomes a boosted attack. The boosted attack swiftly pierces through opposing Pokémon, dealing damage. Every boosted attack consumes one boost count.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -942,7 +943,43 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "When in Sword Forme: slashes at opposing Pokémon, damaging those hit. When in Shield Forme: rams at opposing Pokémon, damaging those hit. Becomes a boosted attack if the boost count is at 1 or more, consuming 1 boost count; the boosted attack changes based on the current Forme. The boost count caps at 4, and boosted attacks remain readied until used.\n\nAs a boosted attack in Sword Forme: pierces through the target, damaging opposing Pokémon hit. As a boosted attack in Shield Forme: slams into the target, damaging opposing Pokémon hit and stunning them for 0.1s; restores HP, and reduces the cooldown of Sacred Sword or Shadow Claw by 1s when it hits."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Honedge / Doublade"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "The user rams opposing Pokémon in front of itself, dealing damage to them. If the boost count is one or more, the user's basic attack becomes a boosted attack. The boosted attack has the user slam itself into opposing Pokémon, dealing damage and leaving them unable to act for a short time. Additionally, the boosted attack restores the user's HP and reduces the cooldown of Sacred Sword or Shadow Claw when it hits. Every boosted attack consumes one boost count.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 1.5,
+              "scalingStat": "attack",
+              "slider": 12.0,
+              "base": 72.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "When in Sword Forme: slashes at opposing Pokémon, damaging those hit. When in Shield Forme: rams at opposing Pokémon, damaging those hit. Becomes a boosted attack if the boost count is at 1 or more, consuming 1 boost count; the boosted attack changes based on the current Forme. The boost count caps at 4, and boosted attacks remain readied until used.\n\nAs a boosted attack in Sword Forme: pierces through the target, damaging opposing Pokémon hit. As a boosted attack in Shield Forme: slams into the target, damaging opposing Pokémon hit and stunning them for 0.1s; restores HP, and reduces the cooldown of Sacred Sword or Shadow Claw by 1s when it hits.",
+          "stageLabel": "Aegislash"
         },
         {
           "id": "shadow-sneak",
@@ -1611,6 +1648,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Attacks by throwing whipped cream.\n\nMilcery and Alcremie do not have a boosted attack."
         },
         {
@@ -2238,8 +2276,8 @@
       ],
       "moves": [
         {
-          "id": "attack---charcadet",
-          "name": "Attack - Charcadet",
+          "id": "attack-charcadet",
+          "name": "Attack",
           "slot": "basicAttack",
           "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
           "cooldownSeconds": 0.0,
@@ -2253,7 +2291,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Charcadet"
+        },
+        {
+          "id": "attack---charcadet",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Every time the user hits an opposing Pokémon with a basic attack, its cannon gauge increases. When the cannon gauge is full, the user's next basic attack consumes the entire gauge and becomes a boosted attack.\n\nWhen the user hits an opposing Pokémon with a basic attack, a blazing mark is applied to it. If the user hits an opposing Pokémon who has 3 blazing marks using Fire Spin or Armor Cannon, all the marks are consumed and additional damage is dealt to the opposing Pokémon.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.3,
+              "scalingStat": "spAttack",
+              "slider": 5.0,
+              "base": 150.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Armarouge"
         },
         {
           "id": "incinerate",
@@ -2881,6 +2941,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user hurls a shard of ice at the designated target, applying a 30% slow for 0.3s.\n\nArticuno has no boosted attack."
         },
         {
@@ -3320,6 +3381,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage to enemies within a cone area of effect in front of this Pokémon."
         },
         {
@@ -3970,6 +4032,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, reducing the cooldowns of the user's moves by 1s; damaging opposing Pokémon 3 times over 0.2s, and decreasing their movement speed by 50% for 1s when hit.\n\nBasic attack (fully evolved): When evolving into Blastoise, basic attacks hit once, but deals damage as 2 instances of 50% Attack.\n\nBoosted attacks used during Rapid Spin hit 3 times over 0.5s, do not reduce the cooldowns of the user's moves, nor decrease the movement speed of opposing Pokémon hit."
         },
         {
@@ -4655,6 +4718,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Deals damage to nearby enemies. While in Kick Style, basic attacks have a higher area-of-effect and reach. While in Punch Style, attack speed is increased by 40%.\n\nFor the purpose of auto attacks, Torchic is treated as punch style while Combusken is treated as kick style. Once Blaziken has access to their Unite move, they can swap between styles."
         },
         {
@@ -5224,6 +5288,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack after 6s, dealing increased damage. This boosted attack remains readied until used."
         },
         {
@@ -5822,6 +5887,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Each time a basic attack hits an enemy, increase muscle gauge by 1 increment. Becomes a boosted attack with every third attack, throwing two consecutive punches while restoring Buzzwole's HP and increasing muscle gauge by 1 increment for each hit."
         },
         {
@@ -6554,8 +6620,8 @@
       ],
       "moves": [
         {
-          "id": "attack---charcadet",
-          "name": "Attack - Charcadet",
+          "id": "attack-charcadet",
+          "name": "Attack",
           "slot": "basicAttack",
           "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
           "cooldownSeconds": 0.0,
@@ -6569,7 +6635,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Charcadet"
+        },
+        {
+          "id": "attack---charcadet",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack every 4 attacks, dealing damage twice.\n\nThe next basic attack after using a move becomes a boosted attack.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Ceruledge"
         },
         {
           "id": "lava-plume",
@@ -7242,6 +7330,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Gains a Boosted Attack every 5s, dealing increased damage, slowing enemies by 30% for 2s and burning enemies hit for 2.5s."
         },
         {
@@ -7946,6 +8035,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Breathes fire at opposing Pokémon, dealing damage 4 times per basic attack. Charizard may move while attacking but is slowed by 5% while breathing fire. Charizard deals additional damage to opposing Pokémon that have been burned by the user's moves. This additional damage cannot land critical hits; additional damage benefits from regular lifesteal. Basic attacks gain increased range upon evolving into Charmeleon and into Charizard.\n\nAgainst wild Pokémon: total damage is capped at 250 per hit. CHARIZARD'S BASIC ATTACKS ARE A SET ANIMATION LENGTH. ATTACK SPEED HAS NO EFFECT ON THIS POKÉMON. DO NOT USE RAPID FIRE SCARF ON CHARIZARD."
         },
         {
@@ -8592,6 +8682,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Breathes fire at opposing Pokémon, dealing damage 4 times per basic attack. Charizard may move while attacking but is slowed by 5% while breathing fire. Charizard deals additional damage to opposing Pokémon that have been burned by the user's moves. This additional damage cannot land critical hits; additional damage benefits from regular lifesteal. Basic attacks gain increased range upon evolving into Charmeleon and into Charizard. When mega evolving into Mega Charizard X, basic attack range is decreased but width is increased."
         },
         {
@@ -9057,6 +9148,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Breathes fire at opposing Pokémon, dealing damage 4 times per basic attack. Charizard may move while attacking but is slowed by 5% while breathing fire. Charizard deals additional damage to opposing Pokémon that have been burned by the user's moves. This additional damage cannot land critical hits; additional damage benefits from regular lifesteal. Basic attacks gain increased range upon evolving into Charmeleon and into Charizard."
         },
         {
@@ -9530,6 +9622,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack or after using a move, dealing increased damage. Boosted attacks remain readied until used.\n\nAgainst wild Pokémon: basic attack damage is capped at 1000; boosted attack damage is capped at 1300."
         },
         {
@@ -10197,6 +10290,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage."
         },
         {
@@ -10724,6 +10818,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage and gaining 2 flowers when it hits."
         },
         {
@@ -11439,6 +11534,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every fourth attack, catching some form of prey. This boosted attack spits prey at an opposing Pokémon, damaging them and bouncing to 1 other opposing Pokémon nearby."
         },
         {
@@ -12053,6 +12149,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, damaging opposing Pokémon in the area of effect and decreasing their movement speed by 40% for 2s."
         },
         {
@@ -12676,6 +12773,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Basic attacks made against sleeping enemies will become boosted attacks with greatly increased range. Boosted attacks deal damage to enemies with an attack from a void and restore Darkrai's HP. Darkrai does not require vision to perform a boosted attack against a sleeping target."
         },
         {
@@ -13357,6 +13455,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Increases the speed of auto attacks by 3% for 2.5s after one hits. This effect can stack up to 4 times, and with every third activation of this effect, auto attacks become boosted attacks for a short time. These boosted attacks fire more quills, but the damage dealt by each quill is decreased."
         },
         {
@@ -14057,6 +14156,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage when it hits."
         },
         {
@@ -14664,6 +14764,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user attacks by slamming their body.\n\nDhelmise has no boosted attack."
         },
         {
@@ -15188,6 +15289,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack. Attacking with a full sprint gauge turns the attack into a charge in the facing direction. If the sprint-gauge attack hits an enemy, all cooldowns are reduced by 1s."
         },
         {
@@ -15813,6 +15915,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes boosted attacks when the boosted attack gauge is full, dealing increased damage in an area of effect centered on the opposing Pokémon they hit.\n\nEach time the user deals damage to opposing Pokémon, the boosted attack gauge increases by 1, becoming full when the user deals damage 8 times. After not dealing damage for 3s, the boosted attack gauge decreases by 2 every 0.5s."
         },
         {
@@ -16345,10 +16448,10 @@
       ],
       "moves": [
         {
-          "id": "attack---dratini",
-          "name": "Attack - Dratini",
+          "id": "attack-dratini",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, blasting water in front of Dratini, dealing increased damage, reducing the cooldown of Dratini's moves by 1s, and recovers 5% max HP when this hits.",
+          "description": "Becomes a boosted attack with every third attack, blasting water in a forward direction. This boosted attack deals damage to opposing Pokémon it hits and reduces the cooldown of all the user's moves. The water attack also has the additional effect of restoring the user's HP when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -16360,7 +16463,49 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Dratini"
+        },
+        {
+          "id": "attack-dragonair",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon it hits and reducing the cooldown of all the user's moves. The boosted attack alternates between a water attack and an electric attack with every use. If the water attack hits, it triggers the same additional effect as Dratini's boosted basic attack. If the electric attack hits, it leaves the opposing Pokémon unable to act for a short time.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Dragonair"
+        },
+        {
+          "id": "attack---dratini",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing damage to opposing Pokémon it hits and reducing the cooldown of all the user's moves. The boosted attack alternates between a water, electric, and fire attack, in that order, with every use. If the water or electric attacks hit, they trigger the same additional effects as Dragonair's boosted basic attacks. If the fire attack hits, it deals additional damage to the opposing Pokémon.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Dragonite"
         },
         {
           "id": "twister",
@@ -16925,6 +17070,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, shooting a long beam that deals a large amount of damage to all enemies hit."
         },
         {
@@ -17552,6 +17698,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, attaching a bit of cotton fluff to opposing Pokémon for 3s and then damaging them. The user and their teammates' auto attacks against targets with cotton fluff on them deal additional damage and decrease their movement speed by 20% for 1s.\n\nEach teammate uses their own Sp. Atk to deal additional damage on targets with cotton fluff. This additional damage has an internal cooldown of 0.35s for each teammate."
         },
         {
@@ -18323,6 +18470,46 @@
       ],
       "moves": [
         {
+          "id": "attack-piplup",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.6,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 120.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Piplup"
+        },
+        {
+          "id": "attack-prinplup",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage and greatly increasing the Torrent gauge.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.6,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 120.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Prinplup"
+        },
+        {
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
@@ -18339,7 +18526,9 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "Piplup shoots a blast of water, becoming a boosted attack with every third attack dealing increased damage. Basic and Boosted attacks increase Torrent gauge by 2/3/4.\n\nWhen evolved into Prinplup or Empoleon, basic attacks become melee ranged. The user slices with their wings, becoming a boosted attack with every third attack dealing increased damage. Boosted attack increases Torrent gauge by 10/15/20. This Pokémon heals 15% of damage dealt with basic and boosted attacks."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "Piplup shoots a blast of water, becoming a boosted attack with every third attack dealing increased damage. Basic and Boosted attacks increase Torrent gauge by 2/3/4.\n\nWhen evolved into Prinplup or Empoleon, basic attacks become melee ranged. The user slices with their wings, becoming a boosted attack with every third attack dealing increased damage. Boosted attack increases Torrent gauge by 10/15/20. This Pokémon heals 15% of damage dealt with basic and boosted attacks.",
+          "stageLabel": "Empoleon"
         },
         {
           "id": "water-gun",
@@ -18902,10 +19091,10 @@
       ],
       "moves": [
         {
-          "id": "attack---eevee",
-          "name": "Attack - Eevee",
+          "id": "attack-eevee",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -18917,7 +19106,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack---eevee",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack whenever a set amount of time passes, firing a beam in front of the user.\n\nThe beam deals increased damage to opposing Pokémon it hits and decreases their movement speed for a short time.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Espeon"
         },
         {
           "id": "swift",
@@ -19603,6 +19814,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, or after the user uses Tackle, Megahorn, or Iron Head. Boosted attacks also apply a 50% slow for 1s to opposing Pokémon they hit.\n\nWhen a boosted attack hits, the cooldown of Tackle, Megahorn, or Iron Head is reduced by 2.5s"
         },
         {
@@ -20266,6 +20478,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user slashes their claws at opposing Pokémon, dealing damage to them.\n\nThis Pokémon has no boosted attack."
         },
         {
@@ -20747,6 +20960,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Gains 1 stack toward boosted attacks after hitting an auto attack or move, stacking up to 5 times. At 5 stacks, all basic attacks become boosted attacks with increased attack speed and additional 30% lifesteal, dealing increased damage to opposing Pokémon, and dealing an additional 10% remaining HP damage to them. All stacks decay after 4s of not hitting an auto attack or move.\n\nAgainst wild Pokémon: basic attack damage is capped at 1000; boosted attack damage is capped at 1100; additional remaining HP damage is capped at 350."
         },
         {
@@ -21556,6 +21770,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, damaging opposing Pokémon in the area of effect and decreasing their Sp. Def by 10% for 2s."
         },
         {
@@ -22217,6 +22432,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, lunging at an opposing Pokémon and dealing increased damage to opposing Pokémon hit."
         },
         {
@@ -22816,10 +23032,10 @@
       ],
       "moves": [
         {
-          "id": "attack",
+          "id": "attack-eevee",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage and giving Glaceon 2 ice crystals when the boosted attack hits. Ice crystals last 5s and the duration is refreshed upon gaining additional crystals. Glaceon can hold a maximum of 8 ice crystals at a time.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -22831,7 +23047,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack every 3 attacks, dealing increased damage and giving the user 2 ice crystals when the boosted attack hits.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.39,
+              "scalingStat": "spAttack",
+              "slider": 4.0,
+              "base": 70.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Glaceon"
         },
         {
           "id": "swift",
@@ -23437,6 +23675,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage. Hitting a Pokémon afflicted with a Gooey effect with a basic attack reduces all of this Pokémon's move cooldowns by 1.5s.\n\nBoosted attacks spew slime and if the slime hits Pokémon from a distance, a Gooey debuff is applied to those Pokémon and slows by 50% for 0.5s. If the boosted attack is used on a Pokémon in regular attack melee range, the attack deals increased damage."
         },
         {
@@ -24000,6 +24239,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage when it hits and causing one Oran berry to drop from Greedent's tail."
         },
         {
@@ -24578,6 +24818,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Auto attacks differ depending on range, and become boosted attacks with every third attack, dealing increased damage. Auto attacks used at long range reduce the cooldown of Bubble, Water Shuriken, or Surf by 0.5s when they hit. Boosted attacks used at long range also decrease the movement speed of the opposing Pokémon hit by 25% for 0.5s.\n\nAuto attacks used in close range instead deal a bonus 5% missing HP damage to opposing Pokémon hit. Boosted attacks used in close range dash through the target, dealing a bonus 10% missing HP damage to opposing Pokémon hit instead. Against wild Pokémon: the missing HP damage of auto attacks used in close range is capped at 500."
         },
         {
@@ -25159,10 +25400,10 @@
       ],
       "moves": [
         {
-          "id": "attack---magikarp",
-          "name": "Attack - Magikarp",
+          "id": "attack-magikarp",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage. Gyarados.",
+          "description": "Has the user attack nearby opposing Pokémon, dealing damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -25175,7 +25416,29 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "Magikarp has no boosted attack.\n\nMagikarp's basic attacks are a set animation length."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Magikarp"
+        },
+        {
+          "id": "attack---magikarp",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "Magikarp has no boosted attack.\n\nMagikarp's basic attacks are a set animation length.",
+          "stageLabel": "Gyarados"
         },
         {
           "id": "flail",
@@ -26036,6 +26299,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage.\n\nMagikarp and Mega Evolved Gyarados do not have a boosted attack. Mega Evolved Gyarados lunges when using a basic attack."
         },
         {
@@ -26596,6 +26860,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, shooting out a sweeping flame that deals increased damage and restores HP per enemy Pokémon hit. While firing the sweeping flame Ho-Oh's movement speed is decreased by 30%."
         },
         {
@@ -27319,6 +27584,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing damage to enemies by unleashing a beam of light."
         },
         {
@@ -28054,6 +28320,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage with 20% increased critical-hit rate."
         },
         {
@@ -28644,6 +28911,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, shooting water through the target and dealing increased damage to Pokémon hit by the spray. The boosted attack also heals Lapras."
         },
         {
@@ -29259,6 +29527,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Shoots a psychic projectile at an opposing Pokémon, damaging them.\n\nLatias has no boosted attack."
         },
         {
@@ -30009,6 +30278,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Shoots a psychic projectile at an opposing Pokémon, damaging them.\n\nLatios has no boosted attack."
         },
         {
@@ -30659,10 +30929,10 @@
       ],
       "moves": [
         {
-          "id": "attack---eevee",
-          "name": "Attack - Eevee",
+          "id": "attack-eevee",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing additional damage.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -30674,7 +30944,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack---eevee",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "If a basic attack is performed when the user's Chlorophyll gauge is full, the entire gauge is consumed and the user's next basic attack becomes a boosted attack. This boosted attack deals additional damage and decreases the movement speed of opposing Pokémon it hits.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Leafeon"
         },
         {
           "id": "swift",
@@ -31292,6 +31584,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with increased range every third attack, hitting twice. The first hit damages opposing Pokémon with a normal basic attack; the second hit is a follow-up attack with a bone, damaging opposing Pokémon in the area a second time and throwing them for 0.5s."
         },
         {
@@ -32230,6 +32523,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with increased range every third attack, hitting twice. The first hit damages opposing Pokémon with a normal basic attack; the second hit is a follow-up attack with a bone, damaging opposing Pokémon in the area a second time and throwing them for 0.5s."
         },
         {
@@ -32688,6 +32982,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage when it hits. This boosted attack also decreases the movement speed of enemies by 50% for 1s."
         },
         {
@@ -33412,6 +33707,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing damage and freezing enemies for 0.5s when it hits. Freezing an enemy causes the user’s auto attacks to deal increased damage to them for 3s. Reapplying a freeze will refresh this duration."
         },
         {
@@ -34055,6 +34351,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user whips their vines about in a headbutt, dealing damage to opposing Pokémon.\n\nThis Pokémon has no boosted attack."
         },
         {
@@ -34544,6 +34841,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Gains a boosted attack every 5 seconds that leaps towards the target dealing additional damage."
         },
         {
@@ -35212,6 +35510,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Scratches at opposing Pokémon becoming a boosted attack with every third attack dealing increased damage and dropping a gold coin."
         },
         {
@@ -35914,6 +36213,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, striking with an increased area of attack. When a boosted attack hits, the cooldown of Iron Defense, Meteor Mash or Gyro Ball is reduced by 10%. If multiple targets are hit, the cooldown is instead reduced by 20%."
         },
         {
@@ -36570,6 +36870,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Each time Mew uses a move, they gain a boost counter. A maximum of 3 boost counters can be stored. After 3 counters are stored (they have to be consumed within 8s or they disappear), Mew's next basic attack becomes a boosted attack that consumes all counters and launches a ball of psychic energy at an enemy. During the lock-on animation Mew can use moves. The further the ball travels, the more damage it deals (4% more damage per threshold, stacking additively). This ball pierces through wild Pokémon, but will stop traveling upon contact with the first enemy player."
         },
         {
@@ -37085,10 +37386,10 @@
       ],
       "moves": [
         {
-          "id": "attack",
+          "id": "attack-mewtwo",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "When Mewtwo Mega Evolves, every third attack deals increased damage and becomes a boosted attack.",
+          "description": "When the user deals damage to an opposing Pokémon, the Mega gauge increases.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -37108,7 +37409,36 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "When Mewtwo Mega Evolves, every third attack deals increased damage and becomes a boosted attack."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Mewtwo"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Has the user perform a melee attack on an opposing Pokémon, which restores a portion of the user's HP based on the amount of damage it deals.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.15,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 1.2,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "When Mewtwo Mega Evolves, every third attack deals increased damage and becomes a boosted attack.",
+          "stageLabel": "Mega Mewtwo X"
         },
         {
           "id": "confusion",
@@ -37747,10 +38077,10 @@
       ],
       "moves": [
         {
-          "id": "attack",
+          "id": "attack-mewtwo",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Basic attacks have increased range and deal damage in an area of effect centered on opposing Pokémon. When a basic attack deals damage to an opposing Pokémon, it decreases that Pokémons movement speed.",
+          "description": "When the user deals damage to an opposing Pokémon, the Mega gauge increases.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -37763,7 +38093,29 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "When Mewtwo Mega Evolves, attacks have increased range and deal damage in an area-of-effect centered on the target. When an attack deals damage to an enemy, their movement speed is decreased."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Mewtwo"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Basic attacks have increased range and deal damage in an area of effect centered on opposing Pokémon. When a basic attack deals damage to an opposing Pokémon, it decreases that Pokémon's movement speed.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.473,
+              "scalingStat": "spAttack",
+              "slider": 4.0,
+              "base": 88.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "When Mewtwo Mega Evolves, attacks have increased range and deal damage in an area-of-effect centered on the target. When an attack deals damage to an enemy, their movement speed is decreased.",
+          "stageLabel": "Mega Mewtwo Y"
         },
         {
           "id": "confusion",
@@ -38246,6 +38598,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack or when using a move, striking twice with an increased area of attack."
         },
         {
@@ -38870,6 +39223,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Miraidon does not have a boosted attack."
         },
         {
@@ -39428,6 +39782,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Moltres strikes opponents with their beak. Becomes a boosted attack every fourth attack, swiping with their flaming wing. Once a boosted attack hits a target, the user gains one free move use for 3s. After this move is used or the duration expires, Moltres gains 600 unite energy. This unite energy can be boosted by Energy Amp and other similar effects."
         },
         {
@@ -39853,6 +40208,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user punches at opposing Pokémon, becoming a boosted attack every third attack, increasing the user's movement speed by 50% for 2s, decaying by 10% every 0.5s, when it lands."
         },
         {
@@ -40356,6 +40712,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Gains a Boosted Attack every 5s, dealing increased damage and throwing enemies in the air for 0.5s."
         },
         {
@@ -41030,6 +41387,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack. When this boosted attack hits, it deals damage to nearby enemies and decreases their movement speed for a short time."
         },
         {
@@ -41664,6 +42022,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user slashes at opposing Pokémon with claws. Becomes a boosted attack after 9s pass, dealing increased damage and stunning Pokémon on the opposing team for 1s.\n\nAgainst wild Pokémon, the boosted attack is not used, instead basic attack damage is increased by 10% when the boosted attack is available."
         },
         {
@@ -42181,6 +42540,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, lunging at an opposing Pokémon and dealing increased damage."
         },
         {
@@ -42764,6 +43124,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage and paralyzing the opposing Pokémon hit.\n\nThe movement speed of the opposing Pokémon paralyzed by boosted attacks is decreased by 30% and their basic attack speed is decreased by 10% for 1s."
         },
         {
@@ -43420,6 +43781,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Attacks with a shot of water.\n\nPsyduck has no boosted attack."
         },
         {
@@ -44123,6 +44485,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user kicks at opposing Pokémon dealing damage. Becomes a boosted attack every third attack, with the user stepping in for a kick with increased damage.\n\nSpinning Edge deals damage 3 times in an area around the user over time, before rapidly dealing damage 3 more times. If Low Sweep was used preceding Spinning Edge, then it will do increased damage. If Liquidation was used preceding Spinning Edge, then it will grant a shield on use. If Carnival Splash was used preceding Spinning Edge, it will gain both effects."
         },
         {
@@ -44610,10 +44973,10 @@
       ],
       "moves": [
         {
-          "id": "attack---pikachu",
-          "name": "Attack - Pikachu",
+          "id": "attack-pikachu",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "If this Pokémon hits an opposing Pokémon with a basic attack or move, its boosted basic attack gauge increases by 1. When the boosted basic attack gauge reaches 4, the Pokémon's next basic attack becomes a boosted attack that deals increased damage and also deals damage to opposing Pokémon near its target (up to a maximum of 5 Pokémon) Alolan Raichu.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage. This boosted attack also paralyzes opposing Pokémon for a short time when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -44626,7 +44989,29 @@
           ],
           "effects": [],
           "tags": [],
-          "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage and paralyzing the opposing Pokémon hit.\n\nParalysis from Pikachu's boosted attacks decreases opposing Pokémon movement speed by 30% and reduces auto attack speed by a flat 10% for 2s."
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Pikachu"
+        },
+        {
+          "id": "attack---pikachu",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "If this Pokémon hits an opposing Pokémon with a basic attack or move, its boosted basic attack gauge increases by 1.\n\nWhen the boosted basic attack gauge reaches 4, the Pokémon's next basic attack becomes a boosted attack that deals increased damage and also deals damage to opposing Pokémon near its target (up to a maximum of 5 Pokémon).",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.72,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 80.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage and paralyzing the opposing Pokémon hit.\n\nParalysis from Pikachu's boosted attacks decreases opposing Pokémon movement speed by 30% and reduces auto attack speed by a flat 10% for 2s.",
+          "stageLabel": "Raichu"
         },
         {
           "id": "thunder-shock",
@@ -45314,6 +45699,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Shoots energy from their horn, damaging the opposing Pokémon hit."
         },
         {
@@ -45909,6 +46295,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user spits flame at the target dealing damage. Becomes a boosted attack every third attack or after a move, dealing increased damage in an area.\n\nWhen a boosted attack hits, the current charge of Flames That Bring Lightning is reduced by 10% of its remaining cooldown."
         },
         {
@@ -46341,6 +46728,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing damage to enemies hit and decreasing their movement speed by 20% for 2s. If Sableye is in stealth when hitting an enemy with a boosted attack, Sableye will deal damage and apply a fear effect for 1s. Enemies affected by fear will be forced to move away from Sableye with 40% reduced movement speed. When Sableye enters stealth, they will ready a boosted attack immediately and hold it."
         },
         {
@@ -47003,6 +47391,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, decreasing enemy movement speed by 30% for 2s when it hits and increasing Scizor's Defense by 40% for 6s. This Defense increase can stack additively up to 3 times and the duration refreshes when gaining another stack."
         },
         {
@@ -47637,7 +48026,7 @@
           "id": "attack",
           "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, decreasing the movement speed of opposing Pokémon when it hits and increasing the user's Defense for a short time. This Defense increase can stack.",
+          "description": "Becomes a boosted attack with every third attack, dealing additional damage and increasing the user's movement speed for a short time.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -47650,6 +48039,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, increasing Scyther's movement speed by 40% for 3s."
         },
         {
@@ -48249,6 +48639,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user attacks by slashing with a leek.\n\nThis Pokémon has no boosted attack."
         },
         {
@@ -48843,6 +49234,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user shoots a small flame at the designated target.\n\nBecomes a boosted attack every third attack, dealing increased damage in a small area."
         },
         {
@@ -49339,6 +49731,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack. When this boosted attack hits, deal damage to nearby enemies and decrease their movement speed by 30% for 1s."
         },
         {
@@ -49996,6 +50389,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, belly flopping forward to deal increased damage to opposing Pokémon and decrease their movement speed by 20% for 1s when it hits."
         },
         {
@@ -50611,10 +51005,10 @@
       ],
       "moves": [
         {
-          "id": "attack---cosmog",
-          "name": "Attack - Cosmog",
+          "id": "attack-cosmog",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Cosmog shoots an orb of energy. Becomes a boosted attack with every third attack.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -50633,7 +51027,63 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Cosmog"
+        },
+        {
+          "id": "attack-cosmoem",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "The user gains a boost counter after receiving a certain amount of damage.\n\nIf the user has one or more boost counters, their basic attack becomes a boosted attack, dealing damage to opposing Pokémon in an area of effect in front of itself.\n\nA boost counter is consumed when a boosted attack is used.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 309.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Cosmoem"
+        },
+        {
+          "id": "attack---cosmog",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Has the user attack opposing Pokémon by slashing its sharp claws, increasing critical-hit rate each time a basic attack hits. This effect can stack up to 5 times.\n\nThe user gains boost counters from using its moves. If the user has two boost counters, their basic attack becomes a boosted attack, dealing critical-hit damage to opposing Pokémon in the area of effect in front of itself.\n\nTwo boost counters are consumed when a boosted attack is used.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 309.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Solgaleo"
         },
         {
           "id": "teleport",
@@ -51225,6 +51675,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "When the crystal gauge is full, readies a boosted attack for 5s as the crystal gauge decays to 0; increasing the crystal gauge refills it to full.\n\nBoosted attacks shoot water forward, damaging opposing Pokémon every 0.25s over 1s (up to 4 times), dealing bonus damage to frozen opposing Pokémon with each hit."
         },
         {
@@ -51888,10 +52339,10 @@
       ],
       "moves": [
         {
-          "id": "attack---eevee",
-          "name": "Attack - Eevee",
+          "id": "attack-eevee",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -51903,7 +52354,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack---eevee",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage and increasing the user's movement speed for a short time when it hits.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Sylveon"
         },
         {
           "id": "swift",
@@ -52635,6 +53108,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, creating a fiery whirlwind around the user and damaging opposing Pokémon in the area of effect. This boosted attack remains readied until used.\n\nBasic and boosted attacks lunge at the target opposing Pokémon."
         },
         {
@@ -53180,6 +53654,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack after 12s, swinging the user's hammer in a circle around them, dealing increased damage and restoring 24% of the user's missing HP when it hits. This boosted attack remains readied until used. The time until the next boosted attack is readied is reduced faster when hit by opposing Pokémon's auto attacks.\n\nThe hammer's size and basic attack range increase upon evolving into Tinkatuff and into Tinkaton."
         },
         {
@@ -53867,6 +54342,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage to enemies and healing for 5% max HP when this boosted attack hits."
         },
         {
@@ -54495,7 +54971,8 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png"
         },
         {
           "id": "razor-leaf",
@@ -55185,6 +55662,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user shoots a small flame at the designated target. Becomes a boosted attack every third attack, breathing fire and dealing damage in an area.\n\nBasic attacks increase rage by 1, boosted attacks increase rage by 2."
         },
         {
@@ -55631,6 +56109,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage when it hits.\n\nAfter evolving to Pupitar basic and boosted attacks (and basic attacks during Tyrannical Rampage) have an additional 5% lifesteal that is also active when doing true damage."
         },
         {
@@ -56288,6 +56767,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack every third attack, lunging at a Pokémon and dealing damage. This boosted attack also heals the user's HP. The lower the user's remaining HP, the more HP is restored."
         },
         {
@@ -56953,10 +57433,10 @@
       ],
       "moves": [
         {
-          "id": "attack---kubfu",
-          "name": "Attack - Kubfu",
+          "id": "attack-kubfu",
+          "name": "Attack",
           "slot": "basicAttack",
-          "description": "Becomes a boosted attack with increased range every third attack, lunging at an opposing Pokémon and dealing increased damage.",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
           "cooldownSeconds": 0.0,
           "damageInstances": [
             {
@@ -56968,7 +57448,49 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Kubfu"
+        },
+        {
+          "id": "attack-single-strike",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage and granting the user a shield when it hits.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Single Strike"
+        },
+        {
+          "id": "attack-rapid-strike",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage with two consecutive blows and reducing the user's move cooldowns.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Rapid Strike"
         },
         {
           "id": "rock-smash",
@@ -57661,7 +58183,7 @@
       ],
       "moves": [
         {
-          "id": "attack",
+          "id": "attack-eevee",
           "name": "Attack",
           "slot": "basicAttack",
           "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
@@ -57676,7 +58198,29 @@
             }
           ],
           "effects": [],
-          "tags": []
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage. Hitting a Pokémon from the opposing team with a boosted attack will reduce this Pokémon's Ability cooldown.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.3,
+              "scalingStat": "spAttack",
+              "slider": 8.0,
+              "base": 120.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Vaporeon"
         },
         {
           "id": "swift",
@@ -58427,6 +58971,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, becoming a vine whip that strikes twice, pulls enemies between both vines, and stuns them for 0.4s, then applies a 20% slow for 1.5s."
         },
         {
@@ -59043,6 +59588,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing damage to enemies and stunning them for 0.5s when it hits."
         },
         {
@@ -59631,6 +60177,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "The user fires dark energy at the target. Becomes a boosted attack every third attack dealing increased damage in an area."
         },
         {
@@ -60162,6 +60709,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "When basic attacks are performed consecutively within 2s, additional effects are applied depending on the stage of the consecutive attack. If a Move is used, Intrepid Sword is activated, or Intrepid Sword expires, the time to perform the next consecutive attack is extended.\n\nStage Two: Applies 15% Slow for 1s\n\nStage Three: Heals 5% max hp\n\nStage Four: Dashes towards the target, reducing all Move cooldowns by 15% of their current cooldown.\n\nBoosted attacks have an increased area of effect and deal additional damage proportional to the opposing Pokémon’s HP."
         },
         {
@@ -60856,6 +61404,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Gains a Boosted Attack every 8s, launching a powerful electric orb and dealing damage to opposing Pokémon. If any move hits Pokémon from the opposing team, the user's boosted attack cooldown is reduced by 1s."
         },
         {
@@ -61288,6 +61837,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage and paralyzing opposing Pokémon hit, and restoring 10% missing HP per target hit.\n\nThe movement speed of paralyzed targets is decreased by 15% for 2.5s and their auto attack speed is decreased by 25% for 1s."
         },
         {
@@ -62036,6 +62586,7 @@
           ],
           "effects": [],
           "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
           "descriptionAdvanced": "Becomes a boosted attack with every third attack, dealing increased damage."
         },
         {

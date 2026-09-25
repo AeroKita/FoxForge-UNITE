@@ -481,6 +481,8 @@ class TestApplyArchiveMoveBasic(unittest.TestCase):
         self.assertEqual(moves[1]["id"], "attack")
         self.assertIn("when it hits", moves[0]["description"])
         self.assertIn("firing a beam", moves[1]["description"])
+        self.assertEqual(moves[0]["iconAsset"], "/assets/skills/basic-attack.png")
+        self.assertEqual(moves[1]["iconAsset"], "/assets/skills/basic-attack.png")
         self.assertEqual(moves[2]["id"], "feint")
 
 
