@@ -1,8 +1,20 @@
+import { useEffect, useRef, useState } from "react";
 import { useModalDismiss } from "./useModalDismiss";
 import { heldItemStatLines } from "./format";
 import { statsAtGrade } from "../components/tips";
 import type { HeldItem } from "../types";
 import { activeTierIndex } from "../engine/formulas";
+import {
+  TIP_UNFOLD_MS,
+  nextTipPhase,
+  prefersReducedMotion,
+  tipBackdropClass,
+  tipLocksScroll,
+  tipPopupMounted,
+  tipScrollPassClass,
+  tipShellClass,
+  type TipPhase,
+} from "./tooltipUnfold";
 export { activeTierIndex };
 
 export function HeldItemDetailBody({ item, grade }: { item: HeldItem; grade: number }) {
@@ -67,30 +79,58 @@ export function HeldItemDetailModal({
   open: boolean;
   onClose: () => void;
 }) {
-  useModalDismiss(onClose, open);
-  if (!open || !item) return null;
+  const [phase, setPhase] = useState<TipPhase>(open ? "open" : "closed");
+  const shown = useRef<HeldItem | null>(item);
+  if (item) shown.current = item;
+
+  useEffect(() => {
+    setPhase((current) => nextTipPhase(current, open ? "show" : "dismiss", prefersReducedMotion()));
+  }, [open]);
+
+  useEffect(() => {
+    if (phase !== "closing") return;
+    const id = window.setTimeout(() => {
+      setPhase((current) => nextTipPhase(current, "finished", false));
+    }, TIP_UNFOLD_MS + 80);
+    return () => window.clearTimeout(id);
+  }, [phase]);
+
+  useModalDismiss(onClose, tipLocksScroll(phase));
+
+  const current = shown.current;
+  if (!tipPopupMounted(phase) || !current) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={onClose}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${tipScrollPassClass(phase)}`}
     >
       <div
-        className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl border border-line bg-surface p-5 shadow-xl"
-        onClick={(e) => e.stopPropagation()}
+        className={`absolute inset-0 bg-black/40 ${tipBackdropClass(phase)}`}
+        onClick={onClose}
+      />
+      <div
+        className={`relative max-h-[85vh] w-full max-w-md origin-center overflow-y-auto rounded-2xl border border-line bg-surface p-5 shadow-xl ${tipShellClass(phase)}`}
+        onAnimationEnd={(e) => {
+          if (e.target !== e.currentTarget) return;
+          if (e.animationName === "tip-fold") {
+            setPhase((currentPhase) => nextTipPhase(currentPhase, "finished", false));
+          }
+        }}
         role="dialog"
         aria-labelledby="held-item-detail-title"
       >
-        <div className="mb-3 flex justify-end">
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="rounded-lg border border-line px-2 py-0.5 text-sm text-muted hover:bg-raise"
-          >
-            ✕
-          </button>
+        <div className={phase === "closing" ? "tip-fold-ink" : "tip-unfold-ink"}>
+          <div className="mb-3 flex justify-end">
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              className="rounded-lg border border-line px-2 py-0.5 text-sm text-muted hover:bg-raise"
+            >
+              ✕
+            </button>
+          </div>
+          <HeldItemDetailBody item={current} grade={grade} />
         </div>
-        <HeldItemDetailBody item={item} grade={grade} />
       </div>
     </div>
   );

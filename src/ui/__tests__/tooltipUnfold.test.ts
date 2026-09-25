@@ -7,8 +7,11 @@ import {
   TIP_UNFOLD_MS,
   nextTipPhase,
   tipBackdropClass,
+  tipLocksScroll,
   tipPopupMounted,
+  tipScrollPassClass,
   tipShellClass,
+  TIP_SCROLL_PASS_CLASS,
 } from "../tooltipUnfold";
 
 describe("tooltip unfold phase", () => {
@@ -58,6 +61,19 @@ describe("tooltip unfold phase", () => {
     expect(tipShellClass("closed")).toBe("");
     expect(TIP_SHELL_OPEN_CLASS).toBe("tip-unfold");
     expect(TIP_SHELL_CLOSE_CLASS).toBe("tip-fold");
+  });
+
+  it("locks page scroll only while the popup is open, not while it is folding", () => {
+    expect(tipLocksScroll("open")).toBe(true);
+    expect(tipLocksScroll("closing")).toBe(false);
+    expect(tipLocksScroll("closed")).toBe(false);
+  });
+
+  it("lets touches pass through the overlay while the fold plays", () => {
+    expect(tipScrollPassClass("closing")).toBe(TIP_SCROLL_PASS_CLASS);
+    expect(TIP_SCROLL_PASS_CLASS).toBe("pointer-events-none");
+    expect(tipScrollPassClass("open")).toBe("");
+    expect(tipScrollPassClass("closed")).toBe("");
   });
 
   it("assigns backdrop classes the same way as the shell", () => {

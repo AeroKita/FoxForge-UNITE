@@ -51,6 +51,19 @@ export function tipBackdropClass(phase: TipPhase): string {
   return "";
 }
 
+/** Page scroll stays locked only while the popup is fully open. */
+export function tipLocksScroll(phase: TipPhase): boolean {
+  return phase === "open";
+}
+
+/** Applied to the overlay while it folds so the page underneath can scroll. */
+export const TIP_SCROLL_PASS_CLASS = "pointer-events-none";
+
+/** Empty while the popup should catch taps. `pointer-events-none` while it folds. */
+export function tipScrollPassClass(phase: TipPhase): string {
+  return phase === "closing" ? TIP_SCROLL_PASS_CLASS : "";
+}
+
 /** True when the user asked the OS to minimize motion. False when matchMedia is absent. */
 export function prefersReducedMotion(): boolean {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;

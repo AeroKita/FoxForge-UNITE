@@ -11,7 +11,9 @@ import {
   nextTipPhase,
   prefersReducedMotion,
   tipBackdropClass,
+  tipLocksScroll,
   tipPopupMounted,
+  tipScrollPassClass,
   tipShellClass,
   type TipPhase,
 } from "../ui/tooltipUnfold";
@@ -49,7 +51,7 @@ export function Tooltip({
     setPhase((current) => nextTipPhase(current, event, prefersReducedMotion()));
   };
 
-  useModalDismiss(() => request("dismiss"), mounted);
+  useModalDismiss(() => request("dismiss"), tipLocksScroll(phase));
 
   useEffect(() => {
     if (phase !== "closing") return;
@@ -118,7 +120,9 @@ export function Tooltip({
       </span>
 
       {mounted && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${tipScrollPassClass(phase)}`}
+        >
           <div
             className={`absolute inset-0 bg-black/40 ${tipBackdropClass(phase)}`}
             onClick={() => request("dismiss")}
