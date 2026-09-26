@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-09-24",
+  "lastUpdated": "2026-09-26",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-24"
+    "fetched": "2026-09-26"
   },
   "pokemon": [
     {
@@ -8740,11 +8740,11 @@
           ],
           "effects": [],
           "tags": [
-            "ranged"
+            "melee"
           ],
           "iconAsset": "/assets/skills/Mega-Charizard-X/Fire+Punch.png",
           "isUpgrade": true,
-          "moveType": "Ranged",
+          "moveType": "Melee",
           "upgradeLevel": 5,
           "descriptionAdvanced": "The user dashes with a fiery fist forward, damaging opposing Pokémon hit and shoving them, and burning the first opposing Pokémon hit for 4s (dealing damage 5 times).\n\nThe Attack of the target burned by this move is decreased by 5%. When the user is mega evolved, instead burns all opposing Pokémon hit.\n\nUpgrade (Level 11): Reduces this move's cooldown by 0.4s per target hit every time the user's basic attack hits an opposing Pokémon. (1.6s total for an entire basic attack animation on a single target).",
           "videoAsset": "/assets/skills/Mega-Charizard-X/Fire+Punch.mp4"
@@ -23201,7 +23201,7 @@
           "id": "freeze-dry",
           "name": "Freeze Dry",
           "slot": "move2",
-          "description": "Glaceon shoots out a freezing burst of air in a forward direction, increasing Sp. Atk for a short time. This burst explodes upon hitting an enemy or after traveling a set distance; dealing damage to enemies in the area-of-effect. For each enemy hit by the explosion, Glaceon gains 1 ice crystal. The explosion also leaves behind an ice zone. Enemies that enter this ice zone will have their movement speed decreased. If they remain in the ice zone for a set amount of time, they become frozen for a short time.\n\nUpgrade (Level 12): For each enemy hit by this move's explosions; gain 1 ice crystal.",
+          "description": "Glaceon shoots out a freezing burst of air in a forward direction, increasing Sp. Atk for a short time. This burst explodes upon hitting an enemy or after traveling a set distance; dealing damage to enemies in the area-of-effect. For each enemy hit by the explosion, Glaceon gains 1 ice crystal. The explosion also leaves behind an ice zone. Enemies that enter this ice zone will have their movement speed decreased. If they remain in the ice zone for a set amount of time, they become frozen for a short time.\n\nUpgrade (Level 12): For each enemy hit by this move's explosions, Glaceon gains 1 additional ice crystal.",
           "cooldownSeconds": 7.5,
           "damageInstances": [
             {
@@ -40322,7 +40322,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 7,
-          "descriptionAdvanced": "The user charges in the designated direction, dealing damage. Additional damage is dealt if the target was paralyzed by the user.\n\nWhile in Hangry mode: If this move hits a Pokémon with a bolt mark, the cooldown is reset and the mark is consumed.\n\nUpgrade (Level 13): When this move is used, the user readies a guaranteed critical hit boosted attack.",
+          "descriptionAdvanced": "The user charges in the designated direction, dealing damage. Additional damage is dealt if the target was paralyzed by the user.\n\nWhile in Hangry mode: If this move hits a Pokémon with a bolt mark, the cooldown is reset and the mark is consumed.\n\nUpgrade (Level 13): Readies a guaranteed critical hit boosted attack when this move is used.",
           "videoAsset": "/assets/skills/Morpeko/Assurance.mp4"
         },
         {
@@ -54109,6 +54109,502 @@
           "moves": [
             "Thief",
             "Gigaton Hammer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toxtricity",
+      "displayName": "Toxtricity",
+      "role": "Attacker",
+      "attackType": "special",
+      "difficulty": 2,
+      "imageAsset": "/assets/pokemon/portrait/Toxtricity.png",
+      "iconAsset": "/assets/pokemon/thumbnail/Toxtricity.png",
+      "evolutions": [
+        {
+          "level": 1,
+          "formName": "Toxtricity"
+        }
+      ],
+      "baseStatsByLevel": [
+        {
+          "hp": 3300.0,
+          "attack": 20.0,
+          "defense": 70.0,
+          "spAttack": 122.0,
+          "spDefense": 70.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3425.0,
+          "attack": 23.0,
+          "defense": 78.0,
+          "spAttack": 144.0,
+          "spDefense": 78.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1322,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3563.0,
+          "attack": 27.0,
+          "defense": 87.0,
+          "spAttack": 169.0,
+          "spDefense": 87.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.16760000000000003,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3714.0,
+          "attack": 31.0,
+          "defense": 96.0,
+          "spAttack": 196.0,
+          "spDefense": 96.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2065,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3880.0,
+          "attack": 36.0,
+          "defense": 106.0,
+          "spAttack": 226.0,
+          "spDefense": 106.0,
+          "critRate": 0.1,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2492,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4063.0,
+          "attack": 41.0,
+          "defense": 118.0,
+          "spAttack": 259.0,
+          "spDefense": 118.0,
+          "critRate": 0.1,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2963,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4265.0,
+          "attack": 46.0,
+          "defense": 131.0,
+          "spAttack": 295.0,
+          "spDefense": 131.0,
+          "critRate": 0.1,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.3481,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 4487.0,
+          "attack": 53.0,
+          "defense": 145.0,
+          "spAttack": 335.0,
+          "spDefense": 145.0,
+          "critRate": 0.1,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.4052,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 4730.0,
+          "attack": 59.0,
+          "defense": 160.0,
+          "spAttack": 379.0,
+          "spDefense": 160.0,
+          "critRate": 0.2,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.4678,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 4999.0,
+          "attack": 67.0,
+          "defense": 177.0,
+          "spAttack": 427.0,
+          "spDefense": 177.0,
+          "critRate": 0.2,
+          "cdr": 0.05,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.5367999999999999,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 5293.0,
+          "attack": 75.0,
+          "defense": 195.0,
+          "spAttack": 480.0,
+          "spDefense": 195.0,
+          "critRate": 0.2,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.6126,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 5618.0,
+          "attack": 84.0,
+          "defense": 216.0,
+          "spAttack": 538.0,
+          "spDefense": 216.0,
+          "critRate": 0.2,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.696,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 5975.0,
+          "attack": 93.0,
+          "defense": 238.0,
+          "spAttack": 602.0,
+          "spDefense": 238.0,
+          "critRate": 0.2,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.7879,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6368.0,
+          "attack": 104.0,
+          "defense": 263.0,
+          "spAttack": 672.0,
+          "spDefense": 263.0,
+          "critRate": 0.2,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.8887999999999999,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6800.0,
+          "attack": 116.0,
+          "defense": 290.0,
+          "spAttack": 750.0,
+          "spDefense": 290.0,
+          "critRate": 0.2,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 1.0,
+          "moveSpeed": 4300.0
+        }
+      ],
+      "moves": [
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "The Pokémon can produce poison and electric timbres. When the Pokémon learns Shift Gear, it can change which timbre it produces.\n\nThe Pokémon's basic attack becomes a boosted attack with every third attack.\n\nPoison Timbre:\nWhen the Pokémon hits with a basic attack, opposing Pokémon are left poisoned for a set amount of time. This effect can stack up to 5 times. Boosted attacks deal additional damage.\n\nElectric Timbre:\nThe Pokémon's basic attacks have a longer range. Boosted attacks restore this Pokémon's HP and decrease the movement speed of opposing Pokémon.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.4,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 100.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "Poison Timbre: The user spits poison at the target, poisoning them for 2.5s. Becomes a boosted attack every third attack, dealing increased damage. The poison ticks on application and every 0.5s, is dealt as true damage, and can stack up to 5 times.\n\nDamage - Poison DoT: 0.6% of Target Max HP per stack\n\nElectric Timbre: The user attacks with electric sound waves at an increased range. Becomes a boosted attack every third attack, slowing the target by 25% for 1s, and restoring some health."
+        },
+        {
+          "id": "charge",
+          "name": "Charge",
+          "slot": "move1",
+          "description": "Has the user charge up electricity, increasing movement speed for a short time. The user's next basic attack also deals increased damage. If this basic attack hits, the opposing Pokémon's movement speed is decreased for a short time.",
+          "cooldownSeconds": 5.0,
+          "damageInstances": [
+            {
+              "ratio": 0.86,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 215.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "buff"
+          ],
+          "moveType": "Buff",
+          "iconAsset": "/assets/skills/Toxtricity/Charge.png",
+          "descriptionAdvanced": "The user charges up, increasing movement speed by 50% for 2s, decaying by 10% every second to a minimum of 40%. Additionally, for up to 4s, the next auto attack deals additional damage, and slows the target by 20% for 2s.",
+          "videoAsset": "/assets/skills/Toxtricity/Charge.mp4"
+        },
+        {
+          "id": "shift-gear",
+          "name": "Shift Gear",
+          "slot": "move1",
+          "description": "Has the user change timbres, granting additional effects depending on the timbre.\n\nPoison Timbre:\nBasic attack speed is greatly increased for a certain number of basic attacks that follow.\n\nElectric Timbre:\nMovement speed is greatly increased, then gradually returns to normal.\n\nUpgrade (Level 11): After this move is used, the next basic attack becomes a boosted attack.",
+          "cooldownSeconds": 3.0,
+          "damageInstances": [],
+          "effects": [],
+          "tags": [
+            "buff"
+          ],
+          "iconAsset": "/assets/skills/Toxtricity/Shift+Gear.png",
+          "isUpgrade": true,
+          "moveType": "Buff",
+          "upgradeLevel": 5,
+          "descriptionAdvanced": "The user changes timbres, gaining a buff depending on which one is activated. Poison Timbre: For the next 4s, or 5 auto attacks, attack speed is increased by 25%.\n\nElectric Timbre: Increases movement speed by 60% for 3s, decaying by 10% every second to a minimum of 30%.\n\nUpgrade (Level 11): Readies a boosted attack when this move is used.",
+          "videoAsset": "/assets/skills/Toxtricity/Shift+Gear.mp4"
+        },
+        {
+          "id": "growl",
+          "name": "Growl",
+          "slot": "move2",
+          "description": "Has the user growl at a designated opposing Pokémon, dealing damage to it and decreasing its movement speed for a short time.",
+          "cooldownSeconds": 7.0,
+          "damageInstances": [
+            {
+              "ratio": 0.9,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 225.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "sure hit"
+          ],
+          "moveType": "Sure Hit",
+          "iconAsset": "/assets/skills/Toxtricity/Growl.png",
+          "descriptionAdvanced": "The user growls at the designated Pokémon, dealing damage and slowing them down by 20% for 2s.",
+          "videoAsset": "/assets/skills/Toxtricity/Growl.mp4"
+        },
+        {
+          "id": "overdrive",
+          "name": "Overdrive",
+          "slot": "move2",
+          "description": "Has the user play guitar-like sounds, dealing damage to opposing Pokémon. Additional effects are granted based on the timbre produced.\n\nPoison Timbre:\nHas the user unleash explosive poison in the designated direction, dealing damage and poisoning the first opposing Pokémon it hits, as well as nearby opposing Pokémon.\n\nElectric Timbre:\nOpposing Pokémon the user has recently dealt damage to are left unable to act for a short time, and an electric current will jump to nearby opposing Pokémon. When the user's basic attacks or explosive poison hit an electrified opposing Pokémon, feedback from the electric current deals additional damage to all electrified opposing Pokémon once.\n\nUpgrade (Level 13): When this move hits, the user gains the effects of Punk Rock.",
+          "cooldownSeconds": 9.0,
+          "damageInstances": [
+            {
+              "ratio": 0.4,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 120.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 1.8,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 540.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 0.9,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 270.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 1.5,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 450.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "area"
+          ],
+          "iconAsset": "/assets/skills/Toxtricity/Overdrive.png",
+          "isUpgrade": true,
+          "moveType": "Area",
+          "upgradeLevel": 7,
+          "descriptionAdvanced": "The user plays guitar-like sounds, dealing damage in an area. The Poison Timbre and Electric Timbre versions of this move have their own separate cooldown. Poison Timbre: Also launches a ball of exploding poison in the designated direction, exploding on the first target hit, dealing reduced damage in an area around the target, and inflicting a stack of poison.\n\nElectric Timbre: Damaging targets with auto attacks or moves (except the Overdrive wave itself) electrifies them for 4s. When this move hits electrified targets, they are stunned for 0.5s, and are marked with an electric current for 4s. This mark also spreads to surrounding opposing Pokémon. Attacking a Pokémon marked with an electric current with an auto attack or exploding poison causes feedback on all Pokémon marked with an electric current, dealing damage.\n\nUpgrade (Level 13): When this move hits, gain one stack of Punk Rock per target. Hitting with the exploding poison grants another 2 stacks, and an additional stack for each target in the explosion area.",
+          "videoAsset": "/assets/skills/Toxtricity/Overdrive.mp4"
+        },
+        {
+          "id": "venom-distortion",
+          "name": "Venom Distortion",
+          "slot": "uniteMove",
+          "description": "Has the user perform for a set amount of time. During the performance, the user is unable to use basic attacks but can use moves. During the performance, the cooldown of Shift Gear is reduced, and whenever a set amount of time passes, the user unleashes bursts of loud noise in quick succession, dealing damage to nearby opposing Pokémon. Opposing Pokémon are also inflicted with additional basic attack effects based on the performance's timbre.",
+          "cooldownSeconds": 112.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 300.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "area"
+          ],
+          "moveType": "Area",
+          "iconAsset": "/assets/skills/Toxtricity/Venom+Distortion.png",
+          "descriptionAdvanced": "The user becomes hindrance resistant and begins performing for 5s. Every second the user unleashes a burst of sound, dealing damage in the area. Poison Timbre: Applies a stack of poison to targets hit by the move. Electric Timbre: Slows targets by 25% for 1s.\n\nAuto attacks are locked, but the user can still cast moves during this performance. Shift Gear has its cooldown reduced to 0.1s.",
+          "upgradeLevel": 9,
+          "videoAsset": "/assets/skills/Toxtricity/Venom+Distortion.mp4"
+        }
+      ],
+      "passiveAbility": {
+        "id": "punk-rock",
+        "name": "Punk Rock",
+        "description": "Each time the user hits opposing Pokémon with a basic attack, the user's basic attack speed increases. This effect can stack up to 5 times. Whenever one of the user's basic attacks hits an opposing Pokémon with decreased movement speed, the user recovers some HP.",
+        "effects": [],
+        "descriptionAdvanced": "The user gains a buff with each auto attack, increasing attack speed by 8% for 5s, stacking up to 5 times.\n\nThe user restores a small amount of health when auto attacking a target who has been slowed. (This effect does not work against wild Pokémon).",
+        "iconAsset": "/assets/skills/Toxtricity/Punk+Rock.png"
+      },
+      "builds": [
+        {
+          "name": "Purple Haze",
+          "emblemName": "Purple Haze",
+          "lane": "Anywhere Damage",
+          "heldItemIds": [
+            "wise-glasses",
+            "curse-incense",
+            "slick-spoon"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "045-vileplume",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "049-venomoth",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "088-grimer",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "089-muk",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "211-qwilfish",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "248-tyranitar",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "048-venonat",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "012-butterfree",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "249-lugia",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "071-victreebel",
+              "grade": "bronze"
+            }
+          ],
+          "moves": [
+            "Shift Gear",
+            "Overdrive"
+          ]
+        },
+        {
+          "name": "High Voltage",
+          "emblemName": "High Voltage",
+          "lane": "Anywhere Damage",
+          "heldItemIds": [
+            "muscle-band",
+            "rapid-fire-scarf",
+            "slick-spoon"
+          ],
+          "battleItemId": "x-attack",
+          "emblems": [
+            {
+              "emblemId": "144-articuno",
+              "grade": "bronze"
+            },
+            {
+              "emblemId": "015-beedrill",
+              "grade": "bronze"
+            },
+            {
+              "emblemId": "045-vileplume",
+              "grade": "bronze"
+            },
+            {
+              "emblemId": "071-victreebel",
+              "grade": "bronze"
+            },
+            {
+              "emblemId": "049-venomoth",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "012-butterfree",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "073-tentacruel",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "249-lugia",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "089-muk",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "248-tyranitar",
+              "grade": "silver"
+            }
+          ],
+          "moves": [
+            "Shift Gear",
+            "Overdrive"
           ]
         }
       ]

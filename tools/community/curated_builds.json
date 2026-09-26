@@ -3081,6 +3081,50 @@
       "Daring Swing"
     ]
   },
+  "toxtricity": {
+    "builds": [
+      {
+        "name": "Purple Haze",
+        "emblemName": "Purple Haze",
+        "lane": "Anywhere Damage",
+        "heldItemIds": ["wise-glasses", "curse-incense", "slick-spoon"],
+        "battleItemId": "eject-button",
+        "emblems": [
+          { "emblemId": "045-vileplume", "grade": "gold" },
+          { "emblemId": "049-venomoth", "grade": "gold" },
+          { "emblemId": "088-grimer", "grade": "gold" },
+          { "emblemId": "089-muk", "grade": "gold" },
+          { "emblemId": "211-qwilfish", "grade": "gold" },
+          { "emblemId": "248-tyranitar", "grade": "gold" },
+          { "emblemId": "048-venonat", "grade": "gold" },
+          { "emblemId": "012-butterfree", "grade": "gold" },
+          { "emblemId": "249-lugia", "grade": "gold" },
+          { "emblemId": "071-victreebel", "grade": "bronze" }
+        ],
+        "moves": ["Shift Gear", "Overdrive"]
+      },
+      {
+        "name": "High Voltage",
+        "emblemName": "High Voltage",
+        "lane": "Anywhere Damage",
+        "heldItemIds": ["muscle-band", "rapid-fire-scarf", "slick-spoon"],
+        "battleItemId": "x-attack",
+        "emblems": [
+          { "emblemId": "144-articuno", "grade": "bronze" },
+          { "emblemId": "015-beedrill", "grade": "bronze" },
+          { "emblemId": "045-vileplume", "grade": "bronze" },
+          { "emblemId": "071-victreebel", "grade": "bronze" },
+          { "emblemId": "049-venomoth", "grade": "gold" },
+          { "emblemId": "012-butterfree", "grade": "gold" },
+          { "emblemId": "073-tentacruel", "grade": "silver" },
+          { "emblemId": "249-lugia", "grade": "silver" },
+          { "emblemId": "089-muk", "grade": "silver" },
+          { "emblemId": "248-tyranitar", "grade": "silver" }
+        ],
+        "moves": ["Shift Gear", "Overdrive"]
+      }
+    ]
+  },
   "trevenant": {
     "recommendedTitles": [
       "Forest Trap",

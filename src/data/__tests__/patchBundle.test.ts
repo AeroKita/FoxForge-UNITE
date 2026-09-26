@@ -1147,6 +1147,17 @@ describe("community data bundle", () => {
         "Every 2 this Unite",
         "the user Release",
         "When a hindrance is inflicted on a Pokémon from the opposing team",
+        "true type damage",
+        "slows the target 20%",
+        "and inflicts a stack of poison.",
+        "causes a feedback",
+        "for 4s, this mark also spreads",
+        "hits electrified targets they are",
+        "Additionally for up to 4s",
+        "Growls at the designated Pokémon",
+        "Gain a buff with each auto attack",
+        "Restore a small amount of health when auto attacking",
+        "burst of sound dealing damage",
       ];
       const texts = collectUserFacingTexts(bundle);
       for (const bad of banned) {

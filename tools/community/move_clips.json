@@ -29,6 +29,24 @@
       "recover": "/assets/skills/Alcremie/Recover.mp4",
       "sweet-scent": "/assets/skills/Alcremie/Sweet+Scent.mp4"
     },
+    "alolan-ninetales": {
+      "aurora-veil": "/assets/skills/Ninetales/Aurora+Veil.mp4",
+      "avalanche": "/assets/skills/Ninetales/Avalanche.mp4",
+      "blizzard": "/assets/skills/Ninetales/Blizzard.mp4",
+      "dazzling-gleam": "/assets/skills/Ninetales/Dazzling+Gleam.mp4",
+      "icy-wind": "/assets/skills/Ninetales/Icy+Wind.mp4",
+      "powder-snow": "/assets/skills/Ninetales/Powder+Snow.mp4",
+      "snow-globe": "/assets/skills/Ninetales/Snow+Globe.mp4"
+    },
+    "alolan-raichu": {
+      "electro-ball": "/assets/skills/Raichu/Electro+Ball.mp4",
+      "psychic": "/assets/skills/Raichu/Psychic.mp4",
+      "stored-power": "/assets/skills/Raichu/Stored+Power.mp4",
+      "thunder-shock": "/assets/skills/Raichu/Thunder+Shock.mp4",
+      "thunder-wave": "/assets/skills/Raichu/Thunder+Wave.mp4",
+      "thunderbolt": "/assets/skills/Raichu/Thunderbolt.mp4",
+      "thunderstorm-aerial": "/assets/skills/Raichu/Thunderstorm+Aerial.mp4"
+    },
     "armarouge": {
       "armor-cannon": "/assets/skills/Armarouge/Armor+Cannon.mp4",
       "fire-spin": "/assets/skills/Armarouge/Fire+Spin.mp4",
@@ -277,6 +295,15 @@
       "crunch": "/assets/skills/Feraligatr/Crunch.mp4",
       "scratch": "/assets/skills/Feraligatr/Scratch.mp4",
       "waterfall": "/assets/skills/Feraligatr/Waterfall.mp4"
+    },
+    "galarian-rapidash": {
+      "agility": "/assets/skills/Rapidash/Agility.mp4",
+      "confusion": "/assets/skills/Rapidash/Confusion.mp4",
+      "dazzling-gleam": "/assets/skills/Rapidash/Dazzling+Gleam.mp4",
+      "fairy-wind": "/assets/skills/Rapidash/Fairy+Wind.mp4",
+      "smart-strike": "/assets/skills/Rapidash/Smart+Strike.mp4",
+      "tackle": "/assets/skills/Rapidash/Tackle.mp4",
+      "triad-blitz": "/assets/skills/Rapidash/Triad+Blitz.mp4"
     },
     "garchomp": {
       "bulldoze": "/assets/skills/Garchomp/Bulldoze.mp4",
@@ -570,15 +597,6 @@
       "psychic": "/assets/skills/Mr.Mime/Psychic.mp4",
       "showtime": "/assets/skills/Mr.Mime/Showtime.mp4"
     },
-    "alolan-ninetales": {
-      "aurora-veil": "/assets/skills/Ninetales/Aurora+Veil.mp4",
-      "avalanche": "/assets/skills/Ninetales/Avalanche.mp4",
-      "blizzard": "/assets/skills/Ninetales/Blizzard.mp4",
-      "dazzling-gleam": "/assets/skills/Ninetales/Dazzling+Gleam.mp4",
-      "icy-wind": "/assets/skills/Ninetales/Icy+Wind.mp4",
-      "powder-snow": "/assets/skills/Ninetales/Powder+Snow.mp4",
-      "snow-globe": "/assets/skills/Ninetales/Snow+Globe.mp4"
-    },
     "palkia": {
       "aqua-ring": "/assets/skills/Palkia/Aqua+Ring.mp4",
       "aura-sphere": "/assets/skills/Palkia/Aura+Sphere.mp4",
@@ -619,24 +637,6 @@
       "low-sweep": "/assets/skills/Quaquaval/Low+Sweep.mp4",
       "pound": "/assets/skills/Quaquaval/Pound.mp4",
       "wing-attack": "/assets/skills/Quaquaval/Wing+Attack.mp4"
-    },
-    "alolan-raichu": {
-      "electro-ball": "/assets/skills/Raichu/Electro+Ball.mp4",
-      "psychic": "/assets/skills/Raichu/Psychic.mp4",
-      "stored-power": "/assets/skills/Raichu/Stored+Power.mp4",
-      "thunder-shock": "/assets/skills/Raichu/Thunder+Shock.mp4",
-      "thunder-wave": "/assets/skills/Raichu/Thunder+Wave.mp4",
-      "thunderbolt": "/assets/skills/Raichu/Thunderbolt.mp4",
-      "thunderstorm-aerial": "/assets/skills/Raichu/Thunderstorm+Aerial.mp4"
-    },
-    "galarian-rapidash": {
-      "agility": "/assets/skills/Rapidash/Agility.mp4",
-      "confusion": "/assets/skills/Rapidash/Confusion.mp4",
-      "dazzling-gleam": "/assets/skills/Rapidash/Dazzling+Gleam.mp4",
-      "fairy-wind": "/assets/skills/Rapidash/Fairy+Wind.mp4",
-      "smart-strike": "/assets/skills/Rapidash/Smart+Strike.mp4",
-      "tackle": "/assets/skills/Rapidash/Tackle.mp4",
-      "triad-blitz": "/assets/skills/Rapidash/Triad+Blitz.mp4"
     },
     "reshiram": {
       "blue-flare": "/assets/skills/Reshiram/Blue+Flare.mp4",
@@ -747,6 +747,13 @@
       "rock-smash": "/assets/skills/Tinkaton/Rock+Smash.mp4",
       "smack-down": "/assets/skills/Tinkaton/Smack+Down.mp4",
       "thief": "/assets/skills/Tinkaton/Thief.mp4"
+    },
+    "toxtricity": {
+      "charge": "/assets/skills/Toxtricity/Charge.mp4",
+      "growl": "/assets/skills/Toxtricity/Growl.mp4",
+      "overdrive": "/assets/skills/Toxtricity/Overdrive.mp4",
+      "shift-gear": "/assets/skills/Toxtricity/Shift+Gear.mp4",
+      "venom-distortion": "/assets/skills/Toxtricity/Venom+Distortion.mp4"
     },
     "trevenant": {
       "branch-poke": "/assets/skills/Trevenant/Branch+Poke.mp4",

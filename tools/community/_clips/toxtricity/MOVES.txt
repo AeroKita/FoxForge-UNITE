@@ -1,0 +1,9 @@
+Toxtricity  —  drop each file here as <move-id>.mp4
+Scope: Base + Final + Unite moves + optional Passive.
+
+  punk-rock.mp4                  →  Punk Rock                       [Passive]
+  charge.mp4                     →  Charge                          [Move 1 · Base]
+  shift-gear.mp4                 →  Shift Gear (Lv 5)               [Move 1 · Final]
+  growl.mp4                      →  Growl                           [Move 2 · Base]
+  overdrive.mp4                  →  Overdrive (Lv 7)                [Move 2 · Final]
+  venom-distortion.mp4           →  Venom Distortion                [Unite · Unite]

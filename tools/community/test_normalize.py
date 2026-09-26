@@ -13,6 +13,7 @@ from normalize import (
     PLAYABLE_PASSIVE_SLUGS,
     _norm_move_name,
     apply_curated_builds,
+    attack_type,
     license_identity,
     advanced_desc,
     append_upgrade_from_advanced,
@@ -747,6 +748,43 @@ class TestLicenseIdentity(unittest.TestCase):
             license_identity("MewtwoX", "Mega Mewtwo X"),
             ("mewtwox", "Mega Mewtwo X"),
         )
+
+
+class TestAttackType(unittest.TestCase):
+    """Missing UNITE-DB damage_type follows a unanimous skill dmg_type.
+
+    An explicit Special or Physical field wins. Toxtricity omits the field
+    and every skill is SpAtk, including a buff upgrade with an empty dmg_type.
+    Morpeko omits the field and every skill is Atk, so it stays physical.
+    """
+
+    def test_explicit_special_wins_over_physical_skills(self):
+        raw = {
+            "damage_type": "Special",
+            "skills": [{"rsb": {"dmg_type": "Atk"}, "upgrades": []}],
+        }
+        self.assertEqual(attack_type(raw), "special")
+
+    def test_missing_damage_type_unanimous_spatk_is_special(self):
+        raw = {
+            "skills": [
+                {"rsb": {"dmg_type": "SpAtk"}, "upgrades": []},
+                {
+                    "rsb": {"dmg_type": "SpAtk"},
+                    "upgrades": [{"rsb": {"dmg_type": ""}}],
+                },
+            ],
+        }
+        self.assertEqual(attack_type(raw), "special")
+
+    def test_missing_damage_type_unanimous_atk_stays_physical(self):
+        raw = {
+            "skills": [
+                {"rsb": {"dmg_type": "Atk"}, "upgrades": []},
+                {"rsb": {"dmg_type": "Atk"}, "upgrades": [{"rsb": {"dmg_type": "Atk"}}]},
+            ],
+        }
+        self.assertEqual(attack_type(raw), "physical")
 
 
 class TestFormPassiveStages(unittest.TestCase):

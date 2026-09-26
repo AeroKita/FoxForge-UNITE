@@ -1737,6 +1737,123 @@
       "replace": "When a powerful hindrance is inflicted on a Pokémon from the opposing team",
       "why": "Vanguard Bell in-game Basic triggers on a powerful hindrance, not any hindrance",
       "item": "vanguard-bell"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "attack",
+      "fields": ["descriptionAdvanced"],
+      "find": "true type damage",
+      "replace": "true damage",
+      "why": "Toxtricity Attack Advanced says true type damage; roster Advanced text says true damage"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "attack",
+      "fields": ["descriptionAdvanced"],
+      "find": "every third attack dealing increased damage",
+      "replace": "every third attack, dealing increased damage",
+      "why": "Toxtricity Attack Advanced is missing the comma before dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "attack",
+      "fields": ["descriptionAdvanced"],
+      "find": "every third attack slowing",
+      "replace": "every third attack, slowing",
+      "why": "Toxtricity Attack Advanced Electric Timbre note is missing the comma before slowing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "charge",
+      "fields": ["descriptionAdvanced"],
+      "find": "Additionally for up to 4s",
+      "replace": "Additionally, for up to 4s",
+      "why": "Toxtricity Charge Advanced is missing the comma after Additionally"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "charge",
+      "fields": ["descriptionAdvanced"],
+      "find": "slows the target 20%",
+      "replace": "slows the target by 20%",
+      "why": "Toxtricity Charge Advanced is missing by before the slow percent"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "growl",
+      "fields": ["descriptionAdvanced"],
+      "find": "Growls at the designated Pokémon,",
+      "replace": "The user growls at the designated Pokémon,",
+      "why": "Toxtricity Growl Advanced is a fragment with no subject"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "overdrive",
+      "fields": ["descriptionAdvanced"],
+      "find": "and inflicts a stack of poison.",
+      "replace": "and inflicting a stack of poison.",
+      "why": "Toxtricity Overdrive Advanced breaks parallel structure with exploding and dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "overdrive",
+      "fields": ["descriptionAdvanced"],
+      "find": "hits electrified targets they are",
+      "replace": "hits electrified targets, they are",
+      "why": "Toxtricity Overdrive Advanced is missing the comma after targets"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "overdrive",
+      "fields": ["descriptionAdvanced"],
+      "find": "for 4s, this mark also spreads",
+      "replace": "for 4s. This mark also spreads",
+      "why": "Toxtricity Overdrive Advanced comma-splices the mark sentence"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "overdrive",
+      "fields": ["descriptionAdvanced"],
+      "find": "causes a feedback on all Pokémon marked with an electric current dealing damage.",
+      "replace": "causes feedback on all Pokémon marked with an electric current, dealing damage.",
+      "why": "Toxtricity Overdrive Advanced uses a feedback and omits the comma before dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "punk-rock",
+      "fields": ["descriptionAdvanced"],
+      "find": "Gain a buff with each auto attack,",
+      "replace": "The user gains a buff with each auto attack,",
+      "why": "Toxtricity Punk Rock Advanced is a fragment with no subject"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "punk-rock",
+      "fields": ["descriptionAdvanced"],
+      "find": "Restore a small amount of health",
+      "replace": "The user restores a small amount of health",
+      "why": "Toxtricity Punk Rock Advanced note is a fragment with no subject"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "toxtricity",
+      "move": "venom-distortion",
+      "fields": ["descriptionAdvanced"],
+      "find": "burst of sound dealing damage",
+      "replace": "burst of sound, dealing damage",
+      "why": "Toxtricity Venom Distortion Advanced is missing the comma before dealing"
     }
   ]
 }

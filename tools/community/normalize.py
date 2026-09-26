@@ -1103,6 +1103,33 @@ def _norm_move_name(name: str) -> str:
     return n.lower().replace("'", "").strip()
 
 
+def attack_type(raw: dict) -> str:
+    """Return ``special`` or ``physical``.
+
+    An explicit UNITE-DB ``damage_type`` of Special or Physical wins.
+    When that field is missing, a unanimous non-empty skill ``dmg_type``
+    (each move and each upgrade) decides: all SpAtk / Sp. Atk → special,
+    all Atk → physical. Mixed or empty stays physical, the historical default.
+    """
+    explicit = raw.get("damage_type")
+    if explicit == "Special":
+        return "special"
+    if explicit == "Physical":
+        return "physical"
+    kinds: set[str] = set()
+    for skill in raw.get("skills") or []:
+        dmg = (skill.get("rsb") or {}).get("dmg_type")
+        if dmg:
+            kinds.add(dmg)
+        for up in skill.get("upgrades") or []:
+            up_dmg = (up.get("rsb") or {}).get("dmg_type")
+            if up_dmg:
+                kinds.add(up_dmg)
+    if kinds and kinds <= {"SpAtk", "Sp. Atk"}:
+        return "special"
+    return "physical"
+
+
 def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | None = None,
                   gifs: dict | None = None, clips: dict | None = None) -> list:
     stats_by_name = {p["name"]: p for p in stats_rows}
@@ -1228,7 +1255,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
             "id": pid,
             "displayName": display_name,
             "role": ROLE_MAP.get(tags.get("role"), "AllRounder"),
-            "attackType": "special" if p.get("damage_type") == "Special" else "physical",
+            "attackType": attack_type(p),
             "difficulty": DIFFICULTY_MAP.get(tags.get("difficulty"), 2),
             "imageAsset": f"{ASSETS}/pokemon/portrait/{name}.png",
             "iconAsset": f"{ASSETS}/pokemon/thumbnail/{name}.png",
