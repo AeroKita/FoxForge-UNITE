@@ -12,7 +12,9 @@ import { StoreProvider, useStore } from "./state/store";
 import { pokemonById } from "./data/gameData";
 import { ROLE_COLOR, ROLE_LABEL } from "./ui/theme";
 import { asset } from "./ui/asset";
+import { firstVisitFadeStyle, firstVisitShellClass } from "./ui/firstVisitFade";
 import { usePreloadMoveClips } from "./ui/moveClipPreload";
+import { usePreloadPickerIcons } from "./ui/pickerIconPreload";
 import { AppBar } from "./components/shell/AppBar";
 import { TabBar, TAB_ICONS, type Tab } from "./components/shell/TabBar";
 import { BuildScreen } from "./components/screens/BuildScreen";
@@ -94,6 +96,12 @@ function Workspace() {
   const p = loadout.pokemonId ? pokemonById.get(loadout.pokemonId) : null;
   const role = p ? ROLE_COLOR[p.role] : null;
   usePreloadMoveClips(p ?? null);
+  usePreloadPickerIcons();
+
+  // Freeze the decision on the loadout and tab already restored. Only the
+  // empty Build screen fades. A later Pokémon pick must not restart it.
+  const [firstVisitClass] = useState(() => firstVisitShellClass(loadout.pokemonId, tab));
+  const [firstVisitStyle] = useState(() => firstVisitFadeStyle(loadout.pokemonId, tab));
 
   const appBarProps = useMemo(() => {
     // Build and Optimize both pin the selected Pokémon to the top-left of the
@@ -161,7 +169,10 @@ function Workspace() {
   }, [tab, p, role]);
 
   return (
-    <div className="min-h-screen bg-bg text-ink">
+    <div
+      className={`min-h-screen bg-bg text-ink${firstVisitClass ? ` ${firstVisitClass}` : ""}`}
+      style={firstVisitStyle}
+    >
       <AppBar
         {...appBarProps}
         onSettings={() => setSettingsOpen(true)}

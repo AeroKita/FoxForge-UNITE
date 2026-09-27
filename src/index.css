@@ -295,6 +295,25 @@ textarea {
   }
 }
 
+/* First visit with no Pokémon: fade the whole shell so text and controls
+   don't pop while art loads. Duration is inline (FIRST_VISIT_FADE_MS). */
+@keyframes first-visit-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .first-visit-fade {
+    animation-name: first-visit-fade;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+  }
+}
+
 /* Empty Pokémon picker — static accent glow (no animation). */
 .poke-picker-selected {
   border: 2px solid var(--color-poke-picker-ring);
