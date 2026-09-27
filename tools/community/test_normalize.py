@@ -1760,6 +1760,31 @@ class TestHeldItemStatcalc(unittest.TestCase):
         self.assertIn("45/60/75% Attack", item["descriptionAdvanced"])
         self.assertAlmostEqual(item["statsByGrade"]["40"]["critRate"], 0.07)
 
+    def test_gradeable_held_items_use_archive_basic_and_unite_db_advanced(self):
+        """Every held item with grade stats ships the owned in-game sentence as Basic
+        and the UNITE-DB description1 as Advanced. Items with no stats (unique held
+        items) stay out of the archive and keep a single UNITE-DB description.
+        """
+        raw = json.loads((normalize.HERE / "_raw" / "held_items.json").read_text())
+        archive = normalize.load_held_item_archive()
+        built = {item["id"]: item for item in build_held_items(raw, archive)}
+        missing = []
+        for row in raw:
+            item_id = normalize.slugify(row["name"])
+            item = built[item_id]
+            if not row.get("stats"):
+                self.assertNotIn(item_id, archive)
+                self.assertNotIn("descriptionAdvanced", item)
+                continue
+            body = ((archive.get(item_id) or {}).get("description") or "").strip()
+            if not body:
+                missing.append(item_id)
+                continue
+            self.assertEqual(item["description"], body, item_id)
+            self.assertEqual(item["descriptionAdvanced"], row.get("description1") or "", item_id)
+            self.assertNotEqual(item["description"], item["descriptionAdvanced"], item_id)
+        self.assertEqual(missing, [])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -38,6 +38,8 @@ screenshot-references/**
 !screenshot-references/basic-attack-descriptions/*/SKILLS.txt
 !screenshot-references/battle-item-descriptions/
 !screenshot-references/battle-item-descriptions/README.md
+!screenshot-references/held-item-descriptions/
+!screenshot-references/held-item-descriptions/README.md
 !screenshot-references/emblem-color-descriptions/
 !screenshot-references/emblem-color-descriptions/README.md
 screenshot-references/**/.DS_Store

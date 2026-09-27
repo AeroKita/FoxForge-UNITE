@@ -777,7 +777,7 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "its not fully",
       "replace": "it's not fully",
@@ -787,7 +787,7 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "self healing",
       "replace": "self-healing",
@@ -797,7 +797,7 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "non movement, non auto attack",
       "replace": "non-movement, non-auto-attack",
@@ -1731,11 +1731,11 @@
     {
       "kind": "replaceText",
       "fields": [
-        "description"
+        "descriptionAdvanced"
       ],
       "find": "When a hindrance is inflicted on a Pokémon from the opposing team",
       "replace": "When a powerful hindrance is inflicted on a Pokémon from the opposing team",
-      "why": "Vanguard Bell in-game Basic triggers on a powerful hindrance, not any hindrance",
+      "why": "UNITE-DB Vanguard Bell Advanced omits powerful; in-game Basic triggers on a powerful hindrance",
       "item": "vanguard-bell"
     },
     {

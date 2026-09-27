@@ -1350,8 +1350,8 @@ def load_move_descriptions() -> dict:
 def load_held_item_archive() -> dict[str, dict]:
     """Owned held-item Basic texts keyed by slug id. Empty if the file is absent.
 
-    Partial on purpose: only items with an operator-transcribed in-game body
-    are listed. Everyone else keeps UNITE-DB text as the sole description.
+    Gradeable items with an operator-transcribed in-game body are listed.
+    Unique items without a still keep UNITE-DB text as the sole description.
     """
     if not HELD_ITEM_ARCHIVE.exists():
         return {}

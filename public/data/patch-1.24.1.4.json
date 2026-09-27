@@ -5,7 +5,7 @@
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-26"
+    "fetched": "2026-09-27"
   },
   "pokemon": [
     {
@@ -63425,7 +63425,7 @@
       "id": "accel-bracer",
       "displayName": "Accel Bracer",
       "iconAsset": "/assets/items/held/Accel+Bracer.png",
-      "description": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
+      "description": "Increases your Attack by 1.2% when you knock out a Pokémon from the opposing team. Increases by half when you assist in knocking out a Pokémon from the opposing team.",
       "statsByGrade": {
         "1": {
           "attack": 0.5
@@ -63588,6 +63588,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
       "effect": {
         "label": "Attack",
         "tiers": [
@@ -63601,7 +63602,7 @@
       "id": "aeos-cookie",
       "displayName": "Aeos Cookie",
       "iconAsset": "/assets/items/held/Aeos+Cookie.png",
-      "description": "Upon scoring a goal: increases max HP by 100/150/200 until the end of battle (up to 6 times; maximum 600/900/1200 bonus max HP).",
+      "description": "When the Pokémon scores a goal, its max HP increases by 200.",
       "statsByGrade": {
         "1": {
           "hp": 8.0
@@ -63725,6 +63726,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon scoring a goal: increases max HP by 100/150/200 until the end of battle (up to 6 times; maximum 600/900/1200 bonus max HP).",
       "effect": {
         "label": "Max HP",
         "tiers": [
@@ -63738,7 +63740,7 @@
       "id": "amulet-coin",
       "displayName": "Amulet Coin",
       "iconAsset": "/assets/items/held/Amulet+Coin.png",
-      "description": "Gain 60/80/100% more Aeos Energy for defeating wild Pokémon (16s CD). Goal-scoring speed is passively increased by 10%.",
+      "description": "For defeating wild Pokémon, Aeos energy acquired will increase by 100% and goal-scoring speed will increase by 10%.",
       "statsByGrade": {
         "1": {
           "hp": 8.0
@@ -63901,6 +63903,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Gain 60/80/100% more Aeos Energy for defeating wild Pokémon (16s CD). Goal-scoring speed is passively increased by 10%.",
       "effect": {
         "label": "Additional Aeos Energy",
         "tiers": [
@@ -63914,7 +63917,7 @@
       "id": "assault-vest",
       "displayName": "Assault Vest",
       "iconAsset": "/assets/items/held/Assault+Vest.png",
-      "description": "When not receiving special damage for 15s: grants a 10/15/20% max HP shield effect that nullifies Sp. Attack-based damage until it is destroyed. This shield can be refreshed even if it's not fully depleted.",
+      "description": "If the Pokémon has not received Sp. Atk damage for 15 seconds, it is granted a shield that nullifies Sp. Atk damage equal to 20% of its max HP.",
       "statsByGrade": {
         "1": {
           "hp": 18.0
@@ -64077,6 +64080,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When not receiving special damage for 15s: grants a 10/15/20% max HP shield effect that nullifies Sp. Attack-based damage until it is destroyed. This shield can be refreshed even if it's not fully depleted.",
       "effect": {
         "label": "Max HP",
         "tiers": [
@@ -64090,7 +64094,7 @@
       "id": "attack-weight",
       "displayName": "Attack Weight",
       "iconAsset": "/assets/items/held/Attack+Weight.png",
-      "description": "Upon scoring a goal: increases Attack by 6/9/12 until the end of battle (up to 6 times; maximum 36/54/72 bonus Attack).",
+      "description": "When the Pokémon scores a goal, its Attack increases by 12.",
       "statsByGrade": {
         "1": {
           "attack": 0.6
@@ -64214,6 +64218,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon scoring a goal: increases Attack by 6/9/12 until the end of battle (up to 6 times; maximum 36/54/72 bonus Attack).",
       "effect": {
         "label": "Attack",
         "tiers": [
@@ -64227,7 +64232,7 @@
       "id": "big-root",
       "displayName": "Big Root",
       "iconAsset": "/assets/items/held/Big+Root.png",
-      "description": "Improves HP recovery by 10/15/20% from self-healing.",
+      "description": "Increases the Pokémon's HP recovery by 20%.",
       "statsByGrade": {
         "1": {
           "hp": 15.0
@@ -64351,6 +64356,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Improves HP recovery by 10/15/20% from self-healing.",
       "effect": {
         "label": "HP Recovery",
         "tiers": [
@@ -64364,7 +64370,7 @@
       "id": "buddy-barrier",
       "displayName": "Buddy Barrier",
       "iconAsset": "/assets/items/held/Buddy+Barrier.png",
-      "description": "When using their Unite Move: grants the holder and 1 nearby ally with the lowest current HP a shield equal to 15/20/25% of the holder's max HP for 5s (30s CD). Additional Buddy Barrier shields do not stack, but instead refresh the duration of the remaining shield effect.",
+      "description": "When the Pokémon uses its Unite Move, that Pokémon and the nearby ally Pokémon with the lowest HP are each granted a shield equal to 25% of the holder's max HP.",
       "statsByGrade": {
         "1": {
           "hp": 15.0
@@ -64488,6 +64494,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When using their Unite Move: grants the holder and 1 nearby ally with the lowest current HP a shield equal to 15/20/25% of the holder's max HP for 5s (30s CD). Additional Buddy Barrier shields do not stack, but instead refresh the duration of the remaining shield effect.",
       "effect": {
         "label": "Max HP Shield",
         "tiers": [
@@ -64501,7 +64508,7 @@
       "id": "charging-charm",
       "displayName": "Charging Charm",
       "iconAsset": "/assets/items/held/Charging+Charm.png",
-      "description": "Charges energy through movement (+1 per distance unit traveled) and auto attacks (+9 per auto attack damage instance dealt), up to 100 energy. When energy is full: damaging an opposing Pokémon deals 20/30/40 + 50/60/70% Attack as additional damage to the first target hit, consuming the charged energy.",
+      "description": "Energy is charged through movement and basic attacks. Dealing damage to opposing Pokémon while energy is full will deal additional damage.",
       "statsByGrade": {
         "1": {
           "attack": 1.0,
@@ -64665,6 +64672,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Charges energy through movement (+1 per distance unit traveled) and auto attacks (+9 per auto attack damage instance dealt), up to 100 energy. When energy is full: damaging an opposing Pokémon deals 20/30/40 + 50/60/70% Attack as additional damage to the first target hit, consuming the charged energy.",
       "effect": {
         "label": "Attack",
         "tiers": [
@@ -64694,7 +64702,7 @@
       "id": "choice-scarf",
       "displayName": "Choice Scarf",
       "iconAsset": "/assets/items/held/Choice+Scarf.png",
-      "description": "Dealing auto attack damage to a Pokémon from the opposing team adds 1 stack of a hidden buff for 2s, up to 3 stacks. Taking non-movement, non-auto-attack actions will reset the stack count to 0. After the 3rd stack: increases movement speed by 30/35/40% for 3s (6s CD).",
+      "description": "When a Pokémon hits an opposing Pokémon with a basic attack three times in a row, its movement speed will increase by 40% for a short time.",
       "statsByGrade": {
         "1": {
           "attackSpeed": 0.005
@@ -64857,6 +64865,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Dealing auto attack damage to a Pokémon from the opposing team adds 1 stack of a hidden buff for 2s, up to 3 stacks. Taking non-movement, non-auto-attack actions will reset the stack count to 0. After the 3rd stack: increases movement speed by 30/35/40% for 3s (6s CD).",
       "effect": {
         "label": "Movement Speed",
         "tiers": [
@@ -64870,7 +64879,7 @@
       "id": "choice-specs",
       "displayName": "Choice Specs",
       "iconAsset": "/assets/items/held/Choice+Specs.png",
-      "description": "When damaging an opposing Pokémon with a move: deals 40/50/60 + 30/35/40% Sp. Attack as additional damage to the first target hit (8s CD).",
+      "description": "Adds a minimum of 1 damage to moves when they hit. The higher the Pokémon's Sp. Atk is, the more this additional damage is increased.",
       "statsByGrade": {
         "1": {
           "spAttack": 10.0
@@ -64994,6 +65003,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When damaging an opposing Pokémon with a move: deals 40/50/60 + 30/35/40% Sp. Attack as additional damage to the first target hit (8s CD).",
       "effect": {
         "label": "Sp. Attack",
         "tiers": [
@@ -65007,7 +65017,7 @@
       "id": "curse-bangle",
       "displayName": "Curse Bangle",
       "iconAsset": "/assets/items/held/Curse+Bangle.png",
-      "description": "Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
+      "description": "When Attack-based damage is dealt to opposing Pokémon, their HP recovery effect is weakened by 30% for a short time. The HP recovery effect is weakened for longer when dealing damage to opposing Pokémon with Attack-based basic attacks.",
       "statsByGrade": {
         "1": {
           "attack": 0.8
@@ -65131,6 +65141,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
       "effect": {
         "label": "Reduced HP Recovery",
         "tiers": [
@@ -65144,7 +65155,7 @@
       "id": "curse-incense",
       "displayName": "Curse Incense",
       "iconAsset": "/assets/items/held/Curse+Incense.png",
-      "description": "Sp. Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
+      "description": "When Sp. Atk-based damage is dealt to opposing Pokémon, their HP recovery effect is weakened by 30% for a short time. The HP recovery effect is weakened for longer when dealing damage to opposing Pokémon with Sp. Atk-based basic attacks.",
       "statsByGrade": {
         "1": {
           "spAttack": 1.3
@@ -65268,6 +65279,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Sp. Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
       "effect": {
         "label": "Reduced HP Recovery",
         "tiers": [
@@ -65281,7 +65293,7 @@
       "id": "drain-crown",
       "displayName": "Drain Crown",
       "iconAsset": "/assets/items/held/Drain+Crown.png",
-      "description": "Attack-based auto attacks restore HP equal to 9%/12%/15% of damage dealt directly to an opposing Pokémon's HP.",
+      "description": "Restores HP equal to 15% of damage dealt with Attack-based basic attacks.",
       "statsByGrade": {
         "1": {
           "hp": 8.0
@@ -65444,6 +65456,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Attack-based auto attacks restore HP equal to 9%/12%/15% of damage dealt directly to an opposing Pokémon's HP.",
       "effect": {
         "label": "Lifesteal",
         "tiers": [
@@ -65457,7 +65470,7 @@
       "id": "drive-lens",
       "displayName": "Drive Lens",
       "iconAsset": "/assets/items/held/Drive+Lens.png",
-      "description": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Sp. Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
+      "description": "Increases your Sp. Atk by 1.2% when you knock out a Pokémon from the opposing team. Increases by half when you assist in knocking out a Pokémon from the opposing team.",
       "statsByGrade": {
         "1": {
           "spAttack": 0.8
@@ -65620,6 +65633,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Sp. Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
       "effect": {
         "label": "Sp. Attack",
         "tiers": [
@@ -65633,7 +65647,7 @@
       "id": "energy-amplifier",
       "displayName": "Energy Amplifier",
       "iconAsset": "/assets/items/held/Energy+Amplifier.png",
-      "description": "When using their Unite Move: increases damage dealt by 7/14/21% for 4s (15s CD). Note: certain Unite Moves have unique interactions with this held item.",
+      "description": "After the Pokémon uses its Unite Move, the damage the Pokémon deals is increased by 21% for a short time.",
       "statsByGrade": {
         "1": {},
         "2": {
@@ -65755,6 +65769,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When using their Unite Move: increases damage dealt by 7/14/21% for 4s (15s CD). Note: certain Unite Moves have unique interactions with this held item.",
       "effect": {
         "label": "Damage",
         "tiers": [
@@ -65768,7 +65783,7 @@
       "id": "exp-share",
       "displayName": "Exp. Share",
       "iconAsset": "/assets/items/held/Exp+Share.png",
-      "description": "While having the fewest Exp. Points on the team: gains an additional 3/4/5 Exp. Points every 1s.",
+      "description": "While the Pokémon has the fewest Exp. Points on its team, it gains 5 more Exp. Points per second.",
       "statsByGrade": {
         "1": {
           "hp": 24.0
@@ -65931,6 +65946,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "While having the fewest Exp. Points on the team: gains an additional 3/4/5 Exp. Points every 1s.",
       "effect": {
         "label": "EXP/s",
         "tiers": [
@@ -65944,7 +65960,7 @@
       "id": "float-stone",
       "displayName": "Float Stone",
       "iconAsset": "/assets/items/held/Float+Stone.png",
-      "description": "When not in combat for 5s: increases movement speed by 10/15/20%.",
+      "description": "Increases movement speed by 20% when the Pokémon is not in combat.",
       "statsByGrade": {
         "1": {
           "attack": 1.6
@@ -66107,6 +66123,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When not in combat for 5s: increases movement speed by 10/15/20%.",
       "effect": {
         "label": "Speed",
         "tiers": [
@@ -66120,7 +66137,7 @@
       "id": "focus-band",
       "displayName": "Focus Band",
       "iconAsset": "/assets/items/held/Focus+Band.png",
-      "description": "When below 25% HP: recovers 6/9/12% missing HP 3 times over 3s, once every 1s (100/90/80s CD).",
+      "description": "When the Pokémon drops to low HP, then each second for three seconds, it recovers 12% of the HP it had lost.",
       "statsByGrade": {
         "1": {
           "defense": 2.0
@@ -66283,6 +66300,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When below 25% HP: recovers 6/9/12% missing HP 3 times over 3s, once every 1s (100/90/80s CD).",
       "effect": {
         "label": "HP Lost",
         "tiers": [
@@ -66304,7 +66322,7 @@
       "id": "leftovers",
       "displayName": "Leftovers",
       "iconAsset": "/assets/items/held/Leftovers.png",
-      "description": "When not in combat for 5s: recovers 2/3/4% max HP every 1s.",
+      "description": "When the Pokémon is not in combat, it recovers 4% of its max HP every second.",
       "statsByGrade": {
         "1": {
           "hp": 24.0
@@ -66428,6 +66446,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When not in combat for 5s: recovers 2/3/4% max HP every 1s.",
       "effect": {
         "label": "Max HP/s",
         "tiers": [
@@ -66465,7 +66484,7 @@
       "id": "muscle-band",
       "displayName": "Muscle Band",
       "iconAsset": "/assets/items/held/Muscle+Band.png",
-      "description": "Auto attacks deal 1/2/3% of opposing Pokémon's remaining HP as additional Attack-based damage (against Pokémon from the opposing team: additional damage is capped at 120/240/360).",
+      "description": "When basic attacks hit, the damage is increased by 3% of the opposing Pokémon's remaining HP.",
       "statsByGrade": {
         "1": {
           "attack": 1.0
@@ -66628,6 +66647,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Auto attacks deal 1/2/3% of opposing Pokémon's remaining HP as additional Attack-based damage (against Pokémon from the opposing team: additional damage is capped at 120/240/360).",
       "effect": {
         "label": "Remaining HP",
         "tiers": [
@@ -66641,7 +66661,7 @@
       "id": "rapid-fire-scarf",
       "displayName": "Rapid-Fire Scarf",
       "iconAsset": "/assets/items/held/Rapid+Fire+Scarf.png",
-      "description": "Dealing auto attack damage to an opposing Pokémon adds 1 stack of a hidden buff for 3s, up to 3 stacks. After the 3rd stack: increases auto attack speed by 15/20/25% for 5s (10s CD).",
+      "description": "Increases your Pokémon's basic attack speed by 25% for a short time after three basic attacks.",
       "statsByGrade": {
         "1": {
           "attack": 0.8
@@ -66804,6 +66824,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Dealing auto attack damage to an opposing Pokémon adds 1 stack of a hidden buff for 3s, up to 3 stacks. After the 3rd stack: increases auto attack speed by 15/20/25% for 5s (10s CD).",
       "effect": {
         "label": "Attack Speed",
         "tiers": [
@@ -66817,7 +66838,7 @@
       "id": "razor-claw",
       "displayName": "Razor Claw",
       "iconAsset": "/assets/items/held/Razor+Claw.png",
-      "description": "For 3s after using a move: the next auto attack to damage an opposing Pokémon deals 10/15/20 + 40/45/50% Attack as additional damage to the first target hit; if held by a Melee Pokémon: also decreases the movement speed of the target by 30% for 1s (1.5s CD).",
+      "description": "After the Pokémon uses a move, a minimum of 20 damage is added to its next basic attack. The higher the Pokémon's Attack is, the more this additional damage is increased. When this item is held by a Melee Pokémon, this additional damage also decreases the movement speed of opposing Pokémon for a short time.",
       "statsByGrade": {
         "1": {
           "attack": 1.0,
@@ -66981,6 +67002,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "For 3s after using a move: the next auto attack to damage an opposing Pokémon deals 10/15/20 + 40/45/50% Attack as additional damage to the first target hit; if held by a Melee Pokémon: also decreases the movement speed of the target by 30% for 1s (1.5s CD).",
       "effect": {
         "label": "Attack",
         "tiers": [
@@ -66994,7 +67016,7 @@
       "id": "rescue-hood",
       "displayName": "Rescue Hood",
       "iconAsset": "/assets/items/held/Rescue+Hood.png",
-      "description": "Increases HP recovery and shield effects granted to ally Pokémon by 17/20/23%.",
+      "description": "Increases recovery effect by 23% and shield effect by 23% when they're granted to ally Pokémon.",
       "statsByGrade": {
         "1": {
           "defense": 2.0
@@ -67157,6 +67179,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Increases HP recovery and shield effects granted to ally Pokémon by 17/20/23%.",
       "effect": {
         "label": "Shield and Recovery Effects",
         "tiers": [
@@ -67170,7 +67193,7 @@
       "id": "resonant-guard",
       "displayName": "Resonant Guard",
       "iconAsset": "/assets/items/held/Resonant+Guard.png",
-      "description": "When damaging a Pokémon from the opposing team: grants the holder and 1 nearby ally with the lowest current HP a shield for 60/80/100 + 4%/5%/6% of the holder's max HP for 3s (10s CD). Additional Resonant Guard shields do not stack, but instead refresh the duration of the remaining shield effect.",
+      "description": "Grants a shield to the user and nearby ally Pokémon when dealing damage to opposing Pokémon. This effect goes on cooldown after it's triggered.",
       "statsByGrade": {
         "1": {
           "hp": 15.0
@@ -67294,6 +67317,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When damaging a Pokémon from the opposing team: grants the holder and 1 nearby ally with the lowest current HP a shield for 60/80/100 + 4%/5%/6% of the holder's max HP for 3s (10s CD). Additional Resonant Guard shields do not stack, but instead refresh the duration of the remaining shield effect.",
       "effect": {
         "label": "Max HP Shield",
         "tiers": [
@@ -67307,7 +67331,7 @@
       "id": "rocky-helmet",
       "displayName": "Rocky Helmet",
       "iconAsset": "/assets/items/held/Rocky+Helmet.png",
-      "description": "Upon receiving damage equal to 3% max HP or more from an opposing Pokémon in a single hit: deals 1.9%/2.2%/2.5% of the holder's max HP as Attack-based damage to nearby opposing Pokémon (0.6s CD).",
+      "description": "When the Pokémon receives a certain amount of damage, damage is dealt to nearby opposing Pokémon equal to 2.5% of the Pokémon's max HP.",
       "statsByGrade": {
         "1": {
           "hp": 18.0
@@ -67470,6 +67494,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon receiving damage equal to 3% max HP or more from an opposing Pokémon in a single hit: deals 1.9%/2.2%/2.5% of the holder's max HP as Attack-based damage to nearby opposing Pokémon (0.6s CD).",
       "effect": {
         "label": "Max HP",
         "tiers": [
@@ -67668,7 +67693,7 @@
       "id": "score-shield",
       "displayName": "Score Shield",
       "iconAsset": "/assets/items/held/Score+Shield.png",
-      "description": "While attempting to score a goal: grants a score shield that prevents scoring from being interrupted until it is destroyed or the goal is scored (20s CD). This shield will be destroyed before other shields. Shield value uses the holder's HP and current level: 15/22/30 + 5/7.5/10% max HP + 15/22/30 × (Lv. - 1).",
+      "description": "While the Pokémon is attempting to score a goal, it is granted a shield equal to 10% of its max HP. The higher the Pokémon's level, the stronger the shield will be. The Pokémon's goals cannot be interrupted while it is shielded.",
       "statsByGrade": {
         "1": {
           "hp": 15.0
@@ -67792,6 +67817,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "While attempting to score a goal: grants a score shield that prevents scoring from being interrupted until it is destroyed or the goal is scored (20s CD). This shield will be destroyed before other shields. Shield value uses the holder's HP and current level: 15/22/30 + 5/7.5/10% max HP + 15/22/30 × (Lv. - 1).",
       "effect": {
         "label": "Shield",
         "tiers": [
@@ -67805,7 +67831,7 @@
       "id": "shell-bell",
       "displayName": "Shell Bell",
       "iconAsset": "/assets/items/held/Shell+Bell.png",
-      "description": "When hitting an opposing Pokémon with a move: recovers HP equal to 50/65/80 + 40/50/60% Sp. Attack (8s CD).",
+      "description": "When the Pokémon hits with a move, it recovers a minimum of 80 HP. The higher the Pokémon's Sp. Atk, the more HP it recovers.",
       "statsByGrade": {
         "1": {
           "spAttack": 1.6
@@ -67968,6 +67994,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When hitting an opposing Pokémon with a move: recovers HP equal to 50/65/80 + 40/50/60% Sp. Attack (8s CD).",
       "effect": {
         "label": "HP",
         "tiers": [
@@ -67981,7 +68008,7 @@
       "id": "slick-spoon",
       "displayName": "Slick Spoon",
       "iconAsset": "/assets/items/held/Slick+Spoon.png",
-      "description": "Sp. Attack-based damage dealt ignores 9/12/15% of opposing Pokémon's Sp. Def.",
+      "description": "Makes damage dealt by your Pokémon's Sp. Atk attacks ignore 15% of opposing Pokémon's Sp. Def.",
       "statsByGrade": {
         "1": {
           "hp": 14.0
@@ -68144,6 +68171,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Sp. Attack-based damage dealt ignores 9/12/15% of opposing Pokémon's Sp. Def.",
       "effect": {
         "label": "Sp. Defense Penetration",
         "tiers": [
@@ -68157,7 +68185,7 @@
       "id": "sp--atk-specs",
       "displayName": "Sp. Atk Specs",
       "iconAsset": "/assets/items/held/Sp.+Atk+Specs.png",
-      "description": "Upon scoring a goal: increases Sp. Attack by 8/12/16 until the end of battle (up to 6 times; maximum 48/72/96 bonus Sp. Attack).",
+      "description": "When the Pokémon scores a goal, its Sp. Atk increases by 16.",
       "statsByGrade": {
         "1": {
           "spAttack": 0.8
@@ -68281,6 +68309,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon scoring a goal: increases Sp. Attack by 8/12/16 until the end of battle (up to 6 times; maximum 48/72/96 bonus Sp. Attack).",
       "effect": {
         "label": "Sp. Attack",
         "tiers": [
@@ -68294,7 +68323,7 @@
       "id": "tenacity-belt",
       "displayName": "Tenacity Belt",
       "iconAsset": "/assets/items/held/Tenacity+Belt.png",
-      "description": "When a hindrance is inflicted on the Pokémon, the Pokémon's Defense and Sp. Def are increased by 12/20/28% for 3 seconds.",
+      "description": "When a hindrance is inflicted on the Pokémon, the Pokémon's Defense and Sp. Def are increased by 28% for 3 seconds.",
       "statsByGrade": {
         "1": {
           "defense": 2.0
@@ -68457,6 +68486,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When a hindrance is inflicted on the Pokémon, the Pokémon's Defense and Sp. Def are increased by 12/20/28% for 3 seconds.",
       "effect": {
         "label": "Def. & Sp. Def.",
         "tiers": [
@@ -68470,7 +68500,7 @@
       "id": "vanguard-bell",
       "displayName": "Vanguard Bell",
       "iconAsset": "/assets/items/held/Vanguard+Bell.png",
-      "description": "When a powerful hindrance is inflicted on a Pokémon from the opposing team, the holder's HP is restored by 6/8/10% max HP (5s CD).",
+      "description": "Inflicting a powerful hindrance on Pokémon from the opposing team restores 10% of the holder's max HP.",
       "statsByGrade": {
         "1": {
           "hp": 15.0
@@ -68594,6 +68624,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "When a powerful hindrance is inflicted on a Pokémon from the opposing team, the holder's HP is restored by 6/8/10% max HP (5s CD).",
       "effect": {
         "label": "HP",
         "tiers": [
@@ -68607,7 +68638,7 @@
       "id": "weakness-policy",
       "displayName": "Weakness Policy",
       "iconAsset": "/assets/items/held/Weakness+Policy.png",
-      "description": "Upon receiving damage: increases Attack by 1.5/2/2.5% for 3s (up to 4 times; maximum 6/8/10%).",
+      "description": "Increases the Pokémon's Attack for a short time by a minimum of 2.5% when the Pokémon receives damage. This increase grows larger the more times damage is received.",
       "statsByGrade": {
         "1": {
           "hp": 70.0
@@ -68770,6 +68801,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon receiving damage: increases Attack by 1.5/2/2.5% for 3s (up to 4 times; maximum 6/8/10%).",
       "effect": {
         "label": "Attack",
         "tiers": [
@@ -68783,7 +68815,7 @@
       "id": "wise-glasses",
       "displayName": "Wise Glasses",
       "iconAsset": "/assets/items/held/Wise+Glasses.png",
-      "description": "Further increases Sp. Atk by 3/5/7%.",
+      "description": "Increases Sp. Atk by 7%.",
       "statsByGrade": {
         "1": {
           "spAttack": 10.0
@@ -68907,6 +68939,7 @@
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Further increases Sp. Atk by 3/5/7%.",
       "effect": {
         "label": "Sp. Attack",
         "tiers": [

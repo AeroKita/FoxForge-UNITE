@@ -182,12 +182,34 @@ describe("community data bundle", () => {
     expect(mb.statsByGrade["40"]?.attackSpeed).toBeCloseTo(0.0875, 6);
   });
 
-  it("describes Vanguard Bell as triggering on a powerful hindrance", () => {
+  it("describes Vanguard Bell with the in-game Basic sentence", () => {
     const bell = bundle.heldItems.find((i) => i.id === "vanguard-bell")!;
-    expect(bell.description).toContain("When a powerful hindrance");
-    expect(bell.description).not.toContain(
-      "When a hindrance is inflicted on a Pokémon from the opposing team",
+    expect(bell.description).toBe(
+      "Inflicting a powerful hindrance on Pokémon from the opposing team restores 10% of the holder's max HP.",
     );
+    expect(bell.descriptionAdvanced).toContain(
+      "When a powerful hindrance is inflicted on a Pokémon from the opposing team",
+    );
+    expect(bell.descriptionAdvanced).toContain("6/8/10% max HP");
+  });
+
+  it("ships in-game Basic and UNITE-DB Advanced on every gradeable held item", () => {
+    const gradeable = bundle.heldItems.filter((i) => Object.keys(i.statsByGrade).length > 0);
+    expect(gradeable.length).toBeGreaterThan(0);
+    for (const item of gradeable) {
+      expect(item.descriptionAdvanced, item.id).toBeTruthy();
+      expect(item.description, item.id).not.toBe(item.descriptionAdvanced);
+    }
+    const unique = bundle.heldItems.filter((i) => Object.keys(i.statsByGrade).length === 0);
+    expect(unique.length).toBeGreaterThan(0);
+    for (const item of unique) {
+      expect(item.descriptionAdvanced, item.id).toBeUndefined();
+    }
+    const muscle = bundle.heldItems.find((i) => i.id === "muscle-band")!;
+    expect(muscle.description).toBe(
+      "When basic attacks hit, the damage is increased by 3% of the opposing Pokémon's remaining HP.",
+    );
+    expect(muscle.descriptionAdvanced).toContain("1/2/3%");
   });
 
   it("carries structured grade 1/10/20 effect tiers from the source", () => {

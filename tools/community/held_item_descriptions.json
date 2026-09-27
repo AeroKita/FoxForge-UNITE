@@ -1,8 +1,107 @@
 {
-  "_source": "Held item Basic descriptions — owned, hand-maintained. Transcribed from the in-game held-item screen. normalize.py uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`. Items absent from this file keep UNITE-DB text as their only description. No script writes this file.",
+  "_source": "Held item Basic descriptions — owned, hand-maintained. Transcribed from the English in-game held-item screen (grade-20 effect text, which is what the card shows at grades 20–40). normalize.py uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`. Unique items without a still (Mega Stones, Rusted Sword) are absent and keep UNITE-DB as their only description. No script writes this file.",
   "items": {
+    "muscle-band": {
+      "description": "When basic attacks hit, the damage is increased by 3% of the opposing Pokémon's remaining HP."
+    },
     "scope-lens": {
       "description": "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases."
+    },
+    "shell-bell": {
+      "description": "When the Pokémon hits with a move, it recovers a minimum of 80 HP. The higher the Pokémon's Sp. Atk, the more HP it recovers."
+    },
+    "wise-glasses": {
+      "description": "Increases Sp. Atk by 7%."
+    },
+    "focus-band": {
+      "description": "When the Pokémon drops to low HP, then each second for three seconds, it recovers 12% of the HP it had lost."
+    },
+    "energy-amplifier": {
+      "description": "After the Pokémon uses its Unite Move, the damage the Pokémon deals is increased by 21% for a short time."
+    },
+    "float-stone": {
+      "description": "Increases movement speed by 20% when the Pokémon is not in combat."
+    },
+    "buddy-barrier": {
+      "description": "When the Pokémon uses its Unite Move, that Pokémon and the nearby ally Pokémon with the lowest HP are each granted a shield equal to 25% of the holder's max HP."
+    },
+    "aeos-cookie": {
+      "description": "When the Pokémon scores a goal, its max HP increases by 200."
+    },
+    "attack-weight": {
+      "description": "When the Pokémon scores a goal, its Attack increases by 12."
+    },
+    "assault-vest": {
+      "description": "If the Pokémon has not received Sp. Atk damage for 15 seconds, it is granted a shield that nullifies Sp. Atk damage equal to 20% of its max HP."
+    },
+    "rocky-helmet": {
+      "description": "When the Pokémon receives a certain amount of damage, damage is dealt to nearby opposing Pokémon equal to 2.5% of the Pokémon's max HP."
+    },
+    "razor-claw": {
+      "description": "After the Pokémon uses a move, a minimum of 20 damage is added to its next basic attack. The higher the Pokémon's Attack is, the more this additional damage is increased. When this item is held by a Melee Pokémon, this additional damage also decreases the movement speed of opposing Pokémon for a short time."
+    },
+    "weakness-policy": {
+      "description": "Increases the Pokémon's Attack for a short time by a minimum of 2.5% when the Pokémon receives damage. This increase grows larger the more times damage is received."
+    },
+    "rapid-fire-scarf": {
+      "description": "Increases your Pokémon's basic attack speed by 25% for a short time after three basic attacks."
+    },
+    "drain-crown": {
+      "description": "Restores HP equal to 15% of damage dealt with Attack-based basic attacks."
+    },
+    "slick-spoon": {
+      "description": "Makes damage dealt by your Pokémon's Sp. Atk attacks ignore 15% of opposing Pokémon's Sp. Def."
+    },
+    "curse-incense": {
+      "description": "When Sp. Atk-based damage is dealt to opposing Pokémon, their HP recovery effect is weakened by 30% for a short time. The HP recovery effect is weakened for longer when dealing damage to opposing Pokémon with Sp. Atk-based basic attacks."
+    },
+    "charging-charm": {
+      "description": "Energy is charged through movement and basic attacks. Dealing damage to opposing Pokémon while energy is full will deal additional damage."
+    },
+    "resonant-guard": {
+      "description": "Grants a shield to the user and nearby ally Pokémon when dealing damage to opposing Pokémon. This effect goes on cooldown after it's triggered."
+    },
+    "drive-lens": {
+      "description": "Increases your Sp. Atk by 1.2% when you knock out a Pokémon from the opposing team. Increases by half when you assist in knocking out a Pokémon from the opposing team."
+    },
+    "accel-bracer": {
+      "description": "Increases your Attack by 1.2% when you knock out a Pokémon from the opposing team. Increases by half when you assist in knocking out a Pokémon from the opposing team."
+    },
+    "choice-scarf": {
+      "description": "When a Pokémon hits an opposing Pokémon with a basic attack three times in a row, its movement speed will increase by 40% for a short time."
+    },
+    "amulet-coin": {
+      "description": "For defeating wild Pokémon, Aeos energy acquired will increase by 100% and goal-scoring speed will increase by 10%."
+    },
+    "big-root": {
+      "description": "Increases the Pokémon's HP recovery by 20%."
+    },
+    "vanguard-bell": {
+      "description": "Inflicting a powerful hindrance on Pokémon from the opposing team restores 10% of the holder's max HP."
+    },
+    "score-shield": {
+      "description": "While the Pokémon is attempting to score a goal, it is granted a shield equal to 10% of its max HP. The higher the Pokémon's level, the stronger the shield will be. The Pokémon's goals cannot be interrupted while it is shielded."
+    },
+    "sp--atk-specs": {
+      "description": "When the Pokémon scores a goal, its Sp. Atk increases by 16."
+    },
+    "leftovers": {
+      "description": "When the Pokémon is not in combat, it recovers 4% of its max HP every second."
+    },
+    "exp-share": {
+      "description": "While the Pokémon has the fewest Exp. Points on its team, it gains 5 more Exp. Points per second."
+    },
+    "choice-specs": {
+      "description": "Adds a minimum of 1 damage to moves when they hit. The higher the Pokémon's Sp. Atk is, the more this additional damage is increased."
+    },
+    "rescue-hood": {
+      "description": "Increases recovery effect by 23% and shield effect by 23% when they're granted to ally Pokémon."
+    },
+    "curse-bangle": {
+      "description": "When Attack-based damage is dealt to opposing Pokémon, their HP recovery effect is weakened by 30% for a short time. The HP recovery effect is weakened for longer when dealing damage to opposing Pokémon with Attack-based basic attacks."
+    },
+    "tenacity-belt": {
+      "description": "When a hindrance is inflicted on the Pokémon, the Pokémon's Defense and Sp. Def are increased by 28% for 3 seconds."
     }
   }
 }
