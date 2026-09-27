@@ -1,0 +1,8 @@
+{
+  "_source": "Held item Basic descriptions — owned, hand-maintained. Transcribed from the in-game held-item screen. normalize.py uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`. Items absent from this file keep UNITE-DB text as their only description. No script writes this file.",
+  "items": {
+    "scope-lens": {
+      "description": "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases."
+    }
+  }
+}

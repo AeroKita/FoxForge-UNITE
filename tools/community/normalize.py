@@ -3,10 +3,11 @@
 Maps UNITE-DB's shapes onto schema/types.ts. Conventions applied here:
   - Percentages become decimals (crit 20 -> 0.20, attack_speed 40 -> 0.40).
   - Held-item flats are emitted for every grade 1–40 (the in-game cap is 40),
-    via the formula recovered from UNITE-DB's params:
-      value = increment * factor(level) / (skip + 1) + initial_diff,
-    where factor(g) = g for g <= 30 and 30 + (g - 30)/2 for g > 30
-    (so Curse Bangle Attack = 24 at G30, 28 at G40).
+    via UNITE-DB's itemStats.statcalc (initial / start / skip / increment).
+    Grades 1–30 use that staircase; grades 31–40 add the same staircase at
+    half increment. Even grades and grades 30 and 40 match the older linear
+    shortcut (Curse Bangle Attack = 24 at G30, 28 at G40; Muscle Band G40
+    stays 17.5 Attack / 8.75% Attack Speed). Odd grades follow the staircase.
   - Emblem grades A/B/C map to gold/silver/bronze (A = best = gold).
   - Art is referenced from UNITE-DB's CloudFront CDN (case-sensitive names).
 
@@ -21,6 +22,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 import os
 import re
 import unicodedata
@@ -95,6 +97,7 @@ STAT_FIELD = {
     "sp_defense": ("spDefense", False), "Sp. Defense": ("spDefense", False),
     "crit": ("critRate", True), "Crit": ("critRate", True),
     "Critical-Hit Rate": ("critRate", True),
+    "Critical-Hit Damage Modifier": ("critDamage", True),
     "cdr": ("cdr", True), "CDR": ("cdr", True), "CD Reduction": ("cdr", True),
     "lifesteal": ("lifesteal", True),
     "attack_speed": ("attackSpeed", True), "Attack Speed": ("attackSpeed", True),
@@ -1277,6 +1280,7 @@ def build_pokemon(pokemon_rows, stats_rows, pokedex_to_id: dict, descs: dict | N
 CURATED = HERE / "curated_builds.json"
 MOVE_DESCRIPTIONS = HERE / "move_descriptions.json"
 BATTLE_ITEM_ARCHIVE = HERE / "battle_item_descriptions.json"
+HELD_ITEM_ARCHIVE = HERE / "held_item_descriptions.json"
 OPERATOR_LOCKS = HERE / "operator_in_game_basic.json"
 MOVE_GIFS = HERE / "move_gifs.json"
 MOVE_CLIPS = HERE / "move_clips.json"
@@ -1341,6 +1345,19 @@ def load_move_descriptions() -> dict:
     descriptions = json.loads(MOVE_DESCRIPTIONS.read_text()).get("descriptions", {})
     assert_operator_lock_bodies(descriptions)
     return descriptions
+
+
+def load_held_item_archive() -> dict[str, dict]:
+    """Owned held-item Basic texts keyed by slug id. Empty if the file is absent.
+
+    Partial on purpose: only items with an operator-transcribed in-game body
+    are listed. Everyone else keeps UNITE-DB text as the sole description.
+    """
+    if not HELD_ITEM_ARCHIVE.exists():
+        return {}
+    raw = json.loads(HELD_ITEM_ARCHIVE.read_text(encoding="utf-8"))
+    items = raw.get("items") or {}
+    return {str(k): v for k, v in items.items() if not str(k).startswith("_") and isinstance(v, dict)}
 
 
 def load_battle_item_archive() -> dict[str, dict]:
@@ -1712,30 +1729,53 @@ def apply_patch_note_overrides(bundle: dict, overrides: list[dict]) -> tuple[int
 HELD_ITEM_MAX_GRADE = 40
 
 
-def held_item_factor(level: int) -> float:
-    """Grade -> scaling factor for a held-item stat.
+def _held_item_segment(
+    level: int,
+    increment: float,
+    initial: float,
+    initial_diff: float,
+    start: int,
+    skip: int,
+) -> float:
+    """One UNITE-DB statcalc segment.
 
-    Levels 1-30 scale linearly (factor == level). The level 31-40 grades (added
-    in-game when the held-item cap was raised to 40) continue at half rate, so
-    factor(30) == 30 and factor(40) == 35 — matching UNITE-DB (e.g. Curse Bangle
-    Attack: 0.8*30 = 24 at G30, 0.8*35 = 28 at G40).
+    `level` is the item grade for grades 1–30, or the number of grades past 30
+    when extending. `skip` + `start` make a two-grade staircase: start 0 steps
+    on odd grades, start 1 on even grades. `initial` is the grade-1 value.
     """
-    if level <= 30:
-        return float(level)
-    return 30.0 + 0.5 * (level - 30)
+    if level <= 0:
+        return 0.0
+    if level == 1:
+        value = initial
+    else:
+        value = float(level) * increment
+        if skip > 0 and start == 0:
+            value = math.floor((level + 1) / 2) * increment
+        elif skip > 0 and start == 1:
+            value = math.floor(level / 2) * increment
+    if initial_diff > 0 and level > 1:
+        value += initial_diff
+    return value
 
 
 def held_item_value_at(stat: dict, level: int) -> float:
-    """Stat value at a grade:  increment * factor(level)/(skip+1) + initial_diff.
+    """UNITE-DB itemStats.statcalc value at a grade (display units, not a decimal).
 
-    NB: the `float` field is a display-precision hint, NOT a rounding rule for
-    the canonical value — Muscle Band's true G40 is 17.5 Attack / 8.75% even
-    though float=0/1. We keep full precision and only clean FP noise later.
+    Grades 1–30 use initial/start/skip/increment. Grades 31–40 add the same
+    staircase at half the increment. The `float` field is a display-precision
+    hint, not a rounding rule — Muscle Band's true G40 is 17.5 Attack / 8.75%.
     """
-    incr = num(stat.get("increment"))
-    skip = num(stat.get("skip"))
-    diff = num(stat.get("initial_diff"))
-    return incr * held_item_factor(level) / (skip + 1.0) + diff
+    increment = num(stat.get("increment"))
+    initial = num(stat.get("initial"))
+    initial_diff = num(stat.get("initial_diff"))
+    start = int(num(stat.get("start")))
+    skip = int(num(stat.get("skip")))
+    if level <= 30:
+        return _held_item_segment(level, increment, initial, initial_diff, start, skip)
+    base = _held_item_segment(30, increment, initial, initial_diff, start, skip)
+    half = increment / 2.0
+    extra_initial = half if (skip == 0 or start == 0) else 0.0
+    return base + _held_item_segment(level - 30, half, extra_initial, 0.0, start, skip)
 
 
 def icon_name(item: dict) -> str:
@@ -1755,30 +1795,41 @@ def held_item_effect(h: dict) -> dict | None:
     return {"label": label, "tiers": [str(t).strip() for t in tiers]}
 
 
-def build_held_items(rows) -> list:
+def build_held_items(rows, archive: dict | None = None) -> list:
+    owned = archive if archive is not None else {}
     out = []
     for h in rows:
         name = h["display_name"]
+        item_id = slugify(h["name"])
         stats_by_grade: dict[str, dict] = {}
         for level in range(1, HELD_ITEM_MAX_GRADE + 1):
             flats: dict[str, float] = {}
+            saw_mapped = False
             for s in h.get("stats", []):
                 value = held_item_value_at(s, level)
                 mapped = map_stat(s.get("label", ""), value)
                 if mapped is None:
                     continue
+                saw_mapped = True
                 field, decimal_value = mapped
+                if abs(decimal_value) < 1e-12:
+                    continue
                 flats[field] = round(flats.get(field, 0) + decimal_value, 6)
-            if flats:
+            if saw_mapped:
                 stats_by_grade[str(level)] = flats
+        raw_desc = h.get("description1", "") or ""
+        entry = owned.get(item_id) or {}
+        basic = (entry.get("description") or "").strip()
         item = {
-            "id": slugify(h["name"]),
+            "id": item_id,
             "displayName": name,
             "iconAsset": f"{ASSETS}/items/held/{icon_name(h)}.png",
-            "description": h.get("description1", "") or "",
+            "description": basic or raw_desc,
             "statsByGrade": stats_by_grade,
             "conditionalEffects": [],
         }
+        if basic and basic != raw_desc:
+            item["descriptionAdvanced"] = raw_desc
         effect = held_item_effect(h)
         if effect:
             item["effect"] = effect
@@ -1898,7 +1949,7 @@ def main() -> None:
     # pokedex number (e.g. "250") -> emblem id (e.g. "250-ho-oh"), for decoding builds.
     pokedex_to_id = {e["id"].split("-", 1)[0]: e["id"] for e in emblems}
     pokemon = build_pokemon(load("pokemon"), load("stats"), pokedex_to_id)
-    held = build_held_items(load("held_items"))
+    held = build_held_items(load("held_items"), load_held_item_archive())
     battle = build_battle_items(load("battle_items"), load_battle_item_archive())
     set_bonuses = build_set_bonuses(load("emblem_sets"))
     apply_curated_builds(pokemon, emblems, held, battle)

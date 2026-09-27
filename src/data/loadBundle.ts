@@ -138,12 +138,17 @@ const itemEffect = z.object({
   appliesInCombat: z.boolean().optional(),
 });
 
+const heldGradeStats = partialStatBlock.extend({
+  critDamage: z.number().optional(),
+});
+
 const heldItem = z.object({
   id: z.string(),
   displayName: z.string(),
   iconAsset: z.string(),
   description: z.string(),
-  statsByGrade: z.record(z.string(), partialStatBlock),
+  descriptionAdvanced: z.string().optional(),
+  statsByGrade: z.record(z.string(), heldGradeStats),
   conditionalEffects: z.array(itemEffect),
   effect: z
     .object({

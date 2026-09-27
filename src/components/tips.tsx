@@ -7,8 +7,14 @@ import { emblemGradeStatLines } from "../ui/emblemStatText";
 import type { BattleItem, Emblem, EmblemGrade, HeldItem, Move, StatBlock } from "../types";
 import { MoveMedia } from "./MoveMedia";
 
-export function statsAtGrade(item: HeldItem, grade: number): Partial<StatBlock> {
-  const g = item.statsByGrade as Record<string | number, Partial<StatBlock>>;
+export function statsAtGrade(
+  item: HeldItem,
+  grade: number,
+): Partial<StatBlock> & { critDamage?: number } {
+  const g = item.statsByGrade as Record<
+    string | number,
+    Partial<StatBlock> & { critDamage?: number }
+  >;
   return g[grade] ?? g[String(grade)] ?? {};
 }
 
@@ -79,12 +85,13 @@ export function moveTip(move: Move, advanced: boolean) {
   );
 }
 
-export function itemTip(item: HeldItem, grade = ITEM_GRADE_DEFAULT) {
+export function itemTip(item: HeldItem, grade = ITEM_GRADE_DEFAULT, advanced = false) {
   const stats = heldItemStatLines(statsAtGrade(item, grade));
+  const desc = pickDescription(item, advanced);
   return (
     <span>
       <span className="font-semibold">{item.displayName}</span>
-      {item.description && <span className="mt-0.5 block text-faint">{item.description}</span>}
+      {desc && <span className="mt-0.5 block text-faint">{desc}</span>}
       {stats.length > 0 && (
         <span className="mt-1 block text-faint">
           {stats.map((l) => `${l.label} ${l.value}`).join(" · ")}

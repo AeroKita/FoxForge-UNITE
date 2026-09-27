@@ -160,6 +160,20 @@ describe("community data bundle", () => {
     }
   });
 
+  it("Scope Lens matches the in-game card and UNITE-DB grade staircase", () => {
+    const lens = bundle.heldItems.find((i) => i.id === "scope-lens")!;
+    expect(lens.description).toBe(
+      "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases.",
+    );
+    expect(lens.descriptionAdvanced).toContain("45/60/75% Attack");
+    expect(lens.statsByGrade["1"]).toEqual({ critRate: 0.004 });
+    expect(lens.statsByGrade["2"]).toEqual({ critRate: 0.004, critDamage: 0.008 });
+    expect(lens.statsByGrade["30"]).toEqual({ critRate: 0.06, critDamage: 0.12 });
+    expect(lens.statsByGrade["31"]).toEqual({ critRate: 0.062, critDamage: 0.12 });
+    expect(lens.statsByGrade["39"]).toEqual({ critRate: 0.07, critDamage: 0.136 });
+    expect(lens.statsByGrade["40"]).toEqual({ critRate: 0.07, critDamage: 0.14 });
+  });
+
   it("held items expose grades 1–40 with correct scaling (Muscle Band)", () => {
     const mb = bundle.heldItems.find((i) => i.id === "muscle-band")!;
     expect(Object.keys(mb.statsByGrade)).toHaveLength(40);

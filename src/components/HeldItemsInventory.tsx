@@ -43,7 +43,7 @@ export function gradesAfterBulkSet(
  * the Builder's held-item slots.
  */
 export function HeldItemsInventory() {
-  const { heldItemGrade, setHeldItemGradeById } = useStore();
+  const { heldItemGrade, setHeldItemGradeById, expert } = useStore();
   const [query, setQuery] = useState("");
   const [detailItem, setDetailItem] = useState<HeldItem | null>(null);
 
@@ -173,6 +173,7 @@ export function HeldItemsInventory() {
       <HeldItemDetailModal
         item={detailItem}
         grade={detailGrade}
+        advanced={expert}
         open={detailItem !== null}
         onClose={() => setDetailItem(null)}
       />

@@ -67,8 +67,8 @@ export function LoadoutBoard() {
       id: i.id,
       name: i.displayName,
       icon: i.iconAsset,
-      title: i.description,
-      tip: itemTip(i, heldItemGrade(i.id)),
+      title: pickDescription(i, expert),
+      tip: itemTip(i, heldItemGrade(i.id), expert),
     }));
     const { regular, unique } = partitionHeldPickerItems(rows, isUniqueHeldItemId);
     return [...regular, ...unique];
@@ -171,7 +171,7 @@ export function LoadoutBoard() {
                   }
                   emptyLabel="Held"
                   onClick={uniqueLocked ? undefined : () => setPicker({ kind: "held", slot })}
-                  tip={item ? itemTip(item, grade) : "Add a held item"}
+                  tip={item ? itemTip(item, grade, expert) : "Add a held item"}
                   ariaLabel={
                     uniqueLocked && item ? `${item.displayName} (unique, locked)` : undefined
                   }

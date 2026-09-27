@@ -60,8 +60,8 @@ export function formatExactDelta(value: number, kind: StatKind): string {
   return `${sign}${trimHeldDecimals(abs)}`;
 }
 
-export interface StatLine {
-  key: keyof StatBlock;
+export interface StatLine<K extends string = keyof StatBlock> {
+  key: K;
   label: string;
   value: string; // signed, formatted
   sign: "pos" | "neg" | "zero";
@@ -95,7 +95,21 @@ export function statLines(stats: Partial<StatBlock>, precise = false, exact = fa
   return out;
 }
 
-/** Held-item stat lines at a grade — always exact, never rounded. */
-export function heldItemStatLines(stats: Partial<StatBlock>): StatLine[] {
-  return statLines(stats, false, true);
+/** Held-item stat lines at a grade — always exact, never rounded.
+ *  Crit Damage is inserted beside Crit Rate. It is not a roster stat. */
+export function heldItemStatLines(
+  stats: Partial<StatBlock> & { critDamage?: number },
+): StatLine<keyof StatBlock | "critDamage">[] {
+  const lines: StatLine<keyof StatBlock | "critDamage">[] = statLines(stats, false, true);
+  const dmg = stats.critDamage;
+  if (dmg == null || dmg === 0) return lines;
+  const line: StatLine<"critDamage"> = {
+    key: "critDamage",
+    label: "Crit Damage",
+    value: formatExactDelta(dmg, "percent"),
+    sign: dmg > 0 ? "pos" : "neg",
+  };
+  const at = lines.findIndex((l) => l.key === "critRate");
+  lines.splice(at + 1, 0, line);
+  return lines;
 }

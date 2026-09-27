@@ -1,6 +1,6 @@
 {
   "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-09-27",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
@@ -63428,8 +63428,7 @@
       "description": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
       "statsByGrade": {
         "1": {
-          "attack": 0.5,
-          "cdr": 0.001
+          "attack": 0.5
         },
         "2": {
           "attack": 1.0,
@@ -63437,7 +63436,7 @@
         },
         "3": {
           "attack": 1.5,
-          "cdr": 0.003
+          "cdr": 0.002
         },
         "4": {
           "attack": 2.0,
@@ -63445,7 +63444,7 @@
         },
         "5": {
           "attack": 2.5,
-          "cdr": 0.005
+          "cdr": 0.004
         },
         "6": {
           "attack": 3.0,
@@ -63453,7 +63452,7 @@
         },
         "7": {
           "attack": 3.5,
-          "cdr": 0.007
+          "cdr": 0.006
         },
         "8": {
           "attack": 4.0,
@@ -63461,7 +63460,7 @@
         },
         "9": {
           "attack": 4.5,
-          "cdr": 0.009
+          "cdr": 0.008
         },
         "10": {
           "attack": 5.0,
@@ -63469,7 +63468,7 @@
         },
         "11": {
           "attack": 5.5,
-          "cdr": 0.011
+          "cdr": 0.01
         },
         "12": {
           "attack": 6.0,
@@ -63477,7 +63476,7 @@
         },
         "13": {
           "attack": 6.5,
-          "cdr": 0.013
+          "cdr": 0.012
         },
         "14": {
           "attack": 7.0,
@@ -63485,7 +63484,7 @@
         },
         "15": {
           "attack": 7.5,
-          "cdr": 0.015
+          "cdr": 0.014
         },
         "16": {
           "attack": 8.0,
@@ -63493,7 +63492,7 @@
         },
         "17": {
           "attack": 8.5,
-          "cdr": 0.017
+          "cdr": 0.016
         },
         "18": {
           "attack": 9.0,
@@ -63501,7 +63500,7 @@
         },
         "19": {
           "attack": 9.5,
-          "cdr": 0.019
+          "cdr": 0.018
         },
         "20": {
           "attack": 10.0,
@@ -63509,7 +63508,7 @@
         },
         "21": {
           "attack": 10.5,
-          "cdr": 0.021
+          "cdr": 0.02
         },
         "22": {
           "attack": 11.0,
@@ -63517,7 +63516,7 @@
         },
         "23": {
           "attack": 11.5,
-          "cdr": 0.023
+          "cdr": 0.022
         },
         "24": {
           "attack": 12.0,
@@ -63525,7 +63524,7 @@
         },
         "25": {
           "attack": 12.5,
-          "cdr": 0.025
+          "cdr": 0.024
         },
         "26": {
           "attack": 13.0,
@@ -63533,7 +63532,7 @@
         },
         "27": {
           "attack": 13.5,
-          "cdr": 0.027
+          "cdr": 0.026
         },
         "28": {
           "attack": 14.0,
@@ -63541,7 +63540,7 @@
         },
         "29": {
           "attack": 14.5,
-          "cdr": 0.029
+          "cdr": 0.028
         },
         "30": {
           "attack": 15.0,
@@ -63549,7 +63548,7 @@
         },
         "31": {
           "attack": 15.25,
-          "cdr": 0.0305
+          "cdr": 0.03
         },
         "32": {
           "attack": 15.5,
@@ -63557,7 +63556,7 @@
         },
         "33": {
           "attack": 15.75,
-          "cdr": 0.0315
+          "cdr": 0.031
         },
         "34": {
           "attack": 16.0,
@@ -63565,7 +63564,7 @@
         },
         "35": {
           "attack": 16.25,
-          "cdr": 0.0325
+          "cdr": 0.032
         },
         "36": {
           "attack": 16.5,
@@ -63573,7 +63572,7 @@
         },
         "37": {
           "attack": 16.75,
-          "cdr": 0.0335
+          "cdr": 0.033
         },
         "38": {
           "attack": 17.0,
@@ -63581,7 +63580,7 @@
         },
         "39": {
           "attack": 17.25,
-          "cdr": 0.0345
+          "cdr": 0.034
         },
         "40": {
           "attack": 17.5,
@@ -63742,8 +63741,7 @@
       "description": "Gain 60/80/100% more Aeos Energy for defeating wild Pokémon (16s CD). Goal-scoring speed is passively increased by 10%.",
       "statsByGrade": {
         "1": {
-          "hp": 8.0,
-          "moveSpeed": 5.0
+          "hp": 8.0
         },
         "2": {
           "hp": 16.0,
@@ -63751,7 +63749,7 @@
         },
         "3": {
           "hp": 24.0,
-          "moveSpeed": 15.0
+          "moveSpeed": 10.0
         },
         "4": {
           "hp": 32.0,
@@ -63759,7 +63757,7 @@
         },
         "5": {
           "hp": 40.0,
-          "moveSpeed": 25.0
+          "moveSpeed": 20.0
         },
         "6": {
           "hp": 48.0,
@@ -63767,7 +63765,7 @@
         },
         "7": {
           "hp": 56.0,
-          "moveSpeed": 35.0
+          "moveSpeed": 30.0
         },
         "8": {
           "hp": 64.0,
@@ -63775,7 +63773,7 @@
         },
         "9": {
           "hp": 72.0,
-          "moveSpeed": 45.0
+          "moveSpeed": 40.0
         },
         "10": {
           "hp": 80.0,
@@ -63783,7 +63781,7 @@
         },
         "11": {
           "hp": 88.0,
-          "moveSpeed": 55.0
+          "moveSpeed": 50.0
         },
         "12": {
           "hp": 96.0,
@@ -63791,7 +63789,7 @@
         },
         "13": {
           "hp": 104.0,
-          "moveSpeed": 65.0
+          "moveSpeed": 60.0
         },
         "14": {
           "hp": 112.0,
@@ -63799,7 +63797,7 @@
         },
         "15": {
           "hp": 120.0,
-          "moveSpeed": 75.0
+          "moveSpeed": 70.0
         },
         "16": {
           "hp": 128.0,
@@ -63807,7 +63805,7 @@
         },
         "17": {
           "hp": 136.0,
-          "moveSpeed": 85.0
+          "moveSpeed": 80.0
         },
         "18": {
           "hp": 144.0,
@@ -63815,7 +63813,7 @@
         },
         "19": {
           "hp": 152.0,
-          "moveSpeed": 95.0
+          "moveSpeed": 90.0
         },
         "20": {
           "hp": 160.0,
@@ -63823,7 +63821,7 @@
         },
         "21": {
           "hp": 168.0,
-          "moveSpeed": 105.0
+          "moveSpeed": 100.0
         },
         "22": {
           "hp": 176.0,
@@ -63831,7 +63829,7 @@
         },
         "23": {
           "hp": 184.0,
-          "moveSpeed": 115.0
+          "moveSpeed": 110.0
         },
         "24": {
           "hp": 192.0,
@@ -63839,7 +63837,7 @@
         },
         "25": {
           "hp": 200.0,
-          "moveSpeed": 125.0
+          "moveSpeed": 120.0
         },
         "26": {
           "hp": 208.0,
@@ -63847,7 +63845,7 @@
         },
         "27": {
           "hp": 216.0,
-          "moveSpeed": 135.0
+          "moveSpeed": 130.0
         },
         "28": {
           "hp": 224.0,
@@ -63855,7 +63853,7 @@
         },
         "29": {
           "hp": 232.0,
-          "moveSpeed": 145.0
+          "moveSpeed": 140.0
         },
         "30": {
           "hp": 240.0,
@@ -63863,7 +63861,7 @@
         },
         "31": {
           "hp": 244.0,
-          "moveSpeed": 152.5
+          "moveSpeed": 150.0
         },
         "32": {
           "hp": 248.0,
@@ -63871,7 +63869,7 @@
         },
         "33": {
           "hp": 252.0,
-          "moveSpeed": 157.5
+          "moveSpeed": 155.0
         },
         "34": {
           "hp": 256.0,
@@ -63879,7 +63877,7 @@
         },
         "35": {
           "hp": 260.0,
-          "moveSpeed": 162.5
+          "moveSpeed": 160.0
         },
         "36": {
           "hp": 264.0,
@@ -63887,7 +63885,7 @@
         },
         "37": {
           "hp": 268.0,
-          "moveSpeed": 167.5
+          "moveSpeed": 165.0
         },
         "38": {
           "hp": 272.0,
@@ -63895,7 +63893,7 @@
         },
         "39": {
           "hp": 276.0,
-          "moveSpeed": 172.5
+          "moveSpeed": 170.0
         },
         "40": {
           "hp": 280.0,
@@ -63919,160 +63917,159 @@
       "description": "When not receiving special damage for 15s: grants a 10/15/20% max HP shield effect that nullifies Sp. Attack-based damage until it is destroyed. This shield can be refreshed even if it's not fully depleted.",
       "statsByGrade": {
         "1": {
-          "hp": 9.0,
-          "spDefense": 1.7
+          "hp": 18.0
         },
         "2": {
           "hp": 18.0,
           "spDefense": 3.4
         },
         "3": {
-          "hp": 27.0,
-          "spDefense": 5.1
+          "hp": 36.0,
+          "spDefense": 3.4
         },
         "4": {
           "hp": 36.0,
           "spDefense": 6.8
         },
         "5": {
-          "hp": 45.0,
-          "spDefense": 8.5
+          "hp": 54.0,
+          "spDefense": 6.8
         },
         "6": {
           "hp": 54.0,
           "spDefense": 10.2
         },
         "7": {
-          "hp": 63.0,
-          "spDefense": 11.9
+          "hp": 72.0,
+          "spDefense": 10.2
         },
         "8": {
           "hp": 72.0,
           "spDefense": 13.6
         },
         "9": {
-          "hp": 81.0,
-          "spDefense": 15.3
+          "hp": 90.0,
+          "spDefense": 13.6
         },
         "10": {
           "hp": 90.0,
           "spDefense": 17.0
         },
         "11": {
-          "hp": 99.0,
-          "spDefense": 18.7
+          "hp": 108.0,
+          "spDefense": 17.0
         },
         "12": {
           "hp": 108.0,
           "spDefense": 20.4
         },
         "13": {
-          "hp": 117.0,
-          "spDefense": 22.1
+          "hp": 126.0,
+          "spDefense": 20.4
         },
         "14": {
           "hp": 126.0,
           "spDefense": 23.8
         },
         "15": {
-          "hp": 135.0,
-          "spDefense": 25.5
+          "hp": 144.0,
+          "spDefense": 23.8
         },
         "16": {
           "hp": 144.0,
           "spDefense": 27.2
         },
         "17": {
-          "hp": 153.0,
-          "spDefense": 28.9
+          "hp": 162.0,
+          "spDefense": 27.2
         },
         "18": {
           "hp": 162.0,
           "spDefense": 30.6
         },
         "19": {
-          "hp": 171.0,
-          "spDefense": 32.3
+          "hp": 180.0,
+          "spDefense": 30.6
         },
         "20": {
           "hp": 180.0,
           "spDefense": 34.0
         },
         "21": {
-          "hp": 189.0,
-          "spDefense": 35.7
+          "hp": 198.0,
+          "spDefense": 34.0
         },
         "22": {
           "hp": 198.0,
           "spDefense": 37.4
         },
         "23": {
-          "hp": 207.0,
-          "spDefense": 39.1
+          "hp": 216.0,
+          "spDefense": 37.4
         },
         "24": {
           "hp": 216.0,
           "spDefense": 40.8
         },
         "25": {
-          "hp": 225.0,
-          "spDefense": 42.5
+          "hp": 234.0,
+          "spDefense": 40.8
         },
         "26": {
           "hp": 234.0,
           "spDefense": 44.2
         },
         "27": {
-          "hp": 243.0,
-          "spDefense": 45.9
+          "hp": 252.0,
+          "spDefense": 44.2
         },
         "28": {
           "hp": 252.0,
           "spDefense": 47.6
         },
         "29": {
-          "hp": 261.0,
-          "spDefense": 49.3
+          "hp": 270.0,
+          "spDefense": 47.6
         },
         "30": {
           "hp": 270.0,
           "spDefense": 51.0
         },
         "31": {
-          "hp": 274.5,
-          "spDefense": 51.85
+          "hp": 279.0,
+          "spDefense": 51.0
         },
         "32": {
           "hp": 279.0,
           "spDefense": 52.7
         },
         "33": {
-          "hp": 283.5,
-          "spDefense": 53.55
+          "hp": 288.0,
+          "spDefense": 52.7
         },
         "34": {
           "hp": 288.0,
           "spDefense": 54.4
         },
         "35": {
-          "hp": 292.5,
-          "spDefense": 55.25
+          "hp": 297.0,
+          "spDefense": 54.4
         },
         "36": {
           "hp": 297.0,
           "spDefense": 56.1
         },
         "37": {
-          "hp": 301.5,
-          "spDefense": 56.95
+          "hp": 306.0,
+          "spDefense": 56.1
         },
         "38": {
           "hp": 306.0,
           "spDefense": 57.8
         },
         "39": {
-          "hp": 310.5,
-          "spDefense": 58.65
+          "hp": 315.0,
+          "spDefense": 57.8
         },
         "40": {
           "hp": 315.0,
@@ -64507,7 +64504,7 @@
       "description": "Charges energy through movement (+1 per distance unit traveled) and auto attacks (+9 per auto attack damage instance dealt), up to 100 energy. When energy is full: damaging an opposing Pokémon deals 20/30/40 + 50/60/70% Attack as additional damage to the first target hit, consuming the charged energy.",
       "statsByGrade": {
         "1": {
-          "attack": 0.5,
+          "attack": 1.0,
           "moveSpeed": 4.0
         },
         "2": {
@@ -64515,7 +64512,7 @@
           "moveSpeed": 8.0
         },
         "3": {
-          "attack": 1.5,
+          "attack": 2.0,
           "moveSpeed": 12.0
         },
         "4": {
@@ -64523,7 +64520,7 @@
           "moveSpeed": 16.0
         },
         "5": {
-          "attack": 2.5,
+          "attack": 3.0,
           "moveSpeed": 20.0
         },
         "6": {
@@ -64531,7 +64528,7 @@
           "moveSpeed": 24.0
         },
         "7": {
-          "attack": 3.5,
+          "attack": 4.0,
           "moveSpeed": 28.0
         },
         "8": {
@@ -64539,7 +64536,7 @@
           "moveSpeed": 32.0
         },
         "9": {
-          "attack": 4.5,
+          "attack": 5.0,
           "moveSpeed": 36.0
         },
         "10": {
@@ -64547,7 +64544,7 @@
           "moveSpeed": 40.0
         },
         "11": {
-          "attack": 5.5,
+          "attack": 6.0,
           "moveSpeed": 44.0
         },
         "12": {
@@ -64555,7 +64552,7 @@
           "moveSpeed": 48.0
         },
         "13": {
-          "attack": 6.5,
+          "attack": 7.0,
           "moveSpeed": 52.0
         },
         "14": {
@@ -64563,7 +64560,7 @@
           "moveSpeed": 56.0
         },
         "15": {
-          "attack": 7.5,
+          "attack": 8.0,
           "moveSpeed": 60.0
         },
         "16": {
@@ -64571,7 +64568,7 @@
           "moveSpeed": 64.0
         },
         "17": {
-          "attack": 8.5,
+          "attack": 9.0,
           "moveSpeed": 68.0
         },
         "18": {
@@ -64579,7 +64576,7 @@
           "moveSpeed": 72.0
         },
         "19": {
-          "attack": 9.5,
+          "attack": 10.0,
           "moveSpeed": 76.0
         },
         "20": {
@@ -64587,7 +64584,7 @@
           "moveSpeed": 80.0
         },
         "21": {
-          "attack": 10.5,
+          "attack": 11.0,
           "moveSpeed": 84.0
         },
         "22": {
@@ -64595,7 +64592,7 @@
           "moveSpeed": 88.0
         },
         "23": {
-          "attack": 11.5,
+          "attack": 12.0,
           "moveSpeed": 92.0
         },
         "24": {
@@ -64603,7 +64600,7 @@
           "moveSpeed": 96.0
         },
         "25": {
-          "attack": 12.5,
+          "attack": 13.0,
           "moveSpeed": 100.0
         },
         "26": {
@@ -64611,7 +64608,7 @@
           "moveSpeed": 104.0
         },
         "27": {
-          "attack": 13.5,
+          "attack": 14.0,
           "moveSpeed": 108.0
         },
         "28": {
@@ -64619,7 +64616,7 @@
           "moveSpeed": 112.0
         },
         "29": {
-          "attack": 14.5,
+          "attack": 15.0,
           "moveSpeed": 116.0
         },
         "30": {
@@ -64627,7 +64624,7 @@
           "moveSpeed": 120.0
         },
         "31": {
-          "attack": 15.25,
+          "attack": 15.5,
           "moveSpeed": 122.0
         },
         "32": {
@@ -64635,7 +64632,7 @@
           "moveSpeed": 124.0
         },
         "33": {
-          "attack": 15.75,
+          "attack": 16.0,
           "moveSpeed": 126.0
         },
         "34": {
@@ -64643,7 +64640,7 @@
           "moveSpeed": 128.0
         },
         "35": {
-          "attack": 16.25,
+          "attack": 16.5,
           "moveSpeed": 130.0
         },
         "36": {
@@ -64651,7 +64648,7 @@
           "moveSpeed": 132.0
         },
         "37": {
-          "attack": 16.75,
+          "attack": 17.0,
           "moveSpeed": 134.0
         },
         "38": {
@@ -64659,7 +64656,7 @@
           "moveSpeed": 136.0
         },
         "39": {
-          "attack": 17.25,
+          "attack": 17.5,
           "moveSpeed": 138.0
         },
         "40": {
@@ -64700,160 +64697,159 @@
       "description": "Dealing auto attack damage to a Pokémon from the opposing team adds 1 stack of a hidden buff for 2s, up to 3 stacks. Taking non-movement, non-auto-attack actions will reset the stack count to 0. After the 3rd stack: increases movement speed by 30/35/40% for 3s (6s CD).",
       "statsByGrade": {
         "1": {
-          "attackSpeed": 0.0025,
-          "moveSpeed": 5.0
+          "attackSpeed": 0.005
         },
         "2": {
           "attackSpeed": 0.005,
           "moveSpeed": 10.0
         },
         "3": {
-          "attackSpeed": 0.0075,
-          "moveSpeed": 15.0
+          "attackSpeed": 0.01,
+          "moveSpeed": 10.0
         },
         "4": {
           "attackSpeed": 0.01,
           "moveSpeed": 20.0
         },
         "5": {
-          "attackSpeed": 0.0125,
-          "moveSpeed": 25.0
+          "attackSpeed": 0.015,
+          "moveSpeed": 20.0
         },
         "6": {
           "attackSpeed": 0.015,
           "moveSpeed": 30.0
         },
         "7": {
-          "attackSpeed": 0.0175,
-          "moveSpeed": 35.0
+          "attackSpeed": 0.02,
+          "moveSpeed": 30.0
         },
         "8": {
           "attackSpeed": 0.02,
           "moveSpeed": 40.0
         },
         "9": {
-          "attackSpeed": 0.0225,
-          "moveSpeed": 45.0
+          "attackSpeed": 0.025,
+          "moveSpeed": 40.0
         },
         "10": {
           "attackSpeed": 0.025,
           "moveSpeed": 50.0
         },
         "11": {
-          "attackSpeed": 0.0275,
-          "moveSpeed": 55.0
+          "attackSpeed": 0.03,
+          "moveSpeed": 50.0
         },
         "12": {
           "attackSpeed": 0.03,
           "moveSpeed": 60.0
         },
         "13": {
-          "attackSpeed": 0.0325,
-          "moveSpeed": 65.0
+          "attackSpeed": 0.035,
+          "moveSpeed": 60.0
         },
         "14": {
           "attackSpeed": 0.035,
           "moveSpeed": 70.0
         },
         "15": {
-          "attackSpeed": 0.0375,
-          "moveSpeed": 75.0
+          "attackSpeed": 0.04,
+          "moveSpeed": 70.0
         },
         "16": {
           "attackSpeed": 0.04,
           "moveSpeed": 80.0
         },
         "17": {
-          "attackSpeed": 0.0425,
-          "moveSpeed": 85.0
+          "attackSpeed": 0.045,
+          "moveSpeed": 80.0
         },
         "18": {
           "attackSpeed": 0.045,
           "moveSpeed": 90.0
         },
         "19": {
-          "attackSpeed": 0.0475,
-          "moveSpeed": 95.0
+          "attackSpeed": 0.05,
+          "moveSpeed": 90.0
         },
         "20": {
           "attackSpeed": 0.05,
           "moveSpeed": 100.0
         },
         "21": {
-          "attackSpeed": 0.0525,
-          "moveSpeed": 105.0
+          "attackSpeed": 0.055,
+          "moveSpeed": 100.0
         },
         "22": {
           "attackSpeed": 0.055,
           "moveSpeed": 110.0
         },
         "23": {
-          "attackSpeed": 0.0575,
-          "moveSpeed": 115.0
+          "attackSpeed": 0.06,
+          "moveSpeed": 110.0
         },
         "24": {
           "attackSpeed": 0.06,
           "moveSpeed": 120.0
         },
         "25": {
-          "attackSpeed": 0.0625,
-          "moveSpeed": 125.0
+          "attackSpeed": 0.065,
+          "moveSpeed": 120.0
         },
         "26": {
           "attackSpeed": 0.065,
           "moveSpeed": 130.0
         },
         "27": {
-          "attackSpeed": 0.0675,
-          "moveSpeed": 135.0
+          "attackSpeed": 0.07,
+          "moveSpeed": 130.0
         },
         "28": {
           "attackSpeed": 0.07,
           "moveSpeed": 140.0
         },
         "29": {
-          "attackSpeed": 0.0725,
-          "moveSpeed": 145.0
+          "attackSpeed": 0.075,
+          "moveSpeed": 140.0
         },
         "30": {
           "attackSpeed": 0.075,
           "moveSpeed": 150.0
         },
         "31": {
-          "attackSpeed": 0.07625,
-          "moveSpeed": 152.5
+          "attackSpeed": 0.0775,
+          "moveSpeed": 150.0
         },
         "32": {
           "attackSpeed": 0.0775,
           "moveSpeed": 155.0
         },
         "33": {
-          "attackSpeed": 0.07875,
-          "moveSpeed": 157.5
+          "attackSpeed": 0.08,
+          "moveSpeed": 155.0
         },
         "34": {
           "attackSpeed": 0.08,
           "moveSpeed": 160.0
         },
         "35": {
-          "attackSpeed": 0.08125,
-          "moveSpeed": 162.5
+          "attackSpeed": 0.0825,
+          "moveSpeed": 160.0
         },
         "36": {
           "attackSpeed": 0.0825,
           "moveSpeed": 165.0
         },
         "37": {
-          "attackSpeed": 0.08375,
-          "moveSpeed": 167.5
+          "attackSpeed": 0.085,
+          "moveSpeed": 165.0
         },
         "38": {
           "attackSpeed": 0.085,
           "moveSpeed": 170.0
         },
         "39": {
-          "attackSpeed": 0.08625,
-          "moveSpeed": 172.5
+          "attackSpeed": 0.0875,
+          "moveSpeed": 170.0
         },
         "40": {
           "attackSpeed": 0.0875,
@@ -65288,160 +65284,159 @@
       "description": "Attack-based auto attacks restore HP equal to 9%/12%/15% of damage dealt directly to an opposing Pokémon's HP.",
       "statsByGrade": {
         "1": {
-          "hp": 4.0,
-          "attack": 0.6
+          "hp": 8.0
         },
         "2": {
           "hp": 8.0,
           "attack": 1.2
         },
         "3": {
-          "hp": 12.0,
-          "attack": 1.8
+          "hp": 16.0,
+          "attack": 1.2
         },
         "4": {
           "hp": 16.0,
           "attack": 2.4
         },
         "5": {
-          "hp": 20.0,
-          "attack": 3.0
+          "hp": 24.0,
+          "attack": 2.4
         },
         "6": {
           "hp": 24.0,
           "attack": 3.6
         },
         "7": {
-          "hp": 28.0,
-          "attack": 4.2
+          "hp": 32.0,
+          "attack": 3.6
         },
         "8": {
           "hp": 32.0,
           "attack": 4.8
         },
         "9": {
-          "hp": 36.0,
-          "attack": 5.4
+          "hp": 40.0,
+          "attack": 4.8
         },
         "10": {
           "hp": 40.0,
           "attack": 6.0
         },
         "11": {
-          "hp": 44.0,
-          "attack": 6.6
+          "hp": 48.0,
+          "attack": 6.0
         },
         "12": {
           "hp": 48.0,
           "attack": 7.2
         },
         "13": {
-          "hp": 52.0,
-          "attack": 7.8
+          "hp": 56.0,
+          "attack": 7.2
         },
         "14": {
           "hp": 56.0,
           "attack": 8.4
         },
         "15": {
-          "hp": 60.0,
-          "attack": 9.0
+          "hp": 64.0,
+          "attack": 8.4
         },
         "16": {
           "hp": 64.0,
           "attack": 9.6
         },
         "17": {
-          "hp": 68.0,
-          "attack": 10.2
+          "hp": 72.0,
+          "attack": 9.6
         },
         "18": {
           "hp": 72.0,
           "attack": 10.8
         },
         "19": {
-          "hp": 76.0,
-          "attack": 11.4
+          "hp": 80.0,
+          "attack": 10.8
         },
         "20": {
           "hp": 80.0,
           "attack": 12.0
         },
         "21": {
-          "hp": 84.0,
-          "attack": 12.6
+          "hp": 88.0,
+          "attack": 12.0
         },
         "22": {
           "hp": 88.0,
           "attack": 13.2
         },
         "23": {
-          "hp": 92.0,
-          "attack": 13.8
+          "hp": 96.0,
+          "attack": 13.2
         },
         "24": {
           "hp": 96.0,
           "attack": 14.4
         },
         "25": {
-          "hp": 100.0,
-          "attack": 15.0
+          "hp": 104.0,
+          "attack": 14.4
         },
         "26": {
           "hp": 104.0,
           "attack": 15.6
         },
         "27": {
-          "hp": 108.0,
-          "attack": 16.2
+          "hp": 112.0,
+          "attack": 15.6
         },
         "28": {
           "hp": 112.0,
           "attack": 16.8
         },
         "29": {
-          "hp": 116.0,
-          "attack": 17.4
+          "hp": 120.0,
+          "attack": 16.8
         },
         "30": {
           "hp": 120.0,
           "attack": 18.0
         },
         "31": {
-          "hp": 122.0,
-          "attack": 18.3
+          "hp": 124.0,
+          "attack": 18.0
         },
         "32": {
           "hp": 124.0,
           "attack": 18.6
         },
         "33": {
-          "hp": 126.0,
-          "attack": 18.9
+          "hp": 128.0,
+          "attack": 18.6
         },
         "34": {
           "hp": 128.0,
           "attack": 19.2
         },
         "35": {
-          "hp": 130.0,
-          "attack": 19.5
+          "hp": 132.0,
+          "attack": 19.2
         },
         "36": {
           "hp": 132.0,
           "attack": 19.8
         },
         "37": {
-          "hp": 134.0,
-          "attack": 20.1
+          "hp": 136.0,
+          "attack": 19.8
         },
         "38": {
           "hp": 136.0,
           "attack": 20.4
         },
         "39": {
-          "hp": 138.0,
-          "attack": 20.7
+          "hp": 140.0,
+          "attack": 20.4
         },
         "40": {
           "hp": 140.0,
@@ -65465,8 +65460,7 @@
       "description": "Upon making an assist, or knocking out a Pokémon from the opposing team: increases Sp. Attack by 0.3/0.45/0.6% until the end of battle (up to 20 stacks; maximum 6/9/12%). Assists add 1 stack; KOs add 2 stacks.",
       "statsByGrade": {
         "1": {
-          "spAttack": 0.8,
-          "cdr": 0.001
+          "spAttack": 0.8
         },
         "2": {
           "spAttack": 1.6,
@@ -65474,7 +65468,7 @@
         },
         "3": {
           "spAttack": 2.4,
-          "cdr": 0.003
+          "cdr": 0.002
         },
         "4": {
           "spAttack": 3.2,
@@ -65482,7 +65476,7 @@
         },
         "5": {
           "spAttack": 4.0,
-          "cdr": 0.005
+          "cdr": 0.004
         },
         "6": {
           "spAttack": 4.8,
@@ -65490,7 +65484,7 @@
         },
         "7": {
           "spAttack": 5.6,
-          "cdr": 0.007
+          "cdr": 0.006
         },
         "8": {
           "spAttack": 6.4,
@@ -65498,7 +65492,7 @@
         },
         "9": {
           "spAttack": 7.2,
-          "cdr": 0.009
+          "cdr": 0.008
         },
         "10": {
           "spAttack": 8.0,
@@ -65506,7 +65500,7 @@
         },
         "11": {
           "spAttack": 8.8,
-          "cdr": 0.011
+          "cdr": 0.01
         },
         "12": {
           "spAttack": 9.6,
@@ -65514,7 +65508,7 @@
         },
         "13": {
           "spAttack": 10.4,
-          "cdr": 0.013
+          "cdr": 0.012
         },
         "14": {
           "spAttack": 11.2,
@@ -65522,7 +65516,7 @@
         },
         "15": {
           "spAttack": 12.0,
-          "cdr": 0.015
+          "cdr": 0.014
         },
         "16": {
           "spAttack": 12.8,
@@ -65530,7 +65524,7 @@
         },
         "17": {
           "spAttack": 13.6,
-          "cdr": 0.017
+          "cdr": 0.016
         },
         "18": {
           "spAttack": 14.4,
@@ -65538,7 +65532,7 @@
         },
         "19": {
           "spAttack": 15.2,
-          "cdr": 0.019
+          "cdr": 0.018
         },
         "20": {
           "spAttack": 16.0,
@@ -65546,7 +65540,7 @@
         },
         "21": {
           "spAttack": 16.8,
-          "cdr": 0.021
+          "cdr": 0.02
         },
         "22": {
           "spAttack": 17.6,
@@ -65554,7 +65548,7 @@
         },
         "23": {
           "spAttack": 18.4,
-          "cdr": 0.023
+          "cdr": 0.022
         },
         "24": {
           "spAttack": 19.2,
@@ -65562,7 +65556,7 @@
         },
         "25": {
           "spAttack": 20.0,
-          "cdr": 0.025
+          "cdr": 0.024
         },
         "26": {
           "spAttack": 20.8,
@@ -65570,7 +65564,7 @@
         },
         "27": {
           "spAttack": 21.6,
-          "cdr": 0.027
+          "cdr": 0.026
         },
         "28": {
           "spAttack": 22.4,
@@ -65578,7 +65572,7 @@
         },
         "29": {
           "spAttack": 23.2,
-          "cdr": 0.029
+          "cdr": 0.028
         },
         "30": {
           "spAttack": 24.0,
@@ -65586,7 +65580,7 @@
         },
         "31": {
           "spAttack": 24.4,
-          "cdr": 0.0305
+          "cdr": 0.03
         },
         "32": {
           "spAttack": 24.8,
@@ -65594,7 +65588,7 @@
         },
         "33": {
           "spAttack": 25.2,
-          "cdr": 0.0315
+          "cdr": 0.031
         },
         "34": {
           "spAttack": 25.6,
@@ -65602,7 +65596,7 @@
         },
         "35": {
           "spAttack": 26.0,
-          "cdr": 0.0325
+          "cdr": 0.032
         },
         "36": {
           "spAttack": 26.4,
@@ -65610,7 +65604,7 @@
         },
         "37": {
           "spAttack": 26.8,
-          "cdr": 0.0335
+          "cdr": 0.033
         },
         "38": {
           "spAttack": 27.2,
@@ -65618,7 +65612,7 @@
         },
         "39": {
           "spAttack": 27.6,
-          "cdr": 0.0345
+          "cdr": 0.034
         },
         "40": {
           "spAttack": 28.0,
@@ -65641,122 +65635,120 @@
       "iconAsset": "/assets/items/held/Energy+Amplifier.png",
       "description": "When using their Unite Move: increases damage dealt by 7/14/21% for 4s (15s CD). Note: certain Unite Moves have unique interactions with this held item.",
       "statsByGrade": {
-        "1": {
-          "cdr": 0.0015
-        },
+        "1": {},
         "2": {
           "cdr": 0.003
         },
         "3": {
-          "cdr": 0.0045
+          "cdr": 0.003
         },
         "4": {
           "cdr": 0.006
         },
         "5": {
-          "cdr": 0.0075
+          "cdr": 0.006
         },
         "6": {
           "cdr": 0.009
         },
         "7": {
-          "cdr": 0.0105
+          "cdr": 0.009
         },
         "8": {
           "cdr": 0.012
         },
         "9": {
-          "cdr": 0.0135
+          "cdr": 0.012
         },
         "10": {
           "cdr": 0.015
         },
         "11": {
-          "cdr": 0.0165
+          "cdr": 0.015
         },
         "12": {
           "cdr": 0.018
         },
         "13": {
-          "cdr": 0.0195
+          "cdr": 0.018
         },
         "14": {
           "cdr": 0.021
         },
         "15": {
-          "cdr": 0.0225
+          "cdr": 0.021
         },
         "16": {
           "cdr": 0.024
         },
         "17": {
-          "cdr": 0.0255
+          "cdr": 0.024
         },
         "18": {
           "cdr": 0.027
         },
         "19": {
-          "cdr": 0.0285
+          "cdr": 0.027
         },
         "20": {
           "cdr": 0.03
         },
         "21": {
-          "cdr": 0.0315
+          "cdr": 0.03
         },
         "22": {
           "cdr": 0.033
         },
         "23": {
-          "cdr": 0.0345
+          "cdr": 0.033
         },
         "24": {
           "cdr": 0.036
         },
         "25": {
-          "cdr": 0.0375
+          "cdr": 0.036
         },
         "26": {
           "cdr": 0.039
         },
         "27": {
-          "cdr": 0.0405
+          "cdr": 0.039
         },
         "28": {
           "cdr": 0.042
         },
         "29": {
-          "cdr": 0.0435
+          "cdr": 0.042
         },
         "30": {
           "cdr": 0.045
         },
         "31": {
-          "cdr": 0.04575
+          "cdr": 0.045
         },
         "32": {
           "cdr": 0.0465
         },
         "33": {
-          "cdr": 0.04725
+          "cdr": 0.0465
         },
         "34": {
           "cdr": 0.048
         },
         "35": {
-          "cdr": 0.04875
+          "cdr": 0.048
         },
         "36": {
           "cdr": 0.0495
         },
         "37": {
-          "cdr": 0.05025
+          "cdr": 0.0495
         },
         "38": {
           "cdr": 0.051
         },
         "39": {
-          "cdr": 0.05175
+          "cdr": 0.051
         },
         "40": {
           "cdr": 0.0525
@@ -65779,160 +65771,159 @@
       "description": "While having the fewest Exp. Points on the team: gains an additional 3/4/5 Exp. Points every 1s.",
       "statsByGrade": {
         "1": {
-          "hp": 12.0,
-          "moveSpeed": 5.0
+          "hp": 24.0
         },
         "2": {
           "hp": 24.0,
           "moveSpeed": 10.0
         },
         "3": {
-          "hp": 36.0,
-          "moveSpeed": 15.0
+          "hp": 48.0,
+          "moveSpeed": 10.0
         },
         "4": {
           "hp": 48.0,
           "moveSpeed": 20.0
         },
         "5": {
-          "hp": 60.0,
-          "moveSpeed": 25.0
+          "hp": 72.0,
+          "moveSpeed": 20.0
         },
         "6": {
           "hp": 72.0,
           "moveSpeed": 30.0
         },
         "7": {
-          "hp": 84.0,
-          "moveSpeed": 35.0
+          "hp": 96.0,
+          "moveSpeed": 30.0
         },
         "8": {
           "hp": 96.0,
           "moveSpeed": 40.0
         },
         "9": {
-          "hp": 108.0,
-          "moveSpeed": 45.0
+          "hp": 120.0,
+          "moveSpeed": 40.0
         },
         "10": {
           "hp": 120.0,
           "moveSpeed": 50.0
         },
         "11": {
-          "hp": 132.0,
-          "moveSpeed": 55.0
+          "hp": 144.0,
+          "moveSpeed": 50.0
         },
         "12": {
           "hp": 144.0,
           "moveSpeed": 60.0
         },
         "13": {
-          "hp": 156.0,
-          "moveSpeed": 65.0
+          "hp": 168.0,
+          "moveSpeed": 60.0
         },
         "14": {
           "hp": 168.0,
           "moveSpeed": 70.0
         },
         "15": {
-          "hp": 180.0,
-          "moveSpeed": 75.0
+          "hp": 192.0,
+          "moveSpeed": 70.0
         },
         "16": {
           "hp": 192.0,
           "moveSpeed": 80.0
         },
         "17": {
-          "hp": 204.0,
-          "moveSpeed": 85.0
+          "hp": 216.0,
+          "moveSpeed": 80.0
         },
         "18": {
           "hp": 216.0,
           "moveSpeed": 90.0
         },
         "19": {
-          "hp": 228.0,
-          "moveSpeed": 95.0
+          "hp": 240.0,
+          "moveSpeed": 90.0
         },
         "20": {
           "hp": 240.0,
           "moveSpeed": 100.0
         },
         "21": {
-          "hp": 252.0,
-          "moveSpeed": 105.0
+          "hp": 264.0,
+          "moveSpeed": 100.0
         },
         "22": {
           "hp": 264.0,
           "moveSpeed": 110.0
         },
         "23": {
-          "hp": 276.0,
-          "moveSpeed": 115.0
+          "hp": 288.0,
+          "moveSpeed": 110.0
         },
         "24": {
           "hp": 288.0,
           "moveSpeed": 120.0
         },
         "25": {
-          "hp": 300.0,
-          "moveSpeed": 125.0
+          "hp": 312.0,
+          "moveSpeed": 120.0
         },
         "26": {
           "hp": 312.0,
           "moveSpeed": 130.0
         },
         "27": {
-          "hp": 324.0,
-          "moveSpeed": 135.0
+          "hp": 336.0,
+          "moveSpeed": 130.0
         },
         "28": {
           "hp": 336.0,
           "moveSpeed": 140.0
         },
         "29": {
-          "hp": 348.0,
-          "moveSpeed": 145.0
+          "hp": 360.0,
+          "moveSpeed": 140.0
         },
         "30": {
           "hp": 360.0,
           "moveSpeed": 150.0
         },
         "31": {
-          "hp": 366.0,
-          "moveSpeed": 152.5
+          "hp": 372.0,
+          "moveSpeed": 150.0
         },
         "32": {
           "hp": 372.0,
           "moveSpeed": 155.0
         },
         "33": {
-          "hp": 378.0,
-          "moveSpeed": 157.5
+          "hp": 384.0,
+          "moveSpeed": 155.0
         },
         "34": {
           "hp": 384.0,
           "moveSpeed": 160.0
         },
         "35": {
-          "hp": 390.0,
-          "moveSpeed": 162.5
+          "hp": 396.0,
+          "moveSpeed": 160.0
         },
         "36": {
           "hp": 396.0,
           "moveSpeed": 165.0
         },
         "37": {
-          "hp": 402.0,
-          "moveSpeed": 167.5
+          "hp": 408.0,
+          "moveSpeed": 165.0
         },
         "38": {
           "hp": 408.0,
           "moveSpeed": 170.0
         },
         "39": {
-          "hp": 414.0,
-          "moveSpeed": 172.5
+          "hp": 420.0,
+          "moveSpeed": 170.0
         },
         "40": {
           "hp": 420.0,
@@ -65956,160 +65947,159 @@
       "description": "When not in combat for 5s: increases movement speed by 10/15/20%.",
       "statsByGrade": {
         "1": {
-          "attack": 0.8,
-          "moveSpeed": 5.0
+          "attack": 1.6
         },
         "2": {
           "attack": 1.6,
           "moveSpeed": 10.0
         },
         "3": {
-          "attack": 2.4,
-          "moveSpeed": 15.0
+          "attack": 3.2,
+          "moveSpeed": 10.0
         },
         "4": {
           "attack": 3.2,
           "moveSpeed": 20.0
         },
         "5": {
-          "attack": 4.0,
-          "moveSpeed": 25.0
+          "attack": 4.8,
+          "moveSpeed": 20.0
         },
         "6": {
           "attack": 4.8,
           "moveSpeed": 30.0
         },
         "7": {
-          "attack": 5.6,
-          "moveSpeed": 35.0
+          "attack": 6.4,
+          "moveSpeed": 30.0
         },
         "8": {
           "attack": 6.4,
           "moveSpeed": 40.0
         },
         "9": {
-          "attack": 7.2,
-          "moveSpeed": 45.0
+          "attack": 8.0,
+          "moveSpeed": 40.0
         },
         "10": {
           "attack": 8.0,
           "moveSpeed": 50.0
         },
         "11": {
-          "attack": 8.8,
-          "moveSpeed": 55.0
+          "attack": 9.6,
+          "moveSpeed": 50.0
         },
         "12": {
           "attack": 9.6,
           "moveSpeed": 60.0
         },
         "13": {
-          "attack": 10.4,
-          "moveSpeed": 65.0
+          "attack": 11.2,
+          "moveSpeed": 60.0
         },
         "14": {
           "attack": 11.2,
           "moveSpeed": 70.0
         },
         "15": {
-          "attack": 12.0,
-          "moveSpeed": 75.0
+          "attack": 12.8,
+          "moveSpeed": 70.0
         },
         "16": {
           "attack": 12.8,
           "moveSpeed": 80.0
         },
         "17": {
-          "attack": 13.6,
-          "moveSpeed": 85.0
+          "attack": 14.4,
+          "moveSpeed": 80.0
         },
         "18": {
           "attack": 14.4,
           "moveSpeed": 90.0
         },
         "19": {
-          "attack": 15.2,
-          "moveSpeed": 95.0
+          "attack": 16.0,
+          "moveSpeed": 90.0
         },
         "20": {
           "attack": 16.0,
           "moveSpeed": 100.0
         },
         "21": {
-          "attack": 16.8,
-          "moveSpeed": 105.0
+          "attack": 17.6,
+          "moveSpeed": 100.0
         },
         "22": {
           "attack": 17.6,
           "moveSpeed": 110.0
         },
         "23": {
-          "attack": 18.4,
-          "moveSpeed": 115.0
+          "attack": 19.2,
+          "moveSpeed": 110.0
         },
         "24": {
           "attack": 19.2,
           "moveSpeed": 120.0
         },
         "25": {
-          "attack": 20.0,
-          "moveSpeed": 125.0
+          "attack": 20.8,
+          "moveSpeed": 120.0
         },
         "26": {
           "attack": 20.8,
           "moveSpeed": 130.0
         },
         "27": {
-          "attack": 21.6,
-          "moveSpeed": 135.0
+          "attack": 22.4,
+          "moveSpeed": 130.0
         },
         "28": {
           "attack": 22.4,
           "moveSpeed": 140.0
         },
         "29": {
-          "attack": 23.2,
-          "moveSpeed": 145.0
+          "attack": 24.0,
+          "moveSpeed": 140.0
         },
         "30": {
           "attack": 24.0,
           "moveSpeed": 150.0
         },
         "31": {
-          "attack": 24.4,
-          "moveSpeed": 152.5
+          "attack": 24.8,
+          "moveSpeed": 150.0
         },
         "32": {
           "attack": 24.8,
           "moveSpeed": 155.0
         },
         "33": {
-          "attack": 25.2,
-          "moveSpeed": 157.5
+          "attack": 25.6,
+          "moveSpeed": 155.0
         },
         "34": {
           "attack": 25.6,
           "moveSpeed": 160.0
         },
         "35": {
-          "attack": 26.0,
-          "moveSpeed": 162.5
+          "attack": 26.4,
+          "moveSpeed": 160.0
         },
         "36": {
           "attack": 26.4,
           "moveSpeed": 165.0
         },
         "37": {
-          "attack": 26.8,
-          "moveSpeed": 167.5
+          "attack": 27.2,
+          "moveSpeed": 165.0
         },
         "38": {
           "attack": 27.2,
           "moveSpeed": 170.0
         },
         "39": {
-          "attack": 27.6,
-          "moveSpeed": 172.5
+          "attack": 28.0,
+          "moveSpeed": 170.0
         },
         "40": {
           "attack": 28.0,
@@ -66133,160 +66123,159 @@
       "description": "When below 25% HP: recovers 6/9/12% missing HP 3 times over 3s, once every 1s (100/90/80s CD).",
       "statsByGrade": {
         "1": {
-          "defense": 1.0,
-          "spDefense": 1.0
+          "defense": 2.0
         },
         "2": {
           "defense": 2.0,
           "spDefense": 2.0
         },
         "3": {
-          "defense": 3.0,
-          "spDefense": 3.0
+          "defense": 4.0,
+          "spDefense": 2.0
         },
         "4": {
           "defense": 4.0,
           "spDefense": 4.0
         },
         "5": {
-          "defense": 5.0,
-          "spDefense": 5.0
+          "defense": 6.0,
+          "spDefense": 4.0
         },
         "6": {
           "defense": 6.0,
           "spDefense": 6.0
         },
         "7": {
-          "defense": 7.0,
-          "spDefense": 7.0
+          "defense": 8.0,
+          "spDefense": 6.0
         },
         "8": {
           "defense": 8.0,
           "spDefense": 8.0
         },
         "9": {
-          "defense": 9.0,
-          "spDefense": 9.0
+          "defense": 10.0,
+          "spDefense": 8.0
         },
         "10": {
           "defense": 10.0,
           "spDefense": 10.0
         },
         "11": {
-          "defense": 11.0,
-          "spDefense": 11.0
+          "defense": 12.0,
+          "spDefense": 10.0
         },
         "12": {
           "defense": 12.0,
           "spDefense": 12.0
         },
         "13": {
-          "defense": 13.0,
-          "spDefense": 13.0
+          "defense": 14.0,
+          "spDefense": 12.0
         },
         "14": {
           "defense": 14.0,
           "spDefense": 14.0
         },
         "15": {
-          "defense": 15.0,
-          "spDefense": 15.0
+          "defense": 16.0,
+          "spDefense": 14.0
         },
         "16": {
           "defense": 16.0,
           "spDefense": 16.0
         },
         "17": {
-          "defense": 17.0,
-          "spDefense": 17.0
+          "defense": 18.0,
+          "spDefense": 16.0
         },
         "18": {
           "defense": 18.0,
           "spDefense": 18.0
         },
         "19": {
-          "defense": 19.0,
-          "spDefense": 19.0
+          "defense": 20.0,
+          "spDefense": 18.0
         },
         "20": {
           "defense": 20.0,
           "spDefense": 20.0
         },
         "21": {
-          "defense": 21.0,
-          "spDefense": 21.0
+          "defense": 22.0,
+          "spDefense": 20.0
         },
         "22": {
           "defense": 22.0,
           "spDefense": 22.0
         },
         "23": {
-          "defense": 23.0,
-          "spDefense": 23.0
+          "defense": 24.0,
+          "spDefense": 22.0
         },
         "24": {
           "defense": 24.0,
           "spDefense": 24.0
         },
         "25": {
-          "defense": 25.0,
-          "spDefense": 25.0
+          "defense": 26.0,
+          "spDefense": 24.0
         },
         "26": {
           "defense": 26.0,
           "spDefense": 26.0
         },
         "27": {
-          "defense": 27.0,
-          "spDefense": 27.0
+          "defense": 28.0,
+          "spDefense": 26.0
         },
         "28": {
           "defense": 28.0,
           "spDefense": 28.0
         },
         "29": {
-          "defense": 29.0,
-          "spDefense": 29.0
+          "defense": 30.0,
+          "spDefense": 28.0
         },
         "30": {
           "defense": 30.0,
           "spDefense": 30.0
         },
         "31": {
-          "defense": 30.5,
-          "spDefense": 30.5
+          "defense": 31.0,
+          "spDefense": 30.0
         },
         "32": {
           "defense": 31.0,
           "spDefense": 31.0
         },
         "33": {
-          "defense": 31.5,
-          "spDefense": 31.5
+          "defense": 32.0,
+          "spDefense": 31.0
         },
         "34": {
           "defense": 32.0,
           "spDefense": 32.0
         },
         "35": {
-          "defense": 32.5,
-          "spDefense": 32.5
+          "defense": 33.0,
+          "spDefense": 32.0
         },
         "36": {
           "defense": 33.0,
           "spDefense": 33.0
         },
         "37": {
-          "defense": 33.5,
-          "spDefense": 33.5
+          "defense": 34.0,
+          "spDefense": 33.0
         },
         "38": {
           "defense": 34.0,
           "spDefense": 34.0
         },
         "39": {
-          "defense": 34.5,
-          "spDefense": 34.5
+          "defense": 35.0,
+          "spDefense": 34.0
         },
         "40": {
           "defense": 35.0,
@@ -66318,121 +66307,121 @@
       "description": "When not in combat for 5s: recovers 2/3/4% max HP every 1s.",
       "statsByGrade": {
         "1": {
-          "hp": 12.0
+          "hp": 24.0
         },
         "2": {
           "hp": 24.0
         },
         "3": {
-          "hp": 36.0
+          "hp": 48.0
         },
         "4": {
           "hp": 48.0
         },
         "5": {
-          "hp": 60.0
+          "hp": 72.0
         },
         "6": {
           "hp": 72.0
         },
         "7": {
-          "hp": 84.0
+          "hp": 96.0
         },
         "8": {
           "hp": 96.0
         },
         "9": {
-          "hp": 108.0
+          "hp": 120.0
         },
         "10": {
           "hp": 120.0
         },
         "11": {
-          "hp": 132.0
+          "hp": 144.0
         },
         "12": {
           "hp": 144.0
         },
         "13": {
-          "hp": 156.0
+          "hp": 168.0
         },
         "14": {
           "hp": 168.0
         },
         "15": {
-          "hp": 180.0
+          "hp": 192.0
         },
         "16": {
           "hp": 192.0
         },
         "17": {
-          "hp": 204.0
+          "hp": 216.0
         },
         "18": {
           "hp": 216.0
         },
         "19": {
-          "hp": 228.0
+          "hp": 240.0
         },
         "20": {
           "hp": 240.0
         },
         "21": {
-          "hp": 252.0
+          "hp": 264.0
         },
         "22": {
           "hp": 264.0
         },
         "23": {
-          "hp": 276.0
+          "hp": 288.0
         },
         "24": {
           "hp": 288.0
         },
         "25": {
-          "hp": 300.0
+          "hp": 312.0
         },
         "26": {
           "hp": 312.0
         },
         "27": {
-          "hp": 324.0
+          "hp": 336.0
         },
         "28": {
           "hp": 336.0
         },
         "29": {
-          "hp": 348.0
+          "hp": 360.0
         },
         "30": {
           "hp": 360.0
         },
         "31": {
-          "hp": 366.0
+          "hp": 372.0
         },
         "32": {
           "hp": 372.0
         },
         "33": {
-          "hp": 378.0
+          "hp": 384.0
         },
         "34": {
           "hp": 384.0
         },
         "35": {
-          "hp": 390.0
+          "hp": 396.0
         },
         "36": {
           "hp": 396.0
         },
         "37": {
-          "hp": 402.0
+          "hp": 408.0
         },
         "38": {
           "hp": 408.0
         },
         "39": {
-          "hp": 414.0
+          "hp": 420.0
         },
         "40": {
           "hp": 420.0
@@ -66479,160 +66468,159 @@
       "description": "Auto attacks deal 1/2/3% of opposing Pokémon's remaining HP as additional Attack-based damage (against Pokémon from the opposing team: additional damage is capped at 120/240/360).",
       "statsByGrade": {
         "1": {
-          "attack": 0.5,
-          "attackSpeed": 0.0025
+          "attack": 1.0
         },
         "2": {
           "attack": 1.0,
           "attackSpeed": 0.005
         },
         "3": {
-          "attack": 1.5,
-          "attackSpeed": 0.0075
+          "attack": 2.0,
+          "attackSpeed": 0.005
         },
         "4": {
           "attack": 2.0,
           "attackSpeed": 0.01
         },
         "5": {
-          "attack": 2.5,
-          "attackSpeed": 0.0125
+          "attack": 3.0,
+          "attackSpeed": 0.01
         },
         "6": {
           "attack": 3.0,
           "attackSpeed": 0.015
         },
         "7": {
-          "attack": 3.5,
-          "attackSpeed": 0.0175
+          "attack": 4.0,
+          "attackSpeed": 0.015
         },
         "8": {
           "attack": 4.0,
           "attackSpeed": 0.02
         },
         "9": {
-          "attack": 4.5,
-          "attackSpeed": 0.0225
+          "attack": 5.0,
+          "attackSpeed": 0.02
         },
         "10": {
           "attack": 5.0,
           "attackSpeed": 0.025
         },
         "11": {
-          "attack": 5.5,
-          "attackSpeed": 0.0275
+          "attack": 6.0,
+          "attackSpeed": 0.025
         },
         "12": {
           "attack": 6.0,
           "attackSpeed": 0.03
         },
         "13": {
-          "attack": 6.5,
-          "attackSpeed": 0.0325
+          "attack": 7.0,
+          "attackSpeed": 0.03
         },
         "14": {
           "attack": 7.0,
           "attackSpeed": 0.035
         },
         "15": {
-          "attack": 7.5,
-          "attackSpeed": 0.0375
+          "attack": 8.0,
+          "attackSpeed": 0.035
         },
         "16": {
           "attack": 8.0,
           "attackSpeed": 0.04
         },
         "17": {
-          "attack": 8.5,
-          "attackSpeed": 0.0425
+          "attack": 9.0,
+          "attackSpeed": 0.04
         },
         "18": {
           "attack": 9.0,
           "attackSpeed": 0.045
         },
         "19": {
-          "attack": 9.5,
-          "attackSpeed": 0.0475
+          "attack": 10.0,
+          "attackSpeed": 0.045
         },
         "20": {
           "attack": 10.0,
           "attackSpeed": 0.05
         },
         "21": {
-          "attack": 10.5,
-          "attackSpeed": 0.0525
+          "attack": 11.0,
+          "attackSpeed": 0.05
         },
         "22": {
           "attack": 11.0,
           "attackSpeed": 0.055
         },
         "23": {
-          "attack": 11.5,
-          "attackSpeed": 0.0575
+          "attack": 12.0,
+          "attackSpeed": 0.055
         },
         "24": {
           "attack": 12.0,
           "attackSpeed": 0.06
         },
         "25": {
-          "attack": 12.5,
-          "attackSpeed": 0.0625
+          "attack": 13.0,
+          "attackSpeed": 0.06
         },
         "26": {
           "attack": 13.0,
           "attackSpeed": 0.065
         },
         "27": {
-          "attack": 13.5,
-          "attackSpeed": 0.0675
+          "attack": 14.0,
+          "attackSpeed": 0.065
         },
         "28": {
           "attack": 14.0,
           "attackSpeed": 0.07
         },
         "29": {
-          "attack": 14.5,
-          "attackSpeed": 0.0725
+          "attack": 15.0,
+          "attackSpeed": 0.07
         },
         "30": {
           "attack": 15.0,
           "attackSpeed": 0.075
         },
         "31": {
-          "attack": 15.25,
-          "attackSpeed": 0.07625
+          "attack": 15.5,
+          "attackSpeed": 0.075
         },
         "32": {
           "attack": 15.5,
           "attackSpeed": 0.0775
         },
         "33": {
-          "attack": 15.75,
-          "attackSpeed": 0.07875
+          "attack": 16.0,
+          "attackSpeed": 0.0775
         },
         "34": {
           "attack": 16.0,
           "attackSpeed": 0.08
         },
         "35": {
-          "attack": 16.25,
-          "attackSpeed": 0.08125
+          "attack": 16.5,
+          "attackSpeed": 0.08
         },
         "36": {
           "attack": 16.5,
           "attackSpeed": 0.0825
         },
         "37": {
-          "attack": 16.75,
-          "attackSpeed": 0.08375
+          "attack": 17.0,
+          "attackSpeed": 0.0825
         },
         "38": {
           "attack": 17.0,
           "attackSpeed": 0.085
         },
         "39": {
-          "attack": 17.25,
-          "attackSpeed": 0.08625
+          "attack": 17.5,
+          "attackSpeed": 0.085
         },
         "40": {
           "attack": 17.5,
@@ -66656,160 +66644,159 @@
       "description": "Dealing auto attack damage to an opposing Pokémon adds 1 stack of a hidden buff for 3s, up to 3 stacks. After the 3rd stack: increases auto attack speed by 15/20/25% for 5s (10s CD).",
       "statsByGrade": {
         "1": {
-          "attack": 0.4,
-          "attackSpeed": 0.003
+          "attack": 0.8
         },
         "2": {
           "attack": 0.8,
           "attackSpeed": 0.006
         },
         "3": {
-          "attack": 1.2,
-          "attackSpeed": 0.009
+          "attack": 1.6,
+          "attackSpeed": 0.006
         },
         "4": {
           "attack": 1.6,
           "attackSpeed": 0.012
         },
         "5": {
-          "attack": 2.0,
-          "attackSpeed": 0.015
+          "attack": 2.4,
+          "attackSpeed": 0.012
         },
         "6": {
           "attack": 2.4,
           "attackSpeed": 0.018
         },
         "7": {
-          "attack": 2.8,
-          "attackSpeed": 0.021
+          "attack": 3.2,
+          "attackSpeed": 0.018
         },
         "8": {
           "attack": 3.2,
           "attackSpeed": 0.024
         },
         "9": {
-          "attack": 3.6,
-          "attackSpeed": 0.027
+          "attack": 4.0,
+          "attackSpeed": 0.024
         },
         "10": {
           "attack": 4.0,
           "attackSpeed": 0.03
         },
         "11": {
-          "attack": 4.4,
-          "attackSpeed": 0.033
+          "attack": 4.8,
+          "attackSpeed": 0.03
         },
         "12": {
           "attack": 4.8,
           "attackSpeed": 0.036
         },
         "13": {
-          "attack": 5.2,
-          "attackSpeed": 0.039
+          "attack": 5.6,
+          "attackSpeed": 0.036
         },
         "14": {
           "attack": 5.6,
           "attackSpeed": 0.042
         },
         "15": {
-          "attack": 6.0,
-          "attackSpeed": 0.045
+          "attack": 6.4,
+          "attackSpeed": 0.042
         },
         "16": {
           "attack": 6.4,
           "attackSpeed": 0.048
         },
         "17": {
-          "attack": 6.8,
-          "attackSpeed": 0.051
+          "attack": 7.2,
+          "attackSpeed": 0.048
         },
         "18": {
           "attack": 7.2,
           "attackSpeed": 0.054
         },
         "19": {
-          "attack": 7.6,
-          "attackSpeed": 0.057
+          "attack": 8.0,
+          "attackSpeed": 0.054
         },
         "20": {
           "attack": 8.0,
           "attackSpeed": 0.06
         },
         "21": {
-          "attack": 8.4,
-          "attackSpeed": 0.063
+          "attack": 8.8,
+          "attackSpeed": 0.06
         },
         "22": {
           "attack": 8.8,
           "attackSpeed": 0.066
         },
         "23": {
-          "attack": 9.2,
-          "attackSpeed": 0.069
+          "attack": 9.6,
+          "attackSpeed": 0.066
         },
         "24": {
           "attack": 9.6,
           "attackSpeed": 0.072
         },
         "25": {
-          "attack": 10.0,
-          "attackSpeed": 0.075
+          "attack": 10.4,
+          "attackSpeed": 0.072
         },
         "26": {
           "attack": 10.4,
           "attackSpeed": 0.078
         },
         "27": {
-          "attack": 10.8,
-          "attackSpeed": 0.081
+          "attack": 11.2,
+          "attackSpeed": 0.078
         },
         "28": {
           "attack": 11.2,
           "attackSpeed": 0.084
         },
         "29": {
-          "attack": 11.6,
-          "attackSpeed": 0.087
+          "attack": 12.0,
+          "attackSpeed": 0.084
         },
         "30": {
           "attack": 12.0,
           "attackSpeed": 0.09
         },
         "31": {
-          "attack": 12.2,
-          "attackSpeed": 0.0915
+          "attack": 12.4,
+          "attackSpeed": 0.09
         },
         "32": {
           "attack": 12.4,
           "attackSpeed": 0.093
         },
         "33": {
-          "attack": 12.6,
-          "attackSpeed": 0.0945
+          "attack": 12.8,
+          "attackSpeed": 0.093
         },
         "34": {
           "attack": 12.8,
           "attackSpeed": 0.096
         },
         "35": {
-          "attack": 13.0,
-          "attackSpeed": 0.0975
+          "attack": 13.2,
+          "attackSpeed": 0.096
         },
         "36": {
           "attack": 13.2,
           "attackSpeed": 0.099
         },
         "37": {
-          "attack": 13.4,
-          "attackSpeed": 0.1005
+          "attack": 13.6,
+          "attackSpeed": 0.099
         },
         "38": {
           "attack": 13.6,
           "attackSpeed": 0.102
         },
         "39": {
-          "attack": 13.8,
-          "attackSpeed": 0.1035
+          "attack": 14.0,
+          "attackSpeed": 0.102
         },
         "40": {
           "attack": 14.0,
@@ -66833,160 +66820,160 @@
       "description": "For 3s after using a move: the next auto attack to damage an opposing Pokémon deals 10/15/20 + 40/45/50% Attack as additional damage to the first target hit; if held by a Melee Pokémon: also decreases the movement speed of the target by 30% for 1s (1.5s CD).",
       "statsByGrade": {
         "1": {
-          "attack": 0.5,
-          "critRate": 0.0065
+          "attack": 1.0,
+          "critRate": 0.006
         },
         "2": {
           "attack": 1.0,
           "critRate": 0.007
         },
         "3": {
-          "attack": 1.5,
-          "critRate": 0.0075
+          "attack": 2.0,
+          "critRate": 0.007
         },
         "4": {
           "attack": 2.0,
           "critRate": 0.008
         },
         "5": {
-          "attack": 2.5,
-          "critRate": 0.0085
+          "attack": 3.0,
+          "critRate": 0.008
         },
         "6": {
           "attack": 3.0,
           "critRate": 0.009
         },
         "7": {
-          "attack": 3.5,
-          "critRate": 0.0095
+          "attack": 4.0,
+          "critRate": 0.009
         },
         "8": {
           "attack": 4.0,
           "critRate": 0.01
         },
         "9": {
-          "attack": 4.5,
-          "critRate": 0.0105
+          "attack": 5.0,
+          "critRate": 0.01
         },
         "10": {
           "attack": 5.0,
           "critRate": 0.011
         },
         "11": {
-          "attack": 5.5,
-          "critRate": 0.0115
+          "attack": 6.0,
+          "critRate": 0.011
         },
         "12": {
           "attack": 6.0,
           "critRate": 0.012
         },
         "13": {
-          "attack": 6.5,
-          "critRate": 0.0125
+          "attack": 7.0,
+          "critRate": 0.012
         },
         "14": {
           "attack": 7.0,
           "critRate": 0.013
         },
         "15": {
-          "attack": 7.5,
-          "critRate": 0.0135
+          "attack": 8.0,
+          "critRate": 0.013
         },
         "16": {
           "attack": 8.0,
           "critRate": 0.014
         },
         "17": {
-          "attack": 8.5,
-          "critRate": 0.0145
+          "attack": 9.0,
+          "critRate": 0.014
         },
         "18": {
           "attack": 9.0,
           "critRate": 0.015
         },
         "19": {
-          "attack": 9.5,
-          "critRate": 0.0155
+          "attack": 10.0,
+          "critRate": 0.015
         },
         "20": {
           "attack": 10.0,
           "critRate": 0.016
         },
         "21": {
-          "attack": 10.5,
-          "critRate": 0.0165
+          "attack": 11.0,
+          "critRate": 0.016
         },
         "22": {
           "attack": 11.0,
           "critRate": 0.017
         },
         "23": {
-          "attack": 11.5,
-          "critRate": 0.0175
+          "attack": 12.0,
+          "critRate": 0.017
         },
         "24": {
           "attack": 12.0,
           "critRate": 0.018
         },
         "25": {
-          "attack": 12.5,
-          "critRate": 0.0185
+          "attack": 13.0,
+          "critRate": 0.018
         },
         "26": {
           "attack": 13.0,
           "critRate": 0.019
         },
         "27": {
-          "attack": 13.5,
-          "critRate": 0.0195
+          "attack": 14.0,
+          "critRate": 0.019
         },
         "28": {
           "attack": 14.0,
           "critRate": 0.02
         },
         "29": {
-          "attack": 14.5,
-          "critRate": 0.0205
+          "attack": 15.0,
+          "critRate": 0.02
         },
         "30": {
           "attack": 15.0,
           "critRate": 0.021
         },
         "31": {
-          "attack": 15.25,
-          "critRate": 0.02125
+          "attack": 15.5,
+          "critRate": 0.021
         },
         "32": {
           "attack": 15.5,
           "critRate": 0.0215
         },
         "33": {
-          "attack": 15.75,
-          "critRate": 0.02175
+          "attack": 16.0,
+          "critRate": 0.0215
         },
         "34": {
           "attack": 16.0,
           "critRate": 0.022
         },
         "35": {
-          "attack": 16.25,
-          "critRate": 0.02225
+          "attack": 16.5,
+          "critRate": 0.022
         },
         "36": {
           "attack": 16.5,
           "critRate": 0.0225
         },
         "37": {
-          "attack": 16.75,
-          "critRate": 0.02275
+          "attack": 17.0,
+          "critRate": 0.0225
         },
         "38": {
           "attack": 17.0,
           "critRate": 0.023
         },
         "39": {
-          "attack": 17.25,
-          "critRate": 0.02325
+          "attack": 17.5,
+          "critRate": 0.023
         },
         "40": {
           "attack": 17.5,
@@ -67010,160 +66997,159 @@
       "description": "Increases HP recovery and shield effects granted to ally Pokémon by 17/20/23%.",
       "statsByGrade": {
         "1": {
-          "defense": 1.0,
-          "spDefense": 1.0
+          "defense": 2.0
         },
         "2": {
           "defense": 2.0,
           "spDefense": 2.0
         },
         "3": {
-          "defense": 3.0,
-          "spDefense": 3.0
+          "defense": 4.0,
+          "spDefense": 2.0
         },
         "4": {
           "defense": 4.0,
           "spDefense": 4.0
         },
         "5": {
-          "defense": 5.0,
-          "spDefense": 5.0
+          "defense": 6.0,
+          "spDefense": 4.0
         },
         "6": {
           "defense": 6.0,
           "spDefense": 6.0
         },
         "7": {
-          "defense": 7.0,
-          "spDefense": 7.0
+          "defense": 8.0,
+          "spDefense": 6.0
         },
         "8": {
           "defense": 8.0,
           "spDefense": 8.0
         },
         "9": {
-          "defense": 9.0,
-          "spDefense": 9.0
+          "defense": 10.0,
+          "spDefense": 8.0
         },
         "10": {
           "defense": 10.0,
           "spDefense": 10.0
         },
         "11": {
-          "defense": 11.0,
-          "spDefense": 11.0
+          "defense": 12.0,
+          "spDefense": 10.0
         },
         "12": {
           "defense": 12.0,
           "spDefense": 12.0
         },
         "13": {
-          "defense": 13.0,
-          "spDefense": 13.0
+          "defense": 14.0,
+          "spDefense": 12.0
         },
         "14": {
           "defense": 14.0,
           "spDefense": 14.0
         },
         "15": {
-          "defense": 15.0,
-          "spDefense": 15.0
+          "defense": 16.0,
+          "spDefense": 14.0
         },
         "16": {
           "defense": 16.0,
           "spDefense": 16.0
         },
         "17": {
-          "defense": 17.0,
-          "spDefense": 17.0
+          "defense": 18.0,
+          "spDefense": 16.0
         },
         "18": {
           "defense": 18.0,
           "spDefense": 18.0
         },
         "19": {
-          "defense": 19.0,
-          "spDefense": 19.0
+          "defense": 20.0,
+          "spDefense": 18.0
         },
         "20": {
           "defense": 20.0,
           "spDefense": 20.0
         },
         "21": {
-          "defense": 21.0,
-          "spDefense": 21.0
+          "defense": 22.0,
+          "spDefense": 20.0
         },
         "22": {
           "defense": 22.0,
           "spDefense": 22.0
         },
         "23": {
-          "defense": 23.0,
-          "spDefense": 23.0
+          "defense": 24.0,
+          "spDefense": 22.0
         },
         "24": {
           "defense": 24.0,
           "spDefense": 24.0
         },
         "25": {
-          "defense": 25.0,
-          "spDefense": 25.0
+          "defense": 26.0,
+          "spDefense": 24.0
         },
         "26": {
           "defense": 26.0,
           "spDefense": 26.0
         },
         "27": {
-          "defense": 27.0,
-          "spDefense": 27.0
+          "defense": 28.0,
+          "spDefense": 26.0
         },
         "28": {
           "defense": 28.0,
           "spDefense": 28.0
         },
         "29": {
-          "defense": 29.0,
-          "spDefense": 29.0
+          "defense": 30.0,
+          "spDefense": 28.0
         },
         "30": {
           "defense": 30.0,
           "spDefense": 30.0
         },
         "31": {
-          "defense": 30.5,
-          "spDefense": 30.5
+          "defense": 31.0,
+          "spDefense": 30.0
         },
         "32": {
           "defense": 31.0,
           "spDefense": 31.0
         },
         "33": {
-          "defense": 31.5,
-          "spDefense": 31.5
+          "defense": 32.0,
+          "spDefense": 31.0
         },
         "34": {
           "defense": 32.0,
           "spDefense": 32.0
         },
         "35": {
-          "defense": 32.5,
-          "spDefense": 32.5
+          "defense": 33.0,
+          "spDefense": 32.0
         },
         "36": {
           "defense": 33.0,
           "spDefense": 33.0
         },
         "37": {
-          "defense": 33.5,
-          "spDefense": 33.5
+          "defense": 34.0,
+          "spDefense": 33.0
         },
         "38": {
           "defense": 34.0,
           "spDefense": 34.0
         },
         "39": {
-          "defense": 34.5,
-          "spDefense": 34.5
+          "defense": 35.0,
+          "spDefense": 34.0
         },
         "40": {
           "defense": 35.0,
@@ -67324,160 +67310,159 @@
       "description": "Upon receiving damage equal to 3% max HP or more from an opposing Pokémon in a single hit: deals 1.9%/2.2%/2.5% of the holder's max HP as Attack-based damage to nearby opposing Pokémon (0.6s CD).",
       "statsByGrade": {
         "1": {
-          "hp": 9.0,
-          "defense": 1.7
+          "hp": 18.0
         },
         "2": {
           "hp": 18.0,
           "defense": 3.4
         },
         "3": {
-          "hp": 27.0,
-          "defense": 5.1
+          "hp": 36.0,
+          "defense": 3.4
         },
         "4": {
           "hp": 36.0,
           "defense": 6.8
         },
         "5": {
-          "hp": 45.0,
-          "defense": 8.5
+          "hp": 54.0,
+          "defense": 6.8
         },
         "6": {
           "hp": 54.0,
           "defense": 10.2
         },
         "7": {
-          "hp": 63.0,
-          "defense": 11.9
+          "hp": 72.0,
+          "defense": 10.2
         },
         "8": {
           "hp": 72.0,
           "defense": 13.6
         },
         "9": {
-          "hp": 81.0,
-          "defense": 15.3
+          "hp": 90.0,
+          "defense": 13.6
         },
         "10": {
           "hp": 90.0,
           "defense": 17.0
         },
         "11": {
-          "hp": 99.0,
-          "defense": 18.7
+          "hp": 108.0,
+          "defense": 17.0
         },
         "12": {
           "hp": 108.0,
           "defense": 20.4
         },
         "13": {
-          "hp": 117.0,
-          "defense": 22.1
+          "hp": 126.0,
+          "defense": 20.4
         },
         "14": {
           "hp": 126.0,
           "defense": 23.8
         },
         "15": {
-          "hp": 135.0,
-          "defense": 25.5
+          "hp": 144.0,
+          "defense": 23.8
         },
         "16": {
           "hp": 144.0,
           "defense": 27.2
         },
         "17": {
-          "hp": 153.0,
-          "defense": 28.9
+          "hp": 162.0,
+          "defense": 27.2
         },
         "18": {
           "hp": 162.0,
           "defense": 30.6
         },
         "19": {
-          "hp": 171.0,
-          "defense": 32.3
+          "hp": 180.0,
+          "defense": 30.6
         },
         "20": {
           "hp": 180.0,
           "defense": 34.0
         },
         "21": {
-          "hp": 189.0,
-          "defense": 35.7
+          "hp": 198.0,
+          "defense": 34.0
         },
         "22": {
           "hp": 198.0,
           "defense": 37.4
         },
         "23": {
-          "hp": 207.0,
-          "defense": 39.1
+          "hp": 216.0,
+          "defense": 37.4
         },
         "24": {
           "hp": 216.0,
           "defense": 40.8
         },
         "25": {
-          "hp": 225.0,
-          "defense": 42.5
+          "hp": 234.0,
+          "defense": 40.8
         },
         "26": {
           "hp": 234.0,
           "defense": 44.2
         },
         "27": {
-          "hp": 243.0,
-          "defense": 45.9
+          "hp": 252.0,
+          "defense": 44.2
         },
         "28": {
           "hp": 252.0,
           "defense": 47.6
         },
         "29": {
-          "hp": 261.0,
-          "defense": 49.3
+          "hp": 270.0,
+          "defense": 47.6
         },
         "30": {
           "hp": 270.0,
           "defense": 51.0
         },
         "31": {
-          "hp": 274.5,
-          "defense": 51.85
+          "hp": 279.0,
+          "defense": 51.0
         },
         "32": {
           "hp": 279.0,
           "defense": 52.7
         },
         "33": {
-          "hp": 283.5,
-          "defense": 53.55
+          "hp": 288.0,
+          "defense": 52.7
         },
         "34": {
           "hp": 288.0,
           "defense": 54.4
         },
         "35": {
-          "hp": 292.5,
-          "defense": 55.25
+          "hp": 297.0,
+          "defense": 54.4
         },
         "36": {
           "hp": 297.0,
           "defense": 56.1
         },
         "37": {
-          "hp": 301.5,
-          "defense": 56.95
+          "hp": 306.0,
+          "defense": 56.1
         },
         "38": {
           "hp": 306.0,
           "defense": 57.8
         },
         "39": {
-          "hp": 310.5,
-          "defense": 58.65
+          "hp": 315.0,
+          "defense": 57.8
         },
         "40": {
           "hp": 315.0,
@@ -67506,130 +67491,170 @@
       "id": "scope-lens",
       "displayName": "Scope Lens",
       "iconAsset": "/assets/items/held/Scope+Lens.png",
-      "description": "Upon dealing a critical hit with an auto attack: deals an additional hit of damage equal to 45/60/75% Attack to 1 target (1s CD).",
+      "description": "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases.",
       "statsByGrade": {
         "1": {
-          "critRate": 0.002
-        },
-        "2": {
           "critRate": 0.004
         },
+        "2": {
+          "critRate": 0.004,
+          "critDamage": 0.008
+        },
         "3": {
-          "critRate": 0.006
+          "critRate": 0.008,
+          "critDamage": 0.008
         },
         "4": {
-          "critRate": 0.008
+          "critRate": 0.008,
+          "critDamage": 0.016
         },
         "5": {
-          "critRate": 0.01
+          "critRate": 0.012,
+          "critDamage": 0.016
         },
         "6": {
-          "critRate": 0.012
+          "critRate": 0.012,
+          "critDamage": 0.024
         },
         "7": {
-          "critRate": 0.014
+          "critRate": 0.016,
+          "critDamage": 0.024
         },
         "8": {
-          "critRate": 0.016
+          "critRate": 0.016,
+          "critDamage": 0.032
         },
         "9": {
-          "critRate": 0.018
+          "critRate": 0.02,
+          "critDamage": 0.032
         },
         "10": {
-          "critRate": 0.02
+          "critRate": 0.02,
+          "critDamage": 0.04
         },
         "11": {
-          "critRate": 0.022
+          "critRate": 0.024,
+          "critDamage": 0.04
         },
         "12": {
-          "critRate": 0.024
+          "critRate": 0.024,
+          "critDamage": 0.048
         },
         "13": {
-          "critRate": 0.026
+          "critRate": 0.028,
+          "critDamage": 0.048
         },
         "14": {
-          "critRate": 0.028
+          "critRate": 0.028,
+          "critDamage": 0.056
         },
         "15": {
-          "critRate": 0.03
+          "critRate": 0.032,
+          "critDamage": 0.056
         },
         "16": {
-          "critRate": 0.032
+          "critRate": 0.032,
+          "critDamage": 0.064
         },
         "17": {
-          "critRate": 0.034
+          "critRate": 0.036,
+          "critDamage": 0.064
         },
         "18": {
-          "critRate": 0.036
+          "critRate": 0.036,
+          "critDamage": 0.072
         },
         "19": {
-          "critRate": 0.038
+          "critRate": 0.04,
+          "critDamage": 0.072
         },
         "20": {
-          "critRate": 0.04
+          "critRate": 0.04,
+          "critDamage": 0.08
         },
         "21": {
-          "critRate": 0.042
+          "critRate": 0.044,
+          "critDamage": 0.08
         },
         "22": {
-          "critRate": 0.044
+          "critRate": 0.044,
+          "critDamage": 0.088
         },
         "23": {
-          "critRate": 0.046
+          "critRate": 0.048,
+          "critDamage": 0.088
         },
         "24": {
-          "critRate": 0.048
+          "critRate": 0.048,
+          "critDamage": 0.096
         },
         "25": {
-          "critRate": 0.05
+          "critRate": 0.052,
+          "critDamage": 0.096
         },
         "26": {
-          "critRate": 0.052
+          "critRate": 0.052,
+          "critDamage": 0.104
         },
         "27": {
-          "critRate": 0.054
+          "critRate": 0.056,
+          "critDamage": 0.104
         },
         "28": {
-          "critRate": 0.056
+          "critRate": 0.056,
+          "critDamage": 0.112
         },
         "29": {
-          "critRate": 0.058
+          "critRate": 0.06,
+          "critDamage": 0.112
         },
         "30": {
-          "critRate": 0.06
+          "critRate": 0.06,
+          "critDamage": 0.12
         },
         "31": {
-          "critRate": 0.061
+          "critRate": 0.062,
+          "critDamage": 0.12
         },
         "32": {
-          "critRate": 0.062
+          "critRate": 0.062,
+          "critDamage": 0.124
         },
         "33": {
-          "critRate": 0.063
+          "critRate": 0.064,
+          "critDamage": 0.124
         },
         "34": {
-          "critRate": 0.064
+          "critRate": 0.064,
+          "critDamage": 0.128
         },
         "35": {
-          "critRate": 0.065
+          "critRate": 0.066,
+          "critDamage": 0.128
         },
         "36": {
-          "critRate": 0.066
+          "critRate": 0.066,
+          "critDamage": 0.132
         },
         "37": {
-          "critRate": 0.067
+          "critRate": 0.068,
+          "critDamage": 0.132
         },
         "38": {
-          "critRate": 0.068
+          "critRate": 0.068,
+          "critDamage": 0.136
         },
         "39": {
-          "critRate": 0.069
+          "critRate": 0.07,
+          "critDamage": 0.136
         },
         "40": {
-          "critRate": 0.07
+          "critRate": 0.07,
+          "critDamage": 0.14
         }
       },
       "conditionalEffects": [],
+      "descriptionAdvanced": "Upon dealing a critical hit with an auto attack: deals an additional hit of damage equal to 45/60/75% Attack to 1 target (1s CD).",
       "effect": {
         "label": "Of Attack Stat",
         "tiers": [
@@ -67783,160 +67808,159 @@
       "description": "When hitting an opposing Pokémon with a move: recovers HP equal to 50/65/80 + 40/50/60% Sp. Attack (8s CD).",
       "statsByGrade": {
         "1": {
-          "spAttack": 0.8,
-          "cdr": 0.0015
+          "spAttack": 1.6
         },
         "2": {
           "spAttack": 1.6,
           "cdr": 0.003
         },
         "3": {
-          "spAttack": 2.4,
-          "cdr": 0.0045
+          "spAttack": 3.2,
+          "cdr": 0.003
         },
         "4": {
           "spAttack": 3.2,
           "cdr": 0.006
         },
         "5": {
-          "spAttack": 4.0,
-          "cdr": 0.0075
+          "spAttack": 4.8,
+          "cdr": 0.006
         },
         "6": {
           "spAttack": 4.8,
           "cdr": 0.009
         },
         "7": {
-          "spAttack": 5.6,
-          "cdr": 0.0105
+          "spAttack": 6.4,
+          "cdr": 0.009
         },
         "8": {
           "spAttack": 6.4,
           "cdr": 0.012
         },
         "9": {
-          "spAttack": 7.2,
-          "cdr": 0.0135
+          "spAttack": 8.0,
+          "cdr": 0.012
         },
         "10": {
           "spAttack": 8.0,
           "cdr": 0.015
         },
         "11": {
-          "spAttack": 8.8,
-          "cdr": 0.0165
+          "spAttack": 9.6,
+          "cdr": 0.015
         },
         "12": {
           "spAttack": 9.6,
           "cdr": 0.018
         },
         "13": {
-          "spAttack": 10.4,
-          "cdr": 0.0195
+          "spAttack": 11.2,
+          "cdr": 0.018
         },
         "14": {
           "spAttack": 11.2,
           "cdr": 0.021
         },
         "15": {
-          "spAttack": 12.0,
-          "cdr": 0.0225
+          "spAttack": 12.8,
+          "cdr": 0.021
         },
         "16": {
           "spAttack": 12.8,
           "cdr": 0.024
         },
         "17": {
-          "spAttack": 13.6,
-          "cdr": 0.0255
+          "spAttack": 14.4,
+          "cdr": 0.024
         },
         "18": {
           "spAttack": 14.4,
           "cdr": 0.027
         },
         "19": {
-          "spAttack": 15.2,
-          "cdr": 0.0285
+          "spAttack": 16.0,
+          "cdr": 0.027
         },
         "20": {
           "spAttack": 16.0,
           "cdr": 0.03
         },
         "21": {
-          "spAttack": 16.8,
-          "cdr": 0.0315
+          "spAttack": 17.6,
+          "cdr": 0.03
         },
         "22": {
           "spAttack": 17.6,
           "cdr": 0.033
         },
         "23": {
-          "spAttack": 18.4,
-          "cdr": 0.0345
+          "spAttack": 19.2,
+          "cdr": 0.033
         },
         "24": {
           "spAttack": 19.2,
           "cdr": 0.036
         },
         "25": {
-          "spAttack": 20.0,
-          "cdr": 0.0375
+          "spAttack": 20.8,
+          "cdr": 0.036
         },
         "26": {
           "spAttack": 20.8,
           "cdr": 0.039
         },
         "27": {
-          "spAttack": 21.6,
-          "cdr": 0.0405
+          "spAttack": 22.4,
+          "cdr": 0.039
         },
         "28": {
           "spAttack": 22.4,
           "cdr": 0.042
         },
         "29": {
-          "spAttack": 23.2,
-          "cdr": 0.0435
+          "spAttack": 24.0,
+          "cdr": 0.042
         },
         "30": {
           "spAttack": 24.0,
           "cdr": 0.045
         },
         "31": {
-          "spAttack": 24.4,
-          "cdr": 0.04575
+          "spAttack": 24.8,
+          "cdr": 0.045
         },
         "32": {
           "spAttack": 24.8,
           "cdr": 0.0465
         },
         "33": {
-          "spAttack": 25.2,
-          "cdr": 0.04725
+          "spAttack": 25.6,
+          "cdr": 0.0465
         },
         "34": {
           "spAttack": 25.6,
           "cdr": 0.048
         },
         "35": {
-          "spAttack": 26.0,
-          "cdr": 0.04875
+          "spAttack": 26.4,
+          "cdr": 0.048
         },
         "36": {
           "spAttack": 26.4,
           "cdr": 0.0495
         },
         "37": {
-          "spAttack": 26.8,
-          "cdr": 0.05025
+          "spAttack": 27.2,
+          "cdr": 0.0495
         },
         "38": {
           "spAttack": 27.2,
           "cdr": 0.051
         },
         "39": {
-          "spAttack": 27.6,
-          "cdr": 0.05175
+          "spAttack": 28.0,
+          "cdr": 0.051
         },
         "40": {
           "spAttack": 28.0,
@@ -67960,160 +67984,159 @@
       "description": "Sp. Attack-based damage dealt ignores 9/12/15% of opposing Pokémon's Sp. Def.",
       "statsByGrade": {
         "1": {
-          "hp": 7.0,
-          "spAttack": 1.0
+          "hp": 14.0
         },
         "2": {
           "hp": 14.0,
           "spAttack": 2.0
         },
         "3": {
-          "hp": 21.0,
-          "spAttack": 3.0
+          "hp": 28.0,
+          "spAttack": 2.0
         },
         "4": {
           "hp": 28.0,
           "spAttack": 4.0
         },
         "5": {
-          "hp": 35.0,
-          "spAttack": 5.0
+          "hp": 42.0,
+          "spAttack": 4.0
         },
         "6": {
           "hp": 42.0,
           "spAttack": 6.0
         },
         "7": {
-          "hp": 49.0,
-          "spAttack": 7.0
+          "hp": 56.0,
+          "spAttack": 6.0
         },
         "8": {
           "hp": 56.0,
           "spAttack": 8.0
         },
         "9": {
-          "hp": 63.0,
-          "spAttack": 9.0
+          "hp": 70.0,
+          "spAttack": 8.0
         },
         "10": {
           "hp": 70.0,
           "spAttack": 10.0
         },
         "11": {
-          "hp": 77.0,
-          "spAttack": 11.0
+          "hp": 84.0,
+          "spAttack": 10.0
         },
         "12": {
           "hp": 84.0,
           "spAttack": 12.0
         },
         "13": {
-          "hp": 91.0,
-          "spAttack": 13.0
+          "hp": 98.0,
+          "spAttack": 12.0
         },
         "14": {
           "hp": 98.0,
           "spAttack": 14.0
         },
         "15": {
-          "hp": 105.0,
-          "spAttack": 15.0
+          "hp": 112.0,
+          "spAttack": 14.0
         },
         "16": {
           "hp": 112.0,
           "spAttack": 16.0
         },
         "17": {
-          "hp": 119.0,
-          "spAttack": 17.0
+          "hp": 126.0,
+          "spAttack": 16.0
         },
         "18": {
           "hp": 126.0,
           "spAttack": 18.0
         },
         "19": {
-          "hp": 133.0,
-          "spAttack": 19.0
+          "hp": 140.0,
+          "spAttack": 18.0
         },
         "20": {
           "hp": 140.0,
           "spAttack": 20.0
         },
         "21": {
-          "hp": 147.0,
-          "spAttack": 21.0
+          "hp": 154.0,
+          "spAttack": 20.0
         },
         "22": {
           "hp": 154.0,
           "spAttack": 22.0
         },
         "23": {
-          "hp": 161.0,
-          "spAttack": 23.0
+          "hp": 168.0,
+          "spAttack": 22.0
         },
         "24": {
           "hp": 168.0,
           "spAttack": 24.0
         },
         "25": {
-          "hp": 175.0,
-          "spAttack": 25.0
+          "hp": 182.0,
+          "spAttack": 24.0
         },
         "26": {
           "hp": 182.0,
           "spAttack": 26.0
         },
         "27": {
-          "hp": 189.0,
-          "spAttack": 27.0
+          "hp": 196.0,
+          "spAttack": 26.0
         },
         "28": {
           "hp": 196.0,
           "spAttack": 28.0
         },
         "29": {
-          "hp": 203.0,
-          "spAttack": 29.0
+          "hp": 210.0,
+          "spAttack": 28.0
         },
         "30": {
           "hp": 210.0,
           "spAttack": 30.0
         },
         "31": {
-          "hp": 213.5,
-          "spAttack": 30.5
+          "hp": 217.0,
+          "spAttack": 30.0
         },
         "32": {
           "hp": 217.0,
           "spAttack": 31.0
         },
         "33": {
-          "hp": 220.5,
-          "spAttack": 31.5
+          "hp": 224.0,
+          "spAttack": 31.0
         },
         "34": {
           "hp": 224.0,
           "spAttack": 32.0
         },
         "35": {
-          "hp": 227.5,
-          "spAttack": 32.5
+          "hp": 231.0,
+          "spAttack": 32.0
         },
         "36": {
           "hp": 231.0,
           "spAttack": 33.0
         },
         "37": {
-          "hp": 234.5,
-          "spAttack": 33.5
+          "hp": 238.0,
+          "spAttack": 33.0
         },
         "38": {
           "hp": 238.0,
           "spAttack": 34.0
         },
         "39": {
-          "hp": 241.5,
-          "spAttack": 34.5
+          "hp": 245.0,
+          "spAttack": 34.0
         },
         "40": {
           "hp": 245.0,
@@ -68274,160 +68297,159 @@
       "description": "When a hindrance is inflicted on the Pokémon, the Pokémon's Defense and Sp. Def are increased by 12/20/28% for 3 seconds.",
       "statsByGrade": {
         "1": {
-          "defense": 1.0,
-          "spDefense": 1.0
+          "defense": 2.0
         },
         "2": {
           "defense": 2.0,
           "spDefense": 2.0
         },
         "3": {
-          "defense": 3.0,
-          "spDefense": 3.0
+          "defense": 4.0,
+          "spDefense": 2.0
         },
         "4": {
           "defense": 4.0,
           "spDefense": 4.0
         },
         "5": {
-          "defense": 5.0,
-          "spDefense": 5.0
+          "defense": 6.0,
+          "spDefense": 4.0
         },
         "6": {
           "defense": 6.0,
           "spDefense": 6.0
         },
         "7": {
-          "defense": 7.0,
-          "spDefense": 7.0
+          "defense": 8.0,
+          "spDefense": 6.0
         },
         "8": {
           "defense": 8.0,
           "spDefense": 8.0
         },
         "9": {
-          "defense": 9.0,
-          "spDefense": 9.0
+          "defense": 10.0,
+          "spDefense": 8.0
         },
         "10": {
           "defense": 10.0,
           "spDefense": 10.0
         },
         "11": {
-          "defense": 11.0,
-          "spDefense": 11.0
+          "defense": 12.0,
+          "spDefense": 10.0
         },
         "12": {
           "defense": 12.0,
           "spDefense": 12.0
         },
         "13": {
-          "defense": 13.0,
-          "spDefense": 13.0
+          "defense": 14.0,
+          "spDefense": 12.0
         },
         "14": {
           "defense": 14.0,
           "spDefense": 14.0
         },
         "15": {
-          "defense": 15.0,
-          "spDefense": 15.0
+          "defense": 16.0,
+          "spDefense": 14.0
         },
         "16": {
           "defense": 16.0,
           "spDefense": 16.0
         },
         "17": {
-          "defense": 17.0,
-          "spDefense": 17.0
+          "defense": 18.0,
+          "spDefense": 16.0
         },
         "18": {
           "defense": 18.0,
           "spDefense": 18.0
         },
         "19": {
-          "defense": 19.0,
-          "spDefense": 19.0
+          "defense": 20.0,
+          "spDefense": 18.0
         },
         "20": {
           "defense": 20.0,
           "spDefense": 20.0
         },
         "21": {
-          "defense": 21.0,
-          "spDefense": 21.0
+          "defense": 22.0,
+          "spDefense": 20.0
         },
         "22": {
           "defense": 22.0,
           "spDefense": 22.0
         },
         "23": {
-          "defense": 23.0,
-          "spDefense": 23.0
+          "defense": 24.0,
+          "spDefense": 22.0
         },
         "24": {
           "defense": 24.0,
           "spDefense": 24.0
         },
         "25": {
-          "defense": 25.0,
-          "spDefense": 25.0
+          "defense": 26.0,
+          "spDefense": 24.0
         },
         "26": {
           "defense": 26.0,
           "spDefense": 26.0
         },
         "27": {
-          "defense": 27.0,
-          "spDefense": 27.0
+          "defense": 28.0,
+          "spDefense": 26.0
         },
         "28": {
           "defense": 28.0,
           "spDefense": 28.0
         },
         "29": {
-          "defense": 29.0,
-          "spDefense": 29.0
+          "defense": 30.0,
+          "spDefense": 28.0
         },
         "30": {
           "defense": 30.0,
           "spDefense": 30.0
         },
         "31": {
-          "defense": 30.5,
-          "spDefense": 30.5
+          "defense": 31.0,
+          "spDefense": 30.0
         },
         "32": {
           "defense": 31.0,
           "spDefense": 31.0
         },
         "33": {
-          "defense": 31.5,
-          "spDefense": 31.5
+          "defense": 32.0,
+          "spDefense": 31.0
         },
         "34": {
           "defense": 32.0,
           "spDefense": 32.0
         },
         "35": {
-          "defense": 32.5,
-          "spDefense": 32.5
+          "defense": 33.0,
+          "spDefense": 32.0
         },
         "36": {
           "defense": 33.0,
           "spDefense": 33.0
         },
         "37": {
-          "defense": 33.5,
-          "spDefense": 33.5
+          "defense": 34.0,
+          "spDefense": 33.0
         },
         "38": {
           "defense": 34.0,
           "spDefense": 34.0
         },
         "39": {
-          "defense": 34.5,
-          "spDefense": 34.5
+          "defense": 35.0,
+          "spDefense": 34.0
         },
         "40": {
           "defense": 35.0,
@@ -68588,160 +68610,159 @@
       "description": "Upon receiving damage: increases Attack by 1.5/2/2.5% for 3s (up to 4 times; maximum 6/8/10%).",
       "statsByGrade": {
         "1": {
-          "hp": 65.0,
-          "attack": 0.5
+          "hp": 70.0
         },
         "2": {
           "hp": 70.0,
           "attack": 1.0
         },
         "3": {
-          "hp": 75.0,
-          "attack": 1.5
+          "hp": 80.0,
+          "attack": 1.0
         },
         "4": {
           "hp": 80.0,
           "attack": 2.0
         },
         "5": {
-          "hp": 85.0,
-          "attack": 2.5
+          "hp": 90.0,
+          "attack": 2.0
         },
         "6": {
           "hp": 90.0,
           "attack": 3.0
         },
         "7": {
-          "hp": 95.0,
-          "attack": 3.5
+          "hp": 100.0,
+          "attack": 3.0
         },
         "8": {
           "hp": 100.0,
           "attack": 4.0
         },
         "9": {
-          "hp": 105.0,
-          "attack": 4.5
+          "hp": 110.0,
+          "attack": 4.0
         },
         "10": {
           "hp": 110.0,
           "attack": 5.0
         },
         "11": {
-          "hp": 115.0,
-          "attack": 5.5
+          "hp": 120.0,
+          "attack": 5.0
         },
         "12": {
           "hp": 120.0,
           "attack": 6.0
         },
         "13": {
-          "hp": 125.0,
-          "attack": 6.5
+          "hp": 130.0,
+          "attack": 6.0
         },
         "14": {
           "hp": 130.0,
           "attack": 7.0
         },
         "15": {
-          "hp": 135.0,
-          "attack": 7.5
+          "hp": 140.0,
+          "attack": 7.0
         },
         "16": {
           "hp": 140.0,
           "attack": 8.0
         },
         "17": {
-          "hp": 145.0,
-          "attack": 8.5
+          "hp": 150.0,
+          "attack": 8.0
         },
         "18": {
           "hp": 150.0,
           "attack": 9.0
         },
         "19": {
-          "hp": 155.0,
-          "attack": 9.5
+          "hp": 160.0,
+          "attack": 9.0
         },
         "20": {
           "hp": 160.0,
           "attack": 10.0
         },
         "21": {
-          "hp": 165.0,
-          "attack": 10.5
+          "hp": 170.0,
+          "attack": 10.0
         },
         "22": {
           "hp": 170.0,
           "attack": 11.0
         },
         "23": {
-          "hp": 175.0,
-          "attack": 11.5
+          "hp": 180.0,
+          "attack": 11.0
         },
         "24": {
           "hp": 180.0,
           "attack": 12.0
         },
         "25": {
-          "hp": 185.0,
-          "attack": 12.5
+          "hp": 190.0,
+          "attack": 12.0
         },
         "26": {
           "hp": 190.0,
           "attack": 13.0
         },
         "27": {
-          "hp": 195.0,
-          "attack": 13.5
+          "hp": 200.0,
+          "attack": 13.0
         },
         "28": {
           "hp": 200.0,
           "attack": 14.0
         },
         "29": {
-          "hp": 205.0,
-          "attack": 14.5
+          "hp": 210.0,
+          "attack": 14.0
         },
         "30": {
           "hp": 210.0,
           "attack": 15.0
         },
         "31": {
-          "hp": 212.5,
-          "attack": 15.25
+          "hp": 215.0,
+          "attack": 15.0
         },
         "32": {
           "hp": 215.0,
           "attack": 15.5
         },
         "33": {
-          "hp": 217.5,
-          "attack": 15.75
+          "hp": 220.0,
+          "attack": 15.5
         },
         "34": {
           "hp": 220.0,
           "attack": 16.0
         },
         "35": {
-          "hp": 222.5,
-          "attack": 16.25
+          "hp": 225.0,
+          "attack": 16.0
         },
         "36": {
           "hp": 225.0,
           "attack": 16.5
         },
         "37": {
-          "hp": 227.5,
-          "attack": 16.75
+          "hp": 230.0,
+          "attack": 16.5
         },
         "38": {
           "hp": 230.0,
           "attack": 17.0
         },
         "39": {
-          "hp": 232.5,
-          "attack": 17.25
+          "hp": 235.0,
+          "attack": 17.0
         },
         "40": {
           "hp": 235.0,

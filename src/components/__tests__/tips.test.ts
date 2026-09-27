@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { ReactElement } from "react";
-import { descriptionOnlyTip, emblemTip, moveTip, pickDescription } from "../tips";
+import { descriptionOnlyTip, emblemTip, itemTip, moveTip, pickDescription } from "../tips";
+import { HeldItemDetailBody } from "../../ui/heldItemDetail";
+import type { HeldItem } from "../../types";
 import { activeTooltipMedia } from "../../ui/tooltipMedia";
 import { makeEmblem } from "../../engine/__tests__/fixtures";
 import type { Move } from "../../types";
@@ -42,6 +44,54 @@ const attack: Move = {
   iconAsset: "/assets/skills/basic-attack.png",
   gifAsset: "/assets/skills/unused.webp",
 };
+
+const scopeLens: HeldItem = {
+  id: "scope-lens",
+  displayName: "Scope Lens",
+  iconAsset: "/assets/items/held/Scope+Lens.png",
+  description:
+    "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases.",
+  descriptionAdvanced:
+    "Upon dealing a critical hit with an auto attack: deals an additional hit of damage equal to 45/60/75% Attack to 1 target (1s CD).",
+  statsByGrade: { 40: { critRate: 0.07, critDamage: 0.14 } },
+  conditionalEffects: [],
+};
+
+describe("itemTip", () => {
+  it("shows the in-game description in Basic mode", () => {
+    const html = markup(itemTip(scopeLens, 40, false) as ReactElement | null);
+    expect(html).toContain("basic attack critical hits");
+    expect(html).not.toContain("45/60/75%");
+    expect(html).toContain("Crit Damage +14%");
+  });
+
+  it("shows the UNITE-DB description in Advanced mode", () => {
+    const html = markup(itemTip(scopeLens, 40, true) as ReactElement | null);
+    expect(html).toContain("45/60/75% Attack");
+    expect(html).not.toContain("basic attack critical hits");
+  });
+});
+
+describe("HeldItemDetailBody", () => {
+  const lens = {
+    ...scopeLens,
+    effect: { label: "Of Attack Stat", tiers: ["45%", "60%", "75%"] as [string, string, string] },
+  };
+
+  it("keeps the attack-percent tiers off the Basic card", () => {
+    const html = markup(HeldItemDetailBody({ item: lens, grade: 40, advanced: false }));
+    expect(html).toContain("basic attack critical hits");
+    expect(html).toContain("Crit Damage +14%");
+    expect(html).not.toContain("Of Attack Stat");
+  });
+
+  it("shows the UNITE-DB tiers on the Advanced card", () => {
+    const html = markup(HeldItemDetailBody({ item: lens, grade: 40, advanced: true }));
+    expect(html).toContain("45/60/75% Attack");
+    expect(html).toContain("Of Attack Stat");
+    expect(html).toContain("75%");
+  });
+});
 
 describe("descriptionOnlyTip", () => {
   it("shows the bold title it is given and leaves the description unchanged", () => {

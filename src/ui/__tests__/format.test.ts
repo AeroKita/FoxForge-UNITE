@@ -35,6 +35,14 @@ describe("exact held-item stat formatting", () => {
     expect(formatLevelLabel(15)).toBe("Lv 15");
   });
 
+  it("shows Scope Lens crit damage beside crit rate", () => {
+    const lines = heldItemStatLines({ critRate: 0.07, critDamage: 0.14 });
+    expect(lines.map((l) => `${l.label} ${l.value}`)).toEqual([
+      "Crit Rate +7%",
+      "Crit Damage +14%",
+    ]);
+  });
+
   it("labels moveSpeed as Speed on held-item and emblem flats", () => {
     expect(STAT_ROWS.find((r) => r.key === "moveSpeed")?.label).toBe("Speed");
     expect(heldItemStatLines({ moveSpeed: 175 })[0]?.label).toBe("Speed");

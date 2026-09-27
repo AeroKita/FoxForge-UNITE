@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "../state/store";
-import { pokemonById, heldItemById, battleItemById, emblemById } from "../data/gameData";
+import {
+  pokemonById,
+  heldItemById,
+  battleItemById,
+  emblemById,
+  ITEM_GRADE_DEFAULT,
+} from "../data/gameData";
 import { moveIdsFromNames, resolveFinalMove } from "../engine/moves";
 import { asset } from "../ui/asset";
 import { EmblemCoinRow } from "./EmblemCoinRow";
@@ -215,7 +221,7 @@ export function RecommendPanel() {
                   return item ? (
                     <Tooltip
                       key={id}
-                      content={itemTip(item)}
+                      content={itemTip(item, ITEM_GRADE_DEFAULT, expert)}
                       touchTrigger={BUILD_KIT_TOOLTIP_TRIGGER}
                     >
                       <span className="flex w-16 flex-col items-center">

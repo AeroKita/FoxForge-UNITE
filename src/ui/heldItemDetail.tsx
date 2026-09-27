@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useModalDismiss } from "./useModalDismiss";
 import { heldItemStatLines } from "./format";
-import { statsAtGrade } from "../components/tips";
+import { pickDescription, statsAtGrade } from "../components/tips";
 import type { HeldItem } from "../types";
 import { activeTierIndex } from "../engine/formulas";
 import {
@@ -17,9 +17,18 @@ import {
 } from "./tooltipUnfold";
 export { activeTierIndex };
 
-export function HeldItemDetailBody({ item, grade }: { item: HeldItem; grade: number }) {
+export function HeldItemDetailBody({
+  item,
+  grade,
+  advanced = false,
+}: {
+  item: HeldItem;
+  grade: number;
+  advanced?: boolean;
+}) {
   const statLines = heldItemStatLines(statsAtGrade(item, grade));
-  const effect = item.effect;
+  const description = pickDescription(item, advanced);
+  const effect = advanced ? item.effect : undefined;
   const active = activeTierIndex(grade);
 
   return (
@@ -39,7 +48,7 @@ export function HeldItemDetailBody({ item, grade }: { item: HeldItem; grade: num
         </div>
       )}
 
-      {item.description && <p className="text-muted">{item.description}</p>}
+      {description && <p className="text-muted">{description}</p>}
 
       {/* Grade 1 / 10 / 20 effect scaling, with the tier active at this grade in green. */}
       {effect && (
@@ -73,11 +82,13 @@ export function HeldItemDetailModal({
   grade,
   open,
   onClose,
+  advanced = false,
 }: {
   item: HeldItem | null;
   grade: number;
   open: boolean;
   onClose: () => void;
+  advanced?: boolean;
 }) {
   const [phase, setPhase] = useState<TipPhase>(open ? "open" : "closed");
   const shown = useRef<HeldItem | null>(item);
@@ -129,7 +140,7 @@ export function HeldItemDetailModal({
               ✕
             </button>
           </div>
-          <HeldItemDetailBody item={current} grade={grade} />
+          <HeldItemDetailBody item={current} grade={grade} advanced={advanced} />
         </div>
       </div>
     </div>

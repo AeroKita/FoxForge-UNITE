@@ -42,6 +42,8 @@ from normalize import (
     replace_retired_physical_emblem_set,
     reword_add_label,
     strip_activation_note,
+    build_held_items,
+    held_item_value_at,
 )
 
 
@@ -1680,6 +1682,83 @@ class TestRetiredPhysicalEmblemSet(unittest.TestCase):
         )
         self.assertEqual(pokemon[0]["builds"][1]["emblems"], retired[:9])
         self.assertEqual(pokemon[0]["creativeBuilds"][0]["emblems"], other)
+
+
+class TestHeldItemStatcalc(unittest.TestCase):
+    """UNITE-DB itemStats.statcalc: start/skip staircase, half steps after grade 30."""
+
+    def test_scope_lens_matches_in_game_and_unite_db_grades(self):
+        rate = {
+            "label": "Critical-Hit Rate",
+            "initial": 0.4,
+            "start": 0,
+            "skip": 1,
+            "increment": 0.4,
+            "initial_diff": 0,
+        }
+        damage = {
+            "label": "Critical-Hit Damage Modifier",
+            "initial": 0,
+            "start": 1,
+            "skip": 1,
+            "increment": 0.8,
+        }
+        expect = {
+            1: (0.4, 0.0),
+            2: (0.4, 0.8),
+            10: (2.0, 4.0),
+            30: (6.0, 12.0),
+            31: (6.2, 12.0),
+            39: (7.0, 13.6),
+            40: (7.0, 14.0),
+        }
+        for grade, (rate_v, dmg_v) in expect.items():
+            self.assertAlmostEqual(held_item_value_at(rate, grade), rate_v, places=6)
+            self.assertAlmostEqual(held_item_value_at(damage, grade), dmg_v, places=6)
+
+    def test_muscle_band_keeps_grade_30_and_40_and_uses_the_staircase(self):
+        attack = {"initial": 1, "start": 0, "skip": 1, "increment": 1, "initial_diff": 0}
+        speed = {"initial": 0, "start": 1, "skip": 1, "increment": 0.5, "initial_diff": 0}
+        self.assertAlmostEqual(held_item_value_at(attack, 30), 15)
+        self.assertAlmostEqual(held_item_value_at(attack, 40), 17.5)
+        self.assertAlmostEqual(held_item_value_at(speed, 30), 7.5)
+        self.assertAlmostEqual(held_item_value_at(speed, 40), 8.75)
+        self.assertAlmostEqual(held_item_value_at(attack, 1), 1)
+        self.assertAlmostEqual(held_item_value_at(speed, 1), 0)
+        self.assertAlmostEqual(held_item_value_at(attack, 31), 15.5)
+        self.assertAlmostEqual(held_item_value_at(speed, 39), 8.5)
+
+    def test_scope_lens_basic_is_in_game_and_advanced_is_unite_db(self):
+        rows = [{
+            "name": "Scope Lens",
+            "display_name": "Scope Lens",
+            "stats": [{
+                "label": "Critical-Hit Rate",
+                "percent": True,
+                "initial": 0.4,
+                "start": 0,
+                "skip": 1,
+                "increment": 0.4,
+                "initial_diff": 0,
+            }],
+            "description1": "Upon dealing a critical hit with an auto attack: deals an additional hit of damage equal to 45/60/75% Attack to 1 target (1s CD).",
+            "description3": "Of Attack Stat",
+            "level1": "45%",
+            "level10": "60%",
+            "level20": "75%",
+        }]
+        archive = {
+            "scope-lens": {
+                "description": "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases.",
+            }
+        }
+        item = build_held_items(rows, archive)[0]
+        self.assertEqual(
+            item["description"],
+            "Increases the damage of basic attack critical hits. The higher the Pokémon's Attack, the more the damage increases.",
+        )
+        self.assertIn("45/60/75% Attack", item["descriptionAdvanced"])
+        self.assertAlmostEqual(item["statsByGrade"]["40"]["critRate"], 0.07)
 
 
 if __name__ == "__main__":
