@@ -23,7 +23,7 @@ export function HeroBand() {
           onClick={() => setPickerOpen(true)}
           className="mt-4 min-h-12 w-full rounded-xl bg-accent font-semibold text-white"
         >
-          Choose Pokémon
+          Choose a Pokémon
         </button>
         {pickerOpen && <PokemonPickerSheet onClose={() => setPickerOpen(false)} />}
       </div>
