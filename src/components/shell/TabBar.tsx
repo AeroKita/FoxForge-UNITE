@@ -6,6 +6,42 @@ interface TabBarProps {
   active: Tab;
   onChange: (t: Tab) => void;
   tabs: { id: Tab; label: string; icon: ReactNode }[];
+  /** When false, Compare stays mounted at 0fr so Basic↔Advanced can animate. */
+  compareVisible: boolean;
+}
+
+/**
+ * Five-column track: the last column is Compare, `0fr` in Basic and `1fr` in
+ * Advanced. Neighbors slide as the fraction interpolates.
+ */
+export function tabBarTrackClass(compareVisible: boolean): string {
+  return [
+    "mx-auto grid w-full max-w-2xl",
+    compareVisible ? "grid-cols-[1fr_1fr_1fr_1fr_1fr]" : "grid-cols-[1fr_1fr_1fr_1fr_0fr]",
+    "motion-safe:transition-[grid-template-columns]",
+    "motion-safe:duration-300",
+    "motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+  ].join(" ");
+}
+
+/** Clip wrapper around Compare so a closed 0fr column cannot paint into Items. */
+export function tabBarCompareSlotClass(compareVisible: boolean): string {
+  return compareVisible ? "min-w-0 overflow-hidden" : "min-w-0 overflow-hidden pointer-events-none";
+}
+
+/**
+ * Compare control motion: delayed fade/slide/scale in, faster fade out so the
+ * label is gone before the column pinches shut.
+ */
+export function tabBarCompareItemClass(compareVisible: boolean): string {
+  return [
+    "flex min-h-14 w-full min-w-[4.5rem] flex-col items-center justify-center gap-0.5 px-1",
+    "motion-safe:transition-[opacity,transform]",
+    "motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+    compareVisible
+      ? "opacity-100 translate-x-0 scale-100 motion-safe:duration-300 motion-safe:delay-75"
+      : "pointer-events-none opacity-0 translate-x-2 scale-[0.92] motion-safe:duration-150",
+  ].join(" ");
 }
 
 function BuildIcon() {
@@ -105,33 +141,52 @@ export const TAB_ICONS: Record<Tab, ReactNode> = {
   items: <ItemsIcon />,
 };
 
+const TAB_INK = {
+  active: "text-[var(--color-tab-active)]",
+  idle: "text-[var(--color-tab-ink)]",
+} as const;
+
 /**
  * Fixed bottom navigation for primary app destinations.
  */
-export function TabBar({ active, onChange, tabs }: TabBarProps) {
+export function TabBar({ active, onChange, tabs, compareVisible }: TabBarProps) {
   return (
     <nav
       role="tablist"
       aria-label="Main navigation"
       className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-[var(--color-tab-bg)] pb-safe"
     >
-      <div className="mx-auto flex w-full max-w-2xl">
+      <div className={tabBarTrackClass(compareVisible)}>
         {tabs.map((tab) => {
-          const isActive = active === tab.id;
+          const isCompare = tab.id === "compare";
+          const isHiddenCompare = isCompare && !compareVisible;
+          const isActive = active === tab.id && !isHiddenCompare;
+          const ink = isActive ? TAB_INK.active : TAB_INK.idle;
+          const itemClass = isCompare
+            ? `${tabBarCompareItemClass(compareVisible)} ${ink}`
+            : `flex min-h-14 w-full flex-col items-center justify-center gap-0.5 px-1 transition ${ink}`;
           return (
-            <button
+            <div
               key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => onChange(tab.id)}
-              className={`flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 px-1 transition ${
-                isActive ? "text-[var(--color-tab-active)]" : "text-[var(--color-tab-ink)]"
-              }`}
+              className={isCompare ? tabBarCompareSlotClass(compareVisible) : "min-w-0"}
+              {...(isHiddenCompare ? { inert: true } : {})}
             >
-              {tab.icon}
-              <span className="text-[11px] font-medium leading-none">{tab.label}</span>
-            </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-hidden={isHiddenCompare || undefined}
+                tabIndex={isHiddenCompare ? -1 : undefined}
+                onClick={() => {
+                  if (isHiddenCompare) return;
+                  onChange(tab.id);
+                }}
+                className={itemClass}
+              >
+                {tab.icon}
+                <span className="text-[11px] font-medium leading-none">{tab.label}</span>
+              </button>
+            </div>
           );
         })}
       </div>

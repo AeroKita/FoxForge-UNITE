@@ -81,8 +81,6 @@ function Workspace() {
     if (pendingOwnedOnMount.current) setTab("emblems");
   }, [setTab]);
 
-  const tabs = expert ? ALL_TABS : ALL_TABS.filter((t) => t.id !== "compare");
-
   useEffect(() => {
     if (!expert && tab === "compare") setTab("build");
   }, [expert, tab, setTab]);
@@ -211,7 +209,7 @@ function Workspace() {
         {tab === "emblems" && <EmblemsScreen />}
         {tab === "items" && <ItemsScreen />}
       </main>
-      <TabBar active={tab} onChange={setTab} tabs={tabs} />
+      <TabBar active={tab} onChange={setTab} tabs={ALL_TABS} compareVisible={expert} />
       <SettingsMenu open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       {pokePickerOpen && <PokemonPickerSheet onClose={() => setPokePickerOpen(false)} />}
     </div>

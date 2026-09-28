@@ -15,7 +15,7 @@ import { CollapsibleCard } from "./CollapsibleCard";
 import { Tooltip } from "./Tooltip";
 import { MoveIcon } from "./MoveIcon";
 import { itemTip, moveTip, battleItemTip } from "./tips";
-import { MarqueeText } from "../ui/MarqueeText";
+import { BuildVariantPager } from "./BuildVariantPager";
 import { slotsFromPicks } from "../ui/emblemWheel";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
@@ -156,16 +156,6 @@ export function RecommendPanel() {
       .filter((m): m is NonNullable<typeof m> => m != null);
   })();
 
-  const buildTitle = build ? (
-    <>
-      <span className="font-semibold text-ink">{build.emblemName ?? build.name}</span>
-      {build.lane ? ` · ${build.lane}` : ""}
-      {builds.length > 1 ? ` · ${idx + 1}/${builds.length}` : ""}
-    </>
-  ) : (
-    "—"
-  );
-
   return (
     <CollapsibleCard title="Builds" persistKey="recommend" tone="indigo">
       {/* Source tabs — selecting a tab auto-applies that build variant */}
@@ -183,26 +173,16 @@ export function RecommendPanel() {
         ))}
       </div>
 
-      {/* Variant navigation — arrows auto-apply the selected build */}
-      <div className="mb-3 flex items-center gap-2">
-        <button
-          onClick={() => go(-1)}
-          disabled={builds.length < 2}
-          aria-label="Previous build"
-          className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-line text-lg text-ink hover:bg-raise disabled:opacity-30"
-        >
-          ‹
-        </button>
-        <MarqueeText className="flex-1 text-xs text-muted">{buildTitle}</MarqueeText>
-        <button
-          onClick={() => go(1)}
-          disabled={builds.length < 2}
-          aria-label="Next build"
-          className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-line text-lg text-ink hover:bg-raise disabled:opacity-30"
-        >
-          ›
-        </button>
-      </div>
+      {build ? (
+        <BuildVariantPager
+          name={build.emblemName ?? build.name}
+          lane={build.lane}
+          index={idx}
+          count={builds.length}
+          onPrevious={() => go(-1)}
+          onNext={() => go(1)}
+        />
+      ) : null}
 
       {!build ? (
         <p className="text-sm text-faint">
