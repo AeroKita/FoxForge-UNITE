@@ -1,0 +1,62 @@
+{
+  "items": {
+    "x-attack": {
+      "statMultipliers": { "attack": 0.2, "spAttack": 0.2 }
+    }
+  },
+  "moves": {
+    "Machamp": {
+      "Bulk Up": {
+        "statMultipliers": { "attack": 0.15 },
+        "note": "Machop: Attack +15% while Bulk Up is up. Attack speed stays the sheet value."
+      },
+      "Submission": {
+        "statAdds": { "critRate": 0.05 },
+        "note": "On hit, critical-hit rate +5% for 3s."
+      },
+      "Submission+": {
+        "statAdds": { "critRate": 0.1 },
+        "note": "On hit at level 11+, critical-hit rate +10% for 3s."
+      },
+      "Cross Chop": {
+        "asPoints": 0,
+        "minLevel": 7,
+        "statAdds": { "critRate": 0.05 },
+        "note": "On hit, critical-hit rate +5% for 3s. The move's own +5% crit chance is separate."
+      },
+      "Unite Buff": {
+        "statMultipliers": { "attack": 0.25, "moveSpeed": 0.1 },
+        "statAdds": { "defense": 300, "spDefense": 300 },
+        "note": "Barrage Blow: Attack +25%, move speed +10%, Defense +300, Sp. Def +300 for 8s."
+      }
+    },
+    "Decidueye": {
+      "Leafage": { "statMultipliers": { "attack": 0.1 } },
+      "Razor Leaf": { "statMultipliers": { "attack": 0.1 } }
+    },
+    "Falinks": {
+      "Bulk Up": {
+        "statMultipliers": { "attack": 0.3, "defense": 0.25, "spDefense": 0.25 }
+      }
+    },
+    "Inteleon": {
+      "Unite Buff": {
+        "statMultipliers": { "critRate": 1 },
+        "note": "Azure Spy Vision doubles critical-hit rate while active."
+      }
+    },
+    "Dragonite": {
+      "Dragon Dance": {
+        "statMultipliers": { "attack": 0.1, "moveSpeed": 0.3 },
+        "note": "One stack. Attack caps at +30%. Move speed +30% lasts 1s."
+      }
+    },
+    "Garchomp": {
+      "Sand Attack": { "statMultipliers": { "moveSpeed": 0.3 } },
+      "Boosted Attack": {
+        "statAdds": { "lifesteal": 0.3 },
+        "note": "Boosted attacks gain +30% lifesteal."
+      }
+    }
+  }
+}

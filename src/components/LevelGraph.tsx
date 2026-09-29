@@ -12,40 +12,20 @@ import {
 import { useStore } from "../state/store";
 import { deriveAtLevel } from "../engine/derive";
 import { CollapsibleCard } from "./CollapsibleCard";
-import type { StatBlock } from "../types";
-
-type Metric = { key: keyof StatBlock | "aps"; label: string; color: string; percent?: boolean };
-
-const METRICS: Metric[] = [
-  { key: "hp", label: "HP", color: "#10b981" },
-  { key: "attack", label: "Attack", color: "#ef4444" },
-  { key: "defense", label: "Defense", color: "#3b82f6" },
-  { key: "spAttack", label: "Sp. Atk", color: "#8b5cf6" },
-  { key: "spDefense", label: "Sp. Def", color: "#a855f7" },
-  { key: "moveSpeed", label: "Speed", color: "#f59e0b" },
-  { key: "aps", label: "Attacks/sec", color: "#0ea5e9" },
-];
+import { LEVEL_CHART_METRICS, levelChartValue, type LevelChartKey } from "../ui/levelChart";
 
 const LEVELS = Array.from({ length: 15 }, (_, i) => i + 1);
 
 export function LevelGraph() {
   const { loadout, heldSlotGrades } = useStore();
-  const [metricKey, setMetricKey] = useState<Metric["key"]>("attack");
-  const metric = METRICS.find((m) => m.key === metricKey)!;
+  const [metricKey, setMetricKey] = useState<LevelChartKey>("attack");
+  const metric = LEVEL_CHART_METRICS.find((m) => m.key === metricKey)!;
 
   const data = useMemo(() => {
     if (!loadout.pokemonId) return [];
     return LEVELS.map((level) => {
       const d = deriveAtLevel(loadout, level, true, heldSlotGrades);
-      let value: number | null = null;
-      if (d.effective) {
-        value =
-          metricKey === "aps" ? (d.attackSpeed?.attacksPerSecond ?? null) : d.effective[metricKey];
-      }
-      return {
-        level,
-        value: value == null ? null : Number(value.toFixed(metricKey === "aps" ? 3 : 0)),
-      };
+      return { level, value: levelChartValue(d, metricKey) };
     });
   }, [loadout, metricKey, heldSlotGrades]);
 
@@ -53,7 +33,7 @@ export function LevelGraph() {
 
   const metricPills = (
     <div className="flex flex-wrap gap-1">
-      {METRICS.map((m) => (
+      {LEVEL_CHART_METRICS.map((m) => (
         <button
           key={m.key}
           onClick={() => setMetricKey(m.key)}

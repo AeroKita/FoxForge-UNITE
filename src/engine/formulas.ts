@@ -63,14 +63,16 @@ export function effectiveHp(maxHp: number, defenseOrSpDef: number): number {
 // ----- Emblem flat rounding --------------------------------------------------
 
 /**
- * Total emblem flats use STANDARD rounding (e.g. 18.6 -> 19, 18.4 -> 18).
- * Apply to the SUMMED flats, not per-emblem.
+ * Whole-number emblem flats use standard rounding (e.g. 18.6 -> 19, 18.4 -> 18).
+ * Fraction flats (crit, CDR, lifesteal, attack speed) stay as the summed fraction.
+ * Apply to the summed flats, not per-emblem.
  */
 export function roundEmblemTotals(flats: Partial<StatBlock>): Partial<StatBlock> {
   const out: Partial<StatBlock> = {};
   for (const key of Object.keys(flats) as (keyof StatBlock)[]) {
     const v = flats[key];
-    if (v !== undefined) out[key] = Math.round(v);
+    if (v === undefined) continue;
+    out[key] = EMBLEM_FRACTION_FLATS.has(key) ? v : Math.round(v);
   }
   return out;
 }
@@ -96,6 +98,18 @@ const INTEGER_STATS: ReadonlySet<keyof StatBlock> = new Set([
  * points instead of multiplying (e.g. 7 Red: attackSpeed 0.40 -> 0.48).
  */
 const PERCENT_POINT_STATS: ReadonlySet<keyof StatBlock> = new Set(["attackSpeed", "cdr"] as const);
+
+/**
+ * Emblem flats stored as fractions (0.006 = +0.6% crit). Integer rounding
+ * would turn any real total into 0, because ten gold crit emblems sum to 0.06.
+ */
+export const EMBLEM_FRACTION_FLATS: ReadonlySet<keyof StatBlock> = new Set([
+  "critRate",
+  "cdr",
+  "lifesteal",
+  "spLifesteal",
+  "attackSpeed",
+] as const);
 
 /**
  * Compute a Pokémon's effective stats at a given level with the chosen

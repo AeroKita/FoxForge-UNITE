@@ -51,3 +51,88 @@ describe("deriveBuild — out-of-combat move speed (issue #25)", () => {
     expect(d.oocMoveSpeed!).toBeGreaterThan(d.effective!.moveSpeed);
   });
 });
+
+describe("deriveBuild — crit emblem flats and active crit buffs", () => {
+  const tenFarfetchd = Array.from({ length: 10 }, () => ({
+    emblemId: "083-farfetch-d",
+    grade: "gold" as const,
+  }));
+
+  it("keeps a +6% crit emblem stack on Machamp at level 15", () => {
+    const d = deriveBuild(
+      { ...emptyLoadout("machamp"), emblems: tenFarfetchd },
+      true,
+      [40, 40, 40],
+    );
+    // Innate 20% + 10 × 0.6%.
+    expect(d.effective!.critRate).toBeCloseTo(0.26, 6);
+  });
+
+  it("adds grade-40 Scope Lens and Razor Claw on top of emblem crit", () => {
+    const withCrit = deriveBuild(
+      {
+        ...emptyLoadout("machamp"),
+        emblems: tenFarfetchd,
+        heldItemIds: ["scope-lens", "razor-claw", null],
+      },
+      true,
+      [40, 40, 40],
+    );
+    const itemsOnly = deriveBuild(
+      {
+        ...emptyLoadout("machamp"),
+        heldItemIds: ["scope-lens", "razor-claw", null],
+      },
+      true,
+      [40, 40, 40],
+    );
+    // 20 + 6 + 7 + 2.35, and 20 + 7 + 2.35.
+    expect(withCrit.effective!.critRate).toBeCloseTo(0.3535, 6);
+    expect(itemsOnly.effective!.critRate).toBeCloseTo(0.2935, 6);
+  });
+
+  it("adds Mew's cooldown-reduction flat", () => {
+    const bare = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
+    const withMew = deriveBuild(
+      {
+        ...emptyLoadout("machamp"),
+        emblems: [{ emblemId: "151-mew", grade: "gold" }],
+      },
+      true,
+      [40, 40, 40],
+    );
+    expect(withMew.effective!.cdr - bare.effective!.cdr).toBeCloseTo(0.006, 6);
+  });
+
+  it("Submission+ adds 10 crit points and marks crit buffed", () => {
+    const off = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("machamp"), activeBoostIds: ["move:Submission+"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.effective!.critRate - off.effective!.critRate).toBeCloseTo(0.1, 6);
+    expect(on.buffedStats.has("critRate")).toBe(true);
+  });
+
+  it("Cross Chop adds 5 crit points without changing attacks per second", () => {
+    const off = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("machamp"), activeBoostIds: ["move:Cross Chop"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.effective!.critRate - off.effective!.critRate).toBeCloseTo(0.05, 6);
+    expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
+  });
+
+  it("Inteleon Unite Buff doubles critical-hit rate", () => {
+    const off = deriveBuild(emptyLoadout("inteleon"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("inteleon"), activeBoostIds: ["move:Unite Buff"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.effective!.critRate).toBeCloseTo(off.effective!.critRate * 2, 6);
+  });
+});

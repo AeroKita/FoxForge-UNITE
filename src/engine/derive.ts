@@ -18,6 +18,7 @@ import { computeAttackSpeed, type AttackSpeedResult } from "./attackSpeed";
 import {
   availableActiveBoosts,
   activeAttackSpeedPoints,
+  activeStatAdds,
   activeStatFactors,
   type ActiveBoost,
 } from "./effects";
@@ -105,14 +106,23 @@ export function deriveBuild(
     ctx,
   );
 
-  // Apply active multiplicative buffs (e.g. X-Attack +20% Atk/SpAtk).
+  // Multipliers first (X Attack ×1.2, Inteleon crit ×2), then flat adds
+  // (Submission +10 crit points, Barrage Blow +300 Defense) so a double does
+  // not also double a flat bonus.
   const factors = activeStatFactors(availableBoosts, activeIds, loadout.level);
+  const adds = activeStatAdds(availableBoosts, activeIds, loadout.level);
   const buffedStats = new Set<keyof StatBlock>();
   for (const [stat, factor] of Object.entries(factors) as [keyof StatBlock, number][]) {
     if (factor === 1) continue;
     effective[stat] = INTEGER_STATS.has(stat)
       ? Math.floor(effective[stat] * factor)
       : effective[stat] * factor;
+    buffedStats.add(stat);
+  }
+  for (const [stat, add] of Object.entries(adds) as [keyof StatBlock, number][]) {
+    if (add === 0) continue;
+    const next = effective[stat] + add;
+    effective[stat] = INTEGER_STATS.has(stat) ? Math.floor(next) : next;
     buffedStats.add(stat);
   }
 

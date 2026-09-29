@@ -10,6 +10,7 @@
 import type { StatBlock } from "../../types";
 import type { EmblemCandidate, SearchOptions } from "./types";
 import { sumStats, SCORE_EPS } from "./evaluate";
+import { EMBLEM_FRACTION_FLATS } from "../formulas";
 
 const RECIPE_MAX_TYPES = 56;
 const RECIPE_MAX_STEPS = 400_000;
@@ -19,8 +20,10 @@ const RECIPE_MAX_STEPS = 400_000;
 // ---------------------------------------------------------------------------
 
 /** Round a stat value to the precision used in signatures. */
-function roundSigVal(stat: keyof StatBlock, v: number): number {
+export function flatSignatureValue(stat: keyof StatBlock, v: number): number {
   if (stat === "hp") return Math.round(v);
+  // 0.006 crit must stay 0.006. One-decimal rounding of the fraction yields 0.
+  if (EMBLEM_FRACTION_FLATS.has(stat)) return Math.round(v * 10000) / 10000;
   return Math.round(v * 10) / 10;
 }
 
@@ -29,7 +32,7 @@ function candidateSignature(stats: Partial<StatBlock>): string {
   const parts: string[] = [];
   for (const [stat, v] of Object.entries(stats) as [keyof StatBlock, number][]) {
     if (Math.abs(v) < 1e-9) continue;
-    parts.push(`${stat}:${roundSigVal(stat, v)}`);
+    parts.push(`${stat}:${flatSignatureValue(stat, v)}`);
   }
   return parts.sort().join("|");
 }

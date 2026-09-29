@@ -9,9 +9,7 @@ explicitly here.
 Apply in exactly this sequence to match in-game behavior:  
   
 1. **Base stat** at the given level (`baseStatsByLevel[level - 1]`).  
-2. **Emblem flat totals**, summed across all 10 emblems, then rounded using  
-   **standard rounding** (e.g. 18.6 → 19, 18.4 → 18). Emblem flats are the only  
-   place standard rounding applies; most other game math truncates.  
+2. **Emblem flat totals**, summed across all 10 emblems. Whole-number flats (HP, Attack, Defense, Sp. Atk, Sp. Def, move speed) then use **standard rounding** (e.g. 18.6 → 19, 18.4 → 18). Fraction flats (critical-hit rate, CDR, lifesteal, attack speed) stay as the summed fraction — a +6% crit total is 0.06, not 0. Emblem flats are the only place standard rounding applies; most other game math truncates.  
 3. **Emblem set-bonus percentages**, applied to **(base + emblem flats)**.  
    - e.g. 6 Brown = +4% Attack, applied to `(baseAtk + emblemFlatAtk)`.  
 4. **Held-item flat stats** — added AFTER emblem percentages. These are NOT  

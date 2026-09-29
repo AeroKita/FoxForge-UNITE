@@ -26,4 +26,13 @@ describe("roundEmblemTotals (standard rounding on summed flats)", () => {
   it("ignores undefined entries", () => {
     expect(roundEmblemTotals({})).toEqual({});
   });
+
+  it("keeps fraction flats that are smaller than 0.5", () => {
+    // Ten gold crit emblems sum to +6% (0.06). Integer rounding would delete that.
+    expect(roundEmblemTotals({ critRate: 0.06, cdr: -0.006, attack: 18.6 })).toEqual({
+      critRate: 0.06,
+      cdr: -0.006,
+      attack: 19,
+    });
+  });
 });

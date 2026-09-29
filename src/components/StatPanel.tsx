@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import { useStore } from "../state/store";
 import { deriveBuild } from "../engine/derive";
 import { effectiveHp } from "../engine/formulas";
-import { boostAvailableAtLevel, boostPointsAtLevel } from "../engine/effects";
+import { boostAvailableAtLevel } from "../engine/effects";
+import { boostLevelGate, formatBoostEffect } from "../ui/boostEffectText";
 import { offenseFor } from "../ui/offense";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { EffectiveStatsGrid } from "./EffectiveStatsGrid";
@@ -68,7 +69,7 @@ export function StatPanel() {
       {expert && (
         <CollapsibleCard title="Active Effects" persistKey="effects">
           <p className="mb-3 text-xs text-faint">
-            Off by default. Toggle to preview in-combat attack-speed states.
+            Off by default. Toggle a buff to include it in effective stats and the level charts.
           </p>
           {availableBoosts.length === 0 ? (
             <p className="text-sm text-faint">No toggleable effects for this loadout.</p>
@@ -76,7 +77,6 @@ export function StatPanel() {
             <ul className="flex flex-col gap-1.5">
               {availableBoosts.map((b) => {
                 const avail = boostAvailableAtLevel(b, loadout.level);
-                const pts = boostPointsAtLevel(b, loadout.level);
                 const on = activeIds.has(b.id);
                 return (
                   <li key={b.id}>
@@ -95,9 +95,9 @@ export function StatPanel() {
                         <span className="font-medium text-ink">{b.label}</span>
                         <span className="text-xs uppercase text-faint">{b.source}</span>
                       </span>
-                      <span className="font-mono text-xs text-muted">
-                        +{avail ? pts.toFixed(1) : "—"}% AS
-                        {b.minLevel && !avail ? ` (Lv ${b.minLevel}+)` : ""}
+                      <span className="max-w-[14rem] text-right font-mono text-xs leading-snug whitespace-normal text-muted">
+                        {formatBoostEffect(b, loadout.level)}
+                        {boostLevelGate(b, loadout.level)}
                       </span>
                     </button>
                   </li>
