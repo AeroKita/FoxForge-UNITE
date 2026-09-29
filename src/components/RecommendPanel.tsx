@@ -17,6 +17,12 @@ import { MoveIcon } from "./MoveIcon";
 import { itemTip, moveTip, battleItemTip } from "./tips";
 import { BuildVariantPager } from "./BuildVariantPager";
 import { slotsFromPicks } from "../ui/emblemWheel";
+import {
+  clampedBuildIndex,
+  defaultBuildView,
+  loadBuildView,
+  saveBuildView,
+} from "../state/buildView";
 import type { EmblemBuildPick, Pokemon, PokemonBuild } from "../types";
 
 export const BUILD_TABS = ["recommended", "creative"] as const;
@@ -92,11 +98,14 @@ export function RecommendPanel() {
   const curated = useMemo(() => toDisplayBuilds(pokemon?.builds), [pokemon]);
   const creative = useMemo(() => toDisplayBuilds(pokemon?.creativeBuilds), [pokemon]);
 
-  const [tab, setTab] = useState<Tab>("recommended");
-  const [idxByTab, setIdxByTab] = useState<Record<Tab, number>>({
-    recommended: 0,
-    creative: 0,
-  });
+  // Restored once per mount. Leaving Build unmounts this panel; the stored
+  // view brings the same Pokémon's tab and variant back. It must not re-apply
+  // the preset — the working loadout already holds the trainer's edits.
+  const initialView = useRef(
+    loadout.pokemonId ? loadBuildView(loadout.pokemonId) : defaultBuildView(""),
+  ).current;
+  const [tab, setTab] = useState<Tab>(initialView.tab);
+  const [idxByTab, setIdxByTab] = useState<Record<Tab, number>>(initialView.idxByTab);
 
   // The Pokémon we've already auto-applied for. Initialised to the cold-load
   // restored build's Pokémon so we never overwrite it. Because this ref is only
@@ -112,13 +121,24 @@ export function RecommendPanel() {
     [pokemon, dispatch],
   );
 
+  // Persist after the trainer moves the pager. Skip the render where the
+  // Pokémon just changed: the ref still names the previous one, and writing
+  // here would stamp the old indexes onto the new Pokémon. The effect below
+  // saves the reset view instead.
+  useEffect(() => {
+    if (!pokemon || lastAutoAppliedPokemonId.current !== pokemon.id) return;
+    saveBuildView({ pokemonId: pokemon.id, tab, idxByTab });
+  }, [pokemon, tab, idxByTab]);
+
   // Auto-apply the top build only when the user switches to a *different* Pokémon
   // (not on cold-load restore, and not on a StrictMode re-run of this effect).
   useEffect(() => {
     if (!pokemon || lastAutoAppliedPokemonId.current === pokemon.id) return;
     lastAutoAppliedPokemonId.current = pokemon.id;
-    setIdxByTab({ recommended: 0, creative: 0 });
-    setTab("recommended");
+    const reset = defaultBuildView(pokemon.id);
+    setIdxByTab(reset.idxByTab);
+    setTab(reset.tab);
+    saveBuildView(reset);
     applyFor(toDisplayBuilds(pokemon.builds)[0] ?? null);
   }, [pokemon, applyFor]);
 
@@ -126,14 +146,15 @@ export function RecommendPanel() {
     if (next === tab) return;
     setTab(next);
     const list = buildsForTab(next, curated, creative);
-    const i = list.length ? Math.min(idxByTab[next], list.length - 1) : 0;
+    const i = clampedBuildIndex(idxByTab[next], list.length);
     applyFor(list[i] ?? null);
   };
 
   const go = (delta: number) => {
     const list = buildsForTab(tab, curated, creative);
     if (list.length < 2) return;
-    const next = (idxByTab[tab] + delta + list.length) % list.length;
+    const current = clampedBuildIndex(idxByTab[tab], list.length);
+    const next = (current + delta + list.length) % list.length;
     setIdxByTab((m) => ({ ...m, [tab]: next }));
     applyFor(list[next] ?? null);
   };
@@ -141,7 +162,7 @@ export function RecommendPanel() {
   if (!pokemon) return null;
 
   const builds = buildsForTab(tab, curated, creative);
-  const idx = builds.length ? Math.min(idxByTab[tab], builds.length - 1) : 0;
+  const idx = clampedBuildIndex(idxByTab[tab], builds.length);
   const build = builds[idx] ?? null;
 
   const resolvedEmblems = slotsFromPicks(build?.emblems ?? [], (id) => emblemById.get(id));
