@@ -1,4 +1,16 @@
 {
+  "wild": {
+    "accelgor": {
+      "label": "Accelgor",
+      "statAdds": { "cdr": 0.1 },
+      "note": "Grants the holder 10% cooldown reduction for 70s."
+    },
+    "escavalier": {
+      "label": "Escavalier",
+      "effectText": "Basic attacks slow 30%",
+      "note": "For 70s, basic attacks slow enemies by 30%."
+    }
+  },
   "items": {
     "x-attack": {
       "statMultipliers": { "attack": 0.2, "spAttack": 0.2 }
@@ -31,6 +43,9 @@
       }
     },
     "Decidueye": {
+      "Basic Attack": {
+        "note": "Each hit grants +3% attack speed for 2.5s, up to 4 stacks."
+      },
       "Leafage": { "statMultipliers": { "attack": 0.1 } },
       "Razor Leaf": { "statMultipliers": { "attack": 0.1 } }
     },

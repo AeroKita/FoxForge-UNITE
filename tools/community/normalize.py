@@ -1397,6 +1397,125 @@ def _validate_curated_build(b, pid, kind, emblem_ids, held_ids, battle_ids, upgr
                   f"(kept, but it won't resolve in the UI)")
 
 
+DISPLAY_LANES = frozenset({
+    "Any Path",
+    "Top Path",
+    "Bottom Path",
+    "Top or Bottom Path",
+    "Central Area",
+})
+
+# Job-word lanes from UNITE-DB and older curation. Display labels pass through
+# canon_lane unchanged, so this map is safe to run after a file was already rewritten.
+_LEGACY_LANE = {
+    "Anywhere Damage": "Any Path",
+    "Anywhere damage": "Any Path",
+    "Anywhere Support": "Any Path",
+    "Anywhere Utility Damage": "Any Path",
+    "Utility Carry": "Any Path",
+    "Damage": "Any Path",
+    "Support": "Any Path",
+    "Center Damage": "Central Area",
+    "Path Damage": "Top or Bottom Path",
+    "Path Support": "Top or Bottom Path",
+    "Path Tank": "Top or Bottom Path",
+    "Path Disrupter": "Top or Bottom Path",
+    "Path Disruption": "Top or Bottom Path",
+    "Path Disruption (Unite Emphasis)": "Top or Bottom Path",
+    "Path Protector": "Top or Bottom Path",
+    "Path Support or Tank": "Top or Bottom Path",
+    "Path Damage Support": "Top or Bottom Path",
+    "Path Support Protector": "Top or Bottom Path",
+    "Path Utility": "Top or Bottom Path",
+    "Path Supporter": "Top or Bottom Path",
+}
+
+
+def canon_lane(lane: str) -> str:
+    """Map a stored lane to a Select Path label.
+
+    Empty and current display labels are unchanged. Slash-separated UNITE-DB
+    tags become Any Path. A remaining Center / Anywhere / Path prefix follows
+    the same three spawn choices when the exact legacy map misses.
+    """
+    if not isinstance(lane, str) or lane == "" or lane in DISPLAY_LANES:
+        return lane
+    mapped = _LEGACY_LANE.get(lane)
+    if mapped:
+        return mapped
+    if "/" in lane:
+        return "Any Path"
+    folded = lane.casefold()
+    if folded.startswith("center"):
+        return "Central Area"
+    if folded.startswith("anywhere"):
+        return "Any Path"
+    if folded.startswith("path"):
+        return "Top or Bottom Path"
+    return lane
+
+
+def lane_force_by_id(pokemon, force) -> dict[str, str]:
+    """Resolve `_laneForce` to one display label per Pokémon id.
+
+    A list value is ids. An object may set ids, roles, and exceptIds.
+    exceptIds skips role matches only. The same id may be named twice only
+    when both labels match.
+    """
+    if not force:
+        return {}
+    if not isinstance(force, dict):
+        raise ValueError("_laneForce must be an object")
+    roles = {p["id"]: p.get("role") for p in pokemon}
+    assigned: dict[str, str] = {}
+
+    def assign(pid: str, label: str) -> None:
+        if label not in DISPLAY_LANES:
+            raise ValueError(f"_laneForce label {label!r} is not a display lane")
+        prev = assigned.get(pid)
+        if prev is not None and prev != label:
+            raise ValueError(
+                f"_laneForce assigns {pid} to both {prev!r} and {label!r}"
+            )
+        assigned[pid] = label
+
+    for label, spec in force.items():
+        if isinstance(spec, list):
+            ids = spec
+            role_names: list[str] = []
+            except_ids: set[str] = set()
+        elif isinstance(spec, dict):
+            ids = spec.get("ids", [])
+            role_names = spec.get("roles", [])
+            except_ids = set(spec.get("exceptIds", []))
+        else:
+            raise ValueError(f"_laneForce[{label!r}] must be a list or object")
+        for pid in ids:
+            assign(pid, label)
+        for pid, role in roles.items():
+            if role in role_names and pid not in except_ids:
+                assign(pid, label)
+    return assigned
+
+
+def apply_display_lanes(pokemon, overlay) -> None:
+    """Canon every build lane, then pin `_laneForce` Pokémon to one label."""
+    for p in pokemon:
+        for tab in ("builds", "creativeBuilds"):
+            for b in p.get(tab) or []:
+                lane = b.get("lane")
+                if isinstance(lane, str):
+                    b["lane"] = canon_lane(lane)
+    forced = lane_force_by_id(pokemon, (overlay or {}).get("_laneForce", {}))
+    for p in pokemon:
+        label = forced.get(p["id"])
+        if not label:
+            continue
+        for tab in ("builds", "creativeBuilds"):
+            for b in p.get(tab) or []:
+                b["lane"] = label
+
+
 def apply_curated_builds(pokemon, emblems, held, battle) -> None:
     """Overlay hand-curated builds/creativeBuilds and title renames from
     curated_builds.json onto the normalized Pokémon (mutates in place).
@@ -1413,7 +1532,9 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
     Top-level "_emblemNameRemap" / "_emblemNamePrefixRemap" remap raw
     emblemName values. Top-level "_laneRemap" remaps raw build lane strings
     on Recommended and Creative builds (exact match) before per-Pokémon
-    overlays. Underscore-prefixed keys (e.g. "_comment") are otherwise
+    overlays. After overlays, apply_display_lanes canons leftover job-word
+    lanes and applies "_laneForce" (id lists, plus optional roles /
+    exceptIds). Underscore-prefixed keys (e.g. "_comment") are otherwise
     ignored.
     """
     if not CURATED.exists():
@@ -1492,6 +1613,7 @@ def apply_curated_builds(pokemon, emblems, held, battle) -> None:
     print(f"  curated overlay: +{n_rec} recommended, +{n_creative} creative, "
           f"{n_titles} titles renamed, {n_presets} emblem presets")
     replace_retired_physical_emblem_set(pokemon)
+    apply_display_lanes(pokemon, overlay)
 
 
 # The community physical shell that used Bronze Aerodactyl plus the brown

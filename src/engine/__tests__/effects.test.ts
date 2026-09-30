@@ -80,6 +80,50 @@ describe("active-boost resolution", () => {
     });
   });
 
+  it("offers Decidueye Basic Attack at the four-stack cap", () => {
+    const boosts = availableActiveBoosts(find("decidueye"), [null, null, null], null);
+    const basic = boosts.find((b) => b.id === "move:Basic Attack");
+    expect(basic).toMatchObject({
+      label: "Basic Attack",
+      asPoints: 12,
+      source: "move",
+      note: "Each hit grants +3% attack speed for 2.5s, up to 4 stacks.",
+    });
+    expect(boosts.some((b) => b.label === "Auto Attack" || b.id === "move:Auto Attack")).toBe(
+      false,
+    );
+  });
+
+  it("offers Accelgor and Escavalier wild buffs after allies and before moves", () => {
+    const gardevoir = availableActiveBoosts(find("gardevoir"), [null, null, null], null);
+    const ids = gardevoir.map((b) => b.id);
+    expect(ids.indexOf("accelgor")).toBe(ids.indexOf("mew-coaching") + 1);
+    expect(ids.indexOf("escavalier")).toBe(ids.indexOf("accelgor") + 1);
+    expect(gardevoir.find((b) => b.id === "accelgor")).toMatchObject({
+      label: "Accelgor",
+      source: "wild",
+      asPoints: 0,
+      statAdds: { cdr: 0.1 },
+    });
+    expect(gardevoir.find((b) => b.id === "escavalier")).toMatchObject({
+      label: "Escavalier",
+      source: "wild",
+      asPoints: 0,
+      effectText: "Basic attacks slow 30%",
+    });
+    expect(gardevoir.find((b) => b.id === "escavalier")?.statAdds).toBeUndefined();
+    expect(gardevoir.find((b) => b.id === "escavalier")?.statMultipliers).toBeUndefined();
+
+    const machamp = availableActiveBoosts(find("machamp"), [null, null, null], null);
+    const firstMove = machamp.findIndex((b) => b.source === "move");
+    expect(firstMove).toBeGreaterThan(0);
+    expect(machamp.findIndex((b) => b.id === "escavalier")).toBeLessThan(firstMove);
+
+    const bare = availableActiveBoosts(null, [null, null, null], null);
+    expect(bare.some((b) => b.id === "accelgor")).toBe(true);
+    expect(bare.some((b) => b.id === "escavalier")).toBe(true);
+  });
+
   it("does not offer Sableye Confuse Ray as a self attack-speed buff", () => {
     const boosts = availableActiveBoosts(find("sableye"), [null, null, null], null);
     expect(boosts.some((b) => b.source === "move")).toBe(false);

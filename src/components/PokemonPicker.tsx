@@ -1,20 +1,17 @@
 import { useMemo, useState } from "react";
 import { useStore } from "../state/store";
 import { pokemonList } from "../data/gameData";
+import {
+  POKEMON_PICKER_ROLES,
+  commitPokemonPickerRole,
+  loadPokemonPickerRole,
+  type PokemonPickerRole,
+} from "../state/rememberedFilters";
 import { asset } from "../ui/asset";
 import { readableTextColor } from "../ui/colors";
 import { ROLE_FILTER_HEX } from "../ui/theme";
 import { BottomSheet } from "./shell/BottomSheet";
-import type { Role } from "../types";
 
-const ROLES: (Role | "All")[] = [
-  "All",
-  "Attacker",
-  "AllRounder",
-  "Speedster",
-  "Defender",
-  "Supporter",
-];
 const ROLE_LABEL: Record<string, string> = { AllRounder: "All-Rounder" };
 
 interface PokemonPickerSheetProps {
@@ -38,7 +35,7 @@ export function PokemonPickerSheet({
   const activeId = selectedId !== undefined ? selectedId : loadout.pokemonId;
   const choose = onSelect ?? ((id: string) => dispatch({ type: "setPokemon", pokemonId: id }));
   const [query, setQuery] = useState("");
-  const [role, setRole] = useState<Role | "All">("All");
+  const [role, setRole] = useState<PokemonPickerRole>(() => loadPokemonPickerRole());
 
   const filtered = useMemo(
     () =>
@@ -60,13 +57,13 @@ export function PokemonPickerSheet({
           className="mb-3 min-h-11 w-full rounded-lg border border-line px-3 text-sm outline-none focus:border-accent"
         />
         <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1">
-          {ROLES.map((r) => (
+          {POKEMON_PICKER_ROLES.map((r) => (
             <FilterChip
               key={r}
               label={ROLE_LABEL[r] ?? r}
               active={role === r}
               activeColor={r === "All" ? undefined : ROLE_FILTER_HEX[r]}
-              onClick={() => setRole(r)}
+              onClick={() => setRole(commitPokemonPickerRole(r))}
             />
           ))}
         </div>
@@ -129,6 +126,7 @@ function FilterChip({
   return (
     <button
       type="button"
+      aria-pressed={active}
       onClick={onClick}
       style={style}
       className={`shrink-0 rounded-full border px-3 py-2 text-sm font-medium capitalize min-h-11 ${

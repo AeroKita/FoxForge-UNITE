@@ -1,17 +1,69 @@
 {
-  "_comment": "Hand-curated builds merged by normalize.py (apply_curated_builds). Keyed by Pokémon id. Keys per id: 'builds' (replace Recommended), 'creativeBuilds' (set Creative), 'recommendedTitles' (rename raw Recommended by index). 'builds' and 'recommendedTitles' are mutually exclusive. Top-level '_emblemNameRemap' remaps raw emblemName values across all Recommended builds before per-Pokémon overrides: a string value replaces unconditionally; an object value selects by the Pokémon's role. Top-level '_laneRemap' remaps raw build lane strings (exact match) on Recommended and Creative builds before per-Pokémon overlays — used to collapse slash-separated multi-path UNITE-DB lanes into short single-path labels. See plans/2026-06-17-curated-builds-overlay-plan.md. Top-level '_emblemNamePrefixRemap' is a fallback applied after '_emblemNameRemap' misses: its keys are matched as PREFIXES of the raw emblemName (so trailing word-order changes from UNITE-DB still match), with the same string-vs-role-object value semantics. Per-Pokémon recommendedTitles pin Pokédex-inspired display names after the remap, so a UNITE-DB regenerate cannot restore generic Standard/Bulk/Tank/ADC labels. Do not hand-edit emblemName in generated patch JSON.",
+  "_comment": "Hand-curated builds merged by normalize.py (apply_curated_builds). Keyed by Pokémon id. Keys per id: 'builds' (replace Recommended), 'creativeBuilds' (set Creative), 'recommendedTitles' (rename raw Recommended by index). 'builds' and 'recommendedTitles' are mutually exclusive. Top-level '_emblemNameRemap' remaps raw emblemName values across all Recommended builds before per-Pokémon overrides: a string value replaces unconditionally; an object value selects by the Pokémon's role. Top-level '_laneRemap' remaps raw build lane strings (exact match) on Recommended and Creative builds before per-Pokémon overlays — used to collapse slash-separated multi-path UNITE-DB lanes into Any Path. After overlays, canon_lane strips leftover job words and '_laneForce' pins listed Pokémon ids plus Defender and Supporter roles (Sableye excluded). See plans/2026-06-17-curated-builds-overlay-plan.md. Top-level '_emblemNamePrefixRemap' is a fallback applied after '_emblemNameRemap' misses: its keys are matched as PREFIXES of the raw emblemName (so trailing word-order changes from UNITE-DB still match), with the same string-vs-role-object value semantics. Per-Pokémon recommendedTitles pin Pokédex-inspired display names after the remap, so a UNITE-DB regenerate cannot restore generic Standard/Bulk/Tank/ADC labels. Do not hand-edit emblemName in generated patch JSON.",
   "_emblemNameRemap": {
     "Special Attack Cooldown Reduction - Bulk for Survivability": "Standard Special Attacker",
     "Special Attack Attack Speed (Chansey may be substituted with Pidgey)": "Legendary Attack Speed",
     "Lv 40 Scope Lens+Lv 40 Razor Claw": "Critical Hit Specialist"
   },
   "_laneRemap": {
-    "Center Split / Path Damage": "Anywhere Damage",
-    "Center Split / Path Damage / Support": "Anywhere Damage",
-    "Center / Path Damage": "Anywhere Damage",
-    "Center / Center Split": "Anywhere Damage",
-    "Center / Center Split Damage": "Anywhere Damage",
-    "Path Tank / Support": "Anywhere Damage"
+    "Center Split / Path Damage": "Any Path",
+    "Center Split / Path Damage / Support": "Any Path",
+    "Center / Path Damage": "Any Path",
+    "Center / Center Split": "Any Path",
+    "Center / Center Split Damage": "Any Path",
+    "Path Tank / Support": "Any Path"
+  },
+  "_laneForce": {
+    "Bottom Path": [
+      "cinderace",
+      "decidueye",
+      "delphox",
+      "gardevoir",
+      "inteleon",
+      "mewtwoy",
+      "skeledirge",
+      "typhlosion",
+      "venusaur"
+    ],
+    "Central Area": [
+      "dodrio",
+      "galarian-rapidash",
+      "gengar",
+      "leafeon",
+      "talonflame",
+      "zoroark"
+    ],
+    "Top or Bottom Path": {
+      "ids": [
+        "alolan-ninetales",
+        "armarouge",
+        "cramorant",
+        "duraludon",
+        "espeon",
+        "glaceon",
+        "gyarados",
+        "mega-gyarados",
+        "latias",
+        "latios",
+        "mew",
+        "miraidon",
+        "pikachu",
+        "reshiram",
+        "sylveon",
+        "toxtricity",
+        "umbreon",
+        "vaporeon",
+        "yveltal",
+        "zapdos"
+      ],
+      "roles": [
+        "Defender",
+        "Supporter"
+      ],
+      "exceptIds": [
+        "sableye"
+      ]
+    }
   },
   "_emblemNamePrefixRemap": {
     "Offense Leaning": {
@@ -34,7 +86,7 @@
       {
         "name": "Singing Special Attacker",
         "emblemName": "Singing Special Attacker",
-        "lane": "Anywhere Damage",
+        "lane": "Bottom Path",
         "heldItemIds": [
           "energy-amplifier",
           "slick-spoon",
@@ -91,7 +143,7 @@
       {
         "name": "Mobile Special Attacker",
         "emblemName": "Mobile Special Attacker",
-        "lane": "Anywhere Damage",
+        "lane": "Bottom Path",
         "heldItemIds": [
           "energy-amplifier",
           "slick-spoon",
@@ -152,7 +204,7 @@
       {
         "name": "Frozen Defender",
         "emblemName": "Frozen Defender",
-        "lane": "Path Protector",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "vanguard-bell",
           "focus-band",
@@ -213,7 +265,7 @@
       {
         "name": "Healing Support",
         "emblemName": "Healing Support",
-        "lane": "Path Support",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "rescue-hood",
           "focus-band",
@@ -270,7 +322,7 @@
       {
         "name": "Shield Support",
         "emblemName": "Shield Support",
-        "lane": "Path Support",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "rescue-hood",
           "resonant-guard",
@@ -331,7 +383,7 @@
       {
         "name": "Blazing All-Rounder",
         "emblemName": "Blazing All-Rounder",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "slick-spoon",
           "choice-specs",
@@ -392,7 +444,7 @@
       {
         "name": "Blazing Special Attacker",
         "emblemName": "Blazing Special Attacker",
-        "lane": "Anywhere Damage",
+        "lane": "Bottom Path",
         "heldItemIds": [
           "wise-glasses",
           "slick-spoon",
@@ -453,7 +505,7 @@
       {
         "name": "Crunchy All-Rounder",
         "emblemName": "Crunchy All-Rounder",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "razor-claw",
           "attack-weight",
@@ -560,7 +612,7 @@
             "grade": "gold"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Doggo Zoomies",
         "heldItemOptional": "muscle-band",
         "battleItemId": "full-heal",
@@ -618,7 +670,7 @@
             "grade": "gold"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Punch Rush",
         "heldItemOptional": "accel-bracer",
         "battleItemId": "eject-button",
@@ -677,7 +729,7 @@
             "grade": "gold"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Punchy Doggy",
         "battleItemId": "eject-button",
         "battleItemOptional": "full-heal",
@@ -735,7 +787,7 @@
             "grade": "gold"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Amplified Aura Cannon",
         "battleItemId": "eject-button",
         "battleItemOptional": "full-heal",
@@ -749,7 +801,7 @@
       {
         "name": "Step on the Gas (Physical)",
         "emblemName": "Step on the Gas (Physical)",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "attack-weight",
           "float-stone",
@@ -810,7 +862,7 @@
       {
         "name": "Step on the Gas (Special)",
         "emblemName": "Step on the Gas (Special)",
-        "lane": "Center Damage",
+        "lane": "Central Area",
         "heldItemIds": [
           "drive-lens",
           "float-stone",
@@ -875,7 +927,7 @@
       {
         "name": "Flurry of Surging Strikes",
         "emblemName": "Flurry of Surging Strikes",
-        "lane": "Center Damage",
+        "lane": "Central Area",
         "heldItemIds": [
           "accel-bracer",
           "weakness-policy",
@@ -941,7 +993,7 @@
       {
         "name": "Step on the Gas (Special)",
         "emblemName": "Step on the Gas (Special)",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "drive-lens",
           "wise-glasses",
@@ -1008,7 +1060,7 @@
       {
         "name": "Step on the Gas (Special)",
         "emblemName": "Step on the Gas (Special)",
-        "lane": "Path Support",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "drive-lens",
           "curse-incense",
@@ -1075,7 +1127,7 @@
       {
         "name": "That's a Fast Dog",
         "emblemName": "That's a Fast Dog",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "exp-share",
           "choice-scarf",
@@ -1132,16 +1184,95 @@
     ]
   },
   "decidueye": {
-    "recommendedTitles": [
-      "Phantom Ranger",
-      "Arrow Quill",
-      "Deadeye"
+    "builds": [
+      {
+        "name": "Razor Storm",
+        "emblemName": "Arrow Quill",
+        "lane": "Bottom Path",
+        "heldItemIds": [
+          "muscle-band",
+          "scope-lens",
+          "rapid-fire-scarf"
+        ],
+        "battleItemId": "eject-button",
+        "battleItemOptional": "full-heal",
+        "emblems": [
+          { "emblemId": "141-kabutops", "grade": "gold" },
+          { "emblemId": "076-golem", "grade": "gold" },
+          { "emblemId": "250-ho-oh", "grade": "gold" },
+          { "emblemId": "142-aerodactyl", "grade": "gold" },
+          { "emblemId": "128-tauros", "grade": "gold" },
+          { "emblemId": "115-kangaskhan", "grade": "gold" },
+          { "emblemId": "206-dunsparce", "grade": "gold" },
+          { "emblemId": "130-gyarados", "grade": "gold" },
+          { "emblemId": "062-poliwrath", "grade": "gold" },
+          { "emblemId": "195-quagsire", "grade": "gold" }
+        ],
+        "moves": [
+          "Razor Leaf",
+          "Leaf Storm"
+        ]
+      },
+      {
+        "name": "Shadow Shackle",
+        "emblemName": "Phantom Ranger",
+        "lane": "Bottom Path",
+        "heldItemIds": [
+          "muscle-band",
+          "accel-bracer",
+          "energy-amplifier"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          { "emblemId": "248-tyranitar", "grade": "bronze" },
+          { "emblemId": "142-aerodactyl", "grade": "silver" },
+          { "emblemId": "250-ho-oh", "grade": "silver" },
+          { "emblemId": "031-nidoqueen", "grade": "gold" },
+          { "emblemId": "089-muk", "grade": "gold" },
+          { "emblemId": "023-ekans", "grade": "gold" },
+          { "emblemId": "169-crobat", "grade": "silver" },
+          { "emblemId": "168-ariados", "grade": "gold" },
+          { "emblemId": "229-houndoom", "grade": "gold" },
+          { "emblemId": "024-arbok", "grade": "gold" }
+        ],
+        "moves": [
+          "Spirit Shackle",
+          "Shadow Sneak"
+        ]
+      },
+      {
+        "name": "Shackle Storm",
+        "emblemName": "Deadeye",
+        "lane": "Bottom Path",
+        "heldItemIds": [
+          "muscle-band",
+          "accel-bracer",
+          "attack-weight"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          { "emblemId": "141-kabutops", "grade": "gold" },
+          { "emblemId": "076-golem", "grade": "gold" },
+          { "emblemId": "250-ho-oh", "grade": "gold" },
+          { "emblemId": "142-aerodactyl", "grade": "gold" },
+          { "emblemId": "128-tauros", "grade": "gold" },
+          { "emblemId": "115-kangaskhan", "grade": "gold" },
+          { "emblemId": "206-dunsparce", "grade": "gold" },
+          { "emblemId": "130-gyarados", "grade": "gold" },
+          { "emblemId": "062-poliwrath", "grade": "gold" },
+          { "emblemId": "195-quagsire", "grade": "gold" }
+        ],
+        "moves": [
+          "Spirit Shackle",
+          "Leaf Storm"
+        ]
+      }
     ],
     "creativeBuilds": [
       {
         "name": "Heavy is the Crown",
         "emblemName": "Heavy is the Crown",
-        "lane": "Center Damage",
+        "lane": "Bottom Path",
         "heldItemIds": [
           "drain-crown",
           "rapid-fire-scarf",
@@ -1238,7 +1369,7 @@
       {
         "name": "Heavy is the Crown",
         "emblemName": "Heavy is the Crown",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "drain-crown",
           "rapid-fire-scarf",
@@ -1295,7 +1426,7 @@
       {
         "name": "Step on the Gas (Physical)",
         "emblemName": "Step on the Gas (Physical)",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "muscle-band",
           "float-stone",
@@ -1372,7 +1503,7 @@
       {
         "name": "Items Only",
         "emblemName": "Ultimate Genome",
-        "lane": "Path Damage",
+        "lane": "Bottom Path",
         "heldItemIds": [
           "mewtwonite-y",
           "muscle-band",
@@ -1433,7 +1564,7 @@
       {
         "name": "Serving Looks",
         "emblemName": "Serving Looks",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "attack-weight",
           "drain-crown",
@@ -1490,7 +1621,7 @@
       {
         "name": "Carnival King",
         "emblemName": "Carnival King",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "attack-weight",
           "weakness-policy",
@@ -1551,7 +1682,7 @@
       {
         "name": "Dark Survival",
         "emblemName": "Dark Survival",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "wise-glasses",
           "slick-spoon",
@@ -1608,7 +1739,7 @@
       {
         "name": "Lumière of CDR",
         "emblemName": "Lumière of CDR",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "wise-glasses",
           "drive-lens",
@@ -1669,7 +1800,7 @@
       {
         "name": "Dimensional Rend",
         "emblemName": "Dimensional Rend",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "sp--atk-specs",
           "slick-spoon",
@@ -1726,7 +1857,7 @@
       {
         "name": "Spatial Awareness",
         "emblemName": "Spatial Awareness",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "shell-bell",
           "slick-spoon",
@@ -1787,7 +1918,7 @@
       {
         "name": "World of Truth",
         "emblemName": "World of Truth",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "energy-amplifier",
           "slick-spoon",
@@ -1848,7 +1979,7 @@
       {
         "name": "Emissary of the Sun",
         "emblemName": "Emissary of the Sun",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "attack-weight",
           "razor-claw",
@@ -1905,7 +2036,7 @@
       {
         "name": "The Beast That Devours The Sun",
         "emblemName": "The Beast That Devours The Sun",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "attack-weight",
           "razor-claw",
@@ -1962,7 +2093,7 @@
       {
         "name": "Radiant Sun",
         "emblemName": "Radiant Sun",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "attack-weight",
           "razor-claw",
@@ -2023,7 +2154,7 @@
       {
         "name": "Full Belly Mode",
         "emblemName": "Full Belly Mode",
-        "lane": "Center Damage",
+        "lane": "Central Area",
         "heldItemIds": [
           "attack-weight",
           "razor-claw",
@@ -2080,7 +2211,7 @@
       {
         "name": "Hangry Mode",
         "emblemName": "Hangry Mode",
-        "lane": "Center Damage",
+        "lane": "Central Area",
         "heldItemIds": [
           "attack-weight",
           "razor-claw",
@@ -2141,7 +2272,7 @@
       {
         "name": "Bolt Cannon",
         "emblemName": "The Thunderbird",
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "wise-glasses",
           "drive-lens",
@@ -2230,7 +2361,7 @@
       {
         "name": "Step on the Gas (Physical)",
         "emblemName": "Step on the Gas (Physical)",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "attack-weight",
           "float-stone",
@@ -2303,7 +2434,7 @@
   },
   "mega-charizard-x": {
     "recommendedTitles": [
-      "Black-Winged"
+      "Blue Flames"
     ]
   },
   "mega-charizard-y": {
@@ -2379,7 +2510,7 @@
       {
         "name": "Rapid-Fire Cotton",
         "emblemName": "Rapid-Fire Cotton",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "muscle-band",
           "rapid-fire-scarf",
@@ -2496,7 +2627,7 @@
       {
         "name": "Rapid-Fire Rings",
         "emblemName": "Rapid-Fire Rings",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": [
           "muscle-band",
           "rapid-fire-scarf",
@@ -2581,7 +2712,7 @@
       {
         "name": "Step on the Gas (Physical)",
         "emblemName": "Step on the Gas (Physical)",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "attack-weight",
           "float-stone",
@@ -2730,7 +2861,7 @@
             "grade": "bronze"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Snow Veil",
         "heldItemOptional": "choice-specs",
         "battleItemId": "eject-button",
@@ -2747,7 +2878,7 @@
           "drive-lens"
         ],
         "emblems": [],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "heldItemOptional": "wise-glasses",
         "battleItemId": "eject-button",
         "battleItemOptional": "x-attack",
@@ -2806,7 +2937,7 @@
             "grade": "gold"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Rapid-Fire Snow",
         "heldItemOptional": "drive-lens",
         "battleItemId": "x-attack",
@@ -2864,7 +2995,7 @@
             "grade": "bronze"
           }
         ],
-        "lane": "Path Damage",
+        "lane": "Top or Bottom Path",
         "emblemName": "Sacred Snow",
         "heldItemOptional": "wise-glasses",
         "battleItemId": "eject-button",
@@ -2884,7 +3015,7 @@
       {
         "name": "Step on the Gas (Physical)",
         "emblemName": "Step on the Gas (Physical)",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "muscle-band",
           "float-stone",
@@ -2966,7 +3097,7 @@
       {
         "name": "Rapid-Fire Surfer",
         "emblemName": "Rapid-Fire Surfer",
-        "lane": "Anywhere Damage",
+        "lane": "Any Path",
         "heldItemIds": [
           "muscle-band",
           "rapid-fire-scarf",
@@ -3086,7 +3217,7 @@
       {
         "name": "Purple Haze",
         "emblemName": "Purple Haze",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": ["wise-glasses", "curse-incense", "slick-spoon"],
         "battleItemId": "eject-button",
         "emblems": [
@@ -3106,7 +3237,7 @@
       {
         "name": "High Voltage",
         "emblemName": "High Voltage",
-        "lane": "Anywhere Damage",
+        "lane": "Top or Bottom Path",
         "heldItemIds": ["muscle-band", "rapid-fire-scarf", "slick-spoon"],
         "battleItemId": "x-attack",
         "emblems": [

@@ -126,6 +126,41 @@ describe("deriveBuild — crit emblem flats and active crit buffs", () => {
     expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
   });
 
+  it("Decidueye Basic Attack adds 12 attack-speed points", () => {
+    const off = deriveBuild(emptyLoadout("decidueye"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("decidueye"), activeBoostIds: ["move:Basic Attack"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.attackSpeed!.asPoints - off.attackSpeed!.asPoints).toBeCloseTo(12, 6);
+  });
+
+  it("Accelgor adds 10 CDR points without changing attacks per second", () => {
+    const off = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("machamp"), activeBoostIds: ["accelgor"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.effective!.cdr - off.effective!.cdr).toBeCloseTo(0.1, 6);
+    expect(on.buffedStats.has("cdr")).toBe(true);
+    expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
+  });
+
+  it("Escavalier does not change holder stats", () => {
+    const off = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
+    const on = deriveBuild(
+      { ...emptyLoadout("machamp"), activeBoostIds: ["escavalier"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.availableBoosts.some((b) => b.id === "escavalier")).toBe(true);
+    expect(on.effective).toEqual(off.effective);
+    expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
+    expect(on.buffedStats.size).toBe(off.buffedStats.size);
+  });
+
   it("Inteleon Unite Buff doubles critical-hit rate", () => {
     const off = deriveBuild(emptyLoadout("inteleon"), true, [40, 40, 40]);
     const on = deriveBuild(

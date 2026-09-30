@@ -1277,6 +1277,37 @@ describe("community data bundle", () => {
     expect(build.emblemName).toBe("Singing Special Attacker");
   });
 
+  it("orders Decidueye Recommended as Arrow Quill, Phantom Ranger, then Deadeye", () => {
+    const decidueye = bundle.pokemon.find((p) => p.id === "decidueye")!;
+    expect(decidueye.builds?.map((b) => b.emblemName)).toEqual([
+      "Arrow Quill",
+      "Phantom Ranger",
+      "Deadeye",
+    ]);
+    const [arrow, phantom, deadeye] = decidueye.builds ?? [];
+    expect(arrow?.heldItemIds).toEqual(["muscle-band", "scope-lens", "rapid-fire-scarf"]);
+    expect(arrow?.moves).toEqual(["Razor Leaf", "Leaf Storm"]);
+    expect(arrow?.battleItemOptional).toBe("full-heal");
+    expect(phantom?.heldItemIds).toEqual(["muscle-band", "accel-bracer", "energy-amplifier"]);
+    expect(phantom?.moves).toEqual(["Spirit Shackle", "Shadow Sneak"]);
+    expect(phantom?.battleItemId).toBe("eject-button");
+    expect(phantom?.emblems).toEqual([
+      { emblemId: "248-tyranitar", grade: "bronze" },
+      { emblemId: "142-aerodactyl", grade: "silver" },
+      { emblemId: "250-ho-oh", grade: "silver" },
+      { emblemId: "031-nidoqueen", grade: "gold" },
+      { emblemId: "089-muk", grade: "gold" },
+      { emblemId: "023-ekans", grade: "gold" },
+      { emblemId: "169-crobat", grade: "silver" },
+      { emblemId: "168-ariados", grade: "gold" },
+      { emblemId: "229-houndoom", grade: "gold" },
+      { emblemId: "024-arbok", grade: "gold" },
+    ]);
+    expect(deadeye?.heldItemIds).toEqual(["muscle-band", "accel-bracer", "attack-weight"]);
+    expect(deadeye?.moves).toEqual(["Spirit Shackle", "Leaf Storm"]);
+    expect(decidueye.creativeBuilds?.map((b) => b.emblemName)).toEqual(["Heavy is the Crown"]);
+  });
+
   // Generic UNITE-DB / remap labels. If a refresh ships these again, the
   // lore overlay in curated_builds.json was skipped or a new Pokémon needs titles.
   const GENERIC_BUILD_LABELS = new Set([
@@ -1338,7 +1369,7 @@ describe("community data bundle", () => {
     expect(sylveon.creativeBuilds?.map((b) => b.emblemName)).toEqual(["That's a Fast Dog"]);
   });
 
-  it("collapses slash multi-path lanes to Anywhere Damage", () => {
+  it("ships no slash-separated build lanes", () => {
     const slashLanes: string[] = [];
     for (const p of bundle.pokemon) {
       for (const tab of ["builds", "creativeBuilds"] as const) {
@@ -1351,14 +1382,93 @@ describe("community data bundle", () => {
       }
     }
     expect(slashLanes, slashLanes.join("\n")).toEqual([]);
+  });
 
-    const sylveon = bundle.pokemon.find((p) => p.id === "sylveon")!;
-    expect(sylveon.builds?.map((b) => b.lane)).toEqual([
-      "Anywhere Damage",
-      "Anywhere Damage",
-      "Anywhere Damage",
-      "Anywhere Damage",
+  it("names build lanes with the in-game path vocabulary", () => {
+    const allowed = new Set([
+      "Any Path",
+      "Top Path",
+      "Bottom Path",
+      "Top or Bottom Path",
+      "Central Area",
     ]);
+    const bottom = [
+      "cinderace",
+      "decidueye",
+      "delphox",
+      "gardevoir",
+      "inteleon",
+      "mewtwoy",
+      "skeledirge",
+      "typhlosion",
+      "venusaur",
+    ];
+    const central = ["dodrio", "galarian-rapidash", "gengar", "leafeon", "talonflame", "zoroark"];
+    const topOrBottom = [
+      "alolan-ninetales",
+      "armarouge",
+      "cramorant",
+      "duraludon",
+      "espeon",
+      "glaceon",
+      "gyarados",
+      "mega-gyarados",
+      "latias",
+      "latios",
+      "mew",
+      "miraidon",
+      "pikachu",
+      "reshiram",
+      "sylveon",
+      "toxtricity",
+      "umbreon",
+      "vaporeon",
+      "yveltal",
+      "zapdos",
+    ];
+
+    function lanesOf(id: string): string[] {
+      const mon = bundle.pokemon.find((p) => p.id === id)!;
+      return [...(mon.builds ?? []), ...(mon.creativeBuilds ?? [])].map((b) => b.lane ?? "");
+    }
+
+    const stray: string[] = [];
+    for (const p of bundle.pokemon) {
+      for (const lane of lanesOf(p.id)) {
+        if (!allowed.has(lane)) stray.push(`${p.id}: ${lane}`);
+      }
+    }
+    expect(stray, stray.join("\n")).toEqual([]);
+
+    for (const id of bottom) {
+      expect(lanesOf(id), id).toEqual(lanesOf(id).map(() => "Bottom Path"));
+    }
+    for (const id of central) {
+      expect(lanesOf(id), id).toEqual(lanesOf(id).map(() => "Central Area"));
+    }
+    for (const id of topOrBottom) {
+      expect(lanesOf(id), id).toEqual(lanesOf(id).map(() => "Top or Bottom Path"));
+    }
+    for (const p of bundle.pokemon) {
+      if (p.role !== "Defender" && p.role !== "Supporter") continue;
+      if (p.id === "sableye") continue;
+      expect(lanesOf(p.id), p.id).toEqual(lanesOf(p.id).map(() => "Top or Bottom Path"));
+    }
+
+    expect(lanesOf("sableye")).toEqual(["Any Path", "Any Path", "Any Path", "Any Path"]);
+    expect(lanesOf("dragapult")).toEqual(["Central Area", "Central Area"]);
+    expect(lanesOf("morpeko")).toEqual(["Central Area", "Central Area"]);
+    expect(lanesOf("greninja")).toEqual(["Central Area", "Top or Bottom Path", "Central Area"]);
+    expect(lanesOf("meowscarada")).toEqual([
+      "Central Area",
+      "Top or Bottom Path",
+      "Any Path",
+      "Any Path",
+    ]);
+
+    const megaX = bundle.pokemon.find((p) => p.id === "mega-charizard-x")!;
+    expect(megaX.builds?.map((b) => b.emblemName)).toEqual(["Blue Flames"]);
+    expect(megaX.builds?.map((b) => b.name)).toEqual(["Fire Blitz"]);
   });
 
   it("uses the shared special-gas Creative emblems on Gengar, Latios, Latias, and Sylveon", () => {

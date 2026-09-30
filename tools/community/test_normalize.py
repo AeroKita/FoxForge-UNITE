@@ -1491,7 +1491,11 @@ class TestApplyCuratedTitles(unittest.TestCase):
         self.assertEqual(pokemon[0]["builds"][0]["emblemName"], "Doggo Zoomies")
 
     def test_lane_remap_collapses_multi_path_labels(self):
-        """Slash-separated multi-path UNITE-DB lanes become Anywhere Damage."""
+        """Slash-separated multi-path UNITE-DB lanes become Any Path.
+
+        A leftover side-path job label becomes Top or Bottom Path. Canon runs
+        even when the temp remap still targets the legacy Anywhere Damage string.
+        """
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         curated_path = Path(tmp.name) / "curated_builds.json"
@@ -1528,9 +1532,118 @@ class TestApplyCuratedTitles(unittest.TestCase):
             apply_curated_builds(pokemon, [], [], [])
         self.assertEqual(
             [b["lane"] for b in pokemon[0]["builds"]],
-            ["Anywhere Damage", "Anywhere Damage", "Path Damage"],
+            ["Any Path", "Any Path", "Top or Bottom Path"],
         )
-        self.assertEqual(pokemon[0]["creativeBuilds"][0]["lane"], "Anywhere Damage")
+        self.assertEqual(pokemon[0]["creativeBuilds"][0]["lane"], "Any Path")
+
+    def test_lane_force_overrides_canon_and_spares_sableye(self):
+        """Listed Pokémon take one spawn label on every build.
+
+        Defender and Supporter roles follow Top or Bottom Path. Sableye is the
+        Supporter exception and stays on the canon of its own lane. Unlisted
+        Center and Path builds keep the spawn split.
+        """
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        curated_path = Path(tmp.name) / "curated_builds.json"
+        curated_path.write_text(
+            json.dumps(
+                {
+                    "_laneForce": {
+                        "Bottom Path": ["cinderace"],
+                        "Central Area": ["gengar"],
+                        "Top or Bottom Path": {
+                            "ids": ["sylveon"],
+                            "roles": ["Defender", "Supporter"],
+                            "exceptIds": ["sableye"],
+                        },
+                    },
+                }
+            )
+        )
+        pokemon = [
+            {
+                "id": "cinderace",
+                "role": "Attacker",
+                "moves": [],
+                "builds": [
+                    {"name": "Center", "lane": "Center Damage"},
+                    {"name": "Path", "lane": "Path Damage"},
+                ],
+            },
+            {
+                "id": "gengar",
+                "role": "Speedster",
+                "moves": [],
+                "builds": [{"name": "Center", "lane": "Center Damage"}],
+                "creativeBuilds": [{"name": "Creative", "lane": "Anywhere Damage"}],
+            },
+            {
+                "id": "sylveon",
+                "role": "Attacker",
+                "moves": [],
+                "builds": [{"name": "Slash", "lane": "Center Split / Path Damage"}],
+            },
+            {
+                "id": "sableye",
+                "role": "Supporter",
+                "moves": [],
+                "builds": [{"name": "Anywhere", "lane": "Anywhere Support"}],
+            },
+            {
+                "id": "blastoise",
+                "role": "Defender",
+                "moves": [],
+                "builds": [
+                    {"name": "Utility", "lane": "Utility Carry"},
+                    {"name": "Tank", "lane": "Path Tank"},
+                ],
+            },
+            {
+                "id": "dragapult",
+                "role": "Attacker",
+                "moves": [],
+                "builds": [{"name": "Center", "lane": "Center Damage"}],
+            },
+            {
+                "id": "greninja",
+                "role": "Attacker",
+                "moves": [],
+                "builds": [
+                    {"name": "Path", "lane": "Path Damage"},
+                    {"name": "Center", "lane": "Center Damage"},
+                ],
+            },
+            {
+                "id": "meowscarada",
+                "role": "Speedster",
+                "moves": [],
+                "builds": [
+                    {"name": "Center", "lane": "Center Damage"},
+                    {"name": "Path", "lane": "Path Damage"},
+                    {"name": "Any", "lane": "Anywhere Damage"},
+                    {"name": "Any 2", "lane": "Anywhere Damage"},
+                ],
+            },
+        ]
+        with mock.patch.object(normalize, "CURATED", curated_path):
+            apply_curated_builds(pokemon, [], [], [])
+        lanes = {
+            p["id"]: [b["lane"] for b in p.get("builds", [])]
+            + [b["lane"] for b in p.get("creativeBuilds", [])]
+            for p in pokemon
+        }
+        self.assertEqual(lanes["cinderace"], ["Bottom Path", "Bottom Path"])
+        self.assertEqual(lanes["gengar"], ["Central Area", "Central Area"])
+        self.assertEqual(lanes["sylveon"], ["Top or Bottom Path"])
+        self.assertEqual(lanes["sableye"], ["Any Path"])
+        self.assertEqual(lanes["blastoise"], ["Top or Bottom Path", "Top or Bottom Path"])
+        self.assertEqual(lanes["dragapult"], ["Central Area"])
+        self.assertEqual(lanes["greninja"], ["Top or Bottom Path", "Central Area"])
+        self.assertEqual(
+            lanes["meowscarada"],
+            ["Central Area", "Top or Bottom Path", "Any Path", "Any Path"],
+        )
 
 
 class TestBuildBattleItems(unittest.TestCase):

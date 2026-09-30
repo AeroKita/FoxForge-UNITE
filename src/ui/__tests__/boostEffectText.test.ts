@@ -29,6 +29,21 @@ describe("formatBoostEffect", () => {
     expect(formatBoostEffect(chop, 15)).not.toContain("AS");
   });
 
+  it("describes Decidueye Basic Attack as the four-stack cap", () => {
+    const boosts = availableActiveBoosts(find("decidueye"), [null, null, null], null);
+    const basic = boosts.find((b) => b.id === "move:Basic Attack")!;
+    expect(formatBoostEffect(basic, 15)).toBe("+12.0% AS");
+  });
+
+  it("describes Accelgor as cooldown reduction and Escavalier as an enemy slow", () => {
+    const boosts = availableActiveBoosts(find("machamp"), [null, null, null], null);
+    const accelgor = boosts.find((b) => b.id === "accelgor")!;
+    const escavalier = boosts.find((b) => b.id === "escavalier")!;
+    expect(formatBoostEffect(accelgor, 15)).toBe("+10.0% CDR");
+    expect(formatBoostEffect(accelgor, 15)).not.toContain("AS");
+    expect(formatBoostEffect(escavalier, 15)).toBe("Basic attacks slow 30%");
+  });
+
   it("describes a boost from inside its level window when the current level is past it", () => {
     const boosts = availableActiveBoosts(find("machamp"), [null, null, null], null);
     const bulk = boosts.find((b) => b.id === "move:Bulk Up")!;

@@ -87,6 +87,28 @@ def parse_level_cond(cond: str | None):
     return out
 
 
+def resolve_move_source(pokemon: str, source: str, as_points, per):
+    """Return (source, asPoints, perLevel or None).
+
+    Decidueye's calculator row is Auto Attack at 3 with the text cap
+    "up to x4": +3% attack speed per hit, four stacks. The toggle is the
+    cap, labeled Basic Attack at 12. Other text caps (Pressure, Fighter
+    Mode) stay at the sheet's base value. Numeric per-level scaling is
+    unchanged.
+    """
+    if (
+        pokemon == "Decidueye"
+        and source == "Auto Attack"
+        and isinstance(per, str)
+        and isinstance(as_points, (int, float))
+    ):
+        match = re.fullmatch(r"up to x(\d+)", per.strip(), re.IGNORECASE)
+        if match:
+            return "Basic Attack", as_points * int(match.group(1)), None
+    per_level = per if isinstance(per, (int, float)) else None
+    return source, as_points, per_level
+
+
 def sheet_display_name(sheet_name: str) -> str:
     """Map a Mathcord sheet Pokémon name to the FoxForge roster displayName.
 
@@ -153,10 +175,13 @@ def main() -> None:
     moves: dict[str, list] = {}
     for pokemon, source, cond, row in clause.findall(formula):
         row = int(row)
-        entry = {"source": source, "asPoints": row_value.get(row)}
         per = row_per.get(row)
-        if isinstance(per, (int, float)):
-            entry["perLevel"] = per
+        source, points, per_level = resolve_move_source(
+            pokemon, source, row_value.get(row), per
+        )
+        entry = {"source": source, "asPoints": points}
+        if per_level is not None:
+            entry["perLevel"] = per_level
         entry.update(parse_level_cond(cond))
         moves.setdefault(sheet_display_name(pokemon), []).append(entry)
 

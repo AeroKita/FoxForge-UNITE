@@ -181,7 +181,7 @@ npm run data:curate -- scaffold reshiram --write
    (Use your real `<id>` instead of `reshiram`.)
 9. Open `tools/community/curated_builds.json`, find that `"<id>"` entry, and fill:
    - `name` / `emblemName` (same string is fine)
-   - `lane` (e.g. `Anywhere Damage` or `Path Damage`)
+   - `lane` (e.g. `Any Path`, `Top or Bottom Path`, `Bottom Path`, or `Central Area`)
    - `heldItemIds` (three ids, e.g. `energy-amplifier`)
    - `battleItemId` (e.g. `eject-button`)
    - `emblems` (exactly 10 × `{ "emblemId": "048-venonat", "grade": "gold" }`)

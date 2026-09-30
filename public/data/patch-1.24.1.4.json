@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-09-27",
+  "lastUpdated": "2026-09-30",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-09-27"
+    "fetched": "2026-09-30"
   },
   "pokemon": [
     {
@@ -511,7 +511,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Disaster Sense",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
@@ -570,7 +570,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Calamity Blade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
@@ -629,7 +629,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Forewarned Cut",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
@@ -688,7 +688,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Omen Slash",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
@@ -1235,7 +1235,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Royal Guard",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "full-heal",
@@ -1293,7 +1293,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Spectral Blade",
           "heldItemOptional": "muscle-band",
           "battleItemId": "full-heal",
@@ -1351,7 +1351,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "King's Aegis",
           "heldItemOptional": "scope-lens",
           "battleItemId": "full-heal",
@@ -1409,7 +1409,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Cursed Sword",
           "battleItemId": "full-heal",
           "moves": [
@@ -1936,7 +1936,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -1994,7 +1994,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "curse-incense",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -2052,7 +2052,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "curse-incense",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -2586,7 +2586,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -2644,7 +2644,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -2702,7 +2702,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -3096,7 +3096,7 @@
         {
           "name": "Frozen Defender",
           "emblemName": "Frozen Defender",
-          "lane": "Path Protector",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "vanguard-bell",
             "focus-band",
@@ -3669,7 +3669,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "muscle-band",
           "battleItemId": "x-speed",
           "battleItemOptional": "x-attack",
@@ -3727,7 +3727,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -3785,7 +3785,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -4299,7 +4299,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Shell Cannons",
           "heldItemOptional": "exp-share",
           "battleItemId": "eject-button",
@@ -4357,7 +4357,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Spinning Fortress",
           "battleItemId": "eject-button",
           "moves": [
@@ -4414,7 +4414,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Jet Pressure",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -4472,7 +4472,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Utility Carry",
+          "lane": "Top or Bottom Path",
           "emblemName": "Hydro Siege",
           "battleItemId": "eject-button",
           "moves": [
@@ -4996,7 +4996,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Wrist Flames",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
@@ -5051,7 +5051,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "emblemName": "Blazing Kicks",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "eject-button",
@@ -5533,7 +5533,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "x-speed",
           "moves": [
@@ -5590,7 +5590,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "leftovers",
           "battleItemId": "x-speed",
           "moves": [
@@ -5647,7 +5647,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "leftovers",
           "battleItemId": "x-speed",
           "battleItemOptional": "potion",
@@ -6161,7 +6161,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "moves": [
@@ -6219,7 +6219,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
           "moves": [
@@ -6277,7 +6277,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -6336,7 +6336,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -6351,7 +6351,7 @@
         {
           "name": "Step on the Gas (Physical)",
           "emblemName": "Step on the Gas (Physical)",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "attack-weight",
             "float-stone",
@@ -6913,7 +6913,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Ghost Cut",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -6972,7 +6972,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Bitter Charge",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -7031,7 +7031,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Resentful Blade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -7090,7 +7090,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Possessed Charge",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -7624,7 +7624,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -7682,7 +7682,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -7739,7 +7739,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -7796,7 +7796,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -8323,7 +8323,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Wildfire Breath",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
@@ -8382,7 +8382,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Boulder Melt",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
@@ -8441,7 +8441,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Sky Blaze",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
@@ -8908,8 +8908,8 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
-          "emblemName": "Black-Winged",
+          "lane": "Any Path",
+          "emblemName": "Blue Flames",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
           "moves": [
@@ -9381,7 +9381,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Drought Sky",
           "heldItemOptional": "scope-lens",
           "battleItemId": "full-heal",
@@ -9874,7 +9874,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Bottom Path",
           "emblemName": "Stadium Striker",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -9932,7 +9932,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Bottom Path",
           "emblemName": "Burning Soccer",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
@@ -9991,7 +9991,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Bottom Path",
           "emblemName": "Match Point",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -10049,7 +10049,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Bottom Path",
           "emblemName": "Goal Scorer",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
@@ -10521,7 +10521,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Moonlit Hide",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-speed",
@@ -10578,7 +10578,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support or Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Fairy Charm",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -11120,7 +11120,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Flower Lei",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
@@ -11178,7 +11178,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Posy Picker",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
@@ -11236,7 +11236,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Healing Vine",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
@@ -11294,7 +11294,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Sweet Lei",
           "heldItemOptional": "rescue-hood",
           "battleItemId": "slow-smoke",
@@ -11793,7 +11793,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Gulp Missile",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
@@ -11851,7 +11851,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Arrokuda Dive",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
@@ -11909,7 +11909,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Gulping Storm",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
@@ -12415,7 +12415,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Stone Home",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -12473,7 +12473,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Boulder Claim",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -12532,7 +12532,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Cracked Shell",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -13038,7 +13038,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Lunar Nightmare",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "potion",
@@ -13097,7 +13097,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Bad Dreams",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -13155,7 +13155,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Pitch-Black Void",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -13214,7 +13214,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "New Moon",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -13695,69 +13695,16 @@
       },
       "builds": [
         {
-          "name": "Shadow Shackle",
-          "heldItemIds": [
-            "muscle-band",
-            "accel-bracer",
-            "attack-weight"
-          ],
-          "emblems": [
-            {
-              "emblemId": "141-kabutops",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "076-golem",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "250-ho-oh",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "142-aerodactyl",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "128-tauros",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "115-kangaskhan",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "206-dunsparce",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "130-gyarados",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "062-poliwrath",
-              "grade": "gold"
-            },
-            {
-              "emblemId": "195-quagsire",
-              "grade": "gold"
-            }
-          ],
-          "lane": "Anywhere Damage",
-          "emblemName": "Phantom Ranger",
-          "battleItemId": "eject-button",
-          "moves": [
-            "Spirit Shackle",
-            "Shadow Sneak"
-          ]
-        },
-        {
           "name": "Razor Storm",
+          "emblemName": "Arrow Quill",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "muscle-band",
             "scope-lens",
             "rapid-fire-scarf"
           ],
+          "battleItemId": "eject-button",
+          "battleItemOptional": "full-heal",
           "emblems": [
             {
               "emblemId": "141-kabutops",
@@ -13800,22 +13747,78 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
-          "emblemName": "Arrow Quill",
-          "battleItemId": "eject-button",
-          "battleItemOptional": "full-heal",
           "moves": [
             "Razor Leaf",
             "Leaf Storm"
           ]
         },
         {
+          "name": "Shadow Shackle",
+          "emblemName": "Phantom Ranger",
+          "lane": "Bottom Path",
+          "heldItemIds": [
+            "muscle-band",
+            "accel-bracer",
+            "energy-amplifier"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "248-tyranitar",
+              "grade": "bronze"
+            },
+            {
+              "emblemId": "142-aerodactyl",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "250-ho-oh",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "031-nidoqueen",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "089-muk",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "023-ekans",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "169-crobat",
+              "grade": "silver"
+            },
+            {
+              "emblemId": "168-ariados",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "229-houndoom",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "024-arbok",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Spirit Shackle",
+            "Shadow Sneak"
+          ]
+        },
+        {
           "name": "Shackle Storm",
+          "emblemName": "Deadeye",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "muscle-band",
             "accel-bracer",
             "attack-weight"
           ],
+          "battleItemId": "eject-button",
           "emblems": [
             {
               "emblemId": "141-kabutops",
@@ -13858,9 +13861,6 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
-          "emblemName": "Deadeye",
-          "battleItemId": "eject-button",
           "moves": [
             "Spirit Shackle",
             "Leaf Storm"
@@ -13871,7 +13871,7 @@
         {
           "name": "Heavy is the Crown",
           "emblemName": "Heavy is the Crown",
-          "lane": "Center Damage",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "drain-crown",
             "rapid-fire-scarf",
@@ -14409,7 +14409,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Mystical Fire",
@@ -14466,7 +14466,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -14525,7 +14525,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Mystical Fire",
@@ -15052,7 +15052,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Utility Damage",
+          "lane": "Any Path",
           "emblemName": "Ghost Anchor",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "eject-button",
@@ -15562,7 +15562,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "full-heal",
           "moves": [
@@ -15619,7 +15619,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "heldItemOptional": "float-stone",
           "battleItemId": "full-heal",
           "moves": [
@@ -15676,7 +15676,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
           "moves": [
@@ -16166,7 +16166,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemOptional": "charging-charm",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -16224,7 +16224,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemOptional": "rapid-fire-scarf",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -16774,7 +16774,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
           "moves": [
@@ -16831,7 +16831,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "battleItemId": "full-heal",
           "battleItemOptional": "potion",
           "moves": [
@@ -17343,7 +17343,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -17401,7 +17401,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -17459,7 +17459,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -17951,7 +17951,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Seed Fluff",
           "heldItemOptional": "curse-incense",
           "battleItemId": "x-speed",
@@ -18010,7 +18010,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Cotton Bloom",
           "heldItemOptional": "curse-incense",
           "battleItemId": "x-speed",
@@ -18069,7 +18069,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Rescue Fluff",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -18127,7 +18127,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Leaf Cotton",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -18186,7 +18186,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Spreading Seeds",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -18201,7 +18201,7 @@
         {
           "name": "Rapid-Fire Cotton",
           "emblemName": "Rapid-Fire Cotton",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "muscle-band",
             "rapid-fire-scarf",
@@ -18808,7 +18808,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Emperor's Pride",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
@@ -18867,7 +18867,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Trident Horns",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -19398,7 +19398,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -19456,7 +19456,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -19514,7 +19514,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -19573,7 +19573,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -20122,7 +20122,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -20180,7 +20180,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -20238,7 +20238,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -20675,7 +20675,7 @@
         {
           "name": "Crunchy All-Rounder",
           "emblemName": "Crunchy All-Rounder",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "razor-claw",
             "attack-weight",
@@ -21240,7 +21240,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "battleItemId": "eject-button",
           "moves": [
             "Dragon Rush",
@@ -21297,7 +21297,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "battleItemId": "eject-button",
           "moves": [
             "Dragon Rush",
@@ -21354,7 +21354,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "muscle-band",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -21413,7 +21413,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "attack-weight",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -21428,7 +21428,7 @@
         {
           "name": "Heavy is the Crown",
           "emblemName": "Heavy is the Crown",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "drain-crown",
             "rapid-fire-scarf",
@@ -21485,7 +21485,7 @@
         {
           "name": "Step on the Gas (Physical)",
           "emblemName": "Step on the Gas (Physical)",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "muscle-band",
             "float-stone",
@@ -22015,7 +22015,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere damage",
+          "lane": "Bottom Path",
           "heldItemOptional": "curse-incense",
           "battleItemId": "eject-button",
           "moves": [
@@ -22073,7 +22073,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -22132,7 +22132,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -22191,7 +22191,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemOptional": "curse-incense",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -22692,7 +22692,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -22749,7 +22749,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemOptional": "shell-bell",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -22763,7 +22763,7 @@
         {
           "name": "Step on the Gas (Special)",
           "emblemName": "Step on the Gas (Special)",
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemIds": [
             "drive-lens",
             "float-stone",
@@ -23318,7 +23318,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "drive-lens",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -23377,7 +23377,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
           "moves": [
@@ -23435,7 +23435,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
           "moves": [
@@ -23941,7 +23941,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Sappy Hug",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
@@ -23999,7 +23999,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Gooey Dragon",
           "heldItemOptional": "big-root",
           "battleItemId": "x-speed",
@@ -24462,7 +24462,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -24520,7 +24520,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -24578,7 +24578,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "potion",
           "battleItemOptional": "eject-button",
@@ -25062,7 +25062,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -25120,7 +25120,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
           "moves": [
@@ -25177,7 +25177,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-attack",
           "moves": [
@@ -25750,7 +25750,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Dragon Breath",
@@ -25806,7 +25806,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Dragon Breath",
@@ -25862,7 +25862,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -26560,7 +26560,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Black Cascade",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -26619,7 +26619,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Tyrant Serpent",
           "heldItemOptional": "rocky-helmet",
           "battleItemId": "eject-button",
@@ -27111,7 +27111,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Protector",
+          "lane": "Top or Bottom Path",
           "emblemName": "Rainbow Wings",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27169,7 +27169,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Phoenix Dive",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27227,7 +27227,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support Protector",
+          "lane": "Top or Bottom Path",
           "emblemName": "Seven Colors",
           "heldItemOptional": "rocky-helmet",
           "battleItemId": "full-heal",
@@ -27286,7 +27286,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Sacred Ashes",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27344,7 +27344,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Revival Flame",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -27843,7 +27843,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Hyperspace Prank",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
@@ -27902,7 +27902,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Ring Trick",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
@@ -27961,7 +27961,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Confined Mischief",
           "heldItemOptional": "choice-specs",
           "battleItemId": "full-heal",
@@ -28020,7 +28020,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Unbound Rings",
           "heldItemOptional": "exp-share",
           "battleItemId": "full-heal",
@@ -28035,7 +28035,7 @@
         {
           "name": "Rapid-Fire Rings",
           "emblemName": "Rapid-Fire Rings",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "muscle-band",
             "rapid-fire-scarf",
@@ -28557,7 +28557,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "emblemName": "Sniper Elite",
           "heldItemOptional": "slick-spoon",
           "battleItemId": "eject-button",
@@ -28615,7 +28615,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Acrobatics",
@@ -28672,7 +28672,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Fell Stinger",
@@ -29171,7 +29171,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Ferry Song",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
@@ -29229,7 +29229,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Utility",
+          "lane": "Top or Bottom Path",
           "emblemName": "Gentle Giant",
           "heldItemOptional": "exp-share",
           "battleItemId": "x-speed",
@@ -29287,7 +29287,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Perish Choir",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "x-speed",
@@ -29801,7 +29801,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Mist Veil",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
@@ -29860,7 +29860,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Eon Heart",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
@@ -29919,7 +29919,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Empathic Cheer",
           "heldItemOptional": "drive-lens",
           "battleItemId": "potion",
@@ -29978,7 +29978,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Glass Down",
           "heldItemOptional": "shell-bell",
           "battleItemId": "potion",
@@ -29993,7 +29993,7 @@
         {
           "name": "Step on the Gas (Special)",
           "emblemName": "Step on the Gas (Special)",
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "drive-lens",
             "curse-incense",
@@ -30531,7 +30531,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Jet Stream",
           "battleItemId": "eject-button",
           "moves": [
@@ -30588,7 +30588,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Luster Mind",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
@@ -30646,7 +30646,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Blue Eon",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
@@ -30660,7 +30660,7 @@
         {
           "name": "Step on the Gas (Special)",
           "emblemName": "Step on the Gas (Special)",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "drive-lens",
             "wise-glasses",
@@ -31285,7 +31285,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Fresh Air",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "x-attack",
@@ -31344,7 +31344,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
           "moves": [
@@ -31851,7 +31851,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Doggo Zoomies",
           "heldItemOptional": "muscle-band",
           "battleItemId": "full-heal",
@@ -31909,7 +31909,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Punch Rush",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
@@ -31968,7 +31968,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Punchy Doggy",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -32026,7 +32026,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Amplified Aura Cannon",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
@@ -32238,7 +32238,7 @@
         {
           "name": "Step on the Gas (Physical)",
           "emblemName": "Step on the Gas (Physical)",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "attack-weight",
             "float-stone",
@@ -32742,7 +32742,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Aura Overflow",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
@@ -33227,7 +33227,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Four-Armed Fury",
           "heldItemOptional": "scope-lens",
           "battleItemId": "eject-button",
@@ -33285,7 +33285,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Powerhouse",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
@@ -33344,7 +33344,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Belt Throw",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
@@ -33402,7 +33402,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "moves": [
             "Submission",
@@ -33415,7 +33415,7 @@
         {
           "name": "Step on the Gas (Physical)",
           "emblemName": "Step on the Gas (Physical)",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "attack-weight",
             "float-stone",
@@ -33995,7 +33995,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Twin Tusk",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -34053,7 +34053,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Ice Age",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -34111,7 +34111,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Frozen Charge",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -34499,7 +34499,7 @@
         {
           "name": "Healing Support",
           "emblemName": "Healing Support",
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "rescue-hood",
             "focus-band",
@@ -34556,7 +34556,7 @@
         {
           "name": "Shield Support",
           "emblemName": "Shield Support",
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "rescue-hood",
             "resonant-guard",
@@ -35094,7 +35094,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "emblemName": "Wanna see a Trick?",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
@@ -35152,7 +35152,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Wanna see it again?",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
@@ -35210,7 +35210,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Critical Catnip",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
@@ -35269,7 +35269,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Double Stacker",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
@@ -35798,7 +35798,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Prepare for trouble!",
           "heldItemOptional": "muscle-band",
           "battleItemId": "full-heal",
@@ -35857,7 +35857,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Make it double!",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -35915,7 +35915,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Prepare to fight!",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -35973,7 +35973,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Meowth! That's right!",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-speed",
@@ -36515,7 +36515,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "razor-claw",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -36573,7 +36573,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "razor-claw",
           "battleItemId": "x-speed",
           "battleItemOptional": "full-heal",
@@ -36631,7 +36631,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "battleItemId": "eject-button",
           "battleItemOptional": "full-heal",
           "moves": [
@@ -37113,7 +37113,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "battleItemId": "eject-button",
           "emblemName": "Ancient Mirage"
         },
@@ -37166,7 +37166,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Support",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "drive-lens",
           "battleItemId": "eject-button",
           "emblemName": "Every Technique"
@@ -37675,7 +37675,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Spliced Future",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
@@ -37734,7 +37734,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Psychic Warp",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
@@ -37793,7 +37793,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Fighting Genes",
           "heldItemOptional": "focus-band",
           "battleItemId": "potion",
@@ -37852,7 +37852,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Apex Clone",
           "heldItemOptional": "focus-band",
           "battleItemId": "potion",
@@ -38313,7 +38313,7 @@
         {
           "name": "Items Only",
           "emblemName": "Ultimate Genome",
-          "lane": "Path Damage",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "mewtwonite-y",
             "muscle-band",
@@ -38864,7 +38864,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Ragged Disguise",
           "heldItemOptional": "curse-bangle",
           "battleItemId": "full-heal",
@@ -38923,7 +38923,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "razor-claw",
           "battleItemId": "x-attack",
           "battleItemOptional": "full-heal",
@@ -38982,7 +38982,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -39483,7 +39483,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Ruinous Engine",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -39541,7 +39541,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Apex Motor",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -39923,7 +39923,7 @@
         {
           "name": "Blazing All-Rounder",
           "emblemName": "Blazing All-Rounder",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "slick-spoon",
             "choice-specs",
@@ -40370,7 +40370,7 @@
         {
           "name": "Full Belly Mode",
           "emblemName": "Full Belly Mode",
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemIds": [
             "attack-weight",
             "razor-claw",
@@ -40427,7 +40427,7 @@
         {
           "name": "Hangry Mode",
           "emblemName": "Hangry Mode",
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemIds": [
             "attack-weight",
             "razor-claw",
@@ -40970,7 +40970,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disrupter",
+          "lane": "Top or Bottom Path",
           "emblemName": "Invisible Wall",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -41028,7 +41028,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Mime Act",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -41087,7 +41087,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Supporter",
+          "lane": "Top or Bottom Path",
           "emblemName": "Pantomime",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
@@ -41146,7 +41146,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disrupter",
+          "lane": "Top or Bottom Path",
           "emblemName": "Stage Guard",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -41647,7 +41647,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Snow Veil",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -41664,7 +41664,7 @@
             "drive-lens"
           ],
           "emblems": [],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
           "battleItemOptional": "x-attack",
@@ -41723,7 +41723,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Rapid-Fire Snow",
           "heldItemOptional": "drive-lens",
           "battleItemId": "x-attack",
@@ -41781,7 +41781,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Sacred Snow",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
@@ -42198,7 +42198,7 @@
         {
           "name": "Dimensional Rend",
           "emblemName": "Dimensional Rend",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "sp--atk-specs",
             "slick-spoon",
@@ -42255,7 +42255,7 @@
         {
           "name": "Spatial Awareness",
           "emblemName": "Spatial Awareness",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "shell-bell",
             "slick-spoon",
@@ -42828,7 +42828,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Charged Palms",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
@@ -42839,7 +42839,7 @@
         {
           "name": "Step on the Gas (Physical)",
           "emblemName": "Step on the Gas (Physical)",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "muscle-band",
             "float-stone",
@@ -43363,7 +43363,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Cheek Sparks",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -43422,7 +43422,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Thunder Mouse",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
@@ -43481,7 +43481,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Storm Cheeks",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -43540,7 +43540,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Volt Star",
           "heldItemOptional": "drive-lens",
           "battleItemId": "eject-button",
@@ -44055,7 +44055,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Vacant Stare",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "potion",
@@ -44113,7 +44113,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Headache",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
@@ -44171,7 +44171,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Migraine Wave",
           "heldItemOptional": "curse-incense",
           "battleItemId": "potion",
@@ -44230,7 +44230,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Psychic Duck",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "potion",
@@ -44647,7 +44647,7 @@
         {
           "name": "Serving Looks",
           "emblemName": "Serving Looks",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "attack-weight",
             "drain-crown",
@@ -44704,7 +44704,7 @@
         {
           "name": "Carnival King",
           "emblemName": "Carnival King",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "attack-weight",
             "weakness-policy",
@@ -45281,7 +45281,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Tail Surf",
           "heldItemOptional": "muscle-band",
           "battleItemId": "eject-button",
@@ -45340,7 +45340,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Pancake Ride",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
@@ -45399,7 +45399,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Psychic Surf",
           "heldItemOptional": "shell-bell",
           "battleItemId": "eject-button",
@@ -45414,7 +45414,7 @@
         {
           "name": "Rapid-Fire Surfer",
           "emblemName": "Rapid-Fire Surfer",
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "heldItemIds": [
             "muscle-band",
             "rapid-fire-scarf",
@@ -45937,7 +45937,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Spirit",
           "heldItemOptional": "drive-lens",
           "battleItemId": "full-heal",
@@ -45996,7 +45996,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Fast Honse",
           "heldItemOptional": "drive-lens",
           "battleItemId": "full-heal",
@@ -46055,7 +46055,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Friendship is Magic",
           "battleItemId": "full-heal",
           "battleItemOptional": "x-speed",
@@ -46443,7 +46443,7 @@
         {
           "name": "World of Truth",
           "emblemName": "World of Truth",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "energy-amplifier",
             "slick-spoon",
@@ -46974,7 +46974,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Support",
+          "lane": "Any Path",
           "emblemName": "Gem Eater",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -47032,7 +47032,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Support",
+          "lane": "Any Path",
           "emblemName": "Cave Lurk",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "full-heal",
@@ -47091,7 +47091,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Support",
+          "lane": "Any Path",
           "emblemName": "Stolen Jewel",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -47150,7 +47150,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Support",
+          "lane": "Any Path",
           "emblemName": "Darkness Grin",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "full-heal",
@@ -47625,7 +47625,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Amplified Red Illusion Dance",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47683,7 +47683,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Bullet Dance",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47741,7 +47741,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Amplified Red Illusion Hit",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -47799,7 +47799,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Bullet Hit",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -48280,7 +48280,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Ninja Blur",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
@@ -48339,7 +48339,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Twin Scythes",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
@@ -48398,7 +48398,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Afterimage",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
@@ -48934,7 +48934,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Noble Leek",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -48993,7 +48993,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Knight's Honor",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "eject-button",
@@ -49389,7 +49389,7 @@
         {
           "name": "Singing Special Attacker",
           "emblemName": "Singing Special Attacker",
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "energy-amplifier",
             "slick-spoon",
@@ -49446,7 +49446,7 @@
         {
           "name": "Mobile Special Attacker",
           "emblemName": "Mobile Special Attacker",
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "energy-amplifier",
             "slick-spoon",
@@ -49974,7 +49974,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Dopey Shell",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -50032,7 +50032,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Shellder Bite",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -50090,7 +50090,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Slack Tide",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -50148,7 +50148,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Space Out",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
@@ -50603,7 +50603,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Nap Guard",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -50662,7 +50662,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Big Yawn",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -50721,7 +50721,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Hungry Slam",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "x-speed",
@@ -50780,7 +50780,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Hibernation",
           "heldItemOptional": "big-root",
           "battleItemId": "x-speed",
@@ -51276,7 +51276,7 @@
         {
           "name": "Emissary of the Sun",
           "emblemName": "Emissary of the Sun",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "attack-weight",
             "razor-claw",
@@ -51333,7 +51333,7 @@
         {
           "name": "The Beast That Devours The Sun",
           "emblemName": "The Beast That Devours The Sun",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "attack-weight",
             "razor-claw",
@@ -51390,7 +51390,7 @@
         {
           "name": "Radiant Sun",
           "emblemName": "Radiant Sun",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "attack-weight",
             "razor-claw",
@@ -51942,7 +51942,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "North Wind",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -51999,7 +51999,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Pure Water",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -52057,7 +52057,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Damage",
+          "lane": "Any Path",
           "emblemName": "Aurora Run",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -52115,7 +52115,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Damage",
+          "lane": "Any Path",
           "emblemName": "Crystal Beacon",
           "battleItemId": "full-heal",
           "battleItemOptional": "eject-button",
@@ -52632,7 +52632,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Soothing Aura",
           "battleItemId": "x-speed",
           "battleItemOptional": "eject-button",
@@ -52690,7 +52690,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Ribbon Feelers",
           "heldItemOptional": "choice-specs",
           "battleItemId": "x-speed",
@@ -52749,7 +52749,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Dragon Vanquisher",
           "heldItemOptional": "muscle-band",
           "battleItemId": "potion",
@@ -52808,7 +52808,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Intertwining Dance",
           "heldItemOptional": "focus-band",
           "battleItemId": "x-speed",
@@ -52823,7 +52823,7 @@
         {
           "name": "That's a Fast Dog",
           "emblemName": "That's a Fast Dog",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "exp-share",
             "choice-scarf",
@@ -53354,7 +53354,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Mach Dive",
           "heldItemOptional": "accel-bracer",
           "battleItemId": "eject-button",
@@ -53413,7 +53413,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "emblemName": "Ember Shower",
           "heldItemOptional": "float-stone",
           "battleItemId": "eject-button",
@@ -53928,7 +53928,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Scrap Thief",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -53986,7 +53986,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Frost Hammer",
           "heldItemOptional": "charging-charm",
           "battleItemId": "eject-button",
@@ -54044,7 +54044,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Corviknight Crush",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -54102,7 +54102,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "Daring Swing",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -54496,7 +54496,7 @@
         {
           "name": "Purple Haze",
           "emblemName": "Purple Haze",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "wise-glasses",
             "curse-incense",
@@ -54553,7 +54553,7 @@
         {
           "name": "High Voltage",
           "emblemName": "High Voltage",
-          "lane": "Anywhere Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "muscle-band",
             "rapid-fire-scarf",
@@ -55112,7 +55112,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Forest Trap",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -55170,7 +55170,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Elder Curse",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "x-speed",
@@ -55228,7 +55228,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Horned Stump",
           "heldItemOptional": "attack-weight",
           "battleItemId": "eject-button",
@@ -55802,7 +55802,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Queenly Majesty",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",
@@ -55860,7 +55860,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Fruit Queen",
           "heldItemOptional": "weakness-policy",
           "battleItemId": "full-heal",
@@ -55918,7 +55918,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "emblemName": "High Heel",
           "heldItemOptional": "aeos-cookie",
           "battleItemId": "full-heal",
@@ -56320,7 +56320,7 @@
         {
           "name": "Blazing Special Attacker",
           "emblemName": "Blazing Special Attacker",
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "heldItemIds": [
             "wise-glasses",
             "slick-spoon",
@@ -56906,7 +56906,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Mountain Breaker",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -56964,7 +56964,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Desert Tyrant",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -57023,7 +57023,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Sand Stream",
           "heldItemOptional": "resonant-guard",
           "battleItemId": "eject-button",
@@ -57527,7 +57527,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disrupter",
+          "lane": "Top or Bottom Path",
           "emblemName": "Moonlit Rings",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -57586,7 +57586,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Night Watch",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -57645,7 +57645,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Lunar Wish",
           "heldItemOptional": "focus-band",
           "battleItemId": "eject-button",
@@ -57704,7 +57704,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disrupter",
+          "lane": "Top or Bottom Path",
           "emblemName": "Midnight Guard",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -58337,7 +58337,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "emblemName": "Rapid Strike",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
@@ -58396,7 +58396,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "emblemName": "Single Strike",
           "heldItemOptional": "charging-charm",
           "battleItemId": "eject-button",
@@ -58410,7 +58410,7 @@
         {
           "name": "Flurry of Surging Strikes",
           "emblemName": "Flurry of Surging Strikes",
-          "lane": "Center Damage",
+          "lane": "Central Area",
           "heldItemIds": [
             "accel-bracer",
             "weakness-policy",
@@ -58993,7 +58993,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disruption",
+          "lane": "Top or Bottom Path",
           "emblemName": "Mermaid Tail",
           "heldItemOptional": "sp--atk-specs",
           "battleItemId": "eject-button",
@@ -59052,7 +59052,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disruption",
+          "lane": "Top or Bottom Path",
           "emblemName": "Bubble Jet",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -59110,7 +59110,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disruption",
+          "lane": "Top or Bottom Path",
           "emblemName": "Water Cells",
           "heldItemOptional": "wise-glasses",
           "battleItemId": "eject-button",
@@ -59169,7 +59169,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Disruption (Unite Emphasis)",
+          "lane": "Top or Bottom Path",
           "emblemName": "Fin Ridge",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -59227,7 +59227,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support",
+          "lane": "Top or Bottom Path",
           "emblemName": "Aqua Veil",
           "battleItemId": "eject-button",
           "battleItemOptional": "potion",
@@ -59727,7 +59727,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "emblemName": "Solar Bloom",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -59785,7 +59785,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "emblemName": "Overgrow",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
@@ -59844,7 +59844,7 @@
               "grade": "bronze"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Bottom Path",
           "emblemName": "Flower Cannon",
           "heldItemOptional": "choice-specs",
           "battleItemId": "eject-button",
@@ -60314,7 +60314,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support or Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Balloon Song",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -60373,7 +60373,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Support or Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Lullaby",
           "heldItemOptional": "buddy-barrier",
           "battleItemId": "eject-button",
@@ -60432,7 +60432,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Path Tank",
+          "lane": "Top or Bottom Path",
           "emblemName": "Inflate",
           "heldItemOptional": "vanguard-bell",
           "battleItemId": "eject-button",
@@ -60842,7 +60842,7 @@
         {
           "name": "Dark Survival",
           "emblemName": "Dark Survival",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "wise-glasses",
             "slick-spoon",
@@ -60899,7 +60899,7 @@
         {
           "name": "Lumière of CDR",
           "emblemName": "Lumière of CDR",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "wise-glasses",
             "drive-lens",
@@ -61541,7 +61541,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Crowned Sword",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
@@ -61600,7 +61600,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Hero of Galar",
           "heldItemOptional": "razor-claw",
           "battleItemId": "eject-button",
@@ -61659,7 +61659,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Behemoth Slayer",
           "heldItemOptional": "charging-charm",
           "battleItemId": "full-heal",
@@ -62048,7 +62048,7 @@
         {
           "name": "Bolt Cannon",
           "emblemName": "The Thunderbird",
-          "lane": "Path Damage",
+          "lane": "Top or Bottom Path",
           "heldItemIds": [
             "wise-glasses",
             "drive-lens",
@@ -62606,7 +62606,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Thunderclap",
           "heldItemOptional": "attack-weight",
           "battleItemId": "x-attack",
@@ -62665,7 +62665,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Stored Lightning",
           "heldItemOptional": "attack-weight",
           "battleItemId": "full-heal",
@@ -62724,7 +62724,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Plasma Claws",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "x-attack",
@@ -62783,7 +62783,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Paw Spark",
           "heldItemOptional": "attack-weight",
           "battleItemId": "x-attack",
@@ -62842,7 +62842,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Any Path",
           "emblemName": "Live Wire",
           "heldItemOptional": "razor-claw",
           "battleItemId": "full-heal",
@@ -63349,7 +63349,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "Pack Illusion",
           "heldItemOptional": "focus-band",
           "battleItemId": "full-heal",
@@ -63408,7 +63408,7 @@
               "grade": "gold"
             }
           ],
-          "lane": "Anywhere Damage",
+          "lane": "Central Area",
           "emblemName": "False Face",
           "heldItemOptional": "energy-amplifier",
           "battleItemId": "full-heal",

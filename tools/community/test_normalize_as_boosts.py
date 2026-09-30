@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from normalize_as_boosts import merge_manual_moves, sheet_display_name
+from normalize_as_boosts import merge_manual_moves, resolve_move_source, sheet_display_name
 
 
 class TestSheetDisplayName(unittest.TestCase):
@@ -19,6 +19,28 @@ class TestSheetDisplayName(unittest.TestCase):
     def test_unmapped_names_pass_through(self):
         self.assertEqual(sheet_display_name("Tsareena"), "Tsareena")
         self.assertEqual(sheet_display_name("Gyarados"), "Gyarados")
+
+
+class TestResolveMoveSource(unittest.TestCase):
+    """Decidueye's basic-attack stacks are one 12-point toggle."""
+
+    def test_decidueye_auto_attack_is_the_four_stack_cap(self):
+        self.assertEqual(
+            resolve_move_source("Decidueye", "Auto Attack", 3.0, "up to x4"),
+            ("Basic Attack", 12.0, None),
+        )
+
+    def test_other_text_caps_stay_at_the_base_value(self):
+        self.assertEqual(
+            resolve_move_source("Mewtwo Y", "Pressure", 3.0, "up to x10"),
+            ("Pressure", 3.0, None),
+        )
+
+    def test_numeric_per_level_is_unchanged(self):
+        self.assertEqual(
+            resolve_move_source("Decidueye", "Razor Leaf", 40.0, 1.0),
+            ("Razor Leaf", 40.0, 1.0),
+        )
 
 
 class TestMergeManualMoves(unittest.TestCase):

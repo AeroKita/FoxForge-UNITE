@@ -158,8 +158,8 @@
     ],
     "Decidueye": [
       {
-        "source": "Auto Attack",
-        "asPoints": 3.0
+        "source": "Basic Attack",
+        "asPoints": 12.0
       },
       {
         "source": "Leafage",
