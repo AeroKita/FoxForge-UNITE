@@ -21,7 +21,7 @@ Apply in exactly this sequence to match in-game behavior:
 > emblem bonus, your numbers will be wrong. This is the most common inaccuracy in  
 > third-party tools.
 
-Active toggles are applied later, in `derive.ts`, after `computeEffectiveStats`: multipliers first, then flat adds. Attack-speed points stay on the attack-speed path. Accelgor's buff is a flat add of `0.10` CDR (10 percentage points) for 70s. Escavalier's slow is an enemy effect and does not enter the stat block.  
+Active toggles are applied later, in `derive.ts`, after `computeEffectiveStats`: multipliers first, then flat adds. Attack-speed points stay on the attack-speed path. Accelgor's buff is a flat add of `0.10` CDR (10 percentage points) for 70s.  
   
 ## Set-Bonus Thresholds  
   

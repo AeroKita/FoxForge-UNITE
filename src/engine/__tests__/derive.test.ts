@@ -148,14 +148,14 @@ describe("deriveBuild — crit emblem flats and active crit buffs", () => {
     expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
   });
 
-  it("Escavalier does not change holder stats", () => {
+  it("does not offer Escavalier, and a leftover id does not change holder stats", () => {
     const off = deriveBuild(emptyLoadout("machamp"), true, [40, 40, 40]);
     const on = deriveBuild(
       { ...emptyLoadout("machamp"), activeBoostIds: ["escavalier"] },
       true,
       [40, 40, 40],
     );
-    expect(on.availableBoosts.some((b) => b.id === "escavalier")).toBe(true);
+    expect(on.availableBoosts.some((b) => b.id === "escavalier")).toBe(false);
     expect(on.effective).toEqual(off.effective);
     expect(on.attackSpeed!.attacksPerSecond).toBeCloseTo(off.attackSpeed!.attacksPerSecond, 6);
     expect(on.buffedStats.size).toBe(off.buffedStats.size);

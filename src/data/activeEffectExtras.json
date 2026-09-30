@@ -4,11 +4,6 @@
       "label": "Accelgor",
       "statAdds": { "cdr": 0.1 },
       "note": "Grants the holder 10% cooldown reduction for 70s."
-    },
-    "escavalier": {
-      "label": "Escavalier",
-      "effectText": "Basic attacks slow 30%",
-      "note": "For 70s, basic attacks slow enemies by 30%."
     }
   },
   "items": {

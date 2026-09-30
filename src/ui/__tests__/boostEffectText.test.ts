@@ -35,13 +35,12 @@ describe("formatBoostEffect", () => {
     expect(formatBoostEffect(basic, 15)).toBe("+12.0% AS");
   });
 
-  it("describes Accelgor as cooldown reduction and Escavalier as an enemy slow", () => {
+  it("describes Accelgor as cooldown reduction and does not list Escavalier", () => {
     const boosts = availableActiveBoosts(find("machamp"), [null, null, null], null);
     const accelgor = boosts.find((b) => b.id === "accelgor")!;
-    const escavalier = boosts.find((b) => b.id === "escavalier")!;
     expect(formatBoostEffect(accelgor, 15)).toBe("+10.0% CDR");
     expect(formatBoostEffect(accelgor, 15)).not.toContain("AS");
-    expect(formatBoostEffect(escavalier, 15)).toBe("Basic attacks slow 30%");
+    expect(boosts.some((b) => b.id === "escavalier")).toBe(false);
   });
 
   it("describes a boost from inside its level window when the current level is past it", () => {

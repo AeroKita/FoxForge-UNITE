@@ -94,34 +94,27 @@ describe("active-boost resolution", () => {
     );
   });
 
-  it("offers Accelgor and Escavalier wild buffs after allies and before moves", () => {
+  it("offers Accelgor after allies and before moves, and does not offer Escavalier", () => {
     const gardevoir = availableActiveBoosts(find("gardevoir"), [null, null, null], null);
     const ids = gardevoir.map((b) => b.id);
     expect(ids.indexOf("accelgor")).toBe(ids.indexOf("mew-coaching") + 1);
-    expect(ids.indexOf("escavalier")).toBe(ids.indexOf("accelgor") + 1);
+    expect(ids).not.toContain("escavalier");
     expect(gardevoir.find((b) => b.id === "accelgor")).toMatchObject({
       label: "Accelgor",
       source: "wild",
       asPoints: 0,
       statAdds: { cdr: 0.1 },
     });
-    expect(gardevoir.find((b) => b.id === "escavalier")).toMatchObject({
-      label: "Escavalier",
-      source: "wild",
-      asPoints: 0,
-      effectText: "Basic attacks slow 30%",
-    });
-    expect(gardevoir.find((b) => b.id === "escavalier")?.statAdds).toBeUndefined();
-    expect(gardevoir.find((b) => b.id === "escavalier")?.statMultipliers).toBeUndefined();
 
     const machamp = availableActiveBoosts(find("machamp"), [null, null, null], null);
     const firstMove = machamp.findIndex((b) => b.source === "move");
     expect(firstMove).toBeGreaterThan(0);
-    expect(machamp.findIndex((b) => b.id === "escavalier")).toBeLessThan(firstMove);
+    expect(machamp.findIndex((b) => b.id === "accelgor")).toBeLessThan(firstMove);
+    expect(machamp.some((b) => b.id === "escavalier")).toBe(false);
 
     const bare = availableActiveBoosts(null, [null, null, null], null);
     expect(bare.some((b) => b.id === "accelgor")).toBe(true);
-    expect(bare.some((b) => b.id === "escavalier")).toBe(true);
+    expect(bare.some((b) => b.id === "escavalier")).toBe(false);
   });
 
   it("does not offer Sableye Confuse Ray as a self attack-speed buff", () => {

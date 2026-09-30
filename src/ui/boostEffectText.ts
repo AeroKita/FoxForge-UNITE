@@ -61,6 +61,5 @@ export function formatBoostEffect(boost: ActiveBoost, level: number): string {
       parts.push(`${sign}${Math.round(add)} ${statLabel(stat)}`);
     }
   }
-  if (boost.effectText) parts.push(boost.effectText);
   return parts.join(", ");
 }
