@@ -120,9 +120,9 @@ describe("Compare stat columns", () => {
     expect(html).toContain("rounded-full bg-compare-a");
     expect(html).toContain("rounded-full bg-compare-b");
     expect(html).not.toContain("#4f5bd5");
-    expect(html).not.toContain("#d4537e");
+    expect(html).not.toContain("#9a6207");
     expect(html).not.toContain("#22d3ee");
-    expect(html).not.toContain("#f472b6");
+    expect(html).not.toContain("#f59e0b");
     expect(html).toContain('data-stroke="var(--color-compare-a)"');
     expect(html).toContain('data-fill="var(--color-compare-a)"');
     expect(html).toContain('data-stroke="var(--color-compare-b)"');

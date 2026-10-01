@@ -22,11 +22,11 @@
   --color-accent-weak: #eef0fb;
   --color-accent-ink: #3f49b8;
 
-  /* Compare lanes share the radar's hues: blue for A, rose for B.
-     Washes mix the lane into the card surface so light and dark both recompute
-     when those two tokens change. */
+  /* Compare lanes: cool accent for A, warm amber for B, so the pair stays apart
+     under red-green color-vision deficiency. Washes mix each lane into the card
+     surface. Same hue as --color-as-ink; copied, not aliased. */
   --color-compare-a: #4f5bd5;
-  --color-compare-b: #d4537e;
+  --color-compare-b: #9a6207;
   --color-compare-a-wash: color-mix(in srgb, var(--color-compare-a) 22%, var(--color-surface));
   --color-compare-b-wash: color-mix(in srgb, var(--color-compare-b) 22%, var(--color-surface));
 
@@ -95,9 +95,11 @@
   --color-accent-weak: #16314a;
   --color-accent-ink: #67e8f9;
 
-  /* Brighter cyan / pink so the same lanes stay visible on the dark surface. */
+  /* Cyan accent for A, grade-slider amber for B. Pink collapsed into the cyan
+     under protanopia and deuteranopia; this amber does not. Copied from
+     --color-grade-slider, not aliased. */
   --color-compare-a: #22d3ee;
-  --color-compare-b: #f472b6;
+  --color-compare-b: #f59e0b;
 
   --color-pos: #4ade80;
   --color-neg: #fb7185;

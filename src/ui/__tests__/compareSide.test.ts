@@ -7,10 +7,14 @@ import {
 } from "../compareSide";
 
 describe("compare side colors", () => {
-  it("frames build A with the chart blue and build B with the chart red", () => {
+  it("frames both lanes at the Pokémon icon height", () => {
+    // h-8 icon (2rem) + py-2 (1rem) + border-2 (4px), so a text-only row matches the icon row.
+    const iconRow = "min-h-[calc(2rem+1rem+4px)]";
+    expect(compareIdentityClass("A")).toContain(iconRow);
     expect(compareIdentityClass("A")).toContain("border-2");
     expect(compareIdentityClass("A")).toContain("border-compare-a");
     expect(compareIdentityClass("A")).not.toContain("compare-b");
+    expect(compareIdentityClass("B")).toContain(iconRow);
     expect(compareIdentityClass("B")).toContain("border-2");
     expect(compareIdentityClass("B")).toContain("border-compare-b");
     expect(compareIdentityClass("B")).not.toContain("compare-a");
