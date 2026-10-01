@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { deriveBuild } from "../../engine/derive";
 import { emptyLoadout } from "../../state/loadout";
-import { levelChartValue } from "../levelChart";
+import { formatLevelChartValue, LEVEL_CHART_METRICS, levelChartValue } from "../levelChart";
 
 describe("levelChartValue", () => {
   it("plots Machamp crit as percentage points", () => {
@@ -36,5 +36,23 @@ describe("levelChartValue", () => {
     );
     expect(levelChartValue(d, "attackSpeed")).toBeCloseTo(d.attackSpeed!.asPoints, 6);
     expect(levelChartValue(d, "attackSpeed")).toBeGreaterThan(30);
+  });
+});
+
+describe("level chart display", () => {
+  it("places Atk Speed immediately before Attacks/sec", () => {
+    const labels = LEVEL_CHART_METRICS.map((m) => m.label);
+    expect(labels[labels.indexOf("Attacks/sec") - 1]).toBe("Atk Speed");
+  });
+
+  it("appends % only for percentage-point metrics", () => {
+    expect(formatLevelChartValue(40, "attackSpeed")).toBe("40%");
+    expect(formatLevelChartValue(40.0000002, "attackSpeed")).toBe("40%");
+    expect(formatLevelChartValue(40.5, "attackSpeed")).toBe("40.5%");
+    expect(formatLevelChartValue(20, "critRate")).toBe("20%");
+    expect(formatLevelChartValue(10, "cdr")).toBe("10%");
+    expect(formatLevelChartValue(5, "lifesteal")).toBe("5%");
+    expect(formatLevelChartValue(1.25, "aps")).toBe("1.25");
+    expect(formatLevelChartValue(4523, "hp")).toBe("4523");
   });
 });

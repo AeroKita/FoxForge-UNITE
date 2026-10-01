@@ -31,16 +31,6 @@ export function StatPanel() {
       )}
 
       {expert && (
-        <CollapsibleCard title="Attack Speed" persistKey="attackspeed" tone="amber">
-          <div className="grid grid-cols-3 gap-2 text-center">
-            <Metric label="AS Stat" value={`${attackSpeed.asPoints.toFixed(1)}%`} />
-            <Metric label="Frames / atk" value={String(attackSpeed.frames)} />
-            <Metric label="Attacks / sec" value={attackSpeed.attacksPerSecond.toFixed(2)} />
-          </div>
-        </CollapsibleCard>
-      )}
-
-      {expert && (
         <CollapsibleCard title="Combat Analytics" persistKey="analytics" tone="sky">
           <div className="grid grid-cols-3 gap-2 text-center">
             <Metric
@@ -61,15 +51,25 @@ export function StatPanel() {
           </div>
           <p className="mt-2 text-[10px] text-faint">
             eHP = HP × (1 + Def/600). *Basic ATK/s is a relative index (offense × attacks/sec), for
-            comparing builds — not in-game damage.
+            comparing builds.
           </p>
+        </CollapsibleCard>
+      )}
+
+      {expert && (
+        <CollapsibleCard title="Attack Speed" persistKey="attackspeed" tone="amber">
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <Metric label="AS Stat" value={`${attackSpeed.asPoints.toFixed(1)}%`} />
+            <Metric label="Frames / atk" value={String(attackSpeed.frames)} />
+            <Metric label="Attacks / sec" value={attackSpeed.attacksPerSecond.toFixed(2)} />
+          </div>
         </CollapsibleCard>
       )}
 
       {expert && (
         <CollapsibleCard title="Active Effects" persistKey="effects">
           <p className="mb-3 text-xs text-faint">
-            Off by default. Toggle a buff to include it in effective stats and the level charts.
+            Off by default. Toggle a buff to include it in Effective Stats and Stats Charts.
           </p>
           {availableBoosts.length === 0 ? (
             <p className="text-sm text-faint">No toggleable effects for this loadout.</p>

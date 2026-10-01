@@ -7,6 +7,8 @@ export interface LevelChartMetric {
   key: LevelChartKey;
   label: string;
   color: string;
+  /** Plotted value is already percentage points. Tooltip and axis append this. */
+  suffix?: "%";
 }
 
 export const LEVEL_CHART_METRICS: LevelChartMetric[] = [
@@ -16,10 +18,10 @@ export const LEVEL_CHART_METRICS: LevelChartMetric[] = [
   { key: "spAttack", label: "Sp. Atk", color: "#8b5cf6" },
   { key: "spDefense", label: "Sp. Def", color: "#a855f7" },
   { key: "moveSpeed", label: "Speed", color: "#f59e0b" },
-  { key: "critRate", label: "Crit Rate", color: "#f43f5e" },
-  { key: "attackSpeed", label: "Atk Speed", color: "#d97706" },
-  { key: "cdr", label: "CDR", color: "#64748b" },
-  { key: "lifesteal", label: "Lifesteal", color: "#ec4899" },
+  { key: "critRate", label: "Crit Rate", color: "#f43f5e", suffix: "%" },
+  { key: "cdr", label: "CDR", color: "#64748b", suffix: "%" },
+  { key: "lifesteal", label: "Lifesteal", color: "#ec4899", suffix: "%" },
+  { key: "attackSpeed", label: "Atk Speed", color: "#d97706", suffix: "%" },
   { key: "aps", label: "Attacks/sec", color: "#0ea5e9" },
 ];
 
@@ -44,4 +46,16 @@ export function levelChartValue(derived: DerivedBuild, key: LevelChartKey): numb
     return Number((derived.effective[key as keyof StatBlock] * 100).toFixed(1));
   }
   return Number(derived.effective[key as keyof StatBlock].toFixed(0));
+}
+
+/**
+ * Display string for a plotted point. Percent metrics append `%`; the plotted
+ * number itself stays a percentage point so the line scale does not change.
+ */
+export function formatLevelChartValue(value: number, key: LevelChartKey): string {
+  const suffix = LEVEL_CHART_METRICS.find((m) => m.key === key)?.suffix ?? "";
+  // Axis ticks can carry binary float noise. Three decimals matches the finest
+  // plotted series (attacks/sec) and turns 40.0000002 into 40.
+  const body = String(Number(value.toFixed(3)));
+  return `${body}${suffix}`;
 }
