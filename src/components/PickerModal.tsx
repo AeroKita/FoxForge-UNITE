@@ -216,16 +216,7 @@ export function PickerModal({
           </div>
         )}
         {(filters || owned) && (
-          <div className="-mx-1 flex flex-wrap gap-1.5 overflow-x-auto px-1 pb-1">
-            <FilterChip
-              label="All"
-              active={activeFilter === null && !ownedOnly}
-              onClick={() => {
-                setActiveFilter(null);
-                setOwnedOnly(false);
-                rememberPicker({ color: null, ownedOnly: false });
-              }}
-            />
+          <div className="flex items-center gap-1.5">
             {owned && (
               <FilterChip
                 label={`★ Owned (${ownedCount})`}
@@ -237,19 +228,36 @@ export function PickerModal({
                 }}
               />
             )}
-            {filters?.map((f) => (
-              <FilterChip
-                key={f.label}
-                label={f.label}
-                active={activeFilter === f.label}
-                activeColor={f.activeColor}
-                glyph={f.label as EmblemColor}
-                onClick={() => {
-                  setActiveFilter(f.label);
-                  rememberPicker({ color: asPickerColor(f.label) });
-                }}
-              />
-            ))}
+            {filters && filters.length > 0 && (
+              <div
+                role="group"
+                aria-label="Color"
+                className="flex min-w-0 flex-1 gap-1 overflow-x-auto pb-0.5"
+              >
+                <FilterChip
+                  label="All"
+                  active={activeFilter === null && !ownedOnly}
+                  onClick={() => {
+                    setActiveFilter(null);
+                    setOwnedOnly(false);
+                    rememberPicker({ color: null, ownedOnly: false });
+                  }}
+                />
+                {filters.map((f) => (
+                  <FilterChip
+                    key={f.label}
+                    label={f.label}
+                    active={activeFilter === f.label}
+                    activeColor={f.activeColor}
+                    glyph={f.label as EmblemColor}
+                    onClick={() => {
+                      setActiveFilter(f.label);
+                      rememberPicker({ color: asPickerColor(f.label) });
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
         {filterByEmblemStats && (
@@ -463,13 +471,13 @@ function FilterChip({
       aria-pressed={active}
       onClick={onClick}
       style={style}
-      className={`min-h-11 rounded-full border px-3 py-1 text-xs font-medium capitalize ${
+      className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium whitespace-nowrap capitalize ${
         active
           ? activeColor
             ? "border-line"
             : "border-transparent bg-accent text-white"
           : "border-transparent bg-raise text-muted hover:bg-raise"
-      } inline-flex items-center gap-1.5`}
+      }`}
     >
       {glyph && <SetGlyph color={glyph} sizeClass="h-4 w-4" />}
       {label}

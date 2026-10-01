@@ -52,6 +52,42 @@ describe("Choose Emblem stat filters", () => {
     expect(html).not.toContain("No emblems match these filters.");
   });
 
+  it("scrolls emblem colors in one row and keeps Owned beside that row", () => {
+    installStorage();
+    const html = markup({
+      grades: true,
+      owned: new Set(["keep:gold"]),
+      filterByEmblemStats: true,
+      filters: [
+        {
+          label: "brown",
+          activeColor: "#8b5a2b",
+          predicate: () => true,
+        },
+        {
+          label: "green",
+          activeColor: "#3d7a4a",
+          predicate: () => true,
+        },
+      ],
+    });
+    expect(html).not.toContain("flex-wrap");
+    const colorGroup = html.match(
+      /<div role="group" aria-label="Color" class="([^"]*)">([\s\S]*?)<\/div>/,
+    );
+    expect(colorGroup).not.toBeNull();
+    expect(colorGroup?.[1]).toContain("overflow-x-auto");
+    expect(colorGroup?.[1]).not.toContain("flex-wrap");
+    const colors = colorGroup?.[2] ?? "";
+    expect(colors).toContain(">All<");
+    expect(colors).toContain(">brown<");
+    expect(colors).toContain(">green<");
+    expect(colors).not.toContain("Owned");
+    expect(colors).toMatch(/<button[^>]*shrink-0[^>]*>[\s\S]*brown/);
+    const colorAt = html.indexOf('aria-label="Color"');
+    expect(html.slice(0, colorAt)).toContain("Owned");
+  });
+
   it("shows the inventory stat controls and the full grid when nothing is saved", () => {
     installStorage();
     const html = markup({
