@@ -207,11 +207,7 @@ npm run data:gaps
 ```
 
 15. Confirm your `<id>` no longer lists blank descriptions or missing builds. Missing clips are OK for ship.
-16. Bump the app version shown in Settings → App version. New Pokémon on the roster → bump the **minor** number (e.g. `2.3.1` → `2.4.0`). Tiny follow-up with no roster add → bump **patch** (e.g. `2.4.0` → `2.4.1`):
-
-```bash
-npm version 2.4.0 --no-git-tag-version
-```
+16. Do not bump the Settings version by hand. Release-please opens a release pull request after this lands on `main`. A new Pokémon is a `feat` (minor). A tiny follow-up is a `fix` or `chore` (patch). Merge that pull request to publish.
 
 17. Update the “currently `x.y.z`” / roster / `patchVersion` sentences in `AGENTS.md` if they still show the old numbers.
 18. Save and upload to `main`:
@@ -325,7 +321,7 @@ npm run data:refresh -- --patch-version 1.23.3.12
 npm run data:gaps
 ```
 
-5. Bump the app version (`npm version … --no-git-tag-version` as in B step 16).
+5. Do not bump the app version by hand. Release-please does that after the commits land on `main` (B step 16).
 6. Save and upload (`git add` / `git commit` / `git push`).
 
 **Done when (Phase B):** no provisional files left; real UNITE-DB data is live.
@@ -349,7 +345,7 @@ Use while mid-path. Skip if you already know the command. All of these assume yo
 | `npm run data:curate -- scaffold <id> --write` | Insert build template |
 | `npm run data:curate -- check` | Validate `curated_builds.json` |
 | `npm run verify` | Run the full local check suite (same idea as CI on GitHub) |
-| `npm version X.Y.Z --no-git-tag-version` | Bump Settings app version |
+| Release-please pull request | Settings version. Merge it to publish. Do not bump `package.json` by hand. |
 
 Refresh modes:
 

@@ -1,8 +1,7 @@
 name: Deploy web app to Pages
 
 on:
-  push:
-    branches: [main]
+  workflow_call:
   workflow_dispatch:
 
 permissions:
