@@ -1,15 +1,14 @@
 /**
- * EmblemOptimizer — thin container for the "⚡ Optimize" tab.
+ * EmblemOptimizer — container for the Advanced-only Optimize tab.
  *
- * State and derivations live in useEmblemOptimizer(); presentational UI is split
- * across src/components/optimizer/ (Basic vs Advanced views).
+ * State and derivations live in useEmblemOptimizer(); the screen is
+ * AdvancedOptimizer under src/components/optimizer/.
  */
 
 import { useStore } from "../state/store";
 import { useEmblemOptimizer } from "../state/useEmblemOptimizer";
 import { SearchProgressOverlay } from "./SearchProgressOverlay";
 import { AdvancedOptimizer } from "./optimizer/AdvancedOptimizer";
-import { BasicOptimizer } from "./optimizer/BasicOptimizer";
 
 export function EmblemOptimizer({
   active,
@@ -18,26 +17,17 @@ export function EmblemOptimizer({
   active: boolean;
   onNavigate?: (page: string) => void;
 }) {
-  const { expert, setMode: setViewMode } = useStore();
-  const { shared, basic, advanced } = useEmblemOptimizer(active);
+  const { setMode: setViewMode } = useStore();
+  const { shared, advanced } = useEmblemOptimizer(active);
 
   return (
     <div className="flex flex-col gap-3">
-      {expert ? (
-        <AdvancedOptimizer
-          shared={shared}
-          advanced={advanced}
-          onNavigate={onNavigate}
-          setViewMode={setViewMode}
-        />
-      ) : (
-        <BasicOptimizer
-          shared={shared}
-          basic={basic}
-          onNavigate={onNavigate}
-          setViewMode={setViewMode}
-        />
-      )}
+      <AdvancedOptimizer
+        shared={shared}
+        advanced={advanced}
+        onNavigate={onNavigate}
+        setViewMode={setViewMode}
+      />
 
       {shared.searchState.status === "running" && shared.searchState.progress && (
         <SearchProgressOverlay

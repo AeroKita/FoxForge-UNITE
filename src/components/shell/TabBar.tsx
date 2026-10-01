@@ -2,45 +2,74 @@ import type { ReactNode } from "react";
 
 export type Tab = "build" | "optimize" | "compare" | "emblems" | "items";
 
+export type AdvancedTabSlot = "compare" | "optimize";
+
 interface TabBarProps {
   active: Tab;
   onChange: (t: Tab) => void;
   tabs: { id: Tab; label: string; icon: ReactNode }[];
-  /** When false, Compare stays mounted at 0fr so Basic↔Advanced can animate. */
-  compareVisible: boolean;
+  /** When false, Compare and Optimize stay mounted at flex-grow 0 so Basic↔Advanced can animate. */
+  advancedVisible: boolean;
+}
+
+const COLUMN_EASE = "motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]";
+
+/**
+ * Flex track. Compare and Optimize are their own items so each column can
+ * delay independently. A single grid-template-columns transition cannot.
+ */
+export function tabBarTrackClass(): string {
+  return "mx-auto flex w-full max-w-2xl";
 }
 
 /**
- * Five-column track: the last column is Compare, `0fr` in Basic and `1fr` in
- * Advanced. Neighbors slide as the fraction interpolates.
+ * Basic sends Compare and Optimize back to Builds. Every other tab stays put.
  */
-export function tabBarTrackClass(compareVisible: boolean): string {
+export function tabForMode(expert: boolean, tab: Tab): Tab {
+  if (!expert && (tab === "compare" || tab === "optimize")) return "build";
+  return tab;
+}
+
+function advancedSlot(id: Tab): AdvancedTabSlot | null {
+  return id === "compare" || id === "optimize" ? id : null;
+}
+
+/**
+ * Column motion, staggered in reading order.
+ * Entering Advanced: Compare grows immediately, Optimize 150ms later.
+ * Leaving Advanced: Optimize collapses immediately, Compare 150ms later.
+ * Each item fades on that same stagger, 75ms after its column starts opening
+ * and fast enough on the way out that the label is gone before the column shuts.
+ */
+export function tabBarAdvancedSlotClass(slot: AdvancedTabSlot, visible: boolean): string {
+  const delay =
+    slot === "compare"
+      ? visible
+        ? "motion-safe:delay-0"
+        : "motion-safe:delay-150"
+      : visible
+        ? "motion-safe:delay-150"
+        : "motion-safe:delay-0";
   return [
-    "mx-auto grid w-full max-w-2xl",
-    compareVisible ? "grid-cols-[1fr_1fr_1fr_1fr_1fr]" : "grid-cols-[1fr_1fr_1fr_1fr_0fr]",
-    "motion-safe:transition-[grid-template-columns]",
+    "min-w-0 shrink basis-0 overflow-hidden",
+    visible ? "grow" : "grow-0 pointer-events-none",
+    "motion-safe:transition-[flex-grow]",
     "motion-safe:duration-300",
-    "motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
+    COLUMN_EASE,
+    delay,
   ].join(" ");
 }
 
-/** Clip wrapper around Compare so a closed 0fr column cannot paint into Items. */
-export function tabBarCompareSlotClass(compareVisible: boolean): string {
-  return compareVisible ? "min-w-0 overflow-hidden" : "min-w-0 overflow-hidden pointer-events-none";
-}
-
-/**
- * Compare control motion: delayed fade/slide/scale in, faster fade out so the
- * label is gone before the column pinches shut.
- */
-export function tabBarCompareItemClass(compareVisible: boolean): string {
+export function tabBarAdvancedItemClass(slot: AdvancedTabSlot, visible: boolean): string {
+  const shownDelay = slot === "compare" ? "motion-safe:delay-75" : "motion-safe:delay-[225ms]";
+  const hiddenDelay = slot === "compare" ? "motion-safe:delay-150" : "";
   return [
     "flex min-h-14 w-full min-w-[4.5rem] flex-col items-center justify-center gap-0.5 px-1",
     "motion-safe:transition-[opacity,transform]",
-    "motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
-    compareVisible
-      ? "opacity-100 translate-x-0 scale-100 motion-safe:duration-300 motion-safe:delay-75"
-      : "pointer-events-none opacity-0 translate-x-2 scale-[0.92] motion-safe:duration-150",
+    COLUMN_EASE,
+    visible
+      ? `opacity-100 translate-x-0 scale-100 motion-safe:duration-300 ${shownDelay}`
+      : `pointer-events-none opacity-0 translate-x-2 scale-[0.92] motion-safe:duration-150${hiddenDelay ? ` ${hiddenDelay}` : ""}`,
   ].join(" ");
 }
 
@@ -141,6 +170,14 @@ export const TAB_ICONS: Record<Tab, ReactNode> = {
   items: <ItemsIcon />,
 };
 
+export const MAIN_TABS: { id: Tab; label: string; icon: ReactNode }[] = [
+  { id: "build", label: "Builds", icon: TAB_ICONS.build },
+  { id: "emblems", label: "Emblems", icon: TAB_ICONS.emblems },
+  { id: "items", label: "Items", icon: TAB_ICONS.items },
+  { id: "compare", label: "Compare", icon: TAB_ICONS.compare },
+  { id: "optimize", label: "Optimize", icon: TAB_ICONS.optimize },
+];
+
 const TAB_INK = {
   active: "text-[var(--color-tab-active)]",
   idle: "text-[var(--color-tab-ink)]",
@@ -149,36 +186,41 @@ const TAB_INK = {
 /**
  * Fixed bottom navigation for primary app destinations.
  */
-export function TabBar({ active, onChange, tabs, compareVisible }: TabBarProps) {
+export function TabBar({ active, onChange, tabs, advancedVisible }: TabBarProps) {
   return (
     <nav
       role="tablist"
       aria-label="Main navigation"
       className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-[var(--color-tab-bg)] pb-safe"
     >
-      <div className={tabBarTrackClass(compareVisible)}>
+      <div className={tabBarTrackClass()}>
         {tabs.map((tab) => {
-          const isCompare = tab.id === "compare";
-          const isHiddenCompare = isCompare && !compareVisible;
-          const isActive = active === tab.id && !isHiddenCompare;
+          const slot = advancedSlot(tab.id);
+          const isHiddenAdvanced = slot !== null && !advancedVisible;
+          const isActive = active === tab.id && !isHiddenAdvanced;
           const ink = isActive ? TAB_INK.active : TAB_INK.idle;
-          const itemClass = isCompare
-            ? `${tabBarCompareItemClass(compareVisible)} ${ink}`
-            : `flex min-h-14 w-full flex-col items-center justify-center gap-0.5 px-1 transition ${ink}`;
+          const itemClass =
+            slot !== null
+              ? `${tabBarAdvancedItemClass(slot, advancedVisible)} ${ink}`
+              : `flex min-h-14 w-full flex-col items-center justify-center gap-0.5 px-1 transition ${ink}`;
           return (
             <div
               key={tab.id}
-              className={isCompare ? tabBarCompareSlotClass(compareVisible) : "min-w-0"}
-              {...(isHiddenCompare ? { inert: true } : {})}
+              className={
+                slot !== null
+                  ? tabBarAdvancedSlotClass(slot, advancedVisible)
+                  : "min-w-0 shrink basis-0 grow"
+              }
+              {...(isHiddenAdvanced ? { inert: true } : {})}
             >
               <button
                 type="button"
                 role="tab"
                 aria-selected={isActive}
-                aria-hidden={isHiddenCompare || undefined}
-                tabIndex={isHiddenCompare ? -1 : undefined}
+                aria-hidden={isHiddenAdvanced || undefined}
+                tabIndex={isHiddenAdvanced ? -1 : undefined}
                 onClick={() => {
-                  if (isHiddenCompare) return;
+                  if (isHiddenAdvanced) return;
                   onChange(tab.id);
                 }}
                 className={itemClass}

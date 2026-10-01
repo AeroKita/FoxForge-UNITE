@@ -6,7 +6,7 @@ interface OptimizeScreenProps {
   onNavigate: (tab: Tab) => void;
 }
 
-/** Optimize tab — emblem build search driven by the global Basic/Advanced mode toggle. */
+/** Optimize tab — Advanced-only emblem build search. */
 export function OptimizeScreen({ active, onNavigate }: OptimizeScreenProps) {
   return (
     <EmblemOptimizer

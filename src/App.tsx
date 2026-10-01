@@ -1,13 +1,4 @@
-import {
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StoreProvider, useStore } from "./state/store";
 import { pokemonById } from "./data/gameData";
 import { ROLE_COLOR, ROLE_LABEL } from "./ui/theme";
@@ -16,7 +7,7 @@ import { firstVisitFadeStyle, firstVisitShellClass } from "./ui/firstVisitFade";
 import { usePreloadMoveClips } from "./ui/moveClipPreload";
 import { usePreloadPickerIcons } from "./ui/pickerIconPreload";
 import { AppBar } from "./components/shell/AppBar";
-import { TabBar, TAB_ICONS, type Tab } from "./components/shell/TabBar";
+import { MAIN_TABS, TabBar, tabForMode, type Tab } from "./components/shell/TabBar";
 import { BuildScreen } from "./components/screens/BuildScreen";
 import { PokemonPickerSheet } from "./components/PokemonPicker";
 import { EmblemsScreen } from "./components/screens/EmblemsScreen";
@@ -32,14 +23,6 @@ const OptimizeScreen = lazy(() =>
 
 const TAB_KEY = "unite-build-optimizer.tab.v1";
 const VALID_TABS: Tab[] = ["build", "optimize", "compare", "emblems", "items"];
-
-const ALL_TABS: { id: Tab; label: string; icon: ReactNode }[] = [
-  { id: "build", label: "Build", icon: TAB_ICONS.build },
-  { id: "optimize", label: "Optimize", icon: TAB_ICONS.optimize },
-  { id: "emblems", label: "Emblems", icon: TAB_ICONS.emblems },
-  { id: "items", label: "Items", icon: TAB_ICONS.items },
-  { id: "compare", label: "Compare", icon: TAB_ICONS.compare },
-];
 
 function usePersistentTab(): [Tab, (t: Tab) => void] {
   const [tab, setTabState] = useState<Tab>(() => {
@@ -67,23 +50,24 @@ function usePersistentTab(): [Tab, (t: Tab) => void] {
 function Workspace() {
   const { loadout, mode, setMode, expert, pendingOwnedImport } = useStore();
   const [tab, setTab] = usePersistentTab();
+  const shownTab = tabForMode(expert, tab);
   const [optimizeVisited, setOptimizeVisited] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [pokePickerOpen, setPokePickerOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState<string | null>(null);
 
   useEffect(() => {
-    if (tab === "optimize") setOptimizeVisited(true);
-  }, [tab]);
+    if (shownTab === "optimize") setOptimizeVisited(true);
+  }, [shownTab]);
+
+  useEffect(() => {
+    if (shownTab !== tab) setTab(shownTab);
+  }, [shownTab, tab, setTab]);
 
   const pendingOwnedOnMount = useRef(pendingOwnedImport);
   useEffect(() => {
     if (pendingOwnedOnMount.current) setTab("emblems");
   }, [setTab]);
-
-  useEffect(() => {
-    if (!expert && tab === "compare") setTab("build");
-  }, [expert, tab, setTab]);
 
   useEffect(() => {
     const onData = (e: Event) => setDataUpdate((e as CustomEvent).detail?.patch ?? null);
@@ -98,13 +82,13 @@ function Workspace() {
 
   // Freeze the decision on the loadout and tab already restored. Only the
   // empty Build screen fades. A later Pokémon pick must not restart it.
-  const [firstVisitClass] = useState(() => firstVisitShellClass(loadout.pokemonId, tab));
-  const [firstVisitStyle] = useState(() => firstVisitFadeStyle(loadout.pokemonId, tab));
+  const [firstVisitClass] = useState(() => firstVisitShellClass(loadout.pokemonId, shownTab));
+  const [firstVisitStyle] = useState(() => firstVisitFadeStyle(loadout.pokemonId, shownTab));
 
   const appBarProps = useMemo(() => {
     // Build and Optimize both pin the selected Pokémon to the top-left of the
     // fixed app bar so it stays visible while scrolling the search controls.
-    if (tab === "build" || tab === "optimize") {
+    if (shownTab === "build" || shownTab === "optimize") {
       return {
         leading: (
           <button
@@ -160,11 +144,11 @@ function Workspace() {
 
     return {
       leading: undefined,
-      title: titles[tab as Exclude<Tab, "build">],
+      title: titles[shownTab as Exclude<Tab, "build">],
       subtitle: undefined,
       onTitleTap: undefined,
     };
-  }, [tab, p, role]);
+  }, [shownTab, p, role]);
 
   return (
     <div
@@ -190,26 +174,26 @@ function Workspace() {
             </button>
           </div>
         )}
-        {tab === "build" && <BuildScreen />}
+        {shownTab === "build" && <BuildScreen />}
         {optimizeVisited && (
           <div
-            className={tab === "optimize" ? undefined : "hidden"}
-            aria-hidden={tab !== "optimize"}
+            className={shownTab === "optimize" ? undefined : "hidden"}
+            aria-hidden={shownTab !== "optimize"}
           >
             <Suspense fallback={null}>
-              <OptimizeScreen active={tab === "optimize"} onNavigate={setTab} />
+              <OptimizeScreen active={shownTab === "optimize"} onNavigate={setTab} />
             </Suspense>
           </div>
         )}
-        {tab === "compare" && expert && (
+        {shownTab === "compare" && (
           <Suspense fallback={null}>
             <CompareScreen />
           </Suspense>
         )}
-        {tab === "emblems" && <EmblemsScreen />}
-        {tab === "items" && <ItemsScreen />}
+        {shownTab === "emblems" && <EmblemsScreen />}
+        {shownTab === "items" && <ItemsScreen />}
       </main>
-      <TabBar active={tab} onChange={setTab} tabs={ALL_TABS} compareVisible={expert} />
+      <TabBar active={shownTab} onChange={setTab} tabs={MAIN_TABS} advancedVisible={expert} />
       <SettingsMenu open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       {pokePickerOpen && <PokemonPickerSheet onClose={() => setPokePickerOpen(false)} />}
     </div>
