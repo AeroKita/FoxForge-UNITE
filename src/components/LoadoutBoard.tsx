@@ -17,6 +17,7 @@ import { asset } from "../ui/asset";
 import { emblemIconForGrade } from "../ui/emblemIcon";
 import { heldItemStatLines } from "../ui/format";
 import { emblemGradeSubtitle } from "../ui/emblemStatText";
+import { emblemMatchesInventoryFilters } from "../ui/emblemInventoryFilter";
 import { gradesForEmblem } from "../ui/emblems";
 import { ALL_EMBLEM_COLORS, EMBLEM_COLOR_HEX } from "../ui/colors";
 import { shareLink } from "../ui/share";
@@ -316,6 +317,17 @@ export function LoadoutBoard() {
             activeColor: EMBLEM_COLOR_HEX[c],
             predicate: (id) => emblemById.get(id)?.colors.includes(c) ?? false,
           }))}
+          filterByEmblemStats
+          matchesEmblemStats={(id, grade, stat, sign) => {
+            const emblem = emblemById.get(id);
+            if (!emblem) return false;
+            return emblemMatchesInventoryFilters(emblem, grade, {
+              query: "",
+              color: "all",
+              stat,
+              sign,
+            });
+          }}
         />
       )}
 

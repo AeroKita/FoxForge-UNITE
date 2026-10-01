@@ -121,3 +121,44 @@ export function emblemMatchesInventoryFilters(
     (value) => value != null && matchesSignedValue(value, filters.sign),
   );
 }
+
+/**
+ * Whether one emblem-picker tile stays visible. Stat narrowing is applied by
+ * the caller (`passesStat`) only when a stat or sign is selected.
+ */
+export function emblemPickerTileVisible(input: {
+  name: string;
+  query: string;
+  passesColor: boolean;
+  passesOwned: boolean;
+  passesGrade: boolean;
+  statActive: boolean;
+  passesStat: boolean;
+}): boolean {
+  if (!input.name.toLowerCase().includes(input.query.toLowerCase())) return false;
+  if (!input.passesColor || !input.passesOwned || !input.passesGrade) return false;
+  if (input.statActive && !input.passesStat) return false;
+  return true;
+}
+
+/**
+ * Count-line suffix for the build emblem picker. Adds owned-only on top of
+ * the inventory caption. Null when nothing is narrowing the grid.
+ */
+export function emblemPickerFilterCaption(filters: {
+  color: EmblemColor | "all";
+  stat: keyof StatBlock | null;
+  sign: EmblemStatSign | null;
+  ownedOnly: boolean;
+}): string | null {
+  const parts: string[] = [];
+  const base = inventoryFilterCaption({
+    query: "",
+    color: filters.color,
+    stat: filters.stat,
+    sign: filters.sign,
+  });
+  if (base) parts.push(base);
+  if (filters.ownedOnly) parts.push("owned");
+  return parts.length > 0 ? parts.join(" · ") : null;
+}

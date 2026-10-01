@@ -8,6 +8,12 @@ export const POKEMON_PICKER_ROLE_KEY = "unite-build-optimizer.pokemonPickerRole.
 /** Last Emblems-page grade and inventory filters. Name search is not stored. */
 export const EMBLEM_PAGE_FILTERS_KEY = "unite-build-optimizer.emblemPageFilters.v1";
 
+/**
+ * Last build-page emblem picker color, owned-only, stat, and sign.
+ * Name search and grade are not stored.
+ */
+export const EMBLEM_PICKER_FILTERS_KEY = "unite-build-optimizer.emblemPickerFilters.v1";
+
 export const POKEMON_PICKER_ROLES = [
   "All",
   "Attacker",
@@ -25,6 +31,14 @@ export type EmblemPageGrade = (typeof EMBLEM_PAGE_GRADES)[number];
 export interface EmblemPageFilters {
   grade: EmblemPageGrade;
   color: EmblemColor | "all";
+  stat: keyof StatBlock | null;
+  sign: EmblemStatSign | null;
+}
+
+/** Build-page Choose Emblem sheet. `color` null means every color. */
+export interface EmblemPickerFilters {
+  color: EmblemColor | null;
+  ownedOnly: boolean;
   stat: keyof StatBlock | null;
   sign: EmblemStatSign | null;
 }
@@ -146,6 +160,60 @@ export function commitEmblemPageFilters(
   const parsed = parseEmblemPageFilters(view) ?? defaultEmblemPageFilters();
   try {
     setItem(EMBLEM_PAGE_FILTERS_KEY, JSON.stringify(parsed));
+  } catch {
+    /* quota / private mode */
+  }
+  return parsed;
+}
+
+/** Every color, every emblem, and no stat filter. */
+export function defaultEmblemPickerFilters(): EmblemPickerFilters {
+  return { color: null, ownedOnly: false, stat: null, sign: null };
+}
+
+function isPickerColor(value: unknown): value is EmblemColor | null {
+  return value === null || (typeof value === "string" && EMBLEM_COLOR_SET.has(value));
+}
+
+/** Accept a stored Choose Emblem view. Returns null when `raw` is not a plain object. */
+export function parseEmblemPickerFilters(raw: unknown): EmblemPickerFilters | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const view = raw as Partial<EmblemPickerFilters>;
+  return {
+    color: isPickerColor(view.color) ? view.color : null,
+    ownedOnly: view.ownedOnly === true,
+    stat: isPageStat(view.stat) ? view.stat : null,
+    sign: isPageSign(view.sign) ? view.sign : null,
+  };
+}
+
+/**
+ * Read {@link EMBLEM_PICKER_FILTERS_KEY}. Missing, junk, or a throwing getter
+ * yields {@link defaultEmblemPickerFilters}.
+ */
+export function loadEmblemPickerFilters(
+  getItem: (key: string) => string | null = defaultGet,
+): EmblemPickerFilters {
+  try {
+    const raw = getItem(EMBLEM_PICKER_FILTERS_KEY);
+    if (!raw) return defaultEmblemPickerFilters();
+    return parseEmblemPickerFilters(JSON.parse(raw)) ?? defaultEmblemPickerFilters();
+  } catch {
+    return defaultEmblemPickerFilters();
+  }
+}
+
+/**
+ * Write `view` to {@link EMBLEM_PICKER_FILTERS_KEY} and return the stored view.
+ * A throwing setter is ignored. Invalid fields are repaired before writing.
+ */
+export function commitEmblemPickerFilters(
+  view: EmblemPickerFilters,
+  setItem: (key: string, value: string) => void = defaultSet,
+): EmblemPickerFilters {
+  const parsed = parseEmblemPickerFilters(view) ?? defaultEmblemPickerFilters();
+  try {
+    setItem(EMBLEM_PICKER_FILTERS_KEY, JSON.stringify(parsed));
   } catch {
     /* quota / private mode */
   }

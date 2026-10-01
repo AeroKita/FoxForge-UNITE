@@ -20,6 +20,16 @@ export interface EmblemFilterBarProps {
   onClear: () => void;
 }
 
+export interface EmblemStatFiltersProps {
+  stat: keyof StatBlock | null;
+  onStat: (stat: keyof StatBlock | null) => void;
+  sign: EmblemStatSign | null;
+  onSign: (sign: EmblemStatSign | null) => void;
+  /** When set with `canClear`, a Clear filters button sits on the Stats label. */
+  onClear?: () => void;
+  canClear?: boolean;
+}
+
 /**
  * Color row plus a stat-sign toggle and stat pills. Each row scrolls on its
  * own so the two filters stay separate instead of wrapping into one pile.
@@ -68,43 +78,71 @@ export function EmblemFilterBar({
         </div>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <EmblemStatFilters stat={stat} onStat={onStat} sign={sign} onSign={onSign} />
+    </div>
+  );
+}
+
+/**
+ * The Emblems-page Stats row: a +/− toggle and one horizontally scrolling
+ * stat pill. Tapping the active control clears it.
+ */
+export function EmblemStatFilters({
+  stat,
+  onStat,
+  sign,
+  onSign,
+  onClear,
+  canClear,
+}: EmblemStatFiltersProps) {
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center justify-between gap-2">
         <p className="text-[11px] font-semibold tracking-wide text-faint uppercase">Stats</p>
-        <div className="flex items-center gap-2">
-          <div
-            role="group"
-            aria-label="Stat sign"
-            className="flex shrink-0 gap-0.5 rounded-lg bg-raise p-0.5"
+        {canClear && onClear && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="min-h-11 shrink-0 rounded-lg px-2 text-xs font-semibold text-accent hover:bg-accent-weak"
           >
-            <SignButton
-              label="Positive"
-              glyph="+"
-              pressed={sign === "pos"}
-              tone="pos"
-              onClick={() => onSign(nextSignSelection(sign, "pos"))}
+            Clear filters
+          </button>
+        )}
+      </div>
+      <div className="flex items-center gap-2">
+        <div
+          role="group"
+          aria-label="Stat sign"
+          className="flex shrink-0 gap-0.5 rounded-lg bg-raise p-0.5"
+        >
+          <SignButton
+            label="Positive"
+            glyph="+"
+            pressed={sign === "pos"}
+            tone="pos"
+            onClick={() => onSign(nextSignSelection(sign, "pos"))}
+          />
+          <SignButton
+            label="Negative"
+            glyph={"\u2212"}
+            pressed={sign === "neg"}
+            tone="neg"
+            onClick={() => onSign(nextSignSelection(sign, "neg"))}
+          />
+        </div>
+        <div
+          role="group"
+          aria-label="Stat"
+          className="flex min-w-0 flex-1 gap-1 overflow-x-auto pb-0.5"
+        >
+          {EMBLEM_STAT_FILTERS.map((row) => (
+            <FilterChip
+              key={row.key}
+              label={row.label}
+              active={stat === row.key}
+              onClick={() => onStat(nextStatSelection(stat, row.key))}
             />
-            <SignButton
-              label="Negative"
-              glyph={"\u2212"}
-              pressed={sign === "neg"}
-              tone="neg"
-              onClick={() => onSign(nextSignSelection(sign, "neg"))}
-            />
-          </div>
-          <div
-            role="group"
-            aria-label="Stat"
-            className="flex min-w-0 flex-1 gap-1 overflow-x-auto pb-0.5"
-          >
-            {EMBLEM_STAT_FILTERS.map((row) => (
-              <FilterChip
-                key={row.key}
-                label={row.label}
-                active={stat === row.key}
-                onClick={() => onStat(nextStatSelection(stat, row.key))}
-              />
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </div>

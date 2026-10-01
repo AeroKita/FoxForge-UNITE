@@ -1,15 +1,21 @@
 import { describe, expect, it } from "vitest";
 import {
   EMBLEM_PAGE_FILTERS_KEY,
+  EMBLEM_PICKER_FILTERS_KEY,
   POKEMON_PICKER_ROLE_KEY,
   commitEmblemPageFilters,
+  commitEmblemPickerFilters,
   commitPokemonPickerRole,
   defaultEmblemPageFilters,
+  defaultEmblemPickerFilters,
   loadEmblemPageFilters,
+  loadEmblemPickerFilters,
   loadPokemonPickerRole,
   parseEmblemPageFilters,
+  parseEmblemPickerFilters,
   parsePokemonPickerRole,
   type EmblemPageFilters,
+  type EmblemPickerFilters,
 } from "../rememberedFilters";
 
 const greenDefense: EmblemPageFilters = {
@@ -151,6 +157,95 @@ describe("emblems page filter memory", () => {
   it("swallows a throwing setter", () => {
     expect(() =>
       commitEmblemPageFilters(greenDefense, () => {
+        throw new Error("quota");
+      }),
+    ).not.toThrow();
+  });
+});
+
+const attackOwned: EmblemPickerFilters = {
+  color: "white",
+  ownedOnly: true,
+  stat: "attack",
+  sign: "pos",
+};
+
+describe("emblem picker filter memory", () => {
+  it("defaults to every color and no stat filter when nothing is stored", () => {
+    expect(defaultEmblemPickerFilters()).toEqual({
+      color: null,
+      ownedOnly: false,
+      stat: null,
+      sign: null,
+    });
+    expect(loadEmblemPickerFilters(() => null)).toEqual(defaultEmblemPickerFilters());
+  });
+
+  it("defaults when storage throws or the payload is not an object", () => {
+    expect(
+      loadEmblemPickerFilters(() => {
+        throw new Error("private mode");
+      }),
+    ).toEqual(defaultEmblemPickerFilters());
+    expect(parseEmblemPickerFilters(null)).toBeNull();
+    expect(parseEmblemPickerFilters("white")).toBeNull();
+    expect(parseEmblemPickerFilters([])).toBeNull();
+    expect(loadEmblemPickerFilters(() => "{")).toEqual(defaultEmblemPickerFilters());
+    expect(loadEmblemPickerFilters(() => "null")).toEqual(defaultEmblemPickerFilters());
+  });
+
+  it("round-trips color, owned-only, stat, and sign", () => {
+    const storage = memoryStorage();
+    expect(commitEmblemPickerFilters(attackOwned, storage.setItem)).toEqual(attackOwned);
+    expect(storage.memory.has(EMBLEM_PICKER_FILTERS_KEY)).toBe(true);
+    expect(storage.memory.has(EMBLEM_PAGE_FILTERS_KEY)).toBe(false);
+    expect(loadEmblemPickerFilters(storage.getItem)).toEqual(attackOwned);
+  });
+
+  it("keeps valid fields and repairs the rest", () => {
+    expect(
+      parseEmblemPickerFilters({
+        color: "white",
+        ownedOnly: "yes",
+        stat: "nope",
+        sign: "both",
+        query: "absol",
+        grade: "bronze",
+      }),
+    ).toEqual({
+      color: "white",
+      ownedOnly: false,
+      stat: null,
+      sign: null,
+    });
+    expect(
+      parseEmblemPickerFilters({
+        color: "White",
+        ownedOnly: true,
+        stat: "spAttack",
+        sign: "neg",
+      }),
+    ).toEqual({
+      color: null,
+      ownedOnly: true,
+      stat: "spAttack",
+      sign: "neg",
+    });
+  });
+
+  it("stores a cleared filter set without a name query or grade", () => {
+    const storage = memoryStorage();
+    commitEmblemPickerFilters(defaultEmblemPickerFilters(), storage.setItem);
+    const raw = storage.memory.get(EMBLEM_PICKER_FILTERS_KEY);
+    expect(raw).toBeTypeOf("string");
+    expect(raw).not.toContain("query");
+    expect(raw).not.toContain("grade");
+    expect(loadEmblemPickerFilters(storage.getItem)).toEqual(defaultEmblemPickerFilters());
+  });
+
+  it("swallows a throwing setter", () => {
+    expect(() =>
+      commitEmblemPickerFilters(attackOwned, () => {
         throw new Error("quota");
       }),
     ).not.toThrow();

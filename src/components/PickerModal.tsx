@@ -1,11 +1,23 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import { asset } from "../ui/asset";
-import { EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
+import { EMBLEM_COLOR_HEX, EMBLEM_GRADE_HEX, readableTextColor } from "../ui/colors";
+import {
+  emblemPickerFilterCaption,
+  emblemPickerTileVisible,
+  type EmblemStatSign,
+} from "../ui/emblemInventoryFilter";
+import {
+  commitEmblemPickerFilters,
+  defaultEmblemPickerFilters,
+  loadEmblemPickerFilters,
+  type EmblemPickerFilters,
+} from "../state/rememberedFilters";
 import { BottomSheet } from "./shell/BottomSheet";
 import { Tooltip } from "./Tooltip";
 import { SetGlyph } from "./SetGlyph";
 import { EmblemFace } from "./EmblemFace";
-import type { EmblemColor, EmblemGrade } from "../types";
+import { EmblemStatFilters } from "./EmblemFilterBar";
+import type { EmblemColor, EmblemGrade, StatBlock } from "../types";
 
 export interface PickItem {
   id: string;
@@ -38,6 +50,26 @@ interface Props {
   initialFilterLabel?: string;
   footer?: ReactNode;
   groupInfo?: Record<string, { title: string; hint?: string }>;
+  /**
+   * Emblem picker only. Adds the inventory Stats row (+/− and one stat) and
+   * remembers color, owned-only, stat, and sign. Grade and the name search
+   * start fresh each time the sheet opens.
+   */
+  filterByEmblemStats?: boolean;
+  /** Grade-aware stat match. Called only while a stat or sign is selected. */
+  matchesEmblemStats?: (
+    id: string,
+    grade: EmblemGrade,
+    stat: keyof StatBlock | null,
+    sign: EmblemStatSign | null,
+  ) => boolean;
+}
+
+function asPickerColor(label: string | null): EmblemColor | null {
+  if (label && Object.prototype.hasOwnProperty.call(EMBLEM_COLOR_HEX, label)) {
+    return label as EmblemColor;
+  }
+  return null;
 }
 
 export function PickerModal({
@@ -56,25 +88,84 @@ export function PickerModal({
   goldOnlyIds,
   initialFilterLabel,
   groupInfo,
+  filterByEmblemStats,
+  matchesEmblemStats,
 }: Props) {
+  const [remembered] = useState(() => (filterByEmblemStats ? loadEmblemPickerFilters() : null));
   const [query, setQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState<string | null>(initialFilterLabel ?? null);
-  const [ownedOnly, setOwnedOnly] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string | null>(
+    initialFilterLabel ?? remembered?.color ?? null,
+  );
+  const [ownedOnly, setOwnedOnly] = useState(remembered?.ownedOnly ?? false);
   const [grade, setGrade] = useState<EmblemGrade>("gold");
+  const [stat, setStat] = useState<keyof StatBlock | null>(remembered?.stat ?? null);
+  const [sign, setSign] = useState<EmblemStatSign | null>(remembered?.sign ?? null);
+  const filtersRef = useRef<EmblemPickerFilters>({
+    color: asPickerColor(initialFilterLabel ?? remembered?.color ?? null),
+    ownedOnly: remembered?.ownedOnly ?? false,
+    stat: remembered?.stat ?? null,
+    sign: remembered?.sign ?? null,
+  });
+
+  const rememberPicker = (patch: Partial<EmblemPickerFilters>) => {
+    if (!filterByEmblemStats) return;
+    const next = commitEmblemPickerFilters({ ...filtersRef.current, ...patch });
+    filtersRef.current = next;
+  };
+
+  const clearPickerFilters = () => {
+    setActiveFilter(null);
+    setOwnedOnly(false);
+    setStat(null);
+    setSign(null);
+    const cleared = defaultEmblemPickerFilters();
+    filtersRef.current = cleared;
+    if (filterByEmblemStats) commitEmblemPickerFilters(cleared);
+  };
 
   const isOwned = (id: string) => owned?.has(grades ? `${id}:${grade}` : id);
 
+  const statActive = filterByEmblemStats === true && (stat != null || sign != null);
   const shown = useMemo(() => {
     const f = filters?.find((x) => x.label === activeFilter);
-    return items.filter(
-      (it) =>
-        it.name.toLowerCase().includes(query.toLowerCase()) &&
-        (!f || f.predicate(it.id)) &&
-        (!ownedOnly || isOwned(it.id)) &&
-        (!grades || grade === "gold" || !goldOnlyIds?.has(it.id)),
+    return items.filter((it) =>
+      emblemPickerTileVisible({
+        name: it.name,
+        query,
+        passesColor: !f || f.predicate(it.id),
+        passesOwned: !ownedOnly || !!isOwned(it.id),
+        passesGrade: !grades || grade === "gold" || !goldOnlyIds?.has(it.id),
+        statActive,
+        passesStat: statActive ? (matchesEmblemStats?.(it.id, grade, stat, sign) ?? false) : true,
+      }),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, query, activeFilter, filters, ownedOnly, owned, grade, goldOnlyIds]);
+  }, [
+    items,
+    query,
+    activeFilter,
+    filters,
+    ownedOnly,
+    owned,
+    grade,
+    goldOnlyIds,
+    statActive,
+    stat,
+    sign,
+    matchesEmblemStats,
+  ]);
+
+  const pickerCaption = filterByEmblemStats
+    ? emblemPickerFilterCaption({
+        color: asPickerColor(activeFilter) ?? "all",
+        stat,
+        sign,
+        ownedOnly,
+      })
+    : null;
+  const canClearFilters =
+    filterByEmblemStats === true &&
+    (activeFilter !== null || ownedOnly || stat != null || sign != null);
 
   const ungrouped = useMemo(() => shown.filter((it) => !it.group), [shown]);
   const groupIds = useMemo(
@@ -132,13 +223,18 @@ export function PickerModal({
               onClick={() => {
                 setActiveFilter(null);
                 setOwnedOnly(false);
+                rememberPicker({ color: null, ownedOnly: false });
               }}
             />
             {owned && (
               <FilterChip
                 label={`★ Owned (${ownedCount})`}
                 active={ownedOnly}
-                onClick={() => setOwnedOnly((v) => !v)}
+                onClick={() => {
+                  const next = !ownedOnly;
+                  setOwnedOnly(next);
+                  rememberPicker({ ownedOnly: next });
+                }}
               />
             )}
             {filters?.map((f) => (
@@ -148,54 +244,85 @@ export function PickerModal({
                 active={activeFilter === f.label}
                 activeColor={f.activeColor}
                 glyph={f.label as EmblemColor}
-                onClick={() => setActiveFilter(f.label)}
+                onClick={() => {
+                  setActiveFilter(f.label);
+                  rememberPicker({ color: asPickerColor(f.label) });
+                }}
               />
             ))}
           </div>
         )}
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
-        {onClear && (
-          <button
-            type="button"
-            onClick={() => {
-              onClear();
-              onClose();
-            }}
-            title="Empty slot"
-            className="flex min-h-24 w-full flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-line p-2 text-center text-faint hover:border-accent hover:bg-accent-weak"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              className="h-12 w-12"
-              aria-hidden="true"
-            >
-              <line x1="9" y1="9" x2="15" y2="15" />
-              <line x1="15" y1="9" x2="9" y2="15" />
-            </svg>
-            <span className="text-xs font-medium leading-tight">Empty slot</span>
-          </button>
+        {filterByEmblemStats && (
+          <div className="mt-2">
+            <EmblemStatFilters
+              stat={stat}
+              onStat={(next) => {
+                setStat(next);
+                rememberPicker({ stat: next });
+              }}
+              sign={sign}
+              onSign={(next) => {
+                setSign(next);
+                rememberPicker({ sign: next });
+              }}
+              canClear={canClearFilters}
+              onClear={clearPickerFilters}
+            />
+            <p className="mt-1 text-xs text-faint">
+              {shown.length} shown{pickerCaption ? ` · ${pickerCaption}` : ""}
+            </p>
+          </div>
         )}
-        {ungrouped.map((it) => (
-          <PickerTile
-            key={it.id}
-            item={it}
-            grade={grade}
-            grades={grades}
-            ownedHere={!!isOwned(it.id)}
-            iconForGrade={iconForGrade}
-            tipForGrade={tipForGrade}
-            subtitleForGrade={subtitleForGrade}
-            onToggleOwn={onToggleOwn}
-            onPick={onPick}
-            onClose={onClose}
-          />
-        ))}
       </div>
+      {filterByEmblemStats && shown.length === 0 && (
+        <p className="mt-3 px-2 py-8 text-center text-sm text-muted">
+          No emblems match these filters.
+        </p>
+      )}
+      {(shown.length > 0 || onClear) && (
+        <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {onClear && (
+            <button
+              type="button"
+              onClick={() => {
+                onClear();
+                onClose();
+              }}
+              title="Empty slot"
+              className="flex min-h-24 w-full flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-line p-2 text-center text-faint hover:border-accent hover:bg-accent-weak"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                className="h-12 w-12"
+                aria-hidden="true"
+              >
+                <line x1="9" y1="9" x2="15" y2="15" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+              </svg>
+              <span className="text-xs font-medium leading-tight">Empty slot</span>
+            </button>
+          )}
+          {ungrouped.map((it) => (
+            <PickerTile
+              key={it.id}
+              item={it}
+              grade={grade}
+              grades={grades}
+              ownedHere={!!isOwned(it.id)}
+              iconForGrade={iconForGrade}
+              tipForGrade={tipForGrade}
+              subtitleForGrade={subtitleForGrade}
+              onToggleOwn={onToggleOwn}
+              onPick={onPick}
+              onClose={onClose}
+            />
+          ))}
+        </div>
+      )}
       {groupIds.map((groupId) => {
         const meta = groupInfo?.[groupId];
         const groupItems = shown.filter((it) => it.group === groupId);
@@ -333,6 +460,7 @@ function FilterChip({
   return (
     <button
       type="button"
+      aria-pressed={active}
       onClick={onClick}
       style={style}
       className={`min-h-11 rounded-full border px-3 py-1 text-xs font-medium capitalize ${

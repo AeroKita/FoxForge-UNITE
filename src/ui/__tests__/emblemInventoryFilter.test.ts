@@ -5,6 +5,8 @@ import { STAT_ROWS } from "../format";
 import {
   EMBLEM_STAT_FILTERS,
   emblemMatchesInventoryFilters,
+  emblemPickerFilterCaption,
+  emblemPickerTileVisible,
   inventoryFilterCaption,
   inventoryFiltersActive,
   nextSignSelection,
@@ -209,5 +211,66 @@ describe("inventory filter caption", () => {
       "− Defense · Blue",
     );
     expect(inventoryFilterCaption({ ...open, color: "blue" })).toBe("Blue");
+  });
+});
+
+describe("emblem picker tile visibility", () => {
+  const openTile = {
+    name: "Absol",
+    query: "",
+    passesColor: true,
+    passesOwned: true,
+    passesGrade: true,
+    statActive: false,
+    passesStat: true,
+  };
+
+  it("keeps a tile that passes color, ownership, and grade", () => {
+    expect(emblemPickerTileVisible(openTile)).toBe(true);
+  });
+
+  it("matches the name search the same way as a case-insensitive substring", () => {
+    expect(emblemPickerTileVisible({ ...openTile, query: "ABS" })).toBe(true);
+    expect(emblemPickerTileVisible({ ...openTile, query: "zzz" })).toBe(false);
+  });
+
+  it("hides a tile that fails color, ownership, or grade", () => {
+    expect(emblemPickerTileVisible({ ...openTile, passesColor: false })).toBe(false);
+    expect(emblemPickerTileVisible({ ...openTile, passesOwned: false })).toBe(false);
+    expect(emblemPickerTileVisible({ ...openTile, passesGrade: false })).toBe(false);
+  });
+
+  it("ignores the stat result until a stat or sign is selected", () => {
+    expect(emblemPickerTileVisible({ ...openTile, statActive: false, passesStat: false })).toBe(
+      true,
+    );
+    expect(emblemPickerTileVisible({ ...openTile, statActive: true, passesStat: false })).toBe(
+      false,
+    );
+    expect(emblemPickerTileVisible({ ...openTile, statActive: true, passesStat: true })).toBe(true);
+  });
+});
+
+describe("emblem picker filter caption", () => {
+  const idle = { color: "all" as const, stat: null, sign: null, ownedOnly: false };
+
+  it("stays quiet when every emblem is still in the grid", () => {
+    expect(emblemPickerFilterCaption(idle)).toBeNull();
+  });
+
+  it("names the stat, the color, and owned-only", () => {
+    expect(emblemPickerFilterCaption({ ...idle, stat: "attack", sign: "pos" })).toBe("+ Attack");
+    expect(emblemPickerFilterCaption({ ...idle, color: "blue", ownedOnly: true })).toBe(
+      "Blue · owned",
+    );
+    expect(
+      emblemPickerFilterCaption({
+        color: "red",
+        stat: "defense",
+        sign: "neg",
+        ownedOnly: true,
+      }),
+    ).toBe("− Defense · Red · owned");
+    expect(emblemPickerFilterCaption({ ...idle, ownedOnly: true })).toBe("owned");
   });
 });
