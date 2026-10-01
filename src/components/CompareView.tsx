@@ -12,6 +12,12 @@ import {
 } from "../state/compareBuilds";
 import { STAT_ROWS, formatStat, formatDelta, formatLevelLabel } from "../ui/format";
 import { radarRows } from "../ui/radarData";
+import {
+  compareChartColor,
+  compareColumnClass,
+  compareIdentityClass,
+  compareSwatchClass,
+} from "../ui/compareSide";
 import { asset } from "../ui/asset";
 import { CollapsibleCard } from "./CollapsibleCard";
 import { Segmented } from "./Segmented";
@@ -58,7 +64,7 @@ function clampSelectionForPokemon(sel: SideSelection): SideSelection {
 
 // Compare two builds: pick A and B from presets, current, or saved.
 export function CompareView() {
-  const { loadout, saved, heldItemGrade, theme } = useStore();
+  const { loadout, saved, heldItemGrade } = useStore();
   const [a, setA] = useState<SideSelection>(() => initialSelection("A", loadout.pokemonId));
   const [b, setB] = useState<SideSelection>(() => initialSelection("B", loadout.pokemonId));
   const [pickerSide, setPickerSide] = useState<"A" | "B" | null>(null);
@@ -120,14 +126,22 @@ export function CompareView() {
         <p className="text-sm text-faint">Both builds need a Pokémon selected.</p>
       ) : (
         <>
-          {da.effective && db.effective && <CompareRadar da={da} db={db} theme={theme} />}
+          {da.effective && db.effective && <CompareRadar da={da} db={db} />}
           <div className="-mx-1 min-w-0 overflow-x-auto px-1">
             <table className="w-full min-w-[20rem] text-sm">
               <thead>
                 <tr className="text-left text-xs uppercase text-faint">
                   <th className="py-1">Stat</th>
-                  <th className="py-1 text-right">A</th>
-                  <th className="py-1 text-right">B</th>
+                  <th
+                    className={`py-1 text-right font-semibold text-ink ${compareColumnClass("A")}`}
+                  >
+                    A
+                  </th>
+                  <th
+                    className={`py-1 text-right font-semibold text-ink ${compareColumnClass("B")}`}
+                  >
+                    B
+                  </th>
                   <th className="py-1 text-right">Δ (B−A)</th>
                 </tr>
               </thead>
@@ -141,8 +155,12 @@ export function CompareView() {
                   return (
                     <tr key={row.key} className="border-t border-line-soft">
                       <td className="py-1 text-muted">{row.label}</td>
-                      <td className="py-1 text-right font-mono">{formatStat(av, row.kind)}</td>
-                      <td className="py-1 text-right font-mono">{formatStat(bv, row.kind)}</td>
+                      <td className={`py-1 text-right font-mono ${compareColumnClass("A")}`}>
+                        {formatStat(av, row.kind)}
+                      </td>
+                      <td className={`py-1 text-right font-mono ${compareColumnClass("B")}`}>
+                        {formatStat(bv, row.kind)}
+                      </td>
                       <td
                         className={`py-1 text-right font-mono ${better ? "text-pos" : worse ? "text-neg" : "text-faint"}`}
                       >
@@ -154,10 +172,10 @@ export function CompareView() {
                 {da.attackSpeed && db.attackSpeed && (
                   <tr className="border-t border-line font-semibold">
                     <td className="py-1 text-muted">Attacks / sec</td>
-                    <td className="py-1 text-right font-mono">
+                    <td className={`py-1 text-right font-mono ${compareColumnClass("A")}`}>
                       {da.attackSpeed.attacksPerSecond.toFixed(2)}
                     </td>
-                    <td className="py-1 text-right font-mono">
+                    <td className={`py-1 text-right font-mono ${compareColumnClass("B")}`}>
                       {db.attackSpeed.attacksPerSecond.toFixed(2)}
                     </td>
                     <td className="py-1 text-right font-mono text-muted">
@@ -187,15 +205,7 @@ export function CompareView() {
   );
 }
 
-function CompareRadar({
-  da,
-  db,
-  theme,
-}: {
-  da: DerivedBuild;
-  db: DerivedBuild;
-  theme: "light" | "dark";
-}) {
+function CompareRadar({ da, db }: { da: DerivedBuild; db: DerivedBuild }) {
   const aInput = {
     hp: da.effective!.hp,
     attack: da.effective!.attack,
@@ -213,17 +223,17 @@ function CompareRadar({
     spAttack: db.effective!.spAttack,
   };
   const rows = radarRows(aInput, bInput);
-  const colorA = theme === "dark" ? "#22d3ee" : "#4f5bd5";
-  const colorB = theme === "dark" ? "#f472b6" : "#d4537e";
+  const colorA = compareChartColor("A");
+  const colorB = compareChartColor("B");
 
   return (
     <div className="mb-4">
       <div className="mb-2 flex items-center justify-center gap-4">
         <span className="flex items-center gap-1.5 text-xs text-muted">
-          <span className="h-2.5 w-2.5 rounded-full" style={{ background: colorA }} />A
+          <span className={`h-2.5 w-2.5 rounded-full ${compareSwatchClass("A")}`} />A
         </span>
         <span className="flex items-center gap-1.5 text-xs text-muted">
-          <span className="h-2.5 w-2.5 rounded-full" style={{ background: colorB }} />B
+          <span className={`h-2.5 w-2.5 rounded-full ${compareSwatchClass("B")}`} />B
         </span>
       </div>
       <ResponsiveContainer width="100%" height={240}>
@@ -238,7 +248,7 @@ function CompareRadar({
   );
 }
 
-function SidePicker({
+export function SidePicker({
   label,
   selection,
   onChange,
@@ -304,7 +314,7 @@ function SidePicker({
           <button
             type="button"
             onClick={onOpenPicker}
-            className="flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink hover:bg-raise"
+            className={`flex min-h-11 items-center gap-2 rounded-lg ${compareIdentityClass(label)} px-3 py-2 text-sm text-ink hover:bg-raise`}
           >
             {pokemon ? (
               <>
@@ -362,7 +372,9 @@ function SidePicker({
         </>
       )}
       {selection.source === "current" && (
-        <p className="flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink">
+        <p
+          className={`flex min-h-11 items-center gap-2 rounded-lg ${compareIdentityClass(label)} px-3 py-2 text-sm text-ink`}
+        >
           <span className="min-w-0 flex-1 truncate">
             <span className="text-muted">Your current working build — </span>
             {pokemonById.get(current.pokemonId ?? "")?.displayName ?? "No Pokémon selected"}
@@ -374,7 +386,9 @@ function SidePicker({
       )}
       {selection.source === "saved" && (
         <div className="relative">
-          <div className="pointer-events-none flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-2 py-2 text-sm text-ink">
+          <div
+            className={`pointer-events-none flex min-h-11 items-center gap-2 rounded-lg ${compareIdentityClass(label)} px-2 py-2 text-sm text-ink`}
+          >
             <span className="min-w-0 flex-1 truncate">{selectedSavedTitle}</span>
             <span className="shrink-0 text-xs font-semibold tabular-nums text-muted">
               {levelLabel}
