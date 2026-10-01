@@ -57,6 +57,8 @@ describe("Emblems page restores the last filters", () => {
   it("opens on gold and All when nothing was saved", () => {
     installStorage();
     const html = renderToStaticMarkup(createElement(InventoryManager));
+    expect(html).toContain("Mark what Emblems you own!");
+    expect(html).not.toContain("owned emblems are highlighted");
     expect(html).toContain("gold owned");
     expect(html).toMatch(/aria-label="All"[^>]*aria-pressed="true"/);
     expect(html).toMatch(/aria-label="green"[^>]*aria-pressed="false"/);

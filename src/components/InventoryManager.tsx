@@ -112,10 +112,7 @@ export function InventoryManager() {
               ?
             </button>
           </h2>
-          <p className="text-xs text-muted">
-            Mark what you own per grade — owned emblems are highlighted in pickers and preferred by
-            recommendations.
-          </p>
+          <p className="text-xs text-muted">Mark what Emblems you own!</p>
         </div>
         <div className="text-right text-sm">
           <span className="font-semibold" style={{ color: EMBLEM_GRADE_HEX[grade] }}>

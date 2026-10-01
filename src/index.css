@@ -137,10 +137,16 @@
    controls + scrollbars, crisp text, a consistent accessible keyboard focus
    ring (mouse clicks stay clean via :focus-visible), branded selection, and a
    gentle page-level transition when switching themes. */
-:root { color-scheme: light; }
-[data-theme="dark"] { color-scheme: dark; }
+:root {
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+}
 
-html { background: var(--color-bg); }
+html {
+  background: var(--color-bg);
+}
 
 body {
   color: var(--color-ink);
@@ -150,7 +156,12 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html, body { transition: background-color 0.2s ease, color 0.2s ease; }
+  html,
+  body {
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
 }
 
 :where(button, a, input, select, textarea, [tabindex]):focus-visible {
@@ -179,19 +190,30 @@ textarea {
   scrollbar-width: thin;
   scrollbar-color: var(--color-line) transparent;
 }
-*::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
 *::-webkit-scrollbar-thumb {
   background: var(--color-line);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 9999px;
 }
-*::-webkit-scrollbar-thumb:hover { background: var(--color-faint); }
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-faint);
+}
 
 /* Safe-area padding helpers for the fixed app bar + tab bar (iOS notch/home bar). */
-@utility pt-safe { padding-top: env(safe-area-inset-top); }
-@utility pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
 
 /* Overflowing one-line labels (e.g. build titles) — duplicate + translate loop. */
 @keyframes text-marquee {
@@ -230,33 +252,58 @@ textarea {
   /* Touch tooltip: grow from a center line over 300ms.
      Closing fades the card away over 200ms. It does not fold, so no bar remains. */
   @keyframes tip-unfold {
-    from { transform: scaleY(0.04); }
-    to { transform: scaleY(1); }
+    from {
+      transform: scaleY(0.04);
+    }
+    to {
+      transform: scaleY(1);
+    }
   }
 
   @keyframes tip-fold {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 
   @keyframes tip-unfold-ink {
-    0%, 40% { opacity: 0; }
-    100% { opacity: 1; }
+    0%,
+    40% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @keyframes tip-fold-ink {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 
   @keyframes tip-unfold-backdrop {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes tip-fold-backdrop {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 
   .tip-unfold {
@@ -285,6 +332,87 @@ textarea {
   }
 }
 
+/* Search overlay title: one new dot each second, then all three drop off. */
+.searching-dots {
+  display: inline-block;
+  width: 1.5em;
+  text-align: left;
+}
+
+.searching-dots > span {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .searching-dots > span {
+    opacity: 0;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .searching-dots > span:nth-child(1) {
+    animation-name: searching-dot-1;
+  }
+
+  .searching-dots > span:nth-child(2) {
+    animation-name: searching-dot-2;
+  }
+
+  .searching-dots > span:nth-child(3) {
+    animation-name: searching-dot-3;
+  }
+}
+
+@keyframes searching-dot-1 {
+  0%,
+  24.99% {
+    opacity: 0;
+  }
+  25%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes searching-dot-2 {
+  0%,
+  49.99% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes searching-dot-3 {
+  0%,
+  74.99% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.rotom-still {
+  display: none;
+  /* Opaque pixels become a black silhouette; the gif's alpha keeps the sparks. */
+  filter: brightness(0);
+}
+
+.rotom-live {
+  display: block;
+  filter: brightness(0);
+}
+
+[data-theme="dark"] .rotom-still,
+[data-theme="dark"] .rotom-live {
+  filter: brightness(0) invert(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .text-marquee-track {
     animation: none;
@@ -292,6 +420,14 @@ textarea {
 
   .text-marquee-host {
     overflow-x: auto;
+  }
+
+  .rotom-still {
+    display: block;
+  }
+
+  .rotom-live {
+    display: none;
   }
 }
 

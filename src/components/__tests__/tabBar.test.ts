@@ -20,18 +20,18 @@ function tabLabels(html: string): string[] {
 }
 
 describe("MAIN_TABS", () => {
-  it("orders Builds, Emblems, and Items ahead of the Advanced-only tabs", () => {
+  it("orders Builds, Items, and Emblems ahead of the Advanced-only tabs", () => {
     expect(MAIN_TABS.map((tab) => tab.id)).toEqual([
       "build",
-      "emblems",
       "items",
+      "emblems",
       "compare",
       "optimize",
     ]);
     expect(MAIN_TABS.map((tab) => tab.label)).toEqual([
       "Builds",
-      "Emblems",
       "Items",
+      "Emblems",
       "Compare",
       "Optimize",
     ]);
@@ -138,7 +138,17 @@ describe("TabBar Advanced slots", () => {
         advancedVisible: false,
       }),
     );
-    expect(tabLabels(html)).toEqual(["Builds", "Emblems", "Items", "Compare", "Optimize"]);
+    expect(tabLabels(html)).toEqual(["Builds", "Items", "Emblems", "Compare", "Optimize"]);
+    expect(html).toContain("lucario_icon_outline");
+    expect(html).toContain("leftovers_icon_outline");
+    expect(html).toContain("pikachu_icon_outline");
+    expect(html).toContain("rotomface_icon_outline");
+    expect(html).not.toContain("M14.7 6.3");
+    expect(html).not.toContain("13 2 3 14");
+    expect(html).toContain("M14.5 5H19.5V10");
+    expect(html).toContain('fill="none"');
+    expect(html).toContain('stroke-width="1.25"');
+    expect(html).not.toContain('stroke-width="2"');
     expect(html.match(/inert/g)).toHaveLength(2);
     expect(html.match(/tabindex="-1"/g)).toHaveLength(2);
     expect(html.match(/<button[^>]*aria-hidden="true"/g)).toHaveLength(2);
@@ -154,7 +164,7 @@ describe("TabBar Advanced slots", () => {
         advancedVisible: true,
       }),
     );
-    expect(tabLabels(html)).toEqual(["Builds", "Emblems", "Items", "Compare", "Optimize"]);
+    expect(tabLabels(html)).toEqual(["Builds", "Items", "Emblems", "Compare", "Optimize"]);
     expect(html).not.toMatch(/inert/);
     expect(html).not.toContain('tabindex="-1"');
     expect(html).toMatch(/aria-selected="true"[^>]*>[\s\S]*Optimize/);

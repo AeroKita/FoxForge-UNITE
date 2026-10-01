@@ -3,6 +3,8 @@
  * One overlay, one bar — no multiple spinners.
  */
 
+import rotomGif from "../assets/nav/rotom.gif";
+import rotomStill from "../assets/nav/rotom-still.png";
 import type { SearchProgress } from "../engine/emblemSearch/types";
 
 interface Props {
@@ -18,7 +20,30 @@ export function SearchProgressOverlay({ progress, eta, onCancel }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4 backdrop-blur-sm">
       <div className="w-full max-w-xs rounded-2xl border border-line bg-surface p-4 shadow-xl sm:max-w-sm sm:p-5">
-        <h2 className="mb-3 text-sm font-semibold text-ink">Searching…</h2>
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h2 className="text-sm font-semibold text-ink" aria-label="Searching">
+            <span aria-hidden="true">
+              Searching
+              <span className="searching-dots">
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+              </span>
+            </span>
+          </h2>
+          <span aria-hidden="true" className="relative block h-9 w-14 shrink-0">
+            <img
+              src={rotomStill}
+              alt=""
+              className="rotom-still absolute inset-0 h-full w-full object-contain"
+            />
+            <img
+              src={rotomGif}
+              alt=""
+              className="rotom-live absolute inset-0 h-full w-full object-contain"
+            />
+          </span>
+        </div>
         <div className="mb-2 h-2 overflow-hidden rounded-full bg-white/20">
           <div
             className="h-full rounded-full bg-accent transition-all duration-200"
