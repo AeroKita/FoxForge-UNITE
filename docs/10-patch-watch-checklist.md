@@ -63,8 +63,9 @@ Run this when a new patch drops (or when UNITE-DB publishes patch changes).
    mechanic the patch touched (attack-speed buffs, RSB, new move interactions). If
    a value disagrees with UNITE-DB, prefer the in-game readout, then reconcile and
    note the source in the commit message.
-7. **Release.** Bump `"version"` in `package.json` if the displayed version should
-   change, then push to `main` (Pages redeploys; data publishes via `data.yml`).
+7. **Release.** Push the data changes to `main`. Release-please opens or updates
+   the release pull request. Merge that pull request to publish. Do not bump
+   `"version"` by hand.
 
 ## Data-integrity guards already in place
 

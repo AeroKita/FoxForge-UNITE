@@ -1,8 +1,8 @@
 name: Refresh game data
 
 # Re-scrapes UNITE-DB and publishes a fresh data bundle + manifest to
-# public/data. The remote-data channel is served by pages.yml on merge to main;
-# this workflow opens a PR for review (never pushes directly to main).
+# public/data. This workflow opens a PR for review (never pushes directly to main).
+# The live site picks up that data when the release containing the merge is deployed.
 
 on:
   schedule:

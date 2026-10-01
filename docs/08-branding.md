@@ -39,7 +39,7 @@ If you change `SITE_HOST` or `PAGES_BASE_PATH`, also update `package.json` (`bui
 
 ### 3. Ship it
 
-- Push to `main` → Pages redeploys with the new name.
+- Merge the release pull request → Pages deploys with the new name. A push to `main` does not deploy.
 
 ## Change the icon
 
@@ -55,4 +55,4 @@ node tools/make-icons.mjs path/to/new-icon.png
 
 (Run `node tools/make-icons.mjs` with no argument to regenerate the web icons from
 the existing source.) Commit the regenerated `tools/app-icon.png` and `public/*`.
-The web icons deploy on the next push to `main`.
+The web icons ship with the next release.

@@ -29,10 +29,11 @@ npm run dev        # open the printed URL (default http://localhost:5173)
 
 ### Cutting a new release
 
-The hosted app redeploys automatically: every push to `main` triggers
-[`pages.yml`](.github/workflows/pages.yml), which builds `dist/` and publishes it to
-GitHub Pages. There is no separate release step — bump `"version"` in `package.json`
-when you want the displayed version to change, then push.
+Release-please opens a pull request that bumps `"version"` in `package.json` and
+`package-lock.json`. Merge that pull request with your GitHub account. The merge
+creates the GitHub Release and [`pages.yml`](.github/workflows/pages.yml) publishes
+`dist/` to GitHub Pages. A push to `main` does not publish. Every conventional
+commit, including `chore`, is part of the next release. Do not bump the version by hand.
 
 ## Data & attribution
 
