@@ -145,10 +145,10 @@ describe("TabBar Advanced slots", () => {
     expect(html).toContain("rotomface_icon_outline");
     expect(html).not.toContain("M14.7 6.3");
     expect(html).not.toContain("13 2 3 14");
-    expect(html).toContain("M14.5 5H19.5V10");
+    expect(html).toContain("M16 3h5v5");
     expect(html).toContain('fill="none"');
-    expect(html).toContain('stroke-width="1.25"');
-    expect(html).not.toContain('stroke-width="2"');
+    expect(html).toContain('stroke-width="2"');
+    expect(html).not.toContain("M14.5 5H19.5V10");
     expect(html.match(/inert/g)).toHaveLength(2);
     expect(html.match(/tabindex="-1"/g)).toHaveLength(2);
     expect(html.match(/<button[^>]*aria-hidden="true"/g)).toHaveLength(2);

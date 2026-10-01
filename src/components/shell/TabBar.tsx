@@ -102,15 +102,15 @@ function CompareIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.25"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M14.5 5H19.5V10" />
-      <path d="M19.5 5 12.5 12" />
-      <path d="M9.5 19H4.5V14" />
-      <path d="M4.5 19 11.5 12" />
+      <path d="M16 3h5v5" />
+      <path d="M8 21H3v-5" />
+      <path d="M21 3l-7 7" />
+      <path d="M3 21l7-7" />
     </svg>
   );
 }
