@@ -64,8 +64,9 @@ Run this when a new patch drops (or when UNITE-DB publishes patch changes).
    a value disagrees with UNITE-DB, prefer the in-game readout, then reconcile and
    note the source in the commit message.
 7. **Release.** Push the data changes to `main`. Release-please opens or updates
-   the release pull request. Merge that pull request to publish. Do not bump
-   `"version"` by hand.
+   the release pull request when those commits include a `feat`, a `fix`, or a
+   breaking change. Merge that pull request to publish. A `chore` stays on
+   `main` until then. Do not bump `"version"` by hand.
 
 ## Data-integrity guards already in place
 

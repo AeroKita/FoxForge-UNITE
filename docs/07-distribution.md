@@ -6,6 +6,20 @@ The tool ships **one way: a hosted installable web app** on GitHub Pages. App co
 
 **Hosted web app** (zero install): GitHub Pages deploys `dist/` when a release is created ([`.github/workflows/release-please.yml`](../.github/workflows/release-please.yml) calls [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)) at **https://foxforge-unite.com/**. A push to `main` does not deploy. It is installable from the browser ("Add to Home Screen" / "Install"). Game data is bundled in the build and also fetched from the same origin. The Pages deploy sets Vite PWA `selfDestroying` so a leftover service worker cannot serve a blank stale cache. Local non-Pages builds may still register a service worker. The `github.io` project URL redirects to the custom domain once DNS is live.
 
+## What publishes a release
+
+Release Please opens a release pull request when `main` has a version bump since the last release. Squash-merge that pull request. The merge creates the GitHub release and runs the Pages deploy ([`.github/workflows/release-please.yml`](../.github/workflows/release-please.yml)). Job `deploy` is skipped on the push that only opens the pull request. Job `deploy / deploy` publishes https://foxforge-unite.com/.
+
+| Commit | Release |
+| --- | --- |
+| `feat` | minor |
+| `fix` | patch |
+| breaking change (`type!:` or a `BREAKING CHANGE` footer) | major |
+
+`chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, and `revert` are listed in [`release-please-config.json`](../release-please-config.json) so they appear in the changelog of a release. They do not open one. A data refresh is committed as `chore(data): refresh UNITE data`. It stays on `main` until a later release that contains a version bump is merged.
+
+After the work is on `main`, a maintainer can run `/shipit`. The skill is [`.cursor/skills/shipit/SKILL.md`](../.cursor/skills/shipit/SKILL.md).
+
 ## Two update channels
 
 1. **App updates** (UI/engine code) — merging the release pull request creates a release, Pages deploys, and the next reload picks it up.
