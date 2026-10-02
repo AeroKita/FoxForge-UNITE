@@ -207,7 +207,7 @@ npm run data:gaps
 ```
 
 15. Confirm your `<id>` no longer lists blank descriptions or missing builds. Missing clips are OK for ship.
-16. Do not bump the Settings version by hand. Release-please opens a release pull request after this lands on `main`. A new Pokémon is a `feat` (minor). A tiny follow-up is a `fix` or `chore` (patch). Merge that pull request to publish.
+16. Do not bump the Settings version by hand. Release-please opens a release pull request after this lands on `main`. A new Pokémon is a `feat` (minor). A tiny follow-up that should publish on its own is a `fix` (patch). A `chore` does not open a release. Merge the release pull request to publish.
 
 17. Update the “currently `x.y.z`” / roster / `patchVersion` sentences in `AGENTS.md` if they still show the old numbers.
 18. Save and upload to `main`:

@@ -54,7 +54,7 @@ npm run format
 npm run test:tools && npm run verify
 ```
 
-7. **Commit with a conventional-commit message** (`feat`, `fix`, `chore`, `docs`, `refactor`, `test`). Reference an issue (`#123`) if one applies. Keep all files for one logical change in a single commit where practical.
+7. **Commit with a conventional-commit message** (`feat`, `fix`, `chore`, `docs`, `refactor`, `test`). Reference an issue (`#123`) if one applies. Keep all files for one logical change in a single commit where practical. A `feat` is a minor application release, a `fix` is a patch, and a breaking change is a major. `chore`, `docs`, `refactor`, and `test` do not open a release. They ship when a later version bump is released. See [docs/07-distribution.md](docs/07-distribution.md).
 
 ```bash
 git commit -m "feat: add float stone OOC move-speed tier (#123)"
