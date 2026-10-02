@@ -113,7 +113,7 @@ npm run data:refresh -- --patch-version 1.23.3.12
 
 ```bash
 git add -A
-git commit -m "chore(data): refresh UNITE data"
+git commit -m "fix(data): refresh UNITE data"
 git push
 ```
 

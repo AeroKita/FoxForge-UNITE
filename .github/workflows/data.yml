@@ -73,8 +73,8 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: data/auto-refresh
-          commit-message: "chore(data): refresh UNITE data"
-          title: "chore(data): refresh UNITE data"
+          commit-message: "fix(data): refresh UNITE data"
+          title: "fix(data): refresh UNITE data"
           reviewers: AeroKita
           body: |
             Automated UNITE-DB data refresh.
