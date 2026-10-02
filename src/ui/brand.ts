@@ -31,6 +31,11 @@ export const DOCUMENT_TITLE = "FoxForge UNITE | Pokémon UNITE Build Optimizer";
 // domain at the root (`VITE_BASE=/`), not the github.io project path.
 export const GITHUB_REPO_SLUG = "FoxForge-UNITE";
 export const GITHUB_REPO = `AeroKita/${GITHUB_REPO_SLUG}`;
+
+/** GitHub Release for the app version Settings shows. The tag is `v` plus semver; the Settings row shows the semver alone. */
+export function githubReleaseUrl(version: string): string {
+  return `https://github.com/${GITHUB_REPO}/releases/tag/v${version}`;
+}
 export const SITE_HOST = "foxforge-unite.com";
 export const SITE_ORIGIN = `https://${SITE_HOST}`;
 export const PAGES_BASE_PATH = "/";
