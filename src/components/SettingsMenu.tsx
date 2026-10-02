@@ -7,6 +7,7 @@ import {
   LEGAL_DATA_ATTRIBUTION,
   LEGAL_DISCLAIMER,
   copyrightLine,
+  githubReleaseUrl,
 } from "../ui/brand";
 import { APP_VERSION } from "../ui/version";
 import { BottomSheet } from "./shell/BottomSheet";
@@ -63,7 +64,14 @@ export function SettingsMenu({ open, onClose }: { open: boolean; onClose: () => 
           <div className="mt-3 border-t border-line-soft pt-3">
             <div className="flex items-center justify-between gap-2">
               <span className="text-sm font-medium">App version</span>
-              <span className="font-mono text-xs text-faint">v{APP_VERSION}</span>
+              <a
+                href={githubReleaseUrl(APP_VERSION)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs text-faint underline underline-offset-2 hover:text-ink"
+              >
+                {APP_VERSION}
+              </a>
             </div>
           </div>
         </Section>

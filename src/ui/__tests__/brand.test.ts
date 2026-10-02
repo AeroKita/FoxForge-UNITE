@@ -13,6 +13,7 @@ import {
   OG_IMAGE_WIDTH,
   PAGES_BASE_PATH,
   PAGES_DATA_BASE,
+  githubReleaseUrl,
   robotsTxt,
   SITE_HOST,
   SITE_ORIGIN,
@@ -38,6 +39,12 @@ describe("hosted site URLs", () => {
 
     const cname = readFileSync(join(REPO_ROOT, "public", "CNAME"), "utf8").trim();
     expect(cname).toBe(SITE_HOST);
+  });
+
+  it("links an app version to that GitHub release tag", () => {
+    expect(githubReleaseUrl("2.10.10")).toBe(
+      "https://github.com/AeroKita/FoxForge-UNITE/releases/tag/v2.10.10",
+    );
   });
 });
 
