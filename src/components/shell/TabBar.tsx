@@ -81,7 +81,7 @@ export function tabBarAdvancedItemClass(slot: AdvancedTabSlot, visible: boolean)
  * Theme-tinted silhouette. The PNG is a black shape on transparency; masking
  * it with currentColor follows the tab's idle and active ink in both themes.
  */
-function SilhouetteIcon({ src, box = "h-6 w-6" }: { src: string; box?: string }) {
+function SilhouetteIcon({ src, box = "h-[26px] w-[26px]" }: { src: string; box?: string }) {
   const mask: CSSProperties = {
     WebkitMaskImage: `url("${src}")`,
     maskImage: `url("${src}")`,
@@ -98,7 +98,7 @@ function SilhouetteIcon({ src, box = "h-6 w-6" }: { src: string; box?: string })
 function CompareIcon() {
   return (
     <svg
-      className="h-6 w-6"
+      className="h-[23px] w-[23px]"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -116,11 +116,11 @@ function CompareIcon() {
 }
 
 export const TAB_ICONS: Record<Tab, ReactNode> = {
-  build: <SilhouetteIcon src={lucarioIcon} />,
-  optimize: <SilhouetteIcon src={rotomFaceIcon} box="h-8 w-8" />,
+  build: <SilhouetteIcon src={lucarioIcon} box="h-[29px] w-[29px]" />,
+  optimize: <SilhouetteIcon src={rotomFaceIcon} />,
   compare: <CompareIcon />,
   emblems: <SilhouetteIcon src={pikachuIcon} />,
-  items: <SilhouetteIcon src={leftoversIcon} />,
+  items: <SilhouetteIcon src={leftoversIcon} box="h-[27px] w-[27px]" />,
 };
 
 export const MAIN_TABS: { id: Tab; label: string; icon: ReactNode }[] = [
@@ -178,7 +178,9 @@ export function TabBar({ active, onChange, tabs, advancedVisible }: TabBarProps)
                 }}
                 className={itemClass}
               >
-                {tab.icon}
+                <span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center">
+                  {tab.icon}
+                </span>
                 <span className="text-[11px] font-medium leading-none">{tab.label}</span>
               </button>
             </div>
