@@ -81,7 +81,7 @@ export function tabBarAdvancedItemClass(slot: AdvancedTabSlot, visible: boolean)
  * Theme-tinted silhouette. The PNG is a black shape on transparency; masking
  * it with currentColor follows the tab's idle and active ink in both themes.
  */
-function SilhouetteIcon({ src }: { src: string }) {
+function SilhouetteIcon({ src, box = "h-6 w-6" }: { src: string; box?: string }) {
   const mask: CSSProperties = {
     WebkitMaskImage: `url("${src}")`,
     maskImage: `url("${src}")`,
@@ -92,7 +92,7 @@ function SilhouetteIcon({ src }: { src: string }) {
     WebkitMaskSize: "contain",
     maskSize: "contain",
   };
-  return <span aria-hidden className="inline-block h-6 w-6 bg-current" style={mask} />;
+  return <span aria-hidden className={`inline-block ${box} bg-current`} style={mask} />;
 }
 
 function CompareIcon() {
@@ -117,7 +117,7 @@ function CompareIcon() {
 
 export const TAB_ICONS: Record<Tab, ReactNode> = {
   build: <SilhouetteIcon src={lucarioIcon} />,
-  optimize: <SilhouetteIcon src={rotomFaceIcon} />,
+  optimize: <SilhouetteIcon src={rotomFaceIcon} box="h-8 w-8" />,
   compare: <CompareIcon />,
   emblems: <SilhouetteIcon src={pikachuIcon} />,
   items: <SilhouetteIcon src={leftoversIcon} />,

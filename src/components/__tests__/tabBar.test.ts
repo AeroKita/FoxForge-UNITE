@@ -19,6 +19,14 @@ function tabLabels(html: string): string[] {
   return [...html.matchAll(/<span[^>]*>([^<]+)<\/span>/g)].map((match) => match[1]);
 }
 
+/** Tailwind box on the silhouette whose mask URL contains `file`. */
+function silhouetteBox(html: string, file: string): string | undefined {
+  const span = [...html.matchAll(/<span\b[^>]*>/g)]
+    .map((match) => match[0])
+    .find((tag) => tag.includes(file));
+  return span?.match(/class="([^"]*)"/)?.[1].match(/\bh-\S+\s+w-\S+/)?.[0];
+}
+
 describe("MAIN_TABS", () => {
   it("orders Builds, Items, and Emblems ahead of the Advanced-only tabs", () => {
     expect(MAIN_TABS.map((tab) => tab.id)).toEqual([
@@ -168,5 +176,20 @@ describe("TabBar Advanced slots", () => {
     expect(html).not.toMatch(/inert/);
     expect(html).not.toContain('tabindex="-1"');
     expect(html).toMatch(/aria-selected="true"[^>]*>[\s\S]*Optimize/);
+  });
+
+  it("draws the Rotom face a step larger than the other tab silhouettes", () => {
+    const html = renderToStaticMarkup(
+      createElement(TabBar, {
+        active: "optimize",
+        onChange: () => {},
+        tabs: MAIN_TABS,
+        advancedVisible: true,
+      }),
+    );
+    expect(silhouetteBox(html, "rotomface_icon_outline")).toBe("h-8 w-8");
+    for (const file of ["lucario_icon_outline", "leftovers_icon_outline", "pikachu_icon_outline"]) {
+      expect(silhouetteBox(html, file)).toBe("h-6 w-6");
+    }
   });
 });
