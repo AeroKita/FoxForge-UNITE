@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.12.0...v2.13.0) (2026-10-04)
+
+
+### Features
+
+* **ui:** enlarge the Optimize Rotom tab icon ([7586910](https://github.com/AeroKita/FoxForge-UNITE/commit/7586910f97ba81db386a2f5b5413428bddc4f37e))
+
 ## [2.12.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.11.0...v2.12.0) (2026-10-02)
 
 
