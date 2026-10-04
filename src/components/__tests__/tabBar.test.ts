@@ -178,7 +178,7 @@ describe("TabBar Advanced slots", () => {
     expect(html).toMatch(/aria-selected="true"[^>]*>[\s\S]*Optimize/);
   });
 
-  it("draws Lucario at 29px, Leftovers at 27px, the other silhouettes at 26px, and Compare at 23px", () => {
+  it("draws Lucario at 29px, Leftovers at 27px, Rotom at 28px, Pikachu at 26px, and Compare at 24px", () => {
     const html = renderToStaticMarkup(
       createElement(TabBar, {
         active: "optimize",
@@ -189,10 +189,9 @@ describe("TabBar Advanced slots", () => {
     );
     expect(silhouetteBox(html, "lucario_icon_outline")).toBe("h-[29px] w-[29px]");
     expect(silhouetteBox(html, "leftovers_icon_outline")).toBe("h-[27px] w-[27px]");
-    for (const file of ["rotomface_icon_outline", "pikachu_icon_outline"]) {
-      expect(silhouetteBox(html, file)).toBe("h-[26px] w-[26px]");
-    }
-    expect(html).toMatch(/<svg[^>]*class="h-\[23px\] w-\[23px\]"/);
+    expect(silhouetteBox(html, "rotomface_icon_outline")).toBe("h-[28px] w-[28px]");
+    expect(silhouetteBox(html, "pikachu_icon_outline")).toBe("h-[26px] w-[26px]");
+    expect(html).toMatch(/<svg[^>]*class="h-6 w-6"/);
     expect(
       html.match(/class="flex h-\[30px\] w-\[30px\] shrink-0 items-center justify-center"/g),
     ).toHaveLength(5);

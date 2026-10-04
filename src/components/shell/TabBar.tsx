@@ -98,7 +98,7 @@ function SilhouetteIcon({ src, box = "h-[26px] w-[26px]" }: { src: string; box?:
 function CompareIcon() {
   return (
     <svg
-      className="h-[23px] w-[23px]"
+      className="h-6 w-6"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -117,7 +117,7 @@ function CompareIcon() {
 
 export const TAB_ICONS: Record<Tab, ReactNode> = {
   build: <SilhouetteIcon src={lucarioIcon} box="h-[29px] w-[29px]" />,
-  optimize: <SilhouetteIcon src={rotomFaceIcon} />,
+  optimize: <SilhouetteIcon src={rotomFaceIcon} box="h-[28px] w-[28px]" />,
   compare: <CompareIcon />,
   emblems: <SilhouetteIcon src={pikachuIcon} />,
   items: <SilhouetteIcon src={leftoversIcon} box="h-[27px] w-[27px]" />,
