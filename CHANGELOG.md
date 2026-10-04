@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.13.0...v2.14.0) (2026-10-04)
+
+
+### Features
+
+* **ui:** balance the tab icons and keep their labels aligned ([ff45d48](https://github.com/AeroKita/FoxForge-UNITE/commit/ff45d48640ca6dffbf3226a6a0439c2a4993fcbb))
+
 ## [2.13.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.12.0...v2.13.0) (2026-10-04)
 
 
