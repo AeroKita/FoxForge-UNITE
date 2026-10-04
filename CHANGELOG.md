@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.14.0...v2.15.0) (2026-10-04)
+
+
+### Features
+
+* **ui:** enlarge Rotom and restore the Compare arrows ([d910c7a](https://github.com/AeroKita/FoxForge-UNITE/commit/d910c7ab6827ffd0639611d3d6e9e44d7492dbef))
+
 ## [2.14.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.13.0...v2.14.0) (2026-10-04)
 
 
