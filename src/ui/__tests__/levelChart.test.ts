@@ -3,8 +3,10 @@ import { deriveBuild } from "../../engine/derive";
 import { emptyLoadout } from "../../state/loadout";
 import {
   attackSpeedBreakpoints,
+  chartShowsOocLine,
   formatLevelChartValue,
   LEVEL_CHART_METRICS,
+  levelChartOocValue,
   levelChartValue,
 } from "../levelChart";
 
@@ -41,6 +43,28 @@ describe("levelChartValue", () => {
     );
     expect(levelChartValue(d, "attackSpeed")).toBeCloseTo(d.attackSpeed!.asPoints, 6);
     expect(levelChartValue(d, "attackSpeed")).toBeGreaterThan(30);
+  });
+});
+
+describe("out-of-combat speed line", () => {
+  it("plots Float Stone out-of-combat speed apart from in-combat Speed", () => {
+    const d = deriveBuild(
+      { ...emptyLoadout("absol"), heldItemIds: ["float-stone", null, null] },
+      true,
+      [40, 40, 40],
+    );
+    expect(levelChartValue(d, "moveSpeed")).toBe(4425);
+    expect(levelChartOocValue(d)).toBe(5248);
+    expect(chartShowsOocLine([levelChartValue(d, "moveSpeed")], [levelChartOocValue(d)])).toBe(
+      true,
+    );
+  });
+
+  it("hides the second line when every level matches", () => {
+    const d = deriveBuild(emptyLoadout("absol"), true, [40, 40, 40]);
+    expect(levelChartOocValue(d)).toBe(levelChartValue(d, "moveSpeed"));
+    expect(chartShowsOocLine([4300, 4400, 4500], [4300, 4400, 4500])).toBe(false);
+    expect(chartShowsOocLine([4300, 4400, 4500], [4300, 5248, 4500])).toBe(true);
   });
 });
 

@@ -14,8 +14,10 @@ import { deriveAtLevel } from "../engine/derive";
 import { CollapsibleCard } from "./CollapsibleCard";
 import {
   attackSpeedBreakpoints,
+  chartShowsOocLine,
   formatLevelChartValue,
   LEVEL_CHART_METRICS,
+  levelChartOocValue,
   levelChartValue,
   type LevelChartKey,
 } from "../ui/levelChart";
@@ -23,6 +25,35 @@ import {
 const LEVELS = Array.from({ length: 15 }, (_, i) => i + 1);
 
 const BREAKPOINT_METRICS: ReadonlySet<LevelChartKey> = new Set(["attackSpeed", "aps"]);
+
+function SpeedLegend({ inCombat }: { inCombat: string }) {
+  return (
+    <div
+      className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted"
+      aria-label="Speed lines"
+    >
+      <span className="inline-flex items-center gap-1.5">
+        <span
+          aria-hidden
+          className="inline-block h-0.5 w-4 rounded-full"
+          style={{ backgroundColor: inCombat }}
+        />
+        In combat
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <span
+          aria-hidden
+          className="inline-block h-px w-4"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(90deg, var(--color-muted) 0 3px, transparent 3px 5px)",
+          }}
+        />
+        Out of combat
+      </span>
+    </div>
+  );
+}
 
 function levelDot(color: string, active: boolean) {
   return function LevelDot(props: {
@@ -52,25 +83,34 @@ export function LevelGraph() {
   const metric = LEVEL_CHART_METRICS.find((m) => m.key === metricKey)!;
 
   const chart = useMemo(() => {
-    if (!loadout.pokemonId) return { points: [], caption: null as string | null };
+    if (!loadout.pokemonId) return { points: [], caption: null as string | null, showOoc: false };
     const rows = LEVELS.map((level) => {
       const d = deriveAtLevel(loadout, level, true, heldSlotGrades);
       return {
         level,
         value: levelChartValue(d, metricKey),
+        ooc: metricKey === "moveSpeed" ? levelChartOocValue(d) : null,
         frames: d.attackSpeed?.frames ?? null,
       };
     });
     const showBreaks = BREAKPOINT_METRICS.has(metricKey);
     const marks = showBreaks ? attackSpeedBreakpoints(rows.map((row) => row.frames)) : [];
     const marked = new Set(marks);
+    const showOoc =
+      metricKey === "moveSpeed" &&
+      chartShowsOocLine(
+        rows.map((row) => row.value),
+        rows.map((row) => row.ooc),
+      );
     return {
       points: rows.map((row) => ({
         level: row.level,
         value: row.value,
+        ooc: showOoc ? row.ooc : undefined,
         breakpoint: marked.has(row.level),
       })),
       caption: marks.length > 0 ? "Rings mark Attack Speed breakpoints." : null,
+      showOoc,
     };
   }, [loadout, metricKey, heldSlotGrades]);
 
@@ -128,7 +168,10 @@ export function LevelGraph() {
             }
           />
           <Tooltip
-            formatter={(v) => [formatLevelChartValue(Number(v), metricKey), metric.label]}
+            formatter={(v, name) => [
+              formatLevelChartValue(Number(v), metricKey),
+              chart.showOoc ? String(name) : metric.label,
+            ]}
             labelFormatter={(l) => `Level ${l}`}
             contentStyle={{
               borderRadius: 8,
@@ -144,10 +187,24 @@ export function LevelGraph() {
             strokeDasharray="4 4"
             label={{ value: "current", fontSize: 10, fill: metric.color }}
           />
+          {chart.showOoc && (
+            <Line
+              type="monotone"
+              dataKey="ooc"
+              name="Out of combat"
+              stroke="var(--color-muted)"
+              strokeWidth={1.5}
+              strokeDasharray="4 3"
+              dot={false}
+              activeDot={{ r: 3, fill: "var(--color-muted)" }}
+              isAnimationActive={false}
+            />
+          )}
           <Line
             // stepAfter puts the vertical jump on the level where the frame count changes.
             type={metricKey === "aps" ? "stepAfter" : "monotone"}
             dataKey="value"
+            name={chart.showOoc ? "In combat" : metric.label}
             stroke={metric.color}
             strokeWidth={2.5}
             dot={levelDot(metric.color, false)}
@@ -156,6 +213,7 @@ export function LevelGraph() {
           />
         </LineChart>
       </ResponsiveContainer>
+      {chart.showOoc && <SpeedLegend inCombat={metric.color} />}
       {chart.caption && <p className="mt-2 text-xs text-muted">{chart.caption}</p>}
     </CollapsibleCard>
   );
