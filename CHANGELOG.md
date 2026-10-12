@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.16.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.15.0...v2.16.0) (2026-10-12)
+
+
+### Features
+
+* **ui:** mark attack-speed breakpoints on Stats Charts [[#81](https://github.com/AeroKita/FoxForge-UNITE/issues/81)] ([74da307](https://github.com/AeroKita/FoxForge-UNITE/commit/74da307339ca414f6818df8c5a31b5dcc8f5b362))
+
+
+### Bug Fixes
+
+* **data:** refresh UNITE data ([aa048e4](https://github.com/AeroKita/FoxForge-UNITE/commit/aa048e48a2b40dd524d86bfcf8647a42ee90d824))
+* **ui:** scale Basic held-item text to the selected grade [[#77](https://github.com/AeroKita/FoxForge-UNITE/issues/77)] ([af46ede](https://github.com/AeroKita/FoxForge-UNITE/commit/af46edefdcf8ff77f0f5dfcfea0d064af8a000c6))
+* **ui:** show softened move speed in and out of combat [[#76](https://github.com/AeroKita/FoxForge-UNITE/issues/76)] ([154bf8d](https://github.com/AeroKita/FoxForge-UNITE/commit/154bf8dbf7dfa8e69cc96568e2ed5872f167ad24))
+
 ## [2.15.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.14.0...v2.15.0) (2026-10-04)
 
 
