@@ -51,4 +51,8 @@ describe("Stats Charts metric row", () => {
     const labels = [...group.matchAll(/<button\b[^>]*>([^<]+)<\/button>/g)].map((m) => m[1]);
     expect(labels[labels.indexOf("Attacks/sec") - 1]).toBe("Atk Speed");
   });
+
+  it("hides the frame-breakpoint caption on the default Attack metric", () => {
+    expect(html).not.toContain("Attack Speed breakpoints");
+  });
 });

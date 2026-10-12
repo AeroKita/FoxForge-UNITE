@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { deriveBuild } from "../../engine/derive";
 import { emptyLoadout } from "../../state/loadout";
-import { formatLevelChartValue, LEVEL_CHART_METRICS, levelChartValue } from "../levelChart";
+import {
+  attackSpeedBreakpoints,
+  formatLevelChartValue,
+  LEVEL_CHART_METRICS,
+  levelChartValue,
+} from "../levelChart";
 
 describe("levelChartValue", () => {
   it("plots Machamp crit as percentage points", () => {
@@ -54,5 +59,16 @@ describe("level chart display", () => {
     expect(formatLevelChartValue(5, "lifesteal")).toBe("5%");
     expect(formatLevelChartValue(1.25, "aps")).toBe("1.25");
     expect(formatLevelChartValue(4523, "hp")).toBe("4523");
+  });
+});
+
+describe("attack speed breakpoints", () => {
+  it("marks levels where the frame bucket changes, including a multi-bucket jump", () => {
+    expect(attackSpeedBreakpoints([60, 60, 56, 56, 48])).toEqual([3, 5]);
+  });
+
+  it("ignores level 1 and null gaps", () => {
+    expect(attackSpeedBreakpoints([56])).toEqual([]);
+    expect(attackSpeedBreakpoints([null, 52, null, 48])).toEqual([]);
   });
 });
