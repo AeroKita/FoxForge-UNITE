@@ -26,8 +26,11 @@ describe("deriveBuild — out-of-combat move speed (issue #25)", () => {
     };
     const d = deriveBuild(loadout, true, [40, 40, 40]);
     expect(d.effective).not.toBeNull();
-    // grade-40 Float Stone = +20% OOC on top of the in-combat move speed.
-    expect(d.oocMoveSpeed).toBe(Math.floor(d.effective!.moveSpeed * 1.2));
+    // Absol Lv15 4250 + Float Stone +175 = 4425 (unchanged band).
+    // Internal OOC floor(4425 × 1.20) = 5310, then the 5000–5750 band
+    // softens that to 5000 + 0.8×310 = 5248.
+    expect(d.effective!.moveSpeed).toBe(4425);
+    expect(d.oocMoveSpeed).toBe(5248);
     expect(d.oocMoveSpeed!).toBeGreaterThan(d.effective!.moveSpeed);
   });
 
@@ -49,6 +52,19 @@ describe("deriveBuild — out-of-combat move speed (issue #25)", () => {
     expect(d.emblemLoadout.activeSetBonuses.some((b) => b.color === "yellow")).toBe(true);
     // Yellow is gated out of the in-combat block but must lift OOC speed.
     expect(d.oocMoveSpeed!).toBeGreaterThan(d.effective!.moveSpeed);
+  });
+
+  it("softens an in-combat move-speed buff after the multiplier", () => {
+    // Dragonite Lv15 4300 × 1.30 = 5590 internal. The 5000–5750 band
+    // softens that to 5000 + 0.8×590 = 5472. Out of combat the buff is off.
+    const on = deriveBuild(
+      { ...emptyLoadout("dragonite"), activeBoostIds: ["move:Dragon Dance"] },
+      true,
+      [40, 40, 40],
+    );
+    expect(on.effective!.moveSpeed).toBe(5472);
+    expect(on.oocMoveSpeed).toBe(4300);
+    expect(on.buffedStats.has("moveSpeed")).toBe(true);
   });
 });
 

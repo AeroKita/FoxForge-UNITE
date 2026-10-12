@@ -13,7 +13,7 @@ import {
   ITEM_GRADE_DEFAULT,
 } from "../data/gameData";
 import { computeEmblemLoadout } from "./emblems";
-import { computeEffectiveStats, outOfCombatMoveSpeed } from "./formulas";
+import { computeEffectiveStats, inMatchMoveSpeed, outOfCombatMoveSpeed } from "./formulas";
 import { computeAttackSpeed, type AttackSpeedResult } from "./attackSpeed";
 import {
   availableActiveBoosts,
@@ -140,7 +140,12 @@ export function deriveBuild(
     equippedGrades,
     { inCombat: false, goalsScored: 0 },
   );
-  const oocMoveSpeed = outOfCombatMoveSpeed(oocEffective.moveSpeed, equippedHeld, equippedGrades);
+  // Soften after every multiplier. In-combat buffs (Dragon Dance, and the
+  // like) stay off the out-of-combat value.
+  effective.moveSpeed = inMatchMoveSpeed(effective.moveSpeed);
+  const oocMoveSpeed = inMatchMoveSpeed(
+    outOfCombatMoveSpeed(oocEffective.moveSpeed, equippedHeld, equippedGrades),
+  );
 
   return {
     pokemon,

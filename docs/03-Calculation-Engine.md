@@ -16,6 +16,12 @@ Apply in exactly this sequence to match in-game behavior:
    multiplied by emblem set bonuses.  
 5. **Conditional item effects** per context (Attack Weight stacks per goal,  
    Float Stone OOC move speed, Muscle Band on-hit, etc.).  
+6. **In-match move speed.** After the multipliers (yellow, Float Stone, active  
+   move-speed buffs), `inMatchMoveSpeed` softens the internal value to the  
+   speed you actually move at. 2,500–5,000 is unchanged. At or below 0 the  
+   speed is 1,250; 12,550 and above is 9,000. The spec is the movement-speed  
+   section of <https://wikiwiki.jp/poke-unite/バトルに関する仕様#ms>  
+   (worked example: internal 6,692 → in-match 6,071).  
   
 > If you apply held-item flats before the emblem %, or multiply item flats by the  
 > emblem bonus, your numbers will be wrong. This is the most common inaccuracy in  

@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   damageTakenWithReduction,
   effectiveHp,
+  inMatchMoveSpeed,
+  moveSpeedSoftened,
   physicalDamageTaken,
   rawDamage,
   specialDamageTaken,
@@ -41,6 +43,34 @@ describe("mitigation", () => {
   it("flat reductions apply after mitigation, double-floored", () => {
     // floor(floor(606.06) * 0.7) = floor(424.2) = 424
     expect(damageTakenWithReduction(1000, 390, 0.3)).toBe(424);
+  });
+});
+
+describe("inMatchMoveSpeed", () => {
+  it("softens internal move speed on the battle-spec curve", () => {
+    // wikiwiki.jp バトルに関する仕様#ms worked example: 6692 → 6071.
+    expect(inMatchMoveSpeed(6692)).toBe(6071);
+    // Issue #76: 5748 sits in the 5000–5750 band → 5000 + 0.8×748 = 5598.4.
+    expect(inMatchMoveSpeed(5748)).toBeCloseTo(5598.4, 10);
+    // 2500–5000 is unchanged, so the in-combat 4790 row is already in-match.
+    expect(inMatchMoveSpeed(4790)).toBe(4790);
+    expect(inMatchMoveSpeed(-10)).toBe(1250);
+    expect(inMatchMoveSpeed(0)).toBe(1250);
+    expect(inMatchMoveSpeed(2500)).toBe(2500);
+    expect(inMatchMoveSpeed(5000)).toBe(5000);
+    expect(inMatchMoveSpeed(5750)).toBe(5600);
+    expect(inMatchMoveSpeed(12550)).toBe(9000);
+  });
+
+  it("marks only speeds the curve changed", () => {
+    expect(moveSpeedSoftened(3000)).toBe(false);
+    expect(moveSpeedSoftened(2500)).toBe(false);
+    expect(moveSpeedSoftened(5000)).toBe(false);
+    expect(moveSpeedSoftened(2499.5)).toBe(true);
+    expect(moveSpeedSoftened(1250)).toBe(true);
+    expect(moveSpeedSoftened(5472)).toBe(true);
+    expect(moveSpeedSoftened(5598.4)).toBe(true);
+    expect(moveSpeedSoftened(9000)).toBe(true);
   });
 });
 
