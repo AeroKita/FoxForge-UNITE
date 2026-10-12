@@ -69,7 +69,7 @@ export function StatPanel() {
       {expert && (
         <CollapsibleCard title="Active Effects" persistKey="effects">
           <p className="mb-3 text-xs text-faint">
-            Off by default. Toggle a buff to include it in Effective Stats and Stats Charts.
+            Toggle a buff to include it in Effective Stats and Stats Charts.
           </p>
           {availableBoosts.length === 0 ? (
             <p className="text-sm text-faint">No toggleable effects for this loadout.</p>

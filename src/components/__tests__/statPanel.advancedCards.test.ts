@@ -41,7 +41,8 @@ describe("Advanced Builds stat cards", () => {
   });
 
   it("points Active Effects at the Effective Stats and Stats Charts cards", () => {
-    expect(html).toContain("Effective Stats and Stats Charts.");
+    expect(html).toContain("Toggle a buff to include it in Effective Stats and Stats Charts.");
+    expect(html).not.toContain("Off by default");
     expect(html).not.toContain("level charts");
   });
 });
