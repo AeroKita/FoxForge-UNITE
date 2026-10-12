@@ -13,6 +13,7 @@ import { useStore } from "../state/store";
 import { deriveAtLevel } from "../engine/derive";
 import { CollapsibleCard } from "./CollapsibleCard";
 import {
+  attackSpeedBreakpoints,
   formatLevelChartValue,
   LEVEL_CHART_METRICS,
   levelChartValue,
@@ -21,17 +22,56 @@ import {
 
 const LEVELS = Array.from({ length: 15 }, (_, i) => i + 1);
 
+const BREAKPOINT_METRICS: ReadonlySet<LevelChartKey> = new Set(["attackSpeed", "aps"]);
+
+function levelDot(color: string, active: boolean) {
+  return function LevelDot(props: {
+    cx?: number;
+    cy?: number;
+    payload?: { breakpoint?: boolean };
+  }) {
+    const { cx, cy, payload } = props;
+    if (cx == null || cy == null) return <g />;
+    const hit = Boolean(payload?.breakpoint);
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={hit ? (active ? 6 : 5) : active ? 5 : 2}
+        fill={hit ? "var(--color-surface)" : color}
+        stroke={color}
+        strokeWidth={hit ? 2 : 0}
+      />
+    );
+  };
+}
+
 export function LevelGraph() {
   const { loadout, heldSlotGrades } = useStore();
   const [metricKey, setMetricKey] = useState<LevelChartKey>("attack");
   const metric = LEVEL_CHART_METRICS.find((m) => m.key === metricKey)!;
 
-  const data = useMemo(() => {
-    if (!loadout.pokemonId) return [];
-    return LEVELS.map((level) => {
+  const chart = useMemo(() => {
+    if (!loadout.pokemonId) return { points: [], caption: null as string | null };
+    const rows = LEVELS.map((level) => {
       const d = deriveAtLevel(loadout, level, true, heldSlotGrades);
-      return { level, value: levelChartValue(d, metricKey) };
+      return {
+        level,
+        value: levelChartValue(d, metricKey),
+        frames: d.attackSpeed?.frames ?? null,
+      };
     });
+    const showBreaks = BREAKPOINT_METRICS.has(metricKey);
+    const marks = showBreaks ? attackSpeedBreakpoints(rows.map((row) => row.frames)) : [];
+    const marked = new Set(marks);
+    return {
+      points: rows.map((row) => ({
+        level: row.level,
+        value: row.value,
+        breakpoint: marked.has(row.level),
+      })),
+      caption: marks.length > 0 ? "Rings mark Attack Speed breakpoints." : null,
+    };
   }, [loadout, metricKey, heldSlotGrades]);
 
   if (!loadout.pokemonId) return null;
@@ -62,7 +102,7 @@ export function LevelGraph() {
     <CollapsibleCard title="Stats Charts" persistKey="levelgraph">
       <div className="mb-3">{metricPills}</div>
       <ResponsiveContainer width="100%" height={260}>
-        <LineChart data={data} margin={{ top: 8, right: 16, bottom: 4, left: 8 }}>
+        <LineChart data={chart.points} margin={{ top: 8, right: 16, bottom: 4, left: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--color-line)" />
           <XAxis
             dataKey="level"
@@ -105,16 +145,18 @@ export function LevelGraph() {
             label={{ value: "current", fontSize: 10, fill: metric.color }}
           />
           <Line
-            type="monotone"
+            // stepAfter puts the vertical jump on the level where the frame count changes.
+            type={metricKey === "aps" ? "stepAfter" : "monotone"}
             dataKey="value"
             stroke={metric.color}
             strokeWidth={2.5}
-            dot={{ r: 2 }}
-            activeDot={{ r: 5 }}
+            dot={levelDot(metric.color, false)}
+            activeDot={levelDot(metric.color, true)}
             isAnimationActive={false}
           />
         </LineChart>
       </ResponsiveContainer>
+      {chart.caption && <p className="mt-2 text-xs text-muted">{chart.caption}</p>}
     </CollapsibleCard>
   );
 }

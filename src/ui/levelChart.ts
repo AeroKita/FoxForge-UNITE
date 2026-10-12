@@ -59,3 +59,19 @@ export function formatLevelChartValue(value: number, key: LevelChartKey): string
   const body = String(Number(value.toFixed(3)));
   return `${body}${suffix}`;
 }
+
+/**
+ * 1-based levels where the frame bucket changes versus the previous level.
+ * Index 0 is level 1 and is never a breakpoint. A null frame count
+ * breaks the comparison on either side of the gap.
+ */
+export function attackSpeedBreakpoints(framesByLevel: readonly (number | null)[]): number[] {
+  const levels: number[] = [];
+  for (let i = 1; i < framesByLevel.length; i++) {
+    const prev = framesByLevel[i - 1];
+    const frames = framesByLevel[i];
+    if (prev == null || frames == null || frames === prev) continue;
+    levels.push(i + 1);
+  }
+  return levels;
+}
