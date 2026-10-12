@@ -192,9 +192,6 @@ export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
           Set bonuses: {formatActiveSetBonuses(emblemLoadout.activeSetBonuses)}
         </p>
       )}
-      <p className="mt-1 text-xs text-faint">
-        Yellow set bonus and Float Stone apply only out of combat.
-      </p>
     </>
   );
 }
