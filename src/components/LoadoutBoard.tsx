@@ -35,6 +35,7 @@ import { EquippedSets } from "./EquippedSets";
 import { EquippedStats } from "./EquippedStats";
 import { EmblemSetGuide } from "./EmblemSetGuide";
 import { itemTip, emblemTip, statsAtGrade, battleItemTip, pickDescription } from "./tips";
+import { heldItemDescription } from "../ui/heldItemText";
 import type { BattleItem, HeldItem } from "../types";
 
 type Picker = { kind: "held"; slot: number } | { kind: "battle" } | { kind: "emblem" } | null;
@@ -68,7 +69,7 @@ export function LoadoutBoard() {
       id: i.id,
       name: i.displayName,
       icon: i.iconAsset,
-      title: pickDescription(i, expert),
+      title: heldItemDescription(i, heldItemGrade(i.id), expert),
       tip: itemTip(i, heldItemGrade(i.id), expert),
     }));
     const { regular, unique } = partitionHeldPickerItems(rows, isUniqueHeldItemId);

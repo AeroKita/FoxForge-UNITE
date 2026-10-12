@@ -1,5 +1,5 @@
 {
-  "_source": "Held item Basic descriptions — owned, hand-maintained. Transcribed from the English in-game held-item screen (grade-20 effect text, which is what the card shows at grades 20–40). normalize.py uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`. Unique items without a still (Mega Stones, Rusted Sword) are absent and keep UNITE-DB as their only description. No script writes this file.",
+  "_source": "Held item Basic descriptions — owned, hand-maintained. Transcribed from the English in-game held-item screen at grade 20. Basic display swaps those grade-20 effect numbers for the grade 1 or 10 tier; grades 20–40 keep this wording. normalize.py uses `description` here as the Basic tier and moves UNITE-DB text to `descriptionAdvanced`. Unique items without a still (Mega Stones, Rusted Sword) are absent and keep UNITE-DB as their only description. No script writes this file.",
   "items": {
     "muscle-band": {
       "description": "When basic attacks hit, the damage is increased by 3% of the opposing Pokémon's remaining HP."
