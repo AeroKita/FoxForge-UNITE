@@ -48,6 +48,26 @@ export function levelChartValue(derived: DerivedBuild, key: LevelChartKey): numb
   return Number(derived.effective[key as keyof StatBlock].toFixed(0));
 }
 
+/** Out-of-combat movement speed, rounded the same way as the Speed series. */
+export function levelChartOocValue(derived: DerivedBuild): number | null {
+  if (derived.oocMoveSpeed == null) return null;
+  return Number(derived.oocMoveSpeed.toFixed(0));
+}
+
+/**
+ * The quiet Speed line is worth drawing when any plotted level disagrees.
+ * Equal series would sit on top of each other.
+ */
+export function chartShowsOocLine(
+  inCombat: readonly (number | null)[],
+  outOfCombat: readonly (number | null)[],
+): boolean {
+  return inCombat.some((value, i) => {
+    const ooc = outOfCombat[i];
+    return value != null && ooc != null && value !== ooc;
+  });
+}
+
 /**
  * Display string for a plotted point. Percent metrics append `%`; the plotted
  * number itself stays a percentage point so the line scale does not change.
