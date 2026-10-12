@@ -17,7 +17,12 @@ import type {
 } from "../../types";
 import type { EmblemCandidate } from "./types";
 import { emblemById } from "../../data/gameData";
-import { computeEffectiveStats, outOfCombatMoveSpeed, setBonusStat } from "../formulas";
+import {
+  computeEffectiveStats,
+  inMatchMoveSpeed,
+  outOfCombatMoveSpeed,
+  setBonusStat,
+} from "../formulas";
 import { computeEmblemLoadout } from "../emblems";
 import { candidatesToEmblemSlots } from "./candidateSlots";
 
@@ -148,7 +153,9 @@ export function deriveEmblemLoadoutImpact(
     inCombat: false,
     goalsScored: 0,
   });
-  const oocMoveSpeed = outOfCombatMoveSpeed(oocEffective.moveSpeed, [], []);
+  withoutEmblems.moveSpeed = inMatchMoveSpeed(withoutEmblems.moveSpeed);
+  effective.moveSpeed = inMatchMoveSpeed(effective.moveSpeed);
+  const oocMoveSpeed = inMatchMoveSpeed(outOfCombatMoveSpeed(oocEffective.moveSpeed, [], []));
 
   return {
     effective,

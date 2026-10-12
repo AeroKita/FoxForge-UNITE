@@ -10,6 +10,7 @@
 //     means +0.02 to the stat, not ×1.02 — multiplying a base-0 CDR would make
 //     black emblems do nothing).
 //   - Yellow's move-speed bonus is out-of-combat only, gated on context.
+//   - Displayed move speed is inMatchMoveSpeed of that internal value.
 
 import type {
   StatBlock,
@@ -225,10 +226,34 @@ function itemOocMoveSpeedPercent(item: HeldItem, grade: number): number {
 }
 
 /**
+ * In-match movement speed from an internal value.
+ *
+ * Internal speed is (stat + additive bonuses) × multiplicative bonuses
+ * (Float Stone, X Speed, yellow). This curve then softens that number
+ * outside 2500–5000. Bands are the battle spec and meet at the knots
+ * 2500, 5000, 5750, and 12550.
+ * https://wikiwiki.jp/poke-unite/バトルに関する仕様#ms
+ */
+export function inMatchMoveSpeed(internal: number): number {
+  if (internal <= 0) return 1250;
+  if (internal < 2500) return 1250 + internal / 2;
+  if (internal < 5000) return internal;
+  if (internal < 5750) return tenths(1000 + internal * 0.8);
+  if (internal < 12550) return 2725 + internal / 2;
+  return 9000;
+}
+
+/** 0.8 is not binary-exact; the spec's results land on tenths. */
+function tenths(n: number): number {
+  return Math.round(n * 10) / 10;
+}
+
+/**
  * Out-of-combat move speed: applies additive OOC item %s (e.g. Float Stone
  * +10/15/20% by grade) on top of an already-OOC move-speed value. The caller
  * must pass a move speed that already includes yellow's set bonus (computed
- * with inCombat:false) — see derive.ts.
+ * with inCombat:false) — see derive.ts. This is the internal value;
+ * inMatchMoveSpeed softens it for display.
  */
 export function outOfCombatMoveSpeed(
   oocMoveSpeed: number,
