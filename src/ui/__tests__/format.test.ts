@@ -3,6 +3,7 @@ import {
   formatExactDelta,
   formatExactStatValue,
   formatLevelLabel,
+  formatMoveSpeed,
   heldItemStatLines,
   STAT_ROWS,
 } from "../format";
@@ -46,5 +47,10 @@ describe("exact held-item stat formatting", () => {
   it("labels moveSpeed as Speed on held-item and emblem flats", () => {
     expect(STAT_ROWS.find((r) => r.key === "moveSpeed")?.label).toBe("Speed");
     expect(heldItemStatLines({ moveSpeed: 175 })[0]?.label).toBe("Speed");
+  });
+
+  it("keeps a tenth on softened move speed", () => {
+    expect(formatMoveSpeed(5598.4)).toBe("5,598.4");
+    expect(formatMoveSpeed(5472)).toBe("5,472");
   });
 });

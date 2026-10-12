@@ -243,6 +243,11 @@ export function inMatchMoveSpeed(internal: number): number {
   return 9000;
 }
 
+/** The displayed speed left the unchanged 2,500–5,000 band. */
+export function moveSpeedSoftened(displayed: number): boolean {
+  return displayed < 2500 || displayed > 5000;
+}
+
 /** 0.8 is not binary-exact; the spec's results land on tenths. */
 function tenths(n: number): number {
   return Math.round(n * 10) / 10;

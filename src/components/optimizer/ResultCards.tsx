@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { emblemById, setBonuses } from "../../data/gameData";
 import { deriveEmblemLoadoutImpact } from "../../engine/emblemSearch/pokemonScore";
 import type { EmblemGrade } from "../../types";
-import { STAT_ROWS, formatExactDelta, formatStat } from "../../ui/format";
+import { STAT_ROWS, formatExactDelta, formatMoveSpeed, formatStat } from "../../ui/format";
 import { slotsFromPicks } from "../../ui/emblemWheel";
+import { MoveSpeedSofteningMark, SplitSpeedCells } from "../EffectiveStatsGrid";
 import { CollapsibleCard } from "../CollapsibleCard";
 import { EmblemSetSummary } from "../EmblemSetSummary";
 import { EmblemCoinRow } from "../EmblemCoinRow";
@@ -67,6 +68,9 @@ export function ResultCards({
   }, [impact]);
 
   const previewingOtherLevel = previewLevel !== searchLevel;
+  const speedsDiffer =
+    effectiveDelta?.oocMoveSpeed != null &&
+    effectiveDelta.oocMoveSpeed !== effectiveDelta.effective.moveSpeed;
 
   return (
     <CollapsibleCard
@@ -171,6 +175,7 @@ export function ResultCards({
 
             <dl className="grid grid-cols-2 gap-x-6 gap-y-0 sm:grid-cols-3">
               {STAT_ROWS.map((row) => {
+                if (speedsDiffer && row.key === "moveSpeed") return null;
                 const eff = effectiveDelta.effective[row.key];
                 const delta = effectiveDelta.delta[row.key];
                 return (
@@ -180,7 +185,7 @@ export function ResultCards({
                   >
                     <dt className="text-sm text-muted">{row.label}</dt>
                     <dd className="text-right font-mono text-sm font-semibold text-ink">
-                      {formatStat(eff, row.kind)}
+                      {row.key === "moveSpeed" ? formatMoveSpeed(eff) : formatStat(eff, row.kind)}
                       {delta !== undefined && (
                         <span
                           className={`ml-1 text-xs font-normal ${delta >= 0 ? "text-pos" : "text-neg"}`}
@@ -188,34 +193,28 @@ export function ResultCards({
                           ({formatExactDelta(delta, row.kind)})
                         </span>
                       )}
+                      {row.key === "moveSpeed" && <MoveSpeedSofteningMark speed={eff} />}
                     </dd>
                   </div>
                 );
               })}
             </dl>
-
-            <p className="mt-2 text-xs text-faint">
-              Out-of-combat move speed:{" "}
-              <span className="font-mono">{effectiveDelta.oocMoveSpeed?.toLocaleString()}</span>
-              {effectiveDelta.oocMoveSpeed != null &&
-                effectiveDelta.oocMoveSpeed > effectiveDelta.effective.moveSpeed && (
-                  <span className="ml-1 text-pos">
-                    (
-                    {formatExactDelta(
-                      effectiveDelta.oocMoveSpeed - effectiveDelta.effective.moveSpeed,
-                      "int",
-                    )}
-                    )
-                  </span>
-                )}
-              {effectiveDelta.emblemLoadout.activeSetBonuses.length > 0 && (
-                <>
-                  {" "}
-                  · Set bonuses:{" "}
-                  {formatActiveSetBonuses(effectiveDelta.emblemLoadout.activeSetBonuses)}
-                </>
-              )}
-            </p>
+            {speedsDiffer && effectiveDelta.oocMoveSpeed != null && (
+              <dl className="mt-2 grid grid-cols-2 gap-x-6">
+                <SplitSpeedCells
+                  inCombat={effectiveDelta.effective.moveSpeed}
+                  noCombat={effectiveDelta.oocMoveSpeed}
+                  inDelta={effectiveDelta.delta.moveSpeed ?? 0}
+                  noDelta={effectiveDelta.oocMoveSpeed - effectiveDelta.effective.moveSpeed}
+                  inBuffed={false}
+                />
+              </dl>
+            )}
+            {effectiveDelta.emblemLoadout.activeSetBonuses.length > 0 && (
+              <p className="mt-2 text-xs text-faint">
+                Set bonuses: {formatActiveSetBonuses(effectiveDelta.emblemLoadout.activeSetBonuses)}
+              </p>
+            )}
             {effectiveDelta.emblemLoadout.activeSetBonuses.some((b) => b.color === "yellow") && (
               <p className="mt-1 text-xs text-faint">
                 Yellow set bonus applies only out of combat.

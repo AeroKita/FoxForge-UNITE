@@ -32,6 +32,16 @@ export function formatStat(value: number, kind: StatKind): string {
   return Math.round(value).toLocaleString();
 }
 
+/** Move speed keeps a tenth. The softening curve lands on them above 5,000. */
+export function formatMoveSpeed(value: number): string {
+  const tenths = Math.round(value * 10) / 10;
+  if (Number.isInteger(tenths)) return tenths.toLocaleString();
+  return tenths.toLocaleString(undefined, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+}
+
 export function formatDelta(value: number, kind: StatKind): string {
   const sign = value > 0 ? "+" : "";
   if (kind === "percent") return `${sign}${(value * 100).toFixed(1)}%`;

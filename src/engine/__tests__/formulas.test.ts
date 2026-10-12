@@ -3,6 +3,7 @@ import {
   damageTakenWithReduction,
   effectiveHp,
   inMatchMoveSpeed,
+  moveSpeedSoftened,
   physicalDamageTaken,
   rawDamage,
   specialDamageTaken,
@@ -59,6 +60,17 @@ describe("inMatchMoveSpeed", () => {
     expect(inMatchMoveSpeed(5000)).toBe(5000);
     expect(inMatchMoveSpeed(5750)).toBe(5600);
     expect(inMatchMoveSpeed(12550)).toBe(9000);
+  });
+
+  it("marks only speeds the curve changed", () => {
+    expect(moveSpeedSoftened(3000)).toBe(false);
+    expect(moveSpeedSoftened(2500)).toBe(false);
+    expect(moveSpeedSoftened(5000)).toBe(false);
+    expect(moveSpeedSoftened(2499.5)).toBe(true);
+    expect(moveSpeedSoftened(1250)).toBe(true);
+    expect(moveSpeedSoftened(5472)).toBe(true);
+    expect(moveSpeedSoftened(5598.4)).toBe(true);
+    expect(moveSpeedSoftened(9000)).toBe(true);
   });
 });
 
