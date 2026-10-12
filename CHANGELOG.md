@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.17.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.16.0...v2.17.0) (2026-10-12)
+
+
+### Features
+
+* **ui:** show out-of-combat speed on Stats Charts [[#84](https://github.com/AeroKita/FoxForge-UNITE/issues/84)] ([#87](https://github.com/AeroKita/FoxForge-UNITE/issues/87)) ([b531734](https://github.com/AeroKita/FoxForge-UNITE/commit/b53173478a3393db7e10f74c71e1fc98287e238d))
+
+
+### Bug Fixes
+
+* **ui:** remove the Active Effects off-by-default hint ([#86](https://github.com/AeroKita/FoxForge-UNITE/issues/86)) ([c527886](https://github.com/AeroKita/FoxForge-UNITE/commit/c527886d905cae8150fb818c29490b162b19a5bb))
+* **ui:** remove the out-of-combat footnote from Effective Stats ([#85](https://github.com/AeroKita/FoxForge-UNITE/issues/85)) ([88cdc2a](https://github.com/AeroKita/FoxForge-UNITE/commit/88cdc2afd86d9725b96bcd2797c1674abfa639d9))
+
 ## [2.16.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.15.0...v2.16.0) (2026-10-12)
 
 
