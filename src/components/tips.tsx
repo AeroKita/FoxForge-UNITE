@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { ITEM_GRADE_DEFAULT } from "../data/gameData";
 import { heldItemStatLines } from "../ui/format";
+import { heldItemDescription } from "../ui/heldItemText";
 import { emblemGradeStatLines } from "../ui/emblemStatText";
 import type { BattleItem, Emblem, EmblemGrade, HeldItem, Move, StatBlock } from "../types";
 import { MoveMedia } from "./MoveMedia";
@@ -87,7 +88,7 @@ export function moveTip(move: Move, advanced: boolean) {
 
 export function itemTip(item: HeldItem, grade = ITEM_GRADE_DEFAULT, advanced = false) {
   const stats = heldItemStatLines(statsAtGrade(item, grade));
-  const desc = pickDescription(item, advanced);
+  const desc = heldItemDescription(item, grade, advanced);
   return (
     <span>
       <span className="font-semibold">{item.displayName}</span>

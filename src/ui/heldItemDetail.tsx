@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useModalDismiss } from "./useModalDismiss";
 import { heldItemStatLines } from "./format";
-import { pickDescription, statsAtGrade } from "../components/tips";
+import { statsAtGrade } from "../components/tips";
+import { heldItemDescription } from "./heldItemText";
 import type { HeldItem } from "../types";
 import { activeTierIndex } from "../engine/formulas";
 import {
@@ -27,7 +28,7 @@ export function HeldItemDetailBody({
   advanced?: boolean;
 }) {
   const statLines = heldItemStatLines(statsAtGrade(item, grade));
-  const description = pickDescription(item, advanced);
+  const description = heldItemDescription(item, grade, advanced);
   const effect = advanced ? item.effect : undefined;
   const active = activeTierIndex(grade);
 
@@ -92,7 +93,11 @@ export function HeldItemDetailModal({
 }) {
   const [phase, setPhase] = useState<TipPhase>(open ? "open" : "closed");
   const shown = useRef<HeldItem | null>(item);
-  if (item) shown.current = item;
+  const shownGrade = useRef(grade);
+  if (item) {
+    shown.current = item;
+    shownGrade.current = grade;
+  }
 
   useEffect(() => {
     setPhase((current) => nextTipPhase(current, open ? "show" : "dismiss", prefersReducedMotion()));
@@ -140,7 +145,11 @@ export function HeldItemDetailModal({
               ✕
             </button>
           </div>
-          <HeldItemDetailBody item={current} grade={grade} advanced={advanced} />
+          <HeldItemDetailBody
+            item={current}
+            grade={item ? grade : shownGrade.current}
+            advanced={advanced}
+          />
         </div>
       </div>
     </div>
