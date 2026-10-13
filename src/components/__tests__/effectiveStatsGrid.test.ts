@@ -79,4 +79,10 @@ describe("MoveSpeedSofteningMark", () => {
   it("renders nothing inside the unchanged band", () => {
     expect(renderToStaticMarkup(createElement(MoveSpeedSofteningMark, { speed: 3000 }))).toBe("");
   });
+
+  it("fills the question mark with the same raised disc as the Emblems hub", () => {
+    const html = renderToStaticMarkup(createElement(MoveSpeedSofteningMark, { speed: 5576.8 }));
+    const button = html.match(/<button[^>]*>/)?.[0] ?? "";
+    expect(button).toContain("bg-raise");
+  });
 });

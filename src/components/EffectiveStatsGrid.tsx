@@ -53,7 +53,7 @@ function SofteningMark({ copy }: { copy: string }) {
         aria-expanded={open}
         aria-label={copy}
         aria-describedby={open ? tipId : undefined}
-        className="ml-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-sans text-[11px] font-bold leading-none text-muted ring-1 ring-line focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+        className="ml-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-raise font-sans text-[11px] font-bold leading-none text-muted ring-1 ring-line focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
         onClick={(event) => {
           event.stopPropagation();
           place(event.currentTarget.getBoundingClientRect());
