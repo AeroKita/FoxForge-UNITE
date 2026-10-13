@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.17.3](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.2...v2.17.3) (2026-10-13)
+
+
+### Bug Fixes
+
+* **ui:** raise the speed help mark off the card ([20f0736](https://github.com/AeroKita/FoxForge-UNITE/commit/20f0736af9b1eda8497a2d934add99957a8e1135))
+
 ## [2.17.2](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.1...v2.17.2) (2026-10-13)
 
 
