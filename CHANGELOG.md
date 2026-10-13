@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.17.2](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.1...v2.17.2) (2026-10-13)
+
+
+### Bug Fixes
+
+* drop set-bonus footnotes and chart permanent out-of-combat speed ([ef7797d](https://github.com/AeroKita/FoxForge-UNITE/commit/ef7797d6b67eb6e7c9ce1dc32fbb2418dc062113))
+
 ## [2.17.1](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.0...v2.17.1) (2026-10-13)
 
 
