@@ -67,7 +67,9 @@ describe("MoveSpeedSofteningMark", () => {
   it("puts both Advanced thresholds on the trigger", () => {
     mode.expert = true;
     const html = renderToStaticMarkup(createElement(MoveSpeedSofteningMark, { speed: 5576.8 }));
-    expect(html).toContain("Movement Speed gains are reduced above 5,000 and again above 5,700.");
+    expect(html).toContain(
+      "Movement Speed gains are reduced above 5,000 (80%) and again above 5,700 (50%).",
+    );
   });
 
   it("puts the below-2,500 explanation on the trigger", () => {

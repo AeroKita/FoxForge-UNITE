@@ -13,10 +13,10 @@ describe("moveSpeedSofteningCopy", () => {
 
   it("names both Advanced thresholds above 5,000", () => {
     expect(moveSpeedSofteningCopy(5576.8, true)).toBe(
-      "Movement Speed gains are reduced above 5,000 and again above 5,700.",
+      "Movement Speed gains are reduced above 5,000 (80%) and again above 5,700 (50%).",
     );
     expect(moveSpeedSofteningCopy(5800, true)).toBe(
-      "Movement Speed gains are reduced above 5,000 and again above 5,700.",
+      "Movement Speed gains are reduced above 5,000 (80%) and again above 5,700 (50%).",
     );
   });
 

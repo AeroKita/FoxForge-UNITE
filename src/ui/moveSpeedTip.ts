@@ -6,7 +6,8 @@
  */
 
 const BASIC_ABOVE = "Above 5,000, extra Speed has a reduced effect.";
-const ADVANCED_ABOVE = "Movement Speed gains are reduced above 5,000 and again above 5,700.";
+const ADVANCED_ABOVE =
+  "Movement Speed gains are reduced above 5,000 (80%) and again above 5,700 (50%).";
 
 /** Sighted and screen-reader copy. Null inside the unchanged band. */
 export function moveSpeedSofteningCopy(displayed: number, advanced: boolean): string | null {
