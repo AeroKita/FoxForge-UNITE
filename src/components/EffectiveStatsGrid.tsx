@@ -1,14 +1,31 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { DerivedBuild } from "../engine/derive";
-import { moveSpeedSoftened } from "../engine/formulas";
+import { useStore } from "../state/store";
 import { STAT_ROWS, formatExactDelta, formatMoveSpeed, formatStat } from "../ui/format";
+import { clampTooltipCenter, moveSpeedSofteningCopy, tooltipOpensAbove } from "../ui/moveSpeedTip";
 import { formatActiveSetBonuses } from "../ui/setProgress";
 
-function SofteningMark() {
+const TIP_WIDTH_CAP = 256;
+const TIP_HEIGHT = 96;
+const TIP_MARGIN = 12;
+
+function SofteningMark({ copy }: { copy: string }) {
   const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const [pos, setPos] = useState({ top: 0, left: 0, width: TIP_WIDTH_CAP, above: true });
   const wrapRef = useRef<HTMLSpanElement>(null);
   const tipId = useId();
+
+  const place = useCallback((anchor: DOMRect) => {
+    const viewportWidth = window.innerWidth;
+    const width = Math.max(0, Math.min(TIP_WIDTH_CAP, viewportWidth - TIP_MARGIN * 2));
+    const above = tooltipOpensAbove(anchor.top, TIP_HEIGHT, TIP_MARGIN);
+    setPos({
+      width,
+      above,
+      left: clampTooltipCenter(anchor.left + anchor.width / 2, viewportWidth, width, TIP_MARGIN),
+      top: above ? anchor.top : anchor.bottom,
+    });
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -16,26 +33,31 @@ function SofteningMark() {
       if (event.target instanceof Node && wrapRef.current?.contains(event.target)) return;
       setOpen(false);
     };
+    const reposition = () => {
+      const button = wrapRef.current?.querySelector("button");
+      if (button) place(button.getBoundingClientRect());
+    };
     document.addEventListener("pointerdown", close);
     window.addEventListener("scroll", close, true);
+    window.addEventListener("resize", reposition);
     return () => {
       document.removeEventListener("pointerdown", close);
       window.removeEventListener("scroll", close, true);
+      window.removeEventListener("resize", reposition);
     };
-  }, [open]);
+  }, [open, place]);
 
   return (
     <span ref={wrapRef} className="inline-flex align-middle">
       <button
         type="button"
         aria-expanded={open}
-        aria-label="Diminishing returns"
+        aria-label={copy}
         aria-describedby={open ? tipId : undefined}
-        className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full font-sans text-[10px] font-bold leading-none text-muted ring-1 ring-line"
+        className="ml-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-sans text-[11px] font-bold leading-none text-muted ring-1 ring-line focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
         onClick={(event) => {
           event.stopPropagation();
-          const rect = event.currentTarget.getBoundingClientRect();
-          setPos({ top: rect.top, left: rect.left + rect.width / 2 });
+          place(event.currentTarget.getBoundingClientRect());
           setOpen((current) => !current);
         }}
       >
@@ -49,13 +71,14 @@ function SofteningMark() {
             position: "fixed",
             top: pos.top,
             left: pos.left,
-            transform: "translate(-50%, calc(-100% - 6px))",
+            width: pos.width,
+            transform: pos.above ? "translate(-50%, calc(-100% - 8px))" : "translate(-50%, 8px)",
             background: "var(--color-tip-bg)",
             color: "var(--color-tip-ink)",
           }}
-          className="z-[60] w-max max-w-[12rem] rounded-lg px-2 py-1 text-left font-sans text-[11px] leading-snug font-normal whitespace-normal shadow-xl ring-1 ring-black/10"
+          className="z-[60] rounded-lg px-2.5 py-1.5 text-left font-sans text-xs leading-snug font-normal shadow-xl ring-1 ring-black/10"
         >
-          Diminishing returns softened this speed.
+          {copy}
         </span>
       )}
     </span>
@@ -64,8 +87,10 @@ function SofteningMark() {
 
 /** Shown on a speed figure the in-match curve changed. */
 export function MoveSpeedSofteningMark({ speed }: { speed: number }) {
-  if (!moveSpeedSoftened(speed)) return null;
-  return <SofteningMark />;
+  const { expert } = useStore();
+  const copy = moveSpeedSofteningCopy(speed, expert);
+  if (!copy) return null;
+  return <SofteningMark copy={copy} />;
 }
 
 function SpeedFace({
@@ -81,21 +106,16 @@ function SpeedFace({
 }) {
   return (
     <div
-      className={`flex items-end justify-between border-b py-1 ${buffed ? "border-as-border" : "border-line-soft"}`}
+      className={`col-span-full flex flex-col gap-0.5 border-b py-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3 ${buffed ? "border-as-border" : "border-line-soft"}`}
     >
-      <dt className="min-w-0 text-sm text-muted">
-        <span className="block">
-          Speed
-          {buffed && (
-            <span className="ml-1 align-middle text-[9px] font-bold uppercase text-as-ink">
-              buff
-            </span>
-          )}
-        </span>
-        <span className="block text-xs">{qualifier}</span>
+      <dt className="text-sm leading-snug text-muted">
+        Speed {qualifier}
+        {buffed && (
+          <span className="ml-1 align-middle text-[9px] font-bold uppercase text-as-ink">buff</span>
+        )}
       </dt>
       <dd
-        className={`shrink-0 text-right font-mono text-sm font-semibold whitespace-nowrap ${buffed ? "text-as-ink" : "text-ink"}`}
+        className={`min-w-0 text-right font-mono text-sm leading-snug font-semibold ${buffed ? "text-as-ink" : "text-ink"}`}
       >
         {formatMoveSpeed(value)}
         {Math.abs(delta) > 1e-9 && (
@@ -109,7 +129,7 @@ function SpeedFace({
   );
 }
 
-/** Two cells for a bottom row: in combat, then no combat. */
+/** Full-width rows: in combat, then out of combat. */
 export function SplitSpeedCells({
   inCombat,
   noCombat,
@@ -126,12 +146,12 @@ export function SplitSpeedCells({
   return (
     <>
       <SpeedFace qualifier="in combat" value={inCombat} delta={inDelta} buffed={inBuffed} />
-      <SpeedFace qualifier="no combat" value={noCombat} delta={noDelta} buffed={false} />
+      <SpeedFace qualifier="out of combat" value={noCombat} delta={noDelta} buffed={false} />
     </>
   );
 }
 
-/** Shared 10-stat grid. Speed splits into in-combat and no-combat cells when those differ. */
+/** Shared 10-stat grid. When in-combat and out-of-combat speed differ, each gets a full-width row. */
 export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
   const { effective, base, oocMoveSpeed, emblemLoadout, buffedStats } = derived;
   if (!effective || !base) return null;
@@ -162,7 +182,7 @@ export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
                 )}
               </dt>
               <dd
-                className={`text-right font-mono text-sm font-semibold ${buffed ? "text-as-ink" : "text-ink"}`}
+                className={`min-w-0 text-right font-mono text-sm font-semibold ${buffed ? "text-as-ink" : "text-ink"}`}
               >
                 {row.key === "moveSpeed" ? formatMoveSpeed(eff) : formatStat(eff, row.kind)}
                 {Math.abs(delta) > 1e-9 && (
