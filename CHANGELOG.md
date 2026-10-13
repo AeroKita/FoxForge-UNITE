@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.17.4](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.3...v2.17.4) (2026-10-13)
+
+
+### Bug Fixes
+
+* **ui:** spell out movement-speed reduction rates in Advanced ([f9ba060](https://github.com/AeroKita/FoxForge-UNITE/commit/f9ba0607d50dbccd69055b098ccba94e36ebf684))
+
 ## [2.17.3](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.2...v2.17.3) (2026-10-13)
 
 
