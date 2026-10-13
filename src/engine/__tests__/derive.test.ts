@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { pokemonList } from "../../data/gameData";
 import { deriveBuild } from "../derive";
 import { decodeLoadout, emptyLoadout, encodeLoadout } from "../../state/loadout";
 
@@ -32,6 +33,36 @@ describe("deriveBuild — out-of-combat move speed (issue #25)", () => {
     expect(d.effective!.moveSpeed).toBe(4425);
     expect(d.oocMoveSpeed).toBe(5248);
     expect(d.oocMoveSpeed!).toBeGreaterThan(d.effective!.moveSpeed);
+  });
+
+  it("Gengar Levitate raises settled out-of-combat speed by 20%", () => {
+    const d = deriveBuild(emptyLoadout("gengar"), true, [40, 40, 40]);
+    // Lv15 base 4250. floor(4250 × 1.20) = 5100, then the 5000–5750 band
+    // softens that to 1000 + 0.8×5100 = 5080. In combat the passive is off.
+    expect(d.effective!.moveSpeed).toBe(4250);
+    expect(d.oocMoveSpeed).toBe(5080);
+  });
+
+  it("stacks Levitate with Float Stone as one out-of-combat percent", () => {
+    const d = deriveBuild(
+      { ...emptyLoadout("gengar"), heldItemIds: ["float-stone", null, null] },
+      true,
+      [40, 40, 40],
+    );
+    // 4250 + 175 = 4425 in combat. floor(4425 × 1.40) = 6195 internal.
+    // The 5750–12550 band softens that to 2725 + 6195/2 = 5822.5.
+    expect(d.effective!.moveSpeed).toBe(4425);
+    expect(d.oocMoveSpeed).toBe(5822.5);
+  });
+
+  it("leaves every other license's empty-loadout speeds equal", () => {
+    const split = pokemonList
+      .map((pokemon) => pokemon.id)
+      .filter((id) => {
+        const d = deriveBuild(emptyLoadout(id), true, [40, 40, 40]);
+        return d.oocMoveSpeed !== d.effective!.moveSpeed;
+      });
+    expect(split).toEqual(["gengar"]);
   });
 
   it("yellow set bonus raises OOC move speed but not the in-combat stat", () => {

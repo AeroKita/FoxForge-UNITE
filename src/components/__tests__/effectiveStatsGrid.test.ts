@@ -1,13 +1,35 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { MoveSpeedSofteningMark, SplitSpeedCells } from "../EffectiveStatsGrid";
+import { deriveBuild } from "../../engine/derive";
+import { emptyLoadout } from "../../state/loadout";
+import { EffectiveStatsGrid, MoveSpeedSofteningMark, SplitSpeedCells } from "../EffectiveStatsGrid";
 
 const mode = vi.hoisted(() => ({ expert: false }));
 
 vi.mock("../../state/store", () => ({
   useStore: () => ({ expert: mode.expert }),
 }));
+
+describe("EffectiveStatsGrid", () => {
+  it("does not print the set-bonus footnote", () => {
+    const derived = deriveBuild(
+      {
+        ...emptyLoadout("lucario"),
+        emblems: [
+          { emblemId: "025-pikachu", grade: "gold" },
+          { emblemId: "026-raichu", grade: "gold" },
+          { emblemId: "081-magnemite", grade: "gold" },
+        ],
+      },
+      true,
+      [40, 40, 40],
+    );
+    expect(derived.emblemLoadout.activeSetBonuses.length).toBeGreaterThan(0);
+    const html = renderToStaticMarkup(createElement(EffectiveStatsGrid, { derived }));
+    expect(html).not.toContain("Set bonuses:");
+  });
+});
 
 describe("SplitSpeedCells", () => {
   const html = renderToStaticMarkup(

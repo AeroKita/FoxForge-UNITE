@@ -3,7 +3,6 @@ import type { DerivedBuild } from "../engine/derive";
 import { useStore } from "../state/store";
 import { STAT_ROWS, formatExactDelta, formatMoveSpeed, formatStat } from "../ui/format";
 import { clampTooltipCenter, moveSpeedSofteningCopy, tooltipOpensAbove } from "../ui/moveSpeedTip";
-import { formatActiveSetBonuses } from "../ui/setProgress";
 
 const TIP_WIDTH_CAP = 256;
 const TIP_HEIGHT = 96;
@@ -153,7 +152,7 @@ export function SplitSpeedCells({
 
 /** Shared 10-stat grid. When in-combat and out-of-combat speed differ, each gets a full-width row. */
 export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
-  const { effective, base, oocMoveSpeed, emblemLoadout, buffedStats } = derived;
+  const { effective, base, oocMoveSpeed, buffedStats } = derived;
   if (!effective || !base) return null;
 
   const speedsDiffer = oocMoveSpeed != null && oocMoveSpeed !== effective.moveSpeed;
@@ -207,11 +206,6 @@ export function EffectiveStatsGrid({ derived }: { derived: DerivedBuild }) {
           />
         )}
       </dl>
-      {emblemLoadout.activeSetBonuses.length > 0 && (
-        <p className="mt-2 text-xs text-faint">
-          Set bonuses: {formatActiveSetBonuses(emblemLoadout.activeSetBonuses)}
-        </p>
-      )}
     </>
   );
 }

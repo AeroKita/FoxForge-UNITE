@@ -14,8 +14,11 @@ Apply in exactly this sequence to match in-game behavior:
    - e.g. 6 Brown = +4% Attack, applied to `(baseAtk + emblemFlatAtk)`.  
 4. **Held-item flat stats** — added AFTER emblem percentages. These are NOT  
    multiplied by emblem set bonuses.  
-5. **Conditional item effects** per context (Attack Weight stacks per goal,  
-   Float Stone OOC move speed, Muscle Band on-hit, etc.).  
+5. **Conditional item effects** per context (Attack Weight stacks per goal,
+   Float Stone OOC move speed, Muscle Band on-hit, etc.). A permanent
+   out-of-combat ability percent (Gengar Levitate, +20% after 5s out of
+   combat) is added to the Float Stone percent in `outOfCombatMoveSpeed`.
+   Pre-evolution chips and timed or proximity buffs are not included.
 6. **In-match move speed.** After the multipliers (yellow, Float Stone, active  
    move-speed buffs), `inMatchMoveSpeed` softens the internal value to the  
    speed you actually move at. 2,500–5,000 is unchanged. At or below 0 the  

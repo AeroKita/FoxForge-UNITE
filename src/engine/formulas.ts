@@ -254,18 +254,43 @@ function tenths(n: number): number {
 }
 
 /**
- * Out-of-combat move speed: applies additive OOC item %s (e.g. Float Stone
- * +10/15/20% by grade) on top of an already-OOC move-speed value. The caller
- * must pass a move speed that already includes yellow's set bonus (computed
- * with inCombat:false) — see derive.ts. This is the internal value;
- * inMatchMoveSpeed softens it for display.
+ * Settled out-of-combat movement speed from an always-on Ability.
+ *
+ * Same state as Float Stone: the bonus is the speed after leaving combat, not
+ * a timed buff. The current bundle's only match is Gengar Levitate
+ * ("has not been in combat for 5s … movement speed is increased by 20%").
+ * Pre-evolution chips (Leafeon Eevee Run Away) and timed or proximity buffs
+ * (Latios and Latias Levitate, Chlorophyll) stay off this path.
+ */
+export function permanentOocMoveSpeedPercent(pokemon: Pokemon): number {
+  const pattern =
+    /has not been in combat for \d+s, their movement speed is increased by (\d+(?:\.\d+)?)%/g;
+  let total = 0;
+  for (const ability of [pokemon.passiveAbility, ...(pokemon.extraPassives ?? [])]) {
+    if (!ability || ability.stageLabel || ability.phase) continue;
+    const text = ability.descriptionAdvanced ?? "";
+    for (const match of text.matchAll(pattern)) {
+      total += Number(match[1]) / 100;
+    }
+  }
+  return total;
+}
+
+/**
+ * Out-of-combat move speed: applies additive OOC percents (Float Stone
+ * +10/15/20% by grade, plus a permanent ability such as Gengar Levitate)
+ * on top of an already-OOC move-speed value. The caller must pass a move
+ * speed that already includes yellow's set bonus (computed with
+ * inCombat:false) — see derive.ts. Item and ability percents add, then one
+ * floor. This is the internal value; inMatchMoveSpeed softens it for display.
  */
 export function outOfCombatMoveSpeed(
   oocMoveSpeed: number,
   items: HeldItem[],
   grades: number[],
+  passivePercent = 0,
 ): number {
-  let oocPercent = 0;
+  let oocPercent = passivePercent;
   for (let i = 0; i < items.length; i++) {
     oocPercent += itemOocMoveSpeedPercent(items[i], grades[i] ?? 40);
   }

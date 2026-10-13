@@ -21,6 +21,7 @@ import {
   computeEffectiveStats,
   inMatchMoveSpeed,
   outOfCombatMoveSpeed,
+  permanentOocMoveSpeedPercent,
   setBonusStat,
 } from "../formulas";
 import { computeEmblemLoadout } from "../emblems";
@@ -155,7 +156,9 @@ export function deriveEmblemLoadoutImpact(
   });
   withoutEmblems.moveSpeed = inMatchMoveSpeed(withoutEmblems.moveSpeed);
   effective.moveSpeed = inMatchMoveSpeed(effective.moveSpeed);
-  const oocMoveSpeed = inMatchMoveSpeed(outOfCombatMoveSpeed(oocEffective.moveSpeed, [], []));
+  const oocMoveSpeed = inMatchMoveSpeed(
+    outOfCombatMoveSpeed(oocEffective.moveSpeed, [], [], permanentOocMoveSpeedPercent(pokemon)),
+  );
 
   return {
     effective,

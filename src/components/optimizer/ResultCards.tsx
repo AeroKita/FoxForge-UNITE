@@ -8,7 +8,6 @@ import { MoveSpeedSofteningMark, SplitSpeedCells } from "../EffectiveStatsGrid";
 import { CollapsibleCard } from "../CollapsibleCard";
 import { EmblemSetSummary } from "../EmblemSetSummary";
 import { EmblemCoinRow } from "../EmblemCoinRow";
-import { formatActiveSetBonuses } from "../../ui/setProgress";
 import { type AppliedState, type EffectiveDelta, type OptimizerPokemon } from "./shared";
 
 export interface ResultPanelProps {
@@ -209,11 +208,6 @@ export function ResultCards({
                   inBuffed={false}
                 />
               </dl>
-            )}
-            {effectiveDelta.emblemLoadout.activeSetBonuses.length > 0 && (
-              <p className="mt-2 text-xs text-faint">
-                Set bonuses: {formatActiveSetBonuses(effectiveDelta.emblemLoadout.activeSetBonuses)}
-              </p>
             )}
             {effectiveDelta.emblemLoadout.activeSetBonuses.some((b) => b.color === "yellow") && (
               <p className="mt-1 text-xs text-faint">

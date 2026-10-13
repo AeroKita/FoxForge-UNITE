@@ -8,6 +8,7 @@ import {
   LEVEL_CHART_METRICS,
   levelChartOocValue,
   levelChartValue,
+  speedTooltipRank,
 } from "../levelChart";
 
 describe("levelChartValue", () => {
@@ -58,6 +59,19 @@ describe("out-of-combat speed line", () => {
     expect(chartShowsOocLine([levelChartValue(d, "moveSpeed")], [levelChartOocValue(d)])).toBe(
       true,
     );
+  });
+
+  it("plots Gengar Levitate apart from in-combat Speed", () => {
+    const d = deriveBuild(emptyLoadout("gengar"), true, [40, 40, 40]);
+    expect(levelChartValue(d, "moveSpeed")).toBe(4250);
+    expect(levelChartOocValue(d)).toBe(5080);
+    expect(chartShowsOocLine([levelChartValue(d, "moveSpeed")], [levelChartOocValue(d)])).toBe(
+      true,
+    );
+  });
+
+  it("lists out-of-combat above in-combat so the tooltip matches the lines", () => {
+    expect(speedTooltipRank("ooc")).toBeLessThan(speedTooltipRank("value"));
   });
 
   it("hides the second line when every level matches", () => {

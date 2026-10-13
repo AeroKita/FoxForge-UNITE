@@ -48,6 +48,15 @@ export function levelChartValue(derived: DerivedBuild, key: LevelChartKey): numb
   return Number(derived.effective[key as keyof StatBlock].toFixed(0));
 }
 
+/**
+ * Tooltip order for the Speed chart. The dashed out-of-combat line sits above
+ * the solid in-combat line, so its row comes first. Recharts otherwise sorts
+ * the names alphabetically and puts "In combat" on top.
+ */
+export function speedTooltipRank(dataKey: unknown): number {
+  return dataKey === "ooc" ? 0 : 1;
+}
+
 /** Out-of-combat movement speed, rounded the same way as the Speed series. */
 export function levelChartOocValue(derived: DerivedBuild): number | null {
   if (derived.oocMoveSpeed == null) return null;

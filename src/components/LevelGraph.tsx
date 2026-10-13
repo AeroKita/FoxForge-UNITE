@@ -19,6 +19,7 @@ import {
   LEVEL_CHART_METRICS,
   levelChartOocValue,
   levelChartValue,
+  speedTooltipRank,
   type LevelChartKey,
 } from "../ui/levelChart";
 
@@ -168,6 +169,7 @@ export function LevelGraph() {
             }
           />
           <Tooltip
+            itemSorter={chart.showOoc ? (item) => speedTooltipRank(item.dataKey) : undefined}
             formatter={(v, name) => [
               formatLevelChartValue(Number(v), metricKey),
               chart.showOoc ? String(name) : metric.label,

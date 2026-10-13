@@ -13,7 +13,12 @@ import {
   ITEM_GRADE_DEFAULT,
 } from "../data/gameData";
 import { computeEmblemLoadout } from "./emblems";
-import { computeEffectiveStats, inMatchMoveSpeed, outOfCombatMoveSpeed } from "./formulas";
+import {
+  computeEffectiveStats,
+  inMatchMoveSpeed,
+  outOfCombatMoveSpeed,
+  permanentOocMoveSpeedPercent,
+} from "./formulas";
 import { computeAttackSpeed, type AttackSpeedResult } from "./attackSpeed";
 import {
   availableActiveBoosts,
@@ -130,8 +135,9 @@ export function deriveBuild(
   const attackSpeed = computeAttackSpeed(effective.attackSpeed * 100, [activePoints]);
   // OOC move speed must include yellow's set bonus, which is gated OUT of the
   // in-combat `effective` block above. Re-derive move speed with inCombat:false,
-  // then layer on out-of-combat item %s (Float Stone). Active in-combat buffs
-  // (e.g. X-Speed) intentionally do NOT apply out of combat.
+  // then layer on out-of-combat item %s (Float Stone) and a permanent ability
+  // percent (Gengar Levitate). Active in-combat buffs (e.g. X-Speed)
+  // intentionally do NOT apply out of combat.
   const oocEffective = computeEffectiveStats(
     pokemon,
     loadout.level,
@@ -144,7 +150,12 @@ export function deriveBuild(
   // like) stay off the out-of-combat value.
   effective.moveSpeed = inMatchMoveSpeed(effective.moveSpeed);
   const oocMoveSpeed = inMatchMoveSpeed(
-    outOfCombatMoveSpeed(oocEffective.moveSpeed, equippedHeld, equippedGrades),
+    outOfCombatMoveSpeed(
+      oocEffective.moveSpeed,
+      equippedHeld,
+      equippedGrades,
+      permanentOocMoveSpeedPercent(pokemon),
+    ),
   );
 
   return {
