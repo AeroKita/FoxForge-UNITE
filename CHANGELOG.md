@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.17.1](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.0...v2.17.1) (2026-10-13)
+
+
+### Bug Fixes
+
+* **ui:** keep out-of-combat speed readable on phones ([4f3af71](https://github.com/AeroKita/FoxForge-UNITE/commit/4f3af71c7d97c3b6e7eba04abc1385f72d987f19))
+
 ## [2.17.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.16.0...v2.17.0) (2026-10-12)
 
 
