@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.4...v2.18.0) (2026-10-15)
+
+
+### Features
+
+* **data:** add Jolteon and Flareon on patch 1.24.2.6 ([5037ab7](https://github.com/AeroKita/FoxForge-UNITE/commit/5037ab7c69e35d0b44a1614c27a2d0e714c83d07))
+
 ## [2.17.4](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.3...v2.17.4) (2026-10-13)
 
 
