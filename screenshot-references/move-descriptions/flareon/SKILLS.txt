@@ -1,0 +1,13 @@
+Flareon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-1.png, <skill-id>-2.png, …
+
+  adaptability.jpeg        →  Adaptability          [Passive · Eevee]
+  flash-fire.jpeg          →  Flash Fire            [Passive · Flareon]
+  swift.jpeg               →  Swift                 [Move 1 · Base]
+  fire-blast-1.jpeg        →  Fire Blast (Lv 4)     [Move 1 · Final]
+  fire-blast-2.jpeg        →  Fire Blast (Lv 4)     [Move 1 · Final]
+  tackle.jpeg              →  Tackle                [Move 2 · Base]
+  flare-blitz.jpeg         →  Flare Blitz (Lv 6)    [Move 2 · Final]
+  garnet-ignition-1.jpeg   →  Garnet Ignition       [Unite · Unite]
+  garnet-ignition-2.jpeg   →  Garnet Ignition       [Unite · Unite]

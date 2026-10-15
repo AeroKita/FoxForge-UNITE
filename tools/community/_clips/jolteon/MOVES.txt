@@ -1,0 +1,10 @@
+Jolteon  —  drop each file here as <move-id>.mp4
+Scope: Base + Final + Unite moves + optional Passive.
+
+  anticipation.mp4               →  Anticipation                    [Passive · Eevee]
+  quick-feet.mp4                 →  Quick Feet                      [Passive · Jolteon]
+  swift.mp4                      →  Swift                           [Move 1 · Base]
+  pin-missile.mp4                →  Pin Missile (Lv 4)              [Move 1 · Final]
+  quick-attack.mp4               →  Quick Attack                    [Move 2 · Base]
+  volt-switch.mp4                →  Volt Switch (Lv 6)              [Move 2 · Final]
+  plasma-quintupulse.mp4         →  Plasma Quintupulse              [Unite · Unite]

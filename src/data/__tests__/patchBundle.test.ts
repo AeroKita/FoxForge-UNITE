@@ -504,6 +504,13 @@ describe("community data bundle", () => {
           ],
         },
         {
+          id: "flareon",
+          stages: [
+            { name: "Adaptability", label: "Eevee", needle: "Attack increases" },
+            { name: "Flash Fire", label: "Flareon", needle: "heat gauge" },
+          ],
+        },
+        {
           id: "glaceon",
           stages: [
             { name: "Run Away", label: "Eevee", needle: "becomes invincible" },
@@ -1029,6 +1036,21 @@ describe("community data bundle", () => {
     it("does not ship known UNITE-DB prose misspellings or broken sentences", () => {
       const banned = [
         "movemenr",
+        "electricty",
+        "Fires 3 star shaped rays in a cone.",
+        "full jolt counter a special",
+        "and Unite Move apply",
+        "a lightning bolt dealing additional damage",
+        "Afterwards the user winds up a dash dealing increased damage.",
+        "4 star shaped rays",
+        "all consuming fire",
+        "from the user dealing",
+        "At each threshold the user",
+        "After reaching the first threshold the user",
+        "Afterwards at least 2s must pass",
+        "Afterwards for up to 5s, the move can be recast",
+        "emitting heat blasts the user",
+        "When recast; the user slashes",
         "oppposing",
         "intial",
         "deacrease",
@@ -1533,7 +1555,7 @@ describe("community data bundle", () => {
     );
     expect(lucarioGas?.emblems).toEqual(gasEmblems);
     expect(lucarioGas?.heldItemIds).toEqual(["attack-weight", "float-stone", "amulet-coin"]);
-    expect(lucarioGas?.battleItemId).toBe("full-heal");
+    expect(lucarioGas?.battleItemId).toBe("goal-getter");
 
     const garchomp = bundle.pokemon.find((p) => p.id === "garchomp")!;
     const garchompGas = garchomp.creativeBuilds?.find(
@@ -1666,6 +1688,107 @@ describe("community data bundle", () => {
     expect(rewritten).toBeGreaterThan(0);
     const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
     expect(lucario.builds?.[0]?.emblems).toEqual(current);
+  });
+
+  it("pins Jolteon and Flareon kits", () => {
+    const jolteon = bundle.pokemon.find((p) => p.id === "jolteon")!;
+    expect(jolteon.role).toBe("Speedster");
+    expect(jolteon.attackType).toBe("special");
+    expect(jolteon.builds?.map((b) => b.emblemName)).toEqual(["Silly Little Guy", "10,000 Volts"]);
+    expect(jolteon.builds?.every((b) => b.lane === "Central Area")).toBe(true);
+    expect(jolteon.builds?.[0]?.heldItemIds).toEqual([
+      "wise-glasses",
+      "choice-specs",
+      "focus-band",
+    ]);
+    expect(jolteon.builds?.[0]?.battleItemId).toBe("eject-button");
+    expect(jolteon.builds?.[1]?.heldItemIds).toEqual([
+      "slick-spoon",
+      "curse-incense",
+      "shell-bell",
+    ]);
+    expect(jolteon.builds?.[1]?.battleItemId).toBe("x-attack");
+    expect(jolteon.builds?.every((b) => b.moves?.join("|") === "Pin Missile|Volt Switch")).toBe(
+      true,
+    );
+    const fast = jolteon.creativeBuilds?.[0];
+    expect(fast?.emblemName).toBe("That's a Fast Dog");
+    expect(fast?.lane).toBe("Central Area");
+    expect(fast?.heldItemIds).toEqual(["sp--atk-specs", "amulet-coin", "float-stone"]);
+    expect(fast?.battleItemId).toBe("eject-button");
+    expect(fast?.moves).toEqual(["Pin Missile", "Volt Switch"]);
+    const passives = playablePassives(jolteon);
+    expect(passives.map((a) => a.name)).toEqual(["Anticipation", "Quick Feet"]);
+    expect(passives.map((a) => a.stageLabel)).toEqual(["Eevee", "Jolteon"]);
+    expect(passives[0].description).toContain("within a certain distance");
+    expect(passives[1].description).toContain("jolt counter");
+    expect(passives[1].description).toContain("Jolteon cannot be paralyzed");
+    const attacks = jolteon.moves.filter((m) => m.slot === "basicAttack");
+    expect(attacks.map((m) => m.stageLabel)).toEqual(["Eevee", "Jolteon"]);
+    expect(attacks[1].description).toContain("applying 1 jolt counter");
+    const pin = jolteon.moves.find((m) => m.id === "pin-missile")!;
+    const volt = jolteon.moves.find((m) => m.id === "volt-switch")!;
+    expect(pin.description).toContain("Upgrade (Level 10)");
+    expect(volt.description).toContain("Upgrade (Level 12)");
+    expect(pin.cooldownSeconds).toBe(7);
+    expect(volt.cooldownSeconds).toBe(7.5);
+    expect(jolteon.baseStatsByLevel[14].hp).toBe(6800);
+    expect(jolteon.baseStatsByLevel[14].spAttack).toBe(700);
+
+    const flareon = bundle.pokemon.find((p) => p.id === "flareon")!;
+    expect(flareon.role).toBe("AllRounder");
+    expect(flareon.attackType).toBe("physical");
+    expect(flareon.builds?.map((b) => b.emblemName)).toEqual(["Hot Pocket", "Booster"]);
+    expect(flareon.builds?.every((b) => b.lane === "Top or Bottom Path")).toBe(true);
+    expect(flareon.builds?.[0]?.heldItemIds).toEqual([
+      "muscle-band",
+      "weakness-policy",
+      "focus-band",
+    ]);
+    expect(flareon.builds?.[0]?.battleItemId).toBe("eject-button");
+    expect(flareon.builds?.[1]?.heldItemIds).toEqual([
+      "muscle-band",
+      "weakness-policy",
+      "attack-weight",
+    ]);
+    expect(flareon.builds?.[1]?.battleItemId).toBe("full-heal");
+    expect(flareon.builds?.every((b) => b.moves?.join("|") === "Fire Blast|Flare Blitz")).toBe(
+      true,
+    );
+    const lucario = bundle.pokemon.find((p) => p.id === "lucario")!;
+    expect(flareon.builds?.[0]?.emblems).toEqual(lucario.builds?.[0]?.emblems);
+    expect(flareon.builds?.[1]?.emblems).toEqual(lucario.builds?.[0]?.emblems);
+    expect(flareon.moves.find((m) => m.name === "Swift")?.description).toContain(
+      "star-shaped rays",
+    );
+    expect(flareon.moves.find((m) => m.name === "Fire Blast")?.description).toContain(
+      "all-consuming fire",
+    );
+    expect(flareon.moves.find((m) => m.name === "Fire Blast")?.description).toContain(
+      "Upgrade (Level 10)",
+    );
+    expect(flareon.moves.find((m) => m.name === "Flare Blitz")?.description).toContain(
+      "cloaked in flames",
+    );
+    expect(flareon.moves.find((m) => m.name === "Garnet Ignition")?.description).toContain(
+      "heat gauge",
+    );
+    const lv15 = flareon.baseStatsByLevel[14];
+    expect(lv15.hp).toBe(7800);
+    expect(lv15.attack).toBe(530);
+    expect(lv15.defense).toBe(440);
+    expect(lv15.spDefense).toBe(540);
+    expect(lv15.critRate).toBe(0.2);
+
+    const gengar = bundle.pokemon.find((p) => p.id === "gengar")!;
+    expect(gengar.creativeBuilds?.[0]?.heldItemIds).toEqual([
+      "sp--atk-specs",
+      "float-stone",
+      "amulet-coin",
+    ]);
+    expect(gengar.creativeBuilds?.[0]?.battleItemId).toBe("goal-getter");
+    expect(lucario.creativeBuilds?.[0]?.battleItemId).toBe("goal-getter");
+    expect(lucario.builds?.[0]?.battleItemId).toBe("full-heal");
   });
 
   it("pins Espeon Recommended lore titles", () => {

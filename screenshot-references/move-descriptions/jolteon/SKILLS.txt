@@ -1,0 +1,14 @@
+Jolteon  —  drop tooltip stills here as <skill-id>.png
+Scope: Passive + Moves. Attack / basicAttack is out of scope.
+Long tooltips: extra stills as <skill-id>-1.png, <skill-id>-2.png, …
+
+  anticipation.jpeg           →  Anticipation              [Passive · Eevee]
+  quick-feet-1.jpeg           →  Quick Feet                [Passive · Jolteon]
+  quick-feet-2.jpeg           →  Quick Feet                [Passive · Jolteon]
+  swift.jpeg                  →  Swift                     [Move 1 · Base]
+  pin-missile.jpeg            →  Pin Missile (Lv 4)        [Move 1 · Final]
+  quick-attack.jpeg           →  Quick Attack              [Move 2 · Base]
+  volt-switch-1.jpeg          →  Volt Switch (Lv 6)        [Move 2 · Final]
+  volt-switch-2.jpeg          →  Volt Switch (Lv 6)        [Move 2 · Final]
+  plasma-quintupulse-1.jpeg   →  Plasma Quintupulse        [Unite · Unite]
+  plasma-quintupulse-2.jpeg   →  Plasma Quintupulse        [Unite · Unite]

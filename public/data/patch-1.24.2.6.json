@@ -1,11 +1,11 @@
 {
-  "patchVersion": "1.24.1.4",
-  "lastUpdated": "2026-10-12",
+  "patchVersion": "1.24.2.6",
+  "lastUpdated": "2026-10-15",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-10-12"
+    "fetched": "2026-10-15"
   },
   "pokemon": [
     {
@@ -9719,7 +9719,7 @@
           "isUpgrade": true,
           "moveType": "Sure Hit",
           "upgradeLevel": 7,
-          "descriptionAdvanced": "Becomes unstoppable and performs a fiery flying kick dashing toward the designated opposing Pokémon, damaging the target with a guaranteed critical hit, shoving them for 0.5s, and burning them for 3s (dealing damage 3 times); then jumps back a set distance from the target or in the direction of movement and becomes vulnerable to hindrances when they land.\n\nThe Attack and Sp. Atk of the burned target are decreased by 5% for 2s.\n\nUpgrade (Level 11): Increases basic attack speed by 45% for 3s when this move hits.",
+          "descriptionAdvanced": "Becomes unstoppable and performs a fiery flying kick dashing toward the designated opposing Pokémon, damaging the target with a guaranteed critical hit, shoving them for 0.5s, and burning them for 3s (dealing damage 3 times); then jumps back a set distance from the target or in the direction of movement and becomes vulnerable to hindrances when they land.\n\nThe Attack and Sp. Atk of the burned target are decreased by 5% for 2s.\n\nUpgrade (Level 11): Increases basic attack speed by 30% for 3s when this move hits.",
           "videoAsset": "/assets/skills/Cinderace/Blaze+Kick.mp4"
         },
         {
@@ -9777,7 +9777,7 @@
           "name": "Feint",
           "slot": "move2",
           "description": "Increases the user's movement speed for a short time and makes the user invincible.\n\nUpgrade (Level 13): After this move is used, basic attacks that hit opposing Pokémon restore the user's HP (up to three times).",
-          "cooldownSeconds": 9.0,
+          "cooldownSeconds": 9.5,
           "damageInstances": [],
           "effects": [],
           "tags": [
@@ -14346,7 +14346,7 @@
           ],
           "moveType": "Area",
           "iconAsset": "/assets/skills/Delphox/Fanciful+Fireworks.png",
-          "descriptionAdvanced": "Deals damage-over-time to enemies in the designated area for 8s. Enemies that are hit have 50% decreased movement speed and 50% reduced HP recovery effects for 1.75s. Recovery effects are weakened within the zone and cannot be cleansed while in the zone. Leaving the zone will have the weakened HP recovery effects linger for 1.75s and may be cleansed after leaving the zone. 8s duration (ticks at 0.5s intervals).",
+          "descriptionAdvanced": "Deals damage-over-time to enemies in the designated area for 8s, dealing damage every 0.5s. Enemies that are hit are slowed by 50% and inflicted with 50% anti-heal for 1.75s, refreshed every hit.",
           "upgradeLevel": 9,
           "videoAsset": "/assets/skills/Delphox/Fanciful+Fireworks.mp4"
         }
@@ -16061,7 +16061,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 5,
-          "descriptionAdvanced": "The user prepares a circular flight path in the designated direction, then moves into a direction either side to fly on the path; the flight path takes 3.5s to complete. While flying, the user increases their basic attack speed by 200% and they continuously use auto attacks, dealing 10% reduced damage to opposing Pokémon hit. If this move is used again while the user is flying, the user stops flying, becomes briefly invincible and dashes a short distance forward. If the user knocks out a Pokémon from the opposing team, this move's cooldown is reset. If the user assists in knocking out a Pokémon from the opposing team instead, this move's cooldown is reduced by 50%.\n\nWhen this move is used, Dragon Breath's cooldown is reset.\n\nUpgrade (Level 11): While the user is flying, auto attacks restore the user's HP for an additional 25% of damage dealt.",
+          "descriptionAdvanced": "The user prepares a circular flight path in the designated direction, then moves into a direction either side to fly on the path; the flight path takes 3.5s to complete. While flying, the user increases their basic attack speed by 200% and they continuously use auto attacks, dealing 10% reduced damage to opposing Pokémon hit. If this move is used again while the user is flying, the user stops flying, becomes briefly invincible and dashes a short distance forward. If the user knocks out a Pokémon from the opposing team, this move's cooldown is reset. If the user assists in knocking out a Pokémon from the opposing team instead, this move's cooldown is reduced by 50%.\n\nWhen this move is used, Dragon Breath's cooldown is reset.\n\nUpgrade (Level 11): While the user is flying, auto attacks restore the user's HP for an additional 15% of damage dealt.",
           "videoAsset": "/assets/skills/Dragapult/Dragon+Dance.mp4"
         },
         {
@@ -20732,6 +20732,536 @@
       ]
     },
     {
+      "id": "flareon",
+      "displayName": "Flareon",
+      "role": "AllRounder",
+      "attackType": "physical",
+      "difficulty": 2,
+      "imageAsset": "/assets/pokemon/portrait/Flareon.png",
+      "iconAsset": "/assets/pokemon/thumbnail/Flareon.png",
+      "evolutions": [
+        {
+          "level": 1,
+          "formName": "Flareon"
+        }
+      ],
+      "baseStatsByLevel": [
+        {
+          "hp": 3420.0,
+          "attack": 160.0,
+          "defense": 88.0,
+          "spAttack": 20.0,
+          "spDefense": 100.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3517.0,
+          "attack": 168.0,
+          "defense": 96.0,
+          "spAttack": 22.0,
+          "spDefense": 110.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.10439999999999999,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3629.0,
+          "attack": 178.0,
+          "defense": 105.0,
+          "spAttack": 25.0,
+          "spDefense": 121.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.10949999999999999,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 4196.0,
+          "attack": 226.0,
+          "defense": 150.0,
+          "spAttack": 37.0,
+          "spDefense": 178.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1354,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 4344.0,
+          "attack": 238.0,
+          "defense": 162.0,
+          "spAttack": 40.0,
+          "spDefense": 193.0,
+          "critRate": 0.1,
+          "cdr": 0.0,
+          "lifesteal": 0.05,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1422,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4514.0,
+          "attack": 252.0,
+          "defense": 176.0,
+          "spAttack": 44.0,
+          "spDefense": 210.0,
+          "critRate": 0.1,
+          "cdr": 0.0,
+          "lifesteal": 0.05,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1499,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4709.0,
+          "attack": 269.0,
+          "defense": 192.0,
+          "spAttack": 48.0,
+          "spDefense": 230.0,
+          "critRate": 0.1,
+          "cdr": 0.0,
+          "lifesteal": 0.05,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1589,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 4934.0,
+          "attack": 288.0,
+          "defense": 210.0,
+          "spAttack": 53.0,
+          "spDefense": 252.0,
+          "critRate": 0.1,
+          "cdr": 0.0,
+          "lifesteal": 0.05,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.16920000000000002,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 5193.0,
+          "attack": 310.0,
+          "defense": 231.0,
+          "spAttack": 59.0,
+          "spDefense": 278.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.1,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.18100000000000002,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 5491.0,
+          "attack": 335.0,
+          "defense": 254.0,
+          "spAttack": 65.0,
+          "spDefense": 308.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.1,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1946,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 5834.0,
+          "attack": 364.0,
+          "defense": 282.0,
+          "spAttack": 73.0,
+          "spDefense": 343.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.1,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2102,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6228.0,
+          "attack": 397.0,
+          "defense": 314.0,
+          "spAttack": 82.0,
+          "spDefense": 382.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.1,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.22820000000000001,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6680.0,
+          "attack": 435.0,
+          "defense": 350.0,
+          "spAttack": 91.0,
+          "spDefense": 428.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.15,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2489,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 7201.0,
+          "attack": 479.0,
+          "defense": 392.0,
+          "spAttack": 103.0,
+          "spDefense": 480.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.15,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2726,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 7800.0,
+          "attack": 530.0,
+          "defense": 440.0,
+          "spAttack": 116.0,
+          "spDefense": 540.0,
+          "critRate": 0.2,
+          "cdr": 0.0,
+          "lifesteal": 0.15,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.3,
+          "moveSpeed": 4300.0
+        }
+      ],
+      "moves": [
+        {
+          "id": "attack-eevee",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Has the user chomp at opposing Pokémon, dealing damage.\n\nBecomes a boosted attack while the user is emitting heat blasts, and has the user jump at opposing Pokémon to chomp at them, dealing increased damage.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 1.0,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "The user headbutts opposing Pokémon, dealing damage. Becomes a boosted attack with every third attack, dealing increased damage.\n\nWhen evolved, the user headbutts opposing Pokémon, dealing damage. While Flash Fire is emitting heat blasts, the user has endless boosted attacks with increased range and damage that lunge at the target with a flaming bite.",
+          "stageLabel": "Flareon"
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "slot": "move1",
+          "description": "Has the user shoot star-shaped rays, dealing damage to opposing Pokémon it hits.",
+          "cooldownSeconds": 6.0,
+          "damageInstances": [
+            {
+              "ratio": 0.375,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 150.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "ranged"
+          ],
+          "moveType": "Ranged",
+          "iconAsset": "/assets/skills/Flareon/Swift.png",
+          "descriptionAdvanced": "The user fires 4 star-shaped rays in the designated direction, dealing damage.",
+          "videoAsset": "/assets/skills/Flareon/Swift.mp4"
+        },
+        {
+          "id": "fire-blast",
+          "name": "Fire Blast",
+          "slot": "move1",
+          "description": "Has the user attack with an intense blast of all-consuming fire in front of itself.\n\nThe blast deals damage to opposing Pokémon and other nearby opposing Pokémon, leaving them burned for a short time.\n\nThe movement speed of opposing Pokémon hit by this move is also decreased for a short time, and their HP recovery effects are weakened.\n\nHitting Pokémon from the opposing team that have been burned by this move with a basic attack increases the user's heat gauge by a greater amount.\n\nUpgrade (Level 10): Strengthens the movement speed decrease.",
+          "cooldownSeconds": 6.0,
+          "damageInstances": [
+            {
+              "ratio": 1.75,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 700.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 0.2,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 0.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "area"
+          ],
+          "iconAsset": "/assets/skills/Flareon/Fire+Blast.png",
+          "isUpgrade": true,
+          "moveType": "Area",
+          "upgradeLevel": 4,
+          "descriptionAdvanced": "The user fires a blast of all-consuming fire a set distance away in the designated direction, dealing damage and burning opposing Pokémon for 1.5s, dealing damage on hit and every 0.5s. Burned Pokémon are slowed by 25% and are inflicted with 30% anti-heal.\n\nAuto attacks generate 3x the heat gauge when the user attacks opposing Pokémon burned by this move.\n\nUpgrade (Level 10): Increases the slow to 40%.",
+          "videoAsset": "/assets/skills/Flareon/Fire+Blast.mp4"
+        },
+        {
+          "id": "tackle",
+          "name": "Tackle",
+          "slot": "move2",
+          "description": "Has the user charge in the designated direction, dealing damage to opposing Pokémon it hits.",
+          "cooldownSeconds": 6.0,
+          "damageInstances": [
+            {
+              "ratio": 0.75,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 300.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "dash"
+          ],
+          "moveType": "Dash",
+          "iconAsset": "/assets/skills/Flareon/Tackle.png",
+          "descriptionAdvanced": "The user charges in the designated direction, dealing damage to opposing Pokémon hit.",
+          "videoAsset": "/assets/skills/Flareon/Tackle.mp4"
+        },
+        {
+          "id": "flare-blitz",
+          "name": "Flare Blitz",
+          "slot": "move2",
+          "description": "Has the user charge in the designated direction while cloaked in flames. If the user collides with an opposing Pokémon, they are shoved and damage is dealt to nearby opposing Pokémon.\n\nUsing this move again within a set amount of time has the user leap backward.\n\nUpgrade (Level 12): Increases the damage dealt by this move.",
+          "cooldownSeconds": 7.0,
+          "damageInstances": [
+            {
+              "ratio": 1.45,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 560.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "dash"
+          ],
+          "iconAsset": "/assets/skills/Flareon/Flare+Blitz.png",
+          "isUpgrade": true,
+          "moveType": "Dash",
+          "upgradeLevel": 6,
+          "descriptionAdvanced": "The user charges in the designated direction while cloaked in flames. If the user hits an opposing Pokémon, they are shoved for 0.27s and damage is dealt in an area.\n\nAfterwards, for up to 5s, the move can be recast, causing the user to backflip away from the pointed direction.\n\nUpgrade (Level 12): Increases the damage of the move.",
+          "videoAsset": "/assets/skills/Flareon/Flare+Blitz.mp4"
+        },
+        {
+          "id": "garnet-ignition",
+          "name": "Garnet Ignition",
+          "slot": "uniteMove",
+          "description": "Has the user leap toward the designated location, dealing damage to nearby opposing Pokémon and greatly decreasing their movement speed.\n\nThe user then releases the heat built up in its flame sac, unleashing a heat wave that deals damage to opposing Pokémon in the area of effect.\n\nThe higher the heat gauge when this Unite Move is used, the more additional heat waves are emitted.",
+          "cooldownSeconds": 100.0,
+          "damageInstances": [
+            {
+              "ratio": 3.1,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 1240.0,
+              "damageType": "physical"
+            },
+            {
+              "ratio": 0.35,
+              "scalingStat": "attack",
+              "slider": 0.0,
+              "base": 140.0,
+              "damageType": "physical"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "area"
+          ],
+          "moveType": "Area",
+          "iconAsset": "/assets/skills/Flareon/Garnet+Ignition.png",
+          "descriptionAdvanced": "The user becomes Unstoppable and quickly leaps towards the designated area, dealing damage in the area. A heat wave is also released from the user, dealing additional damage, with up to 3 more heat waves being released depending on how many bars of the heat gauge are filled. Each hit of this move also slows opposing Pokémon by 30% for 1s.",
+          "upgradeLevel": 8,
+          "videoAsset": "/assets/skills/Flareon/Garnet+Ignition.mp4"
+        }
+      ],
+      "passiveAbility": {
+        "id": "adaptability",
+        "name": "Adaptability",
+        "description": "When a basic attack or move hits an opposing Pokémon, this Pokémon's Attack increases for a short time.\n\nThis Ability goes on cooldown after it's triggered.",
+        "effects": [],
+        "iconAsset": "/assets/skills/Flareon/Adaptability.png",
+        "stageLabel": "Eevee"
+      },
+      "extraPassives": [
+        {
+          "id": "flash-fire",
+          "name": "Flash Fire",
+          "description": "When a basic attack or move hits an opposing Pokémon, this Pokémon's raised body temperature increases the heat gauge.\n\nThe higher the heat gauge, the more Attack increases and basic attacks' HP recovery effects strengthen.\n\nOnce the heat gauge reaches a certain amount, the Pokémon will emit consecutive heat blasts, dealing damage to nearby opposing Pokémon.",
+          "effects": [],
+          "descriptionAdvanced": "When an auto attack or move hits an opposing Pokémon, the user's heat gauge will increase. There are 3 thresholds, two are indicated on the gauge, and the final one is when the gauge is maxed out. At each threshold, the user's attack increases by 8%, and the user gains an additional 3%/4%/5% life steal on auto attacks. The heat gauge will begin slowly decaying after 7s have passed without increasing it. After reaching the first threshold, the user will begin emitting heat blasts for 3s, dealing damage every 0.5s in an area around the user and slowly draining the heat gauge. Afterwards, at least 2s must pass before emitting another set of heat blasts.",
+          "iconAsset": "/assets/skills/Flareon/Flash+Fire.png",
+          "videoAsset": "/assets/skills/Flareon/Flash+Fire.mp4",
+          "stageLabel": "Flareon"
+        }
+      ],
+      "builds": [
+        {
+          "name": "Hot Pocket",
+          "emblemName": "Hot Pocket",
+          "lane": "Top or Bottom Path",
+          "heldItemIds": [
+            "muscle-band",
+            "weakness-policy",
+            "focus-band"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "141-kabutops",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "076-golem",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "250-ho-oh",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "142-aerodactyl",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "128-tauros",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "115-kangaskhan",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "206-dunsparce",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "130-gyarados",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "062-poliwrath",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "195-quagsire",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Fire Blast",
+            "Flare Blitz"
+          ]
+        },
+        {
+          "name": "Booster",
+          "emblemName": "Booster",
+          "lane": "Top or Bottom Path",
+          "heldItemIds": [
+            "muscle-band",
+            "weakness-policy",
+            "attack-weight"
+          ],
+          "battleItemId": "full-heal",
+          "emblems": [
+            {
+              "emblemId": "141-kabutops",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "076-golem",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "250-ho-oh",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "142-aerodactyl",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "128-tauros",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "115-kangaskhan",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "206-dunsparce",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "130-gyarados",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "062-poliwrath",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "195-quagsire",
+              "grade": "gold"
+            }
+          ],
+          "moves": [
+            "Fire Blast",
+            "Flare Blitz"
+          ]
+        }
+      ]
+    },
+    {
       "id": "garchomp",
       "displayName": "Garchomp",
       "role": "AllRounder",
@@ -22765,11 +23295,11 @@
           "emblemName": "Step on the Gas (Special)",
           "lane": "Central Area",
           "heldItemIds": [
-            "drive-lens",
+            "sp--atk-specs",
             "float-stone",
             "amulet-coin"
           ],
-          "battleItemId": "full-heal",
+          "battleItemId": "goal-getter",
           "emblems": [
             {
               "emblemId": "101-electrode",
@@ -26902,7 +27432,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 7,
-          "descriptionAdvanced": "Shoot a mystical fireball at an area, dealing damage to non-allied Pokémon it hits, stunning them for 0.6s, and leaving them burned for 3s, reducing their Attack by 10%. Then fly up high into the air for up to 6s. The next 3 basic attacks are boosted attacks. While flying, the user is able to move freely over walls and its attack is increased by 25% and movement speed is increased by 30%. If this move is used again, the user lands cancelling the attack and movement speed bonuses.\n\nHo-Oh may not interact with objects on the ground such as Berries or Aeos Energy but may score on goal zones.\n\nUpgrade (Level 13): Increases the Attack reduction of the burn to 20%.",
+          "descriptionAdvanced": "Shoot a mystical fireball at an area, dealing damage to non-allied Pokémon it hits, stunning them for 0.8s, and leaving them burned for 3s, reducing their Attack by 30%. Then fly up high into the air for up to 6s. The next 3 basic attacks are boosted attacks. While flying, the user is able to move freely over walls and its attack is increased by 25% and movement speed is increased by 30%. If this move is used again, the user lands cancelling the attack and movement speed bonuses.\n\nHo-Oh may not interact with objects on the ground such as Berries or Aeos Energy but may score on goal zones.\n\nUpgrade (Level 13): Increases the Attack reduction of the burn to 40%.",
           "videoAsset": "/assets/skills/Ho-Oh/Sacred+Fire.mp4"
         },
         {
@@ -26970,10 +27500,10 @@
           "cooldownSeconds": 6.0,
           "damageInstances": [
             {
-              "ratio": 0.35,
+              "ratio": 0.3675,
               "scalingStat": "attack",
               "slider": 2.0,
-              "base": 48.0,
+              "base": 50.0,
               "damageType": "physical"
             },
             {
@@ -28423,24 +28953,24 @@
           "cooldownSeconds": 7.0,
           "damageInstances": [
             {
-              "ratio": 0.58,
+              "ratio": 0.638,
               "scalingStat": "spAttack",
               "slider": 4.0,
-              "base": 172.0,
+              "base": 189.0,
               "damageType": "special"
             },
             {
-              "ratio": 0.85,
+              "ratio": 0.935,
               "scalingStat": "spAttack",
-              "slider": 8.0,
-              "base": 256.0,
+              "slider": 9.0,
+              "base": 282.0,
               "damageType": "special"
             },
             {
-              "ratio": 1.14,
+              "ratio": 1.254,
               "scalingStat": "spAttack",
-              "slider": 10.0,
-              "base": 344.0,
+              "slider": 11.0,
+              "base": 378.0,
               "damageType": "special"
             }
           ],
@@ -28486,7 +29016,7 @@
           "name": "Azure Spy Vision",
           "slot": "uniteMove",
           "description": "For a short time, enables the user to see nearby Pokémon that are in stealth or hiding in tall grass.\n\nAlso doubles the user's critical-hit rate, and the user gains one critical counter whenever a set amount of time passes.",
-          "cooldownSeconds": 112.0,
+          "cooldownSeconds": 100.0,
           "damageInstances": [],
           "effects": [],
           "tags": [
@@ -28679,6 +29209,617 @@
             "Liquidation"
           ],
           "emblemName": "The name's leon. Inteleon."
+        }
+      ]
+    },
+    {
+      "id": "jolteon",
+      "displayName": "Jolteon",
+      "role": "Speedster",
+      "attackType": "special",
+      "difficulty": 2,
+      "imageAsset": "/assets/pokemon/portrait/Jolteon.png",
+      "iconAsset": "/assets/pokemon/thumbnail/Jolteon.png",
+      "evolutions": [
+        {
+          "level": 1,
+          "formName": "Jolteon"
+        }
+      ],
+      "baseStatsByLevel": [
+        {
+          "hp": 3100.0,
+          "attack": 20.0,
+          "defense": 70.0,
+          "spAttack": 118.0,
+          "spDefense": 76.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3182.0,
+          "attack": 22.0,
+          "defense": 75.0,
+          "spAttack": 131.0,
+          "spDefense": 82.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1067,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3277.0,
+          "attack": 25.0,
+          "defense": 80.0,
+          "spAttack": 146.0,
+          "spDefense": 89.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1143,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3755.0,
+          "attack": 37.0,
+          "defense": 107.0,
+          "spAttack": 221.0,
+          "spDefense": 123.0,
+          "critRate": 0.0,
+          "cdr": 0.0,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1531,
+          "moveSpeed": 3700.0
+        },
+        {
+          "hp": 3880.0,
+          "attack": 40.0,
+          "defense": 114.0,
+          "spAttack": 241.0,
+          "spDefense": 132.0,
+          "critRate": 0.05,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.16329999999999997,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4024.0,
+          "attack": 44.0,
+          "defense": 122.0,
+          "spAttack": 263.0,
+          "spDefense": 142.0,
+          "critRate": 0.05,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.17489999999999997,
+          "moveSpeed": 3850.0
+        },
+        {
+          "hp": 4189.0,
+          "attack": 48.0,
+          "defense": 132.0,
+          "spAttack": 289.0,
+          "spDefense": 154.0,
+          "critRate": 0.05,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.1883,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 4379.0,
+          "attack": 53.0,
+          "defense": 143.0,
+          "spAttack": 319.0,
+          "spDefense": 167.0,
+          "critRate": 0.05,
+          "cdr": 0.1,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.20370000000000002,
+          "moveSpeed": 4000.0
+        },
+        {
+          "hp": 4598.0,
+          "attack": 59.0,
+          "defense": 155.0,
+          "spAttack": 354.0,
+          "spDefense": 183.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.22149999999999997,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 4850.0,
+          "attack": 65.0,
+          "defense": 169.0,
+          "spAttack": 393.0,
+          "spDefense": 201.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2419,
+          "moveSpeed": 4150.0
+        },
+        {
+          "hp": 5139.0,
+          "attack": 73.0,
+          "defense": 186.0,
+          "spAttack": 439.0,
+          "spDefense": 222.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.26530000000000004,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 5472.0,
+          "attack": 82.0,
+          "defense": 205.0,
+          "spAttack": 491.0,
+          "spDefense": 245.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.2923,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 5854.0,
+          "attack": 91.0,
+          "defense": 226.0,
+          "spAttack": 551.0,
+          "spDefense": 273.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.3233,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6294.0,
+          "attack": 103.0,
+          "defense": 251.0,
+          "spAttack": 620.0,
+          "spDefense": 304.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.359,
+          "moveSpeed": 4300.0
+        },
+        {
+          "hp": 6800.0,
+          "attack": 116.0,
+          "defense": 280.0,
+          "spAttack": 700.0,
+          "spDefense": 340.0,
+          "critRate": 0.1,
+          "cdr": 0.2,
+          "lifesteal": 0.0,
+          "spLifesteal": 0.0,
+          "attackSpeed": 0.4,
+          "moveSpeed": 4300.0
+        }
+      ],
+      "moves": [
+        {
+          "id": "attack-eevee",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, dealing increased damage.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.4,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 100.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 0.84,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 160.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "stageLabel": "Eevee"
+        },
+        {
+          "id": "attack",
+          "name": "Attack",
+          "slot": "basicAttack",
+          "description": "Becomes a boosted attack with every third attack, swiftly approaching opposing Pokémon, dealing damage, and applying 1 jolt counter.",
+          "cooldownSeconds": 0.0,
+          "damageInstances": [
+            {
+              "ratio": 0.4,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 100.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 0.84,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 160.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [],
+          "iconAsset": "/assets/skills/basic-attack.png",
+          "descriptionAdvanced": "The user attacks with a headbutt, dealing damage. Becomes a boosted attack every third hit, attacking with a tail swipe and dealing increased damage. When evolved, the user attacks with a claw swipe, dealing damage. Becomes a boosted attack every third hit, gaining increased range and damage and causing the user to lunge at the target with an electrified bite.\n\nWhen using a special boosted attack from Quick Feet, the user sends electricity to all Pokémon with full jolt counters in an increased range, dealing damage twice and calling down a lightning bolt, dealing additional damage and stunning targets for 0.4s. When the user sends out electricity, the user restores some health, with each target beyond the first only healing 30% of the original amount.",
+          "stageLabel": "Jolteon"
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "slot": "move1",
+          "description": "Has the user shoot star-shaped rays, dealing damage to opposing Pokémon it hits.",
+          "cooldownSeconds": 6.0,
+          "damageInstances": [
+            {
+              "ratio": 1.1,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 330.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "ranged"
+          ],
+          "moveType": "Ranged",
+          "iconAsset": "/assets/skills/Jolteon/Swift.png",
+          "descriptionAdvanced": "The user fires 3 star-shaped rays in a cone. Stars beyond the first deal 30% of the damage to the same target.",
+          "videoAsset": "/assets/skills/Jolteon/Swift.mp4"
+        },
+        {
+          "id": "pin-missile",
+          "name": "Pin Missile",
+          "slot": "move1",
+          "description": "Has the user shoot out its electrified fur, dealing damage and applying 3 jolt counters to opposing Pokémon it hits, leaving them paralyzed for a short time.\n\nUpgrade (Level 10): Further decreases the movement speed and basic attack speed of opposing Pokémon that are left paralyzed.",
+          "cooldownSeconds": 7.0,
+          "damageInstances": [
+            {
+              "ratio": 0.72,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 216.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "melee"
+          ],
+          "iconAsset": "/assets/skills/Jolteon/Pin+Missile.png",
+          "isUpgrade": true,
+          "moveType": "Melee",
+          "upgradeLevel": 4,
+          "descriptionAdvanced": "The user shoots out electrified fur, dealing damage 3 times and paralyzing targets for 2s. The paralysis lowers movement speed by 30% and attack speed by a flat 10%.\n\nUpgrade (Level 10): Improves the slow to 50% and attack speed reduction to a flat 20%.",
+          "videoAsset": "/assets/skills/Jolteon/Pin+Missile.mp4"
+        },
+        {
+          "id": "quick-attack",
+          "name": "Quick Attack",
+          "slot": "move2",
+          "description": "Has the user move quickly in the designated direction, dealing damage to opposing Pokémon it makes contact with along the way.\n\nThe next basic attack becomes a boosted attack.",
+          "cooldownSeconds": 7.0,
+          "damageInstances": [
+            {
+              "ratio": 0.8,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 240.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "dash"
+          ],
+          "moveType": "Dash",
+          "iconAsset": "/assets/skills/Jolteon/Quick+Attack.png",
+          "descriptionAdvanced": "The user dashes in the designated direction, dealing damage to opposing Pokémon hit. Afterwards the user readies a boosted attack.",
+          "videoAsset": "/assets/skills/Jolteon/Quick+Attack.mp4"
+        },
+        {
+          "id": "volt-switch",
+          "name": "Volt Switch",
+          "slot": "move2",
+          "description": "Has the user move quickly toward designated opposing Pokémon, dealing damage and applying 1 jolt counter to opposing Pokémon it makes contact with along the way.\n\nIf this move hits, the next basic attack becomes a boosted attack, and the user can perform a follow-up attack.\n\nThis follow-up attack has the user move quickly in the designated direction, dealing damage and applying 1 jolt counter to opposing Pokémon it makes contact with along the way.\n\nIf this follow-up attack hits, the next basic attack becomes a boosted attack.\n\nUpgrade (Level 12): Reduces this move's cooldown.",
+          "cooldownSeconds": 7.5,
+          "damageInstances": [
+            {
+              "ratio": 0.96,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 252.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "dash"
+          ],
+          "iconAsset": "/assets/skills/Jolteon/Volt+Switch.png",
+          "isUpgrade": true,
+          "moveType": "Dash",
+          "upgradeLevel": 6,
+          "descriptionAdvanced": "The user dashes towards the designated target, dealing damage along the way. If the move hits, the user readies a boosted attack and a recast becomes available for 5s.\n\nWhen recast, the user dashes in the designated direction, dealing damage along the way. If this follow-up hits, the user readies a boosted attack.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1s.",
+          "videoAsset": "/assets/skills/Jolteon/Volt+Switch.mp4"
+        },
+        {
+          "id": "plasma-quintupulse",
+          "name": "Plasma Quintupulse",
+          "slot": "uniteMove",
+          "description": "Has the user envelop itself in electricity and unleash a flurry of thundering dashes, dealing damage to opposing Pokémon in the area of effect in front of itself, leaving them paralyzed.\n\nThe user unleashes a total of 5 dashes. The first 4 dashes each deal damage and apply 4 jolt counters to opposing Pokémon they hit. The 5th dash deals damage. If the 5th dash hits opposing Pokémon that have 4 jolt counters, the user will strike them with lightning, dealing additional damage.",
+          "cooldownSeconds": 100.0,
+          "damageInstances": [
+            {
+              "ratio": 0.5,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 180.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 0.6,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 360.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 1.26,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 100.0,
+              "damageType": "special"
+            },
+            {
+              "ratio": 1.5,
+              "scalingStat": "spAttack",
+              "slider": 0.0,
+              "base": 408.0,
+              "damageType": "special"
+            }
+          ],
+          "effects": [],
+          "tags": [
+            "area"
+          ],
+          "moveType": "Area",
+          "iconAsset": "/assets/skills/Jolteon/Plasma+Quintupulse.png",
+          "descriptionAdvanced": "The user is enveloped in electricity, becoming invincible, and attacks in a flurry in the designated direction, dealing damage 4 times. Afterwards, the user winds up a dash, dealing increased damage. If the final dash hits opposing Pokémon with 4 or 5 jolt marks, the user restores some health and calls down a lightning bolt on those targets, dealing additional damage and stunning them for 0.4s. Each target beyond the first only heals 30% of the original amount.\n\nTargets in the designated area are paralyzed for 2s, lowering movement speed by 30% and attack speed by a flat 10%.",
+          "upgradeLevel": 8,
+          "videoAsset": "/assets/skills/Jolteon/Plasma+Quintupulse.mp4"
+        }
+      ],
+      "passiveAbility": {
+        "id": "anticipation",
+        "name": "Anticipation",
+        "description": "If Pokémon from the opposing team are within a certain distance of this Pokémon, its movement speed increases for a short time.\n\nThis Ability goes on cooldown after it's triggered.",
+        "effects": [],
+        "iconAsset": "/assets/skills/Jolteon/Anticipation.png",
+        "videoAsset": "/assets/skills/Jolteon/Anticipation.mp4",
+        "stageLabel": "Eevee"
+      },
+      "extraPassives": [
+        {
+          "id": "quick-feet",
+          "name": "Quick Feet",
+          "description": "A jolt counter is applied to opposing Pokémon hit by this Pokémon's boosted attacks, moves, or Unite Move.\n\nWhen the Pokémon is moving toward an opposing Pokémon that has a jolt counter, its movement speed is increased.\n\nA special boosted attack can be used on opposing Pokémon that have 5 jolt counters, striking them with lightning and dealing damage.\n\nAlso, Jolteon cannot be paralyzed.",
+          "effects": [],
+          "descriptionAdvanced": "Boosted attacks, moves, and the Unite Move apply a jolt counter that lasts 6s, stacking up to 5 times. When an opposing Pokémon has a full jolt counter, a special boosted attack becomes available. Whenever the user faces a Pokémon that has a jolt counter, the user gains 20% movement speed. Additionally, the user is immune to paralysis.",
+          "iconAsset": "/assets/skills/Jolteon/Quick+Feet.png",
+          "videoAsset": "/assets/skills/Jolteon/Quick+Feet.mp4",
+          "stageLabel": "Jolteon"
+        }
+      ],
+      "builds": [
+        {
+          "name": "Silly Little Guy",
+          "emblemName": "Silly Little Guy",
+          "lane": "Central Area",
+          "heldItemIds": [
+            "wise-glasses",
+            "choice-specs",
+            "focus-band"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "045-vileplume",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "049-venomoth",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "088-grimer",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "089-muk",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "211-qwilfish",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "248-tyranitar",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "048-venonat",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "012-butterfree",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "249-lugia",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "071-victreebel",
+              "grade": "bronze"
+            }
+          ],
+          "moves": [
+            "Pin Missile",
+            "Volt Switch"
+          ]
+        },
+        {
+          "name": "10,000 Volts",
+          "emblemName": "10,000 Volts",
+          "lane": "Central Area",
+          "heldItemIds": [
+            "slick-spoon",
+            "curse-incense",
+            "shell-bell"
+          ],
+          "battleItemId": "x-attack",
+          "emblems": [
+            {
+              "emblemId": "045-vileplume",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "049-venomoth",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "088-grimer",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "089-muk",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "211-qwilfish",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "248-tyranitar",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "048-venonat",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "012-butterfree",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "249-lugia",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "071-victreebel",
+              "grade": "bronze"
+            }
+          ],
+          "moves": [
+            "Pin Missile",
+            "Volt Switch"
+          ]
+        }
+      ],
+      "creativeBuilds": [
+        {
+          "name": "That's a Fast Dog",
+          "emblemName": "That's a Fast Dog",
+          "lane": "Central Area",
+          "heldItemIds": [
+            "sp--atk-specs",
+            "amulet-coin",
+            "float-stone"
+          ],
+          "battleItemId": "eject-button",
+          "emblems": [
+            {
+              "emblemId": "101-electrode",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "100-voltorb",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "172-pichu",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "170-chinchou",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "243-raikou",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "1008-miraidon",
+              "grade": "platinum"
+            },
+            {
+              "emblemId": "145-zapdos",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "189-jumpluff",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "094-gengar",
+              "grade": "gold"
+            },
+            {
+              "emblemId": "906-sprigatito",
+              "grade": "platinum"
+            }
+          ],
+          "moves": [
+            "Pin Missile",
+            "Volt Switch"
+          ]
         }
       ]
     },
@@ -29707,7 +30848,7 @@
           "isUpgrade": true,
           "moveType": "Ranged",
           "upgradeLevel": 4,
-          "descriptionAdvanced": "After learning this move: Latias gains 2 Eon power for knocking out a wild Pokémon; or 3 Eon power per Pokémon from the opposing team hit by this move. When this move is used: Latias exhales a mighty gust in the designated direction, damaging opposing Pokémon hit, slowing them by 30% for 3s and decreasing their Sp. Def by 30% for 3s.\n\nThis move gains increased range at 31 and 61 Eon Power. For every 1 Eon power accumulated beyond 60; the damage increases by 0.5% (Eon power caps at 1059).\n\nUpgrade (Level 10): The slow is increased to 40% for 3s.",
+          "descriptionAdvanced": "After learning this move: Latias gains 2 Eon power for knocking out a wild Pokémon; or 3 Eon power per Pokémon from the opposing team hit by this move. When this move is used: Latias exhales a mighty gust in the designated direction, damaging opposing Pokémon hit, slowing them by 30% for 3s and decreasing their Sp. Def by 30% for 3s.\n\nThis move gains increased range at 31 and 61 Eon Power. For every 1 Eon power accumulated beyond 60; the damage increases by 0.4% (Eon power caps at 1059).\n\nUpgrade (Level 10): The slow is increased to 40% for 3s.",
           "videoAsset": "/assets/skills/Latias/Dragon+Breath.mp4"
         },
         {
@@ -30336,7 +31477,7 @@
           "name": "Telekinesis",
           "slot": "move1",
           "description": "Has the user unleash psychic power in the designated direction, dealing damage and applying a slowing effect to opposing Pokémon it hits.\n\nThis move can be used again to unleash psychic power at a designated opposing Pokémon, leaving it unable to act. If the second Pokémon hit by this move is different from the first, the two Pokémon are pulled toward each other and are left unable to act if they collide.\n\nUpgrade (Level 13): Strengthens the slowing effect applied by this move.",
-          "cooldownSeconds": 7.5,
+          "cooldownSeconds": 9.0,
           "damageInstances": [
             {
               "ratio": 0.98,
@@ -32244,7 +33385,7 @@
             "float-stone",
             "amulet-coin"
           ],
-          "battleItemId": "full-heal",
+          "battleItemId": "goal-getter",
           "emblems": [
             {
               "emblemId": "051-dugtrio",
@@ -37437,7 +38578,7 @@
           "effects": [],
           "tags": [],
           "iconAsset": "/assets/skills/basic-attack.png",
-          "descriptionAdvanced": "When Mewtwo Mega Evolves, every third attack deals increased damage and becomes a boosted attack.",
+          "descriptionAdvanced": "Mewtwo punches at opposing Pokémon, dealing damage. Mewtwo has no boosted attack in base form.\n\nWhen Mewtwo Mega Evolves, basic attacks deal increased damage and become a boosted attack with every third attack dealing even more damage.",
           "stageLabel": "Mega Mewtwo X"
         },
         {
@@ -38114,7 +39255,7 @@
           "effects": [],
           "tags": [],
           "iconAsset": "/assets/skills/basic-attack.png",
-          "descriptionAdvanced": "When Mewtwo Mega Evolves, attacks have increased range and deal damage in an area-of-effect centered on the target. When an attack deals damage to an enemy, their movement speed is decreased.",
+          "descriptionAdvanced": "Mewtwo fires a psychic orb at opposing Pokémon dealing damage. Mewtwo has no boosted attack.\n\nWhen Mewtwo Mega Evolves, attacks have increased range, damage, and deal damage in an area around the target. When an attack deals damage to an enemy, their movement speed is decreased by 20% for 1s.",
           "stageLabel": "Mega Mewtwo Y"
         },
         {
@@ -39291,24 +40432,24 @@
           "cooldownSeconds": 12.0,
           "damageInstances": [
             {
-              "ratio": 1.13,
+              "ratio": 1.2429999999999999,
               "scalingStat": "spAttack",
-              "slider": 9.0,
-              "base": 494.0,
+              "slider": 10.0,
+              "base": 543.0,
               "damageType": "special"
             },
             {
-              "ratio": 1.66,
+              "ratio": 1.8259999999999998,
               "scalingStat": "spAttack",
-              "slider": 16.0,
-              "base": 630.0,
+              "slider": 18.0,
+              "base": 693.0,
               "damageType": "special"
             },
             {
-              "ratio": 1.99,
+              "ratio": 2.189,
               "scalingStat": "spAttack",
-              "slider": 20.0,
-              "base": 755.0,
+              "slider": 22.0,
+              "base": 831.0,
               "damageType": "special"
             }
           ],
@@ -39352,7 +40493,7 @@
           "name": "Thunder",
           "slot": "move2",
           "description": "Has the user summon a cloud in the skies above that drops wicked thunderbolts.\n\nThe summoned cloud moves slowly toward the nearest opposing Pokémon, dropping thunderbolts whenever a set amount of time passes. The thunderbolts deal damage and apply a slowing effect to opposing Pokémon they hit.\n\nUpgrade (Level 13): Strengthens the slowing effect applied to opposing Pokémon when they are hit by lightning.",
-          "cooldownSeconds": 10.0,
+          "cooldownSeconds": 9.0,
           "damageInstances": [
             {
               "ratio": 0.18,
@@ -39378,7 +40519,7 @@
           "name": "Parabolic Charge",
           "slot": "move2",
           "description": "Has the user flood the area around it with electricity, dealing damage and applying a slowing effect to opposing Pokémon it hits.\n\nIf this move hits opposing Pokémon, the user recovers HP and also recovers 1 stored use of either Charge Beam or Electro Drift. The more opposing Pokémon the move hits, the more HP the user recovers.\n\nUpgrade (Level 13): Grants the user a shield when this move is used.",
-          "cooldownSeconds": 11.0,
+          "cooldownSeconds": 10.0,
           "damageInstances": [
             {
               "ratio": 0.6,
@@ -40250,10 +41391,10 @@
               "damageType": "physical"
             },
             {
-              "ratio": 1.71,
+              "ratio": 1.7,
               "scalingStat": "attack",
               "slider": 0.0,
-              "base": 684.0,
+              "base": 360.0,
               "damageType": "physical"
             }
           ],
@@ -40300,10 +41441,10 @@
           "cooldownSeconds": 5.0,
           "damageInstances": [
             {
-              "ratio": 1.8,
+              "ratio": 1.53,
               "scalingStat": "attack",
               "slider": 0.0,
-              "base": 720.0,
+              "base": 612.0,
               "damageType": "physical"
             },
             {
@@ -49533,9 +50674,9 @@
         {
           "hp": 3361.0,
           "attack": 153.0,
-          "defense": 79.0,
+          "defense": 80.0,
           "spAttack": 58.0,
-          "spDefense": 68.0,
+          "spDefense": 69.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49546,9 +50687,9 @@
         {
           "hp": 3517.0,
           "attack": 157.0,
-          "defense": 89.0,
+          "defense": 92.0,
           "spAttack": 67.0,
-          "spDefense": 77.0,
+          "spDefense": 80.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49559,9 +50700,9 @@
         {
           "hp": 4309.0,
           "attack": 175.0,
-          "defense": 142.0,
+          "defense": 153.0,
           "spAttack": 114.0,
-          "spDefense": 124.0,
+          "spDefense": 134.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49572,9 +50713,9 @@
         {
           "hp": 4516.0,
           "attack": 180.0,
-          "defense": 156.0,
+          "defense": 169.0,
           "spAttack": 126.0,
-          "spDefense": 136.0,
+          "spDefense": 149.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49585,9 +50726,9 @@
         {
           "hp": 4754.0,
           "attack": 186.0,
-          "defense": 172.0,
+          "defense": 187.0,
           "spAttack": 140.0,
-          "spDefense": 150.0,
+          "spDefense": 165.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49598,9 +50739,9 @@
         {
           "hp": 5027.0,
           "attack": 192.0,
-          "defense": 190.0,
+          "defense": 208.0,
           "spAttack": 156.0,
-          "spDefense": 166.0,
+          "spDefense": 184.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49611,9 +50752,9 @@
         {
           "hp": 5342.0,
           "attack": 199.0,
-          "defense": 211.0,
+          "defense": 233.0,
           "spAttack": 175.0,
-          "spDefense": 185.0,
+          "spDefense": 205.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49624,9 +50765,9 @@
         {
           "hp": 5704.0,
           "attack": 207.0,
-          "defense": 235.0,
+          "defense": 260.0,
           "spAttack": 196.0,
-          "spDefense": 206.0,
+          "spDefense": 230.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49637,9 +50778,9 @@
         {
           "hp": 6120.0,
           "attack": 217.0,
-          "defense": 263.0,
+          "defense": 292.0,
           "spAttack": 221.0,
-          "spDefense": 231.0,
+          "spDefense": 259.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49650,9 +50791,9 @@
         {
           "hp": 6599.0,
           "attack": 228.0,
-          "defense": 295.0,
+          "defense": 329.0,
           "spAttack": 249.0,
-          "spDefense": 259.0,
+          "spDefense": 291.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49663,9 +50804,9 @@
         {
           "hp": 7150.0,
           "attack": 241.0,
-          "defense": 332.0,
+          "defense": 371.0,
           "spAttack": 282.0,
-          "spDefense": 291.0,
+          "spDefense": 329.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49676,9 +50817,9 @@
         {
           "hp": 7784.0,
           "attack": 256.0,
-          "defense": 375.0,
+          "defense": 420.0,
           "spAttack": 319.0,
-          "spDefense": 328.0,
+          "spDefense": 373.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49689,9 +50830,9 @@
         {
           "hp": 8513.0,
           "attack": 273.0,
-          "defense": 424.0,
+          "defense": 476.0,
           "spAttack": 362.0,
-          "spDefense": 371.0,
+          "spDefense": 423.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49702,9 +50843,9 @@
         {
           "hp": 9350.0,
           "attack": 292.0,
-          "defense": 480.0,
+          "defense": 540.0,
           "spAttack": 411.0,
-          "spDefense": 420.0,
+          "spDefense": 480.0,
           "critRate": 0.0,
           "cdr": 0.0,
           "lifesteal": 0.0,
@@ -49809,7 +50950,7 @@
           "isUpgrade": true,
           "moveType": "Ranged",
           "upgradeLevel": 4,
-          "descriptionAdvanced": "Slowbro fires a stream of boiling water; damaging enemies hit, slowing them by 80% for 0.5s and creating a cloud of steam centered on the first enemy hit, which slows by 30% for 3s and applies a burn to all enemies inside. This burn reduces Attack by 60% for 3s. Restore 10% of Slowbro's Oblivious health (blue HP) once per stream instance after hitting an enemy (maximum 3 times).\n\nUpgrade (Level 11): Increases the size of the steam cloud.",
+          "descriptionAdvanced": "Slowbro fires a stream of boiling water; damaging enemies hit, slowing them by 80% for 0.5s and creating a cloud of steam centered on the first enemy hit, which slows by 30% for 3s and applies a burn to all enemies inside. This burn reduces Attack by 60% for 4s. Restore 10% of Slowbro's Oblivious health (blue HP) once per stream instance after hitting an enemy (maximum 3 times).\n\nUpgrade (Level 11): Increases the size of the steam cloud.",
           "videoAsset": "/assets/skills/Slowbro/Scald.mp4"
         },
         {
@@ -49817,7 +50958,7 @@
           "name": "Surf",
           "slot": "move1",
           "description": "Has the user charge forward on a wave, dealing damage to opposing Pokémon in the area of effect and throwing them. This is followed by two more waves that deal damage to opposing Pokémon in the area of effect and decrease their movement speed for a short time.\n\nUpgrade (Level 11): The second and third waves become larger and also throw opposing Pokémon like the first wave does.",
-          "cooldownSeconds": 7.0,
+          "cooldownSeconds": 6.5,
           "damageInstances": [
             {
               "ratio": 1.03,
@@ -51106,7 +52247,7 @@
           "name": "Iron Head",
           "slot": "move1",
           "description": "Has the user charge in the designated direction, dealing damage and shoving opposing Pokémon with its steel-hard head.\n\nIf this move is used again, the user leaps toward opposing Pokémon in front of itself, leaving them unable to act and dealing damage multiple times while restoring the user's HP.\n\nUpgrade (Level 9): Increases the duration opposing Pokémon are left unable to act.",
-          "cooldownSeconds": 6.5,
+          "cooldownSeconds": 6.0,
           "damageInstances": [
             {
               "ratio": 0.98,
@@ -51138,7 +52279,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 7,
-          "descriptionAdvanced": "The user charges in the designated direction, dealing damage and shoving opposing Pokémon for 0.5s. If the move hits, a follow up becomes available for 2s.\n\nWhen recast; the user leaps forward, an opposing Pokémon hit by the attack is barraged with 4 attacks, each stunning for 0.2s for up to a 0.8s duration, and restoring the user's health by 40% of the damage dealt. Against targets that cannot be stunned, only one instance of increased damage is dealt. This barrage will end early if the user inputs movement.\n\nUpgrade (Level 9): A fifth hit is added to the barrage, increasing the total stun duration to up to 1s. Against targets that cannot be stunned, the damage is increased.",
+          "descriptionAdvanced": "The user charges in the designated direction, dealing damage and shoving opposing Pokémon for 0.5s. If the move hits, a follow up becomes available for 3s.\n\nWhen recast; the user leaps forward, an opposing Pokémon hit by the attack is barraged with 4 attacks, each stunning for 0.2s for up to a 0.8s duration, and restoring the user's health by 40% of the damage dealt. Against targets that cannot be stunned, only one instance of increased damage is dealt. This barrage will end early if the user inputs movement.\n\nUpgrade (Level 9): A fifth hit is added to the barrage, increasing the total stun duration to up to 1s. Against targets that cannot be stunned, the damage is increased.",
           "videoAsset": "/assets/skills/Solgaleo/Iron+Head.mp4"
         },
         {
@@ -51215,7 +52356,7 @@
           "isUpgrade": true,
           "moveType": "Area",
           "upgradeLevel": 7,
-          "descriptionAdvanced": "The user begins charging psychic power for up to 4s, granting 30% damage reduction and becoming Hindrance Resistant for the first 2s. Additionally, the user's movement speed is increased by 13%, further increasing by 13% every 0.5s to a max of 78% until the move ends. When the move is unleashed, damage is dealt in an area around the user, increasing with charge level, and opposing Pokémon are thrown for 0.3/0.4/0.45/0.55s based on the charge level. If this move hits, a follow up becomes available for 5s. If the move is fully charged until it wears off, the cooldown of the move is instead 5s.\n\nWhen recast; the user slashes in the designated direction, dealing damage twice, applying a 40% slow for 3s, and healing the user. If this follow up hits, a second recast becomes available, performing the same attack.\n\nUpgrade (Level 11): Increases the healing of the claw swipes.",
+          "descriptionAdvanced": "The user begins charging psychic power for up to 4s, granting 30% damage reduction and becoming Hindrance Resistant for the first 2s. Additionally, the user's movement speed is increased by 18%, further increasing by 18% every 0.5s to a max of 108% until the move ends. When the move is unleashed, damage is dealt in an area around the user, increasing with charge level, and opposing Pokémon are thrown for 0.3/0.4/0.45/0.55s based on the charge level. If this move hits, a follow up becomes available for 5s. If the move is fully charged until it wears off, the cooldown of the move is instead 5s.\n\nWhen recast, the user slashes in the designated direction, dealing damage twice, applying a 40% slow for 3s, and healing the user. These claw swipes are not interrupted by hindrances. If this follow-up hits, a second recast becomes available, performing the same attack.\n\nUpgrade (Level 11): Increases the healing of the claw swipes.",
           "videoAsset": "/assets/skills/Solgaleo/Psyshock.mp4"
         },
         {
@@ -51239,7 +52380,7 @@
           ],
           "moveType": "Sure Hit",
           "iconAsset": "/assets/skills/Solgaleo/Shining+Meteor+Crush.png",
-          "descriptionAdvanced": "Solgaleo becomes Unstoppable and unleashes immense power, entering Radiant Sun phase, before charging towards the designated Pokémon and dealing damage in the area. Radiant Sun phase lasts 10s. Ally Pokémon who are KO'd nearby grant 10000 energy.\n\nWhile in Radiant Sun phase, Solgaleo can see hidden Pokémon, and Solgaleo's auto attacks and moves deal True type damage.",
+          "descriptionAdvanced": "Solgaleo becomes Unstoppable and unleashes immense power, entering Radiant Sun phase, before charging towards the designated Pokémon and dealing damage in the area. Radiant Sun phase lasts 15s. Ally Pokémon who are KO'd nearby grant 10000 energy.\n\nWhile in Radiant Sun phase, Solgaleo can see hidden Pokémon, and Solgaleo's auto attacks and moves deal True type damage.",
           "upgradeLevel": 7,
           "videoAsset": "/assets/skills/Solgaleo/Shining+Meteor+Crush.mp4"
         }
@@ -65141,9 +66282,9 @@
         }
       },
       "conditionalEffects": [],
-      "descriptionAdvanced": "Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
+      "descriptionAdvanced": "Attack-based damage dealt to opposing Pokémon inflicts 20/25/30% anti-heal for 1.5 seconds. This effect does not stack with Curse Incense.",
       "effect": {
-        "label": "Reduced HP Recovery",
+        "label": "Anti-Heal",
         "tiers": [
           "20%",
           "25%",
@@ -65279,9 +66420,9 @@
         }
       },
       "conditionalEffects": [],
-      "descriptionAdvanced": "Sp. Attack-based damage dealt to opposing Pokémon weakens their HP recovery effect by 20/25/30% for 1.5 seconds.",
+      "descriptionAdvanced": "Sp. Attack-based damage dealt to opposing Pokémon inflicts 20/25/30% anti-heal for 1.5 seconds. This effect does not stack with Curse Bangle.",
       "effect": {
-        "label": "Reduced HP Recovery",
+        "label": "Anti-Heal",
         "tiers": [
           "20%",
           "25%",

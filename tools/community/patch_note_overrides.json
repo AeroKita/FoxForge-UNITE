@@ -1854,6 +1854,132 @@
       "find": "burst of sound dealing damage",
       "replace": "burst of sound, dealing damage",
       "why": "Toxtricity Venom Distortion Advanced is missing the comma before dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "jolteon",
+      "move": "swift",
+      "fields": ["descriptionAdvanced"],
+      "find": "Fires 3 star shaped rays in a cone.",
+      "replace": "The user fires 3 star-shaped rays in a cone.",
+      "why": "Jolteon Swift Advanced is a fragment and drops the hyphen in star-shaped"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "jolteon",
+      "move": "quick-feet",
+      "fields": ["descriptionAdvanced"],
+      "find": "When an opposing Pokémon has a full jolt counter a special",
+      "replace": "When an opposing Pokémon has a full jolt counter, a special",
+      "why": "Jolteon Quick Feet Advanced is missing the comma after counter"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "jolteon",
+      "move": "quick-feet",
+      "fields": ["descriptionAdvanced"],
+      "find": "Boosted attacks, moves, and Unite Move apply",
+      "replace": "Boosted attacks, moves, and the Unite Move apply",
+      "why": "Jolteon Quick Feet Advanced is missing the article before Unite Move"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "jolteon",
+      "move": "attack",
+      "fields": ["descriptionAdvanced"],
+      "find": "a lightning bolt dealing additional damage",
+      "replace": "a lightning bolt, dealing additional damage",
+      "why": "Jolteon Attack Advanced is missing the comma before dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "jolteon",
+      "move": "plasma-quintupulse",
+      "fields": ["descriptionAdvanced"],
+      "find": "Afterwards the user winds up a dash dealing increased damage.",
+      "replace": "Afterwards, the user winds up a dash, dealing increased damage.",
+      "why": "Jolteon Plasma Quintupulse Advanced is missing commas around the dash clause"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "swift",
+      "fields": ["descriptionAdvanced"],
+      "find": "4 star shaped rays",
+      "replace": "4 star-shaped rays",
+      "why": "Flareon Swift Advanced drops the hyphen in star-shaped"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "fire-blast",
+      "fields": ["descriptionAdvanced"],
+      "find": "all consuming fire",
+      "replace": "all-consuming fire",
+      "why": "Flareon Fire Blast Advanced drops the hyphen in all-consuming"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "garnet-ignition",
+      "fields": ["descriptionAdvanced"],
+      "find": "from the user dealing",
+      "replace": "from the user, dealing",
+      "why": "Flareon Garnet Ignition Advanced is missing the comma before dealing"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "flash-fire",
+      "fields": ["descriptionAdvanced"],
+      "find": "At each threshold the user",
+      "replace": "At each threshold, the user",
+      "why": "Flareon Flash Fire Advanced is missing the comma after the introductory phrase"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "flash-fire",
+      "fields": ["descriptionAdvanced"],
+      "find": "After reaching the first threshold the user",
+      "replace": "After reaching the first threshold, the user",
+      "why": "Flareon Flash Fire Advanced is missing the comma after the introductory phrase"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "flash-fire",
+      "fields": ["descriptionAdvanced"],
+      "find": "Afterwards at least 2s must pass",
+      "replace": "Afterwards, at least 2s must pass",
+      "why": "Flareon Flash Fire Advanced is missing the comma after Afterwards"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "flare-blitz",
+      "fields": ["descriptionAdvanced"],
+      "find": "Afterwards for up to 5s, the move can be recast",
+      "replace": "Afterwards, for up to 5s, the move can be recast",
+      "why": "Flareon Flare Blitz Advanced is missing the comma after Afterwards"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "flareon",
+      "move": "attack",
+      "fields": ["descriptionAdvanced"],
+      "find": "While Flash Fire is emitting heat blasts the user",
+      "replace": "While Flash Fire is emitting heat blasts, the user",
+      "why": "Flareon Attack Advanced is missing the comma after the introductory clause"
+    },
+    {
+      "kind": "replaceText",
+      "pokemon": "solgaleo",
+      "move": "psyshock",
+      "fields": ["descriptionAdvanced"],
+      "find": "When recast; the user slashes in the designated direction, dealing damage twice, applying a 40% slow for 3s, and healing the user. If this follow up hits",
+      "replace": "When recast, the user slashes in the designated direction, dealing damage twice, applying a 40% slow for 3s, and healing the user. These claw swipes are not interrupted by hindrances. If this follow-up hits",
+      "why": "Vortex of Astral Thunder: Psyshock claw swipes are no longer interrupted by hindrances, and the UNITE-DB note used a semicolon"
     }
   ]
 }

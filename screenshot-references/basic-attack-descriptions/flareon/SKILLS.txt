@@ -1,2 +1,3 @@
-flareon  —  Basic Attack still not captured yet
-  basic-attack.jpeg   →  Basic Attack
+Flareon  —  Basic Attack stills, one file per form
+  basic-attack-eevee.jpeg     →  Eevee
+  basic-attack-flareon.jpeg   →  Flareon

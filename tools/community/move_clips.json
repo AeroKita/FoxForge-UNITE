@@ -296,6 +296,14 @@
       "scratch": "/assets/skills/Feraligatr/Scratch.mp4",
       "waterfall": "/assets/skills/Feraligatr/Waterfall.mp4"
     },
+    "flareon": {
+      "fire-blast": "/assets/skills/Flareon/Fire+Blast.mp4",
+      "flare-blitz": "/assets/skills/Flareon/Flare+Blitz.mp4",
+      "flash-fire": "/assets/skills/Flareon/Flash+Fire.mp4",
+      "garnet-ignition": "/assets/skills/Flareon/Garnet+Ignition.mp4",
+      "swift": "/assets/skills/Flareon/Swift.mp4",
+      "tackle": "/assets/skills/Flareon/Tackle.mp4"
+    },
     "galarian-rapidash": {
       "agility": "/assets/skills/Rapidash/Agility.mp4",
       "confusion": "/assets/skills/Rapidash/Confusion.mp4",
@@ -403,6 +411,15 @@
       "snipe-shot": "/assets/skills/Inteleon/Snipe+Shot.mp4",
       "tearful-look": "/assets/skills/Inteleon/Tearful+Look.mp4",
       "water-gun": "/assets/skills/Inteleon/Water+Gun.mp4"
+    },
+    "jolteon": {
+      "anticipation": "/assets/skills/Jolteon/Anticipation.mp4",
+      "pin-missile": "/assets/skills/Jolteon/Pin+Missile.mp4",
+      "plasma-quintupulse": "/assets/skills/Jolteon/Plasma+Quintupulse.mp4",
+      "quick-attack": "/assets/skills/Jolteon/Quick+Attack.mp4",
+      "quick-feet": "/assets/skills/Jolteon/Quick+Feet.mp4",
+      "swift": "/assets/skills/Jolteon/Swift.mp4",
+      "volt-switch": "/assets/skills/Jolteon/Volt+Switch.mp4"
     },
     "lapras": {
       "bubble-beam": "/assets/skills/Lapras/Bubble+Beam.mp4",

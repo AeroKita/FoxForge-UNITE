@@ -37,6 +37,7 @@ Scope: Base moves, Final (upgrade) moves, Unite moves. Passives are optional (`<
 | Espeon | `espeon/` | 7 |
 | Falinks | `falinks/` | 7 |
 | Feraligatr | `feraligatr/` | 5 |
+| Flareon | `flareon/` | 5 |
 | Garchomp | `garchomp/` | 7 |
 | Gardevoir | `gardevoir/` | 7 |
 | Gengar | `gengar/` | 7 |
@@ -48,6 +49,7 @@ Scope: Base moves, Final (upgrade) moves, Unite moves. Passives are optional (`<
 | Ho-Oh | `ho-oh/` | 7 |
 | Hoopa | `hoopa/` | 7 |
 | Inteleon | `inteleon/` | 7 |
+| Jolteon | `jolteon/` | 5 |
 | Lapras | `lapras/` | 7 |
 | Latias | `latias/` | 7 |
 | Latios | `latios/` | 7 |

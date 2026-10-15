@@ -461,6 +461,15 @@
       "torrent",
       "waterfall"
     ],
+    "flareon": [
+      "adaptability",
+      "fire blast",
+      "flare blitz",
+      "flash fire",
+      "garnet ignition",
+      "swift",
+      "tackle"
+    ],
     "garchomp": [
       "bulldoze",
       "dig",
@@ -572,6 +581,15 @@
       "sniper",
       "tearful look",
       "water gun"
+    ],
+    "jolteon": [
+      "anticipation",
+      "pin missile",
+      "plasma quintupulse",
+      "quick attack",
+      "quick feet",
+      "swift",
+      "volt switch"
     ],
     "lapras": [
       "bubble beam",

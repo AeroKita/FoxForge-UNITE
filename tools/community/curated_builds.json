@@ -807,7 +807,7 @@
           "float-stone",
           "amulet-coin"
         ],
-        "battleItemId": "full-heal",
+        "battleItemId": "goal-getter",
         "emblems": [
           {
             "emblemId": "051-dugtrio",
@@ -864,11 +864,11 @@
         "emblemName": "Step on the Gas (Special)",
         "lane": "Central Area",
         "heldItemIds": [
-          "drive-lens",
+          "sp--atk-specs",
           "float-stone",
           "amulet-coin"
         ],
-        "battleItemId": "full-heal",
+        "battleItemId": "goal-getter",
         "emblems": [
           {
             "emblemId": "101-electrode",
@@ -3328,6 +3328,301 @@
     "recommendedTitles": [
       "Pack Illusion",
       "False Face"
+    ]
+  },
+  "jolteon": {
+    "builds": [
+      {
+        "name": "Silly Little Guy",
+        "emblemName": "Silly Little Guy",
+        "lane": "Central Area",
+        "heldItemIds": [
+          "wise-glasses",
+          "choice-specs",
+          "focus-band"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          }
+        ],
+        "moves": [
+          "Pin Missile",
+          "Volt Switch"
+        ]
+      },
+      {
+        "name": "10,000 Volts",
+        "emblemName": "10,000 Volts",
+        "lane": "Central Area",
+        "heldItemIds": [
+          "slick-spoon",
+          "curse-incense",
+          "shell-bell"
+        ],
+        "battleItemId": "x-attack",
+        "emblems": [
+          {
+            "emblemId": "045-vileplume",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "049-venomoth",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "088-grimer",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "089-muk",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "211-qwilfish",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "248-tyranitar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "048-venonat",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "012-butterfree",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "249-lugia",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "071-victreebel",
+            "grade": "bronze"
+          }
+        ],
+        "moves": [
+          "Pin Missile",
+          "Volt Switch"
+        ]
+      }
+    ],
+    "creativeBuilds": [
+      {
+        "name": "That's a Fast Dog",
+        "emblemName": "That's a Fast Dog",
+        "lane": "Central Area",
+        "heldItemIds": [
+          "sp--atk-specs",
+          "amulet-coin",
+          "float-stone"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          {
+            "emblemId": "101-electrode",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "100-voltorb",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "172-pichu",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "170-chinchou",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "243-raikou",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "1008-miraidon",
+            "grade": "platinum"
+          },
+          {
+            "emblemId": "145-zapdos",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "189-jumpluff",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "094-gengar",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "906-sprigatito",
+            "grade": "platinum"
+          }
+        ],
+        "moves": [
+          "Pin Missile",
+          "Volt Switch"
+        ]
+      }
+    ]
+  },
+  "flareon": {
+    "builds": [
+      {
+        "name": "Hot Pocket",
+        "emblemName": "Hot Pocket",
+        "lane": "Top or Bottom Path",
+        "heldItemIds": [
+          "muscle-band",
+          "weakness-policy",
+          "focus-band"
+        ],
+        "battleItemId": "eject-button",
+        "emblems": [
+          {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "128-tauros",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "130-gyarados",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "062-poliwrath",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "195-quagsire",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Fire Blast",
+          "Flare Blitz"
+        ]
+      },
+      {
+        "name": "Booster",
+        "emblemName": "Booster",
+        "lane": "Top or Bottom Path",
+        "heldItemIds": [
+          "muscle-band",
+          "weakness-policy",
+          "attack-weight"
+        ],
+        "battleItemId": "full-heal",
+        "emblems": [
+          {
+            "emblemId": "141-kabutops",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "076-golem",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "250-ho-oh",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "142-aerodactyl",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "128-tauros",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "115-kangaskhan",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "206-dunsparce",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "130-gyarados",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "062-poliwrath",
+            "grade": "gold"
+          },
+          {
+            "emblemId": "195-quagsire",
+            "grade": "gold"
+          }
+        ],
+        "moves": [
+          "Fire Blast",
+          "Flare Blitz"
+        ]
+      }
     ]
   }
 }

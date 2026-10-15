@@ -1,0 +1,9 @@
+Flareon  —  drop each file here as <move-id>.mp4
+Scope: Base + Final + Unite moves + optional Passive.
+
+  flash-fire.mp4                 →  Flash Fire                      [Passive · Flareon]
+  swift.mp4                      →  Swift                           [Move 1 · Base]
+  fire-blast.mp4                 →  Fire Blast (Lv 4)               [Move 1 · Final]
+  tackle.mp4                     →  Tackle                          [Move 2 · Base]
+  flare-blitz.mp4                →  Flare Blitz (Lv 6)              [Move 2 · Final]
+  garnet-ignition.mp4            →  Garnet Ignition                 [Unite · Unite]

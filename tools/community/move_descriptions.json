@@ -202,6 +202,18 @@
       "torrent": "When the Pokémon with this Ability is at half HP or less, its move cooldowns are reduced.",
       "attack": "Has the user slash its claws at opposing Pokémon, dealing damage to them."
     },
+    "flareon": {
+      "adaptability": "When a basic attack or move hits an opposing Pokémon, this Pokémon's Attack increases for a short time.\n\nThis Ability goes on cooldown after it's triggered.",
+      "flash fire": "When a basic attack or move hits an opposing Pokémon, this Pokémon's raised body temperature increases the heat gauge.\n\nThe higher the heat gauge, the more Attack increases and basic attacks' HP recovery effects strengthen.\n\nOnce the heat gauge reaches a certain amount, the Pokémon will emit consecutive heat blasts, dealing damage to nearby opposing Pokémon.",
+      "swift": "Has the user shoot star-shaped rays, dealing damage to opposing Pokémon it hits.",
+      "fire blast": "Has the user attack with an intense blast of all-consuming fire in front of itself.\n\nThe blast deals damage to opposing Pokémon and other nearby opposing Pokémon, leaving them burned for a short time.\n\nThe movement speed of opposing Pokémon hit by this move is also decreased for a short time, and their HP recovery effects are weakened.\n\nHitting Pokémon from the opposing team that have been burned by this move with a basic attack increases the user's heat gauge by a greater amount.\n\nUpgrade (Level 10): Strengthens the movement speed decrease.",
+      "tackle": "Has the user charge in the designated direction, dealing damage to opposing Pokémon it hits.",
+      "flare blitz": "Has the user charge in the designated direction while cloaked in flames. If the user collides with an opposing Pokémon, they are shoved and damage is dealt to nearby opposing Pokémon.\n\nUsing this move again within a set amount of time has the user leap backward.\n\nUpgrade (Level 12): Increases the damage dealt by this move.",
+      "garnet ignition": "Has the user leap toward the designated location, dealing damage to nearby opposing Pokémon and greatly decreasing their movement speed.\n\nThe user then releases the heat built up in its flame sac, unleashing a heat wave that deals damage to opposing Pokémon in the area of effect.\n\nThe higher the heat gauge when this Unite Move is used, the more additional heat waves are emitted.",
+      "attack - eevee": "Becomes a boosted attack with every third attack, dealing increased damage.",
+      "basic attack": "Has the user chomp at opposing Pokémon, dealing damage.\n\nBecomes a boosted attack while the user is emitting heat blasts, and has the user jump at opposing Pokémon to chomp at them, dealing increased damage.",
+      "attack": "Becomes a boosted attack with every third attack, dealing increased damage."
+    },
     "goodra": {
       "basic attack": "Becomes a boosted attack with every third attack, applying a Gooey slowing effect to opposing Pokémon it hits. Boosted attacks launch slime at distant opposing Pokémon and deal increased damage to nearby opposing Pokémon.\n\nIf this Pokémon applies a Gooey slowing effect to an opposing Pokémon and then hits that Pokémon with a basic attack while the effect is active, all of this Pokémon's move cooldowns are reduced.",
       "bubble": "Has the user cover itself in a bubble, granting it a shield for a short time.\n\nWhen the shield's effect duration ends or if this move is used again, the bubble shield pops, dealing damage to nearby opposing Pokémon and decreasing their movement speed.",
@@ -252,6 +264,18 @@
       "azure spy vision": "For a short time, enables the user to see nearby Pokémon that are in stealth or hiding in tall grass.\n\nAlso doubles the user's critical-hit rate, and the user gains one critical counter whenever a set amount of time passes.",
       "attack": "Becomes a boosted attack with every third attack, dealing increased damage with an increased critical-hit rate.",
       "sniper": "The Pokémon deals increased damage to opposing Pokémon when it lands a critical hit.\n\nWhen the Pokémon is near a wall, it becomes camouflaged and opposing Pokémon are unable to target it.\n\nThe Pokémon gains one critical counter whenever a set amount of time passes while camouflaged (up to a maximum of 3 counters).\n\nWhen a critical counter is consumed, the Pokémon's next basic attack or move that has a set chance of becoming a critical hit is guaranteed to be a critical hit."
+    },
+    "jolteon": {
+      "anticipation": "If Pokémon from the opposing team are within a certain distance of this Pokémon, its movement speed increases for a short time.\n\nThis Ability goes on cooldown after it's triggered.",
+      "quick feet": "A jolt counter is applied to opposing Pokémon hit by this Pokémon's boosted attacks, moves, or Unite Move.\n\nWhen the Pokémon is moving toward an opposing Pokémon that has a jolt counter, its movement speed is increased.\n\nA special boosted attack can be used on opposing Pokémon that have 5 jolt counters, striking them with lightning and dealing damage.\n\nAlso, Jolteon cannot be paralyzed.",
+      "swift": "Has the user shoot star-shaped rays, dealing damage to opposing Pokémon it hits.",
+      "pin missile": "Has the user shoot out its electrified fur, dealing damage and applying 3 jolt counters to opposing Pokémon it hits, leaving them paralyzed for a short time.\n\nUpgrade (Level 10): Further decreases the movement speed and basic attack speed of opposing Pokémon that are left paralyzed.",
+      "quick attack": "Has the user move quickly in the designated direction, dealing damage to opposing Pokémon it makes contact with along the way.\n\nThe next basic attack becomes a boosted attack.",
+      "volt switch": "Has the user move quickly toward designated opposing Pokémon, dealing damage and applying 1 jolt counter to opposing Pokémon it makes contact with along the way.\n\nIf this move hits, the next basic attack becomes a boosted attack, and the user can perform a follow-up attack.\n\nThis follow-up attack has the user move quickly in the designated direction, dealing damage and applying 1 jolt counter to opposing Pokémon it makes contact with along the way.\n\nIf this follow-up attack hits, the next basic attack becomes a boosted attack.\n\nUpgrade (Level 12): Reduces this move's cooldown.",
+      "plasma quintupulse": "Has the user envelop itself in electricity and unleash a flurry of thundering dashes, dealing damage to opposing Pokémon in the area of effect in front of itself, leaving them paralyzed.\n\nThe user unleashes a total of 5 dashes. The first 4 dashes each deal damage and apply 4 jolt counters to opposing Pokémon they hit. The 5th dash deals damage. If the 5th dash hits opposing Pokémon that have 4 jolt counters, the user will strike them with lightning, dealing additional damage.",
+      "attack - eevee": "Becomes a boosted attack with every third attack, dealing increased damage.",
+      "basic attack": "Becomes a boosted attack with every third attack, swiftly approaching opposing Pokémon, dealing damage, and applying 1 jolt counter.",
+      "attack": "Becomes a boosted attack with every third attack, dealing increased damage."
     },
     "lapras": {
       "aeos emporium - 14,000 aeos coins / 575 aeos gems": "Shell Armor",

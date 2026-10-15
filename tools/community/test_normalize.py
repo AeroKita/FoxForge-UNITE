@@ -488,6 +488,23 @@ class TestApplyArchiveMoveBasic(unittest.TestCase):
         self.assertEqual(moves[1]["iconAsset"], "/assets/skills/basic-attack.png")
         self.assertEqual(moves[2]["id"], "feint")
 
+    def test_eeveelution_staged_basic_attacks_keep_pre_evo_then_final(self):
+        """Jolteon and Flareon stills show an Eevee basic attack and a final-form one."""
+        base = {
+            "id": "attack",
+            "name": "Attack",
+            "slot": "basicAttack",
+            "description": "UNITE-DB.",
+        }
+        archive = {
+            "attack - eevee": "Becomes a boosted attack with every third attack, dealing increased damage.",
+            "basic attack": "Becomes a boosted attack with every third attack, applying 1 jolt counter.",
+        }
+        for pid, final in (("jolteon", "Jolteon"), ("flareon", "Flareon")):
+            moves = expand_staged_basic_attacks([dict(base)], pid, archive)
+            labels = [m["stageLabel"] for m in moves if m["slot"] == "basicAttack"]
+            self.assertEqual(labels, ["Eevee", final], pid)
+
 
 class TestResolvePlayablePassive(unittest.TestCase):
     """resolve_playable_passive picks the last staged Ability for allowlisted Pokémon."""
@@ -639,7 +656,9 @@ class TestResolvePlayablePassive(unittest.TestCase):
             "ceruledge",
             "dragonite",
             "espeon",
+            "flareon",
             "glaceon",
+            "jolteon",
             "gyarados",
             "leafeon",
             "raichu",
@@ -811,8 +830,10 @@ class TestFormPassiveStages(unittest.TestCase):
             "Ceruledge": (("Flame Body", "Charcadet"), ("Weak Armor", "Ceruledge")),
             "Dragonite": (("Marvel Scale", "Dragonair"), ("Multiscale", "Dragonite")),
             "Espeon": (("Anticipation", "Eevee"), ("Magic Bounce", "Espeon")),
+            "Flareon": (("Adaptability", "Eevee"), ("Flash Fire", "Flareon")),
             "Glaceon": (("Run Away", "Eevee"), ("Snow Cloak", "Glaceon")),
             "Gyarados": (("Rattled", "Magikarp"), ("Moxie", "Gyarados")),
+            "Jolteon": (("Anticipation", "Eevee"), ("Quick Feet", "Jolteon")),
             "Leafeon": (("Run Away", "Eevee"), ("Chlorophyll", "Leafeon")),
             "Solgaleo": (
                 ("Unaware", "Cosmog"),
@@ -993,6 +1014,7 @@ class TestFixSpelling(unittest.TestCase):
         self.assertEqual(fix_spelling("shoot a flame of in the"), "shoot a flame in the")
         self.assertEqual(fix_spelling("Every 2 this Unite Move"), "Every 2 times this Unite Move")
         self.assertEqual(fix_spelling("the user Release a telekinetic"), "the user releases a telekinetic")
+        self.assertEqual(fix_spelling("sends out electricty"), "sends out electricity")
 
     def test_cooldown_abbrev_uppercases_cd(self):
         self.assertEqual(fix_spelling("triggered (4s cd)."), "triggered (4s CD).")
