@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.2.6",
-  "lastUpdated": "2026-10-15",
+  "lastUpdated": "2026-10-17",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-10-15"
+    "fetched": "2026-10-17"
   },
   "pokemon": [
     {
@@ -21038,7 +21038,7 @@
           "isUpgrade": true,
           "moveType": "Area",
           "upgradeLevel": 4,
-          "descriptionAdvanced": "The user fires a blast of all-consuming fire a set distance away in the designated direction, dealing damage and burning opposing Pokémon for 1.5s, dealing damage on hit and every 0.5s. Burned Pokémon are slowed by 25% and are inflicted with 30% anti-heal.\n\nAuto attacks generate 3x the heat gauge when the user attacks opposing Pokémon burned by this move.\n\nUpgrade (Level 10): Increases the slow to 40%.",
+          "descriptionAdvanced": "The user becomes Unstoppable before leaping up and firing a blast of all-consuming fire a set distance away in the designated direction, dealing damage and burning opposing Pokémon for 1.5s, dealing damage on hit and every 0.5s. Burned Pokémon are slowed by 25% and are inflicted with 30% anti-heal.\n\nAuto attacks generate 3x the heat gauge when the user attacks opposing Pokémon burned by this move.\n\nUpgrade (Level 10): Increases the slow to 40%.",
           "videoAsset": "/assets/skills/Flareon/Fire+Blast.mp4"
         },
         {
@@ -29576,7 +29576,7 @@
           "isUpgrade": true,
           "moveType": "Dash",
           "upgradeLevel": 6,
-          "descriptionAdvanced": "The user dashes towards the designated target, dealing damage along the way. If the move hits, the user readies a boosted attack and a recast becomes available for 5s.\n\nWhen recast, the user dashes in the designated direction, dealing damage along the way. If this follow-up hits, the user readies a boosted attack.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1s.",
+          "descriptionAdvanced": "The user dashes towards the designated target, dealing damage along the way. Afterwards, the user readies a boosted attack and a recast becomes available for 5s.\n\nWhen recast, the user dashes in the designated direction, dealing damage along the way. Afterwards, the user readies a boosted attack.\n\nUpgrade (Level 12): Reduces this move's cooldown by 1s.",
           "videoAsset": "/assets/skills/Jolteon/Volt+Switch.mp4"
         },
         {
@@ -29621,7 +29621,7 @@
           ],
           "moveType": "Area",
           "iconAsset": "/assets/skills/Jolteon/Plasma+Quintupulse.png",
-          "descriptionAdvanced": "The user is enveloped in electricity, becoming invincible, and attacks in a flurry in the designated direction, dealing damage 4 times. Afterwards, the user winds up a dash, dealing increased damage. If the final dash hits opposing Pokémon with 4 or 5 jolt marks, the user restores some health and calls down a lightning bolt on those targets, dealing additional damage and stunning them for 0.4s. Each target beyond the first only heals 30% of the original amount.\n\nTargets in the designated area are paralyzed for 2s, lowering movement speed by 30% and attack speed by a flat 10%.",
+          "descriptionAdvanced": "The user is enveloped in electricity, becoming invincible, and attacks in a flurry in the designated direction, dealing damage 4 times. Afterwards, the user winds up a dash, dealing increased damage. If the final dash hits opposing Pokémon with 4 or 5 jolt marks, the user triggers the health restoration and lightning bolt caused by the Quick Feet boosted attack.\n\nTargets in the designated area are paralyzed for 2s, lowering movement speed by 30% and attack speed by a flat 10%.",
           "upgradeLevel": 8,
           "videoAsset": "/assets/skills/Jolteon/Plasma+Quintupulse.mp4"
         }
