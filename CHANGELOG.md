@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.1](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.18.0...v2.18.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **data:** refresh UNITE-DB copy for Flareon and Jolteon moves ([91456e1](https://github.com/AeroKita/FoxForge-UNITE/commit/91456e1570e8896931ad7ce4403a940500a8c5a6))
+
 ## [2.18.0](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.17.4...v2.18.0) (2026-10-15)
 
 
