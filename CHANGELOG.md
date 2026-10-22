@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.2](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.18.1...v2.18.2) (2026-10-22)
+
+
+### Bug Fixes
+
+* **data:** refresh Meganium Grass Knot Advanced text from UNITE-DB ([7330337](https://github.com/AeroKita/FoxForge-UNITE/commit/73303372aa9cbebdf649e5d5a2753b5a5a6c64a2))
+
 ## [2.18.1](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.18.0...v2.18.1) (2026-10-19)
 
 
