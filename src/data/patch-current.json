@@ -1,11 +1,11 @@
 {
   "patchVersion": "1.24.2.6",
-  "lastUpdated": "2026-10-19",
+  "lastUpdated": "2026-10-22",
   "dataSource": {
     "provider": "UNITE-DB",
     "url": "https://unite-db.com",
     "note": "Community-sourced (APK bundles encrypted; see tools/extract/ENCRYPTION-FINDINGS.md). Held-item values span grades 1–40 (in-game max 40). Percentages stored as decimals.",
-    "fetched": "2026-10-19"
+    "fetched": "2026-10-22"
   },
   "pokemon": [
     {
@@ -35542,7 +35542,7 @@
           "isUpgrade": true,
           "moveType": "Hindrance",
           "upgradeLevel": 5,
-          "descriptionAdvanced": "The user slashes with their vines in the designated direction, stopping at the first target hit, dealing damage and rooting opposing Pokémon for 1s.\n\nWhile in full bloom, the move becomes wider. After hitting an opposing Pokémon, other nearby opposing Pokémon will be targeted, after 2s have passed any targeted Pokémon in range will be hit by this move.\n\nUpgrade (Level 11): Reduces the cooldown of this move by 1s.",
+          "descriptionAdvanced": "The user slashes with their vines in the designated direction, stopping at the first target hit, dealing damage and immobilizing opposing Pokémon for 1s.\n\nWhile in full bloom, the move becomes wider. After hitting an opposing Pokémon, other nearby opposing Pokémon will be targeted, after 2s have passed any targeted Pokémon in range will be hit by this move.\n\nUpgrade (Level 11): Reduces the cooldown of this move by 1s.",
           "videoAsset": "/assets/skills/Meganium/Grass+Knot.mp4"
         },
         {
