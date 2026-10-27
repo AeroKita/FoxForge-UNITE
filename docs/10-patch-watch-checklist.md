@@ -79,6 +79,6 @@ Run this when a new patch drops (or when UNITE-DB publishes patch changes).
 - Tests assert AS boosts are numeric and that every non-basic move has a local
   skill icon.
 
-## Scheduled refresh
+## Manual refresh
 
-[`data.yml`](../.github/workflows/data.yml) already runs on a daily cron (`0 9 * * *`, 09:00 UTC) and on `workflow_dispatch`. It opens a review PR; it does not push directly to `main`.
+The daily cron is off. Pokémon UNITE end of service is 2027-03-23, so [`data.yml`](../.github/workflows/data.yml) no longer runs at 09:00 UTC. **Refresh game data** stays available as a manual *Run workflow*. It still opens a review PR and does not push directly to `main`.

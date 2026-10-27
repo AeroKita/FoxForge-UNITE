@@ -1,12 +1,11 @@
 name: Refresh game data
 
-# Re-scrapes UNITE-DB and publishes a fresh data bundle + manifest to
-# public/data. This workflow opens a PR for review (never pushes directly to main).
+# Manual UNITE-DB refresh. Opens a PR for review (never pushes directly to main).
 # The live site picks up that data when the release containing the merge is deployed.
+# The daily 09:00 UTC cron was removed on 2026-10-27 after The Pokémon Company
+# announced Pokémon UNITE end of service on 2027-03-23.
 
 on:
-  schedule:
-    - cron: "0 9 * * *" # daily, 09:00 UTC
   workflow_dispatch:
     inputs:
       patch_version:
