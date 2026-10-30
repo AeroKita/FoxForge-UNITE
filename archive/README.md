@@ -11,3 +11,5 @@ so nothing here is compiled, bundled, linted, or formatted.
   on local git branch `archive/i18n-wip`, annotated tag `archive/i18n-wip-2026-09-20`,
   and the bundle `../archive-i18n-wip-2026-09-20.bundle` (sibling of this repo).
   Do not merge or resume that work unless explicitly asked.
+
+Jolteon and Flareon maintenance did not add or remove anything in this folder.
