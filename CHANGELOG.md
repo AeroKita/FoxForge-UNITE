@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.3](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.18.2...v2.18.3) (2026-10-30)
+
+
+### Miscellaneous Chores
+
+* stop the daily UNITE-DB refresh ([4f646dd](https://github.com/AeroKita/FoxForge-UNITE/commit/4f646dd7c4dfe40a103181269f9224f252375699))
+
 ## [2.18.2](https://github.com/AeroKita/FoxForge-UNITE/compare/v2.18.1...v2.18.2) (2026-10-22)
 
 
